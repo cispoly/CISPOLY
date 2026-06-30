@@ -3,10 +3,10 @@
 <h1 align="center">CISPOLY - Methylation-Based Gynecological Cancer Early Diagnosis</h1>
 <p align="center">
   <b>Early Detection & Precision Solutions for Gynecologic Cancers</b><br>
-  <a href="https://www.cispoly.netlify.app">🌐 Official Website</a> •
-  <a href="https://www.cispoly.netlify.app/ciscer">CISCER Cervical</a> •
-  <a href="https://www.cispoly.netlify.app/cisendo">CISENDO Endometrial</a> •
-  <a href="https://www.cispoly.netlify.app/cisova">CISOVA Ovarian</a>
+  <a href="https://cispoly.github.io">🌐 Official Website</a> •
+  <a href="https://cispoly.github.io/#/ciscer">CISCER Cervical</a> •
+  <a href="https://cispoly.github.io/#/cisendo">CISENDO Endometrial</a> •
+  <a href="https://cispoly.github.io/#/cisova">CISOVA Ovarian</a>
 </p>
 
 ---
@@ -63,11 +63,11 @@ CISPOLY methylation detection technology has been incorporated into the followin
 
 **Beijing Cispoly Biotech Co., Ltd.** (Cispoly Biotech) specializes in early detection of gynecologic cancers. We are dedicated to providing accurate and convenient screening solutions for women's health through innovative methylation detection technology.
 
-- Website: https://www.cispoly.netlify.app
-- Email: OPBT@cispoly.com
+- Website: https://cispoly.github.io/#/cisova
+- Email: OPBT@cispoly.com; wangyishan@cispoly.com
 
 ---
 
 <p align="center">
-  <sub>© 2025 Beijing Cispoly Biotech Co., Ltd. All rights reserved.</sub>
+  <sub>© 2020-2026 Beijing Cispoly Biotech Co., Ltd. All rights reserved.</sub>
 </p>

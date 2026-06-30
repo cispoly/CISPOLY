@@ -63,7 +63,7 @@ CISPOLY methylation detection technology has been incorporated into the followin
 
 **Beijing Cispoly Biotech Co., Ltd.** (Cispoly Biotech) specializes in early detection of gynecologic cancers. We are dedicated to providing accurate and convenient screening solutions for women's health through innovative methylation detection technology.
 
-- Website: https://cispoly.github.io/#/cisova
+- Website: https://cispoly.github.io/
 - Email: OPBT@cispoly.com; wangyishan@cispoly.com
 
 ---

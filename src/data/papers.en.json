@@ -1,0 +1,227 @@
+{
+  "7_epihera_prospective": {
+    "titleEn": "Prospective Evaluation of Cervical Scrapings CDO1 and CELF4 Methylation (epiHERA?) Assay in Detection of Endometrial Cancer",
+    "summaryEn": "This study evaluated the use of CDO1 and CELF4 methylation testing in cervical scrapings for diagnosing endometrial cancer. Among 675 patients tested, the assay achieved 97.3% accuracy, 84.1% sensitivity, 98.8% specificity, and a false-negative rate of only 0.8%. The method can serve as a screening tool to reduce invasive procedures, and all false-positive cases were associated with reproductive tract tumors, suggesting potential for early cancer detection before histological changes.",
+    "affiliationEn": "The Chinese University of Hong Kong"
+  },
+  "1_pax1jam3_hpv_viral_load": {
+    "titleEn": "PAX1/JAM3 Methylation and HPV Viral Load in Women with Persistent HPV Infection",
+    "summaryEn": "This study of 231 women with persistent HPV infection but no high-grade cervical lesions found that PAX1/JAM3 methylation levels were significantly elevated in those infected for more than 3 years, with methylation levels of the two genes being correlated, serving as cumulative evidence of HPV infection duration before lesion development. HPV viral load was associated with cervical vaginal lesions, particularly showing indicative value for non-16/18 HPV types.",
+    "affiliationEn": "Peking University People's Hospital"
+  },
+  "4_non1618_triage_multicenter": {
+    "titleEn": "Triage performance of PAX1m/JAM3m in opportunistic cervical cancer screening of non-16/18 human papillomavirus-positive women: a multicenter prospective study",
+    "summaryEn": "This study evaluated the triage value of PAX1/JAM3 methylation testing in cervical cancer screening for women positive for non-16/18 high-risk HPV. Analysis of 1,851 patients showed that the test's specificity (88.5%) was significantly superior to liquid-based cytology (26.7%), with a diagnostic area under the curve of 0.866. Compared with cytology, the test reduced colposcopy referrals by 57% while maintaining high sensitivity (84.8%), detecting all 20 cancer cases.",
+    "affiliationEn": "Peking Union Medical College Hospital"
+  },
+  "1_cdo1_hoxa9_diagnosis": {
+    "titleEn": "Significance of promoter hypermethylation of CDO1 and HOXA9 genes in serum for ovarian cancer diagnosis",
+    "summaryEn": "Serum CDO1 and HOXA9 gene promoter methylation levels are closely associated with ovarian cancer diagnosis. This study compared blood biomarkers between women with benign ovarian masses and ovarian cancer patients, finding that combined methylation testing of the two genes achieved the highest diagnostic accuracy for ovarian cancer (AUC 0.936), with sensitivity and specificity both exceeding 90%, demonstrating important clinical value in early ovarian cancer detection.",
+    "affiliationEn": "Chengdu Women's and Children's Central Hospital"
+  },
+  "5_triage_strategy_biomarkers": {
+    "titleEn": "Hypermethylated CDO1 and CELF4 in cytological specimens as triage strategy biomarkers in endometrial malignant lesions",
+    "summaryEn": "This study evaluated the diagnostic value of CDO1 and CELF4 gene methylation in cervical exfoliated cells for endometrial cancer and atypical hyperplasia. Analysis of 607 patients showed dual-gene methylation testing achieved 84.9% sensitivity and 86.6% specificity, and combining with transvaginal ultrasound increased specificity to 94.9%. As a non-invasive diagnostic strategy, this method may reduce the need for invasive procedures.",
+    "affiliationEn": "Cangzhou Central Hospital"
+  },
+  "16_vaginal_dysbiosis_biomarker": {
+    "titleEn": "PAX1/JAM3 methylation in cervical exfoliated cells: a robust diagnostic biomarker for cervical high-grade lesions associated with vaginal dysbiosis",
+    "summaryEn": "PAX1/JAM3 gene methylation testing effectively diagnoses cervical high-grade lesions. The study found high diagnostic accuracy for CIN2+ lesions (AUC 0.826-0.852), with specificity superior to HPV testing (89.1% vs 7.3%). Elevated methylation was associated with vaginal dysbiosis, characterized by reduced Lactobacillus and increased Gardnerella, supporting its use as a triage tool for HPV-positive women.",
+    "affiliationEn": "Beijing Anzhen Hospital"
+  },
+  "18_early_diagnosis_effectiveness": {
+    "titleEn": "Effectiveness analysis and clinical application potential exploration of combined detection of PAX1/JAM3 gene methylation in early diagnosis of cervical cancer",
+    "summaryEn": "Combined PAX1/JAM3 gene methylation testing has important value in early diagnosis of cervical precancerous lesions. Methylation testing of 431 cervical exfoliated cell samples showed an area under the curve of 0.89 for diagnosing CIN2+, with 83.1% sensitivity and 88.8% specificity, superior to traditional cytology, demonstrating clinical application potential in HPV triage management.",
+    "affiliationEn": "Tumor Hospital Affiliated to Xinjiang Medical University"
+  },
+  "22_adenocarcinoma_biomarker": {
+    "titleEn": "PAX1/JAM3 methylation - a novel biomarker for early detection and accurate management of cervical adenocarcinoma",
+    "summaryEn": "Cervical adenocarcinoma is difficult to detect early due to its hidden location and low sensitivity of traditional tests. This study found that PAX1 and JAM3 genes are highly methylated in cervical adenocarcinoma, and dual-gene methylation testing has excellent diagnostic sensitivity and specificity, serving as novel molecular biomarkers for screening, diagnosis, and precise management of cervical adenocarcinoma.",
+    "affiliationEn": "The 940th Hospital of Joint Logistics Support Force of PLA"
+  },
+  "23_triage_utility": {
+    "titleEn": "Utility of PAX1/JAM3 methylation analysis for triage of high-risk HPV-positive individuals",
+    "summaryEn": "PAX1 and JAM3 gene methylation testing effectively triages high-risk HPV-positive patients. Analysis of cervical secretions from 312 patients showed methylation levels significantly correlated with lesion severity. The test achieved 91.8% sensitivity and 90.7% specificity for CIN2+ lesions, superior to cytology and HPV-16/18 genotyping, reducing colposcopy referral rate by 19.2% while increasing lesion detection by 39.4%, representing a promising triage strategy.",
+    "affiliationEn": "Ziyang Central Hospital"
+  },
+  "25_transformation_zone_utility": {
+    "titleEn": "Clinical Utility of Cytological Methylation Assay in Cervical Cancer Screening",
+    "summaryEn": "This study evaluated the clinical value of the cytological methylation assay (CISCER) in cervical cancer screening. The test showed excellent performance in detecting CIN3+ lesions, with 81.5% sensitivity and 89.8% specificity particularly in women with transformation zone type 3. Compared with traditional cytology and HPV genotyping, CISCER more accurately identifies high-risk patients and significantly reduces unnecessary colposcopy referrals; combined with HPV testing it further optimizes risk stratification.",
+    "affiliationEn": "Peking Union Medical College Hospital"
+  },
+  "26_diagnostic_accuracy_meta": {
+    "titleEn": "Diagnostic testing accuracy of DNA methylation tests for detection of high-grade cervical intraepithelial neoplasia and cervical cancer: A systematic review and meta-analysis",
+    "summaryEn": "DNA methylation markers can be used for screening and triage of cervical lesions. A meta-analysis of 125 studies found that markers including JAM3, C13ORF18, and PAX1 had the highest diagnostic value in HPV-positive women, and EPB41L3 had the lowest negative likelihood ratio. These markers show high sensitivity and strong specificity in detecting high-grade lesions, potentially reducing unnecessary colposcopies and supporting self-sampling applications.",
+    "affiliationEn": "Imperial College London"
+  },
+  "27_joint_methylation_progress": {
+    "titleEn": "Research progress on PAX1/JAM3 dual-gene combined methylation testing in cervical lesion management",
+    "summaryEn": "Aberrant methylation of PAX1 and JAM3 genes is a key epigenetic event in cervical cancer malignant transformation. Dual-gene combined methylation testing offers high sensitivity and specificity, superior to traditional cytology, enabling precise early diagnosis of cervical cancer, triage of HPV-positive populations, and prediction of post-conization lesion progression risk. The test supports self-sampling, improving screening accessibility in primary care, and is expected to become a core technology in cervical cancer screening guidelines, driving the shift from population-based screening toward individualized precision prevention.",
+    "affiliationEn": "School of Medicine, Northwest Minzu University"
+  },
+  "28_postop_recurrence_prediction": {
+    "titleEn": "Predictive significance of cervical exfoliated cell gene methylation testing for residual and recurrent risk after surgery for high-grade cervical lesions",
+    "summaryEn": "PAX1 and JAM3 gene methylation in cervical exfoliated cells is closely related to residual disease and recurrence after surgery for high-grade cervical lesions. Testing of 120 patients revealed a dual-gene methylation positive rate of 54.17%, with 18.33% experiencing adverse outcomes postoperatively. The combined dual-gene test achieved 91.30% sensitivity and 94.29% negative predictive value, effectively predicting residual and recurrent risk and providing important reference for clinical follow-up.",
+    "affiliationEn": "Guilin Maternal and Child Health Hospital"
+  },
+  "29_pax1jam3_hrhpv_tct": {
+    "titleEn": "Association of PAX1/JAM3 gene methylation, HR-HPV, and TCT with high-grade cervical lesions in a high-risk cohort: a multinomial logistic regression analysis",
+    "summaryEn": "This study investigated the associations of HR-HPV infection, cytology results, and PAX1/JAM3 gene methylation with high-grade cervical lesions in 409 patients with abnormal cervical cytology. Extremely high-risk HPV, abnormal cytology, and positive PAX1/JAM3 methylation were independent risk factors for high-grade lesions, with JAM3 methylation carrying the highest risk. These biomarkers can enhance risk stratification in cervical cancer screening, though larger prospective studies are needed to validate their clinical utility.",
+    "affiliationEn": "First Hospital of Hebei Medical University"
+  },
+  "30_cin3_like_scc": {
+    "titleEn": "Preliminary study on PAX1/JAM3 methylation and HPV viral load in CIN3-like squamous cell carcinoma: Are there differences from CIN3 and early invasive carcinoma?",
+    "summaryEn": "This study compared PAX1/JAM3 methylation levels and HPV viral load across cervical CIN3, CIN3-like squamous cell carcinoma, early invasive carcinoma, and invasive carcinoma. PAX1 and JAM3 methylation levels were significantly higher in cancers than in high-grade lesions, but no significant difference was found between CIN3-like SCC and early invasive carcinoma. CIN3-like SCC showed significantly higher HPV viral load than CIN3 and early invasive carcinoma, suggesting distinct molecular biological features.",
+    "affiliationEn": "Peking University People's Hospital"
+  },
+  "10_paired_sample_validation": {
+    "titleEn": "Validation of a cervical CDO1/CELF4 methylation test for endometrial cancer: a prospective paired-sample comparison with intrauterine specimens",
+    "summaryEn": "This study validated the value of CDO1/CELF4 gene methylation testing in diagnosing endometrial cancer. Comparing cervical brush samples with dilation and curettage samples, the diagnostic performance of the two sampling methods showed no significant difference. CDO1/CELF4 methylation testing achieved sensitivity and specificity both exceeding 92%, superior to traditional markers. The non-invasive nature of cervical brushing makes it an effective screening tool for high-risk women, potentially improving early diagnosis of endometrial cancer.",
+    "affiliationEn": "Gansu Provincial Maternity and Child-care Hospital"
+  },
+  "11_endomethy1_trial": {
+    "titleEn": "Development and validation of hypermethylated gene markers in cervical cytological samples for detecting endometrial cancer (EndoMethy-I trial)",
+    "summaryEn": "This study identified three hypermethylated genes associated with endometrial cancer - CDO1, CELF4, and NEFM - through analysis of gene methylation markers in cervical cytological samples. In the validation cohort, combined testing of the three markers achieved 94.6% sensitivity and 92.8% specificity for detecting endometrial cancer, outperforming existing non-invasive methods and providing a safe, reliable new strategy for early diagnosis.",
+    "affiliationEn": "Peking Union Medical College Hospital"
+  },
+  "12_self_collected_concordance": {
+    "titleEn": "Diagnostic Accuracy and Concordance of Self-Collected Cervical CDO1 and CELF4 Methylation Testing Compared With Physician Sampling for Endometrial Cancer",
+    "summaryEn": "This study validated the feasibility of self-sampling for endometrial cancer detection by comparing CDO1 and CELF4 methylation markers in self-collected and physician-collected cervical samples. The two sampling methods showed good concordance and diagnostic accuracy, providing evidence supporting the development of non-invasive, convenient endometrial cancer screening methods.",
+    "affiliationEn": "The Second Xiangya Hospital of Central South University"
+  },
+  "8_clinical_validation": {
+    "titleEn": "Clinical Validation of DNA Methylation Detection in Cervical Exfoliated Cells for Endometrial Cancer in Women with Suspected Lesions",
+    "summaryEn": "This study evaluated the diagnostic value of CDO1 and CELF4 gene methylation testing in cervical exfoliated cells for endometrial cancer among 2,164 patients with suspected endometrial lesions. The test showed 93.94% sensitivity and 96.7% specificity for endometrial cancer, and combining with transvaginal ultrasound further improved diagnostic performance. The method provides a simple, non-invasive screening strategy for endometrial lesions.",
+    "affiliationEn": "Obstetrics & Gynecology Hospital of Fudan University"
+  },
+  "9_dominant_predictor_cohort": {
+    "titleEn": "CDO1 and CELF4 methylation assay as the dominant predictor of endometrial cancer: A cohort analysis across pre- and post-menopausal cohorts",
+    "summaryEn": "The CDO1/CELF4 methylation assay (CISENDO) detects endometrial cancer from cervical brush samples, showing high diagnostic value in both pre- and post-menopausal women. Among 573 patients, the test achieved 89.7%-91.7% sensitivity and 91.8%-93.0% specificity, with sensitivity further improved when combined with transvaginal ultrasound endometrial thickness. Multivariate analysis confirmed CISENDO as the strongest independent predictor of endometrial cancer, providing an effective tool for non-invasive diagnosis and triage.",
+    "affiliationEn": "Hainan General Hospital (Hainan Affiliated Hospital of Hainan Medical University)"
+  },
+  "11_triage_role_non1618": {
+    "titleEn": "The triage role of cytological DNA methylation in women with non-16/18, specifically genotyping high-risk HPV infection",
+    "summaryEn": "DNA methylation testing is superior to liquid-based cytology for triaging women with non-16/18 high-risk HPV infection. The method effectively identifies patients at high risk of cervical lesions, significantly reducing unnecessary colposcopy referral rates, especially when combined with HPV33/35 genotyping, providing a more precise risk stratification tool for cervical cancer screening.",
+    "affiliationEn": "Peking Union Medical College Hospital"
+  },
+  "12_minimally_abnormal_management": {
+    "titleEn": "Cytologic DNA methylation for managing minimally abnormal cervical cancer screening results",
+    "summaryEn": "This study of the DNA methylation test (CISCER) in cervical cancer screening demonstrated strong discriminative ability for minimally abnormal results. Among 1,857 patients, CISCER achieved 74.9% sensitivity and 89.1% specificity for CIN3+. A positive result indicated 40.5% risk of CIN3+, while a negative result carried only 2.7% risk, significantly reducing unnecessary colposcopy referrals.",
+    "affiliationEn": "Peking Union Medical College Hospital"
+  },
+  "13_fus_rct_protocol": {
+    "titleEn": "Focused ultrasound ablation for women with cervical lesions: Protocol of a randomized controlled trial",
+    "summaryEn": "Focused ultrasound is a non-invasive therapeutic technique for treating cervical lesions. This study designed a randomized controlled trial to evaluate the efficacy of focused ultrasound in treating cervical lesions in reproductive-age women, particularly its advantages in preserving fertility, aiming to provide a safer alternative to traditional cold-knife conization.",
+    "affiliationEn": "The Third Affiliated Hospital of Zhengzhou University"
+  },
+  "14_upgrading_prediction": {
+    "titleEn": "The role of PAX1 and JAM3 methylation in predicting the pathological upgrading of cervical intraepithelial neoplasia before conization",
+    "summaryEn": "This study investigated the predictive value of PAX1 and JAM3 gene methylation for pathological upgrading before cervical conization. Methylation results from cervical exfoliated cells of 549 patients were analyzed by multivariate logistic regression to identify independent risk factors. PAX1 methylation and endocervical lesions were independent predictors of pathological upgrading, with the established prediction model achieving an AUC of 0.818; PAX1 cutoff below 4.34 indicated high risk of upgrading. PAX1 can serve as an effective triage marker for predicting pathological upgrading of cervical intraepithelial neoplasia.",
+    "affiliationEn": "Zhejiang Provincial People's Hospital"
+  },
+  "15_postmenopausal_accuracy": {
+    "titleEn": "Enhanced diagnostic accuracy of high-grade cervical intraepithelial neoplasia in postmenopausal women through PAX1/JAM3 methylation analysis",
+    "summaryEn": "PAX1/JAM3 methylation testing performs excellently in diagnosing cervical lesions in postmenopausal women. Comparative analysis of 216 women aged ≥50 and 212 women aged <50 showed the test achieved 93.2%-97.2% sensitivity and 93.6% specificity for high-grade cervical intraepithelial neoplasia, superior to traditional liquid-based cytology and combined HPV testing. The method also identified HPV-negative adenocarcinoma and non-16/18 HPV infection cases, providing an effective supplementary tool for cervical cancer screening in postmenopausal women.",
+    "affiliationEn": "The First Hospital of Hunan University of Chinese Medicine"
+  },
+  "17_reply_comments": {
+    "titleEn": "Enhanced diagnostic accuracy of high-grade cervical intraepithelial neoplasia in postmenopausal women through PAX1/JAM3 methylation analysis",
+    "summaryEn": "PAX1/JAM3 methylation testing performs excellently in diagnosing cervical lesions in postmenopausal women. Comparative analysis of 216 women aged ≥50 and 212 women aged <50 found the test achieved 93.2%-97.2% sensitivity and 93.6% specificity for high-grade cervical intraepithelial neoplasia, superior to traditional liquid-based cytology and combined HPV testing. The method also identifies HPV-negative adenocarcinoma and non-16/18 HPV infection cases, providing an effective supplementary tool for cervical cancer screening in postmenopausal women.",
+    "affiliationEn": "The First Hospital of Hunan University of Chinese Medicine"
+  },
+  "19_hrhpv_diagnostic_value": {
+    "titleEn": "Diagnostic value of PAX1/JAM3 gene methylation for cervical cancer in HR-HPV-infected women",
+    "summaryEn": "This study of 808 high-risk HPV-infected women evaluated the diagnostic value of PAX1/JAM3 gene methylation for cervical cancer. The test achieved 86.3% sensitivity and 91.0% specificity for cervical cancer, with diagnostic performance (AUC 0.873) superior to HPV16/18 and TCT testing. It also reduced the colposcopy referral rate from 80.70% to 43.94%, decreasing unnecessary biopsies. The method offers superior clinical application value in cervical cancer screening for high-risk HPV-infected women.",
+    "affiliationEn": "Beijing Obstetrics and Gynecology Hospital, Capital Medical University (Beijing Maternal and Child Health Care Hospital)"
+  },
+  "20_screening_treatment_review": {
+    "titleEn": "Application of PAX1/JAM3 dual-gene methylation in cervical cancer screening and treatment",
+    "summaryEn": "Cervical cancer is a high-incidence malignancy among women in China. Existing screening methods (TCT and HR-HPV testing) have limitations in sensitivity or specificity. PAX1/JAM3 dual-gene methylation is associated with cervical cancer cell migration and invasion; combined application can optimize screening strategies, improve clinical triage accuracy, and provide a theoretical basis for precise cervical cancer screening and stratified management.",
+    "affiliationEn": "The Second Affiliated Hospital of Shandong First Medical University"
+  },
+  "21_meta_analysis": {
+    "titleEn": "Meta-analysis of PAX1 and JAM3 methylation for diagnosis of high-grade cervical intraepithelial neoplasia",
+    "summaryEn": "Combined testing of PAX1 and JAM3 methylation markers has good diagnostic value for high-grade cervical intraepithelial neoplasia. Meta-analysis results showed the combined test achieved 78% sensitivity and 95% specificity for CIN2+, and 84% sensitivity and 87% specificity for CIN3+, with high overall diagnostic performance, serving as an effective diagnostic tool for cervical precancerous lesions.",
+    "affiliationEn": "Yan'an Hospital Affiliated to Kunming Medical University"
+  },
+  "32_pilot_prediction": {
+    "titleEn": "Preliminary study on the predictive value of PAX1 and JAM3 gene methylation in cervical exfoliated cells for cervical intraepithelial neoplasia",
+    "summaryEn": "This study evaluated the predictive value of PAX1 and JAM3 gene methylation as combined biomarkers for high-grade cervical lesions. Among 144 patients, the positivity rate of dual-gene methylation was significantly higher in CIN2+ patients than in the low-grade lesion group. When HPV16/18 positive with either gene methylation positive, the positive predictive value for CIN2+ reached 96.9%, superior to HPV testing alone. Combined dual-gene methylation and HPV testing significantly improves early identification of cervical lesions, suitable for triage management of cases with indeterminate cytology.",
+    "affiliationEn": "Changsha Maternal and Child Health Hospital"
+  },
+  "8_triage_performance_hrhpv": {
+    "titleEn": "Triage performance of DNA methylation for women with high-risk human papillomavirus infection",
+    "summaryEn": "The DNA methylation markers PAX1m/JAM3m perform excellently in cervical cancer screening. This study compared the markers with HPV16/18 genotyping and liquid-based cytology in 1,105 high-risk HPV-infected women for detecting CIN3+ lesions. PAX1m/JAM3m showed the highest specificity (89.6%) and strongest diagnostic performance (AUC 0.790), significantly reducing colposcopy referrals for negative patients, making it a superior triage biomarker to existing methods.",
+    "affiliationEn": "Peking Union Medical College Hospital"
+  },
+  "10_hsil_diagnosis_performance": {
+    "titleEn": "The performance of JAM3/PAX1 methylation in the diagnosis of high-grade squamous intraepithelial lesions for women with high-risk HPV infection",
+    "summaryEn": "This study evaluated the value of DNA methylation testing in cervical cancer screening. HPV testing, cytology, and JAM3/PAX1 methylation levels were measured in 276 patients. Combined application of methylation markers with HPV and cytology achieved 91.2% sensitivity for diagnosing high-grade cervical lesions, with accuracy superior to HPV or cytology alone, providing a more precise screening method for high-risk HPV-infected women.",
+    "affiliationEn": "The Third Xiangya Hospital of Central South University"
+  },
+  "24_vaginal_microbiome": {
+    "titleEn": "Correlation study on the impact of vaginal microbiome on cervical cell DNA methylation levels and cervical lesions",
+    "summaryEn": "Vaginal microbiome imbalance is closely related to cervical lesions. The study found that reduced Lactobacillus crispatus was associated with elevated PAX1 gene methylation, which in turn promoted cervical lesion progression. Lactobacillus crispatus may influence cervical lesion development by regulating PAX1 methylation levels, providing new biological mechanism references for cervical disease prevention and treatment.",
+    "affiliationEn": "The Third Xiangya Hospital of Central South University"
+  },
+  "2_self_sampling_feasibility": {
+    "titleEn": "Feasibility assessment of self-collected vaginal samples for PAX1/JAM3 dual-gene methylation markers as a cervical cancer screening approach",
+    "summaryEn": "This study evaluated the feasibility of self-collected vaginal samples for detecting PAX1/JAM3 dual-gene methylation markers in cervical cancer screening. Analysis of 272 subjects showed high concordance between self-collected and physician-collected samples. The marker achieved 77.6% sensitivity and 87.2% specificity for CIN2+ lesions; combined with HPV16/18 testing, sensitivity reached 89.7%, and 96.0% for CIN3+, superior to existing methods. Self-sampled methylation testing is clinically feasible for cervical cancer screening.",
+    "affiliationEn": "The First Affiliated Hospital of University of South China"
+  },
+  "31_jam3_recurrence_prediction": {
+    "titleEn": "Clinical study of JAM3 gene DNA methylation in high-grade cervical intraepithelial neoplasia and postoperative recurrence prediction",
+    "summaryEn": "JAM3 gene DNA methylation levels increase with the severity of cervical lesions, with methylation rates of 4%, 10%, 38%, and 54% in normal, CIN I, CIN II, and CIN III respectively. Combined methylation testing compensates for the limitations of HPV and TCT, significantly improving detection of high-grade intraepithelial neoplasia, assisting lesion grade management, and predicting postoperative recurrence risk, with clinical application value.",
+    "affiliationEn": "Linyi Central Hospital"
+  },
+  "3_multicenter_screening": {
+    "titleEn": "A multicenter study on the accuracy of PAX1/JAM3 dual-gene methylation testing for screening cervical cancer",
+    "summaryEn": "This study performed PAX1/JAM3 dual-gene methylation testing on 1,184 cervical samples from three hospitals. The test achieved 74.1% sensitivity and 95.9% specificity for CIN2+ lesions, and 87.6% sensitivity and 86.8% specificity for CIN3+ lesions. Compared with traditional cervical cytology and HPV testing, the method demonstrated significantly better accuracy, serving as an effective tool for cervical cancer screening.",
+    "affiliationEn": "Peking Union Medical College Hospital"
+  },
+  "6_ascus_triage_efficacy": {
+    "titleEn": "Cervical cancer screening: efficacy of PAX1 and JAM3 methylation assay in the triage of atypical squamous cells of undetermined significance (ASC-US)",
+    "summaryEn": "This study evaluated the triage efficacy of PAX1 and JAM3 methylation testing for the diagnostic challenge of ASC-US in cervical cancer screening. HPV-DNA and methylation testing were performed on 322 ASC-US patients, showing 83.8% sensitivity and 95.8% specificity for high-grade cervical lesions, superior to HPV testing, reducing colposcopy referral rates by 79.5% for high-risk patients, providing a reliable supplementary tool for ASC-US clinical management.",
+    "affiliationEn": "Zhejiang Provincial People's Hospital"
+  },
+  "7_triage_efficacy_hpv": {
+    "titleEn": "Assessment of PAX1 and JAM3 methylation triage efficacy across HPV genotypes and age groups in high-risk HPV-positive women in China",
+    "summaryEn": "This study evaluated the clinical value of PAX1/JAM3 methylation testing in screening cervical lesions in high-risk HPV-positive women. Testing of 436 subjects showed 92.6% sensitivity and 95.7% specificity for CIN2+ lesions, superior to cytology. The method performed excellently in both HPV16/18-positive and non-16/18-positive women and identified all cervical cancer cases. The test in cervical exfoliated cells demonstrates triage performance superior to traditional screening strategies.",
+    "affiliationEn": "Xuzhou Maternity and Child Health Hospital"
+  },
+  "9_triage_hpv1618": {
+    "titleEn": "Evaluating PAX1/JAM3 methylation for triage in HPV 16/18-infected women",
+    "summaryEn": "This study evaluated the triage value of the PAX1/JAM3 methylation test (CISCER) in HPV 16/18-positive women. 334 HPV-positive patients underwent CISCER testing, cytology, and combined testing. CISCER was superior to cytology in identifying cervical lesions, with 89.0% sensitivity and 95.3% specificity, effectively reducing unnecessary colposcopy referrals and lowering overtreatment risk.",
+    "affiliationEn": "The Second Affiliated Hospital, Zhejiang University School of Medicine"
+  },
+  "3_cdo1_noninvasive_detection": {
+    "titleEn": "The endometrial cancer detection using non-invasive hypermethylation of CDO1 and CELF4 genes in women with postmenopausal bleeding in Northwest China",
+    "summaryEn": "This study evaluated the clinical value of CDO1 and CELF4 gene methylation in cervical exfoliated cells for diagnosing endometrial cancer in women with postmenopausal bleeding. The method achieved 87.5% sensitivity and 95.9% specificity, with 100% detection of type II endometrial cancer. This non-invasive test with high specificity can serve as an auxiliary diagnostic tool to help physicians distinguish benign from malignant lesions in postmenopausal bleeding patients.",
+    "affiliationEn": "Gansu Provincial Maternity and Child-care Hospital"
+  },
+  "4_premenopausal_biomarker": {
+    "titleEn": "DNA methylation detection is a significant biomarker for screening endometrial cancer in premenopausal women with abnormal uterine bleeding",
+    "summaryEn": "This study evaluated the value of CDO1 and CELF4 gene methylation in exfoliated cervical cells for endometrial cancer screening in premenopausal women with abnormal uterine bleeding. Dual-gene methylation testing achieved 85.7% sensitivity and 87.6% specificity, superior to age, BMI, and endometrial thickness, with combined application further improving screening efficiency.",
+    "affiliationEn": "The Third Xiangya Hospital, Central South University"
+  },
+  "6_hekouan_screening_value": {
+    "titleEn": "Application value of CISENDO dual-gene methylation testing in endometrial cancer screening",
+    "summaryEn": "CDO1 and CELF4 dual-gene methylation testing has important application value in endometrial cancer screening. Testing of 216 patients with abnormal uterine bleeding showed 91.2% sensitivity and 96.7% specificity, both significantly higher than ultrasound and tumor marker CA125. Postmenopausal BMI, menopausal status, and methylation levels of the two genes were independent risk factors for endometrial cancer, making dual-gene methylation testing a more effective screening tool.",
+    "affiliationEn": "Gansu Maternal and Child Health Hospital"
+  },
+  "5_jam3_pax1_hsil_diagnosis": {
+    "titleEn": "High-grade cervical lesions diagnosed by JAM3/PAX1 methylation in high-risk human papillomavirus-infected patients",
+    "summaryEn": "This study explored the clinical value of JAM3 and PAX1 gene methylation testing for diagnosing high-grade cervical lesions in high-risk HPV-infected patients. Retrospective analysis of 136 patients found PAX1 and JAM3 methylation levels were negatively correlated with cervical pathological changes. A decision tree model showed that combined JAM3/PAX1 methylation testing with liquid-based cytology effectively differentiates high-grade from non-high-grade cervical lesions, providing new biomarkers for precise cervical cancer screening.",
+    "affiliationEn": "The Third Xiangya Hospital of Central South University"
+  },
+  "1_postmenopausal_screening": {
+    "titleEn": "Application value of DNA methylation testing in endometrial cancer screening for postmenopausal women",
+    "summaryEn": "DNA methylation testing has important application value in endometrial cancer screening for postmenopausal women. Cervical exfoliated cell methylation testing of 143 postmenopausal women found CDO1 and HOXA11 methylation were independent risk factors for endometrial cancer. Dual-gene methylation testing showed the highest sensitivity and specificity, and combined ultrasound further improved screening sensitivity, providing a new pathway for non-invasive early diagnosis.",
+    "affiliationEn": "Peking Union Medical College Hospital"
+  },
+  "2_aub_diagnosis": {
+    "titleEn": "Application value of DNA methylation testing in the diagnosis of endometrial cancer in reproductive-age women with abnormal uterine bleeding",
+    "summaryEn": "This study evaluated the diagnostic value of CDO1 and CELF4 gene DNA methylation in cervical exfoliated cells for endometrial cancer in reproductive-age women. Dual-gene methylation testing achieved the highest diagnostic accuracy (AUC 0.90), with sensitivity and specificity superior to traditional clinical examination methods; combined with other test indicators it further improved diagnostic sensitivity, providing a more effective non-invasive diagnostic option for patients with abnormal uterine bleeding.",
+    "affiliationEn": "The Third Xiangya Hospital of Central South University"
+  }
+}

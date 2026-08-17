@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Three-Level Prevention of Endometrial Cancer — Chinese Expert Consensus 2025</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #46：内膜癌三级预防）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、预防层级卡、流程图
+  - 布局：标题带 → hero（一级病因 / 二级早筛 / 三级治疗 / 甲基化 Se 87–94.5%）→ 两栏（左 560px：①背景与体系 ②一级预防·高危因素；右 1fr：③二级预防与甲基化筛查【重点】 ④三级预防流程图【图1-3】）→ 全宽临床意义带
+  - 选图：图1 一级 / 图2 二级 / 图3 三级 预防内容（全部展示）
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 96px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 20px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .level3 { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 6px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 0 0 5px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 11px 4px; text-align: center; }
+  .stat .big { font-size: 17px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .level3 { display: flex; gap: 8px; }
+  .lv { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; }
+  .lv .lt { font-size: 11px; font-weight: 800; color: var(--primary); margin-bottom: 2px; }
+  .lv .ll { font-size: 9.5px; color: var(--muted); line-height: 1.3; }
+  .lv.hot { border-left: 4px solid var(--primary); background: var(--panel-alt); }
+
+  .fig3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  .fcard { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 5px 8px; }
+  .fcard img { display: block; max-height: 165px; width: auto; max-width: 100%; margin: 0 auto; }
+  .fcard .fc { font-size: 10px; font-weight: 700; color: var(--primary); margin-top: 3px; text-align: center; }
+  .fcard .fl { font-size: 8.8px; color: var(--muted); line-height: 1.28; margin-top: 1px; }
+
+  .spbars { margin: 2px 0 6px; }
+  .spb { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+  .spb .sbl { flex: 0 0 150px; font-size: 11px; font-weight: 700; color: var(--text); text-align: right; }
+  .spb .sbt { flex: 1 1 auto; height: 20px; background: #F1E7E7; border-radius: 5px; overflow: hidden; position: relative; }
+  .spb .sbf { height: 100%; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 12px; font-weight: 800; color: #fff; }
+  .spb.win .sbf { background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); }
+  .spb.lose .sbf { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); color: #6B5755; }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 3px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+  body.lang-zh .panel ul li { line-height: 1.5; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">China · Precision Gyn-Oncology Society · 2025 · Expert Consensus</div>
+    <h1 data-i18n="title">Three-Level Prevention of Endometrial Cancer — Chinese Consensus 2025</h1>
+    <div class="title_alt" data-i18n="title_alt">子宫内膜癌三级预防策略中国专家共识（2025 年版）</div>
+    <div class="subtitle" data-i18n="subtitle">Primary: risk-factor control · Secondary: screening &amp; early diagnosis (incl. methylation Se 87.0–94.5%) · Tertiary: comprehensive treatment &amp; rehabilitation</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Precision Gyn-Oncology Committee (CMCHS) · Shanghai Society of Gynecologic Oncology</div>
+      <div class="source" data-i18n="source">Chin J Pract Gynecol Obstet 2025(10) · NSFC 82273233</div>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="stat hot"><div class="big">Level 1</div><div class="lab" data-i18n="h1">etiology · risk factors</div></div>
+    <div class="stat hot"><div class="big">Level 2</div><div class="lab" data-i18n="h2">screening · early diagnosis</div></div>
+    <div class="stat hot"><div class="big">Level 3</div><div class="lab" data-i18n="h3">treatment · rehabilitation</div></div>
+    <div class="stat"><div class="big">Se 87–94.5%</div><div class="lab" data-i18n="h4">methylation screening</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Framework</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Burden</strong>: EC most common gynecologic malignancy; #1 in Beijing/Shanghai/Guangzhou.</li>
+          <li data-i18n="s1b"><strong>Model</strong>: cervical 3-level prevention mature; EC system needs unification.</li>
+          <li data-i18n="s1c"><strong>Goal</strong>: reduce incidence · raise early diagnosis · improve survival &amp; QoL.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Primary Prevention — Risk Factors</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">45+ y</div><div class="lab" data-i18n="s2s1">risk rises sharply</div></div>
+          <div class="stat hot"><div class="big">Obesity</div><div class="lab" data-i18n="s2s2">metabolic syndrome</div></div>
+          <div class="stat"><div class="big">Lynch</div><div class="lab" data-i18n="s2s3">genetic risk</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Modifiable</strong>: obesity · metabolic syndrome · unopposed estrogen · lifestyle (diet/exercise).</li>
+          <li data-i18n="s2b"><strong>Hormonal</strong>: estrogen exposure (ovulatory dysfunction · estrogen-producing tumors).</li>
+          <li data-i18n="s2c"><strong>Genetic</strong>: Lynch syndrome mutation carriers — high-risk surveillance.</li>
+          <li data-i18n="s2d"><strong>Aim</strong>: prevent disease before onset, esp. in high-risk groups.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">Early</div><div class="lab" data-i18n="s2s4">menarche</div></div>
+          <div class="stat"><div class="big">Late</div><div class="lab" data-i18n="s2s5">menopause</div></div>
+          <div class="stat"><div class="big">Nulliparity</div><div class="lab" data-i18n="s2s6">infertility</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">Weight</div><div class="lab" data-i18n="s2s7">key lever</div></div>
+          <div class="stat hot"><div class="big">Metabolic</div><div class="lab" data-i18n="s2s8">key lever</div></div>
+          <div class="stat"><div class="big">Genetic</div><div class="lab" data-i18n="s2s9">screening</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2i"><strong>Multidisciplinary</strong>: gynecology · endocrinology · genetics · nutrition collaborate.</li>
+          <li data-i18n="s2e"><strong>Lifestyle</strong>: exercise &amp; diet control reduce obesity-driven estrogen excess.</li>
+          <li data-i18n="s2f"><strong>Metabolic</strong>: manage diabetes/metabolic syndrome — key modifiable targets.</li>
+          <li data-i18n="s2g"><strong>Counseling</strong>: genetic counseling &amp; Lynch surveillance in high-risk families.</li>
+          <li data-i18n="s2h"><strong>Hormonal</strong>: balance estrogen exposure; progestin protection where indicated.</li>
+        </ul>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s2j1">Primary</div><div class="sbt"><div class="sbf" style="width:33%">etiology</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s2j2">Secondary</div><div class="sbt"><div class="sbf" style="width:33%">screening</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s2j3">Tertiary</div><div class="sbt"><div class="sbf" style="width:33%">treatment</div></div></div>
+        </div>
+        <div class="level3">
+          <div class="lv hot"><div class="lt" data-i18n="s2t1">Fig 1 · Primary</div><div class="ll" data-i18n="s2l1">Lifestyle &amp; risk-factor control + genetic counseling.</div></div>
+          <div class="lv"><div class="lt" data-i18n="s2t2">Fig 2 · Secondary</div><div class="ll" data-i18n="s2l2">TVS · cytology · methylation · biopsy — early detection.</div></div>
+          <div class="lv"><div class="lt" data-i18n="s2t3">Fig 3 · Tertiary</div><div class="ll" data-i18n="s2l3">MDT treatment · rehab · long-term follow-up.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Secondary Prevention — Methylation Screening</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">2</div><div class="lab" data-i18n="s3s1">approved products (incl. Origin-Poly)</div></div>
+          <div class="stat"><div class="big">4</div><div class="lab" data-i18n="s3s2">gene combinations</div></div>
+          <div class="stat"><div class="big">4</div><div class="lab" data-i18n="s3s3">sampling routes</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s3a"><strong>Approved kits</strong>: Wuhan Kaideweisi &amp; Beijing Origin-Poly (CDO1/CELF4) — officially approved.</li>
+          <li data-i18n="s3b"><strong>Combinations</strong>: CDO1/AJAP1/GALR1 · CDO1/CELF4 · BHLHE22/CDO1/HAND2 · BHLHE22/CDO1/CELF4.</li>
+          <li data-i18n="s3c"><strong>Sampling</strong>: uterine/cervical brush · vaginal tampon · urine.</li>
+          <li data-i18n="s3d"><strong>Performance</strong>: Se 87.0–94.51% · Sp 86.0–95.5% — superior to traditional strategies; community validation ongoing.</li>
+        </ul>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s3a1">Sensitivity</div><div class="sbt"><div class="sbf" style="width:94.5%">87.0–94.51%</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s3a2">Specificity</div><div class="sbt"><div class="sbf" style="width:95.5%">86.0–95.5%</div></div></div>
+        </div>
+        <div class="tnote" data-i18n="s3n">High-risk groups: &gt;45 y · obesity/metabolic syndrome · postmenopausal bleeding/abnormal discharge · Lynch/family history.</div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">4</span><span data-i18n="s4t">Three-Level Prevention Flowcharts (Fig 1–3)</span></h3>
+        <div class="fig3">
+          <div class="fcard"><img src="images/fig_l1.jpg" alt="Fig1 primary prevention"><div class="fc" data-i18n="s4t1">Fig 1 · Primary</div><div class="fl" data-i18n="s4l1">Risk-factor control, lifestyle &amp; genetic counseling.</div></div>
+          <div class="fcard"><img src="images/fig_l2.jpg" alt="Fig2 secondary prevention"><div class="fc" data-i18n="s4t2">Fig 2 · Secondary</div><div class="fl" data-i18n="s4l2">TVS → cytology/methylation → biopsy (gold standard) → hysteroscopy targeted biopsy.</div></div>
+          <div class="fcard"><img src="images/fig_l3.jpg" alt="Fig3 tertiary prevention"><div class="fc" data-i18n="s4t3">Fig 3 · Tertiary</div><div class="fl" data-i18n="s4l3">Surgery · RT/CT · hormonal · immuno · targeted; rehab &amp; follow-up.</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">7</div><div class="lab" data-i18n="s4s1">secondary tools</div></div>
+          <div class="stat"><div class="big">4</div><div class="lab" data-i18n="s4s2">treatment modalities</div></div>
+          <div class="stat"><div class="big">MDT</div><div class="lab" data-i18n="s4s3">tertiary core</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s4a"><strong>Secondary tools</strong>: history risk assessment · TVS · cytology · methylation · biopsy · hysteroscopy · imaging staging.</li>
+          <li data-i18n="s4b"><strong>Molecular testing</strong>: refines diagnosis, guides individualized treatment &amp; prognosis.</li>
+          <li data-i18n="s4c"><strong>Tertiary core</strong>: MDT precision treatment + palliative care + regular follow-up &amp; rehab.</li>
+          <li data-i18n="s4d"><strong>Community step</strong>: methylation screening needs community-population validation next.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Integrated 3-level prevention</b>: risk control → early screening (methylation Se 87–94.5%) → MDT treatment &amp; rehab — cutting EC incidence and mortality.</li>
+      <li data-i18n="c2"><b>Methylation is an official screening option</b>: two approved products (incl. CDO1/CELF4) with multi-route sampling — superior to traditional screening.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "China · Precision Gyn-Oncology Society · 2025 · Expert Consensus",
+      title: "Three-Level Prevention of Endometrial Cancer — Chinese Consensus 2025",
+      title_alt: "子宫内膜癌三级预防策略中国专家共识（2025 年版）",
+      subtitle: "Primary: risk-factor control · Secondary: screening & early diagnosis (incl. methylation Se 87.0–94.5%) · Tertiary: comprehensive treatment & rehabilitation",
+      authors: "Precision Gyn-Oncology Committee (CMCHS) · Shanghai Society of Gynecologic Oncology",
+      source: "Chin J Pract Gynecol Obstet 2025(10) · NSFC 82273233",
+      h1: "etiology · risk factors", h2: "screening · early diagnosis", h3: "treatment · rehabilitation", h4: "methylation screening",
+      s1t: "Background & Framework",
+      s1a: "<strong>Burden</strong>: EC most common gynecologic malignancy; #1 in Beijing/Shanghai/Guangzhou.",
+      s1b: "<strong>Model</strong>: cervical 3-level prevention mature; EC system needs unification.",
+      s1c: "<strong>Goal</strong>: reduce incidence · raise early diagnosis · improve survival & QoL.",
+      s2t: "Primary Prevention — Risk Factors",
+      s2s1: "risk rises sharply", s2s2: "metabolic syndrome", s2s3: "genetic risk",
+      s2a: "<strong>Modifiable</strong>: obesity · metabolic syndrome · unopposed estrogen · lifestyle (diet/exercise).",
+      s2b: "<strong>Hormonal</strong>: estrogen exposure (ovulatory dysfunction · estrogen-producing tumors).",
+      s2c: "<strong>Genetic</strong>: Lynch syndrome mutation carriers — high-risk surveillance.",
+      s2d: "<strong>Aim</strong>: prevent disease before onset, esp. in high-risk groups.",
+      s2s4: "menarche", s2s5: "menopause", s2s6: "infertility",
+      s2s7: "key lever", s2s8: "key lever", s2s9: "screening",
+      s2i: "<strong>Multidisciplinary</strong>: gynecology · endocrinology · genetics · nutrition collaborate.",
+      s2e: "<strong>Lifestyle</strong>: exercise & diet control reduce obesity-driven estrogen excess.",
+      s2f: "<strong>Metabolic</strong>: manage diabetes/metabolic syndrome — key modifiable targets.",
+      s2g: "<strong>Counseling</strong>: genetic counseling & Lynch surveillance in high-risk families.",
+      s2h: "<strong>Hormonal</strong>: balance estrogen exposure; progestin protection where indicated.",
+      s2j1: "Primary", s2j2: "Secondary", s2j3: "Tertiary",
+      s2t1: "Fig 1 · Primary", s2t2: "Fig 2 · Secondary", s2t3: "Fig 3 · Tertiary",
+      s2l1: "Lifestyle & risk-factor control + genetic counseling.", s2l2: "TVS · cytology · methylation · biopsy — early detection.", s2l3: "MDT treatment · rehab · long-term follow-up.",
+      s3t: "Secondary Prevention — Methylation Screening",
+      s3s1: "approved products (incl. Origin-Poly)", s3s2: "gene combinations", s3s3: "sampling routes",
+      s3a: "<strong>Approved kit</strong>: Beijing Origin-Poly (CDO1/CELF4) — officially approved.",
+      s3b: "<strong>Combinations</strong>: CDO1/AJAP1/GALR1 · CDO1/CELF4 · BHLHE22/CDO1/HAND2 · BHLHE22/CDO1/CELF4.",
+      s3c: "<strong>Sampling</strong>: uterine/cervical brush · vaginal tampon · urine.",
+      s3d: "<strong>Performance</strong>: Se 87.0–94.51% · Sp 86.0–95.5% — superior to traditional strategies; community validation ongoing.",
+      s3a1: "Sensitivity", s3a2: "Specificity",
+      s3n: "High-risk groups: >45 y · obesity/metabolic syndrome · postmenopausal bleeding/abnormal discharge · Lynch/family history.",
+      s4t: "Three-Level Prevention Flowcharts (Fig 1–3)",
+      s4t1: "Fig 1 · Primary", s4t2: "Fig 2 · Secondary", s4t3: "Fig 3 · Tertiary",
+      s4l1: "Risk-factor control, lifestyle & genetic counseling.",
+      s4l2: "TVS → cytology/methylation → biopsy (gold standard) → hysteroscopy targeted biopsy.",
+      s4l3: "Surgery · RT/CT · hormonal · immuno · targeted; rehab & follow-up.",
+      s4a: "<strong>Secondary tools</strong>: history risk assessment · TVS · cytology · methylation · biopsy · hysteroscopy · imaging staging.",
+      s4b: "<strong>Molecular testing</strong>: refines diagnosis, guides individualized treatment & prognosis.",
+      s4c: "<strong>Tertiary core</strong>: MDT precision treatment + palliative care + regular follow-up & rehab.",
+      s4s1: "secondary tools", s4s2: "treatment modalities", s4s3: "tertiary core",
+      s4d: "<strong>Community step</strong>: methylation screening needs community-population validation next.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Integrated 3-level prevention</b>: risk control → early screening (methylation Se 87–94.5%) → MDT treatment & rehab — cutting EC incidence and mortality.",
+      c2: "<b>Methylation is an official screening option</b>: two approved products (incl. CDO1/CELF4) with multi-route sampling — superior to traditional screening."
+    },
+    zh: {
+      kicker: "中国 · 妇产科精准医疗专委会 · 2025 · 专家共识",
+      title: "子宫内膜癌三级预防策略中国专家共识（2025 年版）",
+      title_alt: "Three-Level Prevention of Endometrial Cancer — Chinese Consensus 2025",
+      subtitle: "一级：危险因素控制 · 二级：筛查与早诊（含甲基化 Se 87.0–94.5%）· 三级：综合治疗与康复",
+      authors: "中国妇幼健康研究会妇产科精准医疗专委会 · 上海市医学会妇科肿瘤学分会",
+      source: "中国实用妇科与产科杂志 2025(10) · 国家自然科学基金 82273233",
+      h1: "病因 · 危险因素", h2: "筛查 · 早诊", h3: "治疗 · 康复", h4: "甲基化筛查",
+      s1t: "背景与体系",
+      s1a: "<strong>负担</strong>：EC 最常见妇科恶性肿瘤；京沪穗发病率居生殖道恶性肿瘤首位。",
+      s1b: "<strong>模式</strong>：宫颈三级预防成熟；内膜体系尚未统一。",
+      s1c: "<strong>目标</strong>：降低发病率 · 提高早诊率 · 改善生存与生活质量。",
+      s2t: "一级预防——危险因素",
+      s2s1: "风险显著升高", s2s2: "代谢综合征", s2s3: "遗传风险",
+      s2a: "<strong>可改变</strong>：肥胖 · 代谢综合征 · 无拮抗雌激素 · 生活方式（饮食/运动）。",
+      s2b: "<strong>激素</strong>：雌激素暴露（排卵障碍 · 产雌激素肿瘤）。",
+      s2c: "<strong>遗传</strong>：Lynch 综合征突变携带者——高危监测。",
+      s2d: "<strong>目的</strong>：在发病前预防，尤其高危人群。",
+      s2s4: "初潮早", s2s5: "晚绝经", s2s6: "未育/不孕",
+      s2s7: "关键杠杆", s2s8: "关键杠杆", s2s9: "筛查",
+      s2i: "<strong>多学科协作</strong>：妇科 · 内分泌 · 遗传 · 营养联合。",
+      s2e: "<strong>生活方式</strong>：运动与饮食控制降低肥胖驱动雌激素过载。",
+      s2f: "<strong>代谢</strong>：管理糖尿病/代谢综合征——关键可改变靶点。",
+      s2g: "<strong>咨询</strong>：高危家族遗传咨询与 Lynch 监测。",
+      s2h: "<strong>激素</strong>：平衡雌激素暴露；必要时孕激素保护。",
+      s2j1: "一级", s2j2: "二级", s2j3: "三级",
+      s2t1: "图1 · 一级", s2t2: "图2 · 二级", s2t3: "图3 · 三级",
+      s2l1: "生活方式与危险因素控制 + 遗传咨询。", s2l2: "TVS · 细胞学 · 甲基化 · 活检——早发现。", s2l3: "MDT 治疗 · 康复 · 长期随访。",
+      s3t: "二级预防——甲基化筛查",
+      s3s1: "获批产品（含起源聚禾）", s3s2: "基因组合", s3s3: "采样途径",
+      s3a: "<strong>获批试剂</strong>：北京起源聚禾（CDO1/CELF4）——正式获批上市。",
+      s3b: "<strong>组合</strong>：CDO1/AJAP1/GALR1 · CDO1/CELF4 · BHLHE22/CDO1/HAND2 · BHLHE22/CDO1/CELF4。",
+      s3c: "<strong>采样</strong>：宫腔/宫颈刷 · 阴道卫生棉条 · 尿液。",
+      s3d: "<strong>效能</strong>：Se 87.0–94.51% · Sp 86.0–95.5%——优于传统筛查；社区验证进行中。",
+      s3a1: "灵敏度", s3a2: "特异度",
+      s3n: "高危人群：&gt;45 岁 · 肥胖/代谢综合征 · 绝经后出血/异常排液 · Lynch/家族史。",
+      s4t: "三级预防流程图（图1–3）",
+      s4t1: "图1 · 一级", s4t2: "图2 · 二级", s4t3: "图3 · 三级",
+      s4l1: "危险因素控制、生活方式与遗传咨询。",
+      s4l2: "TVS → 细胞学/甲基化 → 活检（金标准）→ 宫腔镜精准活检。",
+      s4l3: "手术 · 放疗/化疗 · 激素 · 免疫 · 靶向；康复与随访。",
+      s4a: "<strong>二级工具</strong>：病史风险评估 · TVS · 细胞学 · 甲基化 · 活检 · 宫腔镜 · 影像分期。",
+      s4b: "<strong>分子检测</strong>：明确诊断、指导个体化治疗与预后。",
+      s4c: "<strong>三级核心</strong>：MDT 精准治疗 + 姑息关怀 + 定期随访康复。",
+      s4s1: "二级工具", s4s2: "治疗手段", s4s3: "三级核心",
+      s4d: "<strong>社区验证</strong>：甲基化筛查需在社区人群中进一步验证。",
+      c_ttl: "临床意义",
+      c1: "<b>三级预防一体化</b>：风险控制 → 早筛（甲基化 Se 87–94.5%）→ MDT 治疗与康复——降低 EC 发病率与死亡率。",
+      c2: "<b>甲基化是官方筛查选项</b>：两款获批产品（含 CDO1/CELF4）+ 多种采样——优于传统筛查。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

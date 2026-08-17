@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAX1/JAM3 Dual-Gene Methylation in Cervical Cancer Screening &amp; Treatment — Liu et al. 2025 Review</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #12v2：综述三栏知识地图，左背景/机制 · 中数据证据主角 · 右治疗/展望）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、白色 stat 卡、红色高亮表格
+  - 布局：标题带 → 判读 hero（ΔCt 阳性标准 + 汇总统计）→ 三栏（左 500px：①筛查现状与局限 ②双基因机制；中 1fr：③筛查与分流证据【四大数字 + 证据表】；右 500px：④治疗应用 ⑤挑战与展望）→ 全宽临床意义带
+  - 无图（综述剪藏无图片）：全部用大数字卡 + 表格 + 要点呈现，突出数据证据
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  /* 判读 hero */
+  .read { flex: 0 0 auto; height: 96px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: center; gap: 14px; padding: 8px 12px; }
+  .read .rcut { flex: 0 0 460px; background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.9) 100%); border-radius: 10px;
+    padding: 10px 16px; height: 100%; display: flex; flex-direction: column; justify-content: center; }
+  .read .rcut .rt { font-size: 11px; font-weight: 800; color: #fff; letter-spacing: 1px; }
+  .read .rcut .rv { font-size: 17px; font-weight: 800; color: #fff; margin-top: 3px; font-family: "Courier New", Consolas, monospace; }
+  .read .rstats { flex: 1; display: flex; gap: 10px; height: 100%; }
+  .read .rstat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .read .rstat .big { font-size: 20px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .read .rstat .lab { font-size: 9.5px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 500px minmax(0, 1fr) 500px; gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 14px 7px 14px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel table, .panel .statrow, .panel .tnote, .panel .orblk { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 4px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .wstrip { display: flex; align-items: center; gap: 6px; margin: 1px 0 6px; }
+  .wstrip .wchip { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 5px; padding: 9px 4px; text-align: center; font-size: 10px; font-weight: 600; color: var(--accent-deep); }
+  .wstrip .warr { color: var(--secondary); font-size: 14px; font-weight: 800; }
+
+  .statrow { display: flex; gap: 8px; margin: 1px 0 6px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 8px 4px; text-align: center; }
+  .stat .big { font-size: 20px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9.5px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+
+  .minitable { width: 100%; border-collapse: collapse; margin: 2px 0 4px 0; font-size: 10.5px; }
+  .minitable th { background: rgba(215,75,74,0.12); color: var(--accent-deep); font-weight: 700; padding: 3px 5px; text-align: left; border-bottom: 2px solid var(--line); font-size: 10px; }
+  .minitable td { padding: 3px 5px; border-bottom: 1px solid var(--line); color: var(--muted); }
+  .minitable td:first-child { font-weight: 600; color: var(--text); }
+  .minitable tr:last-child td { border-bottom: none; }
+  .minitable .highlight { color: var(--primary); font-weight: 700; }
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 2px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .orblk { display: flex; gap: 8px; margin: 1px 0 6px; }
+  .or { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px 9px; }
+  .or .orn { font-size: 10px; font-weight: 800; color: var(--accent-deep); }
+  .or .orv { font-size: 15px; font-weight: 800; color: var(--text); margin-top: 2px; }
+  .or .ord { font-size: 9.5px; color: var(--muted); line-height: 1.3; margin-top: 2px; }
+  .or.hot { background: var(--panel-alt); border-color: rgba(215,75,74,0.5); }
+
+  /* 中栏大数字 */
+  .big4 { display: flex; gap: 8px; margin: 1px 0 6px; }
+  .big4 .b4 { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 9px 6px; text-align: center; }
+  .big4 .b4 .n { font-size: 30px; font-weight: 800; color: var(--primary); line-height: 1.02; font-family: Georgia, "Times New Roman", serif; }
+  .big4 .b4 .l { font-size: 9.5px; color: var(--muted); margin-top: 3px; line-height: 1.2; }
+  .big4 .b4.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .big4 .b4.hot .n { color: #fff; }
+  .big4 .b4.hot .l { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .flow3 { display: flex; align-items: stretch; gap: 6px; margin: 1px 0 7px; }
+  .f3 { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 14px 6px; text-align: center; }
+  .f3 .f3n { font-size: 10px; font-weight: 800; color: var(--muted); letter-spacing: 0.5px; }
+  .f3 .f3d { font-size: 12px; font-weight: 700; color: var(--text); margin-top: 3px; }
+  .f3.hot { background: var(--panel-alt); border-color: rgba(215,75,74,0.5); }
+  .f3.hot .f3d { color: var(--accent-deep); }
+  .f3arr { align-self: center; color: var(--secondary); font-size: 15px; font-weight: 800; }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Int J Obstet Gynecol · 2025 · Review · China</div>
+    <h1 data-i18n="title">PAX1/JAM3 Dual-Gene Methylation in Cervical Cancer Screening &amp; Treatment</h1>
+    <div class="title_alt" data-i18n="title_alt">PAX1/JAM3 双基因甲基化在宫颈癌筛查及治疗中的应用</div>
+    <div class="subtitle" data-i18n="subtitle">Review · dual-gene methylation improves screening triage (CIN3+ AUC 0.872; Se 87.6% / Sp 86.8%) · therapy potential: chemosensitivity &amp; radiosensitivity</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Liu Q, Yang F, Xu R, Wang X (correspondence)</div>
+      <div class="source" data-i18n="source">Shandong First Medical University · 国际妇产科学杂志 2025(06)</div>
+    </div>
+  </header>
+
+  <!-- 判读 hero -->
+  <div class="read">
+    <div class="rcut">
+      <div class="rt" data-i18n="r1t">Positive readout (dual-gene)</div>
+      <div class="rv" data-i18n="r1v">ΔCt PAX1 ≤ 6.6 &nbsp;or&nbsp; ΔCt JAM3 ≤ 10.0</div>
+    </div>
+    <div class="rstats">
+      <div class="rstat"><div class="big">0.872</div><div class="lab" data-i18n="r2">AUC · CIN3+</div></div>
+      <div class="rstat"><div class="big">87.6%</div><div class="lab" data-i18n="r3">Se · CIN3+</div></div>
+      <div class="rstat"><div class="big">86.8%</div><div class="lab" data-i18n="r4">Sp · CIN3+</div></div>
+      <div class="rstat"><div class="big">100%</div><div class="lab" data-i18n="r5">cancer detection</div></div>
+    </div>
+  </div>
+
+  <!-- 主体三栏 -->
+  <main class="main">
+    <!-- 左栏：背景 + 机制 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Screening Status &amp; Gaps</span></h3>
+        <table class="minitable">
+          <tr><th data-i18n="t_h1">Method</th><th data-i18n="t_h2">Se</th><th data-i18n="t_h3">Sp</th><th data-i18n="t_h4">Limit</th></tr>
+          <tr><td data-i18n="t_r1a">TCT cytology</td><td data-i18n="t_r1b">53–81%</td><td data-i18n="t_r1c">&gt;90%</td><td data-i18n="t_r1d">reproducibility</td></tr>
+          <tr><td data-i18n="t_r2a">HR-HPV DNA</td><td data-i18n="t_r2b">high</td><td data-i18n="t_r2c">low</td><td data-i18n="t_r2d">over-diagnosis</td></tr>
+          <tr><td class="highlight" data-i18n="t_r3a">PAX1/JAM3</td><td data-i18n="t_r3b">74.1%</td><td class="highlight" data-i18n="t_r3c">95.9%</td><td data-i18n="t_r3d">objective</td></tr>
+        </table>
+        <ul>
+          <li data-i18n="s1a"><strong>WHO 2021</strong>: methylation is an emerging screening direction.</li>
+          <li data-i18n="s1b"><strong>China</strong>: methylation correlates with squamous lesion severity.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Dual-Gene Biology</span></h3>
+        <div class="orblk">
+          <div class="or hot"><div class="orn" data-i18n="e1n">PAX1 · tumor suppressor</div><div class="orv" data-i18n="e1v">WNT/TIMELESS</div><div class="ord" data-i18n="e1d">Methylation silences gene → migration &amp; invasion.</div></div>
+          <div class="or"><div class="orn" data-i18n="e2n">JAM3 · adhesion</div><div class="orv" data-i18n="e2v">EMT / metastasis</div><div class="ord" data-i18n="e2d">Hypermethylation tracks FIGO stage &amp; nodes.</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Complementary</strong>: two genes cover different profiles — dual-gene keeps high specificity while boosting sensitivity.</li>
+          <li data-i18n="s2b"><strong>Mechanism</strong>: PAX1–TCF7L2 suppresses β-catenin/MYC; JAM3 drives EMT via HIF-1α/VEGFA.</li>
+          <li data-i18n="s2c"><strong>Readout</strong>: either gene positive = positive (quantitative PCR, objective).</li>
+          <li data-i18n="s2d"><strong>PAX1 biology</strong>: paired-box transcription factor; conserved in thymus &amp; skeletal development.</li>
+          <li data-i18n="s2e"><strong>JAM3 biology</strong>: immunoglobulin-superfamily tight-junction adhesion molecule.</li>
+          <li data-i18n="s2f"><strong>Clinical link</strong>: methylation correlates with lesion severity — a natural triage signal.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">73.5%</div><div class="lab" data-i18n="s2s1">PAX1 Se · HSIL</div></div>
+          <div class="stat"><div class="big">94%</div><div class="lab" data-i18n="s2s2">JAM3 Sp · CIN2+</div></div>
+          <div class="stat"><div class="big">95.9%</div><div class="lab" data-i18n="s2s3">dual Sp · CIN2+</div></div>
+        </div>
+        <table class="minitable">
+          <tr><th data-i18n="m_h1">Key study</th><th data-i18n="m_h2">Setting</th><th data-i18n="m_h3">Methylation result</th></tr>
+          <tr><td class="highlight" data-i18n="m_r1a">Chan 2025</td><td data-i18n="m_r1b">hrHPV+ HSIL triage</td><td data-i18n="m_r1c">PAX1 Se 73.5% vs TCT 48.7%</td></tr>
+          <tr><td data-i18n="m_r2a">Huang 2024</td><td data-i18n="m_r2b">non-16/18 CIN2+</td><td data-i18n="m_r2c">PAX1 OR 166.3 (high meth.)</td></tr>
+        </table>
+        <div class="statrow">
+          <div class="stat"><div class="big">0.948</div><div class="lab" data-i18n="s2s4">PAX1 AUC · CIN2</div></div>
+          <div class="stat"><div class="big">0.984</div><div class="lab" data-i18n="s2s5">JAM3 AUC · prognosis</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2h"><strong>Translation</strong>: dual-gene panel bridges screening &amp; therapy decision-making.</li>
+        </ul>
+        <div class="tnote" data-i18n="s2g">Methylation is quantitative &amp; reproducible — reduces cytology subjectivity &amp; inter-observer variability.</div>
+      </div>
+    </section>
+
+    <!-- 中栏：数据证据 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Evidence in Screening &amp; Triage</span></h3>
+        <div class="big4">
+          <div class="b4 hot"><div class="n">0.872</div><div class="l" data-i18n="b1">AUC · CIN3+ (vs TCT 0.580)</div></div>
+          <div class="b4"><div class="n">95.9%</div><div class="l" data-i18n="b2">Sp · CIN2+</div></div>
+          <div class="b4"><div class="n">0.921</div><div class="l" data-i18n="b3">AUC · HPV16/18 triage</div></div>
+          <div class="b4"><div class="n">100%</div><div class="l" data-i18n="b4">cancer detected</div></div>
+        </div>
+        <table class="minitable">
+          <tr><th data-i18n="e_h1">Study</th><th data-i18n="e_h2">Context</th><th data-i18n="e_h3">Key result</th></tr>
+          <tr><td class="highlight" data-i18n="e_r1a">Shang · multicenter</td><td data-i18n="e_r1b">CIN3+ triage</td><td data-i18n="e_r1c">AUC 0.872; cancer 100%</td></tr>
+          <tr><td data-i18n="e_r2a">Fei · HPV16/18</td><td data-i18n="e_r2b">334 women</td><td data-i18n="e_r2c">Se 89.0% / Sp 95.3%</td></tr>
+          <tr><td data-i18n="e_r3a">Chan · HSIL</td><td data-i18n="e_r3b">hrHPV+ triage</td><td data-i18n="e_r3c">PAX1 Se 73.5% (AUC 0.72)</td></tr>
+          <tr><td data-i18n="e_r4a">Huang · non-16/18</td><td data-i18n="e_r4b">281 women</td><td data-i18n="e_r4c">PAX1 AUC 0.948 CIN2</td></tr>
+          <tr><td data-i18n="e_r5a">Guo · prognosis</td><td data-i18n="e_r5b">CIN1/2-3</td><td data-i18n="e_r5c">JAM3 AUC 0.984 / 0.966</td></tr>
+        </table>
+        <div class="tnote" data-i18n="s3note">Self-sampling (n=272): good concordance with clinician sampling — expands screening access.</div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">4</span><span data-i18n="s3bt">From Screening to Precision Care</span></h3>
+        <div class="flow3">
+          <div class="f3 hot"><div class="f3n" data-i18n="f1n">Step 1</div><div class="f3d" data-i18n="f1d">Screen &amp; triage</div></div>
+          <div class="f3arr">→</div>
+          <div class="f3"><div class="f3n" data-i18n="f2n">Step 2</div><div class="f3d" data-i18n="f2d">Treatment decision</div></div>
+          <div class="f3arr">→</div>
+          <div class="f3"><div class="f3n" data-i18n="f3n">Step 3</div><div class="f3d" data-i18n="f3d">Prognosis &amp; monitor</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">403</div><div class="lab" data-i18n="c1s">Chan · archival</div></div>
+          <div class="stat"><div class="big">281</div><div class="lab" data-i18n="c2s">Huang · non-16/18</div></div>
+          <div class="stat"><div class="big">334</div><div class="lab" data-i18n="c3s">Fei · HPV16/18</div></div>
+          <div class="stat"><div class="big">272</div><div class="lab" data-i18n="c4s">self-sampling</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">0.872</div><div class="lab" data-i18n="c5s">CIN3+ triage</div></div>
+          <div class="stat"><div class="big">0.921</div><div class="lab" data-i18n="c6s">HPV16/18</div></div>
+          <div class="stat"><div class="big">0.948</div><div class="lab" data-i18n="c7s">CIN2 (PAX1)</div></div>
+          <div class="stat"><div class="big">0.984</div><div class="lab" data-i18n="c8s">prognosis (JAM3)</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s3b1"><strong>Guideline</strong>: PAX1 methylation in China Screening Guideline (II) biomarker system.</li>
+          <li data-i18n="s3b2"><strong>Complement</strong>: fills TCT sensitivity &amp; HPV specificity gaps; reduces over-referral.</li>
+          <li data-i18n="s3b3"><strong>Next</strong>: RCT &amp; large prospective studies for grade-A evidence.</li>
+          <li data-i18n="s3b4"><strong>Objective</strong>: quantitative PCR readout independent of cytology subjectivity.</li>
+          <li data-i18n="s3b5"><strong>Access</strong>: self-sampling compatibility extends screening reach.</li>
+          <li data-i18n="s3b6"><strong>Cost</strong>: must fall for low-resource regions.</li>
+          <li data-i18n="s3b7"><strong>QC</strong>: unified standards &amp; multi-center validation.</li>
+        </ul>
+        <div class="tnote" data-i18n="s3bt2">One objective test spans triage, treatment guidance and follow-up — a unified molecular readout.</div>
+      </div>
+    </section>
+
+    <!-- 右栏：治疗 + 展望 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">Treatment Applications</span></h3>
+        <div class="orblk">
+          <div class="or hot"><div class="orn" data-i18n="e9n">Chemosensitivity</div><div class="orv" data-i18n="e9v">Cisplatin IC50 ↓</div><div class="ord" data-i18n="e9d">PAX1 reactivation: 8.01 → 3.64 μg/mL.</div></div>
+        </div>
+        <div class="orblk">
+          <div class="or"><div class="orn" data-i18n="e10n">Radiosensitivity</div><div class="orv" data-i18n="e10v">OR 4.433</div><div class="ord" data-i18n="e10d">PAX1 hypomethylation predicts radioresistance (AUC 0.823).</div></div>
+          <div class="or"><div class="orn" data-i18n="e11n">Metastasis target</div><div class="orv" data-i18n="e11v">JAM3 / EMT</div><div class="ord" data-i18n="e11d">HIF-1α/VEGFA pathway — therapeutic target.</div></div>
+        </div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Challenges &amp; Outlook</span></h3>
+        <div class="wstrip">
+          <span class="wchip" data-i18n="ch1">Sample standardization</span><span class="warr">→</span>
+          <span class="wchip" data-i18n="ch2">Primary-care assay</span><span class="warr">→</span>
+          <span class="wchip" data-i18n="ch3">RCT / prospective</span>
+        </div>
+        <ul>
+          <li data-i18n="s5a"><strong>Limitations</strong>: sample standardization, cost, quality control, low-resource adoption.</li>
+          <li data-i18n="s5b"><strong>Roadmap</strong>: unify quality standards; primary-care-adapted assays; RCT &amp; large prospective validation.</li>
+          <li data-i18n="s5c"><strong>Positioning</strong>: complements TCT (sensitivity) &amp; HPV (specificity) — fewer missed lesions AND fewer referrals.</li>
+          <li data-i18n="s5d"><strong>Bias risk</strong>: small studies &amp; publication bias — multi-center confirmation needed.</li>
+          <li data-i18n="s5e"><strong>Quality</strong>: sample collection, storage &amp; DNA extraction standardization is critical.</li>
+          <li data-i18n="s5f"><strong>Cost</strong>: equipment &amp; transport demands currently limit broad rollout.</li>
+          <li data-i18n="s5g"><strong>Self-sampling</strong>: 272-woman cohort shows promise — expands screening access.</li>
+          <li data-i18n="s5h"><strong>Guideline</strong>: PAX1 methylation included in China Screening Guideline (II).</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">2025</div><div class="lab" data-i18n="s5s1">Guideline (II) inclusion</div></div>
+          <div class="stat"><div class="big">272</div><div class="lab" data-i18n="s5s2">self-sampling cohort</div></div>
+          <div class="stat"><div class="big">100%</div><div class="lab" data-i18n="s5s3">cancer detection (reported)</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">TCT</div><div class="lab" data-i18n="s5s4">sensitivity gap filled</div></div>
+          <div class="stat"><div class="big">HPV</div><div class="lab" data-i18n="s5s5">specificity gap filled</div></div>
+          <div class="stat"><div class="big">QC</div><div class="lab" data-i18n="s5s6">standardization needed</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s5j"><strong>Integration</strong>: methylation as reflex triage after hrHPV+ — fewer colposcopies, no cancer missed.</li>
+          <li data-i18n="s5k"><strong>Evidence level</strong>: mostly retrospective &amp; single-center; RCTs awaited.</li>
+        </ul>
+        <div class="tnote" data-i18n="s5i">Methylation + TCT + HPV jointly optimize the screening pathway — more precise triage, less over-treatment.</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>PAX1/JAM3 dual-gene methylation</b> offers objective, high-specificity triage for cervical screening — improving accuracy over TCT/HPV alone, with 100% cancer detection in reported cohorts.</li>
+      <li data-i18n="c2"><b>Beyond screening</b>, methylation status informs individualized treatment (chemosensitivity, radioresistance) — a molecular basis for precision management.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Int J Obstet Gynecol · 2025 · Review · China",
+      title: "PAX1/JAM3 Dual-Gene Methylation in Cervical Cancer Screening & Treatment",
+      title_alt: "PAX1/JAM3 双基因甲基化在宫颈癌筛查及治疗中的应用",
+      subtitle: "Review · dual-gene methylation improves screening triage (CIN3+ AUC 0.872; Se 87.6% / Sp 86.8%) · therapy potential: chemosensitivity & radiosensitivity",
+      authors: "Liu Q, Yang F, Xu R, Wang X (correspondence)",
+      source: "Shandong First Medical University · 国际妇产科学杂志 2025(06)",
+      r1t: "Positive readout (dual-gene)", r1v: "ΔCt PAX1 ≤ 6.6 or ΔCt JAM3 ≤ 10.0",
+      r2: "AUC · CIN3+", r3: "Se · CIN3+", r4: "Sp · CIN3+", r5: "cancer detection",
+      s1t: "Screening Status & Gaps",
+      t_h1: "Method", t_h2: "Se", t_h3: "Sp", t_h4: "Limit",
+      t_r1a: "TCT cytology", t_r1b: "53–81%", t_r1c: ">90%", t_r1d: "reproducibility",
+      t_r2a: "HR-HPV DNA", t_r2b: "high", t_r2c: "low", t_r2d: "over-diagnosis",
+      t_r3a: "PAX1/JAM3", t_r3b: "74.1%", t_r3c: "95.9%", t_r3d: "objective",
+      s1a: "<strong>WHO 2021</strong>: methylation is an emerging screening direction.",
+      s1b: "<strong>China</strong>: methylation correlates with squamous lesion severity.",
+      s2t: "Dual-Gene Biology",
+      e1n: "PAX1 · tumor suppressor", e1v: "WNT/TIMELESS", e1d: "Methylation silences gene → migration & invasion.",
+      e2n: "JAM3 · adhesion", e2v: "EMT / metastasis", e2d: "Hypermethylation tracks FIGO stage & nodes.",
+      s2a: "<strong>Complementary</strong>: two genes cover different profiles — dual-gene keeps high specificity while boosting sensitivity.",
+      s2b: "<strong>Mechanism</strong>: PAX1–TCF7L2 suppresses β-catenin/MYC; JAM3 drives EMT via HIF-1α/VEGFA.",
+      s2c: "<strong>Readout</strong>: either gene positive = positive (quantitative PCR, objective).",
+      s2d: "<strong>PAX1 biology</strong>: paired-box transcription factor; conserved in thymus & skeletal development.",
+      s2e: "<strong>JAM3 biology</strong>: immunoglobulin-superfamily tight-junction adhesion molecule.",
+      s2f: "<strong>Clinical link</strong>: methylation correlates with lesion severity — a natural triage signal.",
+      s2s1: "PAX1 Se · HSIL", s2s2: "JAM3 Sp · CIN2+", s2s3: "dual Sp · CIN2+",
+      s2g: "Methylation is quantitative & reproducible — reduces cytology subjectivity & inter-observer variability.",
+      s2h: "<strong>Translation</strong>: dual-gene panel bridges screening & therapy decision-making.",
+      m_h1: "Key study", m_h2: "Setting", m_h3: "Methylation result",
+      m_r1a: "Chan 2025", m_r1b: "hrHPV+ HSIL triage", m_r1c: "PAX1 Se 73.5% vs TCT 48.7%",
+      m_r2a: "Huang 2024", m_r2b: "non-16/18 CIN2+", m_r2c: "PAX1 OR 166.3 (high meth.)",
+      s2s4: "PAX1 AUC · CIN2", s2s5: "JAM3 AUC · prognosis",      s3t: "Evidence in Screening & Triage",
+      b1: "AUC · CIN3+ (vs TCT 0.580)", b2: "Sp · CIN2+", b3: "AUC · HPV16/18 triage", b4: "cancer detected",
+      e_h1: "Study", e_h2: "Context", e_h3: "Key result",
+      e_r1a: "Shang · multicenter", e_r1b: "CIN3+ triage", e_r1c: "AUC 0.872; cancer 100%",
+      e_r2a: "Fei · HPV16/18", e_r2b: "334 women", e_r2c: "Se 89.0% / Sp 95.3%",
+      e_r3a: "Chan · HSIL", e_r3b: "hrHPV+ triage", e_r3c: "PAX1 Se 73.5% (AUC 0.72)",
+      e_r4a: "Huang · non-16/18", e_r4b: "281 women", e_r4c: "PAX1 AUC 0.948 CIN2",
+      e_r5a: "Guo · prognosis", e_r5b: "CIN1/2-3", e_r5c: "JAM3 AUC 0.984 / 0.966",
+      s3note: "Self-sampling (n=272): good concordance with clinician sampling — expands screening access.",
+      s3bt: "From Screening to Precision Care",
+      f1n: "Step 1", f1d: "Screen & triage", f2n: "Step 2", f2d: "Treatment decision", f3n: "Step 3", f3d: "Prognosis & monitor",
+      c1s: "Chan · archival", c2s: "Huang · non-16/18", c3s: "Fei · HPV16/18", c4s: "self-sampling",
+      s3b1: "<strong>Guideline</strong>: PAX1 methylation in China Screening Guideline (II) biomarker system.",
+      s3b2: "<strong>Complement</strong>: fills TCT sensitivity & HPV specificity gaps; reduces over-referral.",
+      s3b3: "<strong>Next</strong>: RCT & large prospective studies for grade-A evidence.",
+      s3b4: "<strong>Objective</strong>: quantitative PCR readout independent of cytology subjectivity.",
+      s3b5: "<strong>Access</strong>: self-sampling compatibility extends screening reach.",
+      s3b6: "<strong>Cost</strong>: must fall for low-resource regions.",
+      s3b7: "<strong>QC</strong>: unified standards & multi-center validation.",
+      c5s: "CIN3+ triage", c6s: "HPV16/18", c7s: "CIN2 (PAX1)", c8s: "prognosis (JAM3)",
+      s3bt2: "One objective test spans triage, treatment guidance and follow-up — a unified molecular readout.",      s4t: "Treatment Applications",
+      e9n: "Chemosensitivity", e9v: "Cisplatin IC50 ↓", e9d: "PAX1 reactivation: 8.01 → 3.64 μg/mL.",
+      e10n: "Radiosensitivity", e10v: "OR 4.433", e10d: "PAX1 hypomethylation predicts radioresistance (AUC 0.823).",
+      e11n: "Metastasis target", e11v: "JAM3 / EMT", e11d: "HIF-1α/VEGFA pathway — therapeutic target.",
+      s5t: "Challenges & Outlook",
+      s5a: "<strong>Limitations</strong>: sample standardization, cost, quality control, low-resource adoption.",
+      s5b: "<strong>Roadmap</strong>: unify quality standards; primary-care-adapted assays; RCT & large prospective validation.",
+      s5c: "<strong>Positioning</strong>: complements TCT (sensitivity) & HPV (specificity) — fewer missed lesions AND fewer referrals.",
+      s5d: "<strong>Bias risk</strong>: small studies & publication bias — multi-center confirmation needed.",
+      s5e: "<strong>Quality</strong>: sample collection, storage & DNA extraction standardization is critical.",
+      s5f: "<strong>Cost</strong>: equipment & transport demands currently limit broad rollout.",
+      s5g: "<strong>Self-sampling</strong>: 272-woman cohort shows promise — expands screening access.",
+      s5h: "<strong>Guideline</strong>: PAX1 methylation included in China Screening Guideline (II).",
+      s5s1: "Guideline (II) inclusion", s5s2: "self-sampling cohort", s5s3: "cancer detection (reported)",
+      ch1: "Sample standardization", ch2: "Primary-care assay", ch3: "RCT / prospective",
+      s5i: "Methylation + TCT + HPV jointly optimize the screening pathway — more precise triage, less over-treatment.",
+      s5s4: "sensitivity gap filled", s5s5: "specificity gap filled", s5s6: "standardization needed",
+      s5j: "<strong>Integration</strong>: methylation as reflex triage after hrHPV+ — fewer colposcopies, no cancer missed.",
+      s5k: "<strong>Evidence level</strong>: mostly retrospective & single-center; RCTs awaited.",      c_ttl: "Clinical Significance",
+      c1: "<b>PAX1/JAM3 dual-gene methylation</b> offers objective, high-specificity triage for cervical screening — improving accuracy over TCT/HPV alone, with 100% cancer detection in reported cohorts.",
+      c2: "<b>Beyond screening</b>, methylation status informs individualized treatment (chemosensitivity, radioresistance) — a molecular basis for precision management."
+    },
+    zh: {
+      kicker: "国际妇产科学杂志 · 2025 · 综述 · 中国",
+      title: "PAX1/JAM3 双基因甲基化在宫颈癌筛查及治疗中的应用",
+      title_alt: "PAX1/JAM3 Dual-Gene Methylation in Cervical Cancer Screening & Treatment",
+      subtitle: "综述 · 双基因甲基化优化筛查分流（CIN3+ AUC 0.872；Se 87.6% / Sp 86.8%）· 治疗潜力：化疗增敏与放疗敏感性",
+      authors: "刘倩、杨帆、徐冉、王新立（通讯）",
+      source: "山东第一医科大学（山东省医学科学院）· 国际妇产科学杂志 2025(06)",
+      r1t: "阳性判读（双基因）", r1v: "ΔCt PAX1 ≤ 6.6 或 ΔCt JAM3 ≤ 10.0",
+      r2: "AUC · CIN3+", r3: "灵敏度 · CIN3+", r4: "特异度 · CIN3+", r5: "癌症检出",
+      s1t: "筛查现状与局限",
+      t_h1: "方法", t_h2: "Se", t_h3: "Sp", t_h4: "局限",
+      t_r1a: "TCT 细胞学", t_r1b: "53–81%", t_r1c: ">90%", t_r1d: "可重复性",
+      t_r2a: "HR-HPV DNA", t_r2b: "高", t_r2c: "低", t_r2d: "过度诊疗",
+      t_r3a: "PAX1/JAM3", t_r3b: "74.1%", t_r3c: "95.9%", t_r3d: "客观",
+      s1a: "<strong>WHO 2021</strong>：甲基化是与主流分子筛查方向一致的新兴手段。",
+      s1b: "<strong>中国</strong>：甲基化程度与鳞状上皮病变严重程度正相关。",
+      s2t: "双基因生物学",
+      e1n: "PAX1 · 抑癌基因", e1v: "WNT/TIMELESS", e1d: "甲基化沉默基因 → 促进迁移与侵袭。",
+      e2n: "JAM3 · 黏附分子", e2v: "EMT / 转移", e2d: "高甲基化随 FIGO 分期与淋巴结转移升高。",
+      s2a: "<strong>互补</strong>：两基因覆盖不同病变特征——双基因保持高特异度的同时提高灵敏度。",
+      s2b: "<strong>机制</strong>：PAX1–TCF7L2 抑制 β-catenin/MYC；JAM3 经 HIF-1α/VEGFA 驱动 EMT。",
+      s2c: "<strong>判读</strong>：任一基因阳性即阳性（定量 PCR，客观）。",
+      s2d: "<strong>PAX1 生物学</strong>：配对盒转录因子；在胸腺与骨骼发育中保守。",
+      s2e: "<strong>JAM3 生物学</strong>：免疫球蛋白超家族紧密连接黏附分子。",
+      s2f: "<strong>临床联系</strong>：甲基化与病变严重度相关，并与鳞状上皮病变严重程度呈正相关——天然的分诊信号。",
+      s2s1: "PAX1 灵敏度 · HSIL", s2s2: "JAM3 特异度 · CIN2+", s2s3: "双基因特异度 · CIN2+",
+      s2g: "甲基化定量且可重复——减少细胞学主观性与观察者间差异。",
+      s2h: "<strong>转化</strong>：双基因组合连接筛查与治疗决策。",
+      m_h1: "关键研究", m_h2: "情境", m_h3: "甲基化结果",
+      m_r1a: "Chan 2025", m_r1b: "hrHPV+ HSIL 分诊", m_r1c: "PAX1 Se 73.5% vs TCT 48.7%",
+      m_r2a: "Huang 2024", m_r2b: "非 16/18 CIN2+", m_r2c: "PAX1 OR 166.3（高甲基化）",
+      s2s4: "PAX1 AUC · CIN2", s2s5: "JAM3 AUC · 预后",      s3t: "筛查与分流证据",
+      b1: "AUC · CIN3+（vs TCT 0.580）", b2: "特异度 · CIN2+", b3: "AUC · HPV16/18 分诊", b4: "癌症检出",
+      e_h1: "研究", e_h2: "情境", e_h3: "关键结果",
+      e_r1a: "商晓 · 多中心", e_r1b: "CIN3+ 分诊", e_r1c: "AUC 0.872；癌症 100%",
+      e_r2a: "Fei · HPV16/18", e_r2b: "334 例", e_r2c: "Se 89.0% / Sp 95.3%",
+      e_r3a: "Chan · HSIL", e_r3b: "hrHPV+ 分诊", e_r3c: "PAX1 Se 73.5%（AUC 0.72）",
+      e_r4a: "Huang · 非 16/18", e_r4b: "281 例", e_r4c: "PAX1 AUC 0.948 CIN2",
+      e_r5a: "Guo · 预后", e_r5b: "CIN1/2-3", e_r5c: "JAM3 AUC 0.984 / 0.966",
+      s3note: "自采样本（n=272）：与医生采样一致性好——扩展筛查可及性。",
+      s3bt: "从筛查到精准治疗",
+      f1n: "第 1 步", f1d: "筛查与分流", f2n: "第 2 步", f2d: "治疗决策", f3n: "第 3 步", f3d: "预后与随访",
+      c1s: "Chan · 存档样本", c2s: "Huang · 非 16/18", c3s: "Fei · HPV16/18", c4s: "自采样本",
+      s3b1: "<strong>指南</strong>：PAX1 甲基化已纳入中国筛查指南（二）生物标志物体系。",
+      s3b2: "<strong>互补</strong>：弥补 TCT 灵敏度与 HPV 特异度缺口；减少过度转诊。",
+      s3b3: "<strong>下一步</strong>：RCT 与大样本前瞻研究提供高级别证据。",
+      s3b4: "<strong>客观</strong>：定量 PCR 读数，独立于细胞学主观判读。",
+      s3b5: "<strong>可及</strong>：自采样本兼容，扩展筛查覆盖。",
+      s3b6: "<strong>成本</strong>：需下降以利低资源地区推广。",
+      s3b7: "<strong>质控</strong>：统一标准与多中心验证。",
+      c5s: "CIN3+ 分诊", c6s: "HPV16/18", c7s: "CIN2（PAX1）", c8s: "预后（JAM3）",
+      s3bt2: "一个客观检测贯穿分流、治疗指导与随访——统一的分子读数。",      s4t: "治疗应用",
+      e9n: "化疗增敏", e9v: "顺铂 IC50 ↓", e9d: "PAX1 去甲基化恢复表达：8.01 → 3.64 μg/mL。",
+      e10n: "放疗敏感性", e10v: "OR 4.433", e10d: "PAX1 低甲基化预测放疗抵抗（AUC 0.823）。",
+      e11n: "转移靶点", e11v: "JAM3 / EMT", e11d: "HIF-1α/VEGFA 通路——潜在治疗靶点。",
+      s5t: "挑战与展望",
+      s5a: "<strong>局限</strong>：样本标准化、成本、质控、低资源地区推广。",
+      s5b: "<strong>路线</strong>：统一质控标准；基层适用方案；RCT 与大样本前瞻验证。",
+      s5c: "<strong>定位</strong>：与 TCT（灵敏度）、HPV（特异度）互补——漏诊与过度转诊双减少。",
+      s5d: "<strong>偏倚风险</strong>：小样本与发表偏倚——需多中心验证。",
+      s5e: "<strong>质控</strong>：样本采集、保存与 DNA 提取的标准化至关重要。",
+      s5f: "<strong>成本</strong>：设备与运输要求目前限制大规模推广。",
+      s5g: "<strong>自采样本</strong>：272 例女性自采样本与医生采样结果一致性良好，有望优化筛查计划、减少假阳性转诊。",
+      s5h: "<strong>指南</strong>：PAX1 甲基化已纳入《中国子宫颈癌筛查指南（二）》推荐的新型生物标志物体系。",
+      s5s1: "纳入筛查指南（二）", s5s2: "自采样本队列", s5s3: "癌症检出（报告）",
+      ch1: "样本标准化", ch2: "基层适用方案", ch3: "RCT / 前瞻验证",
+      s5i: "甲基化 + TCT + HPV 共同优化筛查路径——分流更精准、过度治疗更少。",
+      s5s4: "弥补灵敏度缺口", s5s5: "弥补特异度缺口", s5s6: "需标准化",
+      s5j: "<strong>整合</strong>：hrHPV+ 后甲基化反射分诊——阴道镜更少、癌症不漏。",
+      s5k: "<strong>证据等级</strong>：多为回顾性与单中心；RCT 待开展。",      c_ttl: "临床意义",
+      c1: "<b>PAX1/JAM3 双基因甲基化</b> 为宫颈筛查提供客观、高特异度的分流手段——较单纯 TCT/HPV 更准确，报告队列中癌症检出率 100%。",
+      c2: "<b>超越筛查</b>：甲基化状态指导个体化治疗（化疗增敏、放疗抵抗）——精准管理的分子依据。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

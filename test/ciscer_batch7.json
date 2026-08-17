@@ -1,0 +1,167 @@
+[
+  {
+    "id": "14_Chen_等_-_2025_-_The_role_of_PAX1_and_JAM3_methylation_in_predicting_the_pathological_upgrading_of_cervical_intraepit",
+    "cancer": "cervical",
+    "kicker": "Cervical Cancer · Sci Rep 2025;15:17684 · Retrospective Cohort",
+    "kicker_zh": "宫颈癌 · Sci Rep 2025;15:17684 · 回顾性队列",
+    "title": "PAX1/JAM3 Methylation in Predicting Pathological Upgrading Before Conization",
+    "title_zh": "PAX1/JAM3 甲基化预测锥切前病理升级",
+    "subtitle": "88 CIN patients undergoing conization — ΔCtPAX1 &lt; 4.34 predicts pathological upgrading; model AUC 0.818",
+    "subtitle_zh": "88 例接受锥切的 CIN 患者——ΔCtPAX1 &lt; 4.34 提示病理升级风险；模型 AUC 0.818",
+    "authors": "Chen X, Xu H, Zhao L, Jiang H, Shou H",
+    "authors_zh": "陈晓燕, 徐虎滨, 赵灵琴, 蒋海明, 寿华锋",
+    "source": "Sci Rep 2025;15:17684 · DOI <a href=\"https://doi.org/10.1038/s41598-025-01422-3\" target=\"_blank\" rel=\"noopener\">10.1038/s41598-025-01422-3</a>",
+    "source_zh": "Sci Rep 2025;15:17684 · DOI <a href=\"https://doi.org/10.1038/s41598-025-01422-3\" target=\"_blank\" rel=\"noopener\">10.1038/s41598-025-01422-3</a>",
+    "panels": [
+      {
+        "title": "Why this study",
+        "title_zh": "研究缘起",
+        "bullets": [
+          "<strong>Gap</strong>: CIN lesions are often upgraded on conization pathology — predicting this before surgery could avoid incomplete or excessive procedures.",
+          "<strong>Question</strong>: can PAX1/JAM3 methylation predict pathological upgrading before conization?",
+          "<strong>Why it matters</strong>: a pre-op methylation read-out supports individualized surgical decisions (LEEP vs CKC)."
+        ],
+        "bullets_zh": [
+          "<strong>空白</strong>：CIN 病变常在锥切病理中升级——术前预测可避免手术不足或过度。",
+          "<strong>问题</strong>：PAX1/JAM3 甲基化能否在锥切前预测病理升级？",
+          "<strong>意义</strong>：术前甲基化读数支持个体化手术决策（LEEP vs CKC）。"
+        ]
+      },
+      {
+        "title": "Cohort &amp; methods",
+        "title_zh": "队列与方法",
+        "stats": [
+          {"big": "88", "lab_en": "conization patients", "lab_zh": "锥切患者"},
+          {"big": "18", "lab_en": "upgraded cases", "lab_zh": "升级病例"},
+          {"big": "0.818", "lab_en": "model AUC", "lab_zh": "模型 AUC"}
+        ],
+        "bullets": [
+          "<strong>Design</strong>: retrospective cohort (Dec 2020–Apr 2022); Zhejiang Provincial People's Hospital; 88 of 549 screened.",
+          "<strong>Groups</strong>: 18 pathological upgrading vs 70 non-upgrading after LEEP/CKC.",
+          "<strong>Methylation</strong>: ΔCt<sub>PAX1</sub>/ΔCt<sub>JAM3</sub> (NMPA Class III kit) before conization.",
+          "<strong>Analysis</strong>: logistic regression + predictive model (ROC, calibration, DCA)."
+        ],
+        "bullets_zh": [
+          "<strong>设计</strong>：回顾性队列（2020.12–2022.4）；浙江省人民医院；549 例中筛出 88 例。",
+          "<strong>分组</strong>：LEEP/CKC 后病理升级 18 例 vs 未升级 70 例。",
+          "<strong>甲基化</strong>：锥切前 ΔCt<sub>PAX1</sub>/ΔCt<sub>JAM3</sub>（NMPA Ⅲ类试剂盒）。",
+          "<strong>分析</strong>：Logistic 回归 + 预测模型（ROC、校准、DCA）。"
+        ]
+      },
+      {
+        "title": "Headline results",
+        "title_zh": "核心结果",
+        "bullets": [
+          "<strong>Independent predictors</strong>: ΔCt<sub>PAX1</sub> (OR 0.784, P=0.016) and endocervical involvement/ECC+ (OR 3.469, P=0.048).",
+          "<strong>Model</strong>: AUC 0.818 (0.720–0.916) with specificity 94.4% / sensitivity 60%.",
+          "<strong>Cut-off</strong>: ΔCt<sub>PAX1</sub> &lt; 4.34 → high upgrading risk (upgraded 3.51±2.32 vs non-upgraded 9.26±6.64).",
+          "<strong>Validation</strong>: calibration MAE 0.031; DCA net benefit in 0–0.3 threshold range."
+        ],
+        "bullets_zh": [
+          "<strong>独立预测因子</strong>：ΔCt<sub>PAX1</sub>（OR 0.784，P=0.016）与宫颈管内受累/ECC+（OR 3.469，P=0.048）。",
+          "<strong>模型</strong>：AUC 0.818（0.720–0.916），特异度 94.4% / 灵敏度 60%。",
+          "<strong>界值</strong>：ΔCt<sub>PAX1</sub> &lt; 4.34 → 升级风险高（升级组 3.51±2.32 vs 未升级 9.26±6.64）。",
+          "<strong>验证</strong>：校准 MAE 0.031；DCA 在 0–0.3 阈值区间有净获益。"
+        ]
+      },
+      {
+        "title": "Clinical value",
+        "title_zh": "临床价值",
+        "bullets": [
+          "<strong>Pre-op decision aid</strong>: identifies women likely to have CIN2+ on final pathology — informs one-step vs staged surgery.",
+          "<strong>High specificity</strong>: 94.4% — few false alarms, safe to plan conservative management when negative.",
+          "<strong>Complementary</strong>: combines with ECC status to refine risk in the conization population."
+        ],
+        "bullets_zh": [
+          "<strong>术前决策辅助</strong>：识别最终病理可能为 CIN2+ 的女性——指导一步式 vs 分步手术。",
+          "<strong>高特异度</strong>：94.4%——假警报少，阴性时保守处理安全。",
+          "<strong>互补</strong>：与 ECC 状态联合，细化锥切人群的风险评估。"
+        ]
+      }
+    ],
+    "takeaway": {
+      "title": "Take-away",
+      "title_zh": "核心结论",
+      "bullets": [
+        "<strong>Methylation predicts upgrading</strong>: ΔCt<sub>PAX1</sub> &lt; 4.34 flags pathological upgrading before conization (AUC 0.818).",
+        "<strong>Better surgical planning</strong>: high specificity (94.4%) supports individualized LEEP vs CKC decisions."
+      ],
+      "bullets_zh": [
+        "<strong>甲基化预测升级</strong>：ΔCt<sub>PAX1</sub> &lt; 4.34 在锥切前提示病理升级（AUC 0.818）。",
+        "<strong>更优手术规划</strong>：高特异度（94.4%）支持 LEEP vs CKC 的个体化决策。"
+      ]
+    }
+  },
+  {
+    "id": "26_Diagnostic_testing_accuracy_of_DNA_methylation_tests_for_detection_ofhigh-grade_cervical_intraepithelial_neoplasia_and_cervical_cancer_Asystematic_review_and_meta-analysis",
+    "cancer": "cervical",
+    "kicker": "Cervical Cancer · Eur J Cancer 2026;243:116823 · Systematic Review &amp; Meta-analysis",
+    "kicker_zh": "宫颈癌 · Eur J Cancer 2026;243:116823 · 系统评价与Meta分析",
+    "title": "Diagnostic Accuracy of DNA Methylation Tests for High-Grade CIN and Cervical Cancer",
+    "title_zh": "DNA 甲基化检测诊断高级别 CIN 与宫颈癌的准确性",
+    "subtitle": "125 studies / 49,242 women — JAM3 top DOR 20.82; PAX1 DOR 17.13 for CIN3+ in hrHPV+ women",
+    "subtitle_zh": "125 项研究 / 49,242 例女性——JAM3 最高 DOR 20.82；hrHPV+ 女性 CIN3+ 中 PAX1 DOR 17.13",
+    "authors": "Ellis LB, et al.",
+    "authors_zh": "Ellis LB 等",
+    "source": "Eur J Cancer 2026;243:116823 · DOI <a href=\"https://doi.org/10.1016/j.ejca.2026.116823\" target=\"_blank\" rel=\"noopener\">10.1016/j.ejca.2026.116823</a>",
+    "source_zh": "Eur J Cancer 2026;243:116823 · DOI <a href=\"https://doi.org/10.1016/j.ejca.2026.116823\" target=\"_blank\" rel=\"noopener\">10.1016/j.ejca.2026.116823</a>",
+    "panels": [
+      {
+        "title": "Scope",
+        "title_zh": "研究范围",
+        "bullets": [
+          "<strong>Design</strong>: systematic review + bivariate random-effects meta-analysis (CRD42022299760, searched to Mar 2025).",
+          "<strong>Evidence base</strong>: 125 studies / 49,242 women; primary analysis 51 studies / 28,977 hrHPV+ women with 13 methylation markers.",
+          "<strong>Outcomes</strong>: CIN2+/CIN3+/invasive cancer diagnostic accuracy."
+        ],
+        "bullets_zh": [
+          "<strong>设计</strong>：系统评价 + 双变量随机效应 meta 分析（CRD42022299760，检索至 2025.3）。",
+          "<strong>证据基础</strong>：125 项研究 / 49,242 例女性；主要分析 51 项 / 28,977 例 hrHPV+ 女性、13 个甲基化标志物。",
+          "<strong>结局</strong>：CIN2+/CIN3+/浸润癌诊断准确性。"
+        ]
+      },
+      {
+        "title": "Headline findings",
+        "title_zh": "核心发现",
+        "bullets": [
+          "<strong>JAM3</strong>: highest DOR 20.82 for CIN3+ in hrHPV+ women (sens 74% / spec 88%).",
+          "<strong>C13ORF18</strong>: DOR 19.50 (61% / 93%); <strong>PAX1</strong>: DOR 17.13 (71% / 87%).",
+          "<strong>S5 classifier</strong>: highest sensitivity 84% (spec 47%).",
+          "<strong>EPB41L3</strong>: lowest negative LR 0.26 → post-test probability 1.35% in low-risk scenarios."
+        ],
+        "bullets_zh": [
+          "<strong>JAM3</strong>：hrHPV+ 女性 CIN3+ 最高 DOR 20.82（灵敏度 74% / 特异度 88%）。",
+          "<strong>C13ORF18</strong>：DOR 19.50（61% / 93%）；<strong>PAX1</strong>：DOR 17.13（71% / 87%）。",
+          "<strong>S5 分类器</strong>：灵敏度最高 84%（特异度 47%）。",
+          "<strong>EPB41L3</strong>：阴性似然比最低 0.26 → 低风险场景检验后概率 1.35%。"
+        ]
+      },
+      {
+        "title": "Context &amp; limits",
+        "title_zh": "背景与局限",
+        "bullets": [
+          "<strong>All-population</strong>: combined PAX1/JAM3 reached DOR 76.00 for CIN2+ — the highest dual-gene performance.",
+          "<strong>Rule-out value</strong>: 76.9% of markers had &lt;2% post-test probability in low-risk scenarios.",
+          "<strong>Evidence grade</strong>: low-to-moderate certainty (JAM3 moderate); high-quality screening cohorts still needed."
+        ],
+        "bullets_zh": [
+          "<strong>全人群</strong>：PAX1/JAM3 联合检测 CIN2+ DOR 达 76.00——双基因联合表现最高。",
+          "<strong>排除价值</strong>：76.9% 的标志物在低风险场景检验后概率 &lt;2%。",
+          "<strong>证据等级</strong>：低–中确定性（JAM3 为中等）；仍需高质量筛查队列验证。"
+        ]
+      }
+    ],
+    "takeaway": {
+      "title": "Take-away",
+      "title_zh": "核心结论",
+      "bullets": [
+        "<strong>Methylation validated broadly</strong>: JAM3/PAX1 among the top markers for CIN3+ in hrHPV+ women (DOR 17–21).",
+        "<strong>PAX1/JAM3 dual-gene</strong>: DOR 76.00 for CIN2+ — strong evidence for clinical adoption, pending cohort validation."
+      ],
+      "bullets_zh": [
+        "<strong>甲基化获广泛验证</strong>：JAM3/PAX1 位列 hrHPV+ 女性 CIN3+ 顶级标志物（DOR 17–21）。",
+        "<strong>PAX1/JAM3 双基因</strong>：CIN2+ DOR 76.00——为临床采纳提供有力证据，尚待队列验证。"
+      ]
+    }
+  }
+]

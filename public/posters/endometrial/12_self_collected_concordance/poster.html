@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Self- vs Physician-Collected Methylation for EC — He et al. 2026</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #33 v3：三列非对称）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、大数字卡、条形对比
+  - 布局：标题带 → hero → 三列主体（左 560px：①背景与目的 ②研究设计；中 620px：③ROC 大图【原尺寸展示】；右 1fr：④效能与一致性数据 ⑤临床价值）→ 全宽临床意义带
+  - 选图：ROC（944×965）——中列大图展示，无压缩
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 96px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 22px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px 620px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .figrow, .panel .matrix { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 6px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 0 0 5px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 13px 4px; text-align: center; }
+  .stat .big { font-size: 18px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+  .stat.cool { background: #fff; border-color: rgba(140,158,143,0.6); }
+  .stat.cool .big { color: #5C7A63; }
+
+  .matrix { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 0 0 8px; }
+  .mcell { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 12px 10px; text-align: center; }
+  .mcell .n { font-size: 24px; font-weight: 800; color: var(--primary); line-height: 1.02; }
+  .mcell .l { font-size: 10px; color: var(--muted); margin-top: 3px; line-height: 1.25; }
+  .mcell.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .mcell.hot .n { color: #fff; } .mcell.hot .l { color: rgba(255,255,255,0.92); font-weight: 600; }
+  .mcell.cool { background: #fff; border-color: rgba(140,158,143,0.6); }
+  .mcell.cool .n { color: #5C7A63; }
+
+  .figrow { display: flex; gap: 12px; align-items: flex-start; justify-content: center; }
+  .fig { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px 5px; text-align: center; min-width: 0; }
+  .fig img { display: inline-block; height: auto; max-height: 560px; width: auto; max-width: 100%; border-radius: 3px; align-self: center; }
+  .fig .figcap { font-size: 10px; color: var(--muted); font-style: italic; line-height: 1.3; margin-top: 3px; text-align: left; }
+  .fig .figcap strong { color: var(--primary); font-style: normal; }
+
+  .spbars { margin: 2px 0 6px; }
+  .spb { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .spb .sbl { flex: 0 0 150px; font-size: 11.5px; font-weight: 700; color: var(--text); text-align: right; }
+  .spb .sbt { flex: 1 1 auto; height: 20px; background: #F1E7E7; border-radius: 5px; overflow: hidden; position: relative; }
+  .spb .sbf { height: 100%; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 12px; font-weight: 800; color: #fff; }
+  .spb.win .sbf { background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); }
+  .spb.lose .sbf { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); color: #6B5755; }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 3px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+  body.lang-en .panel ul li { margin-bottom: 6px; }
+  body.lang-zh .panel ul li { line-height: 1.5; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">JCO Precis Oncol · 2026;10:e250108 · Comparative Study · China</div>
+    <h1 data-i18n="title">Self- vs Physician-Collected Methylation for EC Detection</h1>
+    <div class="title_alt" data-i18n="title_alt">Diagnostic Accuracy and Concordance of Self-Collected Cervical CDO1 and CELF4 Methylation Testing Compared With Physician Sampling for Endometrial Cancer Detection</div>
+    <div class="subtitle" data-i18n="subtitle">142 women (33 EC + 109 non-EC) · self AUC 0.930 vs physician 0.896 · CDO1 R=0.79, CELF4 R=0.76 · Bland-Altman minimal bias</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">He P, Wang Y, Xie N, Liu C, Liu P, Wang L, Yin S, Zhou S, Cai H, Fu C</div>
+      <div class="source" data-i18n="source">Second Xiangya Hospital, Central South University · JCO Precis Oncol 2026;10:e250108 · doi:10.1200/PO-25-01081</div>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="stat"><div class="big">142</div><div class="lab" data-i18n="h1">paired samples</div></div>
+    <div class="stat hot"><div class="big">0.930</div><div class="lab" data-i18n="h2">AUC · self-collected</div></div>
+    <div class="stat"><div class="big">0.896</div><div class="lab" data-i18n="h3">AUC · physician</div></div>
+    <div class="stat"><div class="big">R 0.79</div><div class="lab" data-i18n="h4">CDO1 concordance</div></div>
+  </div>
+
+  <!-- 主体（三列） -->
+  <main class="main">
+    <!-- 左列：背景 + 设计 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Gap</strong>: self-sampling proven for cervical cancer; EC self-sampling methylation lacks robust evidence.</li>
+          <li data-i18n="s1b"><strong>Objective</strong>: compare self- vs physician-collected CDO1/CELF4 methylation for EC detection.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">33</div><div class="lab" data-i18n="s2s1">EC</div></div>
+          <div class="stat"><div class="big">109</div><div class="lab" data-i18n="s2s2">non-EC</div></div>
+          <div class="stat"><div class="big">2024.3–25.2</div><div class="lab" data-i18n="s2s3">enrollment</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Design</strong>: prospective cross-sectional; paired Evalyn Brush self + physician cervical samples.</li>
+          <li data-i18n="s2b"><strong>Assay</strong>: qPCR CDO1/CELF4 methylation (ΔCt); hysteroscopy histology = gold standard.</li>
+          <li data-i18n="s2c"><strong>Agreement</strong>: Spearman correlation + Bland-Altman plots.</li>
+          <li data-i18n="s2d"><strong>Exclusion</strong>: menstruation · pregnancy · hormonal therapy · IUD · recent procedures.</li>
+          <li data-i18n="s2e"><strong>Inclusion</strong>: adults scheduled for hysteroscopy (AUB / TVS abnormal / clinical concern).</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">Evalyn</div><div class="lab" data-i18n="s2s4">self-sampling brush</div></div>
+          <div class="stat"><div class="big">qPCR</div><div class="lab" data-i18n="s2s5">methylation assay</div></div>
+          <div class="stat"><div class="big">n=102 est.</div><div class="lab" data-i18n="s2s6">sample size</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">0.930</div><div class="lab" data-i18n="s2s7">AUC self</div></div>
+          <div class="stat"><div class="big">0.896</div><div class="lab" data-i18n="s2s8">AUC physician</div></div>
+          <div class="stat"><div class="big">R 0.79/0.76</div><div class="lab" data-i18n="s2s9">concordance</div></div>
+        </div>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s2j1">EC vs non-EC ΔCt</div><div class="sbt"><div class="sbf" style="width:100%">P&lt;0.001</div></div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2j"><strong>Pathology spectrum</strong>: EC · EH · EAH · EP · EM — broad comparison.</li>
+          <li data-i18n="s2k"><strong>Home value</strong>: reduces specialist visits; patient-centred care.</li>
+          <li data-i18n="s2f"><strong>Sample size</strong>: estimated n=102 (AUC 0.85, α 0.05, half-width 0.05); 142 enrolled.</li>
+          <li data-i18n="s2g"><strong>Analysis</strong>: Wilcoxon · χ² · Spearman · Bland-Altman · ROC/AUC.</li>
+          <li data-i18n="s2h"><strong>Sensitivity</strong>: robust findings accounting for missing data.</li>
+          <li data-i18n="s2i"><strong>Limits</strong>: single-center; symptomatic/referred cohort — not population screening.</li>
+        </ul>
+        <div class="tnote" data-i18n="s2n">STROBE-compliant; robust to missing-data sensitivity analysis; pre/postmenopausal subgroups stable; self AUC even slightly higher.</div>
+      </div>
+    </section>
+
+    <!-- 中列：ROC 大图 -->
+    <section class="col">
+      <div class="panel grow" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">ROC — Diagnostic Accuracy</span></h3>
+        <div class="figrow">
+          <div class="fig">
+            <img src="images/fig_roc.jpg" alt="ROC curves self vs physician sampling">
+            <div class="figcap"><strong>Fig.</strong> <span data-i18n="s3c1">ROC — self-sampling AUC 0.930 vs physician 0.896 (equivalent accuracy).</span></div>
+          </div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">0.930</div><div class="lab" data-i18n="s3s1">AUC · self</div></div>
+          <div class="stat"><div class="big">0.896</div><div class="lab" data-i18n="s3s2">AUC · physician</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 右列：数据 + 价值 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">Concordance &amp; Key Metrics</span></h3>
+        <div class="matrix">
+          <div class="mcell hot"><div class="n">R 0.79</div><div class="l" data-i18n="s4s1">CDO1 agreement</div></div>
+          <div class="mcell hot"><div class="n">R 0.76</div><div class="l" data-i18n="s4s2">CELF4 agreement</div></div>
+          <div class="mcell cool"><div class="n">minimal bias</div><div class="l" data-i18n="s4s3">Bland-Altman</div></div>
+          <div class="mcell"><div class="n">P&lt;0.001</div><div class="l" data-i18n="s4s4">EC vs non-EC ΔCt</div></div>
+        </div>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s4a1">Self AUC</div><div class="sbt"><div class="sbf" style="width:93%">0.930</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s4a2">Physician AUC</div><div class="sbt"><div class="sbf" style="width:89.6%">0.896</div></div></div>
+        </div>
+        <ul>
+          <li data-i18n="s4a"><strong>No systematic bias</strong> between sampling methods — home collection is reliable.</li>
+          <li data-i18n="s4b"><strong>Stable subgroups</strong>: high discrimination pre- &amp; postmenopausal.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Clinical Value</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">33</div><div class="lab" data-i18n="s5s1">EC cases</div></div>
+          <div class="stat"><div class="big">109</div><div class="lab" data-i18n="s5s2">non-EC</div></div>
+          <div class="stat"><div class="big">7</div><div class="lab" data-i18n="s5s3">pathology groups</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s5a"><strong>Patient-centric</strong>: at-home self-collection expands access to EC triage.</li>
+          <li data-i18n="s5b"><strong>Workflow fit</strong>: triage before hysteroscopy — fewer invasive procedures.</li>
+          <li data-i18n="s5c"><strong>Broad spectrum</strong>: EC · EH · EAH · EP · EM all compared.</li>
+          <li data-i18n="s5d"><strong>Next step</strong>: multicenter validation in larger populations.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">pre / post</div><div class="lab" data-i18n="s5s4">menopause subgroups</div></div>
+          <div class="stat"><div class="big">high AUC</div><div class="lab" data-i18n="s5s5">both groups</div></div>
+          <div class="stat"><div class="big">0.930</div><div class="lab" data-i18n="s5s6">self AUC</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s5e"><strong>Compliance</strong>: self-collection acceptable &amp; convenient for women.</li>
+          <li data-i18n="s5f"><strong>Cost</strong>: reduces clinic visits &amp; invasive procedure burden.</li>
+          <li data-i18n="s5g"><strong>Telehealth</strong>: pairs with remote counselling &amp; referral triage.</li>
+        </ul>
+        <div class="tnote" data-i18n="s5n">Equivalent diagnostic accuracy (self 0.930 vs physician 0.896) supports a home-based EC triage pathway; reduces specialist visits &amp; improves patient experience.</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Self-sampling is a reliable, non-invasive EC triage</b>: CDO1/CELF4 methylation AUC 0.930 — equivalent to physician sampling (0.896).</li>
+      <li data-i18n="c2"><b>Access &amp; early detection</b>: home-based collection can be integrated into diagnostic workflows before hysteroscopy.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "JCO Precis Oncol · 2026;10:e250108 · Comparative Study · China",
+      title: "Self- vs Physician-Collected Methylation for EC Detection",
+      title_alt: "Diagnostic Accuracy and Concordance of Self-Collected Cervical CDO1 and CELF4 Methylation Testing Compared With Physician Sampling for Endometrial Cancer Detection",
+      subtitle: "142 women (33 EC + 109 non-EC) · self AUC 0.930 vs physician 0.896 · CDO1 R=0.79, CELF4 R=0.76 · Bland-Altman minimal bias",
+      authors: "He P, Wang Y, Xie N, Liu C, Liu P, Wang L, Yin S, Zhou S, Cai H, Fu C",
+      source: "Second Xiangya Hospital, Central South University · JCO Precis Oncol 2026;10:e250108 · doi:10.1200/PO-25-01081",
+      h1: "paired samples", h2: "AUC · self-collected", h3: "AUC · physician", h4: "CDO1 concordance",
+      s1t: "Background & Objective",
+      s1a: "<strong>Gap</strong>: self-sampling proven for cervical cancer; EC self-sampling methylation lacks robust evidence.",
+      s1b: "<strong>Objective</strong>: compare self- vs physician-collected CDO1/CELF4 methylation for EC detection.",
+      s2t: "Study Design & Cohort",
+      s2s1: "EC", s2s2: "non-EC", s2s3: "enrollment",
+      s2a: "<strong>Design</strong>: prospective cross-sectional; paired Evalyn Brush self + physician cervical samples.",
+      s2b: "<strong>Assay</strong>: qPCR CDO1/CELF4 methylation (ΔCt); hysteroscopy histology = gold standard.",
+      s2c: "<strong>Agreement</strong>: Spearman correlation + Bland-Altman plots.",
+      s2d: "<strong>Exclusion</strong>: menstruation · pregnancy · hormonal therapy · IUD · recent procedures.",
+      s2e: "<strong>Inclusion</strong>: adults scheduled for hysteroscopy (AUB / TVS abnormal / clinical concern).",
+      s2s7: "AUC self", s2s8: "AUC physician", s2s9: "concordance",
+      s2j1: "EC vs non-EC ΔCt",
+      s2j: "<strong>Pathology spectrum</strong>: EC · EH · EAH · EP · EM — broad comparison.",
+      s2k: "<strong>Home value</strong>: reduces specialist visits; patient-centred care.",
+      s2f: "<strong>Sample size</strong>: estimated n=102 (AUC 0.85, α 0.05, half-width 0.05); 142 enrolled.",
+      s2g: "<strong>Analysis</strong>: Wilcoxon · χ² · Spearman · Bland-Altman · ROC/AUC.",
+      s2h: "<strong>Sensitivity</strong>: robust findings accounting for missing data.",
+      s2i: "<strong>Limits</strong>: single-center; symptomatic/referred cohort — not population screening.",
+      s2s4: "self-sampling brush", s2s5: "methylation assay", s2s6: "sample size",
+      s2n: "STROBE-compliant; robust to missing-data sensitivity analysis; pre/postmenopausal subgroups stable; self-collected AUC even slightly higher than physician sampling in this cohort.",
+      s3t: "ROC — Diagnostic Accuracy",
+      s3c1: "ROC — self-sampling AUC 0.930 vs physician 0.896 (equivalent accuracy).",
+      s3s1: "AUC · self", s3s2: "AUC · physician",
+      s4t: "Concordance & Key Metrics",
+      s4s1: "CDO1 agreement", s4s2: "CELF4 agreement", s4s3: "Bland-Altman", s4s4: "EC vs non-EC ΔCt",
+      s4a1: "Self AUC", s4a2: "Physician AUC",
+      s4a: "<strong>No systematic bias</strong> between sampling methods — home collection is reliable.",
+      s4b: "<strong>Stable subgroups</strong>: high discrimination pre- & postmenopausal.",
+      s5t: "Clinical Value",
+      s5a: "<strong>Patient-centric</strong>: at-home self-collection expands access to EC triage.",
+      s5b: "<strong>Workflow fit</strong>: triage before hysteroscopy — fewer invasive procedures.",
+      s5c: "<strong>Broad spectrum</strong>: EC · EH · EAH · EP · EM all compared.",
+      s5d: "<strong>Next step</strong>: multicenter validation in larger populations.",
+      s5s4: "menopause subgroups", s5s5: "both groups", s5s6: "self AUC",
+      s5e: "<strong>Compliance</strong>: self-collection acceptable & convenient for women.",
+      s5f: "<strong>Cost</strong>: reduces clinic visits & invasive procedure burden.",
+      s5g: "<strong>Telehealth</strong>: pairs with remote counselling & referral triage.",
+      s5s1: "EC cases", s5s2: "non-EC", s5s3: "pathology groups",
+      s5n: "Equivalent diagnostic accuracy (self 0.930 vs physician 0.896) supports a home-based EC triage pathway; reduces specialist visits, improves patient experience and broadens screening access.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Self-sampling is a reliable, non-invasive EC triage</b>: CDO1/CELF4 methylation AUC 0.930 — equivalent to physician sampling (0.896).",
+      c2: "<b>Access & early detection</b>: home-based collection can be integrated into diagnostic workflows before hysteroscopy."
+    },
+    zh: {
+      kicker: "JCO Precis Oncol · 2026;10:e250108 · 对比研究 · 中国",
+      title: "自采样 vs 医师采样的甲基化检测子宫内膜癌",
+      title_alt: "Diagnostic Accuracy and Concordance of Self-Collected Cervical CDO1 and CELF4 Methylation Testing Compared With Physician Sampling for Endometrial Cancer Detection",
+      subtitle: "142 例（33 例 EC + 109 例非 EC）· 自采样 AUC 0.930 vs 医师采样 0.896 · CDO1 R=0.79、CELF4 R=0.76 · Bland-Altman 无显著偏倚",
+      authors: "何佩轩、王依珊、谢念、刘成娘、刘培、王林海、尹素月、周顺先、蔡海英、符淳",
+      source: "中南大学湘雅二医院 · JCO Precis Oncol 2026;10:e250108 · doi:10.1200/PO-25-01081",
+      h1: "配对样本", h2: "AUC · 自采样", h3: "AUC · 医师采样", h4: "CDO1 一致性",
+      s1t: "背景与目的",
+      s1a: "<strong>缺口</strong>：自采样已用于宫颈癌筛查；EC 自采样甲基化缺乏可靠证据。",
+      s1b: "<strong>目的</strong>：比较自采样与医师采样 CDO1/CELF4 甲基化检测 EC。",
+      s2t: "研究设计与队列",
+      s2s1: "EC", s2s2: "非 EC", s2s3: "入组期",
+      s2a: "<strong>设计</strong>：前瞻性横断面；Evalyn Brush 自采样 + 医师宫颈采样配对。",
+      s2b: "<strong>检测</strong>：qPCR CDO1/CELF4 甲基化（ΔCt）；宫腔镜病理为金标准。",
+      s2c: "<strong>一致性</strong>：Spearman 相关 + Bland-Altman 图。",
+      s2d: "<strong>排除</strong>：月经期 · 妊娠 · 激素治疗 · IUD · 近期操作。",
+      s2e: "<strong>纳入</strong>：拟行宫腔镜的成人（AUB / TVS 异常 / 临床关注）。",
+      s2s7: "AUC 自采样", s2s8: "AUC 医师采样", s2s9: "一致性",
+      s2j1: "EC vs 非 EC ΔCt",
+      s2j: "<strong>病理谱</strong>：EC · EH · EAH · EP · EM——广泛对比。",
+      s2k: "<strong>居家价值</strong>：减少专科就诊；以患者为中心。",
+      s2f: "<strong>样本量</strong>：估算 102 例（AUC 0.85，α 0.05，半宽 0.05）；实际 142 例。",
+      s2g: "<strong>分析</strong>：Wilcoxon · χ² · Spearman · Bland-Altman · ROC/AUC。",
+      s2h: "<strong>敏感性</strong>：考虑缺失数据后结果稳健。",
+      s2i: "<strong>局限</strong>：单中心；症状/转诊队列——非人群筛查。",
+      s2s4: "自采样刷", s2s5: "甲基化检测", s2s6: "样本量",
+      s2n: "符合 STROBE；缺失数据敏感性分析稳健；绝经前/后亚组稳定。",
+      s3t: "ROC——诊断准确度",
+      s3c1: "ROC——自采样 AUC 0.930 vs 医师采样 0.896（等效准确度）。",
+      s3s1: "AUC · 自采样", s3s2: "AUC · 医师采样",
+      s4t: "一致性与关键指标",
+      s4s1: "CDO1 一致性", s4s2: "CELF4 一致性", s4s3: "Bland-Altman", s4s4: "EC vs 非 EC ΔCt",
+      s4a1: "自采样 AUC", s4a2: "医师采样 AUC",
+      s4a: "<strong>无系统偏倚</strong>——居家采集可靠。",
+      s4b: "<strong>亚组稳定</strong>：绝经前/后均高判别力。",
+      s5t: "临床价值",
+      s5a: "<strong>患者友好</strong>：居家自采样扩大 EC 分诊可及性。",
+      s5b: "<strong>流程契合</strong>：宫腔镜前分诊——减少有创操作。",
+      s5c: "<strong>病理谱广</strong>：EC · EH · EAH · EP · EM 均纳入对比。",
+      s5d: "<strong>下一步</strong>：更大人群的多中心验证。",
+      s5s4: "绝经前/后亚组", s5s5: "两组均高", s5s6: "自采样 AUC",
+      s5e: "<strong>依从性</strong>：自采样被女性接受且方便。",
+      s5f: "<strong>成本</strong>：减少门诊次数与有创负担。",
+      s5g: "<strong>远程医疗</strong>：可配合远程咨询与转诊分诊。",
+      s5s1: "EC 病例", s5s2: "非 EC", s5s3: "病理分组",
+      s5n: "等效诊断准确度（自 0.930 vs 医师 0.896）支持居家 EC 分诊路径。",
+      c_ttl: "临床意义",
+      c1: "<b>自采样是可靠的无创 EC 分诊</b>：CDO1/CELF4 甲基化 AUC 0.930——与医师采样等效（0.896）。",
+      c2: "<b>可及性与早发现</b>：居家采样可整合进宫腔镜前的诊断流程。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

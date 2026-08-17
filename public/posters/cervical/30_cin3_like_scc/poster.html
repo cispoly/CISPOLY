@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAX1/JAM3 Methylation &amp; HPV Viral Load in CIN3-like SCC — Li et al. 2026, Clin Epigenetics</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #16：四组对照 + 双指标（甲基化 / 病毒载量），与 #1-15 均不同）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、白色 stat 卡、红色高亮表格
+  - 布局：标题带 → 队列分段 hero（138 例五组）+ 核心发现 → 两栏（左 560px：①背景与目的 ②研究设计；右 1fr：③甲基化结果【Fig.3 箱线图 + Fig.4 相关性并排】④病毒载量结果【Fig.5 + 要点】⑤核心差异）→ 全宽临床意义带
+  - 选图：Fig.3 甲基化箱线（1191x584，宽幅）+ Fig.4 甲基化-VL 相关（1296x750）+ Fig.5 VL 箱线（1482x639，宽幅）
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  /* 队列分段 hero */
+  .coh { flex: 0 0 auto; height: 90px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: center; gap: 14px; padding: 9px 12px; }
+  .coh .segs { flex: 1; display: flex; height: 100%; }
+  .coh .seg { flex: 1; border-radius: 8px; padding: 8px 8px; display: flex; flex-direction: column; justify-content: center; position: relative; }
+  .coh .seg .sn { font-size: 19px; font-weight: 800; color: #fff; line-height: 1.05; }
+  .coh .seg .sl { font-size: 9px; color: rgba(255,255,255,0.9); margin-top: 2px; line-height: 1.2; }
+  .coh .s1 { background: #E8A29A; } .coh .s2 { background: #E58A78; } .coh .s3 { background: #D74B4A; } .coh .s4 { background: #B83A39; } .coh .s5 { background: #8E2E2D; }
+  .coh .find { flex: 0 0 460px; background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.9) 100%); border-radius: 10px;
+    padding: 9px 14px; height: 100%; display: flex; flex-direction: column; justify-content: center; }
+  .coh .find .ft { font-size: 10.5px; font-weight: 800; color: #fff; letter-spacing: 1px; }
+  .coh .find .fv { font-size: 13px; color: rgba(255,255,255,0.95); margin-top: 4px; line-height: 1.4; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel table, .panel .statrow, .panel .tnote, .panel .figrow { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 1px 0 6px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 9px 4px; text-align: center; }
+  .stat .big { font-size: 19px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9.5px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+
+  .figrow { display: flex; gap: 12px; align-items: flex-start; justify-content: center; }
+  .fig { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px 4px; text-align: center; min-width: 0; }
+  .fig img { display: inline-block; height: auto; max-height: 215px; width: auto; max-width: 100%; border-radius: 3px; }
+  .fig svg { display: block; height: 215px; width: auto; margin: 0 auto; }
+  .fig .figcap { font-size: 10px; color: var(--muted); font-style: italic; line-height: 1.3; margin-top: 3px; text-align: left; }
+  .fig .figcap strong { color: var(--primary); font-style: normal; }
+
+  .minitable { width: 100%; border-collapse: collapse; margin: 2px 0 4px 0; font-size: 10.5px; }
+  .minitable th { background: rgba(215,75,74,0.12); color: var(--accent-deep); font-weight: 700; padding: 3px 5px; text-align: left; border-bottom: 2px solid var(--line); font-size: 10px; }
+  .minitable td { padding: 6px 5px; border-bottom: 1px solid var(--line); color: var(--muted); }
+  .minitable td:first-child { font-weight: 600; color: var(--text); }
+  .minitable tr:last-child td { border-bottom: none; }
+  .minitable .highlight { color: var(--primary); font-weight: 700; }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 4px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Clin Epigenetics · 2026 · Pathological Subtype Study · China</div>
+    <h1 data-i18n="title">PAX1/JAM3 Methylation &amp; HPV Viral Load in CIN3-like Squamous Cell Carcinoma</h1>
+    <div class="title_alt" data-i18n="title_alt">CIN3 样鳞癌中的 PAX1/JAM3 甲基化与 HPV 病毒载量——与 CIN3 及早期浸润癌的差异</div>
+    <div class="subtitle" data-i18n="subtitle">138 cases · methylation &amp; HPV VL higher in SCC than HSIL · CIN3-like SCC: VL higher than CIN3 &amp; early invasive, methylation similar</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Li M, Zhang X, Zhao X, Wang J, Zhao C, Zhao Y, Li J, Shen D, Wei L</div>
+      <div class="source" data-i18n="source">Peking University People's Hospital · doi: <a href="https://doi.org/10.1186/s13148-026-02201-1" target="_blank" rel="noopener">10.1186/s13148-026-02201-1</a></div>
+    </div>
+  </header>
+
+  <!-- 队列分段 hero -->
+  <div class="coh">
+    <div class="segs">
+      <div class="seg s1"><div class="sn">23</div><div class="sl" data-i18n="seg1">CIN2</div></div>
+      <div class="seg s2"><div class="sn">42</div><div class="sl" data-i18n="seg2">CIN3</div></div>
+      <div class="seg s3"><div class="sn">27</div><div class="sl" data-i18n="seg3">CIN3-like SCC</div></div>
+      <div class="seg s4"><div class="sn">21</div><div class="sl" data-i18n="seg4">Early invasive SCC</div></div>
+      <div class="seg s5"><div class="sn">25</div><div class="sl" data-i18n="seg5">Invasive SCC</div></div>
+    </div>
+    <div class="find">
+      <div class="ft" data-i18n="findt">Key finding</div>
+      <div class="fv" data-i18n="findv">Methylation &amp; HPV VL higher in SCC than HSIL · CIN3-like SCC: VL &gt; CIN3 &amp; early invasive; methylation similar to invasive SCC.</div>
+    </div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Challenge</strong>: CIN3-like SCC mimics CIN3 (endocervical crypts) — deceptive growth, diagnostic confusion &amp; under-staging risk.</li>
+          <li data-i18n="s1b"><strong>Objective</strong>: compare PAX1/JAM3 methylation &amp; HPV VL across CIN3, CIN3-like SCC, early invasive &amp; invasive SCC.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">138</div><div class="lab" data-i18n="s2s1">cases</div></div>
+          <div class="stat"><div class="big">65</div><div class="lab" data-i18n="s2s2">HSIL (23 CIN2 + 42 CIN3)</div></div>
+          <div class="stat"><div class="big">73</div><div class="lab" data-i18n="s2s3">SCC (27/21/25)</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Setting</strong>: Peking University People's Hospital, Mar 2022 – Jun 2024; retrospective.</li>
+          <li data-i18n="s2b"><strong>Assays</strong>: PAX1/JAM3 methylation (qPCR, ΔCt) + HPV VL (type-specific).</li>
+          <li data-i18n="s2c"><strong>Groups</strong>: CIN2 · CIN3 · CIN3-like SCC · early invasive SCC · invasive SCC.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">27</div><div class="lab" data-i18n="s2s4">CIN3-like SCC</div></div>
+          <div class="stat"><div class="big">21</div><div class="lab" data-i18n="s2s5">early invasive</div></div>
+          <div class="stat"><div class="big">25</div><div class="lab" data-i18n="s2s6">invasive SCC</div></div>
+        </div>
+        <table class="minitable">
+          <tr><th data-i18n="m_h1">Group</th><th data-i18n="m_h2">Methylation</th><th data-i18n="m_h3">HPV VL</th></tr>
+          <tr><td data-i18n="m_r1a">CIN3</td><td data-i18n="m_r1b">low</td><td data-i18n="m_r1c">low</td></tr>
+          <tr><td class="highlight" data-i18n="m_r2a">CIN3-like SCC</td><td data-i18n="m_r2b">high (≈SCC)</td><td data-i18n="m_r2c">highest</td></tr>
+          <tr><td data-i18n="m_r3a">Early invasive SCC</td><td data-i18n="m_r3b">high</td><td data-i18n="m_r3c">mid</td></tr>
+          <tr><td data-i18n="m_r4a">Invasive SCC</td><td data-i18n="m_r4b">high</td><td data-i18n="m_r4c">high</td></tr>
+        </table>
+        <ul>
+          <li data-i18n="s2e"><strong>Viral load</strong>: type-specific VL per 10,000 cells (BMRT platform).</li>
+          <li data-i18n="s2f"><strong>Statistics</strong>: Kruskal-Wallis / Wilcoxon; ΔCt = Ct<sub>gene</sub> − Ct<sub>GAPDH</sub>.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">ΔCt</div><div class="lab" data-i18n="s2s7">methylation readout</div></div>
+          <div class="stat"><div class="big">VL</div><div class="lab" data-i18n="s2s8">type-specific load</div></div>
+          <div class="stat"><div class="big">HE</div><div class="lab" data-i18n="s2s9">re-reviewed</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2g"><strong>Design</strong>: single-center retrospective; pathology re-read by two pathologists.</li>
+          <li data-i18n="s2h"><strong>Bias control</strong>: blinded molecular assays to histology.</li>
+          <li data-i18n="s2i"><strong>Endpoints</strong>: group differences in ΔCt &amp; VL; same-FIGO comparisons.</li>
+        </ul>
+        <div class="tnote" data-i18n="s2d">Histology re-reviewed; HE features (Fig. 1) distinguish CIN3-like SCC (clear cell nests, central cavity, dyskeratosis).</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Methylation Results</span></h3>
+        <div class="figrow">
+          <div class="fig">
+            <img src="images/fig3_methylation.jpg" alt="PAX1/JAM3 methylation by lesion type">
+            <div class="figcap"><strong>Fig. 3</strong> <span data-i18n="s3c1">PAX1/JAM3 ΔCt by type — SCC &gt; HSIL (P&lt;0.001); CIN3-like SCC ≈ invasive SCC.</span></div>
+          </div>
+          <div class="fig">
+            <img src="images/fig4_correlation.jpg" alt="Correlation between methylation and HPV VL">
+            <div class="figcap"><strong>Fig. 4</strong> <span data-i18n="s3c2">Methylation–VL correlation (PAX1 R=−0.42; JAM3 R=−0.47).</span></div>
+          </div>
+        </div>
+        <ul style="margin-top:4px;">
+          <li data-i18n="s3a"><strong>Cancer &gt; HSIL</strong>: both genes significantly higher in SCC than HSIL (esp. CIN2).</li>
+          <li data-i18n="s3b"><strong>No gap in SCC</strong>: CIN3-like ≈ early invasive ≈ invasive SCC methylation.</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">HPV Viral Load Results</span></h3>
+        <div class="figrow">
+          <div class="fig">
+            <img src="images/fig5_vl.jpg" alt="HPV viral load by lesion type">
+            <div class="figcap"><strong>Fig. 5</strong> <span data-i18n="s4c1">VL by type (total / 16-18 / non-16-18) — CIN3-like SCC highest.</span></div>
+          </div>
+          <div class="fig">
+            <svg viewBox="0 0 430 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="HPV16/18 viral load comparison">
+              <line x1="150" y1="30" x2="150" y2="240" stroke="#D9D4D2" stroke-width="1.5"/>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="12" font-weight="700" fill="#3A3232">
+                <text x="150" y="18" text-anchor="middle" data-i18n="vg0">HPV16/18 VL by type</text>
+              </g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="11" fill="#5C5252" text-anchor="end">
+                <text x="142" y="66" data-i18n="vg1">CIN3</text>
+                <text x="142" y="106" data-i18n="vg2">CIN3-like SCC</text>
+                <text x="142" y="146" data-i18n="vg3">Early invasive</text>
+                <text x="142" y="186" data-i18n="vg4">Invasive</text>
+              </g>
+              <g>
+                <rect x="150" y="50" width="70" height="24" fill="#C9A9A7" rx="3"/>
+                <rect x="150" y="90" width="240" height="24" fill="#D74B4A" rx="3"/>
+                <rect x="150" y="130" width="120" height="24" fill="#E58A78" rx="3"/>
+                <rect x="150" y="170" width="210" height="24" fill="#E8A29A" rx="3"/>
+              </g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="10.5" font-weight="800" fill="#B83A39">
+                <text x="230" y="66">low</text>
+                <text x="400" y="106">highest</text>
+                <text x="280" y="146">mid</text>
+                <text x="370" y="186">high</text>
+              </g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="9.5" fill="#5C5252">
+                <text x="150" y="290" data-i18n="vg5">CIN3-like SCC VL &gt; CIN3 &amp; early invasive (P&lt;0.05); ≈ invasive</text>
+              </g>
+            </svg>
+            <div class="figcap"><strong>Fig.</strong> <span data-i18n="s4c2">HPV16/18 VL — CIN3-like SCC highest, near invasive SCC.</span></div>
+          </div>
+        </div>
+        <ul style="margin-top:4px;">
+          <li data-i18n="s4a"><strong>Key difference</strong>: CIN3-like SCC VL &gt; CIN3 &amp; early invasive SCC (esp. HPV16/18) — a candidate molecular hint for this deceptive subtype.</li>
+          <li data-i18n="s5b"><strong>Methylation</strong>: separates cancer from HSIL, but not SCC subtypes; same-FIGO VL/methylation tend higher — larger samples needed.</li>
+        </ul>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>PAX1/JAM3 methylation is significantly higher in SCC than HSIL</b>, but similar across CIN3-like / early invasive / invasive SCC — supporting its role in cancer-vs-HSIL triage rather than subtype separation.</li>
+      <li data-i18n="c2"><b>HPV VL (esp. 16/18)</b> is higher in CIN3-like SCC — a candidate molecular hint for this deceptive subtype, pending larger studies.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Clin Epigenetics · 2026 · Pathological Subtype Study · China",
+      title: "PAX1/JAM3 Methylation & HPV Viral Load in CIN3-like Squamous Cell Carcinoma",
+      title_alt: "CIN3 样鳞癌中的 PAX1/JAM3 甲基化与 HPV 病毒载量——与 CIN3 及早期浸润癌的差异",
+      subtitle: "138 cases · methylation & HPV VL higher in SCC than HSIL · CIN3-like SCC: VL higher than CIN3 & early invasive, methylation similar",
+      authors: "Li M, Zhang X, Zhao X, Wang J, Zhao C, Zhao Y, Li J, Shen D, Wei L",
+      source: 'Peking University People\'s Hospital · doi: <a href="https://doi.org/10.1186/s13148-026-02201-1" target="_blank" rel="noopener">10.1186/s13148-026-02201-1</a>',
+      seg1: "CIN2", seg2: "CIN3", seg3: "CIN3-like SCC", seg4: "Early invasive SCC", seg5: "Invasive SCC",
+      findt: "Key finding",
+      findv: "Methylation & HPV VL higher in SCC than HSIL · CIN3-like SCC: VL > CIN3 & early invasive; methylation similar to invasive SCC.",
+      s1t: "Background & Objective",
+      s1a: "<strong>Challenge</strong>: CIN3-like SCC mimics CIN3 (endocervical crypts) — deceptive growth, diagnostic confusion & under-staging risk.",
+      s1b: "<strong>Objective</strong>: compare PAX1/JAM3 methylation & HPV VL across CIN3, CIN3-like SCC, early invasive & invasive SCC.",
+      s2t: "Study Design & Cohort",
+      s2s1: "cases", s2s2: "HSIL (23 CIN2 + 42 CIN3)", s2s3: "SCC (27/21/25)",
+      s2a: "<strong>Setting</strong>: Peking University People's Hospital, Mar 2022 – Jun 2024; retrospective.",
+      s2b: "<strong>Assays</strong>: PAX1/JAM3 methylation (qPCR, ΔCt) + HPV VL (type-specific).",
+      s2c: "<strong>Groups</strong>: CIN2 · CIN3 · CIN3-like SCC · early invasive SCC · invasive SCC.",
+      s2d: "Histology re-reviewed; HE features (Fig. 1) distinguish CIN3-like SCC (clear cell nests, central cavity, dyskeratosis).",
+      s2e: "<strong>Viral load</strong>: type-specific VL per 10,000 cells (BMRT platform).",
+      s2f: "<strong>Statistics</strong>: Kruskal-Wallis / Wilcoxon; ΔCt = Ct<sub>gene</sub> − Ct<sub>GAPDH</sub>.",
+      s2g: "<strong>Design</strong>: single-center retrospective; pathology re-read by two pathologists.",
+      s2h: "<strong>Bias control</strong>: blinded molecular assays to histology.",
+      s2i: "<strong>Endpoints</strong>: group differences in ΔCt & VL; same-FIGO comparisons.",
+      s2s7: "methylation readout", s2s8: "type-specific load", s2s9: "re-reviewed",
+      s2s4: "CIN3-like SCC", s2s5: "early invasive", s2s6: "invasive SCC",
+      m_h1: "Group", m_h2: "Methylation", m_h3: "HPV VL",
+      m_r1a: "CIN3", m_r1b: "low", m_r1c: "low", m_r2a: "CIN3-like SCC", m_r2b: "high (≈SCC)", m_r2c: "highest",
+      m_r3a: "Early invasive SCC", m_r3b: "high", m_r3c: "mid", m_r4a: "Invasive SCC", m_r4b: "high", m_r4c: "high",
+      s3t: "Methylation Results",
+      s3c1: "PAX1/JAM3 ΔCt by type — SCC > HSIL (P<0.001); CIN3-like SCC ≈ invasive SCC.",
+      s3c2: "Methylation–VL correlation (PAX1 R=−0.42; JAM3 R=−0.47).",
+      s3a: "<strong>Cancer > HSIL</strong>: both genes significantly higher in SCC than HSIL (esp. CIN2).",
+      s3b: "<strong>No gap in SCC</strong>: CIN3-like ≈ early invasive ≈ invasive SCC methylation.",
+      s4t: "HPV Viral Load Results",
+      s4c1: "VL by type (total / 16-18 / non-16-18) — CIN3-like SCC highest.",
+      s4a: "<strong>Key difference</strong>: CIN3-like SCC VL > CIN3 & early invasive SCC (esp. HPV16/18) — a candidate molecular hint for this deceptive subtype.",
+      s4c2: "HPV16/18 VL — CIN3-like SCC highest, near invasive SCC.",
+      vg0: "HPV16/18 VL by type", vg1: "CIN3", vg2: "CIN3-like SCC", vg3: "Early invasive", vg4: "Invasive", vg5: "CIN3-like SCC VL > CIN3 & early invasive (P<0.05); ≈ invasive",
+      s5t: "Take-Home",
+      s5a: "<strong>Methylation</strong>: distinguishes SCC from HSIL, but cannot separate CIN3-like SCC from other SCC subtypes.",
+      s5b: "<strong>Methylation</strong>: separates cancer from HSIL, but not SCC subtypes; same-FIGO VL/methylation tend higher — larger samples needed.",
+      s5c: "<strong>Same FIGO stage</strong>: VL/methylation tend higher in CIN3-like SCC — larger samples needed.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>PAX1/JAM3 methylation is significantly higher in SCC than HSIL</b>, but similar across CIN3-like / early invasive / invasive SCC — supporting its role in cancer-vs-HSIL triage rather than subtype separation.",
+      c2: "<b>HPV VL (esp. 16/18)</b> is higher in CIN3-like SCC — a candidate molecular hint for this deceptive subtype, pending larger studies."
+    },
+    zh: {
+      kicker: "临床表观遗传学 · 2026 · 病理亚型研究 · 中国",
+      title: "CIN3 样鳞癌中的 PAX1/JAM3 甲基化与 HPV 病毒载量——与 CIN3 及早期浸润癌的差异",
+      title_alt: "PAX1/JAM3 Methylation & HPV Viral Load in CIN3-like Squamous Cell Carcinoma",
+      subtitle: "138 例 · 甲基化与病毒载量在癌中高于 HSIL · CIN3 样鳞癌：VL 高于 CIN3 与早期浸润癌，甲基化与之相近",
+      authors: "李明珠、张晓波、赵兴、王继先、赵超、赵昀、李静然、沈丹华、魏丽惠",
+      source: '北京大学人民医院 · doi: <a href="https://doi.org/10.1186/s13148-026-02201-1" target="_blank" rel="noopener">10.1186/s13148-026-02201-1</a>',
+      seg1: "CIN2", seg2: "CIN3", seg3: "CIN3 样鳞癌", seg4: "早期浸润鳞癌", seg5: "浸润性鳞癌",
+      findt: "核心发现",
+      findv: "甲基化与病毒载量在癌中高于 HSIL · CIN3 样鳞癌：VL 高于 CIN3 与早期浸润癌；甲基化与浸润癌相近。",
+      s1t: "背景与目的",
+      s1a: "<strong>挑战</strong>：CIN3 样鳞癌伪装成 CIN3（累及宫颈管隐窝）——生长模式欺骗性，易误诊/分期不足。",
+      s1b: "<strong>目的</strong>：比较 CIN3、CIN3 样鳞癌、早期浸润与浸润鳞癌的 PAX1/JAM3 甲基化与 HPV 病毒载量。",
+      s2t: "研究设计与队列",
+      s2s1: "例", s2s2: "HSIL（23 CIN2 + 42 CIN3）", s2s3: "SCC（27/21/25）",
+      s2a: "<strong>地点</strong>：北京大学人民医院，2022.3–2024.6；回顾性。",
+      s2b: "<strong>检测</strong>：PAX1/JAM3 甲基化（qPCR，ΔCt）+ HPV 病毒载量（分型）。",
+      s2c: "<strong>分组</strong>：CIN2 · CIN3 · CIN3 样鳞癌 · 早期浸润鳞癌 · 浸润性鳞癌。",
+      s2d: "组织学复核；HE 特征（图 1）鉴别 CIN3 样鳞癌（细胞巢边界清、中央空腔、角化不良）。",
+      s2e: "<strong>病毒载量</strong>：分型 VL（每 10,000 细胞，BMRT 平台）。",
+      s2f: "<strong>统计</strong>：Kruskal-Wallis / Wilcoxon；ΔCt = Ct<sub>基因</sub> − Ct<sub>GAPDH</sub>。",
+      s2g: "<strong>设计</strong>：单中心回顾性；两名病理医师复核。",
+      s2h: "<strong>盲法</strong>：分子检测对组织学设盲。",
+      s2i: "<strong>终点</strong>：各组 ΔCt 与 VL 差异；同 FIGO 期比较。",
+      s2s7: "甲基化读数", s2s8: "分型载量", s2s9: "已复核",
+      s2s4: "CIN3 样鳞癌", s2s5: "早期浸润", s2s6: "浸润性鳞癌",
+      m_h1: "分组", m_h2: "甲基化", m_h3: "HPV VL",
+      m_r1a: "CIN3", m_r1b: "低", m_r1c: "低", m_r2a: "CIN3 样鳞癌", m_r2b: "高（≈SCC）", m_r2c: "最高",
+      m_r3a: "早期浸润鳞癌", m_r3b: "高", m_r3c: "中", m_r4a: "浸润性鳞癌", m_r4b: "高", m_r4c: "高",
+      s3t: "甲基化结果",
+      s3c1: "PAX1/JAM3 ΔCt 按类型——SCC &gt; HSIL（P&lt;0.001）；CIN3 样鳞癌 ≈ 浸润鳞癌。",
+      s3c2: "甲基化–病毒载量相关（PAX1 R=−0.42；JAM3 R=−0.47）。",
+      s3a: "<strong>癌 &gt; HSIL</strong>：两基因在癌中显著高于 HSIL（尤其 CIN2）。",
+      s3b: "<strong>癌内无差异</strong>：CIN3 样 ≈ 早期浸润 ≈ 浸润鳞癌甲基化。",
+      s4t: "HPV 病毒载量结果",
+      s4c1: "按类型 VL（总 / 16-18 / 非 16-18）——CIN3 样鳞癌最高。",
+      s4a: "<strong>关键差异</strong>：CIN3 样鳞癌 VL &gt; CIN3 与早期浸润鳞癌（尤其 HPV16/18）——这一欺骗性亚型的候选分子线索。",
+      s4c2: "HPV16/18 VL —— CIN3 样鳞癌最高，接近浸润鳞癌。",
+      vg0: "HPV16/18 VL 按类型", vg1: "CIN3", vg2: "CIN3 样鳞癌", vg3: "早期浸润", vg4: "浸润性", vg5: "CIN3 样鳞癌 VL &gt; CIN3 与早期浸润（P&lt;0.05）；≈ 浸润癌",
+      s5t: "要点",
+      s5a: "<strong>甲基化</strong>：可区分癌与 HSIL，但无法区分 CIN3 样鳞癌与其他鳞癌亚型。",
+      s5b: "<strong>甲基化</strong>：可区分癌与 HSIL，但无法区分鳞癌亚型；同 FIGO 期 VL/甲基化倾向更高——需扩大样本。",
+      s5c: "<strong>同 FIGO 分期</strong>：CIN3 样鳞癌 VL/甲基化倾向更高——需扩大样本。",
+      c_ttl: "临床意义",
+      c1: "<b>PAX1/JAM3 甲基化在癌中显著高于 HSIL</b>，但在 CIN3 样 / 早期浸润 / 浸润鳞癌间相近——支持其在癌-vs-HSIL 分诊中的作用，而非亚型区分。",
+      c2: "<b>HPV 病毒载量（尤其 16/18）</b>在 CIN3 样鳞癌中更高——这一欺骗性亚型的候选分子线索，待更大样本验证。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

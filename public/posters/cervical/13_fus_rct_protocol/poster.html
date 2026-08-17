@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Focused Ultrasound for Cervical Lesions with Fertility Preservation — Yang et al. 2025, RDM Protocol</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #9：RCT 方案 → 24 个月随访时间轴为主角，与 #1-8 均不同）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、白色 stat 卡、红色高亮表格
+  - 布局：标题带 → 证据统计条（96.8% 疗效 / 2.0% 复发 / 72.4→81% HPV 清除 / 24mo 随访）→ 两栏（左 560px：①背景与目的 ②研究设计；右 1fr：③随访时间轴【0→3→6→12→18→24 月 + 备孕/分娩】④FUS 机制与评估 ⑤治疗方式对比表）→ 全宽临床意义带
+  - 选图：Fig.2 数据采集表（600x726，窄长）→ 不适合海报，改用自绘时间轴 + 文字/表格呈现；Fig.1 随访流程图不用
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1720px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1720px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1780px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .dash { flex: 0 0 auto; height: 135px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 10px 6px; }
+  .dash .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 7px 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .dash .stat .big { font-size: 30px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .dash .stat .lab { font-size: 10.5px; color: var(--muted); margin-top: 2px; line-height: 1.25; }
+  .dash .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .dash .stat.hot .big { color: #fff; }
+  .dash .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 8px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel table, .panel .statrow, .panel .wstrip, .panel .tnote, .panel .timeline { flex: 0 0 auto; }
+  .panel h3 { font-size: 14.5px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11.5px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 13.5px; line-height: 1.45; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 1px 0 6px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 8px 4px; text-align: center; }
+  .stat .big { font-size: 21px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 10px; color: var(--muted); margin-top: 2px; line-height: 1.25; }
+
+  .wstrip { display: flex; align-items: center; gap: 6px; margin: 1px 0 6px; }
+  .wstrip .wchip { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 5px; padding: 7px 4px; text-align: center; font-size: 10.5px; font-weight: 600; color: var(--accent-deep); }
+  .wstrip .warr { color: var(--secondary); font-size: 14px; font-weight: 800; }
+
+  .minitable { width: 100%; border-collapse: collapse; margin: 2px 0 4px 0; font-size: 11.5px; }
+  .minitable th { background: rgba(215,75,74,0.12); color: var(--accent-deep); font-weight: 700; padding: 3px 5px; text-align: left; border-bottom: 2px solid var(--line); font-size: 10.5px; }
+  .minitable td { padding: 3px 5px; border-bottom: 1px solid var(--line); color: var(--muted); }
+  .minitable td:first-child { font-weight: 600; color: var(--text); }
+  .minitable tr:last-child td { border-bottom: none; }
+  .minitable .highlight { color: var(--primary); font-weight: 700; }
+  .tnote { font-size: 10.5px; color: var(--muted); line-height: 1.4; margin-top: 2px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .refbar { margin: 1px 0 6px; }
+  .refrow { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .refrow:last-child { margin-bottom: 0; }
+  .refrow .rlab { flex: 0 0 108px; font-size: 11.5px; color: var(--muted); font-weight: 600; text-align: right; }
+  .refrow .rtrack { flex: 1 1 auto; height: 22px; background: #F1E7E7; border-radius: 4px; overflow: hidden; }
+  .refrow .rfill { height: 100%; background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); border-radius: 4px; }
+  .refrow .rfill.dim { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); }
+  .refrow .rval { flex: 0 0 52px; font-size: 12px; font-weight: 800; color: var(--accent-deep); }
+
+  /* 随访时间轴 */
+  .timeline { margin: 4px 0 6px; }
+  .tlrow { display: flex; align-items: center; }
+  .tlrow .tlnode { flex: 1; text-align: center; position: relative; }
+  .tlrow .tldot { width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 3px solid var(--primary); margin: 0 auto; }
+  .tlrow .tldot.tlhot { background: var(--primary); }
+  .tlline { height: 4px; background: linear-gradient(90deg, var(--accent) 0%, var(--primary) 100%); margin: 0 4px; flex: 0 0 26px; border-radius: 2px; }
+  .tllabels { display: flex; margin-top: 5px; }
+  .tllabels .tll { flex: 1; text-align: center; font-size: 11px; font-weight: 700; color: var(--text); }
+  .tllabels .tll .tlsub { display: block; font-size: 9px; color: var(--muted); font-weight: 400; }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Reprod Dev Med · 2025 · RCT Protocol · China</div>
+    <h1 data-i18n="title">Focused Ultrasound for Cervical Lesions with Fertility Preservation — Study Protocol</h1>
+    <div class="title_alt" data-i18n="title_alt">聚焦超声治疗宫颈病变并保留生育力——研究方案</div>
+    <div class="subtitle" data-i18n="subtitle">Randomized controlled trial · 2-year follow-up · CIN2/3 with TZ 1–2, family planning needed · ChiCTR2300076739</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Yang et al. · Third Affiliated Hospital of Zhengzhou University</div>
+      <div class="source" data-i18n="source">Reproductive and Developmental Medicine · doi: <a href="https://doi.org/10.1097/RD9.0000000000000132" target="_blank" rel="noopener">10.1097/RD9.0000000000000132</a></div>
+    </div>
+  </header>
+
+  <!-- 证据统计条 -->
+  <div class="dash">
+    <div class="stat hot"><div class="big">96.8%</div><div class="lab" data-i18n="d1">efficacy at 3–6 mo (prior data)</div></div>
+    <div class="stat"><div class="big">2.0%</div><div class="lab" data-i18n="d2">recurrence 6–12 mo</div></div>
+    <div class="stat"><div class="big">72.4→81%</div><div class="lab" data-i18n="d3">HPV clearance</div></div>
+    <div class="stat"><div class="big">24 mo</div><div class="lab" data-i18n="d4">follow-up</div></div>
+    <div class="stat"><div class="big">Fertility</div><div class="lab" data-i18n="d5">preservation goal</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Dilemma</strong>: CIN2+ in childbearing women — excision (LEEP/CKC) is effective but risks cervical insufficiency, preterm birth &amp; delayed fertility.</li>
+          <li data-i18n="s1b"><strong>FUS</strong>: non-ionizing, non-invasive focused ultrasound — heats lesion &gt;60°C, coagulates without harming surrounding tissue.</li>
+          <li data-i18n="s1c"><strong>Objective</strong>: evaluate FUS efficacy &amp; fertility protection for cervical lesions in women needing family planning.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">RCT</div><div class="lab" data-i18n="s2s1">2-year follow-up</div></div>
+          <div class="stat"><div class="big">CIN2/3</div><div class="lab" data-i18n="s2s2">TZ 1–2</div></div>
+          <div class="stat"><div class="big">ChiCTR</div><div class="lab" data-i18n="s2s3">2300076739</div></div>
+        </div>
+        <div class="wstrip">
+          <span class="wchip" data-i18n="ws1">FUS treatment</span><span class="warr">vs</span>
+          <span class="wchip" data-i18n="ws2">standard care</span>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Setting</strong>: Third Affiliated Hospital of Zhengzhou University; ethics 2023-001.</li>
+          <li data-i18n="s2b"><strong>Inclusion</strong>: &gt;18 y, histologic CIN2/CIN3 (TZ 1–2), family planning required.</li>
+          <li data-i18n="s2c"><strong>Exclusion</strong>: pregnancy/lactation · prior conization/LEEP/CKC · vaginal lavage &lt;24 h · acute inflammation.</li>
+          <li data-i18n="s2d"><strong>Endpoints</strong>: HPV clearance, lesion regression, pregnancy &amp; delivery outcomes, safety.</li>
+          <li data-i18n="s2e"><strong>Treatment</strong>: FUS session per protocol; quality control; data by dedicated physician.</li>
+          <li data-i18n="s2f"><strong>Data</strong>: full exam + psychological scale + recent records at each visit.</li>
+          <li data-i18n="s2g"><strong>Analysis</strong>: ITT + per-protocol; time-to-event for pregnancy outcomes.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">3·6·12</div><div class="lab" data-i18n="s2s4">month visits</div></div>
+          <div class="stat"><div class="big">18·24</div><div class="lab" data-i18n="s2s5">month visits</div></div>
+          <div class="stat"><div class="big">8</div><div class="lab" data-i18n="s2s6">scheduled visits</div></div>
+        </div>
+        <div class="wstrip">
+          <span class="wchip" data-i18n="ws3">Focus &gt;60°C</span><span class="warr">→</span>
+          <span class="wchip" data-i18n="ws4">Coagulation</span><span class="warr">→</span>
+          <span class="wchip" data-i18n="ws5">Lesion cleared</span>
+        </div>
+        <div class="wstrip">
+          <span class="wchip" data-i18n="ws6">Outpatient</span><span class="warr">·</span>
+          <span class="wchip" data-i18n="ws7">No excision</span><span class="warr">·</span>
+          <span class="wchip" data-i18n="ws8">Fertility spared</span>
+        </div>
+        <div class="tnote" data-i18n="s2h">FUS: single outpatient session, no cervical tissue removed.</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Follow-Up Schedule — 24 Months</span></h3>
+        <div class="timeline">
+          <div class="tlrow">
+            <div class="tlnode"><div class="tldot tlhot"></div></div><div class="tlline"></div>
+            <div class="tlnode"><div class="tldot"></div></div><div class="tlline"></div>
+            <div class="tlnode"><div class="tldot"></div></div><div class="tlline"></div>
+            <div class="tlnode"><div class="tldot"></div></div><div class="tlline"></div>
+            <div class="tlnode"><div class="tldot"></div></div><div class="tlline"></div>
+            <div class="tlnode"><div class="tldot tlhot"></div></div>
+          </div>
+          <div class="tllabels">
+            <div class="tll" data-i18n="t1">Baseline<span class="tlsub" data-i18n="t1s">FUS / exams</span></div>
+            <div class="tll" data-i18n="t2">3 mo</div>
+            <div class="tll" data-i18n="t3">6 mo</div>
+            <div class="tll" data-i18n="t4">12 mo</div>
+            <div class="tll" data-i18n="t5">18 mo</div>
+            <div class="tll" data-i18n="t6">24 mo<span class="tlsub" data-i18n="t6s">pregnancy / delivery</span></div>
+          </div>
+        </div>
+        <ul>
+          <li data-i18n="s3a"><strong>Visits</strong>: HPV, TCT, colposcopy, pathology, psychological scale at each timepoint.</li>
+          <li data-i18n="s3b"><strong>Fertility</strong>: pregnancy attempt after lesion regression; cervical biopsy before pregnancy &amp; after delivery.</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">Treatment Options for CIN2–3</span></h3>
+        <table class="minitable">
+          <tr><th data-i18n="t_h1">Method</th><th data-i18n="t_h2">Efficacy</th><th data-i18n="t_h3">Fertility impact</th><th data-i18n="t_h4">Notes</th></tr>
+          <tr><td class="highlight" data-i18n="t_r1a">FUS (this trial)</td><td data-i18n="t_r1b">96.8% (prior)</td><td data-i18n="t_r1c">non-invasive</td><td data-i18n="t_r1d">no tissue removal</td></tr>
+          <tr><td data-i18n="t_r2a">LEEP / CKC</td><td data-i18n="t_r2b">effective</td><td data-i18n="t_r2c">cervical insufficiency risk</td><td data-i18n="t_r2d">preterm birth risk</td></tr>
+          <tr><td data-i18n="t_r3a">Cryotherapy</td><td data-i18n="t_r3b">effective</td><td data-i18n="t_r3c">fewer pregnancy risks</td><td data-i18n="t_r3d">large discharge; N2/CO2 supply</td></tr>
+        </table>
+        <div class="tnote" data-i18n="s4note">Prior FUS reports: CIN1 efficacy ~90%, HPV clearance 85.7%; Zeng 2021 (n=154): efficacy 96.8%, recurrence 2.0%.</div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Expected Value</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">96.8%</div><div class="lab" data-i18n="s5s1">efficacy 3–6 mo</div></div>
+          <div class="stat"><div class="big">2.0%</div><div class="lab" data-i18n="s5s2">recurrence</div></div>
+          <div class="stat"><div class="big">81.0%</div><div class="lab" data-i18n="s5s3">HPV clearance</div></div>
+        </div>
+        <div class="refbar">
+          <div class="refrow"><span class="rlab" data-i18n="rb1">Efficacy</span><div class="rtrack"><div class="rfill" style="width:96.8%"></div></div><span class="rval">96.8%</span></div>
+          <div class="refrow"><span class="rlab" data-i18n="rb2">HPV clearance</span><div class="rtrack"><div class="rfill" style="width:81%"></div></div><span class="rval">81%</span></div>
+          <div class="refrow"><span class="rlab" data-i18n="rb3">Recurrence</span><div class="rtrack"><div class="rfill dim" style="width:2%"></div></div><span class="rval">2.0%</span></div>
+        </div>
+        <ul>
+          <li data-i18n="s5a"><strong>Fertility preservation</strong>: no excision → lower preterm birth &amp; cervical insufficiency risk.</li>
+          <li data-i18n="s5b"><strong>Efficacy</strong>: high lesion regression and HPV clearance in earlier series.</li>
+          <li data-i18n="s5c"><strong>Evidence gap</strong>: RCT-level data for childbearing women with CIN2/3 — this trial will provide it.</li>
+          <li data-i18n="s5d"><strong>Safety</strong>: no severe adverse reactions reported in prior FUS series.</li>
+          <li data-i18n="s5e"><strong>Established use</strong>: FUS already treats cervicitis &amp; vulvovaginal disease.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>If proven effective, FUS offers childbearing-age women with CIN2/3 a non-invasive treatment</b> that spares the cervix — addressing the fertility concerns that excision cannot.</li>
+      <li data-i18n="c2"><b>Protocol outcome</b>: HPV clearance, lesion regression and pregnancy outcomes over 24 months (ChiCTR2300076739).</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Reprod Dev Med · 2025 · RCT Protocol · China",
+      title: "Focused Ultrasound for Cervical Lesions with Fertility Preservation — Study Protocol",
+      title_alt: "聚焦超声治疗宫颈病变并保留生育力——研究方案",
+      subtitle: "Randomized controlled trial · 2-year follow-up · CIN2/3 with TZ 1–2, family planning needed · ChiCTR2300076739",
+      authors: "Yang et al. · Third Affiliated Hospital of Zhengzhou University",
+      source: 'Reproductive and Developmental Medicine · doi: <a href="https://doi.org/10.1097/RD9.0000000000000132" target="_blank" rel="noopener">10.1097/RD9.0000000000000132</a>',
+      d1: "efficacy at 3–6 mo (prior data)", d2: "recurrence 6–12 mo", d3: "HPV clearance", d4: "follow-up", d5: "preservation goal",
+      s1t: "Background & Objective",
+      s1a: "<strong>Dilemma</strong>: CIN2+ in childbearing women — excision (LEEP/CKC) is effective but risks cervical insufficiency, preterm birth & delayed fertility.",
+      s1b: "<strong>FUS</strong>: non-ionizing, non-invasive focused ultrasound — heats lesion >60°C, coagulates without harming surrounding tissue.",
+      s1c: "<strong>Objective</strong>: evaluate FUS efficacy & fertility protection for cervical lesions in women needing family planning.",
+      s2t: "Study Design",
+      s2s1: "2-year follow-up", s2s2: "TZ 1–2", s2s3: "2300076739",
+      ws1: "FUS treatment", ws2: "standard care",
+      s2a: "<strong>Setting</strong>: Third Affiliated Hospital of Zhengzhou University; ethics 2023-001.",
+      s2b: "<strong>Inclusion</strong>: >18 y, histologic CIN2/CIN3 (TZ 1–2), family planning required.",
+      s2c: "<strong>Exclusion</strong>: pregnancy/lactation · prior conization/LEEP/CKC · vaginal lavage <24 h · acute inflammation.",
+      s2d: "<strong>Endpoints</strong>: HPV clearance, lesion regression, pregnancy & delivery outcomes, safety.",
+      s2e: "<strong>Treatment</strong>: FUS per protocol; QC; dedicated data physician.",
+      s2f: "<strong>Data</strong>: full exam + psych scale + records each visit.",
+      s2g: "<strong>Analysis</strong>: ITT + per-protocol; time-to-event for pregnancy outcomes.",
+      s2s4: "month visits", s2s5: "month visits", s2s6: "scheduled visits",
+      ws3: "Focus >60°C", ws4: "Coagulation", ws5: "Lesion cleared",
+      ws6: "Outpatient", ws7: "No excision", ws8: "Fertility spared",
+      s2h: "FUS: single outpatient session, no cervical tissue removed.",
+      s3t: "Follow-Up Schedule — 24 Months",
+      t1: "Baseline", t1s: "FUS / exams", t2: "3 mo", t3: "6 mo", t4: "12 mo", t5: "18 mo", t6: "24 mo", t6s: "pregnancy / delivery",
+      s3a: "<strong>Visits</strong>: HPV, TCT, colposcopy, pathology, psychological scale at each timepoint.",
+      s3b: "<strong>Fertility</strong>: pregnancy attempt after lesion regression; cervical biopsy before pregnancy & after delivery.",
+      s4t: "Treatment Options for CIN2–3",
+      t_h1: "Method", t_h2: "Efficacy", t_h3: "Fertility impact", t_h4: "Notes",
+      t_r1a: "FUS (this trial)", t_r1b: "96.8% (prior)", t_r1c: "non-invasive", t_r1d: "no tissue removal",
+      t_r2a: "LEEP / CKC", t_r2b: "effective", t_r2c: "cervical insufficiency risk", t_r2d: "preterm birth risk",
+      t_r3a: "Cryotherapy", t_r3b: "effective", t_r3c: "fewer pregnancy risks", t_r3d: "large discharge; N2/CO2 supply",
+      s4note: "Prior FUS reports: CIN1 efficacy ~90%, HPV clearance 85.7%; Zeng 2021 (n=154): efficacy 96.8%, recurrence 2.0%.",
+      s5t: "Expected Value",
+      s5a: "<strong>Fertility preservation</strong>: no excision → lower preterm birth & cervical insufficiency risk.",
+      s5b: "<strong>Efficacy</strong>: high lesion regression and HPV clearance in earlier series.",
+      s5c: "<strong>Evidence gap</strong>: RCT-level data for childbearing women with CIN2/3 — this trial will provide it.",
+      s5d: "<strong>Safety</strong>: no severe adverse reactions reported in prior FUS series.",
+      s5e: "<strong>Established use</strong>: FUS already treats cervicitis & vulvovaginal disease.",
+      s5s1: "efficacy 3–6 mo", s5s2: "recurrence", s5s3: "HPV clearance",
+      rb1: "Efficacy", rb2: "HPV clearance", rb3: "Recurrence",
+      c_ttl: "Clinical Significance",
+      c1: "<b>If proven effective, FUS offers childbearing-age women with CIN2/3 a non-invasive treatment</b> that spares the cervix — addressing the fertility concerns that excision cannot.",
+      c2: "<b>Protocol outcome</b>: HPV clearance, lesion regression and pregnancy outcomes over 24 months (ChiCTR2300076739)."
+    },
+    zh: {
+      kicker: "Reprod Dev Med · 2025 · RCT 研究方案 · 中国",
+      title: "聚焦超声治疗宫颈病变并保留生育力——研究方案",
+      title_alt: "Focused Ultrasound for Cervical Lesions with Fertility Preservation — Study Protocol",
+      subtitle: "随机对照试验 · 2 年随访 · CIN2/3 且转化区 1–2 型、有生育计划 · ChiCTR2300076739",
+      authors: "杨 等 · 郑州大学第三附属医院",
+      source: '生殖与发育医学 · doi: <a href="https://doi.org/10.1097/RD9.0000000000000132" target="_blank" rel="noopener">10.1097/RD9.0000000000000132</a>',
+      d1: "3–6 个月疗效（既往数据）", d2: "6–12 个月复发", d3: "HPV 清除率", d4: "随访时长", d5: "保生育力目标",
+      s1t: "背景与目的",
+      s1a: "<strong>困境</strong>：育龄女性 CIN2+——切除治疗（LEEP/CKC）有效，但有宫颈机能不全、早产与生育延迟风险。",
+      s1b: "<strong>FUS</strong>：无电离、无创的聚焦超声——局部升温 &gt;60°C 凝固坏死，不损伤周围正常组织。",
+      s1c: "<strong>目的</strong>：评估 FUS 对有生育需求女性宫颈病变的疗效与生育保护作用。",
+      s2t: "研究设计",
+      s2s1: "2 年随访", s2s2: "转化区 1–2 型", s2s3: "2300076739",
+      ws1: "FUS 治疗", ws2: "标准治疗",
+      s2a: "<strong>地点</strong>：郑州大学第三附属医院；伦理 2023-001。",
+      s2b: "<strong>入组</strong>：&gt;18 岁、组织学 CIN2/CIN3（转化区 1–2）、有生育计划。",
+      s2c: "<strong>排除</strong>：妊娠/哺乳 · 既往锥切/LEEP/CKC · 24h 内阴道冲洗 · 急性炎症。",
+      s2d: "<strong>终点</strong>：HPV 清除、病变消退、妊娠与分娩结局、安全性。",
+      s2e: "<strong>治疗</strong>：按方案行 FUS 治疗；质控；指定医师采集数据。",
+      s2f: "<strong>数据</strong>：每次访视行全面查体 + 心理量表 + 近期病历资料。",
+      s2g: "<strong>分析</strong>：ITT + 符合方案集；妊娠结局采用时间-事件分析。",
+      s2s4: "月访视", s2s5: "月访视", s2s6: "次计划访视",
+      ws3: "聚焦 &gt;60°C", ws4: "凝固坏死", ws5: "病变清除",
+      ws6: "门诊即可", ws7: "不切除", ws8: "保生育力",
+      s2h: "FUS：单次门诊治疗，不切除宫颈组织。",
+      s3t: "随访计划 —— 24 个月",
+      t1: "基线", t1s: "FUS / 检查", t2: "3 月", t3: "6 月", t4: "12 月", t5: "18 月", t6: "24 月", t6s: "妊娠 / 分娩",
+      s3a: "<strong>访视</strong>：各时点行 HPV、TCT、阴道镜、病理与心理量表评估。",
+      s3b: "<strong>生育</strong>：病变消退后尝试妊娠；备孕前与分娩后行宫颈活检。",
+      s4t: "CIN2–3 治疗选择",
+      t_h1: "方法", t_h2: "疗效", t_h3: "生育影响", t_h4: "说明",
+      t_r1a: "FUS（本研究）", t_r1b: "96.8%（既往）", t_r1c: "无创", t_r1d: "不切除组织",
+      t_r2a: "LEEP / CKC", t_r2b: "有效", t_r2c: "宫颈机能不全风险", t_r2d: "早产风险",
+      t_r3a: "冷冻治疗", t_r3b: "有效", t_r3c: "妊娠风险较小", t_r3d: "排液多；需 N2/CO2",
+      s4note: "既往 FUS 报道：CIN1 疗效约 90%、HPV 清除率 85.7%；Zeng 2021（n=154）：疗效 96.8%、复发 2.0%。",
+      s5t: "预期价值",
+      s5a: "<strong>保生育力</strong>：不切除宫颈 → 降低早产与宫颈机能不全风险。",
+      s5b: "<strong>疗效</strong>：既往系列病变消退率高、HPV 清除率高。",
+      s5c: "<strong>证据缺口</strong>：育龄 CIN2/3 女性缺乏 RCT 级证据——本研究将填补。",
+      s5d: "<strong>安全性</strong>：既往 FUS 系列未见严重不良反应。",
+      s5e: "<strong>成熟应用</strong>：FUS 已用于宫颈炎与外阴阴道疾病治疗。",
+      s5s1: "3–6 个月疗效", s5s2: "复发率", s5s3: "HPV 清除率",
+      rb1: "疗效", rb2: "HPV 清除", rb3: "复发",
+      c_ttl: "临床意义",
+      c1: "<b>若证实有效，FUS 将为有生育需求的 CIN2/3 育龄女性提供无创治疗</b>，保留宫颈——解决切除治疗无法回避的生育顾虑。",
+      c2: "<b>方案终点</b>：24 个月内 HPV 清除、病变消退与妊娠结局（ChiCTR2300076739）。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

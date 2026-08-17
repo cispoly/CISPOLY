@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DNA Methylation Triage in Non-16/18 hrHPV+ Women — Su et al. 2025, Br J Cancer</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #18：风险分层优先，与 #1-17 均不同）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、白色 stat 卡、红色高亮表格
+  - 布局：标题带 → 风险 hero（CISCER+ 39.1% vs LBC 9.8% vs HPV33/35 19.3%；CISCER− 0.9%；转诊 17.4/61.9/8.9%）→ 两栏（左 560px：①背景与目的 ②研究设计 ③甲基化与阳性率【Fig.2】；右 1fr：④ROC【Fig.3】+ 风险分层【Fig.4】 ⑤转诊与要点）→ 全宽临床意义带
+  - 选图：Fig.2 甲基化/阳性率（787x632）+ Fig.3 ROC（696x338，宽幅）+ Fig.4 CIN2+ 风险图（792x511）
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  /* 风险 hero */
+  .risk { flex: 0 0 auto; height: 112px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: center; gap: 12px; padding: 9px 10px; }
+  .risk .rblk { flex: 1; border-radius: 10px; padding: 8px 12px; display: flex; flex-direction: column; justify-content: center; }
+  .risk .rblk .rn { font-size: 10.5px; font-weight: 800; margin-bottom: 3px; }
+  .risk .rblk .rv { font-size: 24px; font-weight: 800; line-height: 1.05; }
+  .risk .rblk .rs { font-size: 9.5px; margin-top: 2px; }
+  .risk .pos { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.9) 100%); }
+  .risk .pos .rn { color: rgba(255,255,255,0.92); } .risk .pos .rv { color: #fff; } .risk .pos .rs { color: rgba(255,255,255,0.9); }
+  .risk .neg { background: #F3EDED; border: 1px solid #D9C9C7; }
+  .risk .neg .rn { color: #8A6E6B; } .risk .neg .rv { color: #8A6E6B; } .risk .neg .rs { color: #6B5755; }
+  .risk .mid { background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); }
+  .risk .mid .rn { color: var(--accent-deep); } .risk .mid .rv { color: var(--primary); } .risk .mid .rs { color: var(--muted); }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel table, .panel .statrow, .panel .tnote, .panel .figrow { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 4px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .figrow { display: flex; gap: 12px; align-items: flex-start; justify-content: center; }
+  .fig { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px 4px; text-align: center; min-width: 0; }
+  .fig img { display: inline-block; height: auto; max-height: 185px; width: auto; max-width: 100%; border-radius: 3px; }
+  .fig.left img { max-height: 250px; }
+  .fig .figcap { font-size: 10px; color: var(--muted); font-style: italic; line-height: 1.3; margin-top: 3px; text-align: left; }
+  .fig .figcap strong { color: var(--primary); font-style: normal; }
+
+  .statrow { display: flex; gap: 8px; margin: 1px 0 6px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 7px 4px; text-align: center; }
+  .stat .big { font-size: 18px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+
+  .minitable { width: 100%; border-collapse: collapse; margin: 2px 0 4px 0; font-size: 11px; }
+  .minitable th { background: rgba(215,75,74,0.12); color: var(--accent-deep); font-weight: 700; padding: 3px 5px; text-align: left; border-bottom: 2px solid var(--line); font-size: 10px; }
+  .minitable td { padding: 4px 5px; border-bottom: 1px solid var(--line); color: var(--muted); }
+  .minitable td:first-child { font-weight: 600; color: var(--text); }
+  .minitable tr:last-child td { border-bottom: none; }
+  .minitable .highlight { color: var(--primary); font-weight: 700; }
+  .refbar { margin: 1px 0 6px; }
+  .refrow { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .refrow .rlab { flex: 0 0 110px; font-size: 11px; color: var(--muted); font-weight: 600; text-align: right; }
+  .refrow .rtrack { flex: 1 1 auto; height: 20px; background: #F1E7E7; border-radius: 4px; overflow: hidden; }
+  .refrow .rfill { height: 100%; background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); border-radius: 4px; }
+  .refrow .rfill.dim { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); }
+  .refrow .rval { flex: 0 0 52px; font-size: 12px; font-weight: 800; color: var(--accent-deep); }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 2px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Br J Cancer · 2025;132(11) · Triage Study · China</div>
+    <h1 data-i18n="title">DNA Methylation Triage in Non-16/18 hrHPV-Positive Women</h1>
+    <div class="title_alt" data-i18n="title_alt">非 16/18 hrHPV 阳性女性的 DNA 甲基化分诊作用</div>
+    <div class="subtitle" data-i18n="subtitle">1,307 non-16/18 hrHPV+ women · CISCER: CIN3+ risk 39.1% (+) vs 0.9% (−) · referral 17.4% vs LBC 61.9%</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Su H, Jin X, Kong L, You Y, Wu H, Liou Y, Li L (correspondence)</div>
+      <div class="source" data-i18n="source">Peking Union Medical College Hospital · doi: <a href="https://doi.org/10.1038/s41416-025-03005-5" target="_blank" rel="noopener">10.1038/s41416-025-03005-5</a></div>
+    </div>
+  </header>
+
+  <!-- 风险 hero -->
+  <div class="risk">
+    <div class="rblk pos"><div class="rn" data-i18n="h1n">CISCER(+) · CIN3+ risk</div><div class="rv">39.1%</div><div class="rs" data-i18n="h1s">highest single-strategy risk</div></div>
+    <div class="rblk neg"><div class="rn" data-i18n="h2n">CISCER(−) · CIN3+ risk</div><div class="rv">0.9%</div><div class="rs" data-i18n="h2s">safest to follow up</div></div>
+    <div class="rblk mid"><div class="rn" data-i18n="h3n">LBC ≥ASCUS · CIN3+ risk</div><div class="rv">9.8%</div><div class="rs" data-i18n="h3s">cytology triage</div></div>
+    <div class="rblk mid"><div class="rn" data-i18n="h4n">HPV33/35(+) · CIN3+ risk</div><div class="rv">19.3%</div><div class="rs" data-i18n="h4s">genotyping triage</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Context</strong>: non-16/18 hrHPV+ is the largest hrHPV group in China — risk stratification is a key need.</li>
+          <li data-i18n="s1b"><strong>Compare</strong>: LBC vs hrHPV genotyping vs CISCER (PAX1/JAM3) for absolute-risk triage.</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">1,307</div><div class="lab" data-i18n="s2s1">non-16/18 hrHPV+</div></div>
+          <div class="stat"><div class="big">643</div><div class="lab" data-i18n="s2s2">with histology</div></div>
+          <div class="stat"><div class="big">40y</div><div class="lab" data-i18n="s2s3">median age</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Histology</strong>: normal/inflamm. 406 · CIN1 124 · CIN2 64 · CIN3 40 · cancer 9.</li>
+          <li data-i18n="s2b"><strong>Assays</strong>: LBC + hrHPV genotyping + CISCER (qPCR).</li>
+          <li data-i18n="s2c"><strong>Endpoint</strong>: absolute CIN2+/CIN3+ risk &amp; referral rate.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">3</span><span data-i18n="s3t">Methylation &amp; Positivity by Grade</span></h3>
+        <div class="figrow">
+          <div class="fig left">
+            <img src="images/fig2_methylation.jpg" alt="PAX1/JAM3 methylation and positivity by pathology">
+            <div class="figcap"><strong>Fig. 2</strong> <span data-i18n="s3c1">ΔCt differs across grades; CISCER+ 3.4% → 100% (normal → cancer).</span></div>
+          </div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">3.4%</div><div class="lab" data-i18n="s3s1">CISCER+ · normal</div></div>
+          <div class="stat"><div class="big">65.6%</div><div class="lab" data-i18n="s3s2">CIN2</div></div>
+          <div class="stat"><div class="big">87.5%</div><div class="lab" data-i18n="s3s3">CIN3</div></div>
+          <div class="stat"><div class="big">100%</div><div class="lab" data-i18n="s3s4">cancer</div></div>
+        </div>
+        <div class="tnote" data-i18n="s3n">Methylation positivity mirrors severity — a continuous risk signal.</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">4</span><span data-i18n="s4t">ROC &amp; Risk Stratification</span></h3>
+        <div class="figrow">
+          <div class="fig">
+            <img src="images/fig3_roc.jpg" alt="ROC curves for CIN2+ and CIN3+">
+            <div class="figcap"><strong>Fig. 3</strong> <span data-i18n="s4c1">ROC — CISCER vs LBC vs HPV33/35 for CIN2+/CIN3+.</span></div>
+          </div>
+          <div class="fig">
+            <img src="images/fig4_cin2_risk.jpg" alt="Pre- and post-test CIN2+ risk">
+            <div class="figcap"><strong>Fig. 4</strong> <span data-i18n="s4c2">Pre/post-test CIN2+ risk — CISCER(+) highest, CISCER(−) lowest.</span></div>
+          </div>
+        </div>
+        <ul style="margin-top:4px;">
+          <li data-i18n="s4a"><strong>Risk spread</strong>: CISCER+ vs − difference 38.4%; LBC 5.7%; HPV33/35 12.8%.</li>
+          <li data-i18n="s4b"><strong>Combined</strong>: CISCER+ &amp; LBC≥ASCUS → 40.0%; CISCER+ &amp; HPV33/35+ → 50.0%.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Referral &amp; Efficiency</span></h3>
+        <table class="minitable">
+          <tr><th data-i18n="t_h1">Strategy</th><th data-i18n="t_h2">Referral %</th><th data-i18n="t_h3">CIN3+ risk</th></tr>
+          <tr><td class="highlight" data-i18n="t_r1a">CISCER(+)</td><td class="highlight">17.4</td><td class="highlight">39.1%</td></tr>
+          <tr><td data-i18n="t_r2a">LBC ≥ASCUS</td><td>61.9</td><td>9.8%</td></tr>
+          <tr><td data-i18n="t_r3a">HPV33/35(+)</td><td>8.9</td><td>19.3%</td></tr>
+        </table>
+        <div class="statrow">
+          <div class="stat"><div class="big">17.4%</div><div class="lab" data-i18n="s5s1">CISCER(+)</div></div>
+          <div class="stat"><div class="big">61.9%</div><div class="lab" data-i18n="s5s2">LBC ≥ASCUS</div></div>
+          <div class="stat"><div class="big">8.9%</div><div class="lab" data-i18n="s5s3">HPV33/35(+)</div></div>
+        </div>
+        <div class="refbar">
+          <div class="refrow"><span class="rlab" data-i18n="rb1">CISCER(+)</span><div class="rtrack"><div class="rfill" style="width:39%"></div></div><span class="rval">39.1%</span></div>
+          <div class="refrow"><span class="rlab" data-i18n="rb2">HPV33/35(+)</span><div class="rtrack"><div class="rfill dim" style="width:19%"></div></div><span class="rval">19.3%</span></div>
+          <div class="refrow"><span class="rlab" data-i18n="rb3">LBC ≥ASCUS</span><div class="rtrack"><div class="rfill dim" style="width:10%"></div></div><span class="rval">9.8%</span></div>
+        </div>
+        <ul>
+          <li data-i18n="s5a"><strong>1 / 2.5 referred</strong> diagnosed CIN3+ with CISCER(+) — most efficient.</li>
+          <li data-i18n="s5b"><strong>Negative safety</strong>: CISCER(−) → CIN3+ risk 0.9% — safe follow-up.</li>
+          <li data-i18n="s5c"><strong>Combined rule-out</strong>: CISCER(−) &amp; NILM → 0.0% CIN3+ risk.</li>
+          <li data-i18n="s5d"><strong>Objective</strong>: qPCR methylation — reproducible, operator-independent.</li>
+        </ul>
+        <div class="tnote" data-i18n="s5e">CISCER triage avoids ~72% of LBC-based referrals while keeping low risk of missing CIN3+.</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>In non-16/18 hrHPV+ women,</b> CISCER provides the widest risk spread (39.1% vs 0.9%) with the lowest referral rate — an efficient, objective triage.</li>
+      <li data-i18n="c2"><b>Combining</b> with LBC or HPV33/35 genotyping further raises positive risk (40–50%) while negatives stay near 0% — precise stratification.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Br J Cancer · 2025;132(11) · Triage Study · China",
+      title: "DNA Methylation Triage in Non-16/18 hrHPV-Positive Women",
+      title_alt: "非 16/18 hrHPV 阳性女性的 DNA 甲基化分诊作用",
+      subtitle: "1,307 non-16/18 hrHPV+ women · CISCER: CIN3+ risk 39.1% (+) vs 0.9% (−) · referral 17.4% vs LBC 61.9%",
+      authors: "Su H, Jin X, Kong L, You Y, Wu H, Liou Y, Li L (correspondence)",
+      source: 'Peking Union Medical College Hospital · doi: <a href="https://doi.org/10.1038/s41416-025-03005-5" target="_blank" rel="noopener">10.1038/s41416-025-03005-5</a>',
+      h1n: "CISCER(+) · CIN3+ risk", h1s: "highest single-strategy risk",
+      h2n: "CISCER(−) · CIN3+ risk", h2s: "safest to follow up",
+      h3n: "LBC ≥ASCUS · CIN3+ risk", h3s: "cytology triage",
+      h4n: "HPV33/35(+) · CIN3+ risk", h4s: "genotyping triage",
+      s1t: "Background & Objective",
+      s1a: "<strong>Context</strong>: non-16/18 hrHPV+ is the largest hrHPV group in China — risk stratification is a key need.",
+      s1b: "<strong>Compare</strong>: LBC vs hrHPV genotyping vs CISCER (PAX1/JAM3) for absolute-risk triage.",
+      s2t: "Study Design & Cohort",
+      s2s1: "non-16/18 hrHPV+", s2s2: "with histology", s2s3: "median age",
+      s2a: "<strong>Histology</strong>: normal/inflamm. 406 · CIN1 124 · CIN2 64 · CIN3 40 · cancer 9.",
+      s2b: "<strong>Assays</strong>: LBC + hrHPV genotyping + CISCER (qPCR).",
+      s2c: "<strong>Endpoint</strong>: absolute CIN2+/CIN3+ risk & referral rate.",
+      s3t: "Methylation & Positivity by Grade",
+      s3c1: "ΔCt differs across grades; CISCER+ 3.4% → 100% (normal → cancer).",
+      s3s1: "CISCER+ · normal", s3s2: "CIN2", s3s3: "CIN3", s3s4: "cancer",
+      s3n: "Methylation positivity mirrors severity — a continuous risk signal.",
+      s4t: "ROC & Risk Stratification",
+      s4c1: "ROC — CISCER vs LBC vs HPV33/35 for CIN2+/CIN3+.",
+      s4c2: "Pre/post-test CIN2+ risk — CISCER(+) highest, CISCER(−) lowest.",
+      s4a: "<strong>Risk spread</strong>: CISCER+ vs − difference 38.4%; LBC 5.7%; HPV33/35 12.8%.",
+      s4b: "<strong>Combined</strong>: CISCER+ & LBC≥ASCUS → 40.0%; CISCER+ & HPV33/35+ → 50.0%.",
+      s5t: "Referral & Efficiency",
+      t_h1: "Strategy", t_h2: "Referral %", t_h3: "CIN3+ risk",
+      t_r1a: "CISCER(+)", t_r2a: "LBC ≥ASCUS", t_r3a: "HPV33/35(+)",
+      s5a: "<strong>1 / 2.5 referred</strong> diagnosed CIN3+ with CISCER(+) — most efficient.",
+      s5b: "<strong>Negative safety</strong>: CISCER(−) → CIN3+ risk 0.9% — safe follow-up.",
+      s5c: "<strong>Combined rule-out</strong>: CISCER(−) & NILM → 0.0% CIN3+ risk.",
+      s5d: "<strong>Objective</strong>: qPCR methylation — reproducible, operator-independent.",
+      s5s1: "CISCER(+)", s5s2: "LBC ≥ASCUS", s5s3: "HPV33/35(+)",
+      s5e: "CISCER triage avoids ~72% of LBC-based referrals while keeping low risk of missing CIN3+.",
+      rb1: "CISCER(+)", rb2: "HPV33/35(+)", rb3: "LBC ≥ASCUS",
+      c_ttl: "Clinical Significance",
+      c1: "<b>In non-16/18 hrHPV+ women,</b> CISCER provides the widest risk spread (39.1% vs 0.9%) with the lowest referral rate — an efficient, objective triage.",
+      c2: "<b>Combining</b> with LBC or HPV33/35 genotyping further raises positive risk (40–50%) while negatives stay near 0% — precise stratification."
+    },
+    zh: {
+      kicker: "Br J Cancer · 2025;132(11) · 分诊研究 · 中国",
+      title: "非 16/18 hrHPV 阳性女性的 DNA 甲基化分诊作用",
+      title_alt: "DNA Methylation Triage in Non-16/18 hrHPV-Positive Women",
+      subtitle: "1,307 例非 16/18 hrHPV+ 女性 · CISCER：CIN3+ 风险 39.1%（+）vs 0.9%（−）· 转诊 17.4% vs LBC 61.9%",
+      authors: "苏海琪、金西同、孔令华、游燕、吴焕文、刘雨莉、李雷（通讯）",
+      source: '北京协和医院 · doi: <a href="https://doi.org/10.1038/s41416-025-03005-5" target="_blank" rel="noopener">10.1038/s41416-025-03005-5</a>',
+      h1n: "CISCER(+) · CIN3+ 风险", h1s: "单项策略中最高",
+      h2n: "CISCER(−) · CIN3+ 风险", h2s: "最安全可随访",
+      h3n: "LBC ≥ASCUS · CIN3+ 风险", h3s: "细胞学分诊",
+      h4n: "HPV33/35(+) · CIN3+ 风险", h4s: "基因分型分诊",
+      s1t: "背景与目的",
+      s1a: "<strong>背景</strong>：非 16/18 hrHPV+ 是中国最大 hrHPV 人群——风险分层是关键需求。",
+      s1b: "<strong>比较</strong>：LBC vs hrHPV 分型 vs CISCER（PAX1/JAM3）用于绝对风险分诊。",
+      s2t: "研究设计与队列",
+      s2s1: "非 16/18 hrHPV+", s2s2: "有组织学", s2s3: "中位年龄",
+      s2a: "<strong>组织学</strong>：正常/炎症 406 · CIN1 124 · CIN2 64 · CIN3 40 · 癌 9。",
+      s2b: "<strong>检测</strong>：LBC + hrHPV 分型 + CISCER（qPCR）。",
+      s2c: "<strong>终点</strong>：绝对 CIN2+/CIN3+ 风险与转诊率。",
+      s3t: "甲基化与分级阳性率",
+      s3c1: "ΔCt 随级别差异显著；CISCER+ 自 3.4% 升至 100%（正常 → 癌）。",
+      s3s1: "CISCER+ · 正常", s3s2: "CIN2", s3s3: "CIN3", s3s4: "癌",
+      s3n: "甲基化阳性率与严重度一致——连续的风险信号。",
+      s4t: "ROC 与风险分层",
+      s4c1: "ROC——CISCER vs LBC vs HPV33/35（CIN2+/CIN3+）。",
+      s4c2: "检测前后 CIN2+ 风险——CISCER(+) 最高、(−) 最低。",
+      s4a: "<strong>风险跨度</strong>：CISCER+ vs − 相差 38.4%；LBC 5.7%；HPV33/35 12.8%。",
+      s4b: "<strong>联合</strong>：CISCER+ 且 LBC≥ASCUS → 40.0%；CISCER+ 且 HPV33/35+ → 50.0%。",
+      s5t: "转诊与效率",
+      t_h1: "策略", t_h2: "转诊%", t_h3: "CIN3+ 风险",
+      t_r1a: "CISCER(+)", t_r2a: "LBC ≥ASCUS", t_r3a: "HPV33/35(+)",
+      s5a: "<strong>每 2.5 例转诊 1 例 CIN3+</strong>（CISCER+）——最高效。",
+      s5b: "<strong>阴性安全</strong>：CISCER(−) → CIN3+ 风险 0.9%——可安全随访。",
+      s5c: "<strong>联合排除</strong>：CISCER(−) 且 NILM → CIN3+ 风险 0.0%。",
+      s5d: "<strong>客观</strong>：qPCR 甲基化——可重复、不受操作者影响。",
+      s5s1: "CISCER(+)", s5s2: "LBC ≥ASCUS", s5s3: "HPV33/35(+)",
+      s5e: "CISCER 分诊可避免约 72% 的 LBC 转诊，同时保持 CIN3+ 低漏检风险。",
+      rb1: "CISCER(+)", rb2: "HPV33/35(+)", rb3: "LBC ≥ASCUS",
+      c_ttl: "临床意义",
+      c1: "<b>在非 16/18 hrHPV+ 女性中，</b>CISCER 提供最宽风险跨度（39.1% vs 0.9%）且转诊率最低——高效、客观的分诊。",
+      c2: "<b>与 LBC 或 HPV33/35 分型联合</b>可进一步提高阳性风险（40–50%），而阴性风险接近 0%——精准分层。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

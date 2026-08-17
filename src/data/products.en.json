@@ -1,0 +1,116 @@
+{
+  "ciscer": {
+    "nameEn": "CISCER",
+    "fullNameEn": "CISCER®",
+    "cancerEn": "Cervical Cancer",
+    "taglineEn": "Dual-gene methylation test, empowering cervical cancer prevention",
+    "summaryEn": "PAX1/JAM3 dual-gene combined test using non-invasive cervical exfoliated cell sampling, accurately identifying CIN2+ high-grade lesions for precise triage.",
+    "targetPopulationEn": [
+      "Precision triage for HPV-positive individuals",
+      "Women with mild cytological abnormalities (ASC-US)",
+      "Cervical cancer screening for postmenopausal women",
+      "Treatment response and recurrence monitoring for cervical lesions"
+    ],
+    "scenariosEn": [
+      "Opportunistic and population-based cervical cancer screening",
+      "Colposcopy referral decisions after HPV-positive results",
+      "Post-treatment follow-up for high-grade cervical lesions",
+      "Women's health dual-screening programs at health checkup centers"
+    ],
+    "metricsEn": [
+      { "label": "Sensitivity (CIN2+)", "value": "89.60%", "sub": "Registered clinical trial" },
+      { "label": "Specificity", "value": "96.50%", "sub": "Registered clinical trial" },
+      { "label": "Sensitivity (CIN3+)", "value": "95.96%", "sub": "Registered clinical trial" },
+      { "label": "Registered clinical samples", "value": "1,968", "sub": "cases" }
+    ],
+    "sampleTypeEn": "Cervical exfoliated cells (non-invasive sampling)",
+    "highlightsEn": [
+      "Dual-gene (PAX1/JAM3) combined test with superior performance",
+      "Supported by multi-center study data with 10,000+ paired cases",
+      "Recommended by multiple domestic and international expert consensus and guidelines",
+      "Ongoing nationwide multi-center real-world studies"
+    ],
+    "hospitalsEn": [
+      "Peking Union Medical College Hospital",
+      "Obstetrics & Gynecology Hospital of Fudan University",
+      "Third Xiangya Hospital",
+      "Women's Hospital, Zhejiang University School of Medicine"
+    ]
+  },
+  "cisendo": {
+    "nameEn": "CISENDO",
+    "fullNameEn": "CISENDO®",
+    "cancerEn": "Endometrial Cancer",
+    "taglineEn": "World's first non-invasive endometrial cancer screening, filling a clinical gap",
+    "summaryEn": "CDO1/CELF4 dual-gene methylation test using non-invasive sampling to replace invasive biopsy — the world's first non-invasive endometrial cancer screening, filling a clinical gap.",
+    "targetPopulationEn": [
+      "Women with abnormal uterine bleeding",
+      "Endometrial cancer screening for postmenopausal women",
+      "Endometrial pathology risk assessment for perimenopausal women",
+      "High-risk women scheduled for hysteroscopy"
+    ],
+    "scenariosEn": [
+      "Non-invasive early screening for endometrial cancer",
+      "Pre-hysteroscopy risk stratification to reduce unnecessary invasive procedures",
+      "Follow-up and monitoring for high-risk populations",
+      "Women's health screening programs at health checkup centers"
+    ],
+    "metricsEn": [
+      { "label": "Sensitivity (Endometrial Cancer)", "value": "94.51%", "sub": "Registered clinical trial" },
+      { "label": "Specificity", "value": "94.16%", "sub": "Registered clinical trial" },
+      { "label": "Registered clinical samples", "value": "4,818", "sub": "cases" },
+      { "label": "Multi-center study", "value": "12,000", "sub": "real-world cases" }
+    ],
+    "sampleTypeEn": "Cervical exfoliated cells (non-invasive sampling)",
+    "highlightsEn": [
+      "World's first non-invasive endometrial cancer methylation test",
+      "Global patents, CE certification, and Malaysia registration",
+      "Recommended by the Chinese Expert Consensus on Three-Tier Prevention Strategies for Endometrial Cancer",
+      "Recommended by the Expert Consensus on Clinical Application of Gene Methylation Screening for Endometrial Cancer"
+    ],
+    "hospitalsEn": [
+      "Peking Union Medical College Hospital",
+      "Obstetrics & Gynecology Hospital of Fudan University",
+      "Third Xiangya Hospital",
+      "Women's Hospital, Zhejiang University School of Medicine"
+    ]
+  },
+  "cisova": {
+    "nameEn": "CISOVA",
+    "fullNameEn": "CISOVA®",
+    "cancerEn": "Ovarian Cancer",
+    "taglineEn": "A single blood draw to detect early ovarian cancer",
+    "summaryEn": "CDO1/HOXA9 dual-gene methylation test requiring only a single peripheral blood ctDNA draw — non-invasive auxiliary diagnosis, solving the challenge of early detection of the 'silent killer.'",
+    "targetPopulationEn": [
+      "Benign/malignant differentiation for women with ovarian cysts or pelvic masses",
+      "Early risk assessment for high-risk ovarian cancer populations",
+      "Ovarian health screening for peri- and postmenopausal women",
+      "Auxiliary diagnosis for suspected ovarian cancer patients"
+    ],
+    "scenariosEn": [
+      "Non-invasive early screening for ovarian cancer",
+      "Benign/malignant stratification of pelvic masses to aid surgical decisions",
+      "Follow-up monitoring for high-risk ovarian cancer populations",
+      "Women's cancer screening programs at health checkup centers"
+    ],
+    "metricsEn": [
+      { "label": "Sensitivity (Ovarian Cancer)", "value": "93.19%", "sub": "Registered clinical trial" },
+      { "label": "Specificity", "value": "92.78%", "sub": "Registered clinical trial" },
+      { "label": "Registered clinical samples", "value": "1,421", "sub": "cases" },
+      { "label": "Multi-center study", "value": "≈10K", "sub": "real-world cases" }
+    ],
+    "sampleTypeEn": "Peripheral blood cell-free DNA (non-invasive sampling)",
+    "highlightsEn": [
+      "China's first approved ovarian cancer methylation test product",
+      "Requires only a single blood draw with excellent patient compliance",
+      "ctDNA-based epigenetic testing — non-invasive and precise",
+      "Global patents and proprietary intellectual property"
+    ],
+    "hospitalsEn": [
+      "Peking Union Medical College Hospital",
+      "Fudan University Shanghai Cancer Center",
+      "Obstetrics & Gynecology Hospital of Fudan University",
+      "Third Xiangya Hospital"
+    ]
+  }
+}

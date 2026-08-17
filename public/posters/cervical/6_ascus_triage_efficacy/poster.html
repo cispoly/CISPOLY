@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAX1m/JAM3m Methylation for Triage of ASC-US — Chen et al. 2024, BMC Cancer</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #3：bento 混合网格，与 #1 两栏、#2 三栏决策规则均不同）：
+  - 风格：品牌红、红色渐变标题带、编号小节标题、点式 bullet、白色 stat 卡、红色高亮表格
+  - 布局：标题带 → 全宽 hero 统计条（3 大数字）→ bento 网格（grid-template-areas：左列 bg/design/meth，中列大图区 figs 跨 3 行，右列 perf/refr/risk）→ 全宽临床意义带
+  - 选图：Fig.3 ROC（649x652，近方形）+ Fig.4 森林图（669x441，宽幅）双图并排；Fig.2 为竖长图（649x1256）不适合海报 → 用文字+阳性率呈现；Fig.1 流程图不用
+  - 约束：所有文字/图片不超出背景框；结果占最大面积；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1700px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1700px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1760px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  /* hero 统计条 */
+  .hero { flex: 0 0 auto; height: 100px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 9px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 8px 6px 7px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 30px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.25; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; }
+  .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  /* bento 网格 */
+  .main { flex: 1 1 auto; min-height: 0; display: grid; padding-top: 10px; gap: 12px;
+    grid-template-columns: 520px minmax(0, 1fr) 560px;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:
+      "bg    figs  perf"
+      "desg  figs  refr"
+      "meth  figs  risk"; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 8px 15px; min-height: 0;
+    display: flex; flex-direction: column; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel table, .panel .statrow, .panel .wstrip, .panel .figrow, .panel .tnote, .panel .refbar, .panel .callout { flex: 0 0 auto; }
+  .panel h3 { font-size: 14.5px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11.5px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 13.5px; line-height: 1.45; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  #bg { grid-area: bg; }
+  #desg { grid-area: desg; }
+  #meth { grid-area: meth; }
+  #figs { grid-area: figs; background: var(--panel-alt); }
+  #perf { grid-area: perf; }
+  #refr { grid-area: refr; }
+  #risk { grid-area: risk; }
+
+  .statrow { display: flex; gap: 8px; margin: 1px 0 7px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 4px 5px; text-align: center; }
+  .stat .big { font-size: 23px; font-weight: 800; color: var(--primary); line-height: 1.1; }
+  .stat .lab { font-size: 10px; color: var(--muted); margin-top: 2px; line-height: 1.3; }
+
+  .wstrip { display: flex; align-items: center; gap: 6px; margin: 1px 0 7px; }
+  .wstrip .wchip { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 5px; padding: 8px 4px; text-align: center; font-size: 11px; font-weight: 600; color: var(--accent-deep); }
+  .wstrip .warr { color: var(--secondary); font-size: 14px; font-weight: 800; }
+
+  .figrow { display: flex; gap: 12px; align-items: flex-start; justify-content: center; }
+  .fig { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 7px 9px 6px; text-align: center; }
+  .fig img { display: inline-block; height: auto; max-height: 318px; width: auto; border-radius: 3px; }
+  .fig .figcap { font-size: 11px; color: var(--muted); font-style: italic; line-height: 1.35; margin-top: 5px; text-align: left; max-width: 330px; }
+  .fig .figcap strong { color: var(--primary); font-style: normal; }
+
+  .minitable { width: 100%; border-collapse: collapse; margin: 2px 0 4px 0; font-size: 11.5px; }
+  .minitable th { background: rgba(215,75,74,0.12); color: var(--accent-deep); font-weight: 700; padding: 3px 5px; text-align: left; border-bottom: 2px solid var(--line); font-size: 10.5px; }
+  .minitable td { padding: 3px 5px; border-bottom: 1px solid var(--line); color: var(--muted); }
+  .minitable td:first-child { font-weight: 600; color: var(--text); }
+  .minitable tr:last-child td { border-bottom: none; }
+  .minitable .highlight { color: var(--primary); font-weight: 700; }
+  .minitable .neg { color: #B45309; }
+  .tnote { font-size: 11px; color: var(--muted); line-height: 1.45; margin-top: 2px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .refbar { margin: 1px 0 6px; }
+  .refrow { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .refrow:last-child { margin-bottom: 0; }
+  .refrow .rlab { flex: 0 0 120px; font-size: 11.5px; color: var(--muted); font-weight: 600; text-align: right; }
+  .refrow .rtrack { flex: 1 1 auto; height: 22px; background: #F1E7E7; border-radius: 4px; overflow: hidden; }
+  .refrow .rfill { height: 100%; background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); border-radius: 4px; }
+  .refrow .rfill.dim { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); }
+  .refrow .rval { flex: 0 0 58px; font-size: 12.5px; font-weight: 800; color: var(--accent-deep); }
+
+  .callout { display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; margin-bottom: 7px; }
+  .callout:last-child { margin-bottom: 0; }
+  .callout .big { font-size: 22px; font-weight: 800; color: var(--primary); white-space: nowrap; }
+  .callout .tx { font-size: 12px; line-height: 1.4; color: var(--muted); }
+  .callout .tx b { color: var(--accent-deep); }
+  .callout .sub { font-size: 10.5px; color: var(--muted); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">BMC Cancer · 2024 · ASC-US Triage Study · China</div>
+    <h1 data-i18n="title">PAX1m/JAM3m Methylation for Triage of ASC-US: A Molecular Strategy</h1>
+    <div class="title_alt" data-i18n="title_alt">PAX1m/JAM3m 甲基化在 ASC-US 分诊中的价值——一项分子分诊策略</div>
+    <div class="subtitle" data-i18n="subtitle">322 ASC-US women · CISCER assay: sensitivity 83.8%, specificity 95.8% · colposcopy referrals cut 79.5% in hr-HPV+ women</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Chen X, Jiang H, Xu H, Wang L, Liu P, Ma D, Wang H, Shou H (correspondence), Fang X (correspondence)</div>
+      <div class="source" data-i18n="source">Zhejiang Provincial People's Hospital · CISCER® PAX1/JAM3 methylation · doi: <a href="https://doi.org/10.1186/s12885-024-13082-z" target="_blank" rel="noopener">10.1186/s12885-024-13082-z</a></div>
+    </div>
+  </header>
+
+  <!-- hero 统计条 -->
+  <div class="hero">
+    <div class="stat"><div class="big">83.8%</div><div class="lab" data-i18n="h1">Sensitivity · CISCER</div></div>
+    <div class="stat"><div class="big">95.8%</div><div class="lab" data-i18n="h2">Specificity · CISCER</div></div>
+    <div class="stat"><div class="big">8.84×</div><div class="lab" data-i18n="h3">relative specificity vs HPV</div></div>
+    <div class="stat hot"><div class="big">−79.5%</div><div class="lab" data-i18n="h4">colposcopy referrals</div></div>
+  </div>
+
+  <!-- bento 主体 -->
+  <main class="main">
+    <div class="panel" id="bg">
+      <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+      <ul>
+        <li data-i18n="s1a"><strong>ASC-US burden</strong>: &gt;50% of cytological abnormalities in China; &lt;30% harbor high-grade lesions — over/under-diagnosis risk.</li>
+        <li data-i18n="s1b"><strong>Triage gap</strong>: cytology low sensitivity; HPV referral rate 91.1% with only 10.8% specificity for CIN2+.</li>
+        <li data-i18n="s1c"><strong>Objective</strong>: evaluate CISCER® <strong>PAX1m/JAM3m</strong> for triaging women with ASC-US.</li>
+        <li data-i18n="s1d"><strong>Why methylation</strong>: objective, reproducible, HPV-independent marker of malignant transformation.</li>
+      </ul>
+    </div>
+
+    <div class="panel" id="desg">
+      <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+      <div class="statrow">
+        <div class="stat"><div class="big">322</div><div class="lab" data-i18n="s2s1">ASC-US women</div></div>
+        <div class="stat"><div class="big">203</div><div class="lab" data-i18n="s2s2">with histology</div></div>
+        <div class="stat"><div class="big">37</div><div class="lab" data-i18n="s2s3">CIN2+ (20 CIN2 · 16 CIN3 · 1 AdCa)</div></div>
+      </div>
+      <div class="wstrip">
+        <span class="wchip" data-i18n="ws1">HPV-DNA</span><span class="warr">+</span>
+        <span class="wchip" data-i18n="ws2">cytology ASC-US</span><span class="warr">+</span>
+        <span class="wchip" data-i18n="ws3">PAX1m/JAM3m</span>
+      </div>
+      <ul>
+        <li data-i18n="s2a"><strong>Setting</strong>: Zhejiang Provincial People's Hospital, 2022.3–2024.1; ethics No. 2021SJ020.</li>
+      </ul>
+    </div>
+
+    <div class="panel" id="meth">
+      <h3><span class="num">3</span><span data-i18n="s3t">Methylation Signal by Grade</span></h3>
+      <ul>
+        <li data-i18n="s3a"><strong>Dose–response</strong>: ΔCt falls sharply from CIN1 to CIN2 (P&lt;0.001); stays low in CIN3; adenocarcinoma ΔCt<sub>PAX1</sub>=1.78, ΔCt<sub>JAM3</sub>=3.4.</li>
+        <li data-i18n="s3b"><strong>Low-grade specificity</strong>: in no-CIN/CIN1, PAX1 or JAM3 positive only 2.4% (4/166).</li>
+        <li data-i18n="s3c"><strong>Positivity rises</strong>: CIN2 50% both genes; CIN3 50% both genes (Fig. 2C).</li>
+      </ul>
+      <div class="statrow">
+        <div class="stat"><div class="big">2.4%</div><div class="lab" data-i18n="m1">positive · no-CIN/CIN1</div></div>
+        <div class="stat"><div class="big">80%</div><div class="lab" data-i18n="m2">positive · CIN2</div></div>
+        <div class="stat"><div class="big">87.5%</div><div class="lab" data-i18n="m3">positive · CIN3</div></div>
+      </div>
+    </div>
+
+    <div class="panel" id="figs">
+      <h3><span class="num">4</span><span data-i18n="s4t">Results — ROC, Forest &amp; Referral</span></h3>
+      <div class="figrow">
+        <div class="fig">
+          <img src="images/fig3_roc.jpg" alt="ROC of different triage methods for ASC-US patients with CIN2+">
+          <div class="figcap"><strong>Fig. 3</strong> <span data-i18n="s4c1">ROC of triage methods for CIN2+ in ASC-US.</span></div>
+        </div>
+        <div class="fig">
+          <img src="images/fig4_forest.jpg" alt="Forest plots of relative specificity and sensitivity">
+          <div class="figcap"><strong>Fig. 4</strong> <span data-i18n="s4c2">Forest: relative specificity of methylation 8.84× HPV (6.35–15.18) at comparable sensitivity.</span></div>
+        </div>
+      </div>
+      <div class="refbar">
+        <div class="refrow"><span class="rlab" data-i18n="rb1">HPV triage</span><div class="rtrack"><div class="rfill dim" style="width:91.1%"></div></div><span class="rval">91.1%</span></div>
+        <div class="refrow"><span class="rlab" data-i18n="rb2">CISCER triage</span><div class="rtrack"><div class="rfill" style="width:18.7%"></div></div><span class="rval">18.7%</span></div>
+      </div>
+      <ul>
+        <li data-i18n="s4a"><strong>Referral</strong>: HPV 91.1% → CISCER 18.7%; in hr-HPV+ women −79.5% (147/185).</li>
+        <li data-i18n="s4b"><strong>Risk stratification</strong>: CIN3+ risk CISCER(+) 39.5% vs CISCER(−) 1.2%.</li>
+        <li data-i18n="s4c3"><strong>Best in non-16/18</strong>: CISCER Se 90.5% (vs 75.0% in HPV16/18+).</li>
+      </ul>
+      <div class="statrow">
+        <div class="stat"><div class="big">39.5%</div><div class="lab" data-i18n="f1">CIN3+ risk · CISCER(+)</div></div>
+        <div class="stat"><div class="big">1.2%</div><div class="lab" data-i18n="f2">CIN3+ risk · CISCER(−)</div></div>
+      </div>
+      <table class="minitable">
+        <tr><th data-i18n="g_h1">Subgroup</th><th data-i18n="g_h2">Se %</th><th data-i18n="g_h3">Sp %</th></tr>
+        <tr><td class="highlight" data-i18n="g_r1a">Non-16/18 hrHPV+</td><td class="highlight">90.5</td><td class="highlight">95.6</td></tr>
+        <tr><td data-i18n="g_r2a">HPV16/18+</td><td>75.0</td><td>94.1</td></tr>
+      </table>
+    </div>
+
+    <div class="panel" id="perf">
+      <h3><span class="num">5</span><span data-i18n="s5t">Performance — CIN2+ (n=37)</span></h3>
+      <table class="minitable">
+        <tr><th data-i18n="t_h1">Test</th><th data-i18n="t_h2">Se %</th><th data-i18n="t_h3">Sp %</th><th data-i18n="t_h4">PPV %</th><th data-i18n="t_h5">NPV %</th><th data-i18n="t_h6">OR</th></tr>
+        <tr><td class="highlight" data-i18n="t_r3a">CISCER</td><td class="highlight">83.8</td><td class="highlight">95.8</td><td>81.6</td><td class="highlight">96.4</td><td>121.1</td></tr>
+        <tr><td data-i18n="t_r1a">PAX1m</td><td>70.3</td><td>97.6</td><td>86.7</td><td>93.6</td><td>95.7</td></tr>
+        <tr><td data-i18n="t_r2a">JAM3m</td><td>64.8</td><td>96.4</td><td>80.0</td><td>92.5</td><td>51.3</td></tr>
+        <tr><td data-i18n="t_r4a">HPV</td><td>100</td><td class="neg">10.8</td><td class="neg">20</td><td>100</td><td>—</td></tr>
+      </table>
+      <div class="tnote" data-i18n="s5note">CISCER = PAX1m or JAM3m positive (ΔCt PAX1 ≤ 6.6 / ΔCt JAM3 ≤ 10.0).</div>
+    </div>
+
+    <div class="panel" id="refr">
+      <h3><span class="num">6</span><span data-i18n="s6t">Referral &amp; Safety</span></h3>
+      <div class="callout">
+        <div class="big">91.1% → 18.7%</div>
+        <div class="tx"><b data-i18n="s6c1a">Referral rate cut 79.5% in hr-HPV+</b>
+          <div class="sub" data-i18n="s6c1b">without missing CIN2+ (HPV16/18 &amp; non-16/18 groups)</div></div>
+      </div>
+      <div class="callout">
+        <div class="big">39.5%</div>
+        <div class="tx"><b data-i18n="s6c2a">CIN3+ risk if CISCER(+)</b>
+          <div class="sub" data-i18n="s6c2b">vs 1.2% if CISCER(−) — negative results are safe to follow up</div></div>
+      </div>
+      <div class="callout">
+        <div class="big">18.7%</div>
+        <div class="tx"><b data-i18n="s6c3a">Whole-cohort referral rate</b>
+          <div class="sub" data-i18n="s6c3b">vs 91.1% for HPV — 4.9× fewer colposcopies</div></div>
+      </div>
+    </div>
+
+    <div class="panel" id="risk">
+      <h3><span class="num">7</span><span data-i18n="s7t">Who Benefits Most</span></h3>
+      <div class="statrow">
+        <div class="stat"><div class="big">40y</div><div class="lab" data-i18n="r1">median age</div></div>
+        <div class="stat"><div class="big">80</div><div class="lab" data-i18n="r2">HPV16/18+</div></div>
+        <div class="stat"><div class="big">206</div><div class="lab" data-i18n="r3">non-16/18 hrHPV+</div></div>
+      </div>
+      <ul>
+        <li data-i18n="s7a"><strong>Non-16/18 hrHPV+</strong>: CISCER Se 90.5%, Sp 95.6% — best triage effect.</li>
+        <li data-i18n="s7b"><strong>HPV16/18+</strong>: CISCER Se 75.0%, Sp 94.1% — still reduces referral burden.</li>
+        <li data-i18n="s7c"><strong>HPV-negative ASC-US</strong>: all 18 were CIN1− and CISCER− — safe to follow up.</li>
+      </ul>
+    </div>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>For women with ASC-US,</b> PAX1m/JAM3m (CISCER®) is a reliable complement to HPV-DNA triage: sensitivity 83.8%, specificity 95.8%, and 79.5% fewer colposcopy referrals — especially valuable in non-16/18 hrHPV+ women.</li>
+      <li data-i18n="c2"><b>Adoption</b> reduces overtreatment and unnecessary referrals, improving patient management and resource use.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "BMC Cancer · 2024 · ASC-US Triage Study · China",
+      title: "PAX1m/JAM3m Methylation for Triage of ASC-US: A Molecular Strategy",
+      title_alt: "PAX1m/JAM3m 甲基化在 ASC-US 分诊中的价值——一项分子分诊策略",
+      subtitle: "322 ASC-US women · CISCER assay: sensitivity 83.8%, specificity 95.8% · colposcopy referrals cut 79.5% in hr-HPV+ women",
+      authors: "Chen X, Jiang H, Xu H, Wang L, Liu P, Ma D, Wang H, Shou H (correspondence), Fang X (correspondence)",
+      source: 'Zhejiang Provincial People\'s Hospital · CISCER® PAX1/JAM3 methylation · doi: <a href="https://doi.org/10.1186/s12885-024-13082-z" target="_blank" rel="noopener">10.1186/s12885-024-13082-z</a>',
+      h1: "Sensitivity · CISCER", h2: "Specificity · CISCER", h3: "relative specificity vs HPV", h4: "colposcopy referrals",
+      s1t: "Background & Objective",
+      s1a: "<strong>ASC-US burden</strong>: >50% of cytological abnormalities in China; <30% harbor high-grade lesions — over/under-diagnosis risk.",
+      s1b: "<strong>Triage gap</strong>: cytology low sensitivity; HPV referral rate 91.1% with only 10.8% specificity for CIN2+.",
+      s1c: "<strong>Objective</strong>: evaluate CISCER® <strong>PAX1m/JAM3m</strong> for triaging women with ASC-US.",
+      s1d: "<strong>Why methylation</strong>: objective, reproducible, HPV-independent marker of malignant transformation.",
+      s2t: "Study Design & Cohort",
+      s2s1: "ASC-US women", s2s2: "with histology", s2s3: "CIN2+ (20 CIN2 · 16 CIN3 · 1 AdCa)",
+      ws1: "HPV-DNA", ws2: "cytology ASC-US", ws3: "PAX1m/JAM3m",
+      s2a: "<strong>Setting</strong>: Zhejiang Provincial People's Hospital, 2022.3–2024.1; ethics No. 2021SJ020.",
+      s3t: "Methylation Signal by Grade",
+      s3a: "<strong>Dose–response</strong>: ΔCt falls sharply from CIN1 to CIN2 (P<0.001); stays low in CIN3; adenocarcinoma ΔCt<sub>PAX1</sub>=1.78, ΔCt<sub>JAM3</sub>=3.4.",
+      s3b: "<strong>Low-grade specificity</strong>: in no-CIN/CIN1, PAX1 or JAM3 positive only 2.4% (4/166).",
+      s3c: "<strong>Positivity rises</strong>: CIN2 50% both genes; CIN3 50% both genes (Fig. 2C).",
+      m1: "positive · no-CIN/CIN1", m2: "positive · CIN2", m3: "positive · CIN3",
+      s4t: "Results — ROC, Forest & Referral",
+      s4c1: "ROC of triage methods for CIN2+ in ASC-US.",
+      s4c2: "Forest: relative specificity of methylation 8.84× HPV (6.35–15.18) at comparable sensitivity.",
+      rb1: "HPV triage", rb2: "CISCER triage",
+      s4a: "<strong>Referral</strong>: HPV 91.1% → CISCER 18.7%; in hr-HPV+ women −79.5% (147/185).",
+      s4b: "<strong>Risk stratification</strong>: CIN3+ risk CISCER(+) 39.5% vs CISCER(−) 1.2%.",
+      s4c3: "<strong>Best in non-16/18</strong>: CISCER Se 90.5% (vs 75.0% in HPV16/18+).",
+      f1: "CIN3+ risk · CISCER(+)", f2: "CIN3+ risk · CISCER(−)",
+      g_h1: "Subgroup", g_h2: "Se %", g_h3: "Sp %",
+      g_r1a: "Non-16/18 hrHPV+", g_r2a: "HPV16/18+",
+      s5t: "Performance — CIN2+ (n=37)",
+      t_h1: "Test", t_h2: "Se %", t_h3: "Sp %", t_h4: "PPV %", t_h5: "NPV %", t_h6: "OR",
+      t_r1a: "PAX1m", t_r2a: "JAM3m", t_r3a: "CISCER", t_r4a: "HPV",
+      s5note: "CISCER = PAX1m or JAM3m positive (ΔCt PAX1 ≤ 6.6 / ΔCt JAM3 ≤ 10.0).",
+      s6t: "Referral & Safety",
+      s6c1a: "Referral rate cut 79.5% in hr-HPV+", s6c1b: "without missing CIN2+ (HPV16/18 & non-16/18 groups)",
+      s6c2a: "CIN3+ risk if CISCER(+)", s6c2b: "vs 1.2% if CISCER(−) — negative results are safe to follow up",
+      s6c3a: "Whole-cohort referral rate", s6c3b: "vs 91.1% for HPV — 4.9× fewer colposcopies",
+      s7t: "Who Benefits Most",
+      r1: "median age", r2: "HPV16/18+", r3: "non-16/18 hrHPV+",
+      s7a: "<strong>Non-16/18 hrHPV+</strong>: CISCER Se 90.5%, Sp 95.6% — best triage effect.",
+      s7b: "<strong>HPV16/18+</strong>: CISCER Se 75.0%, Sp 94.1% — still reduces referral burden.",
+      s7c: "<strong>HPV-negative ASC-US</strong>: all 18 were CIN1− and CISCER− — safe to follow up.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>For women with ASC-US,</b> PAX1m/JAM3m (CISCER®) is a reliable complement to HPV-DNA triage: sensitivity 83.8%, specificity 95.8%, and 79.5% fewer colposcopy referrals — especially valuable in non-16/18 hrHPV+ women.",
+      c2: "<b>Adoption</b> reduces overtreatment and unnecessary referrals, improving patient management and resource use."
+    },
+    zh: {
+      kicker: "BMC Cancer · 2024 · ASC-US 分诊研究 · 中国",
+      title: "PAX1m/JAM3m 甲基化在 ASC-US 分诊中的价值：一项分子分诊策略",
+      title_alt: "PAX1m/JAM3m Methylation for Triage of ASC-US: A Molecular Strategy",
+      subtitle: "322 例 ASC-US 女性 · CISCER 检测：灵敏度 83.8%、特异度 95.8% · hr-HPV+ 女性阴道镜转诊减少 79.5%",
+      authors: "陈晓艳、蒋海民、徐虎斌、王林海、刘沛、马东雪、王慧、寿华锋（通讯）、方序泉（通讯）",
+      source: '浙江省人民医院 · CISCER® PAX1/JAM3 甲基化检测 · doi: <a href="https://doi.org/10.1186/s12885-024-13082-z" target="_blank" rel="noopener">10.1186/s12885-024-13082-z</a>',
+      h1: "灵敏度 · CISCER", h2: "特异度 · CISCER", h3: "相对特异度 vs HPV", h4: "阴道镜转诊",
+      s1t: "背景与目的",
+      s1a: "<strong>ASC-US 负担</strong>：占中国细胞学异常 &gt;50%，其中高级别病变 &lt;30%——存在过度/漏诊风险。",
+      s1b: "<strong>分诊缺口</strong>：细胞学灵敏度低；HPV 转诊率 91.1%，但对 CIN2+ 特异度仅 10.8%。",
+      s1c: "<strong>目的</strong>：评估 CISCER® <strong>PAX1m/JAM3m</strong> 对 ASC-US 女性的分诊价值。",
+      s1d: "<strong>为何选甲基化</strong>：客观、可重复、不依赖 HPV 的恶性转化标志物。",
+      s2t: "研究设计与队列",
+      s2s1: "ASC-US 女性", s2s2: "有组织学结果", s2s3: "CIN2+（20 CIN2 · 16 CIN3 · 1 腺癌）",
+      ws1: "HPV-DNA", ws2: "细胞学 ASC-US", ws3: "PAX1m/JAM3m",
+      s2a: "<strong>地点</strong>：浙江省人民医院，2022.3–2024.1；伦理 No. 2021SJ020。",
+      s3t: "甲基化信号随病变分级升高",
+      s3a: "<strong>量效关系</strong>：ΔCt 自 CIN1 至 CIN2 急剧下降（P&lt;0.001）；CIN3 维持低位；腺癌 ΔCt<sub>PAX1</sub>=1.78、ΔCt<sub>JAM3</sub>=3.4。",
+      s3b: "<strong>低级别特异</strong>：无 CIN/CIN1 中，PAX1 或 JAM3 阳性仅 2.4%（4/166）。",
+      s3c: "<strong>阳性率升高</strong>：CIN2 双基因阳性 50%；CIN3 双基因阳性 50%（图 2C）。",
+      m1: "阳性 · 无 CIN/CIN1", m2: "阳性 · CIN2", m3: "阳性 · CIN3",
+      s4t: "结果——ROC、森林图与转诊",
+      s4c1: "ASC-US 中 CIN2+ 各分诊方法的 ROC。",
+      s4c2: "森林图：甲基化相对特异度为 HPV 的 8.84 倍（6.35–15.18），灵敏度相当。",
+      rb1: "HPV 分诊", rb2: "CISCER 分诊",
+      s4a: "<strong>转诊</strong>：HPV 91.1% → CISCER 18.7%；hr-HPV+ 女性中减少 79.5%（147/185）。",
+      s4b: "<strong>风险分层</strong>：CISCER(+) 时 CIN3+ 风险 39.5% vs CISCER(−) 1.2%。",
+      s4c3: "<strong>非 16/18 更优</strong>：CISCER 灵敏度 90.5%（vs HPV16/18+ 组 75.0%）。",
+      f1: "CIN3+ 风险 · CISCER(+)", f2: "CIN3+ 风险 · CISCER(−)",
+      g_h1: "亚组", g_h2: "灵敏度%", g_h3: "特异度%",
+      g_r1a: "非 16/18 hrHPV+", g_r2a: "HPV16/18+",
+      s5t: "性能 —— CIN2+（n=37）",
+      t_h1: "检测", t_h2: "灵敏度%", t_h3: "特异度%", t_h4: "PPV%", t_h5: "NPV%", t_h6: "OR",
+      t_r1a: "PAX1m", t_r2a: "JAM3m", t_r3a: "CISCER", t_r4a: "HPV",
+      s5note: "CISCER = PAX1m 或 JAM3m 阳性（ΔCt PAX1 ≤ 6.6 / ΔCt JAM3 ≤ 10.0）。",
+      s6t: "转诊与安全",
+      s6c1a: "hr-HPV+ 中转诊率降低 79.5%", s6c1b: "不遗漏 CIN2+（16/18 与非 16/18 组均如此）",
+      s6c2a: "CISCER(+) 时 CIN3+ 风险", s6c2b: "vs CISCER(−) 1.2%——阴性结果可安全随访",
+      s6c3a: "全队列转诊率", s6c3b: "vs HPV 91.1%——阴道镜减少 4.9 倍",
+      s7t: "谁获益最大",
+      r1: "中位年龄", r2: "HPV16/18+", r3: "非 16/18 hrHPV+",
+      s7a: "<strong>非 16/18 hrHPV+</strong>：CISCER 灵敏度 90.5%、特异度 95.6%——分诊效果最佳。",
+      s7b: "<strong>HPV16/18+</strong>：CISCER 灵敏度 75.0%、特异度 94.1%——仍可减少转诊负担。",
+      s7c: "<strong>HPV 阴性 ASC-US</strong>：18 例全部 CIN1− 且 CISCER−——可安全随访。",
+      c_ttl: "临床意义",
+      c1: "<b>对 ASC-US 女性，</b>PAX1m/JAM3m（CISCER®）是 HPV-DNA 分诊的可靠补充：灵敏度 83.8%、特异度 95.8%、阴道镜转诊减少 79.5%——在非 16/18 hrHPV+ 女性中价值尤其突出。",
+      c2: "<b>推广应用</b> 可减少过度治疗与不必要转诊，改善患者管理与资源利用。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

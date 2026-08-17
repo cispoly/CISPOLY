@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reply to Comments — PAX1/JAM3 Methylation in Postmenopausal Women</title>
+<!--
+  设计说明（布局 AY：作者回复信 · 无图）：
+  - 标题带 → hero（回应对象 · 4 点澄清 · 定位重申 · 未来方向）
+  - 左列：① 评论者关切（转诊偏倚/横断面/样本量/过度拟合）② 方法澄清（预设 cutoffs/无数据驱动阈值）
+  - 右列：③ 性能重申（statrow + 分诊价值）④ 未来方向（卡 2×2）⑤ 临床定位
+  - 全宽临床意义带
+-->
+<style>
+  :root { --primary:#D74B4A; --secondary:#F07A76; --accent:#F7C9C7; --accent-deep:#B83A39;
+    --bg:#FFFFFF; --panel:rgba(233,233,233,0.55); --panel-alt:rgba(240,122,118,0.10);
+    --text:#3A3232; --muted:#5C5252; --line:rgba(215,75,74,0.22); }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:100%; height:100%; overflow:hidden; font-family:"Segoe UI","Helvetica Neue",Arial,"Microsoft YaHei",sans-serif; color:var(--text); background:var(--bg); }
+  body { display:flex; align-items:center; justify-content:center; }
+  .poster { width:2100px; height:1080px; display:flex; flex-direction:column; background:#FFF; padding:14px 26px; zoom:calc(min(100vw/2100px,100vh/1080px)); flex:none; position:relative; }
+
+  .titleband { background:linear-gradient(135deg,rgba(215,75,74,0.94),rgba(215,75,74,0.86) 50%,rgba(240,122,118,0.9)); color:#fff; padding:13px 32px 12px; flex:0 0 auto; border-radius:10px 10px 0 0; position:relative; overflow:hidden; }
+  .langswitch { position:absolute; top:12px; right:18px; display:flex; gap:4px; background:rgba(255,255,255,0.18); border-radius:16px; padding:3px; z-index:3; }
+  .langswitch button { border:none; background:transparent; color:#fff; cursor:pointer; font:600 11px/1 "Segoe UI",sans-serif; padding:5px 12px; border-radius:13px; letter-spacing:.5px; }
+  .langswitch button.on { background:#fff; color:var(--accent-deep); }
+  .kicker { font-size:12px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.9); font-weight:600; margin-bottom:4px; padding-right:150px; }
+  .titleband h1 { font-size:23px; font-weight:700; line-height:1.16; max-width:1730px; }
+  .titleband .title_alt { font-size:15px; font-weight:500; line-height:1.3; color:rgba(255,255,255,0.88); margin-top:3px; max-width:1750px; }
+  .titleband .subtitle { font-size:13.5px; color:rgba(255,255,255,0.92); margin-top:4px; max-width:1800px; }
+  .titleband .meta { margin-top:6px; border-top:1px solid rgba(255,255,255,0.32); padding-top:5px; font-size:11px; line-height:1.35; color:rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight:600; color:#FFF; }
+
+  .hero { flex:0 0 auto; height:92px; background:#FFF; border:1px solid var(--line); border-bottom:none; display:flex; align-items:stretch; gap:10px; padding:8px 6px; }
+  .hero .stat { flex:1; background:var(--panel-alt); border:1px solid rgba(215,75,74,0.28); border-radius:8px; padding:6px; text-align:center; display:flex; flex-direction:column; justify-content:center; }
+  .hero .stat .big { font-size:19px; font-weight:800; color:var(--primary); line-height:1.05; }
+  .hero .stat .lab { font-size:9px; color:var(--muted); margin-top:2px; line-height:1.2; }
+  .hero .stat.hot { background:linear-gradient(135deg,rgba(215,75,74,0.95),rgba(240,122,118,0.92)); border-color:var(--accent-deep); }
+  .hero .stat.hot .big { color:#fff; } .hero .stat.hot .lab { color:rgba(255,255,255,0.92); font-weight:600; }
+
+  .main { flex:1 1 auto; min-height:0; display:grid; grid-template-columns:560px minmax(0,1fr); gap:14px; padding-top:10px; }
+  .col { display:flex; flex-direction:column; gap:10px; min-height:0; min-width:0; }
+  .panel { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:8px 14px 6px; flex:0 0 auto; display:flex; flex-direction:column; min-height:0; overflow:hidden; }
+  .panel.grow { flex:1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .quad, .panel .tnote { flex:0 0 auto; }
+  .panel h3 { font-size:14px; font-weight:700; color:var(--primary); border-bottom:2px solid var(--accent-deep); padding-bottom:3px; margin-bottom:5px; display:flex; align-items:center; gap:6px; }
+  .panel h3 .num { display:inline-flex; align-items:center; justify-content:center; width:19px; height:19px; background:rgba(215,75,74,0.85); color:#fff; border-radius:5px; font-size:11px; flex:0 0 auto; }
+  .panel p, .panel li { font-size:12px; line-height:1.4; color:var(--muted); }
+  .panel ul { list-style:none; }
+  .panel ul li { padding-left:14px; position:relative; margin-bottom:5px; }
+  .panel ul li::before { content:""; position:absolute; left:0; top:6px; width:6px; height:6px; border-radius:50%; background:var(--secondary); }
+  .panel ul li strong { color:var(--primary); }
+  .panel ul li:last-child { margin-bottom:0; }
+
+  .statrow { display:flex; gap:8px; margin:0 0 5px; }
+  .stat { flex:1; background:#fff; border:1px solid var(--line); border-radius:6px; padding:10px 4px; text-align:center; }
+  .stat .big { font-size:17px; font-weight:800; color:var(--primary); line-height:1.05; }
+  .stat .lab { font-size:9px; color:var(--muted); margin-top:2px; line-height:1.2; }
+  .stat.hot { background:linear-gradient(135deg,rgba(215,75,74,0.95),rgba(240,122,118,0.92)); border-color:var(--accent-deep); }
+  .stat.hot .big { color:#fff; } .stat.hot .lab { color:rgba(255,255,255,0.92); font-weight:600; }
+
+  .quad { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+  .q { background:#fff; border:1px solid var(--line); border-radius:8px; padding:7px 11px; border-top:4px solid var(--primary); }
+  .q .qt { font-size:12px; font-weight:800; color:var(--primary); margin-bottom:3px; }
+  .q .ql { font-size:10.5px; color:var(--muted); line-height:1.35; }
+  .q .ql b { color:var(--accent-deep); }
+  .q.hot { background:var(--panel-alt); border-top-color:var(--accent-deep); }
+
+  .tnote { font-size:10px; color:var(--muted); line-height:1.36; margin-top:3px; }
+  .tnote b { color:var(--accent-deep); }
+
+  .clinical { flex:0 0 auto; background:linear-gradient(135deg,rgba(215,75,74,0.92),rgba(215,75,74,0.8) 60%,rgba(240,122,118,0.88)); border-radius:0 0 10px 10px; color:#fff; padding:10px 26px; display:flex; gap:20px; align-items:center; }
+  .clinical .ttl { font-size:15px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.95); flex:0 0 auto; border-right:1.5px solid rgba(255,255,255,0.35); padding-right:16px; }
+  .clinical ul { list-style:none; flex:1 1 auto; min-width:0; }
+  .clinical ul li { font-size:13px; line-height:1.48; color:rgba(255,255,255,0.96); padding-left:15px; position:relative; margin-bottom:3px; }
+  .clinical ul li:last-child { margin-bottom:0; }
+  .clinical ul li::before { content:"▸"; position:absolute; left:0; top:0; color:#FFD9D6; }
+  .clinical ul li b { color:#FFE3E1; }
+  body.lang-zh .panel ul li { line-height:1.46; margin-bottom:5px; }
+  .zhonly { display:none; }
+  body.lang-zh .zhonly { display:flex; }
+  body.lang-zh .zhonly.block { display:block; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Correspondence · Author Reply</div>
+    <h1 data-i18n="title">Reply to: Comments on “Enhanced Diagnostic Accuracy of CIN in Postmenopausal Women Through PAX1/JAM3 Methylation Analysis”</h1>
+    <div class="title_alt" data-i18n="title_alt">回复：《绝经后女性通过 PAX1/JAM3 甲基化提高宫颈高级别病变诊断准确性》评论</div>
+    <div class="subtitle" data-i18n="subtitle">Authors respond to methodological &amp; translational comments — clarify design, reaffirm performance, outline next steps</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Peng H, Li J, Zhou Q, … Li L, Xie X · Changsha Blood Center · Hunan Univ. TCM · Qinghai Red Cross · Origin-Poly · PUMCH</div>
+      <div class="source" data-i18n="source">Int J Cancer 2025 · Received 10 Mar 2026 · Revised 24 Mar 2026 · Accepted 1 Apr 2026</div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="stat hot"><div class="big">4</div><div class="lab" data-i18n="h1">concerns addressed</div></div>
+    <div class="stat hot"><div class="big">93.2/93.6</div><div class="lab" data-i18n="h2">CIN2+ Se/Sp reaffirmed</div></div>
+    <div class="stat"><div class="big">Triage</div><div class="lab" data-i18n="h3">primary utility</div></div>
+    <div class="stat"><div class="big">Next</div><div class="lab" data-i18n="h4">prospective validation</div></div>
+  </div>
+
+  <main class="main">
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Commenters’ Concerns</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">TZ3</div><div class="lab" data-i18n="s1s1">postmenopausal blind spot</div></div>
+          <div class="stat"><div class="big">Referral</div><div class="lab" data-i18n="s1s2">design bias</div></div>
+          <div class="stat"><div class="big">n=44</div><div class="lab" data-i18n="s1s3">CIN2+ in ≥50 y</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s1a"><strong>Generalizability</strong>: colposcopy-referred cohort may inflate apparent Se/Sp vs population screening.</li>
+          <li data-i18n="s1b"><strong>Cross-sectional</strong>: no longitudinal follow-up for progression/persistence; causal inference limited.</li>
+          <li data-i18n="s1c"><strong>Precision</strong>: limited CIN2+ count (n=44) in ≥50 y subgroup widens confidence intervals.</li>
+          <li data-i18n="s1d"><strong>Overfitting</strong>: age-related epigenetic drift could confound methylation–disease links.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Authors’ Clarifications</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">Pre-set</div><div class="lab" data-i18n="s2s1">ΔCt cutoffs</div></div>
+          <div class="stat hot"><div class="big">NMPA</div><div class="lab" data-i18n="s2s2">Class III validated</div></div>
+          <div class="stat"><div class="big">Pathology</div><div class="lab" data-i18n="s2s3">biopsy/ECC endpoint</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Referral design is intentional</strong>: goal is diagnostic-support/triage in women already entering diagnostic pathways — not population screening; limitation acknowledged in Discussion.</li>
+          <li data-i18n="s2b"><strong>No model overfitting</strong>: pre-specified commercial assay with fixed ΔCt cutoffs (PAX1 ≤6.6 · JAM3 ≤10.0) validated through NMPA registration — no data-driven threshold in-cohort.</li>
+          <li data-i18n="s2c"><strong>Pathology-anchored</strong>: endpoints are colposcopy-directed biopsy/ECC (TZ3), not surrogate outcomes; conclusions limited to diagnostic/triage value.</li>
+          <li data-i18n="s2d"><strong>Methylation tracks severity</strong>: ΔCt fell with CIN grade; no HPV16/18 vs non-16/18 difference — supporting disease-severity linkage, not age artifact.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">PaX1 ≤6.6</div><div class="lab" data-i18n="s2s4">pre-set cutoff</div></div>
+          <div class="stat"><div class="big">JAM3 ≤10.0</div><div class="lab" data-i18n="s2s5">pre-set cutoff</div></div>
+          <div class="stat"><div class="big">CV &lt;5%</div><div class="lab" data-i18n="s2s6">intra-assay</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2e"><strong>No age artifact</strong>: higher methylation in older CIN2+ is framed as hypothesis-generating — consistent with prolonged HPV persistence literature.</li>
+          <li data-i18n="s2f"><strong>Agreed limitations</strong>: referral bias, lack of prior screening history capture, cross-sectional design, limited CIN2+ counts — all transparently acknowledged.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">Se 93.2</div><div class="lab" data-i18n="s2s7">CIN2+</div></div>
+          <div class="stat"><div class="big">Sp 93.6</div><div class="lab" data-i18n="s2s8">CIN2+</div></div>
+          <div class="stat"><div class="big">Se 97.2</div><div class="lab" data-i18n="s2s9">CIN3+</div></div>
+        </div>
+        <div class="zhonly block" style="margin-top:4px;"><span class="tnote" data-i18n="s2z">回应要点：作者认可评论者对 TZ3 绝经后盲区的判断，并强调分子分流作为补充手段的核心定位。</span></div>
+        <div class="zhonly block" style="margin-top:3px;"><span class="tnote" data-i18n="s2z2">核心证据：CISCER CIN2+ Se 93.2%/Sp 93.6%、CIN3+ Se 97.2%——在阴道镜转诊 ≥50 岁人群中优于细胞学与指南联合筛查。</span></div>
+        <div class="tnote" data-i18n="s2n">Authors concur: prospective population-based &amp; longitudinal studies are the necessary next step to address age-related epigenetic drift and overtreatment.</div>
+      </div>
+    </section>
+
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Performance Reaffirmed (≥50 y)</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">93.2%</div><div class="lab" data-i18n="s3s1">CIN2+ Se</div></div>
+          <div class="stat hot"><div class="big">93.6%</div><div class="lab" data-i18n="s3s2">CIN2+ Sp</div></div>
+          <div class="stat"><div class="big">97.2%</div><div class="lab" data-i18n="s3s3">CIN3+ Se</div></div>
+          <div class="stat"><div class="big">0.934</div><div class="lab" data-i18n="s3s4">CIN2+ AUC</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s3a"><strong>vs cytology</strong>: methylation Se 93.2% &gt; LBC 75% and Sp 93.6% ≫ LBC 52.3% — outperforms cytology on both axes.</li>
+          <li data-i18n="s3b"><strong>vs guideline combo</strong>: higher specificity (93.6% vs 45.3%) with comparable sensitivity — fewer unnecessary colposcopies.</li>
+          <li data-i18n="s3c"><strong>Real catches</strong>: 2 hrHPV(−)/cytology(−) adenocarcinomas and high-grade lesions in non-16/18 + NILM women were methylation-positive.</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">Future Directions</span></h3>
+        <div class="quad">
+          <div class="q hot"><div class="qt" data-i18n="s4t1">Population validation</div><div class="ql" data-i18n="s4l1">Prospective &amp; <b>population-based</b> cohorts with lower prevalence &amp; different pathology spectrum.</div></div>
+          <div class="q"><div class="qt" data-i18n="s4t2">Longitudinal risk</div><div class="ql" data-i18n="s4l2">Follow-up to test <b>progression/persistence</b> &amp; rule out age-related epigenetic drift.</div></div>
+          <div class="q"><div class="qt" data-i18n="s4t3">Multicenter scale</div><div class="ql" data-i18n="s4l3">Larger multicenter cohorts with <b>HPV genotype</b>, screening history &amp; TZ stratification.</div></div>
+          <div class="q"><div class="qt" data-i18n="s4t4">Health economics</div><div class="ql" data-i18n="s4l4"><b>Cost-effectiveness</b>, inter-lab reproducibility &amp; workflow fit for TZ3/ECC-limited settings.</div></div>
+        </div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Clinical Positioning</span></h3>
+        <ul>
+          <li data-i18n="s5a"><strong>Triage, not screening</strong>: immediate utility in borderline cases — hrHPV+/cytology− or inaccessible transformation zones.</li>
+          <li data-i18n="s5b"><strong>Complementary</strong>: fills HPV/cytology gaps in older women — HPV(−) adenocarcinoma &amp; non-16/18 high-grade lesions.</li>
+          <li data-i18n="s5c"><strong>Regulatory basis</strong>: CISCER® NMPA Class III (No. 20233400253); cutoffs pre-validated through registration.</li>
+          <li data-i18n="s5d"><strong>Transparent limits</strong>: referral bias, no systematic prior screening history, cross-sectional design, limited CIN2+ counts.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">FP cut</div><div class="lab" data-i18n="s5s1">&gt;90% post-HPV triage</div></div>
+          <div class="stat"><div class="big">95.1%</div><div class="lab" data-i18n="s5s2">FP reduction</div></div>
+          <div class="stat"><div class="big">90.9%</div><div class="lab" data-i18n="s5s3">FN reduction</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s5e"><strong>Borderline triage</strong>: hrHPV+/cytology− and inaccessible-TZ women are the immediate target — where HPV/cytology are weakest.</li>
+          <li data-i18n="s5f"><strong>Reproducibility</strong>: inter-laboratory QC and standardized workflows proposed for cross-system uptake.</li>
+          <li data-i18n="s5g"><strong>Budget impact</strong>: cost-effectiveness vs local screening algorithms to be modeled in implementation research.</li>
+          <li data-i18n="s5h"><strong>Call to action</strong>: age-specific screening algorithms should incorporate molecular triage for postmenopausal women.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">28/30</div><div class="lab" data-i18n="s5s4">FP cleared 16/18</div></div>
+          <div class="stat"><div class="big">102/107</div><div class="lab" data-i18n="s5s5">FP cleared non-16/18</div></div>
+          <div class="stat"><div class="big">2 AD</div><div class="lab" data-i18n="s5s6">HPV(−) caught</div></div>
+        </div>
+        <div class="zhonly block" style="margin-top:4px;"><span class="tnote" data-i18n="s5z">绝经后分流价值核心：以固定阈值商业化试剂在转诊队列中提供高特异度补充诊断，减少不必要阴道镜。</span></div>
+        <div class="tnote" data-i18n="s5n">Reply published in Int J Cancer 2025 — authors thank F.S. Tanveer and colleagues for constructive comments.</div>
+      </div>
+    </section>
+  </main>
+
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Position defended</b>: strong diagnostic-support performance in colposcopy-referred ≥50 y women — a triage/supplementary test where HPV/cytology fall short.</li>
+      <li data-i18n="c2"><b>Roadmap agreed</b>: prospective population-based and longitudinal studies are the agreed next step to confirm utility and health-economic value.</li>
+    </ul>
+  </div>
+
+</div>
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Correspondence · Author Reply",
+      title: "Reply to: Comments on “Enhanced Diagnostic Accuracy of CIN in Postmenopausal Women Through PAX1/JAM3 Methylation Analysis”",
+      title_alt: "回复：《绝经后女性通过 PAX1/JAM3 甲基化提高宫颈高级别病变诊断准确性》评论",
+      subtitle: "Authors respond to methodological & translational comments — clarify design, reaffirm performance, outline next steps",
+      authors: "Peng H, Li J, Zhou Q, … Li L, Xie X · Changsha Blood Center · Hunan Univ. TCM · Qinghai Red Cross · Origin-Poly · PUMCH",
+      source: "Int J Cancer 2025 · Received 10 Mar 2026 · Revised 24 Mar 2026 · Accepted 1 Apr 2026",
+      h1: "concerns addressed", h2: "CIN2+ Se/Sp reaffirmed", h3: "primary utility", h4: "prospective validation",
+      s1t: "Commenters’ Concerns",
+      s1s1: "postmenopausal blind spot", s1s2: "design bias", s1s3: "CIN2+ in ≥50 y",
+      s1a: "<strong>Generalizability</strong>: colposcopy-referred cohort may inflate apparent Se/Sp vs population screening.",
+      s1b: "<strong>Cross-sectional</strong>: no longitudinal follow-up for progression/persistence; causal inference limited.",
+      s1c: "<strong>Precision</strong>: limited CIN2+ count (n=44) in ≥50 y subgroup widens confidence intervals.",
+      s1d: "<strong>Overfitting</strong>: age-related epigenetic drift could confound methylation–disease links.",
+      s2t: "Authors’ Clarifications",
+      s2s1: "ΔCt cutoffs", s2s2: "Class III validated", s2s3: "biopsy/ECC endpoint",
+      s2a: "<strong>Referral design is intentional</strong>: goal is diagnostic-support/triage in women already entering diagnostic pathways — not population screening; limitation acknowledged in Discussion.",
+      s2b: "<strong>No model overfitting</strong>: pre-specified commercial assay with fixed ΔCt cutoffs (PAX1 ≤6.6 · JAM3 ≤10.0) validated through NMPA registration — no data-driven threshold in-cohort.",
+      s2c: "<strong>Pathology-anchored</strong>: endpoints are colposcopy-directed biopsy/ECC (TZ3), not surrogate outcomes; conclusions limited to diagnostic/triage value.",
+      s2d: "<strong>Methylation tracks severity</strong>: ΔCt fell with CIN grade; no HPV16/18 vs non-16/18 difference — supporting disease-severity linkage, not age artifact.",
+      s2s4: "pre-set cutoff", s2s5: "pre-set cutoff", s2s6: "intra-assay",
+      s2e: "<strong>No age artifact</strong>: higher methylation in older CIN2+ is framed as hypothesis-generating — consistent with prolonged HPV persistence literature.",
+      s2f: "<strong>Agreed limitations</strong>: referral bias, lack of prior screening history capture, cross-sectional design, limited CIN2+ counts — all transparently acknowledged.",
+      s2s7: "CIN2+", s2s8: "CIN2+", s2s9: "CIN3+",
+      s2n: "Authors concur: prospective population-based & longitudinal studies are the necessary next step to address age-related epigenetic drift and overtreatment.",
+      s3t: "Performance Reaffirmed (≥50 y)",
+      s3s1: "CIN2+ Se", s3s2: "CIN2+ Sp", s3s3: "CIN3+ Se", s3s4: "CIN2+ AUC",
+      s3a: "<strong>vs cytology</strong>: methylation Se 93.2% > LBC 75% and Sp 93.6% ≫ LBC 52.3% — outperforms cytology on both axes.",
+      s3b: "<strong>vs guideline combo</strong>: higher specificity (93.6% vs 45.3%) with comparable sensitivity — fewer unnecessary colposcopies.",
+      s3c: "<strong>Real catches</strong>: 2 hrHPV(−)/cytology(−) adenocarcinomas and high-grade lesions in non-16/18 + NILM women were methylation-positive.",
+      s4t: "Future Directions",
+      s4t1: "Population validation", s4t2: "Longitudinal risk", s4t3: "Multicenter scale", s4t4: "Health economics",
+      s4l1: "Prospective & <b>population-based</b> cohorts with lower prevalence & different pathology spectrum.",
+      s4l2: "Follow-up to test <b>progression/persistence</b> & rule out age-related epigenetic drift.",
+      s4l3: "Larger multicenter cohorts with <b>HPV genotype</b>, screening history & TZ stratification.",
+      s4l4: "<b>Cost-effectiveness</b>, inter-lab reproducibility & workflow fit for TZ3/ECC-limited settings.",
+      s5t: "Clinical Positioning",
+      s5a: "<strong>Triage, not screening</strong>: immediate utility in borderline cases — hrHPV+/cytology− or inaccessible transformation zones.",
+      s5b: "<strong>Complementary</strong>: fills HPV/cytology gaps in older women — HPV(−) adenocarcinoma & non-16/18 high-grade lesions.",
+      s5c: "<strong>Regulatory basis</strong>: CISCER® NMPA Class III (No. 20233400253); cutoffs pre-validated through registration.",
+      s5d: "<strong>Transparent limits</strong>: referral bias, no systematic prior screening history, cross-sectional design, limited CIN2+ counts.",
+      s5s1: ">90% post-HPV triage", s5s2: "FP reduction", s5s3: "FN reduction",
+      s5e: "<strong>Borderline triage</strong>: hrHPV+/cytology− and inaccessible-TZ women are the immediate target — where HPV/cytology are weakest.",
+      s5f: "<strong>Reproducibility</strong>: inter-laboratory QC and standardized workflows proposed for cross-system uptake.",
+      s5g: "<strong>Budget impact</strong>: cost-effectiveness vs local screening algorithms to be modeled in implementation research.",
+      s5h: "<strong>Call to action</strong>: age-specific screening algorithms should incorporate molecular triage for postmenopausal women.",
+      s5s4: "FP cleared 16/18", s5s5: "FP cleared non-16/18", s5s6: "HPV(−) caught",
+      s5n: "Reply published in Int J Cancer 2025 — authors thank F.S. Tanveer and colleagues for constructive comments.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Position defended</b>: strong diagnostic-support performance in colposcopy-referred ≥50 y women — a triage/supplementary test where HPV/cytology fall short.",
+      c2: "<b>Roadmap agreed</b>: prospective population-based and longitudinal studies are the agreed next step to confirm utility and health-economic value."
+    },
+    zh: {
+      kicker: "来信 · 作者回复",
+      title: "回复：《绝经后女性通过 PAX1/JAM3 甲基化提高宫颈高级别病变诊断准确性》评论",
+      title_alt: "Reply to: Comments on “Enhanced Diagnostic Accuracy of CIN in Postmenopausal Women Through PAX1/JAM3 Methylation Analysis”",
+      subtitle: "作者回应方法学与转化评论——澄清设计、重申性能、展望下一步",
+      authors: "彭欢姿、李静、周群、…李雷、谢小兵 · 长沙血液中心 · 湖南中医药大学一附院 · 青海红十字医院 · 起源聚禾 · 北京协和医院",
+      source: "Int J Cancer 2025 · 收稿 2026-03-10 · 修回 2026-03-24 · 接收 2026-04-01",
+      h1: "回应关切", h2: "CIN2+ Se/Sp 重申", h3: "主要定位", h4: "前瞻验证",
+      s1t: "评论者关切",
+      s1s1: "绝经后盲区", s1s2: "设计偏倚", s1s3: "≥50 岁 CIN2+",
+      s1a: "<strong>外推性</strong>：阴道镜转诊队列可能高估表观 Se/Sp，与人群筛查不同。",
+      s1b: "<strong>横断面</strong>：无纵向随访评估进展/持续感染；因果推断受限。",
+      s1c: "<strong>精密度</strong>：≥50 岁亚组 CIN2+ 例数有限（n=44），置信区间较宽。",
+      s1d: "<strong>过度拟合</strong>：年龄相关表观遗传漂移可能混淆甲基化-疾病关联。",
+      s2t: "作者澄清",
+      s2s1: "预设 ΔCt 阈值", s2s2: "NMPA III 类验证", s2s3: "活检/ECC 终点",
+      s2a: "<strong>转诊设计是有意的</strong>：目标是为已进入诊断路径的女性提供诊断支持/分流——非人群筛查；局限已在讨论中声明。",
+      s2b: "<strong>无模型过度拟合</strong>：预设商业化检测、固定 ΔCt 阈值（PAX1 ≤6.6 · JAM3 ≤10.0），经 NMPA 注册验证——未在队列内设定数据驱动阈值。",
+      s2c: "<strong>病理锚定</strong>：终点为阴道镜活检/ECC（TZ3），非替代结局；结论限于诊断/分流价值。",
+      s2d: "<strong>甲基化随严重度变化</strong>：ΔCt 随 CIN 分级下降；16/18 与非 16/18 无差异——支持疾病严重度关联而非年龄假象。",
+      s2s4: "预设阈值", s2s5: "预设阈值", s2s6: "批内",
+      s2e: "<strong>非年龄假象</strong>：老年 CIN2+ 甲基化升高被视为假说生成——与 HPV 持续感染文献一致。",
+      s2f: "<strong>认同局限</strong>：转诊偏倚、未系统采集筛查史、横断面设计、CIN2+ 例数有限——均已透明声明。",
+      s2z: "回应要点：作者认可评论者对 TZ3 绝经后盲区的判断，并强调分子分流作为补充手段的核心定位。",
+      s2z2: "核心证据：CISCER CIN2+ Se 93.2%/Sp 93.6%、CIN3+ Se 97.2%——在阴道镜转诊 ≥50 岁人群中优于细胞学与指南联合筛查。",
+      s2s7: "CIN2+", s2s8: "CIN2+", s2s9: "CIN3+",
+      s2n: "作者认同：前瞻性人群为基础及纵向研究是解决年龄相关表观漂移与过度治疗的必要下一步。",
+      s3t: "性能重申（≥50 岁）",
+      s3s1: "CIN2+ Se", s3s2: "CIN2+ Sp", s3s3: "CIN3+ Se", s3s4: "CIN2+ AUC",
+      s3a: "<strong>vs 细胞学</strong>：甲基化 Se 93.2% &gt; LBC 75%，Sp 93.6% ≫ LBC 52.3%——两轴均优于细胞学。",
+      s3b: "<strong>vs 指南联合</strong>：特异度更高（93.6% vs 45.3%）且灵敏度相当——减少不必要阴道镜。",
+      s3c: "<strong>真实补漏</strong>：2 例 hrHPV(−)/细胞学(−) 腺癌及非 16/18+NILM 高级别病变均为甲基化阳性。",
+      s4t: "未来方向",
+      s4t1: "人群验证", s4t2: "纵向风险", s4t3: "多中心规模", s4t4: "卫生经济",
+      s4l1: "前瞻性<b>人群为基础</b>队列：更低患病率、不同病理谱。",
+      s4l2: "随访评估<b>进展/持续感染</b>，排除年龄相关表观漂移。",
+      s4l3: "更大规模多中心队列：<b>HPV 基因型</b>、筛查史与 TZ 分层。",
+      s4l4: "<b>成本效益</b>、实验室间重复性与 TZ3/ECC 受限场景的工作流适配。",
+      s5t: "临床定位",
+      s5a: "<strong>分流而非筛查</strong>：边缘病例（hrHPV+/细胞学− 或转化区不可及）立即有用。",
+      s5b: "<strong>互补</strong>：填补老年女性 HPV/细胞学缺口——HPV(−) 腺癌及非 16/18 高级别病变。",
+      s5c: "<strong>监管基础</strong>：CISCER® NMPA III 类（No. 20233400253）；阈值经注册预验证。",
+      s5d: "<strong>透明局限</strong>：转诊偏倚、无系统筛查史、横断面设计、CIN2+ 例数有限。",
+      s5s1: ">90% HPV 后分流", s5s2: "假阳性削减", s5s3: "假阴性削减",
+      s5e: "<strong>边缘病例分流</strong>：hrHPV+/细胞学− 或转化区不可及者为首要目标。",
+      s5f: "<strong>可重复性</strong>：提出实验室间 QC 与标准化流程以支持跨体系应用。",
+      s5g: "<strong>预算影响</strong>：实施研究中需建模本地筛查算法的成本效益。",
+      s5h: "<strong>行动呼吁</strong>：年龄特异筛查算法应将分子分流纳入绝经后女性管理。",
+      s5s4: "16/18 FP 清除", s5s5: "非16/18 FP 清除", s5s6: "捕获 HPV(−)",
+      s5z: "绝经后分流价值核心：以固定阈值商业化试剂在转诊队列中提供高特异度补充诊断，减少不必要阴道镜。",
+      s5n: "回复发表于 Int J Cancer 2025——作者感谢 F.S. Tanveer 等的建设性意见。",
+      c_ttl: "临床意义",
+      c1: "<b>立场坚定</b>：阴道镜转诊 ≥50 岁女性中强诊断支持性能——在 HPV/细胞学不足处作为分流/补充检测。",
+      c2: "<b>路线图一致</b>：前瞻性人群为基础与纵向研究是确认效用与卫生经济价值的下一步。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAX1/JAM3 Methylation &amp; Vaginal Dysbiosis in High-Grade Cervical Lesions — Luo et al. 2026, BMC Womens Health</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #11：分子 + 微生态双信号 hero，与 #1-10 均不同）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、白色 stat 卡、红色高亮表格
+  - 布局：标题带 → 双信号 hero（左：甲基化信号 ΔCt PAX1 4.25 vs 9.35 / ΔCt JAM3 9.34 vs 13.2；右：微生态失调 Lactobacillus↓ Gardnerella↑ Nugent↑）→ 两栏（左 560px：①背景与目的 ②研究设计；右 1fr：③诊断性能【AUC/Se/Sp/NPV 卡 + 对比表】④图【Fig.2 ΔCt + Fig.3 临床效能】⑤微生态相关性【Fig.4 热图 + 要点】）→ 全宽临床意义带
+  - 选图：Fig.2 ΔCt 分布（794x382，宽幅）+ Fig.3 临床效能（794x660）+ Fig.4 微生态相关热图（744x727）；Fig.1 流程图不用
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1720px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1720px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1780px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  /* 双信号 hero */
+  .dual { flex: 0 0 auto; height: 100px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; gap: 12px; padding: 8px; }
+  .dsig { flex: 1; border-radius: 10px; padding: 10px 16px; display: flex; flex-direction: column; justify-content: center; }
+  .dsig .st { font-size: 11.5px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 5px; }
+  .dsig .row { display: flex; gap: 14px; margin-top: 3px; }
+  .dsig .kv { flex: 1; }
+  .dsig .kv .k { font-size: 10.5px; color: var(--muted); }
+  .dsig .kv .v { font-size: 20px; font-weight: 800; color: var(--primary); }
+  .dsig.mol { background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); }
+  .dsig.mol .st { color: var(--accent-deep); }
+  .dsig.micro { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.9) 100%); }
+  .dsig.micro .st { color: rgba(255,255,255,0.9); }
+  .dsig.micro .kv .k { color: rgba(255,255,255,0.85); }
+  .dsig.micro .kv .v { color: #fff; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel table, .panel .statrow, .panel .wstrip, .panel .tnote, .panel .figrow { flex: 0 0 auto; }
+  .panel h3 { font-size: 14.5px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11.5px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 13.5px; line-height: 1.45; color: var(--muted); }
+  body.lang-en .panel li { line-height: 1.36; }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 1px 0 6px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 11px 4px; text-align: center; }
+  .stat .big { font-size: 21px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 10px; color: var(--muted); margin-top: 2px; line-height: 1.25; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; }
+  .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .wstrip { display: flex; align-items: center; gap: 6px; margin: 1px 0 6px; }
+  .wstrip .wchip { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 5px; padding: 12px 4px; text-align: center; font-size: 10.5px; font-weight: 600; color: var(--accent-deep); }
+  .wstrip .warr { color: var(--secondary); font-size: 14px; font-weight: 800; }
+
+  .minitable { width: 100%; border-collapse: collapse; margin: 2px 0 4px 0; font-size: 11.5px; }
+  .minitable th { background: rgba(215,75,74,0.12); color: var(--accent-deep); font-weight: 700; padding: 3px 5px; text-align: left; border-bottom: 2px solid var(--line); font-size: 10.5px; }
+  .minitable td { padding: 3px 5px; border-bottom: 1px solid var(--line); color: var(--muted); }
+  .minitable td:first-child { font-weight: 600; color: var(--text); }
+  .minitable tr:last-child td { border-bottom: none; }
+  .minitable .highlight { color: var(--primary); font-weight: 700; }
+  .tnote { font-size: 10.5px; color: var(--muted); line-height: 1.4; margin-top: 2px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .hbar { display: flex; gap: 6px; margin-top: 10px; align-items: flex-end; }
+  .hbar .b { flex: 1; text-align: center; }
+  .hbar .bar { background: linear-gradient(180deg, var(--secondary) 0%, var(--accent) 130%); border-radius: 4px 4px 0 0; }
+  .hbar .b1 .bar { height: 70px; }
+  .hbar .b2 .bar { height: 100px; }
+  .hbar .b3 .bar { height: 13px; }
+  .hbar .b4 .bar { height: 14px; }
+  .hbar .lb { font-size: 10px; color: var(--muted); margin-top: 4px; }
+
+  .figrow { display: flex; gap: 12px; align-items: flex-start; justify-content: center; }
+  .fig { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px 4px; text-align: center; min-width: 0; }
+  .fig img { display: inline-block; height: auto; max-height: 162px; width: auto; max-width: 100%; border-radius: 3px; }
+  .fig svg { display: block; height: 162px; width: auto; margin: 0 auto; }
+  .fig .figcap { font-size: 10px; color: var(--muted); font-style: italic; line-height: 1.3; margin-top: 3px; text-align: left; }
+  .fig .figcap strong { color: var(--primary); font-style: normal; }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">BMC Womens Health · 2026;26:108 · Colposcopy-Referred Study · China</div>
+    <h1 data-i18n="title">PAX1/JAM3 Methylation &amp; Vaginal Dysbiosis in High-Grade Cervical Lesions</h1>
+    <div class="title_alt" data-i18n="title_alt">PAX1/JAM3 甲基化与阴道微生态失调在宫颈高级别病变中的关联</div>
+    <div class="subtitle" data-i18n="subtitle">264 colposcopy-referred women · CISCER AUC 0.826 (CIN2+) / 0.852 (CIN3+) · specificity 89.1% vs hrHPV 7.3% · dysbiosis (Lactobacillus↓, Gardnerella↑) predicts CIN2+</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Luo L, Wang L, Liu Z, Cai Y, Zhang J (correspondence)</div>
+      <div class="source" data-i18n="source">Beijing Anzhen Hospital, Capital Medical University · CISCER® PAX1/JAM3 · doi: <a href="https://doi.org/10.1186/s12905-026-04285-6" target="_blank" rel="noopener">10.1186/s12905-026-04285-6</a></div>
+    </div>
+  </header>
+
+  <!-- 双信号 hero -->
+  <div class="dual">
+    <div class="dsig mol">
+      <div class="st" data-i18n="m1t">Methylation signal · CIN2+ vs CIN1−</div>
+      <div class="row">
+        <div class="kv"><div class="k" data-i18n="m1k">ΔCt PAX1</div><div class="v">4.25 vs 9.35</div></div>
+        <div class="kv"><div class="k" data-i18n="m2k">ΔCt JAM3</div><div class="v">9.34 vs 13.2</div></div>
+        <div class="kv"><div class="k" data-i18n="m3k">lower ΔCt = higher methylation</div></div>
+      </div>
+    </div>
+    <div class="dsig micro">
+      <div class="st" data-i18n="m4t">Vaginal dysbiosis · correlates with CIN2+</div>
+      <div class="row">
+        <div class="kv"><div class="k" data-i18n="m4k">Lactobacillus</div><div class="v">r = −0.316</div></div>
+        <div class="kv"><div class="k" data-i18n="m5k">Gardnerella</div><div class="v">r = +0.354</div></div>
+        <div class="kv"><div class="k" data-i18n="m6k">Nugent score</div><div class="v">r = +0.499</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Gap</strong>: hrHPV testing is sensitive but very low specificity (7.3% in this cohort) → excessive colposcopy referral.</li>
+          <li data-i18n="s1b"><strong>Angle</strong>: link PAX1/JAM3 methylation with clinically assessed vaginal microecology in colposcopy-referred women.</li>
+          <li data-i18n="s1c"><strong>Objective</strong>: assess CISCER® as molecular triage and its association with vaginal dysbiosis for CIN2+.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">264</div><div class="lab" data-i18n="s2s1">colposcopy-referred women</div></div>
+          <div class="stat"><div class="big">42y</div><div class="lab" data-i18n="s2s2">median age</div></div>
+          <div class="stat"><div class="big">71</div><div class="lab" data-i18n="s2s3">CIN2+</div></div>
+        </div>
+        <div class="wstrip">
+          <span class="wchip" data-i18n="ws1">CISCER methylation</span><span class="warr">+</span>
+          <span class="wchip" data-i18n="ws2">hrHPV / LBC</span><span class="warr">+</span>
+          <span class="wchip" data-i18n="ws3">vaginal microecology</span>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Setting</strong>: Beijing Anzhen Hospital, Feb–Dec 2024; TZ III 66.7%.</li>
+          <li data-i18n="s2b"><strong>CIN2+ (n=71)</strong>: CIN2 42.3% · CIN3 49.3% · SCC 7.0% · AD 1.4%.</li>
+          <li data-i18n="s2c"><strong>HPV in CIN2+</strong>: 93% hrHPV+; HPV16/18 50.7% vs 33.7% in CIN1− (P&lt;0.05).</li>
+          <li data-i18n="s2d"><strong>Microecology</strong>: clinician-evaluated in 172 women (Lactobacillus, Gardnerella, Nugent, pH, AV).</li>
+          <li data-i18n="s2f"><strong>Baseline</strong>: median 42 y; TZ III 66.7%.</li>
+          <li data-i18n="s2g"><strong>Dysbiosis scores</strong>: Nugent, AV, pH, H₂O₂, sialidase, polyamine.</li>
+          <li data-i18n="s2h"><strong>Scoring</strong>: clinician per microecology scoring method (Table S3).</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">30</div><div class="lab" data-i18n="s2s4">CIN2</div></div>
+          <div class="stat"><div class="big">35</div><div class="lab" data-i18n="s2s5">CIN3</div></div>
+          <div class="stat"><div class="big">6</div><div class="lab" data-i18n="s2s6">cancer (5 SCC + 1 AD)</div></div>
+        </div>
+        <div class="hbar">
+          <div class="b b1"><div class="bar"></div><div class="lb" data-i18n="h1">CIN2</div></div>
+          <div class="b b2"><div class="bar"></div><div class="lb" data-i18n="h2">CIN3</div></div>
+          <div class="b b3"><div class="bar"></div><div class="lb" data-i18n="h3">SCC</div></div>
+          <div class="b b4"><div class="bar"></div><div class="lb" data-i18n="h4">AD</div></div>
+        </div>
+        <div class="tnote" data-i18n="s2e">CISCER+ = ΔCt PAX1 ≤ 6.6 or ΔCt JAM3 ≤ 10.0 (Kruskal-Wallis ***P&lt;0.001).</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">3</span><span data-i18n="s3t">Diagnostic Performance</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">0.826</div><div class="lab" data-i18n="s3s1">AUC · CIN2+</div></div>
+          <div class="stat"><div class="big">0.852</div><div class="lab" data-i18n="s3s2">AUC · CIN3+</div></div>
+          <div class="stat"><div class="big">76.1%</div><div class="lab" data-i18n="s3s4">Se · CIN2+</div></div>
+          <div class="stat"><div class="big">89.1%</div><div class="lab" data-i18n="s3s5">Sp · CIN2+</div></div>
+          <div class="stat"><div class="big">91%</div><div class="lab" data-i18n="s3s3">NPV · CIN2+</div></div>
+        </div>
+        <div class="tnote" data-i18n="s3note">CISCER Sp 89.1% vs hrHPV 7.3% (CIN1−) · CIN3+ Se 87.8% / Sp 82.5% · all SCC &amp; AD positive · normal women: 92.9% hrHPV+ but only 7.1% CISCER+.</div>
+      </div>
+
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">4</span><span data-i18n="s4t">Methylation &amp; Clinical Efficacy</span></h3>
+        <div class="figrow">
+          <div class="fig">
+            <img src="images/fig2_deltact.jpg" alt="ΔCt distribution by pathological groups">
+            <div class="figcap"><strong>Fig. 2</strong> <span data-i18n="s4c1">ΔCt falls with severity — higher methylation in high-grade lesions.</span></div>
+          </div>
+          <div class="fig">
+            <img src="images/fig3_efficacy.jpg" alt="Clinical efficacy of different screening methods">
+            <div class="figcap"><strong>Fig. 3</strong> <span data-i18n="s4c2">Se (CIN2+/CIN3+), Sp (CIN1−) &amp; ROC — CISCER best specificity.</span></div>
+          </div>
+        </div>
+        <ul style="margin-top:4px;">
+          <li data-i18n="s4a"><strong>Specificity wins</strong>: 89.1% vs hrHPV 7.3%; all SCC &amp; AD methylation positive (cytology missed 4).</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Vaginal Microecology Association</span></h3>
+        <div class="figrow">
+          <div class="fig">
+            <img src="images/fig4_heatmap.jpg" alt="Correlation heatmap of clinical indexes">
+            <div class="figcap"><strong>Fig. 4</strong> <span data-i18n="s5c1">Correlation heatmap (n=172) — dysbiosis markers track high-grade lesions.</span></div>
+          </div>
+          <div class="fig">
+            <svg viewBox="0 0 440 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dysbiosis correlation with CIN2+">
+              <line x1="220" y1="30" x2="220" y2="235" stroke="#D9D4D2" stroke-width="1.5"/>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="700" fill="#3A3232">
+                <text x="220" y="18" text-anchor="middle" data-i18n="dz0">Correlation with CIN2+ (r)</text>
+              </g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="10.5" fill="#5C5252" text-anchor="end">
+                <text x="212" y="56" data-i18n="dz1">Nugent</text>
+                <text x="212" y="96" data-i18n="dz2">Gardnerella</text>
+                <text x="212" y="136" data-i18n="dz3">Sialidase</text>
+                <text x="212" y="176" data-i18n="dz4">pH</text>
+                <text x="212" y="216" data-i18n="dz5">Lactobacillus</text>
+              </g>
+              <g>
+                <rect x="220" y="42" width="110" height="24" fill="#D74B4A" rx="3"/>
+                <rect x="220" y="82" width="78" height="24" fill="#E58A78" rx="3"/>
+                <rect x="220" y="122" width="71" height="24" fill="#E8A29A" rx="3"/>
+                <rect x="220" y="162" width="62" height="24" fill="#E8A29A" rx="3"/>
+                <rect x="150" y="202" width="70" height="24" fill="#C9A9A7" rx="3"/>
+              </g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="10.5" font-weight="800" fill="#B83A39">
+                <text x="340" y="57">0.499</text>
+                <text x="308" y="97">0.354</text>
+                <text x="301" y="137">0.321</text>
+                <text x="292" y="177">0.283</text>
+              </g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="10.5" font-weight="800" fill="#8A6E6B">
+                <text x="140" y="217" text-anchor="end">−0.316</text>
+              </g>
+            </svg>
+            <div class="figcap"><strong>Fig.</strong> <span data-i18n="s5c2">Dysbiosis markers — positive with CIN2+; Lactobacillus negative (depletion).</span></div>
+          </div>
+        </div>
+        <ul style="margin-top:4px;">
+          <li data-i18n="s5a"><strong>Dysbiosis pattern</strong>: Lactobacillus depletion (r=−0.316) &amp; Gardnerella enrichment (r=0.354).</li>
+        </ul>
+        <div class="tnote" data-i18n="s5b">Nugent r=0.499 · ΔCt JAM3 r=−0.607 — both predict high-grade lesions.</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>PAX1/JAM3 methylation (CISCER®) robustly identifies CIN2+</b> with high specificity (89.1% vs hrHPV 7.3%) — a molecular triage tool that reduces colposcopy over-referral in hrHPV+ women.</li>
+      <li data-i18n="c2"><b>Vaginal dysbiosis</b> (Lactobacillus↓, Gardnerella↑) is associated with elevated methylation and high-grade lesions — supporting combined screening &amp; microecology insight.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "BMC Womens Health · 2026;26:108 · Colposcopy-Referred Study · China",
+      title: "PAX1/JAM3 Methylation & Vaginal Dysbiosis in High-Grade Cervical Lesions",
+      title_alt: "PAX1/JAM3 甲基化与阴道微生态失调在宫颈高级别病变中的关联",
+      subtitle: "264 colposcopy-referred women · CISCER AUC 0.826 (CIN2+) / 0.852 (CIN3+) · specificity 89.1% vs hrHPV 7.3% · dysbiosis (Lactobacillus↓, Gardnerella↑) predicts CIN2+",
+      authors: "Luo L, Wang L, Liu Z, Cai Y, Zhang J (correspondence)",
+      source: 'Beijing Anzhen Hospital, Capital Medical University · CISCER® PAX1/JAM3 · doi: <a href="https://doi.org/10.1186/s12905-026-04285-6" target="_blank" rel="noopener">10.1186/s12905-026-04285-6</a>',
+      m1t: "Methylation signal · CIN2+ vs CIN1−",
+      m1k: "ΔCt PAX1", m2k: "ΔCt JAM3", m3k: "lower ΔCt = higher methylation",
+      m4t: "Vaginal dysbiosis · correlates with CIN2+",
+      m4k: "Lactobacillus", m5k: "Gardnerella", m6k: "Nugent score",
+      s1t: "Background & Objective",
+      s1a: "<strong>Gap</strong>: hrHPV testing is sensitive but very low specificity (7.3% in this cohort) → excessive colposcopy referral.",
+      s1b: "<strong>Angle</strong>: link PAX1/JAM3 methylation with clinically assessed vaginal microecology in colposcopy-referred women.",
+      s1c: "<strong>Objective</strong>: assess CISCER® as molecular triage and its association with vaginal dysbiosis for CIN2+.",
+      s2t: "Study Design & Cohort",
+      s2s1: "colposcopy-referred women", s2s2: "median age", s2s3: "CIN2+",
+      ws1: "CISCER methylation", ws2: "hrHPV / LBC", ws3: "vaginal microecology",
+      s2a: "<strong>Setting</strong>: Beijing Anzhen Hospital; Feb–Dec 2024.",
+      s2b: "<strong>CIN2+ (n=71)</strong>: CIN2 42% · CIN3 49% · SCC 7% · AD 1%.",
+      s2c: "<strong>HPV</strong>: 93% hrHPV+; 16/18 50.7% vs 33.7% (P<0.05).",
+      s2d: "<strong>Microecology</strong>: 172 scored (Lacto., Gardnerella, Nugent, pH, AV).",
+      s2f: "<strong>Baseline</strong>: median 42 y; TZ III 66.7%.",
+      s2g: "<strong>Dysbiosis scores</strong>: Nugent, AV, pH, H₂O₂, sialidase.",
+      s2h: "<strong>Scoring</strong>: clinician-evaluated per Table S3.",
+      s2s4: "CIN2", s2s5: "CIN3", s2s6: "cancer (5 SCC + 1 AD)",
+      h1: "CIN2", h2: "CIN3", h3: "SCC", h4: "AD",
+      s2e: "CISCER+ = ΔCt PAX1 ≤ 6.6 or ΔCt JAM3 ≤ 10.0.",
+      s3t: "Diagnostic Performance",
+      s3s1: "AUC · CIN2+", s3s2: "AUC · CIN3+", s3s3: "NPV · CIN2+", s3s4: "灵敏度 · CIN2+", s3s5: "特异度 · CIN2+", s3s4: "Se · CIN2+", s3s5: "Sp · CIN2+",
+      t_h1: "Test (CIN2+)", t_h2: "Se %", t_h3: "Sp %",
+      t_r1a: "CISCER", t_r2a: "hrHPV", t_r3a: "LBC ≥ASC-US", t_r4a: "HPV16/18(+)",
+      s3note: "CIN3+: CISCER Se 87.8%, Sp 82.5%; all SCC & AD positive. Normal women: 92.9% hrHPV+ but only 7.1% CISCER+.",
+      s4t: "Methylation & Clinical Efficacy",
+      s4c1: "ΔCt falls with severity — higher methylation in high-grade lesions.",
+      s4c2: "Se (CIN2+/CIN3+), Sp (CIN1−) & ROC — CISCER best specificity.",
+      s4a: "<strong>Specificity wins</strong>: 89.1% vs hrHPV 7.3% — solves the over-referral problem.",
+      s4b: "<strong>Cancer safety</strong>: all SCC & AD methylation positive (cytology missed 4 as NILM/ASC-US).",
+      s5t: "Vaginal Microecology Association",
+      s5c1: "Correlation heatmap (n=172) — dysbiosis markers track high-grade lesions.",
+      s5c2: "Dysbiosis markers — positive with CIN2+; Lactobacillus negative (depletion).",
+      dz0: "Correlation with CIN2+ (r)", dz1: "Nugent", dz2: "Gardnerella", dz3: "Sialidase", dz4: "pH", dz5: "Lactobacillus",
+      s5a: "<strong>Dysbiosis pattern</strong>: Lactobacillus depletion (r=−0.316) & Gardnerella enrichment (r=0.354) with CIN2+.",
+      s5b: "<strong>Strongest</strong>: Nugent score r=0.499; ΔCt JAM3 r=−0.607 — both predict high-grade lesions.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>PAX1/JAM3 methylation (CISCER®) robustly identifies CIN2+</b> with high specificity (89.1% vs hrHPV 7.3%) — a molecular triage tool that reduces colposcopy over-referral in hrHPV+ women.",
+      c2: "<b>Vaginal dysbiosis</b> (Lactobacillus↓, Gardnerella↑) is associated with elevated methylation and high-grade lesions — supporting combined screening & microecology insight."
+    },
+    zh: {
+      kicker: "BMC 妇女健康 · 2026;26:108 · 阴道镜转诊研究 · 中国",
+      title: "PAX1/JAM3 甲基化与阴道微生态失调在宫颈高级别病变中的关联",
+      title_alt: "PAX1/JAM3 Methylation & Vaginal Dysbiosis in High-Grade Cervical Lesions",
+      subtitle: "264 例阴道镜转诊女性 · CISCER AUC 0.826（CIN2+）/ 0.852（CIN3+）· 特异度 89.1% vs hrHPV 7.3% · 微生态失调（乳杆菌↓、加德纳菌↑）预测 CIN2+",
+      authors: "罗莲梅、王兰若、刘志英、蔡友琴、张军（通讯）",
+      source: '首都医科大学附属北京安贞医院 · CISCER® PAX1/JAM3 · doi: <a href="https://doi.org/10.1186/s12905-026-04285-6" target="_blank" rel="noopener">10.1186/s12905-026-04285-6</a>',
+      m1t: "甲基化信号 · CIN2+ vs CIN1−",
+      m1k: "ΔCt PAX1", m2k: "ΔCt JAM3", m3k: "ΔCt 越低 = 甲基化越高",
+      m4t: "阴道微生态失调 · 与 CIN2+ 相关",
+      m4k: "乳杆菌", m5k: "加德纳菌", m6k: "Nugent 评分",
+      s1t: "背景与目的",
+      s1a: "<strong>缺口</strong>：hrHPV 检测敏感但特异度极低（本队列 7.3%）→ 过度阴道镜转诊。",
+      s1b: "<strong>视角</strong>：将 PAX1/JAM3 甲基化与临床评估的阴道微生态相联系。",
+      s1c: "<strong>目的</strong>：评估 CISCER® 作为分子分诊工具及其与阴道微生态失调对 CIN2+ 的关联。",
+      s2t: "研究设计与队列",
+      s2s1: "阴道镜转诊女性", s2s2: "中位年龄", s2s3: "CIN2+",
+      ws1: "CISCER 甲基化", ws2: "hrHPV / LBC", ws3: "阴道微生态",
+      s2a: "<strong>地点</strong>：北京安贞医院，2024.2–12；转化区 III 型 66.7%。",
+      s2b: "<strong>CIN2+（n=71）</strong>：CIN2 42.3% · CIN3 49.3% · 鳞癌 7.0% · 腺癌 1.4%。",
+      s2c: "<strong>CIN2+ 中 HPV</strong>：93% hrHPV+；HPV16/18 50.7% vs CIN1− 组 33.7%（P&lt;0.05）。",
+      s2d: "<strong>微生态</strong>：172 例临床评估（乳杆菌、加德纳菌、Nugent、pH、AV）。",
+      s2f: "<strong>基线</strong>：中位 42 岁；转化区 III 型 66.7%。",
+      s2g: "<strong>失调评分</strong>：Nugent、AV、pH、H₂O₂、唾液酸酶、多胺。",
+      s2h: "<strong>评分</strong>：按微生态评分法由临床医师评估（表 S3）。",
+      s2s4: "CIN2", s2s5: "CIN3", s2s6: "癌（5 鳞癌 + 1 腺癌）",
+      h1: "CIN2", h2: "CIN3", h3: "鳞癌", h4: "腺癌",
+      s2e: "CISCER+ = ΔCt PAX1 ≤ 6.6 或 ΔCt JAM3 ≤ 10.0（实时 PCR，GAPDH 内参；Kruskal-Wallis ***P&lt;0.001）。",
+      s3t: "诊断性能",
+      s3s1: "AUC · CIN2+", s3s2: "AUC · CIN3+", s3s3: "NPV · CIN2+", s3s4: "灵敏度 · CIN2+", s3s5: "特异度 · CIN2+", s3s4: "Se · CIN2+", s3s5: "Sp · CIN2+",
+      t_h1: "检测（CIN2+）", t_h2: "灵敏度%", t_h3: "特异度%",
+      t_r1a: "CISCER", t_r2a: "hrHPV", t_r3a: "LBC ≥ASC-US", t_r4a: "HPV16/18(+)",
+      s3note: "CIN3+：CISCER Se 87.8%、Sp 82.5%；鳞癌与腺癌全部阳性。正常女性 92.9% hrHPV+，但仅 7.1% CISCER+。",
+      s4t: "甲基化与临床效能",
+      s4c1: "ΔCt 随病变加重而降低——高级别病变甲基化更高。",
+      s4c2: "灵敏度（CIN2+/CIN3+）、特异度（CIN1−）与 ROC——CISCER 特异度最佳。",
+      s4a: "<strong>特异度优势</strong>：89.1% vs hrHPV 7.3%——解决过度转诊问题。",
+      s4b: "<strong>癌症安全</strong>：鳞癌与腺癌全部甲基化阳性（细胞学 4 例漏诊为 NILM/ASC-US）。",
+      s5t: "阴道微生态关联",
+      s5c1: "相关热图（n=172）——微生态失调指标随高级别病变升高。",
+      s5c2: "微生态失调指标——与 CIN2+ 正相关；乳杆菌为负（减少）。",
+      dz0: "与 CIN2+ 的相关性（r）", dz1: "Nugent", dz2: "加德纳菌", dz3: "唾液酸酶", dz4: "pH", dz5: "乳杆菌",
+      s5a: "<strong>失调模式</strong>：乳杆菌减少（r=−0.316）、加德纳菌富集（r=0.354）与 CIN2+ 相关。",
+      s5b: "<strong>最强指标</strong>：Nugent r=0.499；ΔCt JAM3 r=−0.607——均可预测高级别病变。",
+      c_ttl: "临床意义",
+      c1: "<b>PAX1/JAM3 甲基化（CISCER®）可稳健识别 CIN2+</b>，特异度 89.1%（vs hrHPV 7.3%）——是减少 hrHPV+ 女性阴道镜过度转诊的分子分诊工具。",
+      c2: "<b>阴道微生态失调</b>（乳杆菌↓、加德纳菌↑）与甲基化升高及高级别病变相关——支持联合筛查与微生态评估。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

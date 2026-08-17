@@ -1,0 +1,180 @@
+[
+  {
+    "id": "5_李翔_et_al_2024_高危型人乳头瘤病毒感染患者宫颈脱落细胞JAM3-PAX1高甲基化诊断宫颈高级别病变",
+    "cancer": "cervical",
+    "kicker": "宫颈癌 · 中南大学学报(医学版) 2023;48(12):1820–1829 · 回顾性",
+    "kicker_zh": "宫颈癌 · 中南大学学报(医学版) 2023;48(12):1820–1829 · 回顾性",
+    "title": "JAM3/PAX1 高甲基化诊断 HR-HPV 感染患者宫颈高级别病变",
+    "title_zh": "JAM3/PAX1 高甲基化诊断 HR-HPV 感染患者宫颈高级别病变",
+    "subtitle": "136 例 HR-HPV 感染患者——ΔCtJ &gt; 10.13 时全部为非高级别病变，甲基化可独立分层",
+    "subtitle_zh": "136 例 HR-HPV 感染患者——ΔCtJ &gt; 10.13 时全部为非高级别病变，甲基化可独立分层",
+    "authors": "李翔, 贺斯黎, 赵行平, 孙丹, 吴思, 徐大宝, 李颖佳",
+    "authors_zh": "李翔, 贺斯黎, 赵行平, 孙丹, 吴思, 徐大宝, 李颖佳",
+    "source": "中南大学学报(医学版) 2023;48(12):1820–1829 · 基金 2020SK53604",
+    "source_zh": "中南大学学报(医学版) 2023;48(12):1820–1829 · 基金 2020SK53604",
+    "panels": [
+      {
+        "title": "研究缘起",
+        "title_zh": "研究缘起",
+        "bullets": [
+          "<strong>背景</strong>：HR-HPV 感染人群中，细胞学（LBC）灵敏度有限，需客观的分子标志物辅助高级别病变诊断。",
+          "<strong>目的</strong>：评估宫颈脱落细胞 JAM3/PAX1 高甲基化对 HR-HPV 感染患者宫颈高级别病变的诊断价值。"
+        ],
+        "bullets_zh": [
+          "<strong>背景</strong>：HR-HPV 感染人群中，细胞学（LBC）灵敏度有限，需客观的分子标志物辅助高级别病变诊断。",
+          "<strong>目的</strong>：评估宫颈脱落细胞 JAM3/PAX1 高甲基化对 HR-HPV 感染患者宫颈高级别病变的诊断价值。"
+        ]
+      },
+      {
+        "title": "方法",
+        "title_zh": "方法",
+        "stats": [
+          {"big": "136", "lab_en": "HR-HPV patients", "lab_zh": "HR-HPV 患者"},
+          {"big": "14", "lab_en": "high-grade cases", "lab_zh": "高级别 14 例"},
+          {"big": "2021–22", "lab_en": "period", "lab_zh": "研究时间"}
+        ],
+        "bullets": [
+          "<strong>设计</strong>：回顾性研究（2021.6–2022.6）；中南大学湘雅三医院阴道镜门诊。",
+          "<strong>人群</strong>：136 例 HR-HPV 感染（非高级别 122、高级别 14）。",
+          "<strong>甲基化</strong>：JAM3（ΔCtJ）/PAX1（ΔCtP）PCR-荧光探针法（起源聚禾）；LBC；hrHPV（凯普 21 型）。",
+          "<strong>分析</strong>：相关性分析 + 条件推断树。"
+        ],
+        "bullets_zh": [
+          "<strong>设计</strong>：回顾性研究（2021.6–2022.6）；中南大学湘雅三医院阴道镜门诊。",
+          "<strong>人群</strong>：136 例 HR-HPV 感染（非高级别 122、高级别 14）。",
+          "<strong>甲基化</strong>：JAM3（ΔCtJ）/PAX1（ΔCtP）PCR-荧光探针法（起源聚禾）；LBC；hrHPV（凯普 21 型）。",
+          "<strong>分析</strong>：相关性分析 + 条件推断树。"
+        ]
+      },
+      {
+        "title": "核心结果",
+        "title_zh": "核心结果",
+        "bullets": [
+          "<strong>负相关</strong>：病理结果与 ΔCtP（r=−0.360）、ΔCtJ（r=−0.448）负相关——甲基化随病变加重升高。",
+          "<strong>决策树</strong>：ΔCtJ &gt; 10.13 → 全部为非高级别病变；ΔCtP &gt; 6.22 → 97.5% 非高级别。",
+          "<strong>联合规则</strong>：ΔCtJ &gt; 8.61 且 LBC 为 ASC-US/NILM → 99.1% 非高级别。",
+          "<strong>LBC 对比</strong>：单独 LBC 灵敏度仅 42.9%、PPV 66.67%——甲基化弥补细胞学灵敏度不足。"
+        ],
+        "bullets_zh": [
+          "<strong>负相关</strong>：病理结果与 ΔCtP（r=−0.360）、ΔCtJ（r=−0.448）负相关——甲基化随病变加重升高。",
+          "<strong>决策树</strong>：ΔCtJ &gt; 10.13 → 全部为非高级别病变；ΔCtP &gt; 6.22 → 97.5% 非高级别。",
+          "<strong>联合规则</strong>：ΔCtJ &gt; 8.61 且 LBC 为 ASC-US/NILM → 99.1% 非高级别。",
+          "<strong>LBC 对比</strong>：单独 LBC 灵敏度仅 42.9%、PPV 66.67%——甲基化弥补细胞学灵敏度不足。"
+        ]
+      },
+      {
+        "title": "结论",
+        "title_zh": "结论",
+        "bullets": [
+          "<strong>独立分层</strong>：JAM3/PAX1 双基因甲基化可独立于细胞学分层诊断宫颈高级别/非高级别病变。",
+          "<strong>互补价值</strong>：与 LBC 联用可提高预测准确性，弥补细胞学灵敏度不足。"
+        ],
+        "bullets_zh": [
+          "<strong>独立分层</strong>：JAM3/PAX1 双基因甲基化可独立于细胞学分层诊断宫颈高级别/非高级别病变。",
+          "<strong>互补价值</strong>：与 LBC 联用可提高预测准确性，弥补细胞学灵敏度不足。"
+        ]
+      }
+    ],
+    "takeaway": {
+      "title": "核心结论",
+      "title_zh": "核心结论",
+      "bullets": [
+        "<strong>客观排除</strong>：ΔCtJ &gt; 10.13 时高级别病变排除率 100%——简单可靠的分子分层规则。",
+        "<strong>补充细胞学</strong>：弥补 LBC 灵敏度不足（42.9%），支持双基因甲基化进入 HR-HPV 分流路径。"
+      ],
+      "bullets_zh": [
+        "<strong>客观排除</strong>：ΔCtJ &gt; 10.13 时高级别病变排除率 100%——简单可靠的分子分层规则。",
+        "<strong>补充细胞学</strong>：弥补 LBC 灵敏度不足（42.9%），支持双基因甲基化进入 HR-HPV 分流路径。"
+      ]
+    }
+  },
+  {
+    "id": "24_阴道微生态影响宫颈细胞DNA甲基化水平与宫颈病变的相关性研究",
+    "cancer": "cervical",
+    "kicker": "宫颈癌 · 中华检验医学杂志 2026;49(2):172–180 · 横断面",
+    "kicker_zh": "宫颈癌 · 中华检验医学杂志 2026;49(2):172–180 · 横断面",
+    "title": "阴道微生态影响宫颈细胞 DNA 甲基化水平与宫颈病变的相关性研究",
+    "title_zh": "阴道微生态影响宫颈细胞 DNA 甲基化水平与宫颈病变的相关性研究",
+    "subtitle": "492 例女性——卷曲乳杆菌通过抑制 PAX1 甲基化影响宫颈病变（完全中介效应 −0.099）",
+    "subtitle_zh": "492 例女性——卷曲乳杆菌通过抑制 PAX1 甲基化影响宫颈病变（完全中介效应 −0.099）",
+    "authors": "吴思, 吕卫刚, 赵行平, 马洁稚, 徐大宝, 章迪",
+    "authors_zh": "吴思, 吕卫刚, 赵行平, 马洁稚, 徐大宝, 章迪",
+    "source": "中华检验医学杂志 2026;49(2):172–180",
+    "source_zh": "中华检验医学杂志 2026;49(2):172–180",
+    "panels": [
+      {
+        "title": "研究缘起",
+        "title_zh": "研究缘起",
+        "bullets": [
+          "<strong>背景</strong>：阴道微生态失衡与 HPV 感染和宫颈病变相关，但其与宿主 DNA 甲基化水平的关系尚不明确。",
+          "<strong>目的</strong>：探讨阴道微生态对宫颈细胞 PAX1/JAM3 甲基化水平的影响及其与宫颈病变的相关性。"
+        ],
+        "bullets_zh": [
+          "<strong>背景</strong>：阴道微生态失衡与 HPV 感染和宫颈病变相关，但其与宿主 DNA 甲基化水平的关系尚不明确。",
+          "<strong>目的</strong>：探讨阴道微生态对宫颈细胞 PAX1/JAM3 甲基化水平的影响及其与宫颈病变的相关性。"
+        ]
+      },
+      {
+        "title": "方法",
+        "title_zh": "方法",
+        "stats": [
+          {"big": "492", "lab_en": "women", "lab_zh": "492 例女性"},
+          {"big": "58", "lab_en": "HSIL cases", "lab_zh": "HSIL 58 例"},
+          {"big": "SEM", "lab_en": "mediation model", "lab_zh": "结构方程中介"}
+        ],
+        "bullets": [
+          "<strong>设计</strong>：横断面研究（2022.4–2024.8）；中南大学湘雅三医院。",
+          "<strong>人群</strong>：492 例（HPV/TCT 双阴 81、慢性炎 236、LSIL 117、HSIL 58）。",
+          "<strong>检测</strong>：PAX1/JAM3 甲基化（起源聚禾）；革兰染色+Nugent+功能学+荧光 PCR（9 种微生物）；HPV 23 型分型（圣湘）。",
+          "<strong>分析</strong>：有序多元 Logistic 回归 + 结构方程中介效应。"
+        ],
+        "bullets_zh": [
+          "<strong>设计</strong>：横断面研究（2022.4–2024.8）；中南大学湘雅三医院。",
+          "<strong>人群</strong>：492 例（HPV/TCT 双阴 81、慢性炎 236、LSIL 117、HSIL 58）。",
+          "<strong>检测</strong>：PAX1/JAM3 甲基化（起源聚禾）；革兰染色+Nugent+功能学+荧光 PCR（9 种微生物）；HPV 23 型分型（圣湘）。",
+          "<strong>分析</strong>：有序多元 Logistic 回归 + 结构方程中介效应。"
+        ]
+      },
+      {
+        "title": "核心结果",
+        "title_zh": "核心结果",
+        "bullets": [
+          "<strong>甲基化与病变</strong>：PAX1（β=−0.075，OR 0.928，P=0.010）与 JAM3（β=−0.139，OR 0.871，P&lt;0.001）甲基化与病变等级正相关（ΔCt 越低甲基化越高）。",
+          "<strong>微生态</strong>：孕次（OR 1.136，P=0.036）与病变正相关；卷曲乳杆菌阳性率与病变负相关。",
+          "<strong>中介效应</strong>：PAX1 甲基化完全中介「卷曲乳杆菌→宫颈病变」路径（效应 −0.099，95%CI −0.170~−0.039）。",
+          "<strong>相关因素</strong>：年龄、HR-HPV 与 PAX1/JAM3 甲基化正相关；卷曲乳杆菌与 PAX1 甲基化负相关。"
+        ],
+        "bullets_zh": [
+          "<strong>甲基化与病变</strong>：PAX1（β=−0.075，OR 0.928，P=0.010）与 JAM3（β=−0.139，OR 0.871，P&lt;0.001）甲基化与病变等级正相关（ΔCt 越低甲基化越高）。",
+          "<strong>微生态</strong>：孕次（OR 1.136，P=0.036）与病变正相关；卷曲乳杆菌阳性率与病变负相关。",
+          "<strong>中介效应</strong>：PAX1 甲基化完全中介「卷曲乳杆菌→宫颈病变」路径（效应 −0.099，95%CI −0.170~−0.039）。",
+          "<strong>相关因素</strong>：年龄、HR-HPV 与 PAX1/JAM3 甲基化正相关；卷曲乳杆菌与 PAX1 甲基化负相关。"
+        ]
+      },
+      {
+        "title": "结论",
+        "title_zh": "结论",
+        "bullets": [
+          "<strong>机制链</strong>：卷曲乳杆菌可能通过抑制 PAX1 甲基化水平影响宫颈病变发生发展。",
+          "<strong>微生态差异</strong>：阴道微生态在 HR-HPV 相关病变各阶段存在差异——为微生态干预与甲基化筛查结合提供线索。"
+        ],
+        "bullets_zh": [
+          "<strong>机制链</strong>：卷曲乳杆菌可能通过抑制 PAX1 甲基化水平影响宫颈病变发生发展。",
+          "<strong>微生态差异</strong>：阴道微生态在 HR-HPV 相关病变各阶段存在差异——为微生态干预与甲基化筛查结合提供线索。"
+        ]
+      }
+    ],
+    "takeaway": {
+      "title": "核心结论",
+      "title_zh": "核心结论",
+      "bullets": [
+        "<strong>微生态→甲基化→病变</strong>：卷曲乳杆菌通过抑制 PAX1 甲基化影响宫颈病变——完整的机制中介链。",
+        "<strong>联合管理前景</strong>：阴道微生态检测可与甲基化筛查互补，支持「微生态+甲基化」的宫颈癌防控新模式。"
+      ],
+      "bullets_zh": [
+        "<strong>微生态→甲基化→病变</strong>：卷曲乳杆菌通过抑制 PAX1 甲基化影响宫颈病变——完整的机制中介链。",
+        "<strong>联合管理前景</strong>：阴道微生态检测可与甲基化筛查互补，支持「微生态+甲基化」的宫颈癌防控新模式。"
+      ]
+    }
+  }
+]

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAX1/JAM3 Methylation for Cervical Cancer Diagnosis in HR-HPV+ Women — Feng et al. 2025</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #15：三法对比 hero + 两栏诊断研究，与 #1-14 均不同）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、白色 stat 卡、红色高亮表格
+  - 布局：标题带 → 三法对比 hero（PAX1m/JAM3m vs HPV16/18 vs TCT：AUC/OR 大卡，甲基化高亮）→ 两栏（左 560px：①背景与目的 ②研究设计【808 队列 + 病理柱状图】；右 1fr：③诊断性能【Se/Sp/PPV/NPV 卡 + Fig.1 阳性率图 + ROC 数据】④转诊对比【三法 refbar】+ 要点）→ 全宽临床意义带
+  - 选图：Fig.1 各级病变阳性率（606x382，1.59:1）
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  /* 三法对比 hero */
+  .cmp { flex: 0 0 auto; height: 130px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; gap: 12px; padding: 9px 10px; }
+  .cm { flex: 1; border-radius: 10px; padding: 8px 12px; display: flex; flex-direction: column; justify-content: center; }
+  .cm .cn { font-size: 11.5px; font-weight: 800; margin-bottom: 3px; }
+  .cm .row { display: flex; gap: 10px; }
+  .cm .kv { flex: 1; }
+  .cm .kv .k { font-size: 9px; color: var(--muted); }
+  .cm .kv .v { font-size: 18px; font-weight: 800; }
+  .cm .or { font-size: 10.5px; margin-top: 4px; font-weight: 700; }
+  .cm.other { background: #F3EDED; border: 1px solid #D9C9C7; }
+  .cm.other .cn { color: #8A6E6B; } .cm.other .kv .v { color: #8A6E6B; } .cm.other .or { color: #6B5755; }
+  .cm.win { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.9) 100%); }
+  .cm.win .cn { color: rgba(255,255,255,0.95); } .cm.win .kv .k { color: rgba(255,255,255,0.85); } .cm.win .kv .v { color: #fff; } .cm.win .or { color: #FFE3E1; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel table, .panel .statrow, .panel .tnote, .panel .figrow, .panel .refbar { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 4px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 1px 0 6px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 9px 4px; text-align: center; }
+  .stat .big { font-size: 20px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9.5px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .hbar { display: flex; gap: 6px; margin-top: 6px; align-items: flex-end; }
+  .hbar .b { flex: 1; text-align: center; }
+  .hbar .bar { background: linear-gradient(180deg, var(--secondary) 0%, var(--accent) 130%); border-radius: 4px 4px 0 0; }
+  .hbar .b1 .bar { height: 84px; } .hbar .b2 .bar { height: 59px; } .hbar .b3 .bar { height: 24px; }
+  .hbar .b4 .bar { height: 28px; } .hbar .b5 .bar { height: 20px; }
+  .hbar .vl { font-size: 10px; font-weight: 700; color: var(--accent-deep); margin-top: 2px; }
+  .hbar .lb { font-size: 9px; color: var(--muted); margin-top: 4px; }
+
+  .figrow { display: flex; gap: 12px; align-items: flex-start; justify-content: center; }
+  .fig { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px 4px; text-align: center; min-width: 0; }
+  .fig img { display: inline-block; height: auto; max-height: 175px; width: auto; max-width: 100%; border-radius: 3px; }
+  .fig svg { display: block; height: 175px; width: auto; margin: 0 auto; }
+  .fig .figcap { font-size: 10px; color: var(--muted); font-style: italic; line-height: 1.3; margin-top: 3px; text-align: left; }
+  .fig .figcap strong { color: var(--primary); font-style: normal; }
+
+  .refbar { margin: 1px 0 6px; }
+  .refrow { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .refrow .rlab { flex: 0 0 130px; font-size: 11px; color: var(--muted); font-weight: 600; text-align: right; }
+  .refrow .rtrack { flex: 1 1 auto; height: 24px; background: #F1E7E7; border-radius: 4px; overflow: hidden; }
+  .refrow .rfill { height: 100%; background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); border-radius: 4px; }
+  .refrow .rfill.dim { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); }
+  .refrow .rval { flex: 0 0 56px; font-size: 12px; font-weight: 800; color: var(--accent-deep); }
+
+  .minitable { width: 100%; border-collapse: collapse; margin: 2px 0 4px 0; font-size: 10.5px; }
+  .minitable th { background: rgba(215,75,74,0.12); color: var(--accent-deep); font-weight: 700; padding: 3px 5px; text-align: left; border-bottom: 2px solid var(--line); font-size: 10px; }
+  .minitable td { padding: 4px 5px; border-bottom: 1px solid var(--line); color: var(--muted); }
+  .minitable td:first-child { font-weight: 600; color: var(--text); }
+  .minitable tr:last-child td { border-bottom: none; }
+  .minitable .highlight { color: var(--primary); font-weight: 700; }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 4px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">J Mol Diagn Ther · 2025(10) · Diagnostic Study · China</div>
+    <h1 data-i18n="title">PAX1/JAM3 Methylation for Cervical Cancer Diagnosis in HR-HPV+ Women</h1>
+    <div class="title_alt" data-i18n="title_alt">PAX1/JAM3 基因甲基化在 HR-HPV 感染女性中宫颈癌的诊断价值</div>
+    <div class="subtitle" data-i18n="subtitle">808 HR-HPV+ women · PAX1m/JAM3m: Se 86.3%, Sp 91.0%, AUC 0.873 · beats HPV16/18 (0.678) &amp; TCT (0.608) · fewer colposcopy referrals</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Feng W, Zhai Y, Meng L, Lu X, Cao Z</div>
+      <div class="source" data-i18n="source">Beijing Obstetrics &amp; Gynecology Hospital, Capital Medical University</div>
+    </div>
+  </header>
+
+  <!-- 三法对比 hero -->
+  <div class="cmp">
+    <div class="cm win">
+      <div class="cn" data-i18n="c1n">PAX1m/JAM3m</div>
+      <div class="row">
+        <div class="kv"><div class="k" data-i18n="c1k1">AUC</div><div class="v">0.873</div></div>
+        <div class="kv"><div class="k" data-i18n="c1k2">Se</div><div class="v">86.3%</div></div>
+        <div class="kv"><div class="k" data-i18n="c1k3">Sp</div><div class="v">91.0%</div></div>
+      </div>
+      <div class="or" data-i18n="c1or">OR 51.41 (32.67–80.89)</div>
+    </div>
+    <div class="cm other">
+      <div class="cn" data-i18n="c2n">HPV16/18</div>
+      <div class="row">
+        <div class="kv"><div class="k" data-i18n="c2k1">AUC</div><div class="v">0.678</div></div>
+        <div class="kv"><div class="k" data-i18n="c2k2">Se</div><div class="v">76.7%</div></div>
+        <div class="kv"><div class="k" data-i18n="c2k3">Sp</div><div class="v">—</div></div>
+      </div>
+      <div class="or" data-i18n="c2or">OR 4.46 (3.13–6.35)</div>
+    </div>
+    <div class="cm other">
+      <div class="cn" data-i18n="c3n">TCT ≥ASC-US</div>
+      <div class="row">
+        <div class="kv"><div class="k" data-i18n="c3k1">AUC</div><div class="v">0.608</div></div>
+        <div class="kv"><div class="k" data-i18n="c3k2">Se</div><div class="v">—</div></div>
+        <div class="kv"><div class="k" data-i18n="c3k3">Sp</div><div class="v">—</div></div>
+      </div>
+      <div class="or" data-i18n="c3or">OR 4.13 (2.45–6.96)</div>
+    </div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Problem</strong>: HR-HPV DNA high sensitivity but low specificity — most infections transient → over-referral &amp; overtreatment.</li>
+          <li data-i18n="s1b"><strong>TCT limits</strong>: low sensitivity &amp; subjective — over-referral and added cost.</li>
+          <li data-i18n="s1c"><strong>Objective</strong>: evaluate PAX1m/JAM3m for cervical cancer diagnosis in HR-HPV+ women vs HPV16/18 &amp; TCT.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">808</div><div class="lab" data-i18n="s2s1">HR-HPV+ women</div></div>
+          <div class="stat"><div class="big">40y</div><div class="lab" data-i18n="s2s2">median age</div></div>
+          <div class="stat"><div class="big">73</div><div class="lab" data-i18n="s2s3">cervical cancer</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Setting</strong>: Beijing Ob/Gyn Hospital, Mar 2024 – Mar 2025; guideline-based colposcopy.</li>
+          <li data-i18n="s2b"><strong>Assays</strong>: HPV genotyping + TCT + PAX1m/JAM3m (qPCR).</li>
+          <li data-i18n="s2c"><strong>Endpoint</strong>: cervical cancer diagnosis by pathology; ROC &amp; OR comparison.</li>
+        </ul>
+        <div class="hbar">
+          <div class="b b1"><div class="bar"></div><div class="vl">39.7%</div><div class="lb" data-i18n="s2h1">Cervicitis</div></div>
+          <div class="b b2"><div class="bar"></div><div class="vl">27.6%</div><div class="lb" data-i18n="s2h2">CIN1</div></div>
+          <div class="b b3"><div class="bar"></div><div class="vl">10.8%</div><div class="lb" data-i18n="s2h3">CIN2</div></div>
+          <div class="b b4"><div class="bar"></div><div class="vl">12.9%</div><div class="lb" data-i18n="s2h4">CIN3</div></div>
+          <div class="b b5"><div class="bar"></div><div class="vl">9.0%</div><div class="lb" data-i18n="s2h5">Cancer</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">91.8%</div><div class="lab" data-i18n="s2s4">PAX1m/JAM3m · cancer</div></div>
+          <div class="stat"><div class="big">87.7%</div><div class="lab" data-i18n="s2s5">JAM3m · cancer</div></div>
+          <div class="stat"><div class="big">76.7%</div><div class="lab" data-i18n="s2s6">HPV16/18 · cancer</div></div>
+        </div>
+        <table class="minitable">
+          <tr><th data-i18n="m_h1">Method · in cancer (n=73)</th><th data-i18n="m_h2">Positivity</th></tr>
+          <tr><td class="highlight" data-i18n="m_r1a">PAX1m/JAM3m</td><td class="highlight" data-i18n="m_r1b">91.8%</td></tr>
+          <tr><td data-i18n="m_r2a">JAM3m</td><td data-i18n="m_r2b">87.7%</td></tr>
+          <tr><td data-i18n="m_r3a">HPV16/18</td><td data-i18n="m_r3b">76.7%</td></tr>
+        </table>
+        <ul>
+          <li data-i18n="s2e"><strong>Correlation</strong>: three-method comparison in cancer diagnosis — methylation strongest.</li>
+          <li data-i18n="s2f"><strong>Severity signal</strong>: positivity rises with grade, peaking in cancer — supports triage.</li>
+        </ul>
+        <div class="tnote" data-i18n="s2d">Methylation positivity low in CIN2−, spikes in CIN3 &amp; cancer — mirrors severity (Fig. 1).</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Diagnostic Performance</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">86.3%</div><div class="lab" data-i18n="s3s1">Sensitivity</div></div>
+          <div class="stat"><div class="big">91.0%</div><div class="lab" data-i18n="s3s2">Specificity</div></div>
+          <div class="stat"><div class="big">77.6%</div><div class="lab" data-i18n="s3s3">PPV</div></div>
+          <div class="stat"><div class="big">93.5%</div><div class="lab" data-i18n="s3s4">NPV</div></div>
+        </div>
+        <div class="figrow">
+          <div class="fig">
+            <img src="images/fig1_rates.jpg" alt="Positivity rates by cervical lesion grade for five methods">
+            <div class="figcap"><strong>Fig. 1</strong> <span data-i18n="s3c1">Positivity by grade — PAX1m/JAM3m 91.8% in cancer, spikes at CIN3/cancer.</span></div>
+          </div>
+          <div class="fig">
+            <svg viewBox="0 0 440 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AUC comparison of three methods">
+              <line x1="40" y1="260" x2="410" y2="260" stroke="#D9D4D2" stroke-width="1.5"/>
+              <g stroke="#EDE5E3" stroke-width="1"><line x1="40" y1="85" x2="410" y2="85"/><line x1="40" y1="150" x2="410" y2="150"/><line x1="40" y1="215" x2="410" y2="215"/></g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="11" fill="#5C5252"><text x="38" y="264">0</text><text x="38" y="89">0.5</text><text x="38" y="154">1.0</text></g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="12" font-weight="700" fill="#3A3232"><text x="200" y="16" text-anchor="middle" data-i18n="ag0">AUC — cervical cancer diagnosis</text></g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="11.5" fill="#5C5252" text-anchor="end">
+                <text x="190" y="70" data-i18n="ag1">PAX1m/JAM3m</text>
+                <text x="190" y="120" data-i18n="ag2">HPV16/18</text>
+                <text x="190" y="170" data-i18n="ag3">TCT ≥ASC-US</text>
+              </g>
+              <g>
+                <rect x="200" y="54" width="184" height="26" fill="#D74B4A" rx="3"/>
+                <rect x="200" y="104" width="132" height="26" fill="#C9A9A7" rx="3"/>
+                <rect x="200" y="154" width="112" height="26" fill="#C9A9A7" rx="3"/>
+              </g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="12.5" font-weight="800" fill="#B83A39">
+                <text x="394" y="72">0.873</text>
+                <text x="342" y="122">0.678</text>
+                <text x="322" y="172">0.608</text>
+              </g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="9.5" fill="#5C5252">
+                <text x="200" y="292" text-anchor="middle" data-i18n="ag4">methylation best · P &lt; 0.001</text>
+              </g>
+            </svg>
+            <div class="figcap"><strong>Fig.</strong> <span data-i18n="s3c2">AUC comparison — PAX1m/JAM3m 0.873 best.</span></div>
+          </div>
+        </div>
+        <div class="tnote" data-i18n="s3note">AUC 0.873 (0.839–0.907) — best of the three methods (P&lt;0.001).</div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">4</span><span data-i18n="s4t">Referral Reduction</span></h3>
+        <div class="refbar">
+          <div class="refrow"><span class="rlab" data-i18n="rb1">TCT ≥ASC-US</span><div class="rtrack"><div class="rfill dim" style="width:80.7%"></div></div><span class="rval">80.70%</span></div>
+          <div class="refrow"><span class="rlab" data-i18n="rb2">HPV16/18</span><div class="rtrack"><div class="rfill dim" style="width:50.7%"></div></div><span class="rval">50.72%</span></div>
+          <div class="refrow"><span class="rlab" data-i18n="rb3">PAX1m/JAM3m</span><div class="rtrack"><div class="rfill" style="width:43.9%"></div></div><span class="rval">43.94%</span></div>
+        </div>
+        <ul>
+          <li data-i18n="s4a"><strong>Referral</strong>: 43.94% — <b>36.76% lower</b> than TCT, 6.78% lower than HPV16/18.</li>
+          <li data-i18n="s4b"><strong>OR</strong>: 51.41 for cancer if methylation(+) — far stronger than HPV16/18 (4.46) / TCT (4.13).</li>
+          <li data-i18n="s4c"><strong>Trend</strong>: methylation positivity low in CIN2−, spikes in CIN3 &amp; cancer — an objective severity signal.</li>
+          <li data-i18n="s4d"><strong>NPV 93.5%</strong>: methylation(−) cancer highly unlikely — safe follow-up.</li>
+          <li data-i18n="s4e"><strong>PPV 77.6%</strong>: methylation(+) warrants colposcopy.</li>
+        </ul>
+        <ul style="margin-top:2px;">
+          <li data-i18n="s4g"><strong>P&lt;0.001</strong>: all OR comparisons significant.</li>
+          <li data-i18n="s4h"><strong>Clinical fit</strong>: methylation as reflex triage in HR-HPV+ screening.</li>
+        </ul>
+        <div class="tnote" data-i18n="s4f">Three-method correlation confirms methylation as the strongest single cancer signal.</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>In HR-HPV+ women,</b> PAX1m/JAM3m outperforms HPV16/18 and TCT for cervical cancer diagnosis (AUC 0.873, OR 51.41) — a precise, objective triage for this large screening group.</li>
+      <li data-i18n="c2"><b>Lower referral rate</b> (43.94% vs 80.70% TCT) reduces unnecessary colposcopy and overtreatment.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "J Mol Diagn Ther · 2025(10) · Diagnostic Study · China",
+      title: "PAX1/JAM3 Methylation for Cervical Cancer Diagnosis in HR-HPV+ Women",
+      title_alt: "PAX1/JAM3 基因甲基化在 HR-HPV 感染女性中宫颈癌的诊断价值",
+      subtitle: "808 HR-HPV+ women · PAX1m/JAM3m: Se 86.3%, Sp 91.0%, AUC 0.873 · beats HPV16/18 (0.678) & TCT (0.608) · fewer colposcopy referrals",
+      authors: "Feng W, Zhai Y, Meng L, Lu X, Cao Z",
+      source: "Beijing Obstetrics & Gynecology Hospital, Capital Medical University",
+      c1n: "PAX1m/JAM3m", c1k1: "AUC", c1k2: "Se", c1k3: "Sp", c1or: "OR 51.41 (32.67–80.89)",
+      c2n: "HPV16/18", c2k1: "AUC", c2k2: "Se", c2k3: "Sp", c2or: "OR 4.46 (3.13–6.35)",
+      c3n: "TCT ≥ASC-US", c3k1: "AUC", c3k2: "Se", c3k3: "Sp", c3or: "OR 4.13 (2.45–6.96)",
+      s1t: "Background & Objective",
+      s1a: "<strong>Problem</strong>: HR-HPV DNA high sensitivity but low specificity — most infections transient → over-referral & overtreatment.",
+      s1b: "<strong>TCT limits</strong>: low sensitivity & subjective — over-referral and added cost.",
+      s1c: "<strong>Objective</strong>: evaluate PAX1m/JAM3m for cervical cancer diagnosis in HR-HPV+ women vs HPV16/18 & TCT.",
+      s2t: "Study Design & Cohort",
+      s2s1: "HR-HPV+ women", s2s2: "median age", s2s3: "cervical cancer",
+      s2a: "<strong>Setting</strong>: Beijing Ob/Gyn Hospital, Mar 2024 – Mar 2025; guideline-based colposcopy.",
+      s2b: "<strong>Assays</strong>: HPV genotyping + TCT + PAX1m/JAM3m (qPCR).",
+      s2c: "<strong>Endpoint</strong>: cervical cancer diagnosis by pathology; ROC & OR comparison.",
+      s2h1: "Cervicitis", s2h2: "CIN1", s2h3: "CIN2", s2h4: "CIN3", s2h5: "Cancer",
+      s3t: "Diagnostic Performance",
+      s3s1: "Sensitivity", s3s2: "Specificity", s3s3: "PPV", s3s4: "NPV",
+      s3c1: "Positivity by grade — PAX1m/JAM3m 91.8% in cancer, spikes at CIN3/cancer.",
+      s3c2: "AUC comparison — PAX1m/JAM3m 0.873 best.",
+      ag0: "AUC — cervical cancer diagnosis", ag1: "PAX1m/JAM3m", ag2: "HPV16/18", ag3: "TCT ≥ASC-US", ag4: "methylation best · P < 0.001",
+      s3note: "AUC 0.873 (0.839–0.907) — best of the three methods (P<0.001).",
+      s4t: "Referral Reduction",
+      rb1: "TCT ≥ASC-US", rb2: "HPV16/18", rb3: "PAX1m/JAM3m",
+      s4a: "<strong>Referral</strong>: 43.94% — <b>36.76% lower</b> than TCT, 6.78% lower than HPV16/18.",
+      s4b: "<strong>OR</strong>: 51.41 for cancer if methylation(+) — far stronger than HPV16/18 (4.46) / TCT (4.13).",
+      s4c: "<strong>Trend</strong>: methylation positivity low in CIN2−, spikes in CIN3 & cancer — an objective severity signal.",
+      s4d: "<strong>NPV 93.5%</strong>: methylation(−) cancer highly unlikely — safe follow-up.",
+      s4e: "<strong>PPV 77.6%</strong>: methylation(+) warrants colposcopy.",
+      s4f: "Three-method correlation confirms methylation as the strongest single cancer signal.",      c_ttl: "Clinical Significance",
+      c1: "<b>In HR-HPV+ women,</b> PAX1m/JAM3m outperforms HPV16/18 and TCT for cervical cancer diagnosis (AUC 0.873, OR 51.41) — a precise, objective triage for this large screening group.",
+      c2: "<b>Lower referral rate</b> (43.94% vs 80.70% TCT) reduces unnecessary colposcopy and overtreatment."
+    },
+    zh: {
+      kicker: "标记免疫分析与临床 · 2025(10) · 诊断研究 · 中国",
+      title: "PAX1/JAM3 基因甲基化在 HR-HPV 感染女性中宫颈癌的诊断价值",
+      title_alt: "PAX1/JAM3 Methylation for Cervical Cancer Diagnosis in HR-HPV+ Women",
+      subtitle: "808 例 HR-HPV+ 女性 · PAX1m/JAM3m：Se 86.3%、Sp 91.0%、AUC 0.873 · 优于 HPV16/18（0.678）与 TCT（0.608）· 减少阴道镜转诊",
+      authors: "冯伟明、翟燕红、孟令欣、陆霞、曹正",
+      source: "首都医科大学附属北京妇产医院 / 北京妇幼保健院",
+      c1n: "PAX1m/JAM3m", c1k1: "AUC", c1k2: "灵敏度", c1k3: "特异度", c1or: "OR 51.41（32.67–80.89）",
+      c2n: "HPV16/18", c2k1: "AUC", c2k2: "灵敏度", c2k3: "特异度", c2or: "OR 4.46（3.13–6.35）",
+      c3n: "TCT ≥ASC-US", c3k1: "AUC", c3k2: "灵敏度", c3k3: "特异度", c3or: "OR 4.13（2.45–6.96）",
+      s1t: "背景与目的",
+      s1a: "<strong>问题</strong>：HR-HPV DNA 灵敏度高但特异度低——多数感染一过性 → 过度转诊与过度治疗。",
+      s1b: "<strong>TCT 局限</strong>：灵敏度低且主观——过度转诊与费用增加。",
+      s1c: "<strong>目的</strong>：评估 PAX1m/JAM3m 在 HR-HPV+ 女性中诊断宫颈癌的价值，与 HPV16/18、TCT 比较。",
+      s2t: "研究设计与队列",
+      s2s1: "HR-HPV+ 女性", s2s2: "中位年龄", s2s3: "宫颈癌",
+      s2a: "<strong>地点</strong>：北京妇产医院，2024.3–2025.3；按指南行阴道镜。",
+      s2b: "<strong>检测</strong>：HPV 分型 + TCT + PAX1m/JAM3m（qPCR）。",
+      s2c: "<strong>终点</strong>：病理诊断宫颈癌；ROC 与 OR 比较。",
+      s2h1: "宫颈炎", s2h2: "CIN1", s2h3: "CIN2", s2h4: "CIN3", s2h5: "癌",
+      s3t: "诊断性能",
+      s3s1: "灵敏度", s3s2: "特异度", s3s3: "PPV", s3s4: "NPV",
+      s3c1: "各级病变阳性率——PAX1m/JAM3m 在癌中 91.8%，CIN3/癌快速升高。",
+      s3c2: "三法 AUC 对比——PAX1m/JAM3m 0.873 最佳。",
+      ag0: "AUC —— 宫颈癌诊断", ag1: "PAX1m/JAM3m", ag2: "HPV16/18", ag3: "TCT ≥ASC-US", ag4: "甲基化最佳 · P < 0.001",
+      s3note: "AUC 0.873（0.839–0.907）——三法中最佳（P&lt;0.001）。",
+      s4t: "转诊减少",
+      rb1: "TCT ≥ASC-US", rb2: "HPV16/18", rb3: "PAX1m/JAM3m",
+      s4a: "<strong>转诊</strong>：43.94%——<b>较 TCT 低 36.76%</b>、较 HPV16/18 低 6.78%。",
+      s4b: "<strong>OR</strong>：甲基化(+) 诊断癌的 OR 51.41——远强于 HPV16/18（4.46）/ TCT（4.13）。",
+      s4c: "<strong>趋势</strong>：甲基化阳性率在 CIN2− 低、CIN3 与癌中骤升——客观的严重度信号。",
+      s4d: "<strong>NPV 93.5%</strong>：甲基化(−) 患癌可能性极低——可安全随访。",
+      s4e: "<strong>PPV 77.6%</strong>：甲基化(+) 应行阴道镜。",
+      s4f: "三法相关性分析证实甲基化是最强的单一癌症信号。",      c_ttl: "临床意义",
+      c1: "<b>在 HR-HPV+ 女性中，</b>PAX1m/JAM3m 诊断宫颈癌优于 HPV16/18 与 TCT（AUC 0.873、OR 51.41）——这一庞大筛查群体的精准客观分诊工具。",
+      c2: "<b>转诊率更低</b>（43.94% vs TCT 80.70%）——减少不必要阴道镜与过度治疗。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

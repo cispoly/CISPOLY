@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JAM3/PAX1 Hypermethylation for HSIL Diagnosis in hrHPV+ Women — Li et al. 2023</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #25：决策树分层诊断）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、大数字卡、条形对比
+  - 布局：标题带 → hero（136 例 / ΔCtJ 相关 −0.448 / ΔCtP>6.22 → 97.5% 非高级别 / 独立于 LBC）→ 两栏（左 560px：①背景与目的 ②研究设计【136 例队列 + 相关热图】；右 1fr：③相关性与组间差异【条形】④条件推断树【原图】⑤分层诊断规则【规则卡】）→ 全宽临床意义带
+  - 选图：相关热图（1785×1577）、条件推断树（1929×1151）
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 98px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 22px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .figrow, .panel .rulecard { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 0 0 6px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 9px 4px; text-align: center; }
+  .stat .big { font-size: 18px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .figrow { display: flex; gap: 12px; align-items: flex-start; justify-content: center; }
+  .fig { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px 5px; text-align: center; min-width: 0; }
+  .fig img { display: inline-block; height: auto; max-height: 168px; width: auto; max-width: 100%; border-radius: 3px; }
+  .fig .figcap { font-size: 10px; color: var(--muted); font-style: italic; line-height: 1.3; margin-top: 3px; text-align: left; }
+  .fig .figcap strong { color: var(--primary); font-style: normal; }
+
+  .spbars { margin: 2px 0 8px; }
+  .spb { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .spb .sbl { flex: 0 0 150px; font-size: 12px; font-weight: 700; color: var(--text); text-align: right; }
+  .spb .sbt { flex: 1 1 auto; height: 22px; background: #F1E7E7; border-radius: 5px; overflow: hidden; position: relative; }
+  .spb .sbf { height: 100%; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 13px; font-weight: 800; color: #fff; }
+  .spb.win .sbf { background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); }
+  .spb.lose .sbf { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); color: #6B5755; }
+
+  .rulecard { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px 8px; text-align: center; }
+  .rulecard .n { font-size: 15px; font-weight: 800; color: var(--primary); line-height: 1.15; }
+  .rulecard .l { font-size: 9.5px; color: var(--muted); margin-top: 3px; line-height: 1.25; }
+  .rulecard.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .rulecard.hot .n { color: #fff; } .rulecard.hot .l { color: rgba(255,255,255,0.92); font-weight: 600; }
+  .rulerow { display: flex; gap: 10px; margin: 0 0 6px; }
+  .treewrap { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(0,1.25fr) minmax(0,1fr); grid-template-rows: 1fr; gap: 12px; align-items: stretch; margin: 2px 0 0; }
+  .treewrap .fig { display: flex; flex-direction: column; justify-content: center; }
+  .treewrap .fig img { align-self: center; }
+  .treewrap .side { display: flex; flex-direction: column; justify-content: center; gap: 6px; min-width: 0; }
+  .rulecard2 { background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 7px 12px; display: flex; align-items: center; gap: 10px; }
+  .rulecard2 .n { flex: 0 0 auto; font-size: 13.5px; font-weight: 800; color: var(--primary); }
+  .rulecard2 .l { font-size: 10.5px; color: var(--muted); line-height: 1.25; }
+  .rulecard2.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .rulecard2.hot .n { color: #fff; } .rulecard2.hot .l { color: rgba(255,255,255,0.92); font-weight: 600; }
+  .nodewrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .node { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 5px 6px; text-align: center; }
+  .node .t { font-size: 10px; font-weight: 700; color: var(--primary); line-height: 1.2; }
+  .node .n { font-size: 12.5px; font-weight: 800; color: var(--text); line-height: 1.2; }
+  .node .s { font-size: 9px; color: var(--muted); line-height: 1.2; }
+  .node.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .node.hot .t { color: #fff; } .node.hot .n { color: #fff; } .node.hot .s { color: rgba(255,255,255,0.9); }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 4px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+  body.lang-zh .panel ul li { line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">J Cent South Univ (Med Sci) · 2023;48(12):1820–1829 · China</div>
+    <h1 data-i18n="title">JAM3/PAX1 Hypermethylation for HSIL Diagnosis in hrHPV+ Women</h1>
+    <div class="title_alt" data-i18n="title_alt">高危型人乳头瘤病毒感染患者宫颈脱落细胞 JAM3/PAX1 高甲基化诊断宫颈高级别病变</div>
+    <div class="subtitle" data-i18n="subtitle">136 hrHPV+ women (122 non-HSIL + 14 HSIL) · methylation stratifies independently of LBC · ΔCtP &gt;6.22 → 97.5% non-HSIL · ΔCtJ correlation r = −0.448</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Li X, He S, Zhao X, Sun D, Wu S, Xu D, Li Y</div>
+      <div class="source" data-i18n="source">Xiangya 3rd Hospital, Central South University · 中南大学学报（医学版）2023;48(12):1820–1829</div>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="stat"><div class="big">136</div><div class="lab" data-i18n="h1">hrHPV+ women</div></div>
+    <div class="stat hot"><div class="big">r = −0.448</div><div class="lab" data-i18n="h2">ΔCtJ vs lesion (P&lt;0.001)</div></div>
+    <div class="stat"><div class="big">97.5%</div><div class="lab" data-i18n="h3">non-HSIL if ΔCtP &gt;6.22</div></div>
+    <div class="stat"><div class="big">LBC-free</div><div class="lab" data-i18n="h4">independent stratification</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Limits of hrHPV/LBC</strong>: hrHPV low specificity; LBC sensitivity 50–80% &amp; subjective ASC-US reads.</li>
+          <li data-i18n="s1b"><strong>Objective</strong>: evaluate JAM3/PAX1 methylation vs LBC for HSIL — alone or combined.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">122</div><div class="lab" data-i18n="s2s1">non-HSIL</div></div>
+          <div class="stat hot"><div class="big">14</div><div class="lab" data-i18n="s2s2">HSIL</div></div>
+          <div class="stat"><div class="big">2021.6–22.6</div><div class="lab" data-i18n="s2s3">colposcopy clinic</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">ΔCtP</div><div class="lab" data-i18n="s2s4">group difference P&lt;0.05</div></div>
+          <div class="stat hot"><div class="big">ΔCtJ</div><div class="lab" data-i18n="s2s5">group difference P&lt;0.05</div></div>
+          <div class="stat"><div class="big">LBC</div><div class="lab" data-i18n="s2s6">group difference P&lt;0.05</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2e"><strong>Inclusion</strong>: confirmed histology; LBC+hrHPV+colposcopy; sexual history; no treatment in 6 mo.</li>
+          <li data-i18n="s2f"><strong>Exclusion</strong>: menstruation; known genital cancer; autoimmune/immunosuppression; pregnancy/lactation; HPV vaccination.</li>
+          <li data-i18n="s2a"><strong>Design</strong>: retrospective, Xiangya 3rd Hospital colposcopy clinic.</li>
+          <li data-i18n="s2b"><strong>Assays</strong>: LBC · hrHPV · histopathology · vaginal microecology · ΔCtP/ΔCtJ.</li>
+          <li data-i18n="s2c"><strong>Model</strong>: conditional inference tree (R party) for classification.</li>
+          <li data-i18n="s2d"><strong>Statistics</strong>: t-test / Wilcoxon · χ² / Fisher · Pearson correlation.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">NS</div><div class="lab" data-i18n="s2s7">age · BMI · HPV type</div></div>
+          <div class="stat"><div class="big">NS</div><div class="lab" data-i18n="s2s8">menopause · TZ type</div></div>
+          <div class="stat"><div class="big">0.037</div><div class="lab" data-i18n="s2s9">flora diversity P</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2g"><strong>Variables</strong>: demographics · LBC · hrHPV · histology · microecology · colposcopy TZ · ΔCtJ/ΔCtP.</li>
+        </ul>
+        <div class="figrow" style="margin-top:2px;">
+          <div class="fig">
+            <img src="images/fig_heatmap.jpg" alt="Correlation heatmap of clinical parameters" style="max-height:150px;">
+            <div class="figcap"><strong>Fig.</strong> <span data-i18n="s2c1">Correlation heatmap — pathology negatively linked to ΔCtP, ΔCtJ, LBC, flora diversity.</span></div>
+          </div>
+        </div>
+        <div class="tnote" data-i18n="s2n">Ethics No. 23137 · Hunan Clinical Innovation Project 2020SK53604.</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">3</span><span data-i18n="s3t">Correlations with Lesion Grade</span></h3>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s3a1">ΔCtJ</div><div class="sbt"><div class="sbf" style="width:89.6%">r = −0.448</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s3a2">ΔCtP</div><div class="sbt"><div class="sbf" style="width:72%">r = −0.360</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s3a3">LBC grade</div><div class="sbt"><div class="sbf" style="width:61%">r = −0.305</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s3a4">Flora diversity</div><div class="sbt"><div class="sbf" style="width:36.6%">r = −0.183</div></div></div>
+        </div>
+        <ul>
+          <li data-i18n="s3a"><strong>Methylation ↑ (ΔCt ↓) tracks HSIL</strong> — stronger than LBC; age/BMI/HPV type &amp; menopause ns.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow" style="background: var(--panel-alt);">
+        <h3><span class="num">4</span><span data-i18n="s4t">Conditional Inference Tree &amp; Decision Rules</span></h3>
+        <div class="treewrap">
+          <div class="fig">
+            <img src="images/fig_tree.jpg" alt="Conditional inference tree for HSIL diagnosis" style="max-height:330px;">
+            <div class="figcap"><strong>Fig.</strong> <span data-i18n="s4c1">Tree splits on ΔCtJ → ΔCtP → LBC — gray = non-HSIL, black = HSIL (probability 0–1).</span></div>
+          </div>
+          <div class="side">
+            <div class="rulecard2 hot"><div class="n">ΔCtJ &gt;10.13</div><div class="l" data-i18n="s5r1">100% non-HSIL — safe deferral</div></div>
+            <div class="rulecard2"><div class="n">ΔCtP &gt;6.22</div><div class="l" data-i18n="s5r2">97.5% non-HSIL (117/120)</div></div>
+            <div class="rulecard2"><div class="n">ΔCtJ &gt;8.61 + ASC-US/NILM</div><div class="l" data-i18n="s5r3">99.1% non-HSIL</div></div>
+            <div class="nodewrap">
+              <div class="node"><div class="t" data-i18n="s5n1">ΔCtJ ≤8.61</div><div class="n">20 (9/11)</div><div class="s" data-i18n="s5n1s">non/HSIL ~1:1</div></div>
+              <div class="node"><div class="t" data-i18n="s5n2">8.61 &lt; ΔCtJ ≤10.13</div><div class="n">12 (9/3)</div><div class="s" data-i18n="s5n2s">HSIL falls</div></div>
+              <div class="node hot"><div class="t" data-i18n="s5n3">ΔCtJ &gt;10.13</div><div class="n">104 (104/0)</div><div class="s" data-i18n="s5n3s">all non-HSIL</div></div>
+              <div class="node"><div class="t" data-i18n="s5n4">ΔCtP ≤6.22</div><div class="n">16 (5/11)</div><div class="s" data-i18n="s5n4s">mostly HSIL</div></div>
+              <div class="node hot"><div class="t" data-i18n="s5n5">ΔCtP &gt;6.22</div><div class="n">120 (117/3)</div><div class="s" data-i18n="s5n5s">97.5% non-HSIL</div></div>
+              <div class="node"><div class="t" data-i18n="s5n6">LBC = HSIL</div><div class="n">9 (3/6)</div><div class="s" data-i18n="s5n6s">3 non / 6 HSIL</div></div>
+            </div>
+            <ul>
+              <li data-i18n="s5a"><strong>Negative rule out</strong>: high ΔCt safely excludes HSIL — fewer colposcopies.</li>
+              <li data-i18n="s5b"><strong>≥ LBC alone</strong>: methylation alone not inferior to combined LBC models.</li>
+              <li data-i18n="s5c"><strong>Add-on</strong>: improves LBC accuracy; objective &amp; self-sampling friendly.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Methylation stratifies HSIL independently of LBC</b> — a cytology-free triage path for hrHPV+ women.</li>
+      <li data-i18n="c2"><b>High-NPV tree rules</b> (ΔCtJ &gt;10.13 → 100% non-HSIL) enable safe deferral — fewer colposcopies, earlier treatment.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "J Cent South Univ (Med Sci) · 2023;48(12):1820–1829 · China",
+      title: "JAM3/PAX1 Hypermethylation for HSIL Diagnosis in hrHPV+ Women",
+      title_alt: "高危型人乳头瘤病毒感染患者宫颈脱落细胞 JAM3/PAX1 高甲基化诊断宫颈高级别病变",
+      subtitle: "136 hrHPV+ women (122 non-HSIL + 14 HSIL) · methylation stratifies independently of LBC · ΔCtP >6.22 → 97.5% non-HSIL · ΔCtJ correlation r = −0.448",
+      authors: "Li X, He S, Zhao X, Sun D, Wu S, Xu D, Li Y",
+      source: "Xiangya 3rd Hospital, Central South University · J Cent South Univ (Med Sci) 2023;48(12):1820–1829",
+      h1: "hrHPV+ women", h2: "ΔCtJ vs lesion (P<0.001)", h3: "non-HSIL if ΔCtP >6.22", h4: "independent stratification",
+      s1t: "Background & Objective",
+      s1a: "<strong>Limits of hrHPV/LBC</strong>: hrHPV low specificity; LBC sensitivity 50–80% & subjective ASC-US reads.",
+      s1b: "<strong>Objective</strong>: evaluate JAM3/PAX1 methylation vs LBC for HSIL — alone or combined.",
+      s2t: "Study Design & Cohort",
+      s2s1: "non-HSIL", s2s2: "HSIL", s2s3: "colposcopy clinic", s2s4: "group difference P<0.05", s2s5: "group difference P<0.05", s2s6: "group difference P<0.05",
+      s2e: "<strong>Inclusion</strong>: confirmed histology; LBC+hrHPV+colposcopy; no treatment in 6 mo.",
+      s2f: "<strong>Exclusion</strong>: menstruation; genital cancer; immunosuppression; pregnancy; HPV vaccination.",
+      s2a: "<strong>Design</strong>: retrospective, Xiangya 3rd Hospital colposcopy clinic.",
+      s2b: "<strong>Assays</strong>: LBC · hrHPV · histopathology · vaginal microecology · ΔCtP/ΔCtJ.",
+      s2c: "<strong>Model</strong>: conditional inference tree (R party) for classification.",
+      s2d: "<strong>Statistics</strong>: t-test / Wilcoxon · χ² / Fisher · Pearson correlation.",
+      s2c1: "Correlation heatmap — pathology negatively linked to ΔCtP, ΔCtJ, LBC, flora diversity.",
+      s2n: "Ethics No. 23137 · Hunan Clinical Innovation Project 2020SK53604.",
+      s3t: "Correlations with Lesion Grade",
+      s3a1: "ΔCtJ", s3a2: "ΔCtP", s3a3: "LBC grade", s3a4: "Flora diversity",
+      s3a: "<strong>Methylation ↑ (ΔCt ↓) tracks HSIL</strong> — stronger than LBC; age/BMI/HPV type & menopause ns.",
+      s4t: "Conditional Inference Tree & Decision Rules",
+      s4c1: "Tree splits on ΔCtJ → ΔCtP → LBC — gray = non-HSIL, black = HSIL (probability 0–1).",
+      s5t: "Decision Rules — High NPV",
+      s5r1: "100% non-HSIL — safe deferral", s5r2: "97.5% non-HSIL (117/120)", s5r3: "99.1% non-HSIL",
+      s5a: "<strong>Negative rule out</strong>: high ΔCt safely excludes HSIL — fewer colposcopies.",
+      s5b: "<strong>≥ LBC alone</strong>: methylation alone not inferior to combined LBC models.",
+      s5c: "<strong>Add-on</strong>: improves LBC accuracy; objective & self-sampling friendly.",
+      s5n1: "ΔCtJ ≤8.61", s5n1s: "non/HSIL ~1:1", s5n2: "8.61 < ΔCtJ ≤10.13", s5n2s: "HSIL falls", s5n3: "ΔCtJ >10.13", s5n3s: "all non-HSIL", s5n4: "ΔCtP ≤6.22", s5n4s: "mostly HSIL", s5n5: "ΔCtP >6.22", s5n5s: "97.5% non-HSIL", s5n6: "LBC = HSIL", s5n6s: "3 non / 6 HSIL",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Methylation stratifies HSIL independently of LBC</b> — a cytology-free triage path for hrHPV+ women.",
+      c2: "<b>High-NPV tree rules</b> (ΔCtJ >10.13 → 100% non-HSIL) enable safe deferral — fewer colposcopies, earlier treatment."
+    },
+    zh: {
+      kicker: "中南大学学报（医学版）· 2023;48(12):1820–1829 · 中国",
+      title: "高危型人乳头瘤病毒感染患者宫颈脱落细胞 JAM3/PAX1 高甲基化诊断宫颈高级别病变",
+      title_alt: "JAM3/PAX1 Hypermethylation for HSIL Diagnosis in hrHPV+ Women",
+      subtitle: "136 例 hrHPV+（非高级别 122 + 高级别 14）· 甲基化独立于 LBC 分层诊断 · ΔCtP &gt;6.22 → 97.5% 非高级别 · ΔCtJ 相关 r = −0.448",
+      authors: "李翔、贺斯黎、赵行平、孙丹、吴思、徐大宝、李颖佳",
+      source: "中南大学湘雅三医院 · 中南大学学报（医学版）2023;48(12):1820–1829",
+      h1: "hrHPV+ 女性", h2: "ΔCtJ 与病变相关（P&lt;0.001）", h3: "ΔCtP &gt;6.22 时非高级别", h4: "独立分层",
+      s1t: "背景与目的",
+      s1a: "<strong>hrHPV/LBC 局限</strong>：hrHPV 特异度低；LBC 灵敏度 50–80%，ASC-US 判读主观。",
+      s1b: "<strong>目的</strong>：评价 JAM3/PAX1 甲基化与 LBC 相比对 HSIL 的诊断能力——单用或联合。",
+      s2t: "研究设计与队列",
+      s2s1: "非高级别", s2s2: "高级别", s2s3: "阴道镜门诊", s2s4: "组间差异 P&lt;0.05", s2s5: "组间差异 P&lt;0.05", s2s6: "组间差异 P&lt;0.05",
+      s2e: "<strong>纳入</strong>：病理明确诊断；接受 LBC+hrHPV+阴道镜；有性生活史；6 个月内未抗 HPV 治疗。",
+      s2f: "<strong>排除</strong>：月经期；生殖道恶性肿瘤；自身免疫/免疫抑制剂；妊娠/哺乳；HPV 疫苗。",
+      s2a: "<strong>设计</strong>：回顾性收集湘雅三医院妇科阴道镜门诊患者。",
+      s2b: "<strong>检测</strong>：LBC · hrHPV · 宫颈组织病理 · 阴道微生态 · JAM3(ΔCtJ) 与 PAX1(ΔCtP) 甲基化。",
+      s2c: "<strong>模型</strong>：条件推断树（R party 包）分类诊断。",
+      s2d: "<strong>统计</strong>：t 检验 / Wilcoxon 秩和 · χ² 或 Fisher 确切概率法 · Pearson 相关分析。",
+      s2c1: "相关热图——病理与 ΔCtP、ΔCtJ、LBC、菌群多样性负相关。",
+      s2n: "伦理审批号 23137 · 湖南省临床医疗技术创新引导项目（2020SK53604）资助。",
+      s3t: "与病变等级的相关性",
+      s3a1: "ΔCtJ", s3a2: "ΔCtP", s3a3: "LBC 等级", s3a4: "菌群多样性",
+      s3a: "<strong>甲基化 ↑（ΔCt ↓）随 HSIL 升高</strong>——强于 LBC；年龄/BMI/HPV 型别、绝经无显著相关。",
+      s4t: "条件推断树与分层规则",
+      s4c1: "树按 ΔCtJ → ΔCtP → LBC 分裂——灰 = 非高级别，黑 = 高级别（概率 0–1）。",
+      s5t: "分层规则——高 NPV",
+      s5r1: "100% 非高级别——安全推迟转诊", s5r2: "97.5% 非高级别（117/120）", s5r3: "99.1% 非高级别",
+      s5a: "<strong>阴性排除</strong>：高 ΔCt 可安全排除 HSIL——减少阴道镜。",
+      s5b: "<strong>不弱于单用 LBC</strong>：甲基化单独使用不劣于联合 LBC 模型。",
+      s5c: "<strong>联合价值</strong>：提升 LBC 准确率；客观且支持自采样。",
+      s5n1: "ΔCtJ ≤8.61", s5n1s: "非/HSIL ≈1:1", s5n2: "8.61 < ΔCtJ ≤10.13", s5n2s: "HSIL 减少", s5n3: "ΔCtJ >10.13", s5n3s: "全部非 HSIL", s5n4: "ΔCtP ≤6.22", s5n4s: "多为 HSIL", s5n5: "ΔCtP >6.22", s5n5s: "97.5% 非 HSIL", s5n6: "LBC = HSIL", s5n6s: "3 非 / 6 HSIL",
+      c_ttl: "临床意义",
+      c1: "<b>甲基化可独立于 LBC 对 HSIL 分层诊断</b>——hrHPV+ 女性无需细胞学的分诊路径。",
+      c2: "<b>高 NPV 树规则</b>（ΔCtJ &gt;10.13 → 100% 非高级别）可安全推迟转诊——减少阴道镜、早治疗。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

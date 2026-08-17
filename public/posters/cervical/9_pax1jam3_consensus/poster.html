@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expert Consensus: PAX1/JAM3 Methylation Testing &amp; Clinical Use — 2025</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #39：共识推荐型海报）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、推荐徽章、共识卡
+  - 布局：标题带 → hero（8 条共识 / 强推荐 6 / 推荐 2 / 2级证据）→ 两栏（左 560px：①背景与意义 ②实验室流程与质控；右 1fr：③共识推荐清单【8 条共识卡】 ④临床应用场景 ⑤报告规范）→ 全宽临床意义带
+  - 无图：全部用共识卡/徽章呈现
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 96px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 22px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .conslist, .panel .scenrow { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 0 0 5px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 10px 4px; text-align: center; }
+  .stat .big { font-size: 18px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .conslist { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 8px; }
+  .cons { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 3px 8px; display: flex; gap: 6px; align-items: flex-start; }
+  .cons .cn { flex: 0 0 auto; width: 26px; height: 26px; border-radius: 6px; background: rgba(215,75,74,0.85); color: #fff; font-weight: 800; font-size: 12px; display: flex; align-items: center; justify-content: center; }
+  .cons .ct { flex: 1 1 auto; font-size: 9.5px; line-height: 1.28; color: var(--text); }
+  .cons .ct b { color: var(--primary); }
+  .cons .badge { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 3px; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.3); color: var(--accent-deep); font-size: 8px; font-weight: 700; border-radius: 10px; padding: 0 6px; }
+  .cons.strong { border-left: 4px solid var(--primary); }
+
+  .scenrow { display: flex; gap: 8px; }
+  .scen { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; }
+  .scen .st { font-size: 11px; font-weight: 800; color: var(--primary); margin-bottom: 3px; }
+  .scen .sl { font-size: 10px; color: var(--muted); line-height: 1.3; }
+  .scen .sl b { color: var(--accent-deep); }
+
+  .figrow { display: flex; gap: 12px; align-items: stretch; }
+  .flowfig { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px 6px; display: flex; flex-direction: column; min-width: 0; }
+  .flowfig img { display: block; max-height: 128px; width: auto; max-width: 100%; margin: 0 auto; border-radius: 4px; }
+  .flowfig .fc { font-size: 10.5px; font-weight: 700; color: var(--primary); margin: 5px 0 2px; }
+  .flowfig .fl { font-size: 9.5px; color: var(--muted); line-height: 1.32; }
+  .flowfig .fl b { color: var(--accent-deep); }
+  .flowrow2 { display: flex; justify-content: center; margin-top: 8px; }
+  .flowrow2 .flowfig { flex: 0 0 auto; width: 60%; }
+  .flowrow2 .flowfig img { max-height: 150px; }
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 3px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+  body.lang-zh .panel ul li { line-height: 1.46; margin-bottom: 5px; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Chin J Lab Med · 2025;48(2):192–200 · Expert Consensus · China</div>
+    <h1 data-i18n="title">Expert Consensus: PAX1/JAM3 Methylation — Workflow, Reporting &amp; Clinical Use</h1>
+    <div class="title_alt" data-i18n="title_alt">子宫颈癌 PAX1 联合 JAM3 双基因甲基化检测流程、报告及临床应用专家共识</div>
+    <div class="subtitle" data-i18n="subtitle">5 societies · 8 consensus statements (6 strong) · validated by multicenter NCT04646954 · PREPARE-2024CN740</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">CSLM · CSM Lab Med · CSLM Phys · CMCHA · CMIHE</div>
+      <div class="source" data-i18n="source">中华检验医学杂志 2025;48(2):192–200 · Oxford CEBM evidence levels</div>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="stat"><div class="big">8</div><div class="lab" data-i18n="h1">consensus statements</div></div>
+    <div class="stat hot"><div class="big">6</div><div class="lab" data-i18n="h2">strong recommendations</div></div>
+    <div class="stat"><div class="big">2</div><div class="lab" data-i18n="h3">recommendations</div></div>
+    <div class="stat"><div class="big">NCT04646954</div><div class="lab" data-i18n="h4">multicenter validated</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Significance</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Burden</strong>: 150,700 new cervical cancer cases in China 2022 (rank #5 female cancers).</li>
+          <li data-i18n="s1b"><strong>Gap</strong>: screening coverage 36.8% (2018–19) — far from 70% target 2030.</li>
+          <li data-i18n="s1c"><strong>Role</strong>: WHO/IARC recognize methylation as an emerging screening method.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Lab Workflow &amp; QC Essentials</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">Sample</div><div class="lab" data-i18n="s2s1">cervical exfoliated cells</div></div>
+          <div class="stat"><div class="big">MSP/qPCR</div><div class="lab" data-i18n="s2s2">bisulfite + PCR</div></div>
+          <div class="stat"><div class="big">ΔCt 8.4/8.8</div><div class="lab" data-i18n="s2s3">PAX1/JAM3 cut-offs</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Lab</strong>: licensed gene-amplification lab; validate manufacturer performance claims.</li>
+          <li data-i18n="s2b"><strong>Sample</strong>: standardized collection &amp; storage; 2–3 ml cell suspension for DNA.</li>
+          <li data-i18n="s2c"><strong>Conversion</strong>: bisulfite immediately; DNA ≤1 week at −20°C; Bis-DNA ≤3 days.</li>
+          <li data-i18n="s2d"><strong>QC</strong>: negative/weak-positive controls per run; internal &amp; reference channels.</li>
+          <li data-i18n="s2e"><strong>Reagent</strong>: NMPA-approved kits; performance verification before use.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">2–3 ml</div><div class="lab" data-i18n="s2s4">cell suspension</div></div>
+          <div class="stat"><div class="big">200–1000 ng</div><div class="lab" data-i18n="s2s5">DNA input</div></div>
+          <div class="stat"><div class="big">−20°C</div><div class="lab" data-i18n="s2s6">storage</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">DNA</div><div class="lab" data-i18n="s2s7">extraction check</div></div>
+          <div class="stat"><div class="big">Bis-DNA</div><div class="lab" data-i18n="s2s8">immediate PCR</div></div>
+          <div class="stat"><div class="big">vortex</div><div class="lab" data-i18n="s2s9">sample prep</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2j"><strong>Extraction</strong>: column vs magnetic bead; check purity/yield/integrity.</li>
+          <li data-i18n="s2k"><strong>Efficiency</strong>: assess kit extraction efficiency before standardization.</li>
+          <li data-i18n="s2f"><strong>Performance items</strong>: method agreement · LOD · anti-interference · cross-reactivity.</li>
+          <li data-i18n="s2g"><strong>Re-test</strong>: establish repeat-testing procedure &amp; data analysis flow.</li>
+          <li data-i18n="s2h"><strong>QC targets</strong>: set target values &amp; control limits with current standard procedure.</li>
+          <li data-i18n="s2i"><strong>Controls</strong>: kit/third-party/self-made validated controls each run.</li>
+        </ul>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s2j1">Strong recommendations</div><div class="sbt"><div class="sbf" style="width:75%">6 of 8</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s2j2">Recommendations</div><div class="sbt"><div class="sbf" style="width:25%">2 of 8</div></div></div>
+        </div>
+        <div class="tnote" data-i18n="s2n">Consensus 2–5: establish procedures, performance verification, sampling rules, QC system (all strong); Oxford CEBM evidence grading.</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Consensus Statements</span></h3>
+        <div class="conslist">
+          <div class="cons strong"><div class="cn">1</div><div class="ct" data-i18n="s3c1"><b>Novel non-invasive test</b>: methylation is feasible for cervical cancer detection.</div><div class="badge" data-i18n="s3b1">L2 · Strong</div></div>
+          <div class="cons strong"><div class="cn">2</div><div class="ct" data-i18n="s3c2"><b>Lab standards</b>: licensed lab, procedures &amp; performance verification.</div><div class="badge" data-i18n="s3b2">L1 · Strong</div></div>
+          <div class="cons strong"><div class="cn">3</div><div class="ct" data-i18n="s3c3"><b>Sampling rules</b>: standardized collection &amp; preservation.</div><div class="badge" data-i18n="s3b3">L2 · Strong</div></div>
+          <div class="cons strong"><div class="cn">4</div><div class="ct" data-i18n="s3c4"><b>Approved reagents</b>: NMPA-approved kits + performance validation + retesting QC.</div><div class="badge" data-i18n="s3b4">L2 · Strong</div></div>
+          <div class="cons strong"><div class="cn">5</div><div class="ct" data-i18n="s3c5"><b>QC system</b>: ensure result accuracy.</div><div class="badge" data-i18n="s3b5">L2 · Strong</div></div>
+          <div class="cons strong"><div class="cn">6</div><div class="ct" data-i18n="s3c6"><b>Qualitative reporting</b>: positive/negative with standardized report format.</div><div class="badge" data-i18n="s3b6">L2 · Strong</div></div>
+          <div class="cons"><div class="cn">7</div><div class="ct" data-i18n="s3c7"><b>Adjunct diagnosis</b>: combine with HPV/cytology for management decisions.</div><div class="badge" data-i18n="s3b7">L2 · Rec</div></div>
+          <div class="cons"><div class="cn">8</div><div class="ct" data-i18n="s3c8"><b>Discrepancy handling</b>: follow guidelines when methylation vs biopsy mismatch.</div><div class="badge" data-i18n="s3b8">L2 · Rec</div></div>
+        </div>
+        <div class="tnote" style="margin-top:5px;" data-i18n="s5a"><b>Report</b>: qualitative ± per Clinical Gene Testing Report consensus — integrates into risk-based management.</div>
+      </div>
+
+      <div class="panel grow" style="background: var(--panel-alt);">
+        <h3><span class="num">4</span><span data-i18n="s4t">Clinical Management Flowcharts</span></h3>
+        <div class="figrow">
+          <div class="flowfig">
+            <img src="images/fig_flow1.png" alt="hrHPV untyped management flowchart">
+            <div class="fc" data-i18n="s4t1">Fig 1 · hrHPV untyped (4 branches)</div>
+            <div class="fl" data-i18n="s4s1"><b>① HPV+ &amp; M+</b> → colposcopy.<br><b>② HPV+ &amp; M−</b> → genotype; cytology if unavailable (ASC-US+ → colposcopy; NILM → 1yr).<br><b>③ HPV− &amp; M+</b> → colposcopy or 6–12mo re-test.<br><b>④ both−</b> → routine.</div>
+          </div>
+          <div class="flowfig">
+            <img src="images/fig_flow2.png" alt="HPV typed management flowchart">
+            <div class="fc" data-i18n="s4t2">Fig 2 · hrHPV typed (16/18 &amp; others)</div>
+            <div class="fl" data-i18n="s4s2"><b>① 16/18+ &amp; M+</b> → colposcopy.<br><b>② 16/18+ &amp; M−</b> → colposcopy (high risk).<br><b>③ 16/18− &amp; M+</b> → colposcopy; other types per rules; other− → routine.</div>
+          </div>
+        </div>
+        <div class="flowrow2">
+          <div class="flowfig">
+            <img src="images/fig_flow3.png" alt="Methylation with cytology management flowchart">
+            <div class="fc" data-i18n="s4t3">Fig 3 · Methylation + cytology (ASC-US+ / NILM)</div>
+            <div class="fl" data-i18n="s4s3"><b>ASC-US+ &amp; M+</b> → colposcopy · <b>M− &amp; (SCC/adeno/HSIL/ASC-H/AGC/AIS)</b> → colposcopy · <b>M− &amp; (LSIL/ASC-US)</b> → 6–12mo re-test or colposcopy · <b>NILM &amp; M+</b> → colposcopy · <b>NILM &amp; M−</b> → 1yr re-test or HPV.</div>
+          </div>
+        </div>
+
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Standardized PAX1/JAM3 methylation</b>: 8 consensus statements define lab workflow, QC, reporting and clinical use for cervical cancer triage.</li>
+      <li data-i18n="c2"><b>Practice-ready integration</b>: combine with HPV/cytology per management scenarios — improves screening &amp; diagnosis accuracy.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Chin J Lab Med · 2025;48(2):192–200 · Expert Consensus · China",
+      title: "Expert Consensus: PAX1/JAM3 Methylation — Workflow, Reporting & Clinical Use",
+      title_alt: "子宫颈癌 PAX1 联合 JAM3 双基因甲基化检测流程、报告及临床应用专家共识",
+      subtitle: "5 societies · 8 consensus statements (6 strong) · validated by multicenter NCT04646954 · PREPARE-2024CN740",
+      authors: "CSLM · CSM Lab Med · CSLM Phys · CMCHA · CMIHE",
+      source: "Chin J Lab Med 2025;48(2):192–200 · Oxford CEBM evidence levels",
+      h1: "consensus statements", h2: "strong recommendations", h3: "recommendations", h4: "multicenter validated",
+      s1t: "Background & Significance",
+      s1a: "<strong>Burden</strong>: 150,700 new cervical cancer cases in China 2022 (rank #5 female cancers).",
+      s1b: "<strong>Gap</strong>: screening coverage 36.8% (2018–19) — far from 70% target 2030.",
+      s1c: "<strong>Role</strong>: WHO/IARC recognize methylation as an emerging screening method.",
+      s2t: "Lab Workflow & QC Essentials",
+      s2s1: "cervical exfoliated cells", s2s2: "bisulfite + PCR", s2s3: "PAX1/JAM3 cut-offs",
+      s2a: "<strong>Lab</strong>: licensed gene-amplification lab; validate manufacturer performance claims.",
+      s2b: "<strong>Sample</strong>: standardized collection & storage; 2–3 ml cell suspension for DNA.",
+      s2c: "<strong>Conversion</strong>: bisulfite immediately; DNA ≤1 week at −20°C; Bis-DNA ≤3 days.",
+      s2d: "<strong>QC</strong>: negative/weak-positive controls per run; internal & reference channels.",
+      s2e: "<strong>Reagent</strong>: NMPA-approved kits; performance verification before use.",
+      s2s4: "cell suspension", s2s5: "DNA input", s2s6: "storage",
+      s2s7: "extraction check", s2s8: "immediate PCR", s2s9: "sample prep",
+      s2j: "<strong>Extraction</strong>: column vs magnetic bead; check purity/yield/integrity.",
+      s2k: "<strong>Efficiency</strong>: assess kit extraction efficiency before standardization.",
+      s2f: "<strong>Performance items</strong>: method agreement · LOD · anti-interference · cross-reactivity.",
+      s2g: "<strong>Re-test</strong>: establish repeat-testing procedure & data analysis flow.",
+      s2h: "<strong>QC targets</strong>: set target values & control limits with current standard procedure.",
+      s2i: "<strong>Controls</strong>: kit/third-party/self-made validated controls each run.",
+      s2j1: "Strong recommendations", s2j2: "Recommendations",
+      s2n: "Consensus 2–5: establish procedures, performance verification, sampling rules, QC system (all strong).",
+      s3t: "Consensus Statements",
+      s3c1: "<b>Novel non-invasive test</b>: methylation is feasible for cervical cancer detection.", s3b1: "L2 · Strong",
+      s3c2: "<b>Lab standards</b>: licensed lab, procedures & performance verification.", s3b2: "L1 · Strong",
+      s3c3: "<b>Sampling rules</b>: standardized collection & preservation.", s3b3: "L2 · Strong",
+      s3c4: "<b>Approved reagents</b>: NMPA-approved kits + performance validation + retesting QC.", s3b4: "L2 · Strong",
+      s3c5: "<b>QC system</b>: ensure result accuracy.", s3b5: "L2 · Strong",
+      s3c6: "<b>Qualitative reporting</b>: positive/negative with standardized report format.", s3b6: "L2 · Strong",
+      s3c7: "<b>Adjunct diagnosis</b>: combine with HPV/cytology for management decisions.", s3b7: "L2 · Rec",
+      s3c8: "<b>Discrepancy handling</b>: follow guidelines when methylation vs biopsy mismatch.", s3b8: "L2 · Rec",
+      s4t: "Clinical Management Flowcharts",
+      s4t1: "Fig 1 · hrHPV untyped (4 branches)", s4t2: "Fig 2 · hrHPV typed (16/18 & others)", s4t3: "Fig 3 · Methylation + cytology (ASC-US+ / NILM)",
+      s4s3: "<b>ASC-US+ & M+</b> → colposcopy · <b>M− & (SCC/adeno/HSIL/ASC-H/AGC/AIS)</b> → colposcopy · <b>M− & (LSIL/ASC-US)</b> → 6–12mo re-test or colposcopy · <b>NILM & M+</b> → colposcopy · <b>NILM & M−</b> → 1yr re-test or HPV.",
+      s4s1: "<b>① HPV+·M+</b> → colposcopy.<br><b>② HPV+·M−</b> → genotype; cytology if unavailable (ASC-US+ → colposcopy; NILM → 1yr).<br><b>③ HPV−·M+</b> → colposcopy or 6–12mo re-test.<br><b>④ both−</b> → routine.",
+      s4s2: "<b>① 16/18+·M+</b> → colposcopy.<br><b>② 16/18+·M−</b> → colposcopy (high risk).<br><b>③ 16/18−·M+</b> → colposcopy; other types per rules; other− → routine.",
+      s5t: "Reporting & Integration",
+      s5a: "<strong>Report</strong>: Clinical Gene Testing Report consensus; qualitative ±; integrates into risk-based management.",
+      s5b: "<strong>Integration</strong>: add methylation to current risk-based cervical cancer management.",
+      s5c: "<strong>Future</strong>: more clinical validation to expand methylation clinical pathways.",
+      s5s1: "positive / negative", s5s2: "report elements", s5s3: "approved kits",
+      s5d: "<strong>Coverage</strong>: lab workflow · QC · reporting · clinical scenarios — full pathway standardized.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Standardized PAX1/JAM3 methylation</b>: 8 consensus statements define lab workflow, QC, reporting and clinical use for cervical cancer triage.",
+      c2: "<b>Practice-ready integration</b>: combine with HPV/cytology per management scenarios — improves screening & diagnosis accuracy."
+    },
+    zh: {
+      kicker: "中华检验医学杂志 · 2025;48(2):192–200 · 专家共识 · 中国",
+      title: "子宫颈癌 PAX1 联合 JAM3 双基因甲基化检测流程、报告及临床应用专家共识",
+      title_alt: "Expert Consensus: PAX1/JAM3 Methylation — Workflow, Reporting & Clinical Use",
+      subtitle: "5 个学（协）会 · 8 条共识（6 条强推荐）· 多中心 NCT04646954 验证 · PREPARE-2024CN740",
+      authors: "中国中西医结合学会检验医学专委会 · 中华医学会检验医学分会 · 中国医师协会检验医师分会 · 中国妇幼保健协会 · 中国医疗保健国际交流促进会基层检验技术标准化分会",
+      source: "中华检验医学杂志 2025;48(2):192–200 · 牛津循证医学中心证据等级",
+      h1: "共识条目", h2: "强推荐", h3: "推荐", h4: "多中心验证",
+      s1t: "背景与意义",
+      s1a: "<strong>负担</strong>：2022 年中国宫颈癌新发 15.07 万例，居女性恶性肿瘤第 5 位。",
+      s1b: "<strong>差距</strong>：2018–19 年筛查覆盖率 36.8%——距 2030 年 70% 目标仍远。",
+      s1c: "<strong>定位</strong>：WHO/IARC 认可甲基化为新兴筛查方法。",
+      s2t: "实验室流程与质控要点",
+      s2s1: "宫颈脱落细胞", s2s2: "重亚硫酸盐 + PCR", s2s3: "PAX1/JAM3 阈值",
+      s2a: "<strong>实验室</strong>：获批准的基因扩增实验室；验证厂家性能指标。",
+      s2b: "<strong>样本</strong>：规范采集与保存；取 2–3 ml 细胞悬液提取 DNA。",
+      s2c: "<strong>转化</strong>：立即重亚硫酸盐转化；DNA −20°C ≤1 周；Bis-DNA ≤3 天。",
+      s2d: "<strong>质控</strong>：每批次阴性/弱阳性质控；内标与靶基因通道。",
+      s2e: "<strong>试剂</strong>：NMPA 批准试剂；使用前性能验证。",
+      s2s4: "细胞悬液", s2s5: "DNA 起始量", s2s6: "储存条件",
+      s2s7: "提取检查", s2s8: "立即 PCR", s2s9: "样本制备",
+      s2j: "<strong>提取</strong>：吸附柱 vs 磁珠；检查纯度/产率/完整性。",
+      s2k: "<strong>效率</strong>：标准化前评估试剂盒提取效率。",
+      s2f: "<strong>性能项目</strong>：方法符合率 · 检出限 · 抗干扰 · 交叉反应。",
+      s2g: "<strong>复检</strong>：建立复检程序与数据分析流程。",
+      s2h: "<strong>质控靶值</strong>：用现行标准程序确定靶值与控制限。",
+      s2i: "<strong>质控品</strong>：每批次使用试剂盒/第三方/自制的验证质控品。",
+      s2j1: "强推荐", s2j2: "推荐",
+      s2n: "共识 2–5：建立程序、性能验证、采样规范、质控体系（均强推荐）。",
+      s3t: "共识推荐清单",
+      s3c1: "<b>新型无创检测方案</b>：甲基化用于宫颈癌检测具有临床可行性。", s3b1: "2级 · 强推荐",
+      s3c2: "<b>实验室规范</b>：持证实验室、建立程序并验证性能。", s3b2: "1级 · 强推荐",
+      s3c3: "<b>采样规范</b>：规范采集与保存。", s3b3: "2级 · 强推荐",
+      s3c4: "<b>批准试剂</b>：NMPA 批准试剂 + 性能验证 + 复检质控。", s3b4: "2级 · 强推荐",
+      s3c5: "<b>质控体系</b>：确保结果准确。", s3b5: "2级 · 强推荐",
+      s3c6: "<b>定性报告</b>：阳性/阴性 + 规范报告格式。", s3b6: "2级 · 强推荐",
+      s3c7: "<b>辅助诊断</b>：结合 HPV/细胞学综合判断。", s3b7: "2级 · 推荐",
+      s3c8: "<b>不一致处理</b>：与阴道镜/活检不符时按指南评估随访。", s3b8: "2级 · 推荐",
+      s4t: "临床管理流程图",
+      s4t1: "图1 · hrHPV 不分型（4 分支）", s4t2: "图2 · hrHPV 分型（16/18 及其他型）", s4t3: "图3 · 甲基化 + 细胞学（ASC-US+ / NILM）",
+      s4s3: "<b>ASC-US+ 且 M+</b> → 阴道镜 · <b>M− 且（SCC/腺癌/HSIL/ASC-H/AGC/AIS）</b> → 阴道镜 · <b>M− 且（LSIL/ASC-US）</b> → 6–12 月复查或阴道镜 · <b>NILM 且 M+</b> → 阴道镜 · <b>NILM 且 M−</b> → 1 年复查或 HPV。",
+      s4s1: "<b>① HPV+·M+</b> → 阴道镜。<br><b>② HPV+·M−</b> → 分型；无法分型按细胞学（ASC-US+ → 阴道镜；NILM → 1 年）。<br><b>③ HPV−·M+</b> → 阴道镜或 6–12 月复查。<br><b>④ 双阴性</b> → 常规筛查。",
+      s4s2: "<b>① 16/18+·M+</b> → 阴道镜。<br><b>② 16/18+·M−</b> → 阴道镜（高危）。<br><b>③ 16/18−·M+</b> → 阴道镜；其他型按规则；其他− → 常规筛查。",
+      s5t: "报告规范与整合",
+      s5a: "<strong>报告</strong>：按临床基因检验报告共识；定性 ±；纳入风险分层管理。",
+      s5b: "<strong>整合</strong>：将甲基化纳入现有风险分层宫颈癌管理。",
+      s5c: "<strong>未来</strong>：更多临床验证拓展甲基化应用路径。",
+      s5s1: "阳性 / 阴性", s5s2: "报告要素", s5s3: "批准试剂",
+      s5d: "<strong>覆盖</strong>：实验室流程 · 质控 · 报告 · 临床场景——全路径规范化。",
+      c_ttl: "临床意义",
+      c1: "<b>PAX1/JAM3 甲基化规范化</b>：8 条共识界定实验室流程、质控、报告与临床应用。",
+      c2: "<b>可落地的整合</b>：按场景与 HPV/细胞学联合——提升筛查与诊断准确性。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

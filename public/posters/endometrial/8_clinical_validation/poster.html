@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cervical Cell CDO1/CELF4 Methylation for Endometrial Cancer — Yu et al. 2026</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #28：双终点大样本验证）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、大数字卡、条形对比
+  - 布局：标题带 → hero（2164 例 / EC Se 93.94% / EC Sp 96.7% / NPV 99.90% 红卡）→ 两栏（左 560px：①背景与目的 ②研究设计【队列特征】；右 1fr：③EC 检测效能 ④EIN 检测效能 ⑤联合 TVS 增益与队列）→ 全宽临床意义带
+  - 无图：全部用大卡/条形呈现
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 98px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 22px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .matrix { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 0 0 5px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 11px 4px; text-align: center; }
+  .stat .big { font-size: 18px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+  .stat.cool { background: #fff; border-color: rgba(140,158,143,0.6); }
+  .stat.cool .big { color: #5C7A63; }
+
+  .matrix { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 0 0 6px; }
+  .mcell { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px 6px; text-align: center; }
+  .mcell .n { font-size: 21px; font-weight: 800; color: var(--primary); line-height: 1.02; }
+  .mcell .l { font-size: 9px; color: var(--muted); margin-top: 3px; line-height: 1.2; }
+  .mcell.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .mcell.hot .n { color: #fff; } .mcell.hot .l { color: rgba(255,255,255,0.92); font-weight: 600; }
+  .mcell.cool { background: #fff; border-color: rgba(140,158,143,0.6); }
+  .mcell.cool .n { color: #5C7A63; }
+
+  .spbars { margin: 2px 0 6px; }
+  .spb { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+  .spb .sbl { flex: 0 0 150px; font-size: 11.5px; font-weight: 700; color: var(--text); text-align: right; }
+  .spb .sbt { flex: 1 1 auto; height: 20px; background: #F1E7E7; border-radius: 5px; overflow: hidden; position: relative; }
+  .spb .sbf { height: 100%; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 12px; font-weight: 800; color: #fff; }
+  .spb.win .sbf { background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); }
+  .spb.lose .sbf { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); color: #6B5755; }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 3px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+  body.lang-zh .panel ul li { line-height: 1.42; margin-bottom: 5px; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Diagnostics · 2026;16(2):174 · Prospective Validation · China</div>
+    <h1 data-i18n="title">Cervical Cell CDO1/CELF4 Methylation for Endometrial Cancer</h1>
+    <div class="title_alt" data-i18n="title_alt">Clinical Validation of DNA Methylation Detection in Cervical Exfoliated Cells for Endometrial Cancer in Women with Suspected Lesions</div>
+    <div class="subtitle" data-i18n="subtitle">2,164 suspected-lesion women · EC Se 93.94% / Sp 96.7% · NPV 99.90% · EIN Se 83.87% / NPV 99.76% · TVS combination further improves</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Yu Y, Su T, Zhang H, Li Q, Cong Q, Sui L, Chen L</div>
+      <div class="source" data-i18n="source">Obstetrics &amp; Gynecology Hospital, Fudan University · Diagnostics 2026;16(2):174 · ChiCTR2200055991</div>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="stat"><div class="big">2,164</div><div class="lab" data-i18n="h1">suspected lesions</div></div>
+    <div class="stat hot"><div class="big">93.9%</div><div class="lab" data-i18n="h2">EC sensitivity</div></div>
+    <div class="stat"><div class="big">96.7%</div><div class="lab" data-i18n="h3">EC specificity</div></div>
+    <div class="stat hot"><div class="big">99.90%</div><div class="lab" data-i18n="h4">NPV · EC</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Gap</strong>: no globally recommended non-invasive EC detection; TVS limited (specificity in AUB, sensitivity in obesity).</li>
+          <li data-i18n="s1b"><strong>Objective</strong>: clinically validate CDO1m/CELF4m on exfoliated cervical cells, alone and with TVS.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">33</div><div class="lab" data-i18n="s2s1">EC · 51.7y</div></div>
+          <div class="stat"><div class="big">31</div><div class="lab" data-i18n="s2s2">EIN · 49.5y</div></div>
+          <div class="stat"><div class="big">2,100</div><div class="lab" data-i18n="s2s3">non-lesion · 44.7y</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Setting</strong>: Fudan OB/GYN Hospital hysteroscopy center; prospective, Jul 2023 – May 2024.</li>
+          <li data-i18n="s2b"><strong>Sample</strong>: preoperative exfoliated cervical cells → dual-gene methylation (CDO1m/CELF4m).</li>
+          <li data-i18n="s2c"><strong>Reference</strong>: hysteroscopic histopathology = gold standard.</li>
+          <li data-i18n="s2d"><strong>Inclusion</strong>: ≥1 EC risk factor (endocrine, obesity, HTN, diabetes, etc.) + consent.</li>
+          <li data-i18n="s2e"><strong>Exclusion</strong>: prior EC surgery · recent radio/chemo · CIN2+ · invalid samples.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">93.9%</div><div class="lab" data-i18n="s2s4">EC Se · 95%CI 79.8–99.3</div></div>
+          <div class="stat"><div class="big">96.7%</div><div class="lab" data-i18n="s2s5">EC Sp · 95%CI 95.9–97.5</div></div>
+          <div class="stat"><div class="big">99.9%</div><div class="lab" data-i18n="s2s6">EC NPV · 95%CI 99.6–100</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">51.7y</div><div class="lab" data-i18n="s2s7">mean age · EC</div></div>
+          <div class="stat"><div class="big">49.5y</div><div class="lab" data-i18n="s2s8">mean age · EIN</div></div>
+          <div class="stat"><div class="big">44.7y</div><div class="lab" data-i18n="s2s9">mean age · other</div></div>
+        </div>
+        <div class="spbars">
+          <div class="spb lose"><div class="sbl" data-i18n="s2k1">EC prevalence</div><div class="sbt"><div class="sbf" style="width:1.5%">1.5%</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s2k2">EIN prevalence</div><div class="sbt"><div class="sbf" style="width:1.4%">1.4%</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s2k3">non-lesion</div><div class="sbt"><div class="sbf" style="width:97.1%">97.1%</div></div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2l"><strong>Dual-gene readout</strong>: positive if either CDO1m or CELF4m above threshold.</li>
+          <li data-i18n="s2m"><strong>Consistency</strong>: performance in line with prior CDO1/CELF4 cervical-cell studies.</li>
+          <li data-i18n="s2f"><strong>Age gradient</strong>: EC &gt; EIN &gt; non-lesion (P&lt;0.001).</li>
+          <li data-i18n="s2g"><strong>Risk factors</strong>: endocrine disorder · obesity · hypertension · diabetes · infertility · genetics.</li>
+          <li data-i18n="s2h"><strong>Interpretation</strong>: methylation(+) → high-risk triage; (−) → EC practically excluded (NPV 99.9%).</li>
+          <li data-i18n="s2i"><strong>Prevalence</strong>: EC 1.5% · EIN 1.4% — explains low PPV but high NPV design.</li>
+          <li data-i18n="s2j"><strong>Limits</strong>: single-center; PPV moderate in low-prevalence setting.</li>
+        </ul>
+        <div class="tnote" data-i18n="s2n">Registered ChiCTR2200055991 (Jan 30, 2023) · Ethics No. 2023-42.</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">EC Detection — Methylation</span></h3>
+        <div class="matrix">
+          <div class="mcell hot"><div class="n">93.9%</div><div class="l" data-i18n="s3s1">Sensitivity</div></div>
+          <div class="mcell hot"><div class="n">96.7%</div><div class="l" data-i18n="s3s2">Specificity</div></div>
+          <div class="mcell"><div class="n">31.0%</div><div class="l" data-i18n="s3s3">PPV</div></div>
+          <div class="mcell cool"><div class="n">99.90%</div><div class="l" data-i18n="s3s4">NPV</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s3a"><strong>High NPV</strong>: negative result virtually rules out EC — safe deferral of hysteroscopy.</li>
+          <li data-i18n="s3b"><strong>Low PPV</strong>: reflects low EC prevalence (1.5%) in suspected-lesion cohort.</li>
+        </ul>
+      </div>
+
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">4</span><span data-i18n="s4t">EIN Detection — Methylation</span></h3>
+        <div class="matrix">
+          <div class="mcell hot"><div class="n">83.9%</div><div class="l" data-i18n="s4s1">Sensitivity</div></div>
+          <div class="mcell hot"><div class="n">98.0%</div><div class="l" data-i18n="s4s2">Specificity</div></div>
+          <div class="mcell"><div class="n">37.7%</div><div class="l" data-i18n="s4s3">PPV</div></div>
+          <div class="mcell cool"><div class="n">99.76%</div><div class="l" data-i18n="s4s4">NPV</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s4a"><strong>Precancer detected</strong>: EIN (atypical hyperplasia) caught at 83.9% sensitivity.</li>
+          <li data-i18n="s4b"><strong>Strong exclusion</strong>: NPV 99.76% — rules out precancer in practice.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">TVS Combination &amp; Triage Value</span></h3>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s5a1">EC Se · methylation</div><div class="sbt"><div class="sbf" style="width:93.9%">93.9%</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s5a2">EC Se · + TVS</div><div class="sbt"><div class="sbf" style="width:100%">improved ↑</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s5a3">EIN NPV · methylation</div><div class="sbt"><div class="sbf" style="width:99.8%">99.76%</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s5a4">TVS alone</div><div class="sbt"><div class="sbf" style="width:45%">lower Se/Sp</div></div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">EC</div><div class="lab" data-i18n="s5s1">Se 93.9% · Sp 96.7%</div></div>
+          <div class="stat hot"><div class="big">EIN</div><div class="lab" data-i18n="s5s2">Se 83.9% · Sp 98.0%</div></div>
+          <div class="stat"><div class="big">NPV &gt;99.7%</div><div class="lab" data-i18n="s5s3">both endpoints</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s5a"><strong>Combination</strong>: methylation + TVS raises sensitivity &amp; NPV for both EC and EIN.</li>
+          <li data-i18n="s5b"><strong>Workflow</strong>: positive methylation → hysteroscopy; negative → monitor &amp; re-test.</li>
+          <li data-i18n="s5c"><strong>Who benefits</strong>: women with AUB, thick endometrium, or obesity — avoid unnecessary invasive tests.</li>
+          <li data-i18n="s5d"><strong>Practical</strong>: cervical cell collection is simple, painless &amp; outpatient-based.</li>
+        </ul>
+        <ul>
+          <li data-i18n="s5e"><strong>Follow-up</strong>: methylation(−) women re-test at 6–12 months; (+) proceed to hysteroscopy.</li>
+          <li data-i18n="s5f"><strong>Direction</strong>: single-center validation → larger multi-center trials.</li>
+        </ul>
+        <div class="tnote" data-i18n="s5n">Triage complements — not replaces — hysteroscopy for treatment decisions.</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Simple, non-invasive triage</b>: cervical-cell CDO1/CELF4 methylation (Se 93.9%, NPV 99.90%) accurately triages suspected endometrial lesions.</li>
+      <li data-i18n="c2"><b>Reduces invasive procedures</b>: negative methylation safely defers hysteroscopy; TVS combination further boosts sensitivity &amp; NPV.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Diagnostics · 2026;16(2):174 · Prospective Validation · China",
+      title: "Cervical Cell CDO1/CELF4 Methylation for Endometrial Cancer",
+      title_alt: "Clinical Validation of DNA Methylation Detection in Cervical Exfoliated Cells for Endometrial Cancer in Women with Suspected Lesions",
+      subtitle: "2,164 suspected-lesion women · EC Se 93.94% / Sp 96.7% · NPV 99.90% · EIN Se 83.87% / NPV 99.76% · TVS combination further improves",
+      authors: "Yu Y, Su T, Zhang H, Li Q, Cong Q, Sui L, Chen L",
+      source: "Obstetrics & Gynecology Hospital, Fudan University · Diagnostics 2026;16(2):174 · ChiCTR2200055991",
+      h1: "suspected lesions", h2: "EC sensitivity", h3: "EC specificity", h4: "NPV · EC",
+      s1t: "Background & Objective",
+      s1a: "<strong>Gap</strong>: no globally recommended non-invasive EC detection; TVS limited (specificity in AUB, sensitivity in obesity).",
+      s1b: "<strong>Objective</strong>: clinically validate CDO1m/CELF4m on exfoliated cervical cells, alone and with TVS.",
+      s2t: "Study Design & Cohort",
+      s2s1: "EC · 51.7y", s2s2: "EIN · 49.5y", s2s3: "non-lesion · 44.7y",
+      s2a: "<strong>Setting</strong>: Fudan OB/GYN Hospital hysteroscopy center; prospective, Jul 2023 – May 2024.",
+      s2b: "<strong>Sample</strong>: preoperative exfoliated cervical cells → dual-gene methylation (CDO1m/CELF4m).",
+      s2c: "<strong>Reference</strong>: hysteroscopic histopathology = gold standard.",
+      s2d: "<strong>Inclusion</strong>: ≥1 EC risk factor (endocrine, obesity, HTN, diabetes, etc.) + consent.",
+      s2e: "<strong>Exclusion</strong>: prior EC surgery · recent radio/chemo · CIN2+ · invalid samples.",
+      s2s7: "mean age · EC", s2s8: "mean age · EIN", s2s9: "mean age · other",
+      s2k1: "EC prevalence", s2k2: "EIN prevalence", s2k3: "non-lesion",
+      s2l: "<strong>Dual-gene readout</strong>: positive if either CDO1m or CELF4m above threshold.",
+      s2m: "<strong>Consistency</strong>: performance in line with prior CDO1/CELF4 cervical-cell studies.",
+      s2f: "<strong>Age gradient</strong>: EC > EIN > non-lesion (P<0.001).",
+      s2g: "<strong>Risk factors</strong>: endocrine disorder · obesity · hypertension · diabetes · infertility · genetics.",
+      s2h: "<strong>Interpretation</strong>: methylation(+) → high-risk triage; (−) → EC practically excluded (NPV 99.9%).",
+      s2i: "<strong>Prevalence</strong>: EC 1.5% · EIN 1.4% — explains low PPV but high NPV design.",
+      s2j: "<strong>Limits</strong>: single-center; PPV moderate in low-prevalence setting.",
+      s2s4: "EC Se · 95%CI 79.8–99.3", s2s5: "EC Sp · 95%CI 95.9–97.5", s2s6: "EC NPV · 95%CI 99.6–100",
+      s2n: "Registered ChiCTR2200055991 (Jan 30, 2023) · Ethics No. 2023-42.",
+      s3t: "EC Detection — Methylation",
+      s3s1: "Sensitivity", s3s2: "Specificity", s3s3: "PPV", s3s4: "NPV",
+      s3a: "<strong>High NPV</strong>: negative result virtually rules out EC — safe deferral of hysteroscopy.",
+      s3b: "<strong>Low PPV</strong>: reflects low EC prevalence (1.5%) in suspected-lesion cohort.",
+      s4t: "EIN Detection — Methylation",
+      s4s1: "Sensitivity", s4s2: "Specificity", s4s3: "PPV", s4s4: "NPV",
+      s4a: "<strong>Precancer detected</strong>: EIN (atypical hyperplasia) caught at 83.9% sensitivity.",
+      s4b: "<strong>Strong exclusion</strong>: NPV 99.76% — rules out precancer in practice.",
+      s5t: "TVS Combination & Triage Value",
+      s5a1: "EC Se · methylation", s5a2: "EC Se · + TVS", s5a3: "EIN NPV · methylation", s5a4: "TVS alone",
+      s5a: "<strong>Combination</strong>: methylation + TVS raises sensitivity & NPV for both EC and EIN.",
+      s5b: "<strong>Workflow</strong>: positive methylation → hysteroscopy; negative → monitor & re-test.",
+      s5s1: "Se 93.9% · Sp 96.7%", s5s2: "Se 83.9% · Sp 98.0%", s5s3: "both endpoints",
+      s5c: "<strong>Who benefits</strong>: women with AUB, thick endometrium, obesity or other EC risk factors — avoid unnecessary invasive testing in low-prevalence outpatient triage workflows.",
+      s5f: "<strong>Direction</strong>: single-center validation → larger multi-center trials to confirm triage utility.",
+      s5d: "<strong>Practical</strong>: cervical cell collection is simple, painless & outpatient-based.",
+      s5e: "<strong>Follow-up</strong>: methylation(−) women re-test at 6–12 months; methylation(+) women proceed to hysteroscopic evaluation.",
+      s5n: "Triage complements — not replaces — hysteroscopy; final treatment decisions still rely on histopathology.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Simple, non-invasive triage</b>: cervical-cell CDO1/CELF4 methylation (Se 93.9%, NPV 99.90%) accurately triages suspected endometrial lesions.",
+      c2: "<b>Reduces invasive procedures</b>: negative methylation safely defers hysteroscopy; TVS combination further boosts sensitivity & NPV."
+    },
+    zh: {
+      kicker: "Diagnostics · 2026;16(2):174 · 前瞻性验证 · 中国",
+      title: "宫颈脱落细胞 CDO1/CELF4 甲基化检测子宫内膜癌",
+      title_alt: "疑似子宫内膜病变女性宫颈脱落细胞 DNA 甲基化检测的临床验证",
+      subtitle: "2,164 例疑似病变 · EC Se 93.94% / Sp 96.7% · NPV 99.90% · EIN Se 83.87% / NPV 99.76% · 联合 TVS 进一步提升",
+      authors: "俞怡、苏婷婷、张宏伟、李清、丛青、隋龙、陈丽梅",
+      source: "复旦大学附属妇产科医院 · Diagnostics 2026;16(2):174 · ChiCTR2200055991",
+      h1: "疑似病变", h2: "EC 灵敏度", h3: "EC 特异度", h4: "EC NPV",
+      s1t: "背景与目的",
+      s1a: "<strong>缺口</strong>：全球无推荐的子宫内膜癌无创检测；TVS 存在局限（AUB 特异度低、肥胖者灵敏度受限）。",
+      s1b: "<strong>目的</strong>：临床验证宫颈脱落细胞 CDO1m/CELF4m 单独及联合 TVS 检测 EC。",
+      s2t: "研究设计与队列",
+      s2s1: "EC · 51.7岁", s2s2: "EIN · 49.5岁", s2s3: "非病变 · 44.7岁",
+      s2a: "<strong>地点</strong>：复旦妇产科医院宫腔镜中心；前瞻性，2023.7–2024.5。",
+      s2b: "<strong>标本</strong>：术前宫颈脱落细胞 → 双基因甲基化（CDO1m/CELF4m）。",
+      s2c: "<strong>金标准</strong>：宫腔镜组织病理。",
+      s2d: "<strong>纳入</strong>：≥1 项 EC 危险因素（内分泌、肥胖、高血压、糖尿病等）+ 知情同意。",
+      s2e: "<strong>排除</strong>：既往 EC 手术 · 近期放化疗 · CIN2+ · 标本无效。",
+      s2s7: "平均年龄 · EC", s2s8: "平均年龄 · EIN", s2s9: "平均年龄 · 其他",
+      s2k1: "EC 患病率", s2k2: "EIN 患病率", s2k3: "非病变",
+      s2l: "<strong>双基因判读</strong>：CDO1m 或 CELF4m 任一超过阈值即阳性。",
+      s2m: "<strong>一致性</strong>：效能与此前 CDO1/CELF4 宫颈细胞研究一致。",
+      s2f: "<strong>年龄梯度</strong>：EC &gt; EIN &gt; 非病变（P&lt;0.001）。",
+      s2g: "<strong>危险因素</strong>：内分泌紊乱 · 肥胖 · 高血压 · 糖尿病 · 不孕 · 遗传倾向。",
+      s2h: "<strong>解读</strong>：甲基化(+) → 高危分流；(−) → 临床可排除 EC（NPV 99.9%）。",
+      s2i: "<strong>患病率</strong>：EC 1.5% · EIN 1.4%——解释低 PPV、高 NPV 的设计。",
+      s2j: "<strong>局限</strong>：单中心；低患病率下 PPV 中等。",
+      s2s4: "EC Se · 95%CI 79.8–99.3", s2s5: "EC Sp · 95%CI 95.9–97.5", s2s6: "EC NPV · 95%CI 99.6–100",
+      s2n: "注册 ChiCTR2200055991（2023-01-30）· 伦理号 2023-42。",
+      s3t: "EC 检测——甲基化",
+      s3s1: "灵敏度", s3s2: "特异度", s3s3: "PPV", s3s4: "NPV",
+      s3a: "<strong>高 NPV</strong>：阴性结果几乎可排除 EC——安全推迟宫腔镜。",
+      s3b: "<strong>低 PPV</strong>：反映疑似病变队列中 EC 患病率低（1.5%）。",
+      s4t: "EIN 检测——甲基化",
+      s4s1: "灵敏度", s4s2: "特异度", s4s3: "PPV", s4s4: "NPV",
+      s4a: "<strong>癌前病变检出</strong>：EIN（不典型增生）灵敏度 83.9%。",
+      s4b: "<strong>强力排除</strong>：NPV 99.76%——临床可排除癌前病变。",
+      s5t: "联合 TVS 与分诊价值",
+      s5a1: "EC Se · 甲基化", s5a2: "EC Se · + TVS", s5a3: "EIN NPV · 甲基化", s5a4: "TVS 单独",
+      s5a: "<strong>联合</strong>：甲基化 + TVS 提升 EC 与 EIN 的灵敏度与 NPV。",
+      s5b: "<strong>流程</strong>：甲基化阳性 → 宫腔镜；阴性 → 随访复查。",
+      s5s1: "Se 93.9% · Sp 96.7%", s5s2: "Se 83.9% · Sp 98.0%", s5s3: "双终点均高",
+      s5c: "<strong>获益人群</strong>：AUB、内膜增厚、肥胖女性——避免不必要有创检查。",
+      s5d: "<strong>便捷</strong>：宫颈细胞采集简单无痛，门诊即可完成。",
+      s5e: "<strong>随访</strong>：(−) 6–12 个月复查；(+) 建议宫腔镜。",
+      s5f: "<strong>方向</strong>：单中心验证 → 更大规模多中心试验。",
+      s5n: "分诊为补充而非替代——治疗决策仍需宫腔镜病理。",
+      c_ttl: "临床意义",
+      c1: "<b>简便无创分诊</b>：宫颈脱落细胞 CDO1/CELF4 甲基化（Se 93.9%、NPV 99.90%）精准分流疑似子宫内膜病变。",
+      c2: "<b>减少有创检查</b>：甲基化阴性可安全推迟宫腔镜；联合 TVS 进一步提升灵敏度与 NPV。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guidelines for Cervical Cancer Screening in China (I) — 7 Societies</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #41：筛查策略指南）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、推荐徽章、年龄间隔矩阵
+  - 布局：标题带 → hero（hrHPV 初筛首选 1类 / 25 岁起 / 每 5 年 HPV / 65 岁可终止）→ 两栏（左 560px：①背景与目标 ②流行病学要点；右 1fr：③筛查方法推荐 ④年龄与间隔 ⑤特殊人群与甲基化定位）→ 全宽临床意义带
+  - 无图：全部用推荐卡/矩阵呈现
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 96px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 22px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .recgrid, .panel .agemx { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 0 0 5px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 11px 4px; text-align: center; }
+  .stat .big { font-size: 18px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .recgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .rec { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; display: flex; gap: 8px; align-items: flex-start; }
+  .rec .rn { flex: 0 0 auto; width: 24px; height: 24px; border-radius: 6px; background: rgba(215,75,74,0.85); color: #fff; font-weight: 800; font-size: 11px; display: flex; align-items: center; justify-content: center; }
+  .rec .rt { flex: 1 1 auto; font-size: 10.5px; line-height: 1.32; color: var(--text); }
+  .rec .rt b { color: var(--primary); }
+  .rec .badge { flex: 0 0 auto; display: inline-flex; align-items: center; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.3); color: var(--accent-deep); font-size: 8px; font-weight: 700; border-radius: 10px; padding: 0 6px; align-self: center; }
+  .rec.top { border-left: 4px solid var(--primary); }
+
+  .agemx { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .age { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 7px 8px; text-align: center; }
+  .age .an { font-size: 14px; font-weight: 800; color: var(--primary); }
+  .age .al { font-size: 9px; color: var(--muted); line-height: 1.3; margin-top: 2px; }
+  .age.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .age.hot .an { color: #fff; } .age.hot .al { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 3px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+  body.lang-en .panel ul li { margin-bottom: 7px; }
+  body.lang-zh .panel ul li { line-height: 1.5; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">China · 7 Societies · Clinical Guideline · Screening Strategy</div>
+    <h1 data-i18n="title">Guidelines for Cervical Cancer Screening in China (I)</h1>
+    <div class="title_alt" data-i18n="title_alt">中国子宫颈癌筛查指南（一）</div>
+    <div class="subtitle" data-i18n="subtitle">hrHPV nucleic acid as primary screening (class 1) · start age 25 · HPV every 5 y or cytology every 3 y · stop at 65 with adequate negatives</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">CSCCP · CSGO-CMA · CGCS · CMIHE · CFC · CPMA · CMCHS</div>
+      <div class="source" data-i18n="source">7 Chinese medical societies · Part I: screening strategy</div>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="stat hot"><div class="big">hrHPV 1类</div><div class="lab" data-i18n="h1">primary screening</div></div>
+    <div class="stat"><div class="big">25 y</div><div class="lab" data-i18n="h2">start age</div></div>
+    <div class="stat"><div class="big">5y / 3y</div><div class="lab" data-i18n="h3">HPV / cytology interval</div></div>
+    <div class="stat"><div class="big">65 y</div><div class="lab" data-i18n="h4">may stop (adequate negatives)</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Goal</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Target</strong>: WHO accelerate-elimination strategy; China Action Plan 2023–2030.</li>
+          <li data-i18n="s1b"><strong>Burden</strong>: 109k new &amp; 59k deaths in China 2020 (18.2%/17.3% of world).</li>
+          <li data-i18n="s1c"><strong>Endpoint</strong>: CIN3+ risk as main clinical endpoint (ASCCP principle).</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Epidemiology Essentials</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">15.0%</div><div class="lab" data-i18n="s2s1">HPV prevalence ≥20 y</div></div>
+          <div class="stat"><div class="big">2 peaks</div><div class="lab" data-i18n="s2s2">17–24 &amp; 40–44 y</div></div>
+          <div class="stat"><div class="big">52/58/53/16/51</div><div class="lab" data-i18n="s2s3">common types</div></div>
+        </div>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s2a1">hrHPV+ in cancer</div><div class="sbt"><div class="sbf" style="width:88.7%">88.7%</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s2a2">hrHPV+ in HSIL</div><div class="sbt"><div class="sbf" style="width:86%">86.0%</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s2a3">hrHPV+ in LSIL</div><div class="sbt"><div class="sbf" style="width:69.8%">69.8%</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s2a4">hrHPV+ in normal</div><div class="sbt"><div class="sbf" style="width:15.6%">15.6%</div></div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">3.1%</div><div class="lab" data-i18n="s2s4">CIN1 · ASR prev.</div></div>
+          <div class="stat"><div class="big">1.3%</div><div class="lab" data-i18n="s2s5">CIN2 · ASR prev.</div></div>
+          <div class="stat"><div class="big">1.2%</div><div class="lab" data-i18n="s2s6">CIN3+ · ASR prev.</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">97.6%</div><div class="lab" data-i18n="s2s7">hrHPV · SCC</div></div>
+          <div class="stat"><div class="big">74.5%</div><div class="lab" data-i18n="s2s8">hrHPV · adeno</div></div>
+          <div class="stat"><div class="big">+5.4%/yr</div><div class="lab" data-i18n="s2s9">mortality rise</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2g"><strong>Screening principle</strong>: early detection of precancer &amp; early cancer; organized + opportunistic.</li>
+          <li data-i18n="s2h"><strong>Why 25 y start</strong>: <25 HPV mostly transient; cancer rare; avoid adverse pregnancy effects of overtreatment.</li>
+          <li data-i18n="s2d"><strong>Regional gap</strong>: HPV prevalence higher in central/west than east; rural mortality rising faster.</li>
+          <li data-i18n="s2e"><strong>Type split</strong>: hrHPV in SCC 97.6% vs adenocarcinoma 74.5%.</li>
+          <li data-i18n="s2f"><strong>Screening modes</strong>: organized population screening · opportunistic screening.</li>
+          <li data-i18n="s2b"><strong>Rising burden</strong>: ASR incidence 2.53 → 11.34/100k (1999→2016), +8.5%/yr.</li>
+          <li data-i18n="s2c"><strong>Younger onset</strong>: rural mean age at diagnosis fell 5.18 y (2000–2014).</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Screening Methods — Recommendations</span></h3>
+        <div class="recgrid">
+          <div class="rec top"><div class="rn">1</div><div class="rt" data-i18n="s3c1"><b>hrHPV nucleic acid</b> — primary screening of choice.</div><div class="badge">1类</div></div>
+          <div class="rec"><div class="rn">2</div><div class="rt" data-i18n="s3c2"><b>Cytology</b> where HPV unavailable; switch when feasible.</div><div class="badge">2A</div></div>
+          <div class="rec top"><div class="rn">3</div><div class="rt" data-i18n="s3c3"><b>Cotesting</b> (HPV+cytology) for resource-rich / opportunistic / special.</div><div class="badge">1类</div></div>
+          <div class="rec"><div class="rn">4</div><div class="rt" data-i18n="s3c4"><b>VIA</b> for resource-limited areas without HPV/cytology.</div><div class="badge">2B</div></div>
+        </div>
+        <div class="tnote" data-i18n="s3n">HPV primary screening preferred; cytology transition; co-testing in adequate-resource settings.</div>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">Age &amp; Screening Interval</span></h3>
+        <div class="agemx">
+          <div class="age"><div class="an">&lt;25</div><div class="al" data-i18n="s4a1">no routine screening (transient HPV; low cancer rate)</div></div>
+          <div class="age hot"><div class="an">25–64</div><div class="al" data-i18n="s4a2">HPV/co-test every 5 y · cytology every 3 y</div></div>
+          <div class="age"><div class="an">&gt;65</div><div class="al" data-i18n="s4a3">stop if adequate negative history; else continue</div></div>
+          <div class="age"><div class="an">Special</div><div class="al" data-i18n="s4a4">&lt;25 high-risk · pregnancy · post-hysterectomy · HIV</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s4b"><strong>&lt;25 high-risk</strong> (multi-partner / early sex / HIV / smoking): screen 1 y after sexual debut, shorter intervals (2B).</li>
+          <li data-i18n="s4c"><strong>Never/inadequately screened</strong>: screen at pre-pregnancy or first antenatal visit (2A).</li>
+          <li data-i18n="s4d"><strong>Post-hysterectomy</strong>: CIN-precursor → annual co-test ×3 then 3-y ×25 y (2A); benign → no routine (2B).</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Emerging Methods &amp; Methylation Position</span></h3>
+        <ul>
+          <li data-i18n="s5a"><strong>Methylation · HPV integration · viral load · immunocytochemistry · AI</strong> — promising but need large prospective data.</li>
+          <li data-i18n="s5b"><strong>Vaccinated women</strong>: same screening strategy as general population (2B).</li>
+          <li data-i18n="s5c"><strong>Immunocompromised</strong>: early screening per HIV strategy (2A).</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">Methylation</div><div class="lab" data-i18n="s5s1">emerging screening tool</div></div>
+          <div class="stat"><div class="big">HPV integration</div><div class="lab" data-i18n="s5s2">emerging</div></div>
+          <div class="stat"><div class="big">AI</div><div class="lab" data-i18n="s5s3">emerging</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">TCT+HPV</div><div class="lab" data-i18n="s5s4">co-screening</div></div>
+          <div class="stat"><div class="big">HR-HPV+</div><div class="lab" data-i18n="s5s5">triage</div></div>
+          <div class="stat"><div class="big">ASC-US/LSIL</div><div class="lab" data-i18n="s5s6">triage</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s5d"><strong>Methylation triage role</strong>: co-screening with TCT+HPV; triage HR-HPV+ / ASC-US / LSIL (per companion consensus).</li>
+          <li data-i18n="s5e"><strong>Evidence needed</strong>: large prospective studies to define clinical position.</li>
+          <li data-i18n="s5f"><strong>Future</strong>: multi-marker panels · liquid biopsy · individualized treatment.</li>
+          <li data-i18n="s5g"><strong>Methylation evidence</strong>: objective, repeatable, sample-parsimonious — complements HPV/cytology in triage pathways.</li>
+        </ul>
+        <div class="tnote" data-i18n="s5n">Methylation is listed among emerging screening tools with application prospects — validated triage role per companion consensuses; direction of travel toward molecular precision screening.</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>National screening standard</b>: hrHPV primary (class 1), start 25 y, 5-y HPV / 3-y cytology intervals, stop 65 y with adequate negatives.</li>
+      <li data-i18n="c2"><b>Stratified special populations</b>: high-risk &lt;25, pregnancy, post-hysterectomy, HIV — individualized screening plans.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "China · 7 Societies · Clinical Guideline · Screening Strategy",
+      title: "Guidelines for Cervical Cancer Screening in China (I)",
+      title_alt: "中国子宫颈癌筛查指南（一）",
+      subtitle: "hrHPV nucleic acid as primary screening (class 1) · start age 25 · HPV every 5 y or cytology every 3 y · stop at 65 with adequate negatives",
+      authors: "CSCCP · CSGO-CMA · CGCS · CMIHE · CFC · CPMA · CMCHS",
+      source: "7 Chinese medical societies · Part I: screening strategy",
+      h1: "primary screening", h2: "start age", h3: "HPV / cytology interval", h4: "may stop (adequate negatives)",
+      s1t: "Background & Goal",
+      s1a: "<strong>Target</strong>: WHO accelerate-elimination strategy; China Action Plan 2023–2030.",
+      s1b: "<strong>Burden</strong>: 109k new & 59k deaths in China 2020 (18.2%/17.3% of world).",
+      s1c: "<strong>Endpoint</strong>: CIN3+ risk as main clinical endpoint (ASCCP principle).",
+      s2t: "Epidemiology Essentials",
+      s2s1: "HPV prevalence ≥20 y", s2s2: "17–24 & 40–44 y", s2s3: "common types",
+      s2a1: "hrHPV+ in cancer", s2a2: "hrHPV+ in HSIL", s2a3: "hrHPV+ in LSIL", s2a4: "hrHPV+ in normal",
+      s2b: "<strong>Rising burden</strong>: ASR incidence 2.53 → 11.34/100k (1999→2016), +8.5%/yr.",
+      s2c: "<strong>Younger onset</strong>: rural mean age at diagnosis fell 5.18 y (2000–2014).",
+      s2s4: "CIN1 · ASR prev.", s2s5: "CIN2 · ASR prev.", s2s6: "CIN3+ · ASR prev.",
+      s2s7: "hrHPV · SCC", s2s8: "hrHPV · adeno", s2s9: "mortality rise",
+      s2g: "<strong>Screening principle</strong>: early detection of precancer & early cancer; organized + opportunistic.",
+      s2h: "<strong>Why 25 y start</strong>: <25 HPV mostly transient; cancer rare; avoid adverse pregnancy effects of overtreatment.",
+      s2d: "<strong>Regional gap</strong>: HPV prevalence higher in central/west than east; rural mortality rising faster.",
+      s2e: "<strong>Type split</strong>: hrHPV in SCC 97.6% vs adenocarcinoma 74.5%.",
+      s2f: "<strong>Screening modes</strong>: organized population screening · opportunistic screening.",
+      s3t: "Screening Methods — Recommendations",
+      s3c1: "<b>hrHPV nucleic acid</b> — primary screening of choice.",
+      s3c2: "<b>Cytology</b> where HPV unavailable; switch when feasible.",
+      s3c3: "<b>Cotesting</b> (HPV+cytology) for resource-rich / opportunistic / special.",
+      s3c4: "<b>VIA</b> for resource-limited areas without HPV/cytology.",
+      s3n: "HPV primary screening preferred; cytology transition; co-testing in adequate-resource settings.",
+      s4t: "Age & Screening Interval",
+      s4a1: "no routine screening (transient HPV; low cancer rate)", s4a2: "HPV/co-test every 5 y · cytology every 3 y", s4a3: "stop if adequate negative history; else continue", s4a4: "<25 high-risk · pregnancy · post-hysterectomy · HIV",
+      s4b: "<strong>&lt;25 high-risk</strong> (multi-partner / early sex / HIV / smoking): screen 1 y after sexual debut, shorter intervals (2B).",
+      s4c: "<strong>Never/inadequately screened</strong>: screen at pre-pregnancy or first antenatal visit (2A).",
+      s4d: "<strong>Post-hysterectomy</strong>: CIN-precursor → annual co-test ×3 then 3-y ×25 y (2A); benign → no routine (2B).",
+      s5t: "Emerging Methods & Methylation Position",
+      s5a: "<strong>Methylation · HPV integration · viral load · immunocytochemistry · AI</strong> — promising but need large prospective data.",
+      s5b: "<strong>Vaccinated women</strong>: same screening strategy as general population (2B).",
+      s5c: "<strong>Immunocompromised</strong>: early screening per HIV strategy (2A).",
+      s5s1: "emerging screening tool", s5s2: "emerging", s5s3: "emerging",
+      s5d: "<strong>Methylation triage role</strong>: co-screening with TCT+HPV and triage of HR-HPV+ / ASC-US / LSIL women (per companion molecular-testing consensus).",
+      s5e: "<strong>Evidence needed</strong>: large prospective studies to define clinical position.",
+      s5s4: "co-screening", s5s5: "triage", s5s6: "triage",
+      s5f: "<strong>Future</strong>: multi-marker panels, liquid biopsy & individualized treatment — methylation well-positioned as objective triage layer.",
+      s5g: "<strong>Methylation evidence</strong>: objective, repeatable, sample-parsimonious — complements HPV/cytology in triage pathways.",
+      s5n: "Methylation is listed among emerging screening tools with application prospects — validated triage role per companion consensuses.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>National screening standard</b>: hrHPV primary (class 1), start 25 y, 5-y HPV / 3-y cytology intervals, stop 65 y with adequate negatives.",
+      c2: "<b>Stratified special populations</b>: high-risk <25, pregnancy, post-hysterectomy, HIV — individualized screening plans."
+    },
+    zh: {
+      kicker: "中国 · 7 学（协）会 · 临床指南 · 筛查策略",
+      title: "中国子宫颈癌筛查指南（一）",
+      title_alt: "Guidelines for Cervical Cancer Screening in China (I)",
+      subtitle: "高危型 HPV 核酸检测作为初筛首选（1 类）· 25 岁起 · HPV 每 5 年 / 细胞学每 3 年 · 65 岁充分阴性可终止",
+      authors: "CSCCP · 中华医学会妇科肿瘤学分会 · 中国抗癌协会妇科肿瘤专委会 · 中国医促会妇产健康医学分会 · 中国癌症基金会 · 中华预防医学会 · 中国妇幼健康研究会",
+      source: "7 个学（协）会联合 · 第一部分：筛查策略",
+      h1: "初筛首选", h2: "起始年龄", h3: "HPV / 细胞学间隔", h4: "充分阴性可终止",
+      s1t: "背景与目标",
+      s1a: "<strong>目标</strong>：WHO 加速消除宫颈癌战略；中国行动计划 2023–2030。",
+      s1b: "<strong>负担</strong>：2020 年中国新发 10.9 万、死亡 5.9 万（占全球 18.2%/17.3%）。",
+      s1c: "<strong>终点</strong>：以 CIN3+ 风险为主要临床终点（ASCCP 原则）。",
+      s2t: "流行病学要点",
+      s2s1: "≥20 岁 HPV 患病率", s2s2: "17–24 与 40–44 岁", s2s3: "常见型别",
+      s2a1: "癌中 hrHPV+", s2a2: "HSIL 中 hrHPV+", s2a3: "LSIL 中 hrHPV+", s2a4: "正常中 hrHPV+",
+      s2b: "<strong>负担上升</strong>：世标发病率 2.53 → 11.34/10 万（1999→2016），年均 +8.5%。",
+      s2c: "<strong>年轻化</strong>：农村标化平均发病年龄下降 5.18 岁（2000–2014）。",
+      s2s4: "CIN1 · 世标患病率", s2s5: "CIN2 · 世标患病率", s2s6: "CIN3+ · 世标患病率",
+      s2s7: "hrHPV · 鳞癌", s2s8: "hrHPV · 腺癌", s2s9: "死亡率年均上升",
+      s2g: "<strong>筛查原则</strong>：早发现癌前病变与早期癌；组织化 + 机会性。",
+      s2h: "<strong>为何 25 岁起</strong>：<25 HPV 多为一过性、癌少见；避免过度干预影响妊娠结局。",
+      s2d: "<strong>地区差异</strong>：中西部 HPV 感染率高于东部；农村死亡率增速更快。",
+      s2e: "<strong>分型</strong>：鳞癌 hrHPV+ 97.6% vs 腺癌 74.5%。",
+      s2f: "<strong>筛查模式</strong>：有组织群体筛查 · 机会性筛查。",
+      s3t: "筛查方法——推荐意见",
+      s3c1: "<b>高危型 HPV 核酸检测</b>——初筛首选。",
+      s3c2: "<b>细胞学</b>——无 HPV 条件地区；条件成熟后转换。",
+      s3c3: "<b>联合筛查</b>（HPV+细胞学）——资源充足/机会性/特殊人群。",
+      s3c4: "<b>肉眼筛查（VIA）</b>——资源匮乏地区。",
+      s3n: "HPV 初筛优先；细胞学过渡；资源充足地区联合筛查。",
+      s4t: "年龄与筛查间隔",
+      s4a1: "不常规筛查（一过性感染；癌发病率低）", s4a2: "HPV/联合每 5 年 · 细胞学每 3 年", s4a3: "充分阴性史可终止；否则继续", s4a4: "<25 高危 · 妊娠 · 术后 · HIV",
+      s4b: "<strong>&lt;25 高危</strong>（多性伴/过早性生活/HIV/吸烟）：性生活开始后 1 年内筛查、缩短间隔（2B）。",
+      s4c: "<strong>从未/未规范筛查</strong>：孕前或首次产检时筛查（2A）。",
+      s4d: "<strong>子宫切除后</strong>：癌前病变 → 每年联合 ×3 后每 3 年 ×25 年（2A）；良性 → 不常规（2B）。",
+      s5t: "新兴方法与甲基化定位",
+      s5a: "<strong>甲基化 · HPV 整合 · 病毒载量 · 免疫细胞化学 · AI</strong>——有前景但需大样本前瞻数据。",
+      s5b: "<strong>疫苗接种人群</strong>：筛查策略同普通人群（2B）。",
+      s5c: "<strong>免疫功能低下</strong>：尽早筛查，按 HIV 人群策略（2A）。",
+      s5s1: "新兴筛查工具", s5s2: "新兴", s5s3: "新兴",
+      s5d: "<strong>甲基化分流角色</strong>：与 TCT+HPV 联合筛查；分流 HR-HPV+ / ASC-US / LSIL（按配套共识）。",
+      s5e: "<strong>证据需求</strong>：大样本前瞻研究明确临床定位。",
+      s5s4: "联合筛查", s5s5: "分流", s5s6: "分流",
+      s5f: "<strong>未来</strong>：多标志物联合 · 液体活检 · 个体化治疗。",
+      s5g: "<strong>甲基化证据</strong>：客观、可重复、节省样本——在分流路径中补充 HPV/细胞学。",
+      s5n: "甲基化被列入有应用前景的新兴筛查工具——其分流价值由配套共识验证。",
+      c_ttl: "临床意义",
+      c1: "<b>国家筛查标准</b>：hrHPV 初筛（1 类）、25 岁起、HPV 每 5 年 / 细胞学每 3 年、65 岁充分阴性可终止。",
+      c2: "<b>特殊人群分层</b>：<25 高危、妊娠、术后、HIV——个体化筛查方案。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

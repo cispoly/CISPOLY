@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAX1/JAM3 Methylation Meta-Analysis — Xiao 2025</title>
+<!--
+  设计说明（布局 AZ：meta 分析 · 森林图 + 性能卡）：
+  - 标题带 → hero（7 研究 · CIN2+ AUC 0.9694 · DOR 77.36 · QUADAS-2）
+  - 左列：① 背景与目的 ② 方法（检索/纳入/QUADAS-2/Meta-Disc）
+  - 右列：③ CIN2+ 森林图 + 性能 statrow ④ CIN3+ 森林图 + 性能 statrow ⑤ 似然比/意义
+  - 临床意义带
+-->
+<style>
+  :root { --primary:#D74B4A; --secondary:#F07A76; --accent:#F7C9C7; --accent-deep:#B83A39;
+    --bg:#FFFFFF; --panel:rgba(233,233,233,0.55); --panel-alt:rgba(240,122,118,0.10);
+    --text:#3A3232; --muted:#5C5252; --line:rgba(215,75,74,0.22); }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:100%; height:100%; overflow:hidden; font-family:"Segoe UI","Helvetica Neue",Arial,"Microsoft YaHei",sans-serif; color:var(--text); background:var(--bg); }
+  body { display:flex; align-items:center; justify-content:center; }
+  .poster { width:2100px; height:1080px; display:flex; flex-direction:column; background:#FFF; padding:14px 26px; zoom:calc(min(100vw/2100px,100vh/1080px)); flex:none; position:relative; }
+
+  .titleband { background:linear-gradient(135deg,rgba(215,75,74,0.94),rgba(215,75,74,0.86) 50%,rgba(240,122,118,0.9)); color:#fff; padding:13px 32px 12px; flex:0 0 auto; border-radius:10px 10px 0 0; position:relative; overflow:hidden; }
+  .langswitch { position:absolute; top:12px; right:18px; display:flex; gap:4px; background:rgba(255,255,255,0.18); border-radius:16px; padding:3px; z-index:3; }
+  .langswitch button { border:none; background:transparent; color:#fff; cursor:pointer; font:600 11px/1 "Segoe UI",sans-serif; padding:5px 12px; border-radius:13px; letter-spacing:.5px; }
+  .langswitch button.on { background:#fff; color:var(--accent-deep); }
+  .kicker { font-size:12px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.9); font-weight:600; margin-bottom:4px; padding-right:150px; }
+  .titleband h1 { font-size:24px; font-weight:700; line-height:1.16; max-width:1740px; }
+  .titleband .title_alt { font-size:15px; font-weight:500; line-height:1.3; color:rgba(255,255,255,0.88); margin-top:3px; max-width:1740px; }
+  .titleband .subtitle { font-size:13.5px; color:rgba(255,255,255,0.92); margin-top:4px; max-width:1800px; }
+  .titleband .meta { margin-top:6px; border-top:1px solid rgba(255,255,255,0.32); padding-top:5px; font-size:11px; line-height:1.35; color:rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight:600; color:#FFF; }
+
+  .hero { flex:0 0 auto; height:92px; background:#FFF; border:1px solid var(--line); border-bottom:none; display:flex; align-items:stretch; gap:10px; padding:8px 6px; }
+  .hero .stat { flex:1; background:var(--panel-alt); border:1px solid rgba(215,75,74,0.28); border-radius:8px; padding:6px; text-align:center; display:flex; flex-direction:column; justify-content:center; }
+  .hero .stat .big { font-size:20px; font-weight:800; color:var(--primary); line-height:1.05; }
+  .hero .stat .lab { font-size:9px; color:var(--muted); margin-top:2px; line-height:1.2; }
+  .hero .stat.hot { background:linear-gradient(135deg,rgba(215,75,74,0.95),rgba(240,122,118,0.92)); border-color:var(--accent-deep); }
+  .hero .stat.hot .big { color:#fff; } .hero .stat.hot .lab { color:rgba(255,255,255,0.92); font-weight:600; }
+
+  .main { flex:1 1 auto; min-height:0; display:grid; grid-template-columns:560px minmax(0,1fr); gap:14px; padding-top:10px; }
+  .col { display:flex; flex-direction:column; gap:10px; min-height:0; min-width:0; }
+  .panel { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:8px 14px 6px; flex:0 0 auto; display:flex; flex-direction:column; min-height:0; overflow:hidden; }
+  .panel.grow { flex:1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .figwrap, .panel .tnote { flex:0 0 auto; }
+  .panel h3 { font-size:14px; font-weight:700; color:var(--primary); border-bottom:2px solid var(--accent-deep); padding-bottom:3px; margin-bottom:5px; display:flex; align-items:center; gap:6px; }
+  .panel h3 .num { display:inline-flex; align-items:center; justify-content:center; width:19px; height:19px; background:rgba(215,75,74,0.85); color:#fff; border-radius:5px; font-size:11px; flex:0 0 auto; }
+  .panel p, .panel li { font-size:12px; line-height:1.4; color:var(--muted); }
+  .panel ul { list-style:none; }
+  .panel ul li { padding-left:14px; position:relative; margin-bottom:5px; }
+  .panel ul li::before { content:""; position:absolute; left:0; top:6px; width:6px; height:6px; border-radius:50%; background:var(--secondary); }
+  .panel ul li strong { color:var(--primary); }
+  .panel ul li:last-child { margin-bottom:0; }
+
+  .statrow { display:flex; gap:8px; margin:0 0 5px; }
+  .stat { flex:1; background:#fff; border:1px solid var(--line); border-radius:6px; padding:10px 4px; text-align:center; }
+  .stat .big { font-size:17px; font-weight:800; color:var(--primary); line-height:1.05; }
+  .stat .lab { font-size:9px; color:var(--muted); margin-top:2px; line-height:1.2; }
+  .stat.hot { background:linear-gradient(135deg,rgba(215,75,74,0.95),rgba(240,122,118,0.92)); border-color:var(--accent-deep); }
+  .stat.hot .big { color:#fff; } .stat.hot .lab { color:rgba(255,255,255,0.92); font-weight:600; }
+
+  .figwrap { text-align:center; margin:0 0 5px; }
+  .figwrap img { max-height:120px; width:auto; max-width:100%; display:block; margin:0 auto; align-self:center; }
+  .figcap { font-size:9.5px; color:var(--muted); line-height:1.3; margin-top:3px; text-align:center; }
+
+  .figrow { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:8px; align-items:center; }
+  .figrow .fig { text-align:center; align-self:center; }
+  .figrow .fig img { max-height:140px; width:auto; max-width:100%; display:block; margin:0 auto; align-self:center; }
+  .figrow .side { min-width:0; }
+  .figrow .side ul li { font-size:11.5px; }
+  .orbar { margin:2px 0 6px; }
+  .orb { display:flex; align-items:center; gap:10px; margin-bottom:4px; }
+  .orb .obl { flex:0 0 150px; font-size:11px; font-weight:700; color:var(--text); text-align:right; }
+  .orb .obt { flex:1 1 auto; height:17px; background:#F1E7E7; border-radius:5px; overflow:hidden; position:relative; }
+  .orb .obf { height:100%; border-radius:5px; display:flex; align-items:center; justify-content:flex-end; padding-right:10px; font-size:12px; font-weight:800; color:#fff; white-space:nowrap; }
+  .orb.win .obf { background:linear-gradient(90deg,var(--secondary) 0%,var(--primary) 100%); }
+  .orb.lose .obf { background:linear-gradient(90deg,#C9A9A7 0%,#D8B0AE 100%); color:#6B5755; }
+  .orb .obv { flex:0 0 62px; font-size:11.5px; font-weight:700; color:var(--primary); }
+  .tnote { font-size:10px; color:var(--muted); line-height:1.36; margin-top:3px; }
+  .tnote b { color:var(--accent-deep); }
+
+  .clinical { flex:0 0 auto; background:linear-gradient(135deg,rgba(215,75,74,0.92),rgba(215,75,74,0.8) 60%,rgba(240,122,118,0.88)); border-radius:0 0 10px 10px; color:#fff; padding:10px 26px; display:flex; gap:20px; align-items:center; }
+  .clinical .ttl { font-size:15px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.95); flex:0 0 auto; border-right:1.5px solid rgba(255,255,255,0.35); padding-right:16px; }
+  .clinical ul { list-style:none; flex:1 1 auto; min-width:0; }
+  .clinical ul li { font-size:13px; line-height:1.48; color:rgba(255,255,255,0.96); padding-left:15px; position:relative; margin-bottom:3px; }
+  .clinical ul li:last-child { margin-bottom:0; }
+  .clinical ul li::before { content:"▸"; position:absolute; left:0; top:0; color:#FFD9D6; }
+  .clinical ul li b { color:#FFE3E1; }
+  body.lang-zh .panel ul li { line-height:1.56; margin-bottom:5px; }
+  .zhonly { display:none; }
+  body.lang-zh .zhonly { display:flex; }
+  body.lang-zh .zhonly.block { display:block; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Systematic Review &amp; Meta-Analysis · 论著</div>
+    <h1 data-i18n="title">PAX1/JAM3 Methylation for Diagnosis of Cervical High-Grade Intraepithelial Neoplasia: A Meta-Analysis</h1>
+    <div class="title_alt" data-i18n="title_alt">PAX1、JAM3 甲基化对子宫颈高级别上皮内瘤变诊断的 meta 分析</div>
+    <div class="subtitle" data-i18n="subtitle">7 diagnostic studies · QUADAS-2 · Meta-Disc 1.4 · CIN2+ &amp; CIN3+ pooled accuracy</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">肖金芬、张旭梅、刘懿、丁尚玮、曾倩、李芹 · 昆明医科大学附属延安医院</div>
+      <div class="source" data-i18n="source">现代妇产科进展 2025;24(9):680-685 · DOI:10.13283/j.cnki.xdfckjz.2025.09.004 · PROSPERO CRD420251008484</div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="stat hot"><div class="big">7</div><div class="lab" data-i18n="h1">diagnostic studies</div></div>
+    <div class="stat hot"><div class="big">0.9694</div><div class="lab" data-i18n="h2">CIN2+ pooled AUC</div></div>
+    <div class="stat hot"><div class="big">77.36</div><div class="lab" data-i18n="h3">CIN2+ DOR</div></div>
+    <div class="stat"><div class="big">2024.2</div><div class="lab" data-i18n="h4">search cutoff</div></div>
+  </div>
+
+  <main class="main">
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">13.83/10万</div><div class="lab" data-i18n="s1s1">China incidence 2022</div></div>
+          <div class="stat"><div class="big">HPV</div><div class="lab" data-i18n="s1s2">low specificity</div></div>
+          <div class="stat"><div class="big">TCT</div><div class="lab" data-i18n="s1s3">low sensitivity</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s1a"><strong>Single tests fall short</strong>: HPV DNA cannot distinguish transient from persistent infection; cytology is operator-dependent.</li>
+          <li data-i18n="s1b"><strong>Methylation rationale</strong>: promoter hypermethylation silences tumor-suppressor genes — an early, quantitative molecular signal.</li>
+          <li data-i18n="s1c"><strong>Aim</strong>: systematically evaluate combined PAX1/JAM3 methylation accuracy for HSIL (CIN2+/CIN3+).</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Methods</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">8</div><div class="lab" data-i18n="s2s1">databases</div></div>
+          <div class="stat hot"><div class="big">7</div><div class="lab" data-i18n="s2s2">studies included</div></div>
+          <div class="stat"><div class="big">QUADAS-2</div><div class="lab" data-i18n="s2s3">quality tool</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Search</strong>: CNKI, Wanfang, VIP, CBM, PubMed, Embase, Web of Science, Cochrane — from inception to Feb 10, 2024; PROSPERO-registered.</li>
+          <li data-i18n="s2b"><strong>Inclusion</strong>: diagnostic studies of PAX1/JAM3 dual methylation with 2×2 table data (TP/FP/TN/FN), histopathology reference standard.</li>
+          <li data-i18n="s2c"><strong>Quality</strong>: QUADAS-2 double-blind appraisal; heterogeneity via Spearman threshold analysis; Meta-Disc 1.4 pooling.</li>
+          <li data-i18n="s2d"><strong>Outcomes</strong>: pooled Se, Sp, PLR, NLR, AUC, DOR for CIN2+ and CIN3+.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">2015–2024</div><div class="lab" data-i18n="s2s4">publication window</div></div>
+          <div class="stat"><div class="big">2×2</div><div class="lab" data-i18n="s2s5">table data required</div></div>
+          <div class="stat"><div class="big">CN</div><div class="lab" data-i18n="s2s6">+ EN databases</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2e"><strong>Language</strong>: Chinese (CNKI/Wanfang/VIP/CBM) and English (PubMed/Embase/WoS/Cochrane) sources combined.</li>
+          <li data-i18n="s2f"><strong>Threshold effect</strong>: Spearman correlation evaluated before pooling; Meta-Disc used for bivariate accuracy synthesis.</li>
+          <li data-i18n="s2g"><strong>Reference standard</strong>: internationally accepted histopathology diagnosis; duplicate reports excluded.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">Se 0.78</div><div class="lab" data-i18n="s2s7">CIN2+ pooled</div></div>
+          <div class="stat"><div class="big">Sp 0.95</div><div class="lab" data-i18n="s2s8">CIN2+ pooled</div></div>
+          <div class="stat"><div class="big">AUC .97</div><div class="lab" data-i18n="s2s9">CIN2+</div></div>
+        </div>
+        <div class="zhonly block" style="margin-top:3px;"><span class="tnote" data-i18n="s2z">方法要点：双人独立提取、QUADAS-2 质量评价、阈值效应检验与 Meta-Disc 1.4 合并——保证诊断准确性综合的稳健性。</span></div>
+        <div class="zhonly block" style="margin-top:3px;"><span class="tnote" data-i18n="s2z2">检索覆盖 8 个中英文数据库至 2024 年 2 月，纳入 7 项诊断试验，共提取四格表数据 7 组。</span></div>
+        <div class="tnote" data-i18n="s2n">Meta-analysis follows PRISMA framework; independent dual data extraction with third-party arbitration.</div>
+      </div>
+    </section>
+
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">CIN2+ — Pooled Diagnostic Accuracy</span></h3>
+        <div class="figrow">
+          <div class="fig"><img src="images/fig_forest_cin2.jpg" alt="CIN2+ forest plot"></div>
+          <div class="side">
+            <div class="statrow">
+              <div class="stat hot"><div class="big">0.78</div><div class="lab" data-i18n="s3s1">Se [0.75–0.80]</div></div>
+              <div class="stat hot"><div class="big">0.95</div><div class="lab" data-i18n="s3s2">Sp [0.94–0.95]</div></div>
+            </div>
+
+            <ul>
+              <li data-i18n="s3a"><strong>Rule-in power</strong>: PLR 14.61 — positive methylation markedly raises HSIL probability.</li>
+              <li data-i18n="s3b"><strong>Rule-out power</strong>: NLR 0.202 — negative result strongly reduces high-grade risk.</li>
+              <li data-i18n="s3c"><strong>Overall DOR</strong>: 77.36 [43.1–139.0] — excellent discriminative ability.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tnote" data-i18n="s3n">7 studies pooled · AUC 0.9694 · consistency supports triage application in screening follow-up.</div>
+      </div>
+
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">4</span><span data-i18n="s4t">CIN3+ — Pooled Diagnostic Accuracy</span></h3>
+        <div class="figrow">
+          <div class="fig"><img src="images/fig_forest_cin3.jpg" alt="CIN3+ forest plot"></div>
+          <div class="side">
+            <div class="statrow">
+              <div class="stat"><div class="big">0.84</div><div class="lab" data-i18n="s4s1">Se [0.80–0.87]</div></div>
+              <div class="stat"><div class="big">0.87</div><div class="lab" data-i18n="s4s2">Sp [0.86–0.88]</div></div>
+            </div>
+
+            <ul>
+              <li data-i18n="s4a"><strong>Higher Se</strong>: pooled sensitivity rises to 0.84 for CIN3+ — strongest for clinically important lesions.</li>
+              <li data-i18n="s4b"><strong>Stronger exclusion</strong>: NLR 0.172 — negative result nearly rules out CIN3+.</li>
+              <li data-i18n="s4c"><strong>DOR</strong>: 34.76 [20.1–60.1] · AUC 0.9251 — high overall accuracy.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tnote" data-i18n="s4n">CIN3+ is the clinical action threshold — high sensitivity supports safe deferral of colposcopy when negative.</div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Likelihood Ratios &amp; Interpretation</span></h3>
+        <div class="orbar">
+          <div class="orb win"><div class="obl" data-i18n="s5l1">PLR · CIN2+</div><div class="obt"><div class="obf" style="width:100%">14.61</div></div><div class="obv">14.61</div></div>
+          <div class="orb win"><div class="obl" data-i18n="s5l2">PLR · CIN3+</div><div class="obt"><div class="obf" style="width:40%">5.911</div></div><div class="obv">5.911</div></div>
+          <div class="orb lose"><div class="obl" data-i18n="s5l3">NLR · CIN2+</div><div class="obt"><div class="obf" style="width:50%">0.202</div></div><div class="obv">0.202</div></div>
+          <div class="orb lose"><div class="obl" data-i18n="s5l4">NLR · CIN3+</div><div class="obt"><div class="obf" style="width:43%">0.172</div></div><div class="obv">0.172</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">0.9694</div><div class="lab" data-i18n="s5s3">CIN2+ AUC</div></div>
+          <div class="stat hot"><div class="big">0.9251</div><div class="lab" data-i18n="s5s4">CIN3+ AUC</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s5a"><strong>Strong rule-in</strong>: PLR 14.61 (CIN2+) — a positive PAX1/JAM3 methylation result markedly increases HSIL probability.</li>
+          <li data-i18n="s5b"><strong>Strong rule-out</strong>: NLR 0.202 — a negative result substantially reduces the chance of high-grade disease.</li>
+          <li data-i18n="s5c"><strong>Clinical role</strong>: supports methylation as an objective triage tool for cervical screening follow-up.</li>
+          <li data-i18n="s5d"><strong>Pre-test caution</strong>: interpret alongside local prevalence &amp; cytology/HPV context — pooled values span heterogeneous settings.</li>
+        </ul>
+        <div class="tnote" data-i18n="s5n">QUADAS-2 quality assessment; threshold-effect analysis performed; Meta-Disc 1.4 bivariate pooling.</div>
+      </div>
+    </section>
+  </main>
+
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Evidence-based triage</b>: combined PAX1/JAM3 methylation has high pooled sensitivity and specificity for HSIL — CIN2+ AUC 0.9694, DOR 77.36.</li>
+      <li data-i18n="c2"><b>Objective complement</b>: methylation adds an objective molecular layer beyond HPV DNA and cytology, improving stratification for colposcopy decisions.</li>
+    </ul>
+  </div>
+
+</div>
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Systematic Review & Meta-Analysis · 论著",
+      title: "PAX1/JAM3 Methylation for Diagnosis of Cervical High-Grade Intraepithelial Neoplasia: A Meta-Analysis",
+      title_alt: "PAX1、JAM3 甲基化对子宫颈高级别上皮内瘤变诊断的 meta 分析",
+      subtitle: "7 diagnostic studies · QUADAS-2 · Meta-Disc 1.4 · CIN2+ & CIN3+ pooled accuracy",
+      authors: "肖金芬、张旭梅、刘懿、丁尚玮、曾倩、李芹 · 昆明医科大学附属延安医院",
+      source: "现代妇产科进展 2025;24(9):680-685 · DOI:10.13283/j.cnki.xdfckjz.2025.09.004 · PROSPERO CRD420251008484",
+      h1: "diagnostic studies", h2: "CIN2+ pooled AUC", h3: "CIN2+ DOR", h4: "search cutoff",
+      s1t: "Background & Objective",
+      s1s1: "China incidence 2022", s1s2: "low specificity", s1s3: "low sensitivity",
+      s1a: "<strong>Single tests fall short</strong>: HPV DNA cannot distinguish transient from persistent infection; cytology is operator-dependent.",
+      s1b: "<strong>Methylation rationale</strong>: promoter hypermethylation silences tumor-suppressor genes — an early, quantitative molecular signal.",
+      s1c: "<strong>Aim</strong>: systematically evaluate combined PAX1/JAM3 methylation accuracy for HSIL (CIN2+/CIN3+).",
+      s2t: "Methods",
+      s2s1: "databases", s2s2: "studies included", s2s3: "quality tool",
+      s2a: "<strong>Search</strong>: CNKI, Wanfang, VIP, CBM, PubMed, Embase, Web of Science, Cochrane — from inception to Feb 10, 2024; PROSPERO-registered.",
+      s2b: "<strong>Inclusion</strong>: diagnostic studies of PAX1/JAM3 dual methylation with 2×2 table data (TP/FP/TN/FN), histopathology reference standard.",
+      s2c: "<strong>Quality</strong>: QUADAS-2 double-blind appraisal; heterogeneity via Spearman threshold analysis; Meta-Disc 1.4 pooling.",
+      s2d: "<strong>Outcomes</strong>: pooled Se, Sp, PLR, NLR, AUC, DOR for CIN2+ and CIN3+.",
+      s2s4: "publication window", s2s5: "table data required", s2s6: "+ EN databases",
+      s2e: "<strong>Language</strong>: Chinese (CNKI/Wanfang/VIP/CBM) and English (PubMed/Embase/WoS/Cochrane) sources combined.",
+      s2f: "<strong>Threshold effect</strong>: Spearman correlation evaluated before pooling; Meta-Disc used for bivariate accuracy synthesis.",
+      s2g: "<strong>Reference standard</strong>: internationally accepted histopathology diagnosis; duplicate reports excluded.",
+      s2s7: "CIN2+ pooled", s2s8: "CIN2+ pooled", s2s9: "CIN2+",
+      s2n: "Meta-analysis follows PRISMA framework; independent dual data extraction with third-party arbitration.",
+      s3t: "CIN2+ — Pooled Diagnostic Accuracy",
+      s3s1: "Se [0.75–0.80]", s3s2: "Sp [0.94–0.95]", s3s3: "DOR [43.1–139.0]",
+      s3cap: "Forest plot — CIN2+ sensitivity & specificity (7 studies)",
+      s3s4: "PLR", s3s5: "NLR",
+      s3a: "<strong>Rule-in power</strong>: PLR 14.61 — positive methylation markedly raises HSIL probability.",
+      s3b: "<strong>Rule-out power</strong>: NLR 0.202 — negative result strongly reduces high-grade risk.",
+      s3c: "<strong>Overall DOR</strong>: 77.36 [43.1–139.0] — excellent discriminative ability.",
+      s3n: "7 studies pooled · AUC 0.9694 · consistency supports triage application in screening follow-up.",
+      s4t: "CIN3+ — Pooled Diagnostic Accuracy",
+      s4s1: "Se [0.80–0.87]", s4s2: "Sp [0.86–0.88]", s4s3: "DOR [20.1–60.1]",
+      s4cap: "Forest plot — CIN3+ sensitivity & specificity (7 studies)",
+      s4s4: "PLR", s4s5: "NLR",
+      s4a: "<strong>Higher Se</strong>: pooled sensitivity rises to 0.84 for CIN3+ — strongest for clinically important lesions.",
+      s4b: "<strong>Stronger exclusion</strong>: NLR 0.172 — negative result nearly rules out CIN3+.",
+      s4c: "<strong>DOR</strong>: 34.76 [20.1–60.1] · AUC 0.9251 — high overall accuracy.",
+      s4n: "CIN3+ is the clinical action threshold — high sensitivity supports safe deferral of colposcopy when negative.",
+      s5t: "Likelihood Ratios & Interpretation",
+      s5s1: "CIN2+ PLR", s5s2: "CIN2+ NLR", s5s3: "CIN3+ AUC",
+      s5l1: "PLR · CIN2+", s5l2: "PLR · CIN3+", s5l3: "NLR · CIN2+", s5l4: "NLR · CIN3+",
+      s5s4: "CIN3+ AUC", s5s5: "CIN2+ DOR",
+      s5l1: "PLR · CIN2+", s5l2: "PLR · CIN3+", s5l3: "NLR · CIN2+", s5l4: "NLR · CIN3+",
+      s5s4: "CIN3+ AUC", s5s5: "CIN2+ DOR",
+      s5a: "<strong>Strong rule-in</strong>: PLR 14.61 (CIN2+) — a positive PAX1/JAM3 methylation result markedly increases HSIL probability.",
+      s5b: "<strong>Strong rule-out</strong>: NLR 0.202 — a negative result substantially reduces the chance of high-grade disease.",
+      s5c: "<strong>High diagnostic utility</strong>: AUC 0.9694 (CIN2+) and 0.9251 (CIN3+) indicate excellent overall accuracy.",
+      s5d: "<strong>Pre-test caution</strong>: interpret alongside local prevalence & cytology/HPV context — pooled values span heterogeneous settings.",
+      s5n: "QUADAS-2 quality assessment; threshold-effect analysis performed; Meta-Disc 1.4 bivariate pooling.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Evidence-based triage</b>: combined PAX1/JAM3 methylation has high pooled sensitivity and specificity for HSIL — CIN2+ AUC 0.9694, DOR 77.36.",
+      c2: "<b>Objective complement</b>: methylation adds an objective molecular layer beyond HPV DNA and cytology, improving stratification for colposcopy decisions."
+    },
+    zh: {
+      kicker: "系统综述与 Meta 分析 · 论著",
+      title: "PAX1、JAM3 甲基化对子宫颈高级别上皮内瘤变诊断的 meta 分析",
+      title_alt: "PAX1/JAM3 Methylation for Diagnosis of Cervical High-Grade Intraepithelial Neoplasia: A Meta-Analysis",
+      subtitle: "7 项诊断试验 · QUADAS-2 · Meta-Disc 1.4 · CIN2+ 与 CIN3+ 合并准确性",
+      authors: "肖金芬、张旭梅、刘懿、丁尚玮、曾倩、李芹 · 昆明医科大学附属延安医院",
+      source: "现代妇产科进展 2025;24(9):680-685 · DOI:10.13283/j.cnki.xdfckjz.2025.09.004 · PROSPERO CRD420251008484",
+      h1: "诊断试验", h2: "CIN2+ 合并 AUC", h3: "CIN2+ DOR", h4: "检索截止",
+      s1t: "背景与目的",
+      s1s1: "中国 2022 发病率", s1s2: "特异度低", s1s3: "灵敏度低",
+      s1a: "<strong>单一检测不足</strong>：HPV DNA 无法区分一过性与持续性感染；细胞学依赖判读者经验。",
+      s1b: "<strong>甲基化依据</strong>：启动子高甲基化沉默抑癌基因——早期、定量的分子信号。",
+      s1c: "<strong>目的</strong>：系统评价 PAX1/JAM3 双基因甲基化对 HSIL（CIN2+/CIN3+）的整体诊断效能。",
+      s2t: "方法",
+      s2s1: "数据库", s2s2: "纳入研究", s2s3: "质量工具",
+      s2a: "<strong>检索</strong>：知网、万方、维普、CBM、PubMed、Embase、Web of Science、Cochrane——建库至 2024-02-10；PROSPERO 注册。",
+      s2b: "<strong>纳入</strong>：PAX1/JAM3 双基因甲基化诊断研究，可提取 2×2 四格表（TP/FP/TN/FN），以组织病理为金标准。",
+      s2c: "<strong>质量</strong>：QUADAS-2 双盲评价；Spearman 阈值效应异质性分析；Meta-Disc 1.4 合并。",
+      s2d: "<strong>结局</strong>：CIN2+ 与 CIN3+ 的合并 Se、Sp、PLR、NLR、AUC、DOR。",
+      s2s4: "发表窗口", s2s5: "需四格表数据", s2s6: "+ 英文库",
+      s2e: "<strong>语言</strong>：中（知网/万方/维普/CBM）英（PubMed/Embase/WoS/Cochrane）数据库联合。",
+      s2f: "<strong>阈值效应</strong>：合并前 Spearman 相关评价；Meta-Disc 双变量准确性综合。",
+      s2g: "<strong>金标准</strong>：国际公认组织病理诊断；排除重复报告。",
+      s2s7: "CIN2+ 合并", s2s8: "CIN2+ 合并", s2s9: "CIN2+",
+      s2z: "方法要点：双人独立提取、QUADAS-2 质量评价、阈值效应检验与 Meta-Disc 1.4 合并——保证诊断准确性综合的稳健性。",
+      s2z2: "检索覆盖 8 个中英文数据库至 2024 年 2 月，纳入 7 项诊断试验，共提取四格表数据 7 组。",
+      s2n: "遵循 PRISMA 框架；两人独立提取数据并交叉核对，分歧第三方仲裁。",
+      s3t: "CIN2+ — 合并诊断准确性",
+      s3s1: "Se [0.75–0.80]", s3s2: "Sp [0.94–0.95]", s3s3: "DOR [43.1–139.0]",
+      s3cap: "森林图——CIN2+ 灵敏度与特异度（7 项研究）",
+      s3s4: "PLR", s3s5: "NLR",
+      s3a: "<strong>阳性确证力</strong>：PLR 14.61——甲基化阳性显著提高 HSIL 概率。",
+      s3b: "<strong>阴性排除力</strong>：NLR 0.202——阴性结果显著降低高级别风险。",
+      s3c: "<strong>总体 DOR</strong>：77.36 [43.1–139.0]——判别能力优秀。",
+      s3n: "合并 7 项研究 · AUC 0.9694 · 一致性支持筛查随访中的分流应用。",
+      s4t: "CIN3+ — 合并诊断准确性",
+      s4s1: "Se [0.80–0.87]", s4s2: "Sp [0.86–0.88]", s4s3: "DOR [20.1–60.1]",
+      s4cap: "森林图——CIN3+ 灵敏度与特异度（7 项研究）",
+      s4s4: "PLR", s4s5: "NLR",
+      s4a: "<strong>灵敏度更高</strong>：CIN3+ 合并灵敏度升至 0.84——对临床重要病变最强。",
+      s4b: "<strong>更强排除</strong>：NLR 0.172——阴性结果几乎排除 CIN3+。",
+      s4c: "<strong>DOR</strong>：34.76 [20.1–60.1] · AUC 0.9251——整体准确性高。",
+      s4n: "CIN3+ 为临床干预阈值——高灵敏度支持阴性时安全延迟阴道镜。",
+      s5t: "似然比与解读",
+      s5s1: "CIN2+ PLR", s5s2: "CIN2+ NLR", s5s3: "CIN3+ AUC",
+      s5l1: "PLR · CIN2+", s5l2: "PLR · CIN3+", s5l3: "NLR · CIN2+", s5l4: "NLR · CIN3+",
+      s5s4: "CIN3+ AUC", s5s5: "CIN2+ DOR",
+      s5l1: "PLR · CIN2+", s5l2: "PLR · CIN3+", s5l3: "NLR · CIN2+", s5l4: "NLR · CIN3+",
+      s5s4: "CIN3+ AUC", s5s5: "CIN2+ DOR",
+      s5a: "<strong>强排除外</strong>：PLR 14.61（CIN2+）——甲基化阳性显著提高 HSIL 概率。",
+      s5b: "<strong>强排除</strong>：NLR 0.202——阴性结果显著降低高级别病变可能。",
+      s5c: "<strong>高诊断价值</strong>：AUC 0.9694（CIN2+）与 0.9251（CIN3+）显示整体准确性优秀。",
+      s5d: "<strong>检测前注意</strong>：结合本地患病率与细胞学/HPV 背景解读——合并值跨异质环境。",
+      s5n: "QUADAS-2 质量评价；阈值效应分析；Meta-Disc 1.4 双变量合并。",
+      c_ttl: "临床意义",
+      c1: "<b>循证分流</b>：PAX1/JAM3 双基因甲基化对 HSIL 有高合并灵敏度与特异度——CIN2+ AUC 0.9694、DOR 77.36。",
+      c2: "<b>客观补充</b>：甲基化在 HPV DNA 与细胞学之外提供客观分子层，改善阴道镜决策的风险分层。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

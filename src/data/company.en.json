@@ -1,0 +1,29 @@
+{
+  "nameEn": "Beijing Origin-Poly Co., Ltd.",
+  "shortNameEn": "CISPOLY",
+  "locationEn": "4F, Building 5, No. 50 Huatuo Road, Daxing District, Beijing, China",
+  "missionEn": "Guarding women's health through innovative epigenetic technology",
+  "descriptionEn": "Founded in 2020 and headquartered in the Beijing Daxing Biomedical Industry Base, CISPOLY is a technology-driven enterprise dedicated to advancing health through innovation. As a pioneer in early screening and diagnosis of gynecologic cancers, CISPOLY is a certified National and Zhongguancun High-Tech Enterprise, focusing on the R&D, manufacturing, and commercialization of early screening and diagnostic products for women's cancers and related diseases, along with automated testing equipment.",
+  "milestonesEn": [
+    { "year": "2020", "text": "CISPOLY founded, headquartered in the Beijing Daxing Biomedical Industry Base" },
+    { "year": "2023", "text": "CISCER® received NMPA registration (No. 20233400253)" },
+    { "year": "2024", "text": "CISENDO® received NMPA registration — the world's first non-invasive endometrial cancer screening launched" },
+    { "year": "2025", "text": "CISOVA® received NMPA registration — China's first ovarian cancer methylation test launched; recognized as a Beijing SRDI (Specialized, Refined, Differential, Innovative) Enterprise" }
+  ],
+  "statsEn": [
+    { "value": "900", "unit": "m²", "label": "GMP Production Facility" },
+    { "value": "1000", "unit": "m²", "label": "R&D Laboratory" },
+    { "value": "10M+", "unit": "/yr", "label": "Annual Testing Capacity" },
+    { "value": "8", "unit": "patents", "label": "Domestic & International Patents" },
+    { "value": "3", "unit": "products", "label": "NMPA-Registered Products" },
+    { "value": "46", "unit": "+", "label": "Published Academic Papers" }
+  ],
+  "qualificationsEn": [
+    "National High-Tech Enterprise",
+    "Zhongguancun High-Tech Enterprise",
+    "Beijing SRDI (Specialized, Refined, Differential, Innovative) Enterprise",
+    "ISO 13485 Medical Device Quality Management System",
+    "6 Domestic Patents + 2 International Patents",
+    "3 NMPA Class III Medical Device Registrations"
+  ]
+}

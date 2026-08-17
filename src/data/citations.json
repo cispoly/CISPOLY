@@ -1,0 +1,547 @@
+{
+  "papers": {
+    "2_aub_diagnosis": {
+      "journal": "中华检验医学杂志",
+      "year": 2023,
+      "volume": "46",
+      "pages": "367-374",
+      "title": "DNA甲基化检测在育龄期异常子宫出血女性子宫内膜癌诊断中的应用价值",
+      "affiliation": "中南大学湘雅三医院",
+      "conclusion": "该前瞻性研究纳入517例育龄期异常子宫出血女性，以宫腔镜病理为金标准，评估宫颈脱落细胞CDO1/CELF4双基因甲基化检测诊断子宫内膜癌的效能。结果显示其诊断AUC达0.90，敏感度与特异度显著优于其他无创指标，联合阴道超声可进一步提高敏感度，为育龄期子宫内膜癌的无创筛查与精准分流提供了可靠工具。"
+    },
+    "3_cdo1_noninvasive_detection": {
+      "journal": "Cytojournal",
+      "year": 2024,
+      "volume": "21",
+      "pages": "15",
+      "title": "The endometrial cancer detection using non-invasive hypermethylation of CDO1 and CELF4 genes in women with postmenopausal bleeding in Northwest China",
+      "affiliation": "甘肃省妇幼保健院",
+      "conclusion": "前瞻性研究纳入138例绝经后出血女性：宫颈细胞学CDO1/CELF4甲基化诊断子宫内膜癌敏感度87.5%、特异度95.9%，100%检出II型内膜癌；可辅助良恶性鉴别，减少侵入性确诊检查。"
+    },
+    "17_reply_comments": {
+      "journal": "Int J Cancer",
+      "year": 2026,
+      "doi": "10.1002/ijc.70484",
+      "title": "Reply to: Comments on \"Enhanced Diagnostic Accuracy of High‐Grade Cervical Intraepithelial Neoplasia in Postmenopausal Women Through PAX1 / JAM3 Methylation Analysis\"",
+      "abstract": "This letter responds to comments by Tanveer et al. on the authors' study \"Enhanced diagnostic accuracy of high-grade cervical intraepithelial neoplasia in postmenopausal women through PAX1/JAM3 methylation analysis.\" The authors clarify that the study was designed as a colposcopy-based evaluation enrolling women aged ≥50 years referred for colposcopy due to positive screening results or abnormal clinical symptoms, and acknowledge that this referral-based design may upwardly bias apparent sensitivity and specificity compared with population-based screening. In their cohort, the CISCER (PAX1/JAM3 methylation) assay demonstrated high specificity (~93.6%) and sensitivity (~93.2%) for CIN2+ in women ≥50 years, outperforming cytology and guideline-based combined approaches; methylation levels tracked lesion severity (ΔCt progressively decreased with increasing CIN grade), with no significant difference between HPV16/18 and non-16/18 types. The authors agree that validation in prospective population-based cohorts with lower disease prevalence and larger multicenter samples with longitudinal follow-up is the essential next step, and emphasize the assay's immediate utility in triaging borderline cases such as hrHPV-positive/cytology-negative women or those with inaccessible transformation zones.",
+      "affiliation": "Changsha Blood Center",
+      "conclusion": "作者回应评论：CISCER（PAX1/JAM3甲基化）诊断绝经后女性CIN2+特异度93.6%、敏感度93.2%，优于细胞学；需在低患病率人群及多中心纵向随访中进一步验证，可用于hrHPV阳性/细胞学阴性边界病例分流。"
+    },
+    "25_transformation_zone_utility": {
+      "journal": "Int J Cancer",
+      "year": 2026,
+      "title": "Clinical Utility of Cytological Methylation Assay in Cervical Cancer Screening",
+      "doi": "",
+      "affiliation": "北京协和医院",
+      "conclusion": "本研究纳入1398名转诊女性，评估CISCER（PAX1/JAM3甲基化）在不同宫颈转化区中的筛查价值。结果显示CISCER各TZ类型诊断CIN3+均优于细胞学与HPV分型，TZ-3尤佳（敏感性81.5%、AUC 0.856），并显著减少不必要的阴道镜转诊，是更精准高效的筛查手段。"
+    },
+    "3_multicenter_screening": {
+      "journal": "中华医学杂志 (Zhonghua Yi Xue Za Zhi)",
+      "year": 2024,
+      "volume": "104",
+      "pages": "1852-1859",
+      "doi": "10.3760/cma.j.cn12137-20231004-00630",
+      "title": "子宫颈细胞学PAX1/JAM3双基因甲基化检测用于子宫颈癌筛查的多中心研究",
+      "affiliation": "Peking Union Medical College Hospital",
+      "conclusion": "该多中心前瞻性研究在北京协和医院、浙江大学医学院附属第二医院及浙江省人民医院开展，评估子宫颈脱落细胞PAX1/JAM3双基因甲基化检测用于子宫颈癌筛查的价值。结果显示，其诊断CIN2+的灵敏度与特异度分别为74.1%和95.9%，诊断准确性显著优于细胞学及HPV检测，为优化子宫颈癌筛查策略提供了有力证据。"
+    },
+    "5_jam3_pax1_hsil_diagnosis": {
+      "journal": "中南大学学报（医学版）",
+      "year": 2023,
+      "volume": "48",
+      "pages": "1820-1829",
+      "title": "高危型人乳头瘤病毒感染患者宫颈脱落细胞JAM3-PAX1高甲基化诊断宫颈高级别病变",
+      "affiliation": "中南大学湘雅三医院",
+      "conclusion": "该研究回顾性纳入136例高危型HPV感染患者，评估宫颈脱落细胞JAM3/PAX1高甲基化诊断宫颈高级别病变的价值。结果显示，甲基化检测可独立于细胞学结果对高级别/非高级别病变进行分层诊断，与液基细胞学联合可弥补后者敏感度低的不足，为宫颈癌精准筛查与早筛早治提供了新的分子标志物。"
+    },
+    "9_dominant_predictor_cohort": {
+      "journal": "Gynecologic Oncology",
+      "year": 2026,
+      "volume": "206",
+      "pages": "82-92",
+      "title": "CDO1 and CELF4 methylation assay as the dominant predictor of endometrial cancer: A cohort analysis across pre- and post-menopausal cohorts",
+      "affiliation": "Hainan General Hospital",
+      "conclusion": "前瞻性队列纳入573例（41例内膜癌、8例不典型增生），评估宫颈刮取物CDO1/CELF4甲基化（CISENDO）检测的效能。绝经前灵敏度89.7%、特异度93.0%、AUC 0.91；绝经后灵敏度91.7%、特异度91.8%、AUC 0.92；联合内膜厚度灵敏度更高。CISENDO为内膜癌最强独立预测因子（OR 103.9~118.0），是无创诊断与分流的有力工具。"
+    },
+    "24_vaginal_microbiome": {
+      "journal": "中华检验医学杂志",
+      "year": 2024,
+      "title": "阴道微生态影响宫颈细胞DNA甲基化水平与宫颈病变的相关性研究",
+      "doi": "",
+      "affiliation": "中南大学湘雅三医院",
+      "conclusion": "横断面研究探讨阴道微生态与 PAX1/JAM3 甲基化及宫颈病变的相关性。结果显示菌群密集度、多样性、Nugent 评分、pH 值及乳杆菌等在病变各阶段存在差异；PAX1、JAM3 甲基化水平与病变等级正相关，卷曲乳杆菌与 PAX1 甲基化呈负相关，且存在完全中介效应。提示卷曲乳杆菌可能通过抑制 PAX1 甲基化影响宫颈病变的发生发展。"
+    },
+    "10_hsil_diagnosis_performance": {
+      "journal": "BMC Cancer",
+      "year": 2024,
+      "volume": "24",
+      "pages": "1514",
+      "title": "The performance of JAM3/PAX1 methylation in the diagnosis of high-grade squamous intraepithelial lesions for women with high-risk HPV infection",
+      "affiliation": "The Third Xiangya Hospital of Central South University",
+      "conclusion": "本研究评估宫颈脱落细胞 JAM3/PAX1 甲基化对高危 HPV 感染女性 HSIL 的诊断价值：△CtJ、△CtP 为独立危险因素，甲基化检测优于单独 TCT 或 HPV；△CtP 联合 TCT 与 hr-HPV 检测灵敏度 91.2%、AUC 0.932，为六种方案中最准确的 HSIL 筛查组合。"
+    },
+    "11_triage_role_non1618": {
+      "journal": "Br J Cancer",
+      "year": 2025,
+      "doi": "10.1038/s41416-025-03005-5",
+      "volume": "",
+      "pages": "-16",
+      "title": "The triage role of cytological DNA methylation in women with non-16/18, specifically genotyping high-risk HPV infection",
+      "abstract": "Objectives To evaluate cytological DNA methylation testing methods for risk stratification in women with non-16/18 HPV, focusing on high-risk HPV (hrHPV) genotyping. Methods This study compared the triage performance of liquid-based cytology (LBC) testing, hrHPV genotyping, and PAX1/JAM3 gene methylation (CISCER) testing; the absolute risks of cervical intraepithelial neoplasia grade 2 or worse (CIN2+), grade 3 or worse (CIN3+), and colposcopy referral rates were calculated. Results The CISCER test showed a CIN3+ risk of 39.1% for positive and 0.9% for negative results; in comparison, LBC ≥ ASCUS and HPV33/35 genotyping had CIN3+ risks of 9.8% and 19.3% respectively. The colposcopy referral rates were 17.4% for CISCER+, 61.9% for LBC ≥ ASCUS, and 8.9% for HPV33/35+ genotyping. The CIN3+ risks were 40.0% and 50.0% when CISCER+ was combined with LBC ≥ ASCUS and HPV33/35+ respectively, and 0.0% and 1.0% when CISCER- was combined with LBC NILM and non-HPV33/35 respectively. Conclusions DNA methylation testing outperformed LBC in triaging women with non-16/18 hrHPV infections, significantly reducing unnecessary colposcopy referrals, particularly when combined with HPV33/35 genotyping.",
+      "affiliation": "Peking Union Medical College Hospital",
+      "conclusion": "在非 16/18 hrHPV 感染女性中，CISCER 阳性者 CIN3+ 风险 39.1%、阴性者 0.9%，阴道镜转诊率 17.4%，远低于 LBC≥ASCUS（61.9%）；联合 HPV33/35 分型后阳性者 CIN3+ 风险达 50.0%，阴性者近 0。DNA 甲基化检测优于 LBC，可显著减少不必要的阴道镜转诊。"
+    },
+    "12_minimally_abnormal_management": {
+      "journal": "Int J Gynaecol Obstet",
+      "year": 2025,
+      "doi": "10.1002/ijgo.70167",
+      "volume": "",
+      "pages": "1002",
+      "title": "Cytologic DNA methylation for managing minimally abnormal cervical cancer screening results",
+      "affiliation": "Peking Union Medical College Hospital",
+      "conclusion": "本研究纳入 1857 例轻微异常宫颈筛查结果女性，评估 CISCER 对 CIN3+ 的检出能力：灵敏度 74.9%、特异度 89.1%；阳性者 CIN3+ 风险 40.5%，阴性者仅 2.7%。在轻微异常人群中应用 CISCER 可实现 CIN3+ 精准检出，大幅减少直接阴道镜转诊。"
+    },
+    "13_fus_rct_protocol": {
+      "journal": "Reproductive and Developmental Medicine",
+      "year": 2025,
+      "doi": "10.1097/RD9.0000000000000132",
+      "volume": "",
+      "pages": "1097",
+      "title": "Focused ultrasound ablation for women with cervical lesions: Protocol of a randomized controlled trial",
+      "affiliation": "The Third Affiliated Hospital of Zhengzhou University",
+      "conclusion": "高危 HPV 持续感染可致宫颈癌前病变，育龄女性传统锥切治疗可能影响妊娠结局。本随机对照试验方案评估聚焦超声（FUS）这一无创治疗方法对育龄期宫颈病变女性保留生育力的治疗价值，为有生育计划的该类患者提供更安全、无创的治疗选择（ChiCTR2300076739）。"
+    },
+    "14_upgrading_prediction": {
+      "journal": "Scientific Reports",
+      "year": 2025,
+      "volume": "15",
+      "pages": "17684",
+      "title": "The role of PAX1 and JAM3 methylation in predicting the pathological upgrading of cervical intraepithelial neoplasia before conization",
+      "doi": "10.1038/s41598-025-01422-3",
+      "abstract": "Objective To explore the effect of PAX1 and JAM3 gene methylation on pathological upgrading before cervical conization. Methods A retrospective analysis was conducted on 549 patients who underwent colposcopy between December 2020 and April 2022, of whom 88 patients were ultimately included. Independent risk factors for pathological upgrading were analyzed. Results Independent risk factors included ΔCt PAX1 (P = 0.016, OR 0.784, 95% CI 0.644–0.956) and cervical canal lesions (P = 0.048, OR 3.469, 95% CI 1.014–11.870). The prediction model achieved an AUC of 0.818 (95% CI 0.720–0.916) with a specificity of 94.4% and sensitivity of 60%; a ΔCt PAX1 cut-off of 4.34 was highly suggestive of pathological upgrading. Conclusions PAX1 methylation could be a promising triage marker for predicting pathological upgrading of CIN before conization.",
+      "affiliation": "Zhejiang Provincial People's Hospital",
+      "conclusion": "本研究回顾分析 549 例患者，评估 PAX1/JAM3 甲基化对锥切前 CIN 病理升级的预测价值：△Ct PAX1 与宫颈管病变为独立危险因素，预测模型 AUC 0.818、特异度 94.4%，△Ct PAX1 临界值 4.34 高度提示病理升级。PAX1 甲基化可作为锥切前预测 CIN 病理升级的潜在分诊标志物。"
+    },
+    "15_postmenopausal_accuracy": {
+      "journal": "Int J Cancer",
+      "year": 2025,
+      "volume": "158",
+      "pages": "1116–1125",
+      "title": "Enhanced diagnostic accuracy of high-grade cervical intraepithelial neoplasia in postmenopausal women through PAX1/JAM3 methylation analysis",
+      "affiliation": "The First Hospital of Hunan University of Chinese Medicine",
+      "conclusion": "本研究评估 PAX1/JAM3 甲基化对 ≥50 岁绝经后转诊女性的诊断价值：CIN2+ 检测灵敏度 93.2%、特异度 93.6%，优于液基细胞学及指南联合方案，并识别出 2 例双阴性腺癌及 7 例 LBC 漏诊的非 16/18 感染。甲基化检测可作为补充方法，提高绝经后女性宫颈癌诊断准确性。"
+    },
+    "16_vaginal_dysbiosis_biomarker": {
+      "journal": "Diagnostics",
+      "year": 2026,
+      "volume": "16",
+      "pages": "174",
+      "title": "Clinical Validation of DNA Methylation Detection in Cervical Exfoliated Cells for Endometrial Cancer in Women with Suspected Lesions",
+      "affiliation": "Beijing Anzhen Hospital",
+      "conclusion": "本研究评估 PAX1/JAM3 甲基化（CISCER）与阴道微生态的关联：CIN2+、CIN3+ 检测 AUC 分别为 0.826、0.852，特异度 89.1%，显著优于 hrHPV 检测（7.3%）；甲基化升高与乳杆菌减少、加德纳菌富集等菌群失调相关。CISCER 可作为 hrHPV 阳性女性风险分层的分子分诊工具。"
+    },
+    "18_early_diagnosis_effectiveness": {
+      "journal": "Clin Epigenetics",
+      "year": 2026,
+      "doi": "10.1186/s13148-026-02095-z",
+      "volume": "",
+      "pages": "1186",
+      "title": "Effectiveness analysis and clinical application potential exploration of combined detection of PAX1/JAM3 gene methylation in early diagnosis of cervical precancerous lesions",
+      "affiliation": "Tumor Hospital Affiliated to Xinjiang Medical University",
+      "conclusion": "研究纳入431例宫颈脱落细胞样本：PAX1/JAM3甲基化诊断CIN2+的AUC 0.89、敏感度83.1%、特异度88.8%，非HPV16/18患者中优于细胞学；PAX1/SOX1对CIN3+亦有高潜力（AUC 0.91），可显著降低阴道镜转诊率。"
+    },
+    "19_hrhpv_diagnostic_value": {
+      "journal": "标记免疫分析与临床",
+      "year": 2025,
+      "volume": "32",
+      "pages": "2027–2032",
+      "title": "PAX1/JAM3基因甲基化在HR-HPV感染女性中宫颈癌的诊断价值",
+      "affiliation": "首都医科大学附属北京妇产医院（北京妇幼保健院）",
+      "conclusion": "研究纳入 808 例 HR-HPV 感染女性，PAX1/JAM3 甲基化诊断宫颈癌的敏感度 86.3%、特异度 91.0%、AUC 0.873，优于 HPV16/18（0.678）与 TCT（0.608）；阴道镜转诊率 43.94%，较 HPV16/18 和 TCT 分别降低 6.78% 和 36.76%。甲基化检测在 HR-HPV 感染女性中诊断价值更优，可减少不必要的阴道镜转诊和活检。"
+    },
+    "1_pax1jam3_hpv_viral_load": {
+      "journal": "Cancers (Basel)",
+      "year": 2024,
+      "volume": "16",
+      "pages": "1430",
+      "title": "PAX1/JAM3 Methylation and HPV Viral Load in Women with Persistent HPV Infection",
+      "doi": "10.3390/cancers16071430",
+      "affiliation": "Peking University People's Hospital",
+      "conclusion": "研究纳入231例持续HPV感染、无高级别宫颈病变的女性，按感染时长分组评估PAX1/JAM3甲基化与HPV病毒载量。感染超过3年者甲基化水平显著升高且两基因相关，可作为癌前病变发生前感染时长的累积证据；其阴道上皮内病变发生率更高，病毒载量可作为并发宫颈-阴道病变的提示性生物标志物，尤其适用于非16/18型HPV。"
+    },
+    "20_screening_treatment_review": {
+      "journal": "国际妇产科学杂志",
+      "year": 2025,
+      "doi": "10.12280/gjfckx.20250484",
+      "volume": "",
+      "pages": "702–707",
+      "title": "PAX1/JAM3双基因甲基化在宫颈癌筛查及治疗中的应用",
+      "affiliation": "山东第一医科大学第二附属医院",
+      "conclusion": "综述指出，TCT 敏感度低、可重复性差，HR-HPV 检测特异度低易致过度诊疗，亟需更精准的筛查方案。PAX1/JAM3 双基因甲基化与宫颈癌细胞迁移侵袭相关，虽研究尚不完善，但在筛查和治疗领域极具潜力。联合应用该标志物有助于优化筛查策略、提高临床分流准确性，为宫颈癌精准实施与分层管理提供理论依据。"
+    },
+    "21_meta_analysis": {
+      "journal": "现代妇产科进展",
+      "year": 2025,
+      "doi": "10.13283/j.cnki.xdfckjz.2025.09.004",
+      "volume": "",
+      "pages": "690",
+      "title": "PAX1、JAM3甲基化对子宫颈高级别上皮内瘤变诊断的meta分析",
+      "affiliation": "昆明医科大学附属延安医院",
+      "abstract": "目的:系统评价 PAX1、JAM3 双基因甲基化联合诊断子宫颈高级别鳞状上皮内瘤变(HSIL)的整体诊断效能。方法:检索知网、万方、维普、CBM、Pubmed、Embase、Web of Science 和 Cochrane Library,收集 PAX1、JAM3 双基因甲基化对 HSIL 诊断价值的研究,检索时限为建库至 2024 年 2 月;采用 QUADAS-2 评价文献质量,meta-disc 1.4 进行 meta 分析。结果:纳入 7 项诊断试验。PAX1、JAM3 双基因甲基化诊断 CIN2+ 合并灵敏度 0.78(95%CI 0.75~0.80),合并特异度 0.95(95%CI 0.94~0.95),合并AUC 0.9694,DOR 77.36;诊断 CIN3+ 合并灵敏度 0.84(95%CI 0.80~0.87),合并特异度 0.87(95%CI 0.86~0.88),合并AUC 0.9251,DOR 34.76。结论:PAX1 和 JAM3 双基因甲基化在诊断 HSIL 方面具有较高的敏感度和特异度,具有较高的诊断效能。",
+      "conclusion": "Meta 分析纳入 7 项诊断试验，结果显示 PAX1、JAM3 双基因甲基化诊断 CIN2+ 的合并敏感度 0.78、特异度 0.95、AUC 0.9694；诊断 CIN3+ 的合并敏感度 0.84、特异度 0.87、AUC 0.9251。PAX1/JAM3 双基因甲基化诊断子宫颈高级别鳞状上皮内瘤变具有较高的敏感度和特异度，整体诊断效能高。"
+    },
+    "22_adenocarcinoma_biomarker": {
+      "journal": "Am J Cancer Res",
+      "year": 2026,
+      "volume": "16",
+      "pages": "1495–1508",
+      "title": "PAX1/JAM3 methylation-a novel biomarker for early detection and accurate management of cervical adenocarcinoma",
+      "affiliation": "解放军联勤保障部队第九四〇医院",
+      "conclusion": "综述总结了 PAX1/JAM3 双基因甲基化在宫颈腺癌中的生物学特征、致癌机制及筛查诊断最新进展。PAX1/JAM3 在宫颈腺癌组织中显著高甲基化，具有优异的诊断敏感度和特异度，弥补了传统细胞学对腺癌敏感度低、HR-HPV 特异度不足的缺陷，为宫颈腺癌的早期发现、精准管理和靶向治疗提供了新的分子标志物与研究方向。"
+    },
+    "23_triage_utility": {
+      "journal": "Lab Med",
+      "year": 2026,
+      "volume": "",
+      "pages": "096",
+      "title": "Utility of PAX1/JAM3 methylation analysis for triage of high-risk HPV-positive individuals",
+      "affiliation": "Ziyang Central Hospital",
+      "conclusion": "研究纳入 312 例 HR-HPV 阳性患者，PAX1m/JAM3m 甲基化检测诊断 CIN2+ 的敏感度 91.8%、特异度 90.7%、AUC 0.912，优于细胞学与 HPV16/18 分型；以甲基化阳性作为阴道镜转诊标准，每 1.22 次转诊检出 1 例 CIN2+，转诊率降低约 19.2%。甲基化检测是 HR-HPV 阳性人群有前景的分流策略。"
+    },
+    "26_diagnostic_accuracy_meta": {
+      "journal": "Int J Cancer",
+      "year": 2025,
+      "volume": "158",
+      "pages": "1116–1125",
+      "title": "Enhanced diagnostic accuracy of high-grade cervical intraepithelial neoplasia in postmenopausal women through PAX1/JAM3 methylation analysis",
+      "affiliation": "Imperial College London",
+      "conclusion": "该meta分析纳入51项研究、近3万名HPV阳性女性，评估DNA甲基化标志物诊断效能。JAM3、C13ORF18、PAX1等标志物诊断优势比最高，在保持高特异度的同时有良好CIN3+检出敏感性，有望减少阴道镜转诊，也可用于不适合细胞学的自采样标本分流。"
+    },
+    "2_self_sampling_feasibility": {
+      "journal": "中华检验医学杂志",
+      "year": 2024,
+      "volume": "47",
+      "pages": "419–427",
+      "title": "女性阴道自采样本检测PAX1/JAM3双基因甲基化标志物作为子宫颈癌筛查的可行性评估",
+      "affiliation": "南华大学附属第一医院",
+      "conclusion": "本研究为单中心横断面研究，纳入301例接受阴道镜检查的女性，同时收集自采样本与医生采样样本行PAX1/JAM3双基因甲基化检测。结果显示两种采样方法检测结果呈正相关（r=0.858、0.828）；自采样本诊断CIN2+的敏感度、特异度为77.6%、87.2%，CIN3+敏感度达96.0%，优于高危型HPV与细胞学检测。结论：女性自采样本行PAX1/JAM3双基因甲基化检测用于子宫颈癌筛查具有操作与临床可行性。"
+    },
+    "4_non1618_triage_multicenter": {
+      "journal": "Clin Epigenetics",
+      "year": 2024,
+      "volume": "16",
+      "pages": "108",
+      "title": "Triage performance of PAX1m/JAM3m in opportunistic cervical cancer screening of non‒16/18 human papillomavirus-positive women: a multicenter prospective study in China",
+      "affiliation": "Peking Union Medical College Hospital",
+      "conclusion": "该多中心前瞻性研究纳入1851例非16/18型高危HPV阳性女性，评估PAX1/JAM3甲基化检测的分流价值。结果显示，其检测CIN3+的灵敏度为84.8%、特异度达88.5%，AUC为0.866，优于液基细胞学，并检出全部20例宫颈癌；相比LBC≥ASCUS，阴道镜转诊率下降57.21%，在保证敏感度的同时大幅减少不必要转诊。"
+    },
+    "6_ascus_triage_efficacy": {
+      "journal": "Clin Epigenetics",
+      "year": 2024,
+      "volume": "16",
+      "pages": "108",
+      "title": "Triage performance of PAX1m/JAM3m in opportunistic cervical cancer screening of non‒16/18 human papillomavirus-positive women: a multicenter prospective study in China",
+      "affiliation": "Zhejiang Provincial People's Hospital",
+      "conclusion": "该研究纳入322例ASC-US女性，评估PAX1/JAM3甲基化检测对细胞学意义不明确非典型鳞状细胞的分流价值。结果显示，其诊断CIN2+的灵敏度为83.8%、特异度为95.8%，优于HPV-DNA检测；在高危型HPV阳性女性中，阴道镜转诊率降低79.5%，有助于减少过度诊疗和不必要的转诊，优化患者管理与医疗资源配置。"
+    },
+    "7_triage_efficacy_hpv": {
+      "journal": "Front Oncol",
+      "year": 2024,
+      "volume": "14",
+      "pages": "1481626",
+      "title": "Assessment of PAX1 and JAM3 methylation triage efficacy across HPV genotypes and age groups in high-risk HPV-positive women in China",
+      "affiliation": "Xuzhou Maternity and Child Health Hospital",
+      "conclusion": "该研究在徐州市妇幼保健院与岳阳市中心医院纳入436例高危型HPV阳性女性，评估PAX1/JAM3甲基化（CISCER）检测的分流效能。结果显示，其检测CIN2+的灵敏度达92.6%、特异度95.7%，AUC为0.941，检出全部宫颈癌病例，≥50岁女性中灵敏度达100%，性能优于传统细胞学策略，可显著改善hrHPV阳性人群的风险分层。"
+    },
+    "8_triage_performance_hrhpv": {
+      "journal": "The Oncologist",
+      "year": 2025,
+      "volume": "",
+      "pages": "324",
+      "title": "Triage performance of DNA methylation for women with high-risk human papillomavirus infection",
+      "affiliation": "Peking Union Medical College Hospital",
+      "conclusion": "该研究基于METHY3前瞻性队列，纳入1105例有明确组织学结果的高危型HPV感染女性，评估PAX1/JAM3甲基化检测CIN3+的分流性能。结果显示，其特异度达89.6%、AUC为0.790，并检出全部28例宫颈癌；相比HPV16/18分型与液基细胞学，阴道镜转诊率分别降低20.64和61.18个百分点，是更优的hrHPV阳性女性分流生物标志物。"
+    },
+    "9_triage_hpv1618": {
+      "journal": "Clin Epigenetics",
+      "year": 2024,
+      "volume": "16",
+      "pages": "190",
+      "title": "Evaluating PAX1/JAM3 methylation for triage in HPV 16/18-infected women",
+      "affiliation": "浙江大学医学院附属第二医院",
+      "conclusion": "本研究评估 PAX1/JAM3 甲基化对 HPV 16/18 阳性女性的分诊价值：灵敏度 89.0%、特异度 95.3%、AUC 0.921，优于细胞学；阳性者 CIN2+ 即时风险 89.0%，平均 1.12 次转诊检出 1 例 CIN2+，且识别全部癌症、未漏诊 ≥30 岁 CIN3+。甲基化可作为有效分诊工具，减少不必要的阴道镜转诊与过度治疗。"
+    },
+    "10_paired_sample_validation": {
+      "journal": "Front. Med.",
+      "year": 2026,
+      "volume": "",
+      "pages": "",
+      "title": "Validation of a cervical CDO1/CELF4 methylation test for endometrial cancer: a prospective paired-sample comparison with intrauterine specimen",
+      "affiliation": "Gansu Provincial Maternity and Child-care Hospital",
+      "conclusion": "配对研究纳入226例：宫颈刷检与刮宫标本的CDO1/CELF4甲基化高度一致（R=0.86/0.78），CISENDO检测AUC 0.929、敏感度93.5%、特异度92.3%，证实宫颈刷检可无创可靠检测子宫内膜癌及癌前病变。"
+    },
+    "11_endomethy1_trial": {
+      "journal": "Front. Oncol",
+      "year": 2026,
+      "volume": "",
+      "pages": "",
+      "title": "Development and validation of hypermethylated gene markers in cervical cytological samples for detecting endometrial cancer (EndoMethy-I trial)",
+      "affiliation": "Peking Union Medical College Hospital",
+      "conclusion": "EndoMethy-I试验经探索队列（40对样本）筛选高甲基化基因，在训练集347例与验证集149例中评估宫颈细胞学甲基化标志物检测子宫内膜癌的价值。CDO1、NEFM、CELF4单独AUC分别为0.93、0.91、0.89，三者联合灵敏度94.6%、特异度92.8%，优于其他无创评估方法，为内膜癌检测提供可靠安全的新策略。"
+    },
+    "12_self_collected_concordance": {
+      "journal": "Int J Cancer",
+      "year": 2025,
+      "volume": "158",
+      "pages": "1116–1125",
+      "title": "Enhanced diagnostic accuracy of high-grade cervical intraepithelial neoplasia in postmenopausal women through PAX1/JAM3 methylation analysis",
+      "affiliation": "The Second Xiangya Hospital of Central South University",
+      "conclusion": "横断面研究纳入142例：自采与医采样本CDO1/CELF4甲基化显著相关（R=0.79/0.76），检测内膜癌AUC 0.930 vs 0.896，绝经前后稳定；自采样无创可靠，可提高内膜癌早期筛查可及性。"
+    },
+    "1_postmenopausal_screening": {
+      "journal": "中华医学杂志",
+      "year": 2023,
+      "volume": "103",
+      "pages": "907–912",
+      "title": "DNA甲基化检测在绝经后女性子宫内膜癌筛查中的应用价值",
+      "affiliation": "北京协和医院",
+      "conclusion": "本研究纳入143例可疑内膜病变、拟行宫腔镜检查的绝经后女性，术前采集宫颈脱落细胞行基因甲基化检测。多因素分析显示绝经出血、子宫内膜厚度及CDO1、CELF4甲基化均为发生子宫内膜癌的相关因素，双基因甲基化（CDO1或CELF4）诊断内膜癌的灵敏度、特异度最高。结论：对绝经后女性，宫颈细胞学甲基化筛查子宫内膜癌的准确性优于其他无创临床方案，联合经阴道超声可进一步改善敏感性。"
+    },
+    "4_premenopausal_biomarker": {
+      "journal": "Int J Gynecol Cancer",
+      "year": 2024,
+      "volume": "34",
+      "pages": "1165–1171",
+      "title": "DNA methylation detection is a significant biomarker for screening endometrial cancer in premenopausal women with abnormal uterine bleeding",
+      "affiliation": "中南大学湘雅三医院",
+      "conclusion": "研究纳入296例绝经前异常子宫出血女性：双基因甲基化筛查内膜癌敏感度85.7%、特异度87.6%，优于其他无创指标；联合BMI或内膜厚度可进一步提高筛查效率。"
+    },
+    "5_triage_strategy_biomarkers": {
+      "journal": "Front Oncol",
+      "year": 2023,
+      "volume": "13",
+      "pages": "1289366",
+      "title": "Hypermethylated CDO1 and CELF4 in cytological specimens as triage strategy biomarkers in endometrial malignant lesions",
+      "affiliation": "Cangzhou Central Hospital",
+      "conclusion": "纳入607例有子宫内膜活检指征女性，以组织病理为金标准评估宫颈细胞学CDO1/CELF4双基因甲基化的分流价值。检测对内膜癌及不典型增生的灵敏度84.9%、特异度86.6%，优于其他临床指标；联合经阴道超声内膜厚度可将特异度提升至94.9%，是可疑子宫内膜病变女性有前景的无创分流策略。"
+    },
+    "6_hekouan_screening_value": {
+      "journal": "兰州大学学报（医学版）",
+      "year": 2024,
+      "volume": "50",
+      "pages": "28–36",
+      "title": "禾蔻安双基因甲基化检测在子宫内膜癌筛查中的应用价值",
+      "affiliation": "Gansu Maternal and Child Health Hospital",
+      "conclusion": "纳入216例子宫异常出血女性，以宫腔镜组织病理为金标准，评估禾蔻安CDO1/CELF4双基因甲基化检测对子宫内膜癌的筛查价值。结果显示其灵敏度91.2%、特异度96.7%，显著优于超声（55.9%/78.6%）与血清CA125（32.4%/76.4%），绝经后女性应用价值尤为突出，可作为子宫内膜癌筛查与风险分层的有效无创手段。"
+    },
+    "7_epihera_prospective": {
+      "journal": "Cancers (Basel)",
+      "year": 2025,
+      "volume": "17",
+      "pages": "3010",
+      "title": "Prospective Evaluation of Cervical Scrapings CDO1 and CELF4 Methylation (epiHERA®) Assay in Detection of Endometrial Cancer",
+      "affiliation": "The Chinese University of Hong Kong",
+      "conclusion": "香港威尔斯亲王医院前瞻性入组675例需内膜评估患者，评价宫颈刮取物CDO1/CELF4甲基化（epiHERA®）检测子宫内膜癌的效能。准确率97.3%、灵敏度84.1%、特异度98.8%、阴性预测值98.2%，AUC 0.92，假阴性率仅0.8%；假阳性多伴内膜增生或宫颈病变，提示可早期预警，是减少有创内膜检查的有力分流工具。"
+    },
+    "8_clinical_validation": {
+      "journal": "Diagnostics",
+      "year": 2026,
+      "volume": "16",
+      "pages": "174",
+      "title": "Clinical Validation of DNA Methylation Detection in Cervical Exfoliated Cells for Endometrial Cancer in Women with Suspected Lesions",
+      "affiliation": "复旦大学附属妇产科医院青浦分院",
+      "conclusion": "前瞻性纳入2164例拟行宫腔镜手术的可疑内膜病变患者，以组织病理为金标准验证宫颈脱落细胞CDO1/CELF4甲基化检测对子宫内膜癌的诊断价值。对内膜癌灵敏度93.94%、特异度96.7%、阴性预测值99.90%，对内膜上皮内瘤变灵敏度83.87%；联合经阴道超声可进一步提升灵敏度与阴性预测值，是无创分流可疑内膜病变患者的可靠策略。"
+    },
+    "1_cdo1_hoxa9_diagnosis": {
+      "journal": "中华检验医学杂志",
+      "year": 2024,
+      "volume": "47",
+      "pages": "401–406",
+      "title": "血清中CDO1基因与HOXA9基因启动子甲基化高表达在卵巢癌诊断中的意义",
+      "affiliation": "成都市妇女儿童中心医院",
+      "conclusion": "本研究以成都市妇女儿童中心医院有卵巢肿块手术指征患者为对象，评估血清游离DNA中CDO1与HOXA9基因启动子甲基化检测卵巢癌的价值。结果显示卵巢癌患者两基因单独或联合检测阳性率均显著高于良性组，CDO1与HOXA9双基因甲基化联合诊断卵巢癌的AUC最高达0.936，对早期卵巢癌亦有较高检出率。提示该甲基化分析在卵巢癌风险评估和早期检测中具有较高的准确性和应用价值。",
+      "doi": "10.3760/cma.j.cn114452-20231115-00287"
+    },
+    "27_joint_methylation_progress": {
+      "journal": "国际妇产科学杂志",
+      "affiliation": "西北民族大学医学部",
+      "conclusion": "本文综述PAX1/JAM3双基因甲基化在宫颈病变管理中的研究进展。该检测敏感度与特异度优于传统细胞学，可分流HPV初筛阳性者、支持自采样模式，并能预测锥切术后病理升级风险，有望整合入筛查指南，推动个体化精准防控。"
+    },
+    "28_postop_recurrence_prediction": {
+      "journal": "中文科技期刊数据库（引文版）医药卫生",
+      "affiliation": "桂林市妇幼保健院",
+      "abstract": "目的 探讨宫颈脱落细胞 PAX1、JAM3基因甲基化检测对宫颈高级别病变（HSIL）术后残留及复发风险的预测价值。方法 选取 2023年 1 月至 2024年 12月桂林市妇幼保健院收治的 120 例宫颈高级别病变患者，均接受宫颈锥切术治疗。术前采集宫颈脱落细胞样本，采用甲基化特异性 PCR（MSP）技术检测 PAX1、JAM3 基因甲基化状态。术后随访 12 个月，记录术后残留及复发情况。结果 120 例患者中，PAX1、JAM3基因甲基化阳性率分别为 51.67%、43.33%；双基因甲基化阳性 23例，总甲基化阳性率 54.17%。术后随访 12个月，残留 13例、复发 9例，总不良结局发生率 18.33%。多因素 Logistic 回归显示，PAX1 基因甲基化（OR=5.892）及双基因联合甲基化（OR=8.654）是术后残留及复发的独立危险因素；双基因联合检测预测术后不良结局的灵敏度、特异度、阴性预测值分别为 91.30%、45.38%、94.29%，AUC 0.765。结论 宫颈脱落细胞 PAX1、JAM3基因甲基化与宫颈高级别病变术后残留及复发密切相关，双基因联合甲基化检测具有较高的灵敏度和阴性预测值，可作为术后残留及复发风险的有效预测指标。",
+      "conclusion": "本研究纳入120例宫颈锥切术患者，随访12个月，术后残留与复发22例（18.33%）。PAX1甲基化（OR=5.892）及双基因联合甲基化（OR=8.654）是术后残留与复发的独立危险因素；联合检测灵敏度91.30%、阴性预测值94.29%，是HSIL术后残留及复发风险的有效预测指标。"
+    },
+    "30_cin3_like_scc": {
+      "journal": "Clin Epigenetics",
+      "affiliation": "北京大学人民医院",
+      "doi": "10.1186/s13148-026-02201-1",
+      "conclusion": "本研究回顾性分析138例宫颈高级别病变及鳞癌，鳞癌PAX1/JAM3甲基化显著高于HSIL，但CIN3样鳞癌与早期浸润癌间甲基化无显著差异；CIN3样鳞癌总HPV载量（尤其16/18型）显著更高，提示二者存在表观遗传与病毒载量差异，有待进一步探索。"
+    },
+    "31_jam3_recurrence_prediction": {
+      "journal": "临床医学进展 (Advances in Clinical Medicine)",
+      "affiliation": "临沂市中心医院",
+      "year": 2024,
+      "volume": "14",
+      "pages": "1293-1299",
+      "doi": "10.12677/acm.2024.1472146",
+      "title": "JAM3基因DNA甲基化在宫颈高级别上皮内瘤变及术后复发预测的临床研究",
+      "abstract": "目的：探讨JAM3基因DNA甲基化水平在高级别上皮内瘤变中的诊断效能，实现宫颈癌精准筛查，协助高级别上皮内瘤变（CIN）II~III级分级管理，预测术后复发风险。方法：选择2020年1月至2023年1月就诊于临沂市中心医院需行宫颈活检术的200例病例，分别行HPV检查、液基细胞学检查及病理标本DNA甲基化检测，经阴道镜及宫颈组织病理学确诊后分为正常组、CIN I级组、CIN II级组、CIN III级组，各50例。结果：正常组、CIN I级组、CIN II级组、CIN III级组JAM3基因甲基化率分别为4%、10%、38%、54%，随宫颈病变程度加重甲基化水平逐渐升高，任意两组间差异均有统计学意义（P<0.01）；联合JAM3基因甲基化检测可弥补HPV低特异性及TCT低敏感性的缺陷；复发患者甲基化水平明显高于治愈者。结论：JAM3甲基化检测可显著提高宫颈高级别上皮内瘤变检出率，可为阴道镜检查不满意的LSIL患者分流管理提供参考，协助CIN II~III分级管理，并可作为高级别上皮内瘤变术后复发预测标志物。",
+      "conclusion": "本研究纳入200例行宫颈活检患者，JAM3甲基化率随病变级别升高（4%→54%），复发者甲基化水平明显高于治愈者；联合检测可弥补HPV低特异度与TCT低敏感度缺陷，协助CIN II~III分级管理，并可作为高级别上皮内瘤变术后复发预测标志物。"
+    },
+    "32_pilot_prediction": {
+      "journal": "湖南师范大学学报（医学版）",
+      "affiliation": "长沙市妇幼保健院",
+      "year": 2025,
+      "volume": "22",
+      "pages": "123-128",
+      "title": "宫颈脱落细胞PAX1、JAM3基因甲基化对宫颈上皮内瘤变预测作用的初步研究",
+      "abstract": "目的：评估宫颈脱落细胞配对盒家族1（PAX1）和连接黏附分子3（JAM3）基因甲基化作为联合生物标志物对高级别宫颈上皮内瘤变（CIN）的预测效能。方法：纳入2023年7月至2024年12月在长沙市妇幼保健院同时接受HPV分型、TCT液基细胞学、PAX1和JAM3基因甲基化检测及阴道镜病理检查的受试者144例，采用甲基化特异性PCR定量检测甲基化水平。结果：病理确诊的CIN2+患者（16例）中，PAX1和JAM3甲基化阳性率分别为68.8%和56.3%，显著高于CIN1组（6.4%、6.4%）和慢性宫颈炎组（1.2%、1.2%）（P<0.001）；高危型HPV感染者中，甲基化阳性者进展为CIN2+的优势比（OR）为6.32（95%CI：3.45~11.28）；HPV16/18阳性且任一基因甲基化阳性时，CIN2+的阳性预测值为96.9%，F1值显著优于单一HPV检测（59.1%）（P<0.01）。结论：PAX1/JAM3双基因甲基化联合HPV分型检测可显著提升CIN2+的早期识别能力（AUC=0.8789），尤其适用于细胞学结论不确定病例的分流管理。",
+      "conclusion": "本研究纳入144例受试者，CIN2+患者PAX1、JAM3甲基化阳性率（68.8%、56.3%）显著高于CIN1及慢性宫颈炎组，阳性者进展为CIN2+的OR为6.32；联合HPV分型可将CIN2+阳性预测值提升至96.9%（AUC=0.8789），适用于细胞学结论不确定病例的分流管理。"
+    },
+    "29_pax1jam3_hrhpv_tct": {
+      "journal": "BMC Women's Health",
+      "affiliation": "河北医科大学第一医院",
+      "doi": "10.1186/s12905-026-04622-9",
+      "conclusion": "本研究对409例阴道镜转诊高危队列行多分类Logistic回归分析，HR-HPV感染、TCT异常及PAX1/JAM3甲基化与宫颈病变等级独立相关，其中JAM3（OR=8.215）与PAX1甲基化（OR=4.145）是进展为HSIL的强独立危险因素，有助临床风险分层，尚需更大规模前瞻研究验证。"
+    }
+  },
+  "guidelines": {
+    "14_esgo_position_screening": {
+      "journal": "Intl Journal of Gynecological Cancer",
+      "year": 2026,
+      "volume": "36",
+      "pages": "104794",
+      "title": "European Society of Gynaecological Oncology/European Network of Gynaecological Advocacy Groups Position on risk-based cervical cancer screening",
+      "cancer": "cervical",
+      "doi": "10.1016/j.ijgc.2026.104794",
+      "firstPage": "SOCIETY STATEMENT European Society of Gynaecological Oncology/European Network of Gynaecological Advocacy Groups Position on risk-based cervical cancer screening Elmar Joura a , Kimon Chatzistamatiou b , * , Murat Gultekin c , Jalid Sehouli d , Ico Toth e , Richard Toth f , on behalf of the European Society of Gynaecological Oncology (ESGO) Received 26 May 2026 , Accepted 26 May 2026 ; Available online 1 June 2026 Keywords : Risk-Based Cervical Cancer Screening; Primary HPV Testing; Self-Sampling; Gender-Neutral HPV Vaccination; HPV Genotyping BACKGROUND According to the International Agency f",
+      "abstract": "ESGO 2026年立场声明推荐以HPV DNA检测替代细胞学作为宫颈癌初筛手段，以提供更强保护；倡导性别中立HPV疫苗接种加速群体免疫，尤其在覆盖率未达WHO目标时；建议HPV分型结合年龄与筛查史进行个体化风险评估，并认为甲基化检测有望在全分子化筛查模式中显著减少不必要的阴道镜转诊。"
+    },
+    "1_methylation_tech_spec": {
+      "journal": "团体标准（中国检验检测学会）",
+      "year": 2026,
+      "title": "肿瘤DNA甲基化标志物检测技术规范",
+      "cancer": "cervical",
+      "doi": "",
+      "firstPage": "",
+      "abstract": "本技术规范（2026年）由中国检验检测学会发布，规定了肿瘤DNA甲基化标志物检测的检测要求及质量控制，明确检测流程中的关键环节与质量指标。适用于医疗机构、检测机构等开展肿瘤DNA甲基化标志物检测，为甲基化检测技术在肿瘤筛查与辅助诊断中的规范应用提供统一技术依据，保障检测结果的准确性与可靠性。"
+    },
+    "12_cervical_screening_guide2": {
+      "journal": "中国妇产科临床杂志",
+      "year": 2025,
+      "volume": "26",
+      "pages": "88-96",
+      "title": "中国子宫颈癌筛查指南（二）",
+      "cancer": "cervical",
+      "doi": "10.13390/j.issn.1672-1861.2025.01.030",
+      "firstPage": "● 88 ● ˗ݤڎ̗ሙ˚ࣾాঃ 2025 年 1 月 第 26 卷 第 1 期 Chin J Clin Obstet Gynecol January 2025 ， Vol.26 ， No.1 ·临床指南· 中国子宫颈癌筛查指南（二） 中国优生科学协会阴道镜和宫颈病理学分会 中华医学会妇科肿瘤学分会 中国抗癌协会宫颈癌专业委员会 中国医疗保健国际交流促进会妇产健康医学分会 中国癌症基金会全国宫颈癌防治协作组 中华预防医学会肿瘤预防与控制专业委员会 中国妇幼健康研究会宫颈癌防控研究专业委员会 【 摘要 】 结合我国子宫颈癌前病变和子宫颈癌发病情况以及全球子宫颈癌筛查策略，为实现消除子宫颈癌 的目标，我国七个学（协）会专家共同制定了子宫颈癌筛查指南（二） 。本指南重点在于规范子宫颈癌筛查结 果异常的分流方法，其目的是通过精细化管理，避免过度诊断与漏诊。高危型人乳头瘤病毒（ high-risk human papillomavirus, HR-HPV ）检测初筛阳性人群以子宫颈细胞学检查为主要分流方法；子宫颈细胞学初筛阳性人群 以其结果的不同风险进行管理。此外， p16/Ki-67 双重染色用于 HR-HPV 初筛不分型检测阳性或非 HPV 16/18 的其他 12 种 HR-HPV 检测（简称 12 HR-HPV ）阳性的分流，也可用于联合筛查中 HR-HPV 不分型检测阳性或 12 ",
+      "abstract": "《中国子宫颈癌筛查指南（二）》（2025年）由我国七个学（协）会专家制定，重点规范宫颈癌筛查结果异常的分流方法，通过精细化管理避免过度诊断与漏诊。HR-HPV初筛阳性以子宫颈细胞学检查为主要分流手段，细胞学初筛阳性按风险分层管理；p16/Ki-67双染、甲基化检测及HPV基因整合检测可用于相关人群分流，所用试剂须经权威机构认可并临床验证。"
+    },
+    "13_molecular_testing_consensus": {
+      "journal": "中华保健医学杂志",
+      "year": 2025,
+      "volume": "27",
+      "pages": "925–932",
+      "title": "分子检测技术用于宫颈癌筛查和早期诊断中国专家共识(2025年版)",
+      "cancer": "cervical",
+      "doi": "",
+      "firstPage": "中华保健医学杂志 2025 年 12 月第 27 卷第 6 期 Chin J Health Care Med,December 2025,Vol 27,No. 6 · 925 · 基金项目 : 国家自然科学基金 (82102711) ; 北京市科学技术委员会首都临床特色诊疗技术研究及转化应用 ( Z221100007422087) ; 北 京市医院管理中心临床医学发展专项 “ 扬帆 ” 计划 ( ZLRK202529) ; 北京市医师科学家培养计划 ( BJPSTP-2025-49) 通信作者 : 何玥 ,E-mail:yueyue870610@ ccmu. edu. cn; 吴玉梅 ,E-mail:wym597118@ ccmu. edu. cn; 张师前 ,E-mail:r370112@ 126. com; 王建东 ,E-mail:wangjiandongxy@ ccmu. edu. cn; 孟元光 ,E-mail:meng6512@ vip. sina. com · 共识与指南 · 分子检测技术用于宫颈癌筛查和早期诊断中国专家共识 ( 2025 年版 ) 中国老年医学学会妇科分会 [ 摘要 ] 宫颈癌是严重威胁女性健康最主要的生殖系统恶性肿瘤 。 随着分子生物学技术的不断发展 , 分子检测技 术如人乳头瘤病毒 ( HPV) 检测 、 脱氧核糖核酸 ( DNA) 甲基化检测等在",
+      "abstract": "宫颈癌是严重威胁女性健康最主要的生殖系统恶性肿瘤。《分子检测技术用于宫颈癌筛查和早期诊断中国专家共识（2025年版）》结合宫颈癌筛查现状与分子检测技术进展，对HPV检测、DNA甲基化检测等分子检测技术在宫颈癌筛查和早期诊断中的作用进行系统总结，规范相关技术的临床应用，为宫颈癌的筛查与早期诊断提供有力支持。"
+    },
+    "2_dna_methylation_consensus2024": {
+      "journal": "中国癌症防治杂志",
+      "year": 2024,
+      "volume": "",
+      "pages": "",
+      "title": "肿瘤DNA甲基化标志物检测及临床应用专家共识（2024版）",
+      "cancer": "cervical",
+      "doi": "",
+      "firstPage": "中国癌症防治杂志 Chinese Journal of Oncology Prevention and Treatment ISSN 1674-5671,CN 45-1366/R 《中国癌症防治杂志》网络首发论文 题目： 肿瘤 DNA 甲基化标志物检测及临床应用专家共识（ 2024 版） 作者： 丁春明，郭玮，毛瑞芳，辇伟奇，向廷秀，于津浦，杨政权，张海伟 网络首发日期： 2024-04-19 引用格式： 丁春明，郭玮，毛瑞芳，辇伟奇，向廷秀，于津浦，杨政权，张海伟．肿瘤 DNA 甲基化标志物检测及临床应用专家共识（ 2024 版） [J/OL] ．中国癌症防 治杂志 . https://link.cnki.net/urlid/45.1366.R.20240419.0914.002 网络首发：在编辑部工作流程中，稿件从录用到出版要经历录用定稿、排版定稿、整期汇编定稿等阶 段。录用定稿指内容已经确定，且通过同行评议、主编终审同意刊用的稿件。排版定稿指录用定稿按照期 刊特定版式（包括网络呈现版式）排版后的稿件，可暂不确定出版年、卷、期和页码。整期汇编定稿指出 版年、卷、 期、 页码均已确定的印刷或数字出版的整期汇编稿件。 录用定稿网络首发稿件内容必须符合 《出 版管理条例》和《期刊出版管理规定》的有关规定；学术研究成果具有创新性、科学性和先进性，符合编 辑部对刊文的录用要求，不存在学术",
+      "abstract": "《肿瘤DNA甲基化标志物检测及临床应用专家共识（2024版）》指出，DNA甲基化标志物在癌症诊断、治疗选择及预后评估中的重要性日益凸显。共识围绕甲基化标志物的定义、临床意义、检测规范、数据处理，及其在肿瘤筛查、辅助诊断、伴随诊断与复发监测中的应用提出系列共识推荐，旨在提升临床医技人员认识、规范检测流程，促进其在肿瘤诊疗全程的应用。"
+    },
+    "3_cervical_screening_guide1": {
+      "journal": "中国妇产科临床杂志",
+      "year": 2023,
+      "volume": "24",
+      "pages": "437–442",
+      "title": "中国子宫颈癌筛查指南（一）",
+      "cancer": "cervical",
+      "doi": "10.13390/j.issn.1672-1861.2023.04.029",
+      "firstPage": "● 437 ● ˗ݤڎ̗ሙ˚ࣾాঃ 2023 年 7 月 第 24 卷 第 4 期 Chin J Clin Obstet Gynecol July 2023 ， Vol.24 ， No.4 ·临床指南· 中国子宫颈癌筛查指南（一） 中国优生科学协会阴道镜和子宫颈病理学分会 中华医学会妇科肿瘤学分会 中国抗癌协会妇科肿瘤专业委员会 中国医疗保健国际交流促进会妇产健康医学分会 中国癌症基金会全国子宫颈癌防治协作组 中华预防医学会肿瘤预防与控制专委会 中国妇幼健康研究会子宫颈癌防控研究专业委员会 【摘要】 结合我国子宫颈上皮内病变和子宫颈癌发病情况，以及全球筛查策略，为实现消除子宫颈癌的目 标，我国七个学（协）会专家共同制定了子宫颈癌筛查指南。本指南推荐高危型 HPV 核酸检测作为子宫颈癌的 初筛方法，并采用经国内外权威机构认可、经临床验证可用于初筛的 HPV 核酸检测方法和试剂。子宫颈细胞学 筛查用于不具备 HPV 核酸检测条件的地区，当条件成熟后，采用基于 HPV 核酸检测的筛查方法。联合筛查用 于医疗卫生资源充足地区、机会性筛查人群以及部分特殊人群女性的子宫颈癌筛查。 25 岁女性为筛查起始年龄， 25 ~ 64 岁女性，采用每 5 年一次的 HPV 核酸单独检测 / 联合筛查；或每 3 年一次细胞学检查。 65 岁以上女性， 如既往有充分的阴性筛查记录，可终止筛查。对不同特殊人群",
+      "abstract": "《中国子宫颈癌筛查指南（一）》（2023年）由我国七个学（协）会专家制定，推荐高危型HPV核酸检测作为宫颈癌初筛方法，细胞学用于不具备HPV核酸检测条件的地区，联合筛查用于资源充足地区、机会性筛查人群及特殊人群。25岁为筛查起始年龄，25~64岁女性每5年行HPV单独或联合筛查、或每3年细胞学检查，65岁以上既往充分阴性者可终止筛查。"
+    },
+    "9_pax1jam3_consensus": {
+      "journal": "中华检验医学杂志",
+      "year": 2025,
+      "volume": "48",
+      "pages": "192–200",
+      "title": "子宫颈癌PAX1联合JAM3双基因甲基化检测流程、报告及临床应用专家共识",
+      "cancer": "cervical",
+      "doi": "10.3760/cma.j.cn114452-20240303-00105",
+      "firstPage": "",
+      "abstract": "本共识（2025年）由中国中西医结合学会检验医学专业委员会联合多学（协）会组织检验、病理、妇产多学科专家制定，全面梳理子宫颈癌PAX1联合JAM3双基因甲基化检测的实验室操作流程、质控标准与样本采集处理，并提出检测报告及临床应用建议，旨在推动宫颈癌甲基化检测在实验室与临床的规范化应用、保障检测结果准确可靠。"
+    },
+    "1_dna_methylation_consensus2024": {
+      "journal": "中国癌症防治杂志",
+      "year": 2024,
+      "volume": "",
+      "pages": "",
+      "title": "肿瘤DNA甲基化标志物检测及临床应用专家共识（2024版）",
+      "cancer": "endometrial",
+      "doi": "",
+      "firstPage": "中国癌症防治杂志 Chinese Journal of Oncology Prevention and Treatment ISSN 1674-5671,CN 45-1366/R 《中国癌症防治杂志》网络首发论文 题目： 肿瘤 DNA 甲基化标志物检测及临床应用专家共识（ 2024 版） 作者： 丁春明，郭玮，毛瑞芳，辇伟奇，向廷秀，于津浦，杨政权，张海伟 网络首发日期： 2024-04-19 引用格式： 丁春明，郭玮，毛瑞芳，辇伟奇，向廷秀，于津浦，杨政权，张海伟．肿瘤 DNA 甲基化标志物检测及临床应用专家共识（ 2024 版） [J/OL] ．中国癌症防 治杂志 . https://link.cnki.net/urlid/45.1366.R.20240419.0914.002 网络首发：在编辑部工作流程中，稿件从录用到出版要经历录用定稿、排版定稿、整期汇编定稿等阶 段。录用定稿指内容已经确定，且通过同行评议、主编终审同意刊用的稿件。排版定稿指录用定稿按照期 刊特定版式（包括网络呈现版式）排版后的稿件，可暂不确定出版年、卷、期和页码。整期汇编定稿指出 版年、卷、 期、 页码均已确定的印刷或数字出版的整期汇编稿件。 录用定稿网络首发稿件内容必须符合 《出 版管理条例》和《期刊出版管理规定》的有关规定；学术研究成果具有创新性、科学性和先进性，符合编 辑部对刊文的录用要求，不存在学术",
+      "abstract": "《肿瘤DNA甲基化标志物检测及临床应用专家共识（2024版）》指出，DNA甲基化标志物在癌症诊断、治疗选择及预后评估中的重要性日益凸显。共识围绕甲基化标志物的定义、临床意义、检测规范、数据处理，及其在肿瘤筛查、辅助诊断、伴随诊断与复发监测中的应用提出系列共识推荐，旨在提升临床医技人员认识、规范检测流程，促进其在肿瘤诊疗全程的应用。"
+    },
+    "2_ec_methylation_consensus2026": {
+      "journal": "中华医学杂志",
+      "year": 2026,
+      "volume": "106",
+      "pages": "2701–2710",
+      "title": "子宫内膜癌基因甲基化筛查技术临床应用专家共识（2026版）",
+      "cancer": "endometrial",
+      "doi": "10.3760/cma.j.cn112137-20260301-00576",
+      "firstPage": "中华医学杂志 2026 年 7 月 21 日第 106 卷第 26 期 Natl Med J China, July 21, 2026, Vol. 106, No. 26 · 2701 · 子宫内膜癌基因甲基化筛查技术临床应用 专家共识 （ 2026 版） 中华医学会妇科肿瘤学分会 中国研究型医院学会妇产科学专业委员会 中国医疗 保健国际交流促进会妇产健康医学分会 通 信 作 者 ： 陈 刚 ， 华 中 科 技 大 学 同 济 医 学 院 附 属 同 济 医 院 ， 武 汉 430030 ， Email ： tjchengang@hust. edu. cn ；孔 北 华 ，山 东 大 学 齐 鲁 医 院 ，济 南 250012 ， Email ： kongbeihua@sdu.edu.cn ； 向阳， 北京协和医院， 北京 100730 ， Email ： XiangY@pumch.com ； 王建六， 北京大学人民医院， 北京 100044 ， Email ： wangjianliu1203@163.com 【摘要】 为进一步规范基因甲基化检测技术在我国子宫内膜癌筛查中的临床应用， 提高子宫内 膜癌早期发现、 早期诊断和早期治疗水平， 推动我国子宫内膜癌的精准防控与规范化管理， 并为临床 医师及相关专业技术人员提供循证与共识建议， 在中华医学会妇科肿瘤学分会、 中国研究型医院学会",
+      "abstract": "《子宫内膜癌基因甲基化筛查技术临床应用专家共识（2026版）》由多家学会牵头、多学科专家经多轮共识会议制订，针对我国子宫内膜癌发病率上升、防控形势严峻的背景，围绕已获国家药品监督管理局批准的基因甲基化检测技术，阐述其用于有症状、风险增加及高风险三类人群的筛查流程、风险评估与管理策略并给出推荐意见，旨在规范临床应用、提高早发现早诊断早治疗水平。"
+    },
+    "3_ec_prevention_consensus2025": {
+      "journal": "中国实用妇科与产科杂志",
+      "year": 2025,
+      "volume": "41",
+      "pages": "1004–1011",
+      "title": "子宫内膜癌三级预防策略中国专家共识（2025年版）",
+      "cancer": "endometrial",
+      "doi": "10.19538/j.fk2025100110",
+      "firstPage": "中国实用妇科与产科杂志 2025 年 10 月 第 41 卷 第 10 期 Chin J Pract Gynecol Obstet, October 2025 ， Vol.41 ， No10 子宫内膜癌 （ endometrial cancer ， EC ） 是全球范围内最 常见的妇科恶性肿瘤之一。由于人口老龄化、 代谢性疾病 患病率上升以及生育模式的改变等因素， 其发病率呈不断 上升的趋势。在发达国家和我国部分城市， 如北京、 上海、 广州等地， 子宫内膜癌发病率已跃居女性生殖道恶性肿瘤 之首。对子宫内膜癌进行有效的预防和管理需要多学科 协作， 涵盖一级预防、 二级预防和三级预防策略。 通过对病因的一级预防、 二级预防中的早期筛查和诊 断， 以及三级预防中的综合治疗和康复， 可以有效降低子 宫内膜癌的发病风险， 从而提高患者的生存率和生活质 量。目前子宫颈癌三级预防体系的建立和实施已相对完 善和成熟， 而子宫内膜癌三级预防体系的建立尚未统一和 完善。中国妇幼健康研究会妇产科精准医疗专业委员会 和上海市医学会妇科肿瘤学分会组织专家， 依据当前循证 医学证据和真实世界临床经验， 形成子宫内膜癌的三级预 防策略中国专家共识， 以供临床医生参考应用。 1 子宫内膜癌一级预防 1.1 目标 一级预防侧重于通过控制可改变的危险因素 和倡导健康的生活方式来降低罹患子宫内膜癌的风险。 其目标是在",
+      "abstract": "子宫内膜癌是全球最常见的妇科恶性肿瘤之一，受人口老龄化、代谢性疾病增多及生育模式改变影响，发病率持续上升，部分城市已跃居女性生殖道恶性肿瘤之首。《子宫内膜癌三级预防策略中国专家共识（2025年版）》提出以多学科协作推进一级预防、二级预防（早期筛查诊断）和三级预防（综合治疗康复），以降低发病风险、提高生存率与生活质量。"
+    },
+    "2025 肿瘤DNA甲基化标志物检测临床应用规范 团体标注(未定稿)": {
+      "cancer": "ovarian",
+      "year": 2025,
+      "journal": "团体标准 T/CITS（征求意见稿）",
+      "doi": "",
+      "firstPage": "ICS 11.100 CITS CCS C 05 团 体 标 准 T/CITS XXXX — 2025 肿瘤 DNA 甲基化标志物检测临床应用规范 Clinical application specifications for detection of tumor DNA methylation biomarker （征求意见稿） 在提交反馈意见时，请将您知道的相关专利连同支持性文件一并附上。 2025 - ** - ** 发布 2025 - ** - ** 实施 中国检验检测学会 发 布"
+    },
+    "15_methylation_tech_spec": {
+      "journal": "学会、协会",
+      "year": 2020,
+      "title": "肿瘤 DNA 甲基化标志物检测技术规范",
+      "cancer": "cervical",
+      "doi": "",
+      "firstPage": "",
+      "abstract": "本技术规范（2020年）规定了肿瘤DNA甲基化标志物检测的检测要求及质量控制，明确检测流程中的操作规范与质量评价指标。适用于医疗机构、检测机构等开展肿瘤DNA甲基化标志物检测，为甲基化检测技术在肿瘤筛查与辅助诊断中的规范实施提供统一技术依据，有助于保障检测结果准确可靠、推动甲基化检测的标准化应用。"
+    },
+    "4_cfdna_methylation_consensus2025": {
+      "journal": "中华检验医学杂志",
+      "year": 2026,
+      "volume": "49",
+      "pages": "160–171",
+      "title": "血液游离DNA甲基化肿瘤标志物实验室检测与临床应用专家共识（2025版）",
+      "cancer": "ovarian",
+      "doi": "",
+      "firstPage": "",
+      "abstract": "血液游离DNA（cfDNA）甲基化检测作为无创液体活检技术，在肿瘤早期筛查、辅助诊断、疗效监测及复发预警中具有重要价值。本共识由中华医学会检验医学分会组织制定，系统规范血液游离DNA甲基化肿瘤标志物的实验室检测流程（标本采集与保存、方法学选择与性能验证、结果判读与报告规范）及质量控制要求，旨在推动血液游离DNA甲基化检测的标准化应用，为肿瘤精准诊疗提供可靠技术支撑。"
+    }
+  }
+}

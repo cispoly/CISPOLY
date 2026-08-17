@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAX1/JAM3 Methylation &amp; HPV Viral Load in Persistent HPV Infection — Li et al. 2024, Cancers</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #10：三年分界时长轴 hero，与 #1-9 均不同）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、白色 stat 卡、红色高亮表格
+  - 布局：标题带 → 时长轴 hero（<1y / 1–2y / 3–4y / ≥5y 四段，甲基化信号递升，3 年分界高亮）→ 两栏（左 560px：①背景与目的 ②研究设计；右 1fr：③甲基化随感染时长升高【Fig.2 + Fig.3】④相关性【Fig.4 + Fig.5】⑤临床发现）→ 全宽临床意义带
+  - 选图：Fig.2 甲基化按时长（793x395，宽幅）+ Fig.3 点图（767x196，超宽）+ Fig.4 相关性（781x387，宽幅）+ Fig.5 VaIN（773x195，超宽）；Fig.1 流程图不用
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  /* 时长轴 hero */
+  .dur { flex: 0 0 auto; height: 122px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: center; gap: 10px; padding: 10px 14px; }
+  .dur .dseg { flex: 1; text-align: center; position: relative; }
+  .dur .dbar { height: 44px; border-radius: 6px 6px 0 0; background: linear-gradient(180deg, var(--secondary) 0%, var(--accent) 130%); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px; }
+  .dur .dseg.b1 .dbar { height: 18px; }
+  .dur .dseg.b2 .dbar { height: 30px; }
+  .dur .dseg.b3 .dbar { height: 44px; }
+  .dur .dseg.b4 .dbar { height: 52px; }
+  .dur .dlab { font-size: 12px; font-weight: 700; color: var(--text); margin-top: 5px; }
+  .dur .dlab .sub { display: block; font-size: 9.5px; color: var(--muted); font-weight: 400; }
+  .dur .dcut { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.9) 100%); border-radius: 10px;
+    padding: 10px 14px; text-align: center; }
+  .dur .dcut .dt { font-size: 12px; font-weight: 800; color: #fff; letter-spacing: 0.5px; }
+  .dur .dcut .dv { font-size: 20px; font-weight: 800; color: #fff; margin-top: 2px; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 8px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel table, .panel .statrow, .panel .wstrip, .panel .tnote, .panel .figrow { flex: 0 0 auto; }
+  .panel h3 { font-size: 14.5px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11.5px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 13.5px; line-height: 1.45; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 1px 0 6px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 9px 4px; text-align: center; }
+  .stat .big { font-size: 21px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 10px; color: var(--muted); margin-top: 2px; line-height: 1.25; }
+
+  .wstrip { display: flex; align-items: center; gap: 6px; margin: 1px 0 6px; }
+  .wstrip .wchip { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 5px; padding: 10px 4px; text-align: center; font-size: 10.5px; font-weight: 600; color: var(--accent-deep); }
+  .wstrip .warr { color: var(--secondary); font-size: 14px; font-weight: 800; }
+
+  .figrow { display: flex; gap: 12px; align-items: flex-start; justify-content: center; }
+  .fig { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px 4px; text-align: center; min-width: 0; }
+  .fig img { display: inline-block; height: auto; max-height: 150px; width: auto; max-width: 100%; border-radius: 3px; }
+  .fig.wide { flex: 1 1 100%; }
+  .fig.wide img { max-height: 165px; }
+  .fig .figcap { font-size: 10px; color: var(--muted); font-style: italic; line-height: 1.3; margin-top: 3px; text-align: left; }
+  .fig .figcap strong { color: var(--primary); font-style: normal; }
+
+  .tnote { font-size: 10.5px; color: var(--muted); line-height: 1.4; margin-top: 2px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .hbar { display: flex; gap: 6px; margin-top: 10px; align-items: flex-end; }
+  .hbar .b { flex: 1; text-align: center; }
+  .hbar .bar { background: linear-gradient(180deg, var(--secondary) 0%, var(--accent) 130%); border-radius: 4px 4px 0 0; height: 34px; }
+  .hbar .b1 .bar { height: 20px; }
+  .hbar .b2 .bar { height: 34px; }
+  .hbar .b3 .bar { height: 58px; }
+  .hbar .b4 .bar { height: 70px; }
+  .hbar .lb { font-size: 10px; color: var(--muted); margin-top: 4px; }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Cancers · 2024;16(7):1430 · Persistent HPV Study · China</div>
+    <h1 data-i18n="title">PAX1/JAM3 Methylation &amp; HPV Viral Load in Persistent HPV Infection</h1>
+    <div class="title_alt" data-i18n="title_alt">持续性 HPV 感染中的 PAX1/JAM3 甲基化与病毒载量</div>
+    <div class="subtitle" data-i18n="subtitle">231 women with persistent HPV, no CIN2+ · methylation rises after 3 years of infection · HPV VL flags concurrent vaginal lesions (non-16/18)</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Li M, Zhao C, Zhang X, Li J, Zhao Y, Zhang W, Ren L, Wei L (correspondence)</div>
+      <div class="source" data-i18n="source">Peking University People's Hospital · real-time PCR methylation + BMRT-HPV VL · doi: <a href="https://doi.org/10.3390/cancers16071430" target="_blank" rel="noopener">10.3390/cancers16071430</a></div>
+    </div>
+  </header>
+
+  <!-- 时长轴 hero -->
+  <div class="dur">
+    <div class="dseg b1"><div class="dbar"></div><div class="dlab" data-i18n="s1">1 y<span class="sub" data-i18n="s1s">methylation low</span></div></div>
+    <div class="dseg b2"><div class="dbar"></div><div class="dlab" data-i18n="s2">2 y<span class="sub" data-i18n="s2s">rising</span></div></div>
+    <div class="dseg b3"><div class="dbar"></div><div class="dlab" data-i18n="s3">3–4 y<span class="sub" data-i18n="s3s">significant ↑</span></div></div>
+    <div class="dseg b4"><div class="dbar"></div><div class="dlab" data-i18n="s4">≥5 y<span class="sub" data-i18n="s4s">highest</span></div></div>
+    <div class="dcut"><div class="dt" data-i18n="s5">Cut-off</div><div class="dv" data-i18n="s6">3 years</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Gap</strong>: epigenetic &amp; viral-load changes during persistent HPV infection (no high-grade cervical lesion) are poorly understood.</li>
+          <li data-i18n="s1b"><strong>Idea</strong>: PAX1/JAM3 methylation may accumulate as evidence of infection duration before precancer arises.</li>
+          <li data-i18n="s1c"><strong>Objective</strong>: compare methylation &amp; VL by infection duration (&lt;3 y vs &gt;3 y) and link to vaginal lesions.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">231</div><div class="lab" data-i18n="s2s1">persistent HPV women</div></div>
+          <div class="stat"><div class="big">48.9</div><div class="lab" data-i18n="s2s2">mean age &gt;3 y</div></div>
+          <div class="stat"><div class="big">45.1</div><div class="lab" data-i18n="s2s3">mean age &lt;3 y</div></div>
+        </div>
+        <div class="wstrip">
+          <span class="wchip" data-i18n="ws1">PAX1/JAM3 qPCR</span><span class="warr">+</span>
+          <span class="wchip" data-i18n="ws2">HPV VL (BMRT)</span><span class="warr">+</span>
+          <span class="wchip" data-i18n="ws3">colposcopy + histology</span>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Setting</strong>: PKUPH colposcopy clinic, Mar–Dec 2023; persistent = same genotype ≥1 y.</li>
+          <li data-i18n="s2b"><strong>Inclusion</strong>: persistent HPV, no CIN2+ on biopsy; excluded ASC-H/HSIL cytology, prior cancer, hysterectomy.</li>
+          <li data-i18n="s2c"><strong>Unscreened</strong>: 81.8% (189/231) had no previous screening.</li>
+          <li data-i18n="s2d"><strong>Grouping</strong>: duration 3 y chosen via stratified analysis of JAM3 methylation change.</li>
+          <li data-i18n="s2e"><strong>Outcome</strong>: 28 concurrent VaIN; more frequent when infection &gt;3 y.</li>
+          <li data-i18n="s2h"><strong>VL analyses</strong>: total / HPV16-18 / non-16-18 type-specific.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">28</div><div class="lab" data-i18n="s2s4">concurrent VaIN</div></div>
+          <div class="stat"><div class="big">81.8%</div><div class="lab" data-i18n="s2s5">never screened</div></div>
+          <div class="stat"><div class="big">3 y</div><div class="lab" data-i18n="s2s6">cut-off</div></div>
+        </div>
+        <div class="hbar">
+          <div class="b b1"><div class="bar"></div><div class="lb" data-i18n="h1">&lt;1 y</div></div>
+          <div class="b b2"><div class="bar"></div><div class="lb" data-i18n="h2">1–2 y</div></div>
+          <div class="b b3"><div class="bar"></div><div class="lb" data-i18n="h3">3–4 y</div></div>
+          <div class="b b4"><div class="bar"></div><div class="lb" data-i18n="h4">≥5 y</div></div>
+        </div>
+        <div class="tnote" data-i18n="s2f">VL reported type-specific per 10,000 cells (BMRT).</div>
+        <div class="tnote" data-i18n="s2g">Persistent = same genotype ≥1 y; genotype change excluded.</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Methylation Rises With Infection Duration</span></h3>
+        <div class="figrow">
+          <div class="fig">
+            <img src="images/fig2_duration.jpg" alt="PAX1 and JAM3 methylation by HPV duration">
+            <div class="figcap"><strong>Fig. 2</strong> <span data-i18n="s3c1">PAX1 (A) &amp; JAM3 (B) higher after 3 y (*P&lt;0.05).</span></div>
+          </div>
+          <div class="fig">
+            <img src="images/fig3_dotplot_duration.jpg" alt="Dot plot of tests by duration">
+            <div class="figcap"><strong>Fig. 3</strong> <span data-i18n="s3c2">By duration — methylation rises; VL no trend.</span></div>
+          </div>
+        </div>
+        <ul style="margin-top:4px;">
+          <li data-i18n="s3a"><strong>Cumulative evidence</strong>: PAX1–JAM3 correlate (P&lt;0.001) — marker of duration before precancer.</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">Viral Load &amp; Vaginal Lesions</span></h3>
+        <div class="figrow">
+          <div class="fig">
+            <img src="images/fig4_correlation.jpg" alt="Correlation between HPV VL and methylation">
+            <div class="figcap"><strong>Fig. 4</strong> <span data-i18n="s4c1">VL–methylation correlation (JAM3–total VL P=0.037).</span></div>
+          </div>
+          <div class="fig">
+            <img src="images/fig5_vain.jpg" alt="Dot plot normal vs concurrent VaIN">
+            <div class="figcap"><strong>Fig. 5</strong> <span data-i18n="s4c2">VaIN: higher total VL, driven by non-16/18 (**P&lt;0.01).</span></div>
+          </div>
+        </div>
+        <ul style="margin-top:4px;">
+          <li data-i18n="s4a"><strong>VL biomarker</strong>: higher with concurrent vaginal lesions, mainly non-16/18.</li>
+          <li data-i18n="s4b"><strong>VaIN</strong>: 28 concurrent cases; more common when infection &gt;3 y.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Clinical Implications</span></h3>
+        <ul>
+          <li data-i18n="s5a"><strong>3-year threshold</strong>: methylation rises only after &gt;3 y — a monitoring timepoint for persistent infection.</li>
+          <li data-i18n="s5b"><strong>Dual-site check</strong>: persistent HPV women should be assessed for concurrent vaginal lesions; VL guides it.</li>
+          <li data-i18n="s5c"><strong>Before precancer</strong>: methylation provides early cumulative evidence, enabling earlier intervention.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>In persistent HPV infection without high-grade cervical lesions,</b> PAX1/JAM3 methylation rises significantly after 3 years — usable as cumulative evidence of infection duration before precancer.</li>
+      <li data-i18n="c2"><b>HPV VL (esp. non-16/18)</b> flags concurrent cervical–vaginal lesions — supporting monitoring &amp; intervention in persistent HPV women.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Cancers · 2024;16(7):1430 · Persistent HPV Study · China",
+      title: "PAX1/JAM3 Methylation & HPV Viral Load in Persistent HPV Infection",
+      title_alt: "持续性 HPV 感染中的 PAX1/JAM3 甲基化与病毒载量",
+      subtitle: "231 women with persistent HPV, no CIN2+ · methylation rises after 3 years of infection · HPV VL flags concurrent vaginal lesions (non-16/18)",
+      authors: "Li M, Zhao C, Zhang X, Li J, Zhao Y, Zhang W, Ren L, Wei L (correspondence)",
+      source: 'Peking University People\'s Hospital · real-time PCR methylation + BMRT-HPV VL · doi: <a href="https://doi.org/10.3390/cancers16071430" target="_blank" rel="noopener">10.3390/cancers16071430</a>',
+      s1: "1 y", s1s: "methylation low", s2: "2 y", s2s: "rising", s3: "3–4 y", s3s: "significant ↑", s4: "≥5 y", s4s: "highest",
+      s5: "Cut-off", s6: "3 years",
+      s1t: "Background & Objective",
+      s1a: "<strong>Gap</strong>: epigenetic & viral-load changes during persistent HPV infection (no high-grade cervical lesion) are poorly understood.",
+      s1b: "<strong>Idea</strong>: PAX1/JAM3 methylation may accumulate as evidence of infection duration before precancer arises.",
+      s1c: "<strong>Objective</strong>: compare methylation & VL by infection duration (<3 y vs >3 y) and link to vaginal lesions.",
+      s2t: "Study Design & Cohort",
+      s2s1: "persistent HPV women", s2s2: "mean age >3 y", s2s3: "mean age <3 y",
+      ws1: "PAX1/JAM3 qPCR", ws2: "HPV VL (BMRT)", ws3: "colposcopy + histology",
+      s2a: "<strong>Setting</strong>: PKUPH colposcopy clinic, Mar–Dec 2023; persistent = same genotype ≥1 y.",
+      s2b: "<strong>Inclusion</strong>: persistent HPV, no CIN2+ on biopsy.",
+      s2c: "<strong>Unscreened</strong>: 81.8% (189/231) had no previous screening.",
+      s2d: "<strong>Grouping</strong>: 3-y cut-off via JAM3 methylation stratified analysis.",
+      s2e: "<strong>Outcome</strong>: 28 concurrent VaIN; more frequent when infection >3 y.",
+      s2h: "<strong>VL analyses</strong>: total / HPV16-18 / non-16-18 type-specific.",
+      s2s4: "concurrent VaIN", s2s5: "never screened", s2s6: "cut-off",
+      h1: "<1 y", h2: "1–2 y", h3: "3–4 y", h4: "≥5 y",
+      s2f: "VL reported type-specific per 10,000 cells (BMRT).",
+      s2g: "Persistent = same genotype ≥1 y; genotype change excluded.",
+      s3t: "Methylation Rises With Infection Duration",
+      s3c1: "PAX1 (A) & JAM3 (B) methylation significantly higher after 3 years (*P<0.05).",
+      s3c2: "Dot plots by duration — methylation rises; VL no significant trend.",
+      s3a: "<strong>Cumulative evidence</strong>: PAX1–JAM3 methylation correlate (P<0.001) — marker of infection duration before precancer.",
+      s4t: "Viral Load & Vaginal Lesions",
+      s4c1: "VL–methylation correlation (JAM3–total VL P=0.037).",
+      s4c2: "Concurrent VaIN: higher total VL, driven by non-16/18 (**P<0.01).",
+      s4a: "<strong>VL biomarker</strong>: total HPV VL higher with concurrent vaginal lesions, mainly non-16/18 types.",
+      s4b: "<strong>VaIN burden</strong>: 28 concurrent VaIN cases; more common when infection >3 y.",
+      s5t: "Clinical Implications",
+      s5a: "<strong>3-year threshold</strong>: methylation rises only after >3 y — a monitoring timepoint for persistent infection.",
+      s5b: "<strong>Dual-site check</strong>: persistent HPV women should be assessed for concurrent vaginal lesions; VL guides it.",
+      s5c: "<strong>Before precancer</strong>: methylation provides early cumulative evidence, enabling earlier intervention.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>In persistent HPV infection without high-grade cervical lesions,</b> PAX1/JAM3 methylation rises significantly after 3 years — usable as cumulative evidence of infection duration before precancer.",
+      c2: "<b>HPV VL (esp. non-16/18)</b> flags concurrent cervical–vaginal lesions — supporting monitoring & intervention in persistent HPV women."
+    },
+    zh: {
+      kicker: "Cancers · 2024;16(7):1430 · 持续 HPV 感染研究 · 中国",
+      title: "持续性 HPV 感染中的 PAX1/JAM3 甲基化与病毒载量",
+      title_alt: "PAX1/JAM3 Methylation & HPV Viral Load in Persistent HPV Infection",
+      subtitle: "231 例持续 HPV 感染、无 CIN2+ 女性 · 感染 3 年后甲基化显著升高 · HPV 病毒载量提示合并阴道病变（非 16/18 型）",
+      authors: "李明竹、赵超、张晓波、李静然、赵昀、张薇、任利华、魏丽惠（通讯）",
+      source: '北京大学人民医院 · 实时 PCR 甲基化 + BMRT-HPV 病毒载量 · doi: <a href="https://doi.org/10.3390/cancers16071430" target="_blank" rel="noopener">10.3390/cancers16071430</a>',
+      s1: "1 年", s1s: "甲基化低", s2: "2 年", s2s: "升高", s3: "3–4 年", s3s: "显著升高 ↑", s4: "≥5 年", s4s: "最高",
+      s5: "分界", s6: "3 年",
+      s1t: "背景与目的",
+      s1a: "<strong>空白</strong>：持续 HPV 感染（无宫颈高级别病变）期间表观遗传与病毒载量的变化尚不清楚。",
+      s1b: "<strong>设想</strong>：PAX1/JAM3 甲基化或可累积，作为癌前病变发生前感染时长的证据。",
+      s1c: "<strong>目的</strong>：比较不同感染时长（&lt;3 年 vs &gt;3 年）的甲基化与病毒载量，并关联阴道病变。",
+      s2t: "研究设计与队列",
+      s2s1: "持续 HPV 女性", s2s2: "&gt;3 年平均年龄", s2s3: "&lt;3 年平均年龄",
+      ws1: "PAX1/JAM3 qPCR", ws2: "HPV 病毒载量（BMRT）", ws3: "阴道镜 + 组织学",
+      s2a: "<strong>地点</strong>：北大人民医院阴道镜门诊，2023.3–12；持续 = 同一基因型 ≥1 年。",
+      s2b: "<strong>入组</strong>：持续 HPV、活检无 CIN2+；排除 ASC-H/HSIL 细胞学、既往癌、子宫切除。",
+      s2c: "<strong>未筛查</strong>：81.8%（189/231）此前从未筛查。",
+      s2d: "<strong>分组</strong>：经 JAM3 甲基化分层分析确定 3 年为分界。",
+      s2e: "<strong>结局</strong>：28 例合并 VaIN；感染 &gt;3 年者更常见。",
+      s2h: "<strong>病毒载量分析</strong>：总 / HPV16-18 / 非 16-18 分型。",
+      s2s4: "合并 VaIN", s2s5: "从未筛查", s2s6: "分界",
+      h1: "<1 年", h2: "1–2 年", h3: "3–4 年", h4: "≥5 年",
+      s2f: "病毒载量按型别报告（每 10,000 细胞，BMRT）。",
+      s2g: "持续 = 同一基因型 ≥1 年；基因型变化者排除。",
+      s3t: "甲基化随感染时长升高",
+      s3c1: "PAX1（A）与 JAM3（B）甲基化在 3 年后显著升高（*P&lt;0.05）。",
+      s3c2: "按时长点图——甲基化升高；病毒载量无显著趋势。",
+      s3a: "<strong>累积证据</strong>：PAX1–JAM3 甲基化相关（P&lt;0.001）——癌前病变发生前感染时长的标志。",
+      s4t: "病毒载量与阴道病变",
+      s4c1: "病毒载量–甲基化相关（JAM3–总载量 P=0.037）。",
+      s4c2: "合并 VaIN：总病毒载量更高，主要由非 16/18 型驱动（**P&lt;0.01）。",
+      s4a: "<strong>病毒载量标志</strong>：合并阴道病变时总 HPV 病毒载量更高，以非 16/18 型为主。",
+      s4b: "<strong>VaIN 负担</strong>：28 例合并 VaIN；感染 &gt;3 年者更常见。",
+      s5t: "临床意义",
+      s5a: "<strong>3 年阈值</strong>：甲基化仅在 &gt;3 年后升高——持续感染监测的关键时点。",
+      s5b: "<strong>双部位评估</strong>：持续 HPV 女性应评估合并阴道病变；病毒载量可作指引。",
+      s5c: "<strong>癌前阶段</strong>：甲基化提供早期累积证据，利于更早干预。",
+      c_ttl: "临床意义",
+      c1: "<b>在无宫颈高级别病变的持续 HPV 感染中，</b>PAX1/JAM3 甲基化在感染 3 年后显著升高——可作为癌前病变发生前感染时长的累积证据。",
+      c2: "<b>HPV 病毒载量（尤其非 16/18 型）</b>提示合并宫颈–阴道病变——支持持续 HPV 女性的监测与干预。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CISENDO in Cervical Brushing vs D&C — Cai et al. 2026</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #36：配对样本一致性）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、大数字卡、条形对比
+  - 布局：标题带 → hero（226 例 / CBC AUC 0.916 / D&C AUC 0.929 / CDO1 R 0.86）→ 两栏（左 560px：①背景与目的 ②研究设计；右 1fr：③配对一致性 ④ROC 对比【原图+侧栏】 ⑤结论要点）→ 全宽临床意义带
+  - 选图：ROC 对比（708×624）
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 96px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 22px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .duowrap { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 6px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 0 0 5px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 12px 4px; text-align: center; }
+  .stat .big { font-size: 18px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+  .stat.cool { background: #fff; border-color: rgba(140,158,143,0.6); }
+  .stat.cool .big { color: #5C7A63; }
+
+  .duowrap { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(0,1.25fr) minmax(0,1fr); grid-template-rows: 1fr; gap: 12px; align-items: stretch; margin: 2px 0 0; }
+  .duowrap .fig { display: flex; flex-direction: column; justify-content: center; }
+  .duowrap .fig img { align-self: center; max-height: 237px; }
+  .duowrap .side { display: flex; flex-direction: column; justify-content: center; gap: 5px; min-width: 0; }
+  .duowrap .side ul { margin-top: 2px; }
+  .fig { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px 5px; text-align: center; min-width: 0; }
+  .fig img { display: inline-block; height: auto; max-height: 250px; width: auto; max-width: 100%; border-radius: 3px; align-self: center; }
+  .fig .figcap { font-size: 10px; color: var(--muted); font-style: italic; line-height: 1.3; margin-top: 3px; text-align: left; }
+  .fig .figcap strong { color: var(--primary); font-style: normal; }
+
+  .spbars { margin: 2px 0 6px; }
+  .spb { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+  .spb .sbl { flex: 0 0 150px; font-size: 11.5px; font-weight: 700; color: var(--text); text-align: right; }
+  .spb .sbt { flex: 1 1 auto; height: 20px; background: #F1E7E7; border-radius: 5px; overflow: hidden; position: relative; }
+  .spb .sbf { height: 100%; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 12px; font-weight: 800; color: #fff; }
+  .spb.win .sbf { background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); }
+  .spb.lose .sbf { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); color: #6B5755; }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 3px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+  body.lang-zh .panel ul li { line-height: 1.5; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Front Med · 2026;13:1690020 · Paired-Sample Study · China</div>
+    <h1 data-i18n="title">CISENDO in Cervical Brushing vs D&amp;C Samples for EC</h1>
+    <div class="title_alt" data-i18n="title_alt">Validation of a cervical CDO1/CELF4 methylation test for endometrial cancer: a prospective paired-sample comparison with intrauterine specimen</div>
+    <div class="subtitle" data-i18n="subtitle">226 women (31 EIN/EC) · D&C AUC 0.929 (Se 93.5/Sp 92.3) · CBC AUC 0.916 · CDO1 R 0.86, CELF4 R 0.78 · no method difference (P=0.244)</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Cai B, Wang Y, Ma W, Wu Z, Yao T, Liu P, Wang L, Zhou P, Li Y</div>
+      <div class="source" data-i18n="source">Gansu Provincial Maternity &amp; Child Care Hospital · Front Med 2026;13:1690020 · doi:10.3389/fmed.2026.1690020</div>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="stat"><div class="big">226</div><div class="lab" data-i18n="h1">paired (31 EIN/EC)</div></div>
+    <div class="stat hot"><div class="big">0.929</div><div class="lab" data-i18n="h2">AUC · D&amp;C</div></div>
+    <div class="stat"><div class="big">0.916</div><div class="lab" data-i18n="h3">AUC · CBC</div></div>
+    <div class="stat"><div class="big">R 0.86</div><div class="lab" data-i18n="h4">CDO1 agreement</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Question</strong>: can non-invasive cervical brushing cells (CBC) match invasive D&amp;C samples for CISENDO?</li>
+          <li data-i18n="s1b"><strong>Objective</strong>: validate CDO1/CELF4 for EIN+EC with paired CBC vs D&amp;C specimens.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">31</div><div class="lab" data-i18n="s2s1">EIN or EC</div></div>
+          <div class="stat"><div class="big">195</div><div class="lab" data-i18n="s2s2">benign</div></div>
+          <div class="stat"><div class="big">2023.7–24.6</div><div class="lab" data-i18n="s2s3">enrollment</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Design</strong>: prospective paired; CBC + D&amp;C from each woman, Gansu MCH.</li>
+          <li data-i18n="s2b"><strong>Assay</strong>: CISENDO® (CDO1/CELF4 methylation, ΔCt ≤8.4/≤8.8) on both samples.</li>
+          <li data-i18n="s2c"><strong>Reference</strong>: histopathology (EIN/EC gold standard).</li>
+          <li data-i18n="s2d"><strong>Agreement</strong>: Spearman correlation + Bland-Altman; ROC comparison.</li>
+          <li data-i18n="s2e"><strong>IRB</strong>: 2023-GSFY-56 · STARD-compliant.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">0.929</div><div class="lab" data-i18n="s2s4">D&amp;C AUC</div></div>
+          <div class="stat"><div class="big">0.916</div><div class="lab" data-i18n="s2s5">CBC AUC</div></div>
+          <div class="stat"><div class="big">P=0.244</div><div class="lab" data-i18n="s2s6">ROC difference ns</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">ΔCt ↓</div><div class="lab" data-i18n="s2s7">EIN/EC vs benign (P&lt;0.0001)</div></div>
+          <div class="stat"><div class="big">8.4/8.8</div><div class="lab" data-i18n="s2s8">ΔCt cut-offs</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2f"><strong>Inclusion</strong>: &gt;18 y, hysteroscopy/uterine surgery indication, consent.</li>
+          <li data-i18n="s2g"><strong>Exclusion</strong>: pregnancy · hysterectomy history · incomplete data.</li>
+          <li data-i18n="s2h"><strong>Statistics</strong>: paired t-test · Spearman · Bland-Altman · ROC (DeLong).</li>
+          <li data-i18n="s2i"><strong>Reporting</strong>: STARD 2015.</li>
+        </ul>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s2j1">CISENDO CBC</div><div class="sbt"><div class="sbf" style="width:91.6%">AUC 0.916</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s2j2">CISENDO D&C</div><div class="sbt"><div class="sbf" style="width:92.9%">AUC 0.929</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s2j3">CA125</div><div class="sbt"><div class="sbf" style="width:59.3%">0.593</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s2j4">ET (TVS)</div><div class="sbt"><div class="sbf" style="width:49.9%">0.499</div></div></div>
+        </div>
+        <div class="tnote" data-i18n="s2n">ET AUC 0.499 · CA125 AUC 0.593 — methylation far superior to conventional markers; CBC vs D&C ROC ns (P=0.244).</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">CBC–D&amp;C Agreement</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">R 0.86</div><div class="lab" data-i18n="s3s1">CDO1 (P=1.3e-09)</div></div>
+          <div class="stat hot"><div class="big">R 0.78</div><div class="lab" data-i18n="s3s2">CELF4 (P=2.3e-07)</div></div>
+          <div class="stat"><div class="big">no bias</div><div class="lab" data-i18n="s3s3">Bland-Altman (P=0.14/0.41)</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s3a"><strong>High concordance</strong>: CBC mirrors intrauterine samples for both genes.</li>
+          <li data-i18n="s3b"><strong>No systematic bias</strong>: paired t-test ns — sampling method interchangeable.</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">ROC — CBC vs D&amp;C</span></h3>
+        <div class="duowrap">
+          <div class="fig">
+            <img src="images/fig_roc.jpg" alt="ROC comparisons CBC vs D&C">
+            <div class="figcap"><strong>Fig.</strong> <span data-i18n="s4c1">ROC — CISENDO CBC vs D&amp;C (P=0.244); single genes ns (0.744/0.777).</span></div>
+          </div>
+          <div class="side">
+            <div class="statrow">
+              <div class="stat hot"><div class="big">0.929</div><div class="lab" data-i18n="s4s1">D&amp;C AUC</div></div>
+              <div class="stat hot"><div class="big">0.916</div><div class="lab" data-i18n="s4s2">CBC AUC</div></div>
+            </div>
+            <div class="statrow">
+              <div class="stat"><div class="big">93.5%</div><div class="lab" data-i18n="s4s3">Se · D&amp;C</div></div>
+              <div class="stat"><div class="big">92.3%</div><div class="lab" data-i18n="s4s4">Sp · D&amp;C</div></div>
+            </div>
+            <ul>
+              <li data-i18n="s4a"><strong>Non-inferior CBC</strong>: cervical brushing matches invasive sampling accuracy.</li>
+              <li data-i18n="s4b"><strong>Versus markers</strong>: methylation ≫ ET (0.499) &amp; CA125 (0.593).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Why It Matters</span></h3>
+        <ul>
+          <li data-i18n="s5a"><strong>Barrier removal</strong>: painless CBC collection overcomes D&amp;C discomfort &amp; compliance issues.</li>
+          <li data-i18n="s5b"><strong>Integration</strong>: fits existing cervical cancer screening programs.</li>
+          <li data-i18n="s5c"><strong>Early detection</strong>: EIN (precancer) included — intervention before EC.</li>
+          <li data-i18n="s5d"><strong>Direction</strong>: non-invasive triage for high-risk / symptomatic women.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">31</div><div class="lab" data-i18n="s5s1">EIN/EC</div></div>
+          <div class="stat"><div class="big">226</div><div class="lab" data-i18n="s5s2">paired samples</div></div>
+          <div class="stat"><div class="big">93.5%</div><div class="lab" data-i18n="s5s3">Se · D&amp;C</div></div>
+        </div>
+        <div class="tnote" data-i18n="s5n">CISENDO on CBC: highly accurate, reliable, non-invasive — potentially transformative for EC early detection and triage of high-risk women.</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Cervical brushing = intrauterine sample</b>: CISENDO CBC (AUC 0.916) matches D&amp;C (0.929) — non-invasive detection of EC &amp; precursors.</li>
+      <li data-i18n="c2"><b>Practical triage</b>: painless sampling integrates with screening programs, reducing barriers for high-risk women.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Front Med · 2026;13:1690020 · Paired-Sample Study · China",
+      title: "CISENDO in Cervical Brushing vs D&C Samples for EC",
+      title_alt: "Validation of a cervical CDO1/CELF4 methylation test for endometrial cancer: a prospective paired-sample comparison with intrauterine specimen",
+      subtitle: "226 women (31 EIN/EC) · D&C AUC 0.929 (Se 93.5/Sp 92.3) · CBC AUC 0.916 · CDO1 R 0.86, CELF4 R 0.78 · no method difference (P=0.244)",
+      authors: "Cai B, Wang Y, Ma W, Wu Z, Yao T, Liu P, Wang L, Zhou P, Li Y",
+      source: "Gansu Provincial Maternity & Child Care Hospital · Front Med 2026;13:1690020 · doi:10.3389/fmed.2026.1690020",
+      h1: "paired (31 EIN/EC)", h2: "AUC · D&C", h3: "AUC · CBC", h4: "CDO1 agreement",
+      s1t: "Background & Objective",
+      s1a: "<strong>Question</strong>: can non-invasive cervical brushing cells (CBC) match invasive D&C samples for CISENDO?",
+      s1b: "<strong>Objective</strong>: validate CDO1/CELF4 for EIN+EC with paired CBC vs D&C specimens.",
+      s2t: "Study Design & Cohort",
+      s2s1: "EIN or EC", s2s2: "benign", s2s3: "enrollment",
+      s2a: "<strong>Design</strong>: prospective paired; CBC + D&C from each woman, Gansu MCH.",
+      s2b: "<strong>Assay</strong>: CISENDO® (CDO1/CELF4 methylation, ΔCt ≤8.4/≤8.8) on both samples.",
+      s2c: "<strong>Reference</strong>: histopathology (EIN/EC gold standard).",
+      s2d: "<strong>Agreement</strong>: Spearman correlation + Bland-Altman; ROC comparison.",
+      s2e: "<strong>IRB</strong>: 2023-GSFY-56 · STARD-compliant.",
+      s2s7: "EIN/EC vs benign (P<0.0001)", s2s8: "ΔCt cut-offs",
+      s2f: "<strong>Inclusion</strong>: >18 y, hysteroscopy/uterine surgery indication, consent.",
+      s2g: "<strong>Exclusion</strong>: pregnancy · hysterectomy history · incomplete data.",
+      s2h: "<strong>Statistics</strong>: paired t-test · Spearman · Bland-Altman · ROC (DeLong).",
+      s2i: "<strong>Reporting</strong>: STARD 2015.",
+      s2j1: "CISENDO CBC", s2j2: "CISENDO D&C", s2j3: "CA125", s2j4: "ET (TVS)",
+      s2s4: "D&C AUC", s2s5: "CBC AUC", s2s6: "ROC difference ns",
+      s2n: "ET AUC 0.499 · CA125 AUC 0.593 — methylation far superior to conventional markers.",
+      s3t: "CBC–D&C Agreement",
+      s3s1: "CDO1 (P=1.3e-09)", s3s2: "CELF4 (P=2.3e-07)", s3s3: "Bland-Altman (P=0.14/0.41)",
+      s3a: "<strong>High concordance</strong>: CBC mirrors intrauterine samples for both genes.",
+      s3b: "<strong>No systematic bias</strong>: paired t-test ns — sampling method interchangeable.",
+      s4t: "ROC — CBC vs D&C",
+      s4c1: "ROC — CISENDO CBC vs D&C (P=0.244); single genes ns (0.744/0.777).",
+      s4s1: "D&C AUC", s4s2: "CBC AUC", s4s3: "Se · D&C", s4s4: "Sp · D&C",
+      s4a: "<strong>Non-inferior CBC</strong>: cervical brushing matches invasive sampling accuracy.",
+      s4b: "<strong>Versus markers</strong>: methylation ≫ ET (0.499) & CA125 (0.593).",
+      s5t: "Why It Matters",
+      s5a: "<strong>Barrier removal</strong>: painless CBC collection overcomes D&C discomfort & compliance issues.",
+      s5b: "<strong>Integration</strong>: fits existing cervical cancer screening programs.",
+      s5c: "<strong>Early detection</strong>: EIN (precancer) included — intervention before EC.",
+      s5d: "<strong>Direction</strong>: non-invasive triage for high-risk / symptomatic women.",
+      s5s1: "EIN/EC", s5s2: "paired samples", s5s3: "Se · D&C",
+      s5n: "CISENDO on CBC: highly accurate, reliable, non-invasive — potentially transformative for EC early detection.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Cervical brushing = intrauterine sample</b>: CISENDO CBC (AUC 0.916) matches D&C (0.929) — non-invasive detection of EC & precursors.",
+      c2: "<b>Practical triage</b>: painless sampling integrates with screening programs, reducing barriers for high-risk women."
+    },
+    zh: {
+      kicker: "Front Med · 2026;13:1690020 · 配对样本研究 · 中国",
+      title: "CISENDO 宫颈刷取 vs 诊刮样本检测子宫内膜癌",
+      title_alt: "Validation of a cervical CDO1/CELF4 methylation test for endometrial cancer: a prospective paired-sample comparison with intrauterine specimen",
+      subtitle: "226 例（31 例 EIN/EC）· D&C AUC 0.929（Se 93.5/Sp 92.3）· CBC AUC 0.916 · CDO1 R 0.86、CELF4 R 0.78 · 两法无显著差异（P=0.244）",
+      authors: "蔡冰心、王依珊、马文、吴珍珍、姚婷婷、刘培、王林海、周平平、李一林",
+      source: "甘肃省妇幼保健院 · Front Med 2026;13:1690020 · doi:10.3389/fmed.2026.1690020",
+      h1: "配对（31 例 EIN/EC）", h2: "AUC · D&C", h3: "AUC · CBC", h4: "CDO1 一致性",
+      s1t: "背景与目的",
+      s1a: "<strong>问题</strong>：无创宫颈刷取细胞（CBC）能否达到有创诊刮（D&C）样本的 CISENDO 准确度？",
+      s1b: "<strong>目的</strong>：配对 CBC vs D&C 标本验证 CDO1/CELF4 检测 EIN+EC。",
+      s2t: "研究设计与队列",
+      s2s1: "EIN 或 EC", s2s2: "良性", s2s3: "入组期",
+      s2a: "<strong>设计</strong>：前瞻性配对；每名女性同时采集 CBC + D&C，甘肃妇幼。",
+      s2b: "<strong>检测</strong>：CISENDO®（CDO1/CELF4 甲基化，ΔCt ≤8.4/≤8.8）双样本检测。",
+      s2c: "<strong>金标准</strong>：组织病理（EIN/EC）。",
+      s2d: "<strong>一致性</strong>：Spearman 相关 + Bland-Altman；ROC 比较。",
+      s2e: "<strong>伦理</strong>：2023-GSFY-56 · 符合 STARD。",
+      s2s7: "EIN/EC vs 良性（P&lt;0.0001）", s2s8: "ΔCt 阈值",
+      s2f: "<strong>纳入</strong>：&gt;18 岁、有宫腔镜/宫腔手术指征、知情同意。",
+      s2g: "<strong>排除</strong>：妊娠 · 子宫切除史 · 资料不全。",
+      s2h: "<strong>统计</strong>：配对 t 检验 · Spearman · Bland-Altman · ROC（DeLong）。",
+      s2i: "<strong>报告</strong>：STARD 2015。",
+      s2j1: "CISENDO CBC", s2j2: "CISENDO D&C", s2j3: "CA125", s2j4: "ET（TVS）",
+      s2s4: "D&C AUC", s2s5: "CBC AUC", s2s6: "ROC 差异无显著",
+      s2n: "ET AUC 0.499 · CA125 AUC 0.593——甲基化远优于传统标志物。",
+      s3t: "CBC–D&C 一致性",
+      s3s1: "CDO1（P=1.3e-09）", s3s2: "CELF4（P=2.3e-07）", s3s3: "Bland-Altman（P=0.14/0.41）",
+      s3a: "<strong>高一致性</strong>：CBC 与宫内样本两基因高度一致。",
+      s3b: "<strong>无系统偏倚</strong>：配对 t 检验无显著——采样方式可互换。",
+      s4t: "ROC——CBC vs D&C",
+      s4c1: "ROC——CISENDO CBC vs D&C（P=0.244）；单基因无显著（0.744/0.777）。",
+      s4s1: "D&C AUC", s4s2: "CBC AUC", s4s3: "Se · D&C", s4s4: "Sp · D&C",
+      s4a: "<strong>CBC 非劣</strong>：宫颈刷取达到有创采样准确度。",
+      s4b: "<strong>对比标志物</strong>：甲基化 ≫ ET（0.499）与 CA125（0.593）。",
+      s5t: "临床意义",
+      s5a: "<strong>消除障碍</strong>：无痛 CBC 采集克服 D&C 不适与依从性问题。",
+      s5b: "<strong>整合</strong>：契合现有宫颈癌筛查体系。",
+      s5c: "<strong>早期发现</strong>：纳入 EIN（癌前）——EC 前干预。",
+      s5d: "<strong>方向</strong>：高危/有症状女性的无创分诊。",
+      s5s1: "EIN/EC", s5s2: "配对样本", s5s3: "Se · D&C",
+      s5n: "CBC 上 CISENDO：高准确、可靠、无创——有望变革 EC 早筛。",
+      c_ttl: "临床意义",
+      c1: "<b>宫颈刷取 = 宫内样本</b>：CISENDO CBC（AUC 0.916）与 D&C（0.929）等效——无创检出 EC 与癌前病变。",
+      c2: "<b>实用分诊</b>：无痛采样可整合进筛查体系，降低高危女性就医障碍。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

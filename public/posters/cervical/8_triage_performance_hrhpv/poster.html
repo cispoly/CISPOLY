@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DNA Methylation Triage in hrHPV+ Women — Kong et al. 2025, Oncologist (METHY3)</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #19v2：大队列漏斗 + 三法特异度大条形（无长表格），直观为主）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、大数字卡、大条形对比
+  - 布局：标题带 → 漏斗 hero（20,456→4,394→1,105 三阶漏斗 + 28/28 癌症）→ 两栏（左 560px：①背景与目的 ②研究设计；右 1fr：③Fig.2 阳性率大图 ④三法特异度大条形【89.6 vs 66.4 vs 23.9】⑤转诊减少 + 要点）→ 全宽临床意义带
+  - 选图：Fig.2 阳性率（758x463，按年龄亚组）
+  - 无长表格：全部用漏斗/大条形/大数字呈现
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  /* 漏斗 hero */
+  .funnel { flex: 0 0 auto; height: 108px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: center; gap: 10px; padding: 9px 12px; }
+  .fstep { flex: 1; text-align: center; border-radius: 10px; padding: 9px 8px; }
+  .fstep .fn { font-size: 26px; font-weight: 800; line-height: 1.05; }
+  .fstep .fl { font-size: 10px; margin-top: 3px; }
+  .fstep .f1 { background: #F3EDED; border: 1px solid #D9C9C7; }
+  .fstep .f1 .fn { color: #8A6E6B; } .fstep .f1 .fl { color: #6B5755; }
+  .fstep .f2 { background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); }
+  .fstep .f2 .fn { color: var(--primary); } .fstep .f2 .fl { color: var(--muted); }
+  .fstep .f3 { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.9) 100%); }
+  .fstep .f3 .fn { color: #fff; } .fstep .f3 .fl { color: rgba(255,255,255,0.92); }
+  .farr { color: var(--secondary); font-size: 20px; font-weight: 800; }
+  .fextra { flex: 0 0 260px; background: #fff; border: 1.5px solid rgba(215,75,74,0.5); border-radius: 10px; padding: 8px 12px; text-align: center; display: flex; flex-direction: column; justify-content: center; }
+  .fextra .fn { font-size: 26px; font-weight: 800; color: var(--primary); }
+  .fextra .fl { font-size: 10px; color: var(--muted); margin-top: 3px; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .figrow, .panel .spbars { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 4px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .figrow { display: flex; gap: 12px; align-items: flex-start; justify-content: center; }
+  .fig { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px 5px; text-align: center; min-width: 0; }
+  .fig img { display: inline-block; height: auto; max-height: 200px; width: auto; max-width: 100%; border-radius: 3px; }
+  .fig svg { display: block; height: 200px; width: auto; margin: 0 auto; }
+  .fig .figcap { font-size: 10.5px; color: var(--muted); font-style: italic; line-height: 1.35; margin-top: 4px; text-align: left; }
+  .fig .figcap strong { color: var(--primary); font-style: normal; }
+
+  .statrow { display: flex; gap: 8px; margin: 1px 0 6px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 10px 4px; text-align: center; }
+  .stat .big { font-size: 19px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .spbars { margin: 2px 0 8px; }
+  .spb { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+  .spb .sbl { flex: 0 0 150px; font-size: 12px; font-weight: 700; color: var(--text); text-align: right; }
+  .spb .sbt { flex: 1 1 auto; height: 34px; background: #F1E7E7; border-radius: 5px; overflow: hidden; position: relative; }
+  .spb .sbf { height: 100%; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 15px; font-weight: 800; color: #fff; }
+  .spb.win .sbf { background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); }
+  .spb.lose .sbf { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); color: #6B5755; }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 2px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Oncologist · 2025;30(3) · METHY3 Cohort · China</div>
+    <h1 data-i18n="title">DNA Methylation Triage in hrHPV+ Women — METHY3 Validation</h1>
+    <div class="title_alt" data-i18n="title_alt">hrHPV 感染女性的 DNA 甲基化分诊——METHY3 大队列验证</div>
+    <div class="subtitle" data-i18n="subtitle">4,394 hrHPV+ · 1,105 histology · PAX1m/JAM3m specificity 89.6% vs HPV16/18 66.4% &amp; LBC 23.9% · OR 18.5 · all 28 cancers detected</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Kong L, Xiao X, Wu H, You Y, Jin X, Liou Y, Liu P, Lang J, Li L (correspondence)</div>
+      <div class="source" data-i18n="source">Peking Union Medical College Hospital · doi: <a href="https://doi.org/10.1093/oncolo/oyae324" target="_blank" rel="noopener">10.1093/oncolo/oyae324</a></div>
+    </div>
+  </header>
+
+  <!-- 漏斗 hero -->
+  <div class="funnel">
+    <div class="fstep f1"><div class="fn">20,456</div><div class="fl" data-i18n="f1l">screened · METHY3</div></div>
+    <div class="farr">→</div>
+    <div class="fstep f2"><div class="fn">4,394</div><div class="fl" data-i18n="f2l">hrHPV+</div></div>
+    <div class="farr">→</div>
+    <div class="fstep f3"><div class="fn">1,105</div><div class="fl" data-i18n="f3l">with histology</div></div>
+    <div class="fextra"><div class="fn">28 / 28</div><div class="fl" data-i18n="f4l">cancers detected by methylation</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Need</strong>: hrHPV primary screening needs an objective, high-specificity triage — cytology is operator-dependent.</li>
+          <li data-i18n="s1b"><strong>Objective</strong>: validate PAX1m/JAM3m for CIN3+ triage vs HPV16/18 &amp; LBC in a large prospective cohort.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">89.6%</div><div class="lab" data-i18n="s2s1">methylation specificity</div></div>
+          <div class="stat"><div class="big">18.5</div><div class="lab" data-i18n="s2s2">OR (12.1–28.7)</div></div>
+          <div class="stat"><div class="big">0.790</div><div class="lab" data-i18n="s2s3">AUC (0.747–0.832)</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Setting</strong>: PUMCH opportunistic screening, prospective; endpoint CIN3+.</li>
+          <li data-i18n="s2b"><strong>Readout</strong>: ΔCt PAX1 ≤ 6.6 or ΔCt JAM3 ≤ 10.0.</li>
+          <li data-i18n="s2c"><strong>All ages</strong>: methylation AUC highest in every age stratum.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">4,394</div><div class="lab" data-i18n="s2s4">hrHPV+ cohort</div></div>
+          <div class="stat"><div class="big">1,105</div><div class="lab" data-i18n="s2s5">histology-confirmed</div></div>
+          <div class="stat"><div class="big">28</div><div class="lab" data-i18n="s2s6">cervical cancers</div></div>
+        </div>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s2o1">PAX1m/JAM3m</div><div class="sbt"><div class="sbf" style="width:18.5%">OR 18.5</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s2o2">LBC ≥ASCUS</div><div class="sbt"><div class="sbf" style="width:4.4%">4.44</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s2o3">HPV16/18(+)</div><div class="sbt"><div class="sbf" style="width:4.2%">4.24</div></div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2d"><strong>Design</strong>: prospective METHY3; hrHPV+ women with LBC, genotyping &amp; methylation.</li>
+          <li data-i18n="s2e"><strong>Comparator</strong>: HPV16/18(+) and LBC ≥ASCUS as current triage options.</li>
+          <li data-i18n="s2f"><strong>Endpoint</strong>: CIN3+ by histology; referral modeling.</li>
+          <li data-i18n="s2g"><strong>Age strata</strong>: &lt;30 / 30–49 / ≥50 — methylation AUC highest in each.</li>
+          <li data-i18n="s2h"><strong>Cancer safety</strong>: all 28 cancers methylation(+); LBC/HPV16/18 missed some.</li>
+          <li data-i18n="s2i"><strong>Referral math</strong>: −20.6pp vs HPV16/18 · −61.2pp vs LBC referrals.</li>
+          <li data-i18n="s2j"><strong>Implication</strong>: objective triage fits HPV-based screening pathways.</li>
+          <li data-i18n="s2k"><strong>Scalable</strong>: qPCR-based, no cytology expertise — suits large-scale screening.</li>
+        </ul>
+        <div class="tnote" data-i18n="s2n">Positivity rises with grade in every age group; 28/28 cancers methylation(+).</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Methylation by Grade &amp; Age</span></h3>
+        <div class="figrow">
+          <div class="fig">
+            <img src="images/fig2_positivity.jpg" alt="Positivity rates by histological subgroup and age">
+            <div class="figcap"><strong>Fig. 2</strong> <span data-i18n="s3c1">Positivity by subgroup &amp; age — methylation rises with grade, cancers 28/28.</span></div>
+          </div>
+          <div class="fig">
+            <svg viewBox="0 0 440 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CISCER positivity by grade">
+              <line x1="40" y1="260" x2="410" y2="260" stroke="#D9D4D2" stroke-width="1.5"/>
+              <g stroke="#EDE5E3" stroke-width="1"><line x1="40" y1="85" x2="410" y2="85"/><line x1="40" y1="150" x2="410" y2="150"/><line x1="40" y1="215" x2="410" y2="215"/></g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="11" fill="#5C5252"><text x="38" y="264">0</text><text x="38" y="89">50%</text><text x="38" y="154">100%</text></g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="12" font-weight="700" fill="#3A3232"><text x="200" y="16" text-anchor="middle" data-i18n="pg0">CISCER+ positivity by grade</text></g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="11" fill="#5C5252" text-anchor="middle">
+                <text x="76" y="273" data-i18n="pg1">Normal</text><text x="152" y="273" data-i18n="pg2">CIN1</text><text x="228" y="273" data-i18n="pg3">CIN2</text><text x="304" y="273" data-i18n="pg4">CIN3</text><text x="380" y="273" data-i18n="pg5">Cancer</text>
+              </g>
+              <g>
+                <rect x="58" y="240" width="36" height="20" fill="#C9A9A7" rx="2"/>
+                <rect x="134" y="225" width="36" height="35" fill="#E8A29A" rx="2"/>
+                <rect x="210" y="140" width="36" height="120" fill="#E58A78" rx="2"/>
+                <rect x="286" y="55" width="36" height="205" fill="#D74B4A" rx="2"/>
+                <rect x="362" y="20" width="36" height="240" fill="#D74B4A" rx="2"/>
+              </g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="10.5" font-weight="800" fill="#B83A39" text-anchor="middle">
+                <text x="76" y="234">low</text><text x="152" y="219">+</text><text x="228" y="134">++</text><text x="304" y="49">+++</text><text x="380" y="14">100%</text>
+              </g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="9.5" fill="#5C5252"><text x="40" y="292" data-i18n="pg6">derived from Fig. 2 (representative) · 28/28 cancers detected</text></g>
+            </svg>
+            <div class="figcap"><strong>Fig.</strong> <span data-i18n="s3c2">Methylation positivity climbs with grade — 100% in cancer (28/28).</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">Specificity — the Key Advantage</span></h3>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s4a1">PAX1m/JAM3m</div><div class="sbt"><div class="sbf" style="width:89.6%">89.6%</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s4a2">HPV16/18(+)</div><div class="sbt"><div class="sbf" style="width:66.4%">66.4%</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s4a3">LBC ≥ASCUS</div><div class="sbt"><div class="sbf" style="width:23.9%">23.9%</div></div></div>
+        </div>
+        <ul>
+          <li data-i18n="s4b"><strong>OR 18.5</strong> (12.1–28.7) — vs 4.24 (HPV16/18) &amp; 4.44 (LBC), P&lt;.001.</li>
+          <li data-i18n="s4c"><strong>Fewer false referrals</strong>: high specificity = fewer unnecessary colposcopies.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Referral &amp; Practice</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">−61.2pp</div><div class="lab" data-i18n="s5s1">referrals vs LBC</div></div>
+          <div class="stat"><div class="big">−20.6pp</div><div class="lab" data-i18n="s5s2">vs HPV16/18</div></div>
+          <div class="stat"><div class="big">0</div><div class="lab" data-i18n="s5s3">cancers missed</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s5a"><strong>Younger women</strong>: higher specificity in minimally abnormal cytology — fewer colposcopies in &lt;30 y.</li>
+          <li data-i18n="s5b"><strong>Objective</strong>: qPCR methylation — reproducible, no cytology expertise needed.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>PAX1m/JAM3m is highly specific for CIN3+</b> (89.6% vs HPV16/18 66.4% &amp; LBC 23.9%) — superior, objective triage for hrHPV+ women.</li>
+      <li data-i18n="c2"><b>Fewer referrals, zero missed cancers</b> (28/28) — a practical primary triage option, especially for younger women.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Oncologist · 2025;30(3) · METHY3 Cohort · China",
+      title: "DNA Methylation Triage in hrHPV+ Women — METHY3 Validation",
+      title_alt: "hrHPV 感染女性的 DNA 甲基化分诊——METHY3 大队列验证",
+      subtitle: "4,394 hrHPV+ · 1,105 histology · PAX1m/JAM3m specificity 89.6% vs HPV16/18 66.4% & LBC 23.9% · OR 18.5 · all 28 cancers detected",
+      authors: "Kong L, Xiao X, Wu H, You Y, Jin X, Liou Y, Liu P, Lang J, Li L (correspondence)",
+      source: 'Peking Union Medical College Hospital · doi: <a href="https://doi.org/10.1093/oncolo/oyae324" target="_blank" rel="noopener">10.1093/oncolo/oyae324</a>',
+      f1l: "screened · METHY3", f2l: "hrHPV+", f3l: "with histology", f4l: "cancers detected by methylation",
+      s1t: "Background & Objective",
+      s1a: "<strong>Need</strong>: hrHPV primary screening needs an objective, high-specificity triage — cytology is operator-dependent.",
+      s1b: "<strong>Objective</strong>: validate PAX1m/JAM3m for CIN3+ triage vs HPV16/18 & LBC in a large prospective cohort.",
+      s2t: "Study Design",
+      s2s1: "methylation specificity", s2s2: "OR (12.1–28.7)", s2s3: "AUC (0.747–0.832)",
+      s2a: "<strong>Setting</strong>: PUMCH opportunistic screening, prospective; endpoint CIN3+.",
+      s2b: "<strong>Readout</strong>: ΔCt PAX1 ≤ 6.6 or ΔCt JAM3 ≤ 10.0.",
+      s2c: "<strong>All ages</strong>: methylation AUC highest in every age stratum.",
+      s2d: "<strong>Design</strong>: prospective METHY3; hrHPV+ women, 3 assays.",
+      s2e: "<strong>Comparator</strong>: HPV16/18(+) and LBC ≥ASCUS as current triage options.",
+      s2f: "<strong>Endpoint</strong>: CIN3+ by histology; referral modeling.",
+      s2g: "<strong>Age strata</strong>: <30 / 30–49 / ≥50 — methylation AUC highest in each.",
+      s2h: "<strong>Cancer safety</strong>: all 28 cancers methylation(+); LBC/HPV16/18 missed some.",
+      s2i: "<strong>Referral math</strong>: −20.6pp vs HPV16/18 · −61.2pp vs LBC referrals.",
+      s2j: "<strong>Implication</strong>: objective triage fits HPV-based screening pathways.",
+      s2k: "<strong>Scalable</strong>: qPCR-based, no cytology expertise — suits large-scale screening.",
+      s2s4: "hrHPV+ cohort", s2s5: "histology-confirmed", s2s6: "cervical cancers",
+      s2o1: "PAX1m/JAM3m", s2o2: "LBC ≥ASCUS", s2o3: "HPV16/18(+)" ,
+      s2n: "Positivity rises with grade in every age group; 28/28 cancers methylation(+).",
+      s3t: "Methylation by Grade & Age",
+      s3c1: "Positivity by subgroup & age — methylation rises with grade, cancers 28/28.",
+      s3c2: "Methylation positivity climbs with grade — 100% in cancer (28/28).",
+      pg0: "CISCER+ positivity by grade", pg1: "Normal", pg2: "CIN1", pg3: "CIN2", pg4: "CIN3", pg5: "Cancer", pg6: "derived from Fig. 2 (representative) · 28/28 cancers detected",
+      s4t: "Specificity — the Key Advantage",
+      s4a1: "PAX1m/JAM3m", s4a2: "HPV16/18(+)", s4a3: "LBC ≥ASCUS",
+      s4b: "<strong>OR 18.5</strong> (12.1–28.7) — vs 4.24 (HPV16/18) & 4.44 (LBC), P<.001.",
+      s4c: "<strong>Fewer false referrals</strong>: high specificity = fewer unnecessary colposcopies.",
+      s5t: "Referral & Practice",
+      s5s1: "referrals vs LBC", s5s2: "vs HPV16/18", s5s3: "cancers missed",
+      s5a: "<strong>Younger women</strong>: higher specificity in minimally abnormal cytology — fewer colposcopies in <30 y.",
+      s5b: "<strong>Objective</strong>: qPCR methylation — reproducible, no cytology expertise needed.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>PAX1m/JAM3m is highly specific for CIN3+</b> (89.6% vs HPV16/18 66.4% & LBC 23.9%) — superior, objective triage for hrHPV+ women.",
+      c2: "<b>Fewer referrals, zero missed cancers</b> (28/28) — a practical primary triage option, especially for younger women."
+    },
+    zh: {
+      kicker: "Oncologist · 2025;30(3) · METHY3 队列 · 中国",
+      title: "hrHPV 感染女性的 DNA 甲基化分诊——METHY3 大队列验证",
+      title_alt: "DNA Methylation Triage in hrHPV+ Women — METHY3 Validation",
+      subtitle: "4,394 例 hrHPV+ · 1,105 例组织学 · PAX1m/JAM3m 特异度 89.6% vs HPV16/18 66.4%、LBC 23.9% · OR 18.5 · 28 例癌症全部检出",
+      authors: "孔令华、肖小平、吴焕文、游燕、金西同、刘雨莉、刘沛、郎景和、李雷（通讯）",
+      source: '北京协和医院 · doi: <a href="https://doi.org/10.1093/oncolo/oyae324" target="_blank" rel="noopener">10.1093/oncolo/oyae324</a>',
+      f1l: "筛查 · METHY3", f2l: "hrHPV+", f3l: "有组织学", f4l: "甲基化检出癌症",
+      s1t: "背景与目的",
+      s1a: "<strong>需求</strong>：hrHPV 初筛需要客观、高特异度的分诊——细胞学受操作者影响。",
+      s1b: "<strong>目的</strong>：在大队列中验证 PAX1m/JAM3m 对 CIN3+ 的分诊，与 HPV16/18、LBC 比较。",
+      s2t: "研究设计",
+      s2s1: "甲基化特异度", s2s2: "OR（12.1–28.7）", s2s3: "AUC（0.747–0.832）",
+      s2a: "<strong>地点</strong>：北京协和医院机会性筛查，前瞻性；终点 CIN3+。",
+      s2b: "<strong>判读</strong>：ΔCt PAX1 ≤ 6.6 或 ΔCt JAM3 ≤ 10.0。",
+      s2c: "<strong>各年龄</strong>：甲基化 AUC 在各年龄组均为最高。",
+      s2d: "<strong>设计</strong>：前瞻性 METHY3；hrHPV+ 女性行 LBC、分型与甲基化。",
+      s2e: "<strong>对照</strong>：HPV16/18(+) 与 LBC ≥ASCUS 为现行分诊方案。",
+      s2f: "<strong>终点</strong>：组织学 CIN3+；转诊建模。",
+      s2g: "<strong>年龄层</strong>：&lt;30、30–49、≥50 各年龄层甲基化 AUC 均为最高，特异度同样领先。",
+      s2h: "<strong>癌症安全</strong>：28 例癌症全部甲基化(+)且无一漏检；而 LBC 与 HPV16/18 分型均存在漏检，凸显甲基化作为兜底标志物的价值。",
+      s2i: "<strong>转诊计算</strong>：较 HPV16/18 减少 20.6pp · 较 LBC 减少 61.2pp。",
+      s2j: "<strong>启示</strong>：客观分诊契合 HPV 初筛路径，可减少转诊负担并保障检出率。",
+      s2k: "<strong>可推广</strong>：基于 qPCR、无需细胞学专家——适合大规模筛查场景。",
+      s2s4: "hrHPV+ 队列", s2s5: "组织学确认", s2s6: "宫颈癌",
+      s2o1: "PAX1m/JAM3m", s2o2: "LBC ≥ASCUS", s2o3: "HPV16/18(+)",
+      s2n: "各年龄组阳性率均随级别升高；癌症 28/28 甲基化(+)且无一漏检，特异度在各年龄组均为最高，是可靠的兜底分诊标志。",
+      s3t: "分级与年龄阳性率",
+      s3c1: "按亚组与年龄的阳性率——甲基化随级别升高，癌症 28/28。",
+      s3c2: "甲基化阳性率随级别攀升——癌中 100%（28/28）。",
+      pg0: "CISCER+ 阳性率按级别", pg1: "正常", pg2: "CIN1", pg3: "CIN2", pg4: "CIN3", pg5: "癌", pg6: "据图 2 绘制（示意）· 癌症 28/28 检出",
+      s4t: "特异度——关键优势",
+      s4a1: "PAX1m/JAM3m", s4a2: "HPV16/18(+)", s4a3: "LBC ≥ASCUS",
+      s4b: "<strong>OR 18.5</strong>（12.1–28.7）——vs HPV16/18 4.24、LBC 4.44，P&lt;.001。",
+      s4c: "<strong>假转诊更少</strong>：高特异度 = 更少不必要阴道镜。",
+      s5t: "转诊与实践",
+      s5s1: "转诊较 LBC", s5s2: "较 HPV16/18", s5s3: "癌症漏检",
+      s5a: "<strong>年轻女性</strong>：轻微细胞学异常人群特异度更高——&lt;30 岁阴道镜更少。",
+      s5b: "<strong>客观</strong>：qPCR 甲基化——可重复，不依赖细胞学判读。",
+      c_ttl: "临床意义",
+      c1: "<b>PAX1m/JAM3m 对 CIN3+ 高度特异</b>（89.6% vs HPV16/18 66.4%、LBC 23.9%）——hrHPV+ 女性优效、客观的分诊。",
+      c2: "<b>转诊更少、癌症零漏检</b>（28/28）——实用首选分诊方案，尤其适合年轻女性。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CDO1/CELF4 Methylation for EC in Childbearing-Age AUB — Zhao et al. 2023</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #31：育龄期 AUB 诊断）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、大数字卡、条形对比
+  - 布局：标题带 → hero（517 例 / 双基因 OR 87.39 红卡 / Se 91.7% / AUC 0.90）→ 两栏（左 560px：①背景与目的 ②研究设计；右 1fr：③危险因素 OR ④效能矩阵 ⑤ROC【原图 + 侧栏 AUC 阶梯】）→ 全宽临床意义带
+  - 选图：ROC（1080×992）
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 98px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 22px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .matrix, .panel .rocwrap { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 0 0 5px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 11px 4px; text-align: center; }
+  .stat .big { font-size: 18px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+  .stat.cool { background: #fff; border-color: rgba(140,158,143,0.6); }
+  .stat.cool .big { color: #5C7A63; }
+
+  .matrix { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 0 0 6px; }
+  .mcell { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px 6px; text-align: center; }
+  .mcell .n { font-size: 21px; font-weight: 800; color: var(--primary); line-height: 1.02; }
+  .mcell .l { font-size: 9px; color: var(--muted); margin-top: 3px; line-height: 1.2; }
+  .mcell.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .mcell.hot .n { color: #fff; } .mcell.hot .l { color: rgba(255,255,255,0.92); font-weight: 600; }
+  .mcell.cool { background: #fff; border-color: rgba(140,158,143,0.6); }
+  .mcell.cool .n { color: #5C7A63; }
+
+  .rocwrap { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); grid-template-rows: 1fr; gap: 12px; align-items: stretch; margin: 2px 0 0; }
+  .rocwrap .fig { display: flex; flex-direction: column; justify-content: center; }
+  .rocwrap .fig img { align-self: center; max-height: 195px; }
+  .rocwrap .side { display: flex; flex-direction: column; justify-content: center; gap: 5px; min-width: 0; }
+
+  .spbars { margin: 2px 0 6px; }
+  .spb { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+  .spb .sbl { flex: 0 0 150px; font-size: 11.5px; font-weight: 700; color: var(--text); text-align: right; }
+  .spb .sbt { flex: 1 1 auto; height: 20px; background: #F1E7E7; border-radius: 5px; overflow: hidden; position: relative; }
+  .spb .sbf { height: 100%; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 12px; font-weight: 800; color: #fff; }
+  .spb.win .sbf { background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); }
+  .spb.lose .sbf { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); color: #6B5755; }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 3px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+  body.lang-zh .panel ul li { line-height: 1.5; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Chin J Lab Med · 2023;46(4):367–374 · Prospective · China</div>
+    <h1 data-i18n="title">CDO1/CELF4 Methylation for EC in Childbearing-Age AUB</h1>
+    <div class="title_alt" data-i18n="title_alt">DNA 甲基化检测在育龄期异常子宫出血女性子宫内膜癌诊断中的应用价值</div>
+    <div class="subtitle" data-i18n="subtitle">517 childbearing-age AUB women · dual-gene OR 87.39 · Se 91.7% / Sp 88.8% · AUC 0.90 · TVS+DNA Se 95.8%</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Zhao X, Xu D, Ma J, Fu Y, Li B, Jin X, Liu Y, Liu P</div>
+      <div class="source" data-i18n="source">Third Xiangya Hospital, Central South University · 中华检验医学杂志 2023;46(4):367–374</div>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="stat"><div class="big">517</div><div class="lab" data-i18n="h1">childbearing AUB</div></div>
+    <div class="stat hot"><div class="big">OR 87.39</div><div class="lab" data-i18n="h2">dual-gene</div></div>
+    <div class="stat"><div class="big">91.7%</div><div class="lab" data-i18n="h3">Se · dual</div></div>
+    <div class="stat hot"><div class="big">0.90</div><div class="lab" data-i18n="h4">AUC · dual</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Problem</strong>: EC now #2 female genital malignancy in China; childbearing-age AUB needs non-invasive triage.</li>
+          <li data-i18n="s1b"><strong>Objective</strong>: value of CDO1m/CELF4m on cervical cells for EC detection in childbearing-age AUB.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">517</div><div class="lab" data-i18n="s2s1">AUB + hysteroscopy</div></div>
+          <div class="stat"><div class="big">2021.11–22.10</div><div class="lab" data-i18n="s2s2">enrollment</div></div>
+          <div class="stat"><div class="big">hysteroscopy</div><div class="lab" data-i18n="s2s3">gold standard</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Setting</strong>: Third Xiangya Hospital gynecology; prospective childbearing-age AUB.</li>
+          <li data-i18n="s2b"><strong>Assays</strong>: cervical cells → cytology · HPV · CDO1m/CELF4m (ΔCt ≤8.4/≤8.8) + TVS ET + CA125/CA199.</li>
+          <li data-i18n="s2c"><strong>Reference</strong>: hysteroscopic histopathology = gold standard.</li>
+          <li data-i18n="s2d"><strong>OR model</strong>: age 1.16 · BMI≥25 4.33 · ET≥11 9.49 · CDO1m 69.62 · CELF4m 23.64 · dual 87.39.</li>
+          <li data-i18n="s2e"><strong>Comparison</strong>: CA125/CA199 · cytology · HPV — not significant between groups.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">91.7%</div><div class="lab" data-i18n="s2s4">Se · 95%CI 80.6–100</div></div>
+          <div class="stat"><div class="big">88.8%</div><div class="lab" data-i18n="s2s5">Sp · 95%CI 86.0–91.6</div></div>
+          <div class="stat"><div class="big">0.90</div><div class="lab" data-i18n="s2s6">AUC · 95%CI 0.83–0.97</div></div>
+        </div>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s2j1">dual Se</div><div class="sbt"><div class="sbf" style="width:91.7%">91.7%</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s2j2">dual Sp</div><div class="sbt"><div class="sbf" style="width:88.8%">88.8%</div></div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">95.8%</div><div class="lab" data-i18n="s2s7">TVS+DNA Se</div></div>
+          <div class="stat"><div class="big">68.0%</div><div class="lab" data-i18n="s2s8">TVS+DNA Sp</div></div>
+          <div class="stat"><div class="big">99.7%</div><div class="lab" data-i18n="s2s9">TVS+DNA NPV</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2j"><strong>Clinical picture</strong>: AUB / abnormal discharge — main symptoms prompting hysteroscopy.</li>
+          <li data-i18n="s2k"><strong>Marker check</strong>: CA125/CA199 did not differ — methylation adds unique signal.</li>
+          <li data-i18n="s2f"><strong>Inclusion</strong>: childbearing-age AUB with hysteroscopy indication; consent.</li>
+          <li data-i18n="s2g"><strong>Exclusion</strong>: pregnancy/lactation · prior treatment · other malignancy.</li>
+          <li data-i18n="s2h"><strong>Sample</strong>: ThinPrep cervical cells pre-op — cytology/HPV/methylation in one sample.</li>
+          <li data-i18n="s2i"><strong>Limits</strong>: single-center; PPV moderate (28.9%) in low-prevalence cohort.</li>
+        </ul>
+        <div class="tnote" data-i18n="s2n">Dual-gene AUC 0.90 (0.83–0.97) — highest among all indicators tested; TVS+DNA Se 95.8%.</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Risk Factors — OR Comparison</span></h3>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s3a1">Dual-gene</div><div class="sbt"><div class="sbf" style="width:100%">OR 87.39</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s3a2">CDO1m</div><div class="sbt"><div class="sbf" style="width:79.7%">OR 69.62</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s3a3">CELF4m</div><div class="sbt"><div class="sbf" style="width:27.1%">OR 23.64</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s3a4">ET ≥11 mm</div><div class="sbt"><div class="sbf" style="width:10.9%">OR 9.49</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s3a5">BMI ≥25</div><div class="sbt"><div class="sbf" style="width:5%">OR 4.33</div></div></div>
+        </div>
+        <ul>
+          <li data-i18n="s3a"><strong>Methylation dominates</strong>: dual-gene OR 87.39 (24.83–555.05) — far above ET/BMI.</li>
+        </ul>
+      </div>
+
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">4</span><span data-i18n="s4t">Performance Matrix &amp; TVS</span></h3>
+        <div class="matrix">
+          <div class="mcell hot"><div class="n">91.7%</div><div class="l" data-i18n="s4s1">Se · dual</div></div>
+          <div class="mcell hot"><div class="n">88.8%</div><div class="l" data-i18n="s4s2">Sp · dual</div></div>
+          <div class="mcell"><div class="n">28.9%</div><div class="l" data-i18n="s4s3">PPV</div></div>
+          <div class="mcell cool"><div class="n">99.5%</div><div class="l" data-i18n="s4s4">NPV</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">95.8%</div><div class="lab" data-i18n="s4s5">Se · TVS+DNA</div></div>
+          <div class="stat"><div class="big">68.0%</div><div class="lab" data-i18n="s4s6">Sp · TVS+DNA</div></div>
+          <div class="stat cool"><div class="big">99.7%</div><div class="lab" data-i18n="s4s7">NPV · TVS+DNA</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s4a"><strong>NPV 99.5%+</strong>: negative methylation safely defers hysteroscopy in young women.</li>
+          <li data-i18n="s4b"><strong>TVS+DNA</strong>: Se 95.8% — near-complete EC capture; specificity 68.0%.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">ROC — AUC Ladder</span></h3>
+        <div class="rocwrap">
+          <div class="fig">
+            <img src="images/fig_roc.png" alt="ROC curves for EC screening indicators">
+            <div class="figcap"><strong>Fig.</strong> <span data-i18n="s5c1">ROC — dual-gene methylation highest (AUC 0.90) vs single genes, ET &amp; BMI.</span></div>
+          </div>
+          <div class="side">
+            <div class="spbars">
+              <div class="spb win"><div class="sbl" data-i18n="s5a1">Dual-gene</div><div class="sbt"><div class="sbf" style="width:90%">AUC 0.90</div></div></div>
+              <div class="spb win"><div class="sbl" data-i18n="s5a2">CDO1m</div><div class="sbt"><div class="sbf" style="width:87%">0.87</div></div></div>
+              <div class="spb win"><div class="sbl" data-i18n="s5a3">CELF4m</div><div class="sbt"><div class="sbf" style="width:81%">0.81</div></div></div>
+              <div class="spb lose"><div class="sbl" data-i18n="s5a4">ET ≥11</div><div class="sbt"><div class="sbf" style="width:75%">0.75</div></div></div>
+              <div class="spb lose"><div class="sbl" data-i18n="s5a5">BMI ≥25</div><div class="sbt"><div class="sbf" style="width:67%">0.67</div></div></div>
+            </div>
+            <ul>
+              <li data-i18n="s5a"><strong>Clear separation</strong>: methylation AUC ≫ ultrasound/BMI — best non-invasive discriminator.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Best non-invasive option for young women with AUB</b>: dual-gene methylation (Se 91.7%, AUC 0.90) protects fertility by avoiding unnecessary hysteroscopy.</li>
+      <li data-i18n="c2"><b>TVS + methylation</b>: sensitivity 95.8% — practical screening path with high NPV for childbearing-age AUB.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Chin J Lab Med · 2023;46(4):367–374 · Prospective · China",
+      title: "CDO1/CELF4 Methylation for EC in Childbearing-Age AUB",
+      title_alt: "DNA 甲基化检测在育龄期异常子宫出血女性子宫内膜癌诊断中的应用价值",
+      subtitle: "517 childbearing-age AUB women · dual-gene OR 87.39 · Se 91.7% / Sp 88.8% · AUC 0.90 · TVS+DNA Se 95.8%",
+      authors: "Zhao X, Xu D, Ma J, Fu Y, Li B, Jin X, Liu Y, Liu P",
+      source: "Third Xiangya Hospital, Central South University · Chin J Lab Med 2023;46(4):367–374",
+      h1: "childbearing AUB", h2: "dual-gene", h3: "Se · dual", h4: "AUC · dual",
+      s1t: "Background & Objective",
+      s1a: "<strong>Problem</strong>: EC now #2 female genital malignancy in China; childbearing-age AUB needs non-invasive triage.",
+      s1b: "<strong>Objective</strong>: value of CDO1m/CELF4m on cervical cells for EC detection in childbearing-age AUB.",
+      s2t: "Study Design & Cohort",
+      s2s1: "AUB + hysteroscopy", s2s2: "enrollment", s2s3: "gold standard",
+      s2a: "<strong>Setting</strong>: Third Xiangya Hospital gynecology; prospective childbearing-age AUB.",
+      s2b: "<strong>Assays</strong>: cervical cells → cytology · HPV · CDO1m/CELF4m (ΔCt ≤8.4/≤8.8) + TVS ET + CA125/CA199.",
+      s2c: "<strong>Reference</strong>: hysteroscopic histopathology = gold standard.",
+      s2d: "<strong>OR model</strong>: age 1.16 · BMI≥25 4.33 · ET≥11 9.49 · CDO1m 69.62 · CELF4m 23.64 · dual 87.39.",
+      s2e: "<strong>Comparison</strong>: CA125/CA199 · cytology · HPV — not significant between groups.",
+      s2s4: "Se · 95%CI 80.6–100", s2s5: "Sp · 95%CI 86.0–91.6", s2s6: "AUC · 95%CI 0.83–0.97",
+      s2j1: "dual Se", s2j2: "dual Sp",
+      s2s7: "TVS+DNA Se", s2s8: "TVS+DNA Sp", s2s9: "TVS+DNA NPV",
+      s2j: "<strong>Clinical picture</strong>: AUB / abnormal discharge — main symptoms prompting hysteroscopy.",
+      s2k: "<strong>Marker check</strong>: CA125/CA199 did not differ — methylation adds unique signal.",
+      s2f: "<strong>Inclusion</strong>: childbearing-age AUB with hysteroscopy indication; consent.",
+      s2g: "<strong>Exclusion</strong>: pregnancy/lactation · prior treatment · other malignancy.",
+      s2h: "<strong>Sample</strong>: ThinPrep cervical cells pre-op — cytology/HPV/methylation in one sample.",
+      s2i: "<strong>Limits</strong>: single-center; PPV moderate (28.9%) in low-prevalence cohort.",
+      s2n: "Dual-gene AUC 0.90 (0.83–0.97) — highest among all indicators tested.",
+      s3t: "Risk Factors — OR Comparison",
+      s3a1: "Dual-gene", s3a2: "CDO1m", s3a3: "CELF4m", s3a4: "ET ≥11 mm", s3a5: "BMI ≥25",
+      s3a: "<strong>Methylation dominates</strong>: dual-gene OR 87.39 (24.83–555.05) — far above ET/BMI.",
+      s4t: "Performance Matrix & TVS",
+      s4s1: "Se · dual", s4s2: "Sp · dual", s4s3: "PPV", s4s4: "NPV",
+      s4s5: "Se · TVS+DNA", s4s6: "Sp · TVS+DNA", s4s7: "NPV · TVS+DNA",
+      s4a: "<strong>NPV 99.5%+</strong>: negative methylation safely defers hysteroscopy in young women.",
+      s4b: "<strong>TVS+DNA</strong>: Se 95.8% — near-complete EC capture; specificity 68.0%.",
+      s5t: "ROC — AUC Ladder",
+      s5c1: "ROC — dual-gene methylation highest (AUC 0.90) vs single genes, ET & BMI.",
+      s5a1: "Dual-gene", s5a2: "CDO1m", s5a3: "CELF4m", s5a4: "ET ≥11", s5a5: "BMI ≥25",
+      s5a: "<strong>Clear separation</strong>: methylation AUC ≫ ultrasound/BMI — best non-invasive discriminator.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Best non-invasive option for young women with AUB</b>: dual-gene methylation (Se 91.7%, AUC 0.90) protects fertility by avoiding unnecessary hysteroscopy.",
+      c2: "<b>TVS + methylation</b>: sensitivity 95.8% — practical screening path with high NPV for childbearing-age AUB."
+    },
+    zh: {
+      kicker: "中华检验医学杂志 · 2023;46(4):367–374 · 前瞻性 · 中国",
+      title: "CDO1/CELF4 甲基化用于育龄期异常子宫出血女性子宫内膜癌诊断",
+      title_alt: "DNA 甲基化检测在育龄期异常子宫出血女性子宫内膜癌诊断中的应用价值",
+      subtitle: "517 例育龄期 AUB · 双基因 OR 87.39 · Se 91.7% / Sp 88.8% · AUC 0.90 · TVS+DNA Se 95.8%",
+      authors: "赵行平、徐大宝、马洁稚、傅英钦、李斌玉、靳希桐、刘禹利、刘沛",
+      source: "中南大学湘雅三医院 · 中华检验医学杂志 2023;46(4):367–374",
+      h1: "育龄期 AUB", h2: "双基因", h3: "Se · 双基因", h4: "AUC · 双基因",
+      s1t: "背景与目的",
+      s1a: "<strong>问题</strong>：EC 位居我国女性生殖系统恶性肿瘤第 2 位；育龄期 AUB 需要无创分诊。",
+      s1b: "<strong>目的</strong>：评估宫颈脱落细胞 CDO1m/CELF4m 对育龄期 AUB 女性 EC 的检测价值。",
+      s2t: "研究设计与队列",
+      s2s1: "AUB + 宫腔镜", s2s2: "入组期", s2s3: "金标准",
+      s2a: "<strong>地点</strong>：湘雅三医院妇科；前瞻性育龄期 AUB。",
+      s2b: "<strong>检测</strong>：宫颈细胞 → 细胞学 · HPV · CDO1m/CELF4m（ΔCt ≤8.4/≤8.8）+ TVS 内膜厚度 + CA125/CA199。",
+      s2c: "<strong>金标准</strong>：宫腔镜组织病理。",
+      s2d: "<strong>OR 模型</strong>：年龄 1.16 · BMI≥25 4.33 · ET≥11 9.49 · CDO1m 69.62 · CELF4m 23.64 · 双基因 87.39。",
+      s2e: "<strong>对比</strong>：CA125/CA199 · 细胞学 · HPV——组间无显著差异。",
+      s2s4: "Se · 95%CI 80.6–100", s2s5: "Sp · 95%CI 86.0–91.6", s2s6: "AUC · 95%CI 0.83–0.97",
+      s2j1: "双基因 Se", s2j2: "双基因 Sp",
+      s2s7: "TVS+DNA Se", s2s8: "TVS+DNA Sp", s2s9: "TVS+DNA NPV",
+      s2j: "<strong>临床背景</strong>：AUB / 异常排液——主要促发宫腔镜的症状。",
+      s2k: "<strong>标志物核查</strong>：CA125/CA199 无差异——甲基化提供独特信号。",
+      s2f: "<strong>纳入</strong>：育龄期 AUB、有宫腔镜指征、知情同意。",
+      s2g: "<strong>排除</strong>：妊娠/哺乳 · 既往治疗 · 其他恶性肿瘤。",
+      s2h: "<strong>标本</strong>：术前 ThinPrep 宫颈细胞——一份样本同时完成细胞学/HPV/甲基化。",
+      s2i: "<strong>局限</strong>：单中心；低患病率下 PPV 中等（28.9%）。",
+      s2n: "双基因 AUC 0.90（0.83–0.97）——所有指标中最高。",
+      s3t: "危险因素——OR 对比",
+      s3a1: "双基因", s3a2: "CDO1m", s3a3: "CELF4m", s3a4: "ET ≥11 mm", s3a5: "BMI ≥25",
+      s3a: "<strong>甲基化占主导</strong>：双基因 OR 87.39（24.83–555.05）——远高于 ET/BMI。",
+      s4t: "效能矩阵与 TVS",
+      s4s1: "Se · 双基因", s4s2: "Sp · 双基因", s4s3: "PPV", s4s4: "NPV",
+      s4s5: "Se · TVS+DNA", s4s6: "Sp · TVS+DNA", s4s7: "NPV · TVS+DNA",
+      s4a: "<strong>NPV 99.5%+</strong>：阴性可安全推迟年轻女性宫腔镜。",
+      s4b: "<strong>TVS+DNA</strong>：Se 95.8%——近乎完整捕获 EC；特异度 68.0%。",
+      s5t: "ROC——AUC 阶梯",
+      s5c1: "ROC——双基因甲基化最高（AUC 0.90）vs 单基因、ET 与 BMI。",
+      s5a1: "双基因", s5a2: "CDO1m", s5a3: "CELF4m", s5a4: "ET ≥11", s5a5: "BMI ≥25",
+      s5a: "<strong>清晰分层</strong>：甲基化 AUC 远超超声/BMI——最佳无创判别指标。",
+      c_ttl: "临床意义",
+      c1: "<b>育龄期 AUB 女性最佳无创选择</b>：双基因甲基化（Se 91.7%、AUC 0.90）避免不必要宫腔镜、保护生育力。",
+      c2: "<b>TVS + 甲基化</b>：灵敏度 95.8%——育龄期 AUB 实用筛查路径，NPV 高。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

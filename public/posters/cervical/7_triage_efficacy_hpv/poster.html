@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAX1/JAM3 Methylation Triage Across HPV Genotypes &amp; Age — Liang et al. 2024, Front Oncol</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #4：左侧脊柱导航 + 右侧四段横带，与 #1 两栏 / #2 三栏决策规则 / #3 bento 均不同）：
+  - 风格：品牌红、红色渐变标题带、编号节点、点式 bullet、白色 stat 卡、红色高亮表格
+  - 布局：标题带 → 主体（左 170px 脊柱：01背景/02设计/03性能/04结果 四个编号节点；右 1fr：四条横带分别对应）→ 全宽临床意义带
+  - 选图：Fig.2 甲基化水平分布（1535x912，宽幅 1.68:1）+ Fig.3 CISCER vs 细胞学对比（1476x755，1.95:1）双图并排；Fig.1 流程图不用
+  - 约束：所有文字/图片不超出背景框；结果占最大面积；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1700px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1700px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1760px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  /* 主体：脊柱 + 内容 */
+  .main { flex: 1 1 auto; min-height: 0; display: flex; gap: 14px; padding-top: 10px; }
+  .spine { flex: 0 0 168px; background: linear-gradient(180deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.9) 100%);
+    border-radius: 10px; padding: 16px 10px; display: flex; flex-direction: column; gap: 0; position: relative; overflow: hidden; }
+  .spine .snode { display: flex; flex-direction: column; align-items: center; flex: 1; justify-content: center; }
+  .spine .snum { width: 44px; height: 44px; border-radius: 50%; background: #fff; color: var(--accent-deep);
+    font-size: 17px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+  .spine .slab { color: #fff; font-size: 12.5px; font-weight: 700; margin-top: 6px; letter-spacing: 1px; text-align: center; }
+  .spine .slab .en { display: block; font-size: 10px; font-weight: 400; opacity: 0.8; letter-spacing: 0.5px; }
+  .spine .sline { width: 2px; height: 14px; background: rgba(255,255,255,0.6); margin: 0 auto; }
+
+  .content { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+
+  .band { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 16px 8px 16px;
+    flex: 1 0 0; display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .band h3, .band ul, .band table, .band .statrow, .band .wstrip, .band .figrow, .band .tnote, .band .halves, .band .statcards { flex: 0 0 auto; }
+  .band h3 { font-size: 14.5px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .band h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11.5px; flex: 0 0 auto; }
+  .band p, .band li { font-size: 13.5px; line-height: 1.45; color: var(--muted); }
+  .band ul { list-style: none; }
+  .band ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .band ul li::before { content: ""; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .band ul li strong { color: var(--primary); }
+  .band ul li:last-child { margin-bottom: 0; }
+
+  .halves { display: flex; gap: 18px; align-items: stretch; }
+  .halves .half { flex: 1; min-width: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 1px 0 7px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 4px 5px; text-align: center; }
+  .stat .big { font-size: 23px; font-weight: 800; color: var(--primary); line-height: 1.1; }
+  .stat .lab { font-size: 10px; color: var(--muted); margin-top: 2px; line-height: 1.3; }
+
+  .statcards { display: flex; gap: 10px; margin: 2px 0 8px; }
+  .statcards .sc { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 7px 6px; text-align: center; }
+  .statcards .sc .big { font-size: 26px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .statcards .sc .lab { font-size: 10.5px; color: var(--muted); margin-top: 2px; line-height: 1.25; }
+  .statcards .sc.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .statcards .sc.hot .big { color: #fff; }
+  .statcards .sc.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .wstrip { display: flex; align-items: center; gap: 6px; margin: 1px 0 7px; }
+  .wstrip .wchip { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 5px; padding: 7px 4px; text-align: center; font-size: 11px; font-weight: 600; color: var(--accent-deep); }
+  .wstrip .warr { color: var(--secondary); font-size: 14px; font-weight: 800; }
+
+  .minitable { width: 100%; border-collapse: collapse; margin: 2px 0 4px 0; font-size: 11.5px; }
+  .minitable th { background: rgba(215,75,74,0.12); color: var(--accent-deep); font-weight: 700; padding: 3px 5px; text-align: left; border-bottom: 2px solid var(--line); font-size: 10.5px; }
+  .minitable td { padding: 3px 5px; border-bottom: 1px solid var(--line); color: var(--muted); }
+  .minitable td:first-child { font-weight: 600; color: var(--text); }
+  .minitable tr:last-child td { border-bottom: none; }
+  .minitable .highlight { color: var(--primary); font-weight: 700; }
+  .tnote { font-size: 11px; color: var(--muted); line-height: 1.45; margin-top: 2px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .figrow { display: flex; gap: 14px; align-items: flex-start; justify-content: center; }
+  .fig { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px 5px; text-align: center; }
+  .fig img { display: inline-block; height: auto; max-height: 200px; width: auto; border-radius: 3px; }
+  .fig .figcap { font-size: 10.5px; color: var(--muted); font-style: italic; line-height: 1.35; margin-top: 4px; text-align: left; max-width: 480px; }
+  .fig .figcap strong { color: var(--primary); font-style: normal; }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Front Oncol 2024;14:1481626 · Real-World Triage Study · China</div>
+    <h1 data-i18n="title">PAX1/JAM3 Methylation Triage Across HPV Genotypes &amp; Age Groups in hrHPV+ Women</h1>
+    <div class="title_alt" data-i18n="title_alt">PAX1/JAM3 甲基化在中国 hrHPV+ 女性中跨 HPV 基因型与年龄段的筛查效能评估</div>
+    <div class="subtitle" data-i18n="subtitle">436-woman real-world study · CISCER (PAX1/JAM3 methylation) outperforms cytology for triaging hrHPV+ — 92.6% sensitivity, 95.7% specificity, AUC 0.941</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Liang H, Liu Y, Yin S, Jiang M, Dou Q, Wang H, Liu J, Chen Y, Liu P, Wang J, Wang Y, Wu Z</div>
+      <div class="source" data-i18n="source">Xuzhou Maternity &amp; Child Health Hospital · Yueyang Central Hospital · Beijing Origin-Poly Bio-Tec · doi: <a href="https://doi.org/10.3389/fonc.2024.1481626" target="_blank" rel="noopener">10.3389/fonc.2024.1481626</a></div>
+    </div>
+  </header>
+
+  <!-- 主体：脊柱 + 内容 -->
+  <main class="main">
+    <!-- 左脊柱 -->
+    <div class="spine">
+      <div class="snode"><div class="snum">01</div><div class="slab" data-i18n="sp1">背景与目的<span class="en">CONTEXT</span></div></div>
+      <div class="sline"></div>
+      <div class="snode"><div class="snum">02</div><div class="slab" data-i18n="sp2">研究设计<span class="en">DESIGN</span></div></div>
+      <div class="sline"></div>
+      <div class="snode"><div class="snum">03</div><div class="slab" data-i18n="sp3">诊断性能<span class="en">PERFORMANCE</span></div></div>
+      <div class="sline"></div>
+      <div class="snode"><div class="snum">04</div><div class="slab" data-i18n="sp4">结果与亚组<span class="en">RESULTS</span></div></div>
+    </div>
+
+    <!-- 右内容 -->
+    <div class="content">
+      <!-- 带 1：背景与目的 + 研究设计 -->
+      <div class="band">
+        <div class="halves">
+          <div class="half">
+            <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+            <ul>
+              <li data-i18n="s1a"><strong>Challenge</strong>: hrHPV+ is mostly transient; cytology triage is subjective with lower sensitivity.</li>
+              <li data-i18n="s1b"><strong>Objective</strong>: real-world evaluation of CISCER® <strong>PAX1/JAM3</strong> methylation for triaging hrHPV+ women across genotypes &amp; ages.</li>
+            </ul>
+          </div>
+          <div class="half">
+            <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+            <div class="statrow">
+              <div class="stat"><div class="big">436</div><div class="lab" data-i18n="s2s1">women</div></div>
+              <div class="stat"><div class="big">396</div><div class="lab" data-i18n="s2s2">hrHPV+</div></div>
+              <div class="stat"><div class="big">2</div><div class="lab" data-i18n="s2s3">centers</div></div>
+            </div>
+            <div class="wstrip">
+              <span class="wchip" data-i18n="ws1">HPV genotyping</span><span class="warr">+</span>
+              <span class="wchip" data-i18n="ws2">LBC cytology</span><span class="warr">+</span>
+              <span class="wchip" data-i18n="ws3">CISCER methylation</span>
+            </div>
+            <ul>
+              <li data-i18n="s2a"><strong>Setting</strong>: Xuzhou + Yueyang, Dec 2022 – May 2024; median age 38 y (30–49).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 带 2：诊断性能 -->
+      <div class="band">
+        <h3><span class="num">3</span><span data-i18n="s3t">Diagnostic Performance — CIN2+ in hrHPV+ Women</span></h3>
+        <div class="statcards">
+          <div class="sc hot"><div class="big">92.6%</div><div class="lab" data-i18n="s3c1">Sensitivity · CISCER</div></div>
+          <div class="sc"><div class="big">95.7%</div><div class="lab" data-i18n="s3c2">Specificity · CISCER</div></div>
+          <div class="sc"><div class="big">0.941</div><div class="lab" data-i18n="s3c3">AUC (0.903–0.979)</div></div>
+          <div class="sc"><div class="big">97.6%</div><div class="lab" data-i18n="s3c4">NPV</div></div>
+          <div class="sc"><div class="big">54%</div><div class="lab" data-i18n="s3c5">CIN3+ risk if (+) · 0.3% if (−)</div></div>
+        </div>
+        <div class="halves">
+          <div class="half">
+            <table class="minitable">
+              <tr><th data-i18n="t_h1">Method</th><th data-i18n="t_h2">Se %</th><th data-i18n="t_h3">Sp %</th><th data-i18n="t_h4">AUC</th></tr>
+              <tr><td class="highlight" data-i18n="t_r1a">CISCER</td><td class="highlight">92.6</td><td class="highlight">95.7</td><td class="highlight">0.941</td></tr>
+              <tr><td data-i18n="t_r2a">LBC ASC-US+</td><td>91.5</td><td>45.0</td><td>0.683</td></tr>
+              <tr><td data-i18n="t_r3a">LBC ASC-H+</td><td>56.4</td><td>92.7</td><td>0.745</td></tr>
+            </table>
+          </div>
+          <div class="half">
+            <ul>
+              <li data-i18n="s3a"><strong>vs cytology</strong>: similar sensitivity, far higher specificity (95.7% vs 45%).</li>
+              <li data-i18n="s3b"><strong>OR 276.3</strong> (106.9–714.1) for CIN2+ — strongest single risk marker.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 带 3：结果图 -->
+      <div class="band">
+        <div class="halves">
+          <div class="half">
+            <h3><span class="num">4</span><span data-i18n="s4t">Methylation Rises With Severity</span></h3>
+            <div class="figrow">
+              <div class="fig">
+                <img src="images/fig2_methylation.png" alt="Methylation levels by lesion and HPV genotype">
+                <div class="figcap"><strong>Fig. 2</strong> <span data-i18n="s4c1">ΔCt by lesion grade — CIN2+ mean below cutoffs; no genotype difference once CIN2+.</span></div>
+              </div>
+            </div>
+            <ul style="margin-top:4px;">
+              <li data-i18n="s4a"><strong>Dose–response</strong>: normal/CIN1 low, CIN2+ sharply elevated; all 26 cancers CISCER(+).</li>
+            </ul>
+          </div>
+          <div class="half">
+            <h3><span class="num">5</span><span data-i18n="s5t">Catches What Cytology Misses</span></h3>
+            <div class="figrow">
+              <div class="fig">
+                <img src="images/fig3_ciscer_vs_cytology.png" alt="CISCER vs cytology in CIN2+ and CIN2- cases">
+                <div class="figcap"><strong>Fig. 3</strong> <span data-i18n="s5c1">CIN2+ with low-grade cytology: 37.2% caught by CISCER+ (incl. 3 cancers); CIN2− with abnormal cytology: 52% correctly CISCER−.</span></div>
+              </div>
+            </div>
+            <ul style="margin-top:4px;">
+              <li data-i18n="s5a"><strong>Two-way benefit</strong>: fewer missed high-grade lesions AND fewer unnecessary colposcopies.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 带 4：亚组与癌症安全 -->
+      <div class="band">
+        <h3><span class="num">6</span><span data-i18n="s6t">Subgroups &amp; Cancer Safety</span></h3>
+        <div class="halves">
+          <div class="half">
+            <table class="minitable">
+              <tr><th data-i18n="g_h1">Group</th><th data-i18n="g_h2">Se %</th><th data-i18n="g_h3">Sp %</th><th data-i18n="g_h4">AUC</th></tr>
+              <tr><td class="highlight" data-i18n="g_r1a">All hrHPV+</td><td class="highlight">92.6</td><td class="highlight">95.7</td><td class="highlight">0.941</td></tr>
+              <tr><td data-i18n="g_r2a">HPV16/18+</td><td>92.9</td><td>97.4</td><td>0.951</td></tr>
+              <tr><td data-i18n="g_r3a">Non-16/18 hrHPV+</td><td>92.1</td><td>95.1</td><td>0.936</td></tr>
+              <tr><td data-i18n="g_r4a">Age ≥50</td><td>100</td><td>94.4</td><td>0.972</td></tr>
+              <tr><td data-i18n="g_r5a">Age &lt;30</td><td>82.6</td><td>100</td><td>0.913</td></tr>
+            </table>
+          </div>
+          <div class="half">
+            <ul>
+              <li data-i18n="s6a"><strong>≥50 y</strong>: 100% sensitivity — catches disease cytology misses in postmenopausal women.</li>
+              <li data-i18n="s6b"><strong>&lt;30 y</strong>: 100% specificity — avoids unnecessary colposcopy &amp; excision (fertility protection).</li>
+              <li data-i18n="s6c"><strong>HPV-independent</strong>: 2 hrHPV− adenocarcinomas detected by CISCER (1 with NILM cytology).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>For hrHPV+ women,</b> PAX1/JAM3 methylation (CISCER®) significantly outperforms cytology across HPV genotypes and age groups — 92.6% sensitivity, 95.7% specificity, AUC 0.941, and 100% cancer detection.</li>
+      <li data-i18n="c2"><b>Age-stratified value</b>: 100% sensitivity in ≥50 y, 100% specificity in &lt;30 y — a single test that reduces both missed disease and overtreatment.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Front Oncol 2024;14:1481626 · Real-World Triage Study · China",
+      title: "PAX1/JAM3 Methylation Triage Across HPV Genotypes & Age Groups in hrHPV+ Women",
+      title_alt: "PAX1/JAM3 甲基化在中国 hrHPV+ 女性中跨 HPV 基因型与年龄段的筛查效能评估",
+      subtitle: "436-woman real-world study · CISCER (PAX1/JAM3 methylation) outperforms cytology for triaging hrHPV+ — 92.6% sensitivity, 95.7% specificity, AUC 0.941",
+      authors: "Liang H, Liu Y, Yin S, Jiang M, Dou Q, Wang H, Liu J, Chen Y, Liu P, Wang J, Wang Y, Wu Z",
+      source: 'Xuzhou Maternity & Child Health Hospital · Yueyang Central Hospital · Beijing Origin-Poly Bio-Tec · doi: <a href="https://doi.org/10.3389/fonc.2024.1481626" target="_blank" rel="noopener">10.3389/fonc.2024.1481626</a>',
+      sp1: "Context", sp2: "Design", sp3: "Performance", sp4: "Results",
+      s1t: "Background & Objective",
+      s1a: "<strong>Challenge</strong>: hrHPV+ is mostly transient; cytology triage is subjective with lower sensitivity.",
+      s1b: "<strong>Objective</strong>: real-world evaluation of CISCER® <strong>PAX1/JAM3</strong> methylation for triaging hrHPV+ women across genotypes & ages.",
+      s2t: "Study Design & Cohort",
+      s2s1: "women", s2s2: "hrHPV+", s2s3: "centers",
+      ws1: "HPV genotyping", ws2: "LBC cytology", ws3: "CISCER methylation",
+      s2a: "<strong>Setting</strong>: Xuzhou + Yueyang, Dec 2022 – May 2024; median age 38 y (30–49).",
+      s3t: "Diagnostic Performance — CIN2+ in hrHPV+ Women",
+      s3c1: "Sensitivity · CISCER", s3c2: "Specificity · CISCER", s3c3: "AUC (0.903–0.979)", s3c4: "NPV", s3c5: "CIN3+ risk if (+) · 0.3% if (−)",
+      t_h1: "Method", t_h2: "Se %", t_h3: "Sp %", t_h4: "AUC",
+      t_r1a: "CISCER", t_r2a: "LBC ASC-US+", t_r3a: "LBC ASC-H+",
+      s3a: "<strong>vs cytology</strong>: similar sensitivity, far higher specificity (95.7% vs 45%).",
+      s3b: "<strong>OR 276.3</strong> (106.9–714.1) for CIN2+ — strongest single risk marker.",
+      s4t: "Methylation Rises With Severity",
+      s4c1: "ΔCt by lesion grade — CIN2+ mean below cutoffs; no genotype difference once CIN2+.",
+      s4a: "<strong>Dose–response</strong>: normal/CIN1 low, CIN2+ sharply elevated; all 26 cancers CISCER(+).",
+      s5t: "Catches What Cytology Misses",
+      s5c1: "CIN2+ with low-grade cytology: 37.2% caught by CISCER+ (incl. 3 cancers); CIN2− with abnormal cytology: 52% correctly CISCER−.",
+      s5a: "<strong>Two-way benefit</strong>: fewer missed high-grade lesions AND fewer unnecessary colposcopies.",
+      s6t: "Subgroups & Cancer Safety",
+      g_h1: "Group", g_h2: "Se %", g_h3: "Sp %", g_h4: "AUC",
+      g_r1a: "All hrHPV+", g_r2a: "HPV16/18+", g_r3a: "Non-16/18 hrHPV+", g_r4a: "Age ≥50", g_r5a: "Age <30",
+      s6a: "<strong>≥50 y</strong>: 100% sensitivity — catches disease cytology misses in postmenopausal women.",
+      s6b: "<strong><30 y</strong>: 100% specificity — avoids unnecessary colposcopy & excision (fertility protection).",
+      s6c: "<strong>HPV-independent</strong>: 2 hrHPV− adenocarcinomas detected by CISCER (1 with NILM cytology).",
+      c_ttl: "Clinical Significance",
+      c1: "<b>For hrHPV+ women,</b> PAX1/JAM3 methylation (CISCER®) significantly outperforms cytology across HPV genotypes and age groups — 92.6% sensitivity, 95.7% specificity, AUC 0.941, and 100% cancer detection.",
+      c2: "<b>Age-stratified value</b>: 100% sensitivity in ≥50 y, 100% specificity in <30 y — a single test that reduces both missed disease and overtreatment."
+    },
+    zh: {
+      kicker: "Front Oncol 2024;14:1481626 · 真实世界分诊研究 · 中国",
+      title: "PAX1/JAM3 甲基化在中国 hrHPV+ 女性中跨 HPV 基因型与年龄段的筛查效能评估",
+      title_alt: "PAX1/JAM3 Methylation Triage Across HPV Genotypes & Age Groups in hrHPV+ Women",
+      subtitle: "436 例真实世界研究：CISCER（PAX1/JAM3 甲基化）在 hrHPV+ 患者分诊中优于细胞学——灵敏度 92.6%、特异度 95.7%、AUC 0.941",
+      authors: "梁慧、刘瑶、尹素悦、蒋梦雨、窦秋艳、王含含、刘杰、陈一博、刘沛、王静、王艺山、吴哲",
+      source: '徐州市妇幼保健院 · 岳阳市中心医院 · 北京起源生物 · doi: <a href="https://doi.org/10.3389/fonc.2024.1481626" target="_blank" rel="noopener">10.3389/fonc.2024.1481626</a>',
+      sp1: "背景与目的", sp2: "研究设计", sp3: "诊断性能", sp4: "结果与亚组",
+      s1t: "背景与目的",
+      s1a: "<strong>挑战</strong>：hrHPV+ 多为一过性；细胞学分诊主观且灵敏度偏低。",
+      s1b: "<strong>目的</strong>：真实世界评估 CISCER® <strong>PAX1/JAM3</strong> 甲基化在 hrHPV+ 女性中跨基因型与年龄段的分诊效能。",
+      s2t: "研究设计与队列",
+      s2s1: "例女性", s2s2: "hrHPV+", s2s3: "家中心",
+      ws1: "HPV 分型", ws2: "LBC 细胞学", ws3: "CISCER 甲基化",
+      s2a: "<strong>地点</strong>：徐州 + 岳阳，2022.12–2024.5；中位年龄 38 岁（30–49）。",
+      s3t: "诊断性能 —— hrHPV+ 女性 CIN2+",
+      s3c1: "灵敏度 · CISCER", s3c2: "特异度 · CISCER", s3c3: "AUC（0.903–0.979）", s3c4: "NPV", s3c5: "CIN3+ 风险 (+) 54% · (−) 0.3%",
+      t_h1: "方法", t_h2: "灵敏度%", t_h3: "特异度%", t_h4: "AUC",
+      t_r1a: "CISCER", t_r2a: "LBC ASC-US+", t_r3a: "LBC ASC-H+",
+      s3a: "<strong>vs 细胞学</strong>：灵敏度相当，特异度显著更高（95.7% vs 45%）。",
+      s3b: "<strong>OR 276.3</strong>（106.9–714.1）——最强的单一风险标志。",
+      s4t: "甲基化随病变严重度升高",
+      s4c1: "ΔCt 按病变分级——CIN2+ 均值低于阈值；一旦 CIN2+，基因型间无差异。",
+      s4a: "<strong>量效关系</strong>：正常/CIN1 低，CIN2+ 显著升高；26 例癌症全部 CISCER(+)。",
+      s5t: "捕获细胞学漏诊",
+      s5c1: "细胞学低级别但 CIN2+ 者：37.2% 被 CISCER+ 检出（含 3 例癌）；细胞学异常但 CIN2− 者：52% CISCER− 正确判阴。",
+      s5a: "<strong>双向获益</strong>：既减少高级别病变漏诊，又减少不必要阴道镜。",
+      s6t: "亚组与癌症安全",
+      g_h1: "分组", g_h2: "灵敏度%", g_h3: "特异度%", g_h4: "AUC",
+      g_r1a: "全部 hrHPV+", g_r2a: "HPV16/18+", g_r3a: "非 16/18 hrHPV+", g_r4a: "≥50 岁", g_r5a: "<30 岁",
+      s6a: "<strong>≥50 岁</strong>：100% 灵敏度——捕捉绝经后细胞学漏诊病变。",
+      s6b: "<strong>&lt;30 岁</strong>：100% 特异度——避免不必要阴道镜与切除（保护生育力）。",
+      s6c: "<strong>不依赖 HPV</strong>：2 例 hrHPV− 腺癌被 CISCER 检出（其中 1 例细胞学 NILM）。",
+      c_ttl: "临床意义",
+      c1: "<b>对 hrHPV+ 女性，</b>PAX1/JAM3 甲基化（CISCER®）在跨 HPV 基因型与年龄段分诊中显著优于细胞学——灵敏度 92.6%、特异度 95.7%、AUC 0.941、癌症 100% 检出。",
+      c2: "<b>年龄分层价值</b>：≥50 岁 100% 灵敏度、<30 岁 100% 特异度——一个检测同时减少漏诊与过度治疗。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

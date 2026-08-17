@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CDO1/CELF4 Methylation Triage for EC & AH — Qi et al. 2023</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #34：AH+EC 分诊）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、大数字卡、条形对比
+  - 布局：标题带 → hero（607 例 / Se 84.9% / Sp 86.6% / AUC 0.86）→ 两栏（左 560px：①背景与目的 ②研究设计【队列构成】；右 1fr：③阳性率梯度 ④ROC 与绝经分层 ⑤效能与联合）→ 全宽临床意义带
+  - 选图：ROC（679×323）
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 96px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 22px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .duowrap { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 0 0 5px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 11px 4px; text-align: center; }
+  .stat .big { font-size: 18px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+  .stat.cool { background: #fff; border-color: rgba(140,158,143,0.6); }
+  .stat.cool .big { color: #5C7A63; }
+
+  .duowrap { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(0,1.25fr) minmax(0,1fr); grid-template-rows: 1fr; gap: 12px; align-items: stretch; margin: 2px 0 0; }
+  .duowrap .fig { display: flex; flex-direction: column; justify-content: center; }
+  .duowrap .fig img { align-self: center; max-height: 250px; }
+  .duowrap .side { display: flex; flex-direction: column; justify-content: center; gap: 5px; min-width: 0; }
+  .duowrap .side ul { margin-top: 2px; }
+  .fig { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px 5px; text-align: center; min-width: 0; }
+  .fig img { display: inline-block; height: auto; max-height: 250px; width: auto; max-width: 100%; border-radius: 3px; align-self: center; }
+  .fig .figcap { font-size: 10px; color: var(--muted); font-style: italic; line-height: 1.3; margin-top: 3px; text-align: left; }
+  .fig .figcap strong { color: var(--primary); font-style: normal; }
+
+  .spbars { margin: 2px 0 6px; }
+  .spb { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+  .spb .sbl { flex: 0 0 150px; font-size: 11.5px; font-weight: 700; color: var(--text); text-align: right; }
+  .spb .sbt { flex: 1 1 auto; height: 20px; background: #F1E7E7; border-radius: 5px; overflow: hidden; position: relative; }
+  .spb .sbf { height: 100%; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 12px; font-weight: 800; color: #fff; }
+  .spb.win .sbf { background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); }
+  .spb.lose .sbf { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); color: #6B5755; }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 3px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+  body.lang-zh .panel ul li { line-height: 1.5; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Front Oncol · 2023;13:1289366 · Triage Study · China</div>
+    <h1 data-i18n="title">CDO1/CELF4 Methylation Triage for EC &amp; Atypical Hyperplasia</h1>
+    <div class="title_alt" data-i18n="title_alt">Hypermethylated CDO1 and CELF4 in cytological specimens as triage strategy biomarkers in endometrial malignant lesions</div>
+    <div class="subtitle" data-i18n="subtitle">607 biopsy-referred women · AH+EC Se 84.9% / Sp 86.6% · ET+DNA Sp 94.9% · AUC 0.86 (post 0.87 → +ET 0.90)</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Qi B, Sun Y, Lv Y, Hu P, Ma Y, Gao W, Li S, Zhang X, Jin X, Liou Y, Liu P, Liu S</div>
+      <div class="source" data-i18n="source">Cangzhou Central Hospital · Front Oncol 2023;13:1289366 · doi:10.3389/fonc.2023.1289366</div>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="stat"><div class="big">607</div><div class="lab" data-i18n="h1">biopsy-referred</div></div>
+    <div class="stat hot"><div class="big">84.9%</div><div class="lab" data-i18n="h2">Se · AH+EC</div></div>
+    <div class="stat"><div class="big">86.6%</div><div class="lab" data-i18n="h3">Sp · AH+EC</div></div>
+    <div class="stat hot"><div class="big">0.86</div><div class="lab" data-i18n="h4">AUC · overall</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Problem</strong>: TVS high sensitivity but low specificity (24.3–74.0%); biopsy invasive &amp; painful.</li>
+          <li data-i18n="s1b"><strong>Objective</strong>: CDO1/CELF4 methylation as triage biomarker for EC &amp; atypical hyperplasia (AH).</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">293</div><div class="lab" data-i18n="s2s1">BE (48.3%)</div></div>
+          <div class="stat"><div class="big">261</div><div class="lab" data-i18n="s2s2">EH (49.2%)</div></div>
+          <div class="stat hot"><div class="big">14+39</div><div class="lab" data-i18n="s2s3">AH 2.3% + EC 6.0%</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Setting</strong>: Cangzhou Central Hospital; Oct 2022 – Apr 2023; biopsy indications.</li>
+          <li data-i18n="s2b"><strong>Assays</strong>: cervical exfoliated cells → CDO1m/CELF4m (ΔCt ≤8.4/≤8.8) + TVS ET + markers.</li>
+          <li data-i18n="s2c"><strong>Reference</strong>: endometrial histopathology = gold standard.</li>
+          <li data-i18n="s2d"><strong>Outcome</strong>: endometrial malignant lesions = AH + EC.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">6.92</div><div class="lab" data-i18n="s2s4">OR · methylation (1.10–43.44)</div></div>
+          <div class="stat"><div class="big">5.03</div><div class="lab" data-i18n="s2s5">OR · ET (1.83–13.82)</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">48</div><div class="lab" data-i18n="s2s6">BE · y</div></div>
+          <div class="stat"><div class="big">45</div><div class="lab" data-i18n="s2s7">EH · y</div></div>
+          <div class="stat"><div class="big">48.5</div><div class="lab" data-i18n="s2s8">AH · y</div></div>
+          <div class="stat hot"><div class="big">56</div><div class="lab" data-i18n="s2s9">EC · y</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">ΔCtJ</div><div class="lab" data-i18n="s2s13">EH→AH P&lt;0.05</div></div>
+          <div class="stat"><div class="big">ΔCtP</div><div class="lab" data-i18n="s2s14">EH→AH P&lt;0.05</div></div>
+          <div class="stat"><div class="big">ΔCtJ</div><div class="lab" data-i18n="s2s15">AH→EC P&lt;0.05</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2i"><strong>Dual-gene logic</strong>: either gene positive → triage positive (higher sensitivity).</li>
+          <li data-i18n="s2j"><strong>AH detection</strong>: precancer positivity 71.4% — early intervention window.</li>
+          <li data-i18n="s2e"><strong>Inclusion</strong>: biopsy indication (AUB / PMB / TVS abnormal); consent.</li>
+          <li data-i18n="s2f"><strong>Exclusion</strong>: prior treatment · other malignancy · invalid samples.</li>
+          <li data-i18n="s2g"><strong>Sample</strong>: cervical exfoliated cells before biopsy → dual-gene methylation.</li>
+          <li data-i18n="s2h"><strong>Statistics</strong>: multivariate logistic (OR) · ROC/AUC · menopause-stratified.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">94.9%</div><div class="lab" data-i18n="s2s10">Sp · ET+DNA</div></div>
+          <div class="stat"><div class="big">0.90</div><div class="lab" data-i18n="s2s11">AUC · post + TVS</div></div>
+          <div class="stat"><div class="big">0.78</div><div class="lab" data-i18n="s2s12">AUC · pre</div></div>
+        </div>
+        <div class="tnote" data-i18n="s2n">Median age 47 y (BE 48 · EH 45 · AH 48.5 · EC 56); age differs across groups (P&lt;0.05); methylation AUC pre vs post ns (P=0.1453).</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Methylation Positivity by Pathology</span></h3>
+        <div class="spbars">
+          <div class="spb lose"><div class="sbl" data-i18n="s3a1">BE</div><div class="sbt"><div class="sbf" style="width:14.3%">14.3%</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s3a2">EH</div><div class="sbt"><div class="sbf" style="width:12.3%">12.3%</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s3a3">AH</div><div class="sbt"><div class="sbf" style="width:71.4%">71.4%</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s3a4">EC</div><div class="sbt"><div class="sbf" style="width:89.7%">89.7%</div></div></div>
+        </div>
+        <ul>
+          <li data-i18n="s3a"><strong>Clear gradient</strong>: benign ~13% vs AH 71.4% / EC 89.7% (P&lt;0.05).</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">ROC — Menopause Stratification</span></h3>
+        <div class="duowrap">
+          <div class="fig">
+            <img src="images/fig_roc.jpg" alt="ROC curves for EC and AH detection">
+            <div class="figcap"><strong>Fig.</strong> <span data-i18n="s4c1">ROC — overall AUC 0.86; postmenopausal 0.87 → +TVS 0.90.</span></div>
+          </div>
+          <div class="side">
+            <div class="statrow">
+              <div class="stat hot"><div class="big">0.86</div><div class="lab" data-i18n="s4s1">overall</div></div>
+              <div class="stat"><div class="big">0.87</div><div class="lab" data-i18n="s4s2">postmenopausal</div></div>
+            </div>
+            <div class="statrow">
+              <div class="stat"><div class="big">0.90</div><div class="lab" data-i18n="s4s3">post + TVS</div></div>
+              <div class="stat"><div class="big">0.78</div><div class="lab" data-i18n="s4s4">premenopausal</div></div>
+            </div>
+            <ul>
+              <li data-i18n="s4a"><strong>Post menopausal</strong>: TVS addition lifts AUC 0.87 → 0.90.</li>
+              <li data-i18n="s4b"><strong>Pre menopausal</strong>: TVS adds no benefit (0.78 vs 0.73).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Triage Performance &amp; TVS Combination</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">84.9%</div><div class="lab" data-i18n="s5s1">Se · dual</div></div>
+          <div class="stat hot"><div class="big">86.6%</div><div class="lab" data-i18n="s5s2">Sp · dual</div></div>
+          <div class="stat"><div class="big">94.9%</div><div class="lab" data-i18n="s5s3">Sp · ET+DNA</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s5a"><strong>ET + methylation</strong>: specificity rises to 94.9% — fewer false triage referrals.</li>
+          <li data-i18n="s5b"><strong>Non-invasive</strong>: cervical cytology outperforms other clinical indicators for AH/EC.</li>
+          <li data-i18n="s5c"><strong>Early window</strong>: AH (precancer) detected at 71.4% positivity — intervention before cancer.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Non-invasive triage for EC &amp; AH</b>: cervical cytology CDO1/CELF4 methylation (Se 84.9%, Sp 86.6%) reduces invasive biopsies.</li>
+      <li data-i18n="c2"><b>TVS combination</b>: ET + methylation raises specificity to 94.9% (postmenopausal AUC 0.90) — promising triage strategy.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Front Oncol · 2023;13:1289366 · Triage Study · China",
+      title: "CDO1/CELF4 Methylation Triage for EC & Atypical Hyperplasia",
+      title_alt: "Hypermethylated CDO1 and CELF4 in cytological specimens as triage strategy biomarkers in endometrial malignant lesions",
+      subtitle: "607 biopsy-referred women · AH+EC Se 84.9% / Sp 86.6% · ET+DNA Sp 94.9% · AUC 0.86 (post 0.87 → +ET 0.90)",
+      authors: "Qi B, Sun Y, Lv Y, Hu P, Ma Y, Gao W, Li S, Zhang X, Jin X, Liou Y, Liu P, Liu S",
+      source: "Cangzhou Central Hospital · Front Oncol 2023;13:1289366 · doi:10.3389/fonc.2023.1289366",
+      h1: "biopsy-referred", h2: "Se · AH+EC", h3: "Sp · AH+EC", h4: "AUC · overall",
+      s1t: "Background & Objective",
+      s1a: "<strong>Problem</strong>: TVS high sensitivity but low specificity (24.3–74.0%); biopsy invasive & painful.",
+      s1b: "<strong>Objective</strong>: CDO1/CELF4 methylation as triage biomarker for EC & atypical hyperplasia (AH).",
+      s2t: "Study Design & Cohort",
+      s2s1: "BE (48.3%)", s2s2: "EH (49.2%)", s2s3: "AH 2.3% + EC 6.0%",
+      s2a: "<strong>Setting</strong>: Cangzhou Central Hospital; Oct 2022 – Apr 2023; biopsy indications.",
+      s2b: "<strong>Assays</strong>: cervical exfoliated cells → CDO1m/CELF4m (ΔCt ≤8.4/≤8.8) + TVS ET + markers.",
+      s2c: "<strong>Reference</strong>: endometrial histopathology = gold standard.",
+      s2d: "<strong>Outcome</strong>: endometrial malignant lesions = AH + EC.",
+      s2s6: "BE · y", s2s7: "EH · y", s2s8: "AH · y", s2s9: "EC · y",
+      s2s13: "EH→AH P<0.05", s2s14: "EH→AH P<0.05", s2s15: "AH→EC P<0.05",
+      s2i: "<strong>Dual-gene logic</strong>: either gene positive → triage positive (higher sensitivity).",
+      s2j: "<strong>AH detection</strong>: precancer positivity 71.4% — early intervention window.",
+      s2e: "<strong>Inclusion</strong>: biopsy indication (AUB / PMB / TVS abnormal); consent.",
+      s2f: "<strong>Exclusion</strong>: prior treatment · other malignancy · invalid samples.",
+      s2g: "<strong>Sample</strong>: cervical exfoliated cells before biopsy → dual-gene methylation.",
+      s2h: "<strong>Statistics</strong>: multivariate logistic (OR) · ROC/AUC · menopause-stratified.",
+      s2s10: "Sp · ET+DNA", s2s11: "AUC · post + TVS", s2s12: "AUC · pre",
+      s2s4: "OR · methylation (1.10–43.44)", s2s5: "OR · ET (1.83–13.82)",
+      s2n: "Median age 47 y (BE 48 · EH 45 · AH 48.5 · EC 56); age differs across groups (P<0.05).",
+      s3t: "Methylation Positivity by Pathology",
+      s3a1: "BE", s3a2: "EH", s3a3: "AH", s3a4: "EC",
+      s3a: "<strong>Clear gradient</strong>: benign ~13% vs AH 71.4% / EC 89.7% (P<0.05).",
+      s4t: "ROC — Menopause Stratification",
+      s4c1: "ROC — overall AUC 0.86; postmenopausal 0.87 → +TVS 0.90.",
+      s4s1: "overall", s4s2: "postmenopausal", s4s3: "post + TVS", s4s4: "premenopausal",
+      s4a: "<strong>Post menopausal</strong>: TVS addition lifts AUC 0.87 → 0.90.",
+      s4b: "<strong>Pre menopausal</strong>: TVS adds no benefit (0.78 vs 0.73).",
+      s5t: "Triage Performance & TVS Combination",
+      s5s1: "Se · dual", s5s2: "Sp · dual", s5s3: "Sp · ET+DNA",
+      s5a: "<strong>ET + methylation</strong>: specificity rises to 94.9% — fewer false triage referrals.",
+      s5b: "<strong>Non-invasive</strong>: cervical cytology outperforms other clinical indicators for AH/EC.",
+      s5c: "<strong>Early window</strong>: AH (precancer) detected at 71.4% positivity — intervention before cancer.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Non-invasive triage for EC & AH</b>: cervical cytology CDO1/CELF4 methylation (Se 84.9%, Sp 86.6%) reduces invasive biopsies.",
+      c2: "<b>TVS combination</b>: ET + methylation raises specificity to 94.9% (postmenopausal AUC 0.90) — promising triage strategy."
+    },
+    zh: {
+      kicker: "Front Oncol · 2023;13:1289366 · 分诊研究 · 中国",
+      title: "CDO1/CELF4 甲基化用于 EC 与不典型增生分诊",
+      title_alt: "Hypermethylated CDO1 and CELF4 in cytological specimens as triage strategy biomarkers in endometrial malignant lesions",
+      subtitle: "607 例内膜活检指征 · AH+EC Se 84.9% / Sp 86.6% · ET+DNA Sp 94.9% · AUC 0.86（绝经后 0.87 → +ET 0.90）",
+      authors: "齐冰丽、孙烨、吕耀华、胡佩、马艳丽、高文英、李淑梅、张欣、金熙桐、刘玉立、刘培、刘世凯",
+      source: "沧州市中心医院 · Front Oncol 2023;13:1289366 · doi:10.3389/fonc.2023.1289366",
+      h1: "活检指征", h2: "Se · AH+EC", h3: "Sp · AH+EC", h4: "AUC · 总体",
+      s1t: "背景与目的",
+      s1a: "<strong>问题</strong>：TVS 灵敏度高但特异度低（24.3–74.0%）；活检有创且疼痛。",
+      s1b: "<strong>目的</strong>：CDO1/CELF4 甲基化作为 EC 与不典型增生（AH）的分诊标志物。",
+      s2t: "研究设计与队列",
+      s2s1: "BE（48.3%）", s2s2: "EH（49.2%）", s2s3: "AH 2.3% + EC 6.0%",
+      s2a: "<strong>地点</strong>：沧州市中心医院；2022.10–2023.4；活检指征。",
+      s2b: "<strong>检测</strong>：宫颈脱落细胞 → CDO1m/CELF4m（ΔCt ≤8.4/≤8.8）+ TVS 内膜厚度 + 标志物。",
+      s2c: "<strong>金标准</strong>：内膜组织病理。",
+      s2d: "<strong>结局</strong>：子宫内膜恶性病变 = AH + EC。",
+      s2s6: "BE · 岁", s2s7: "EH · 岁", s2s8: "AH · 岁", s2s9: "EC · 岁",
+      s2s13: "EH→AH P&lt;0.05", s2s14: "EH→AH P&lt;0.05", s2s15: "AH→EC P&lt;0.05",
+      s2i: "<strong>双基因逻辑</strong>：任一基因阳性即分诊阳性（灵敏度更高）。",
+      s2j: "<strong>AH 检出</strong>：癌前病变阳性率 71.4%——早期干预窗口。",
+      s2e: "<strong>纳入</strong>：活检指征（AUB / PMB / TVS 异常）；知情同意。",
+      s2f: "<strong>排除</strong>：既往治疗 · 其他恶性肿瘤 · 标本无效。",
+      s2g: "<strong>标本</strong>：活检前宫颈脱落细胞 → 双基因甲基化。",
+      s2h: "<strong>统计</strong>：多因素 Logistic（OR）· ROC/AUC · 绝经分层。",
+      s2s10: "Sp · ET+DNA", s2s11: "AUC · 绝经后+TVS", s2s12: "AUC · 绝经前",
+      s2s4: "OR · 甲基化（1.10–43.44）", s2s5: "OR · ET（1.83–13.82）",
+      s2n: "中位年龄 47 岁（BE 48 · EH 45 · AH 48.5 · EC 56）；各组年龄差异显著（P&lt;0.05）。",
+      s3t: "按病理分组的甲基化阳性率",
+      s3a1: "BE", s3a2: "EH", s3a3: "AH", s3a4: "EC",
+      s3a: "<strong>梯度清晰</strong>：良性约 13% vs AH 71.4% / EC 89.7%（P&lt;0.05）。",
+      s4t: "ROC——绝经分层",
+      s4c1: "ROC——总体 AUC 0.86；绝经后 0.87 → +TVS 0.90。",
+      s4s1: "总体", s4s2: "绝经后", s4s3: "绝经后 + TVS", s4s4: "绝经前",
+      s4a: "<strong>绝经后</strong>：联合 TVS 使 AUC 0.87 → 0.90。",
+      s4b: "<strong>绝经前</strong>：TVS 无增益（0.78 vs 0.73）。",
+      s5t: "分诊效能与 TVS 联合",
+      s5s1: "Se · 双基因", s5s2: "Sp · 双基因", s5s3: "Sp · ET+DNA",
+      s5a: "<strong>ET + 甲基化</strong>：特异度升至 94.9%——减少误转诊。",
+      s5b: "<strong>无创</strong>：宫颈细胞学优于其他临床指标。",
+      s5c: "<strong>早期窗口</strong>：AH（癌前）阳性率 71.4%——癌前干预。",
+      c_ttl: "临床意义",
+      c1: "<b>EC 与 AH 的无创分诊</b>：宫颈细胞学 CDO1/CELF4 甲基化（Se 84.9%、Sp 86.6%）减少有创活检。",
+      c2: "<b>TVS 联合</b>：ET + 甲基化特异度升至 94.9%（绝经后 AUC 0.90）——有前景的分诊策略。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

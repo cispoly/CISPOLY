@@ -1,0 +1,76 @@
+{
+  "_comment": "CISPOLY 文献/指南文件重命名映射表。key=旧文件名(不含.md)，value=新文件名(不含.md)。命名规则：编号_简短英文标识（小写+下划线，避免特殊字符）。",
+  "papers": {
+    "cervical": {
+      "1_Li_et_al_2024_PAX1-JAM3_Methylation_and_HPV_Viral_Load_in_Women_with_Persistent_HPV_Infection": "1_pax1jam3_hpv_viral_load",
+      "2_余芙蓉_et_al_2024_女性阴道自采样本检测PAX1-JAM3_双基因甲基化标志物作为子宫颈癌筛查的可行性评估研究": "2_self_sampling_feasibility",
+      "3_商晓_et_al_2024_子宫颈细胞学PAX1JAM3双基因甲基化检测用于子宫颈癌筛查的多中心研究": "3_multicenter_screening",
+      "4_Chen_et_al_2024_Triage_Performance_of_PAX1mJAM3m_in_Opportunistic_Cervical_Cancer_Screening_of_Non1618_Human_Papillomavirus_Positive_Women_A_Multicenter_Prospective_Study_in_China": "4_non1618_triage_multicenter",
+      "5_李翔_et_al_2024_高危型人乳头瘤病毒感染患者宫颈脱落细胞JAM3-PAX1高甲基化诊断宫颈高级别病变": "5_jam3_pax1_hsil_diagnosis",
+      "6_Chen_et_al_2024_Cercervical_cancer_screening_efficacy_of_PAX1_and_JAM3_methylation_assay_in_the_triage_of_ASCUS": "6_ascus_triage_efficacy",
+      "7_Liang_等_-_2024_-_Assessment_of_PAX1_and_JAM3_methylation_triage_efficacy_across_HPV_genotypes_and_age_groups_in_high-": "7_triage_efficacy_hpv",
+      "8_Kong_等_-_2024_-_Triage_performance_of_DNA_methylation_for_women_with_high-risk_human_papillomavirus_infection": "8_triage_performance_hrhpv",
+      "9_Fei_等_-_2024_-_Evaluating_PAX1JAM3_methylation_for_triage_in_HPV_1618-infected_women": "9_triage_hpv1618",
+      "10_Sun_等_-_2024_-_The_performance_of_JAM3PAX1_methylation_in_the_diagnosis_of_high-grade_squamous_intraepithelial_les": "10_hsil_diagnosis_performance",
+      "11_Su_等_-_2025_-_The_triage_role_of_cytological_DNA_methylation_in_women_with_non-1618,_specifically_genotyping_high": "11_triage_role_non1618",
+      "12_-_Shang等_-_2025-Cytologic_DNA_methylation_for_managing_minimally_abnormal_cervical_cancer": "12_minimally_abnormal_management",
+      "13_Yang_等_-_2025_-_Focused_ultrasound_ablation_for_women_with_cervical_lesions_Protocol_of_a_randomized_controlled_tri": "13_fus_rct_protocol",
+      "14_Chen_等_-_2025_-_The_role_of_PAX1_and_JAM3_methylation_in_predicting_the_pathological_upgrading_of_cervical_intraepit": "14_upgrading_prediction",
+      "15__Peng等_—_2025_-_Enhanced_diagnostic_accuracy_of_high-grade_cervical_intraepithelial_neoplasia_in_postmenopausal_women_through_PAX1JAM3_methylation_analysis": "15_postmenopausal_accuracy",
+      "16_Luo等_PAX1JAM3_Methylation_in_Cervical_Exfoliated_Cells_A_Robust_Diagnostic_Biomarker_for_Cervical_High-Grade_Lesions_Associated_with_Vaginal_Dysbiosis-正式": "16_vaginal_dysbiosis_biomarker",
+      "17_Intl_Journal_of_Cancer_-_2026_-_Peng_-_Reply_to__Comments_on__Enhanced_Diagnostic_Accuracy_of_High‐Grade_Cervical": "17_reply_comments",
+      "18_Effectiveness_analysis_and_clinical_application_potential_exploration_of_combined_detection_ofPAX1JAM3_gene_methylation_in_early_diagnosis_of_cervical_precancerous_lesions": "18_early_diagnosis_effectiveness",
+      "19_PAX1_JAM3基因甲基化在HR-HPV感染女性中宫颈癌的诊断价值": "19_hrhpv_diagnostic_value",
+      "20_PAX1_JAM3双基因甲基化在宫颈癌筛查及治疗中的应用_刘倩": "20_screening_treatment_review",
+      "21_PAX1、JAM3甲基化对子宫颈高级别上皮内瘤变诊断的meta分析_肖金芬": "21_meta_analysis",
+      "22_PAX1_JAM3_methylation-a_novel_biomarker_for_early_detection_and_accurate_management_of_cervical_adenocarcinoma": "22_adenocarcinoma_biomarker",
+      "23_Utility_of_PAX1JAM3_methylation_analysis_for_triage_of_high-risk_HPV-positive_individuals_": "23_triage_utility",
+      "24_阴道微生态影响宫颈细胞DNA甲基化水平与宫颈病变的相关性研究": "24_vaginal_microbiome",
+      "25_Intl_Journal_of_Cancer_-_2026_-_Zhong_-_Clinical_Utility_of_Cytological_Methylation_Assay_in_Cervical_Cancer_Screening.docx": "25_transformation_zone_utility",
+      "26_Diagnostic_testing_accuracy_of_DNA_methylation_tests_for_detection_ofhigh-grade_cervical_intraepithelial_neoplasia_and_cervical_cancer_Asystematic_review_and_meta-analysis": "26_diagnostic_accuracy_meta",
+      "27_何倩楠_2026_PAX1JAM3双基因联合甲基化检测在宫颈病变管理中的研究进展": "27_joint_methylation_progress",
+      "28_刘勋姣_2026_宫颈脱落细胞基因甲基化检测对宫颈高级别病变术后残留及复发风险的预测意义": "28_postop_recurrence_prediction",
+      "29_Geng_2026_Association_of_PAX1JAM3_gene_methylation_HRHPV_and_TCT": "29_pax1jam3_hrhpv_tct",
+      "30_Li_2026_Preliminary_study_PAX1JAM3_methylation_HPV_VL_CIN3-like_SCC": "30_cin3_like_scc",
+      "31_娄琰琰_2024_JAM3基因DNA甲基化在宫颈高级别上皮内瘤变及术后复发预测的临床研究": "31_jam3_recurrence_prediction",
+      "32_周敏_宫颈脱落细胞PAX1JAM3基因甲基化对宫颈上皮内瘤变预测作用的初步研究": "32_pilot_prediction",
+      "33_Yang_2025_Comparative_evaluation_of_two_DNA_methylation_assays_for_triage_of_hrHPV_E6E7_mRNA_positive_women": "33_e6e7_mrna_triage"
+    },
+    "endometrial": {
+      "1_孔令华_et_al_2023_DNA甲基化检测在绝经后女性子宫内膜癌筛查中的应用价值": "1_postmenopausal_screening",
+      "2_赵行平_et_al_2023_DNA甲基化检测在育龄期异常子宫出血女性子宫内膜癌诊断中的应用价值": "2_aub_diagnosis",
+      "3_Bingxin_et_al_2024_The_endometrial_cancer_detection_using_non-invasive_hypermethylation_of_CDO1": "3_cdo1_noninvasive_detection",
+      "4_Zhao_等_-_2024_-_DNA_methylation_detection_is_a_significant_biomarker_for_screening_endometrial_cancer_in_premenopaus": "4_premenopausal_biomarker",
+      "5_Qi_et_al_2023_Hypermethylated_CDO1_and_CELF4_in_cytological_specimens_as_triage_strategy_biomarkers_in_endometrial_malignant_lesions": "5_triage_strategy_biomarkers",
+      "6_蔡炳昕_等_-_2024_-_禾蔻安双基因甲基化检测在子宫内膜癌筛查中的应用价值": "6_hekouan_screening_value",
+      "7_Prospective_Evaluation_of_Cervical_Scrapings_CDO1_and_CELF4_Methylation_epiHERA_Assay_in_Detection_of_Endometrial_Cancer": "7_epihera_prospective",
+      "8_2026_Clinical_Validation_of_DNA_Methylation_Detection_in_Cervical_Exfoliated_Cells_for_Endometrial_Cancer_in_Women_with_Suspected_Lesions": "8_clinical_validation",
+      "9_Xiuzhen_Wang_et_al_2026_CDO1_and_CELF4_Methylation_Assay_as_the_Dominant_Predictor_of_Endometrial_Cancer_A_Cohort_Analysis_Across_Pre-_and_Post-Menopausal_Cohorts": "9_dominant_predictor_cohort",
+      "10_Validation_of_a_cervical_CDO1CELF4_methylation_test_for_endometrial_cancer_a_prospective_paired-sample_comparison_with_intrauterine_specimen": "10_paired_sample_validation",
+      "11_Development_and_validation_of_hypermethylated_gene_markers_in_cervical_cytological_samples_for_detecting_endometrial_cancer(EndoMethy-I_trial)": "11_endomethy1_trial",
+      "12_Diagnostic_Accuracy_and_Concordance_of_Self-CollectedCervical_CDO1_and_CELF4_Methylation_Testing_Compared_With_Physician_Sampling_for_Endometrial_Cancer_Detection": "12_self_collected_concordance"
+    },
+    "ovarian": {
+      "侯倩男_et_al_2024_血清中CDO1_与HOXA9_启动子甲基化高表达在卵巢癌诊断的意义": "1_cdo1_hoxa9_diagnosis"
+    }
+  },
+  "guidelines": {
+    "cervical": {
+      "2_肿瘤DNA甲基化标志物检测及临床应用专家共识(2024版)": "2_dna_methylation_consensus2024",
+      "3_中国子宫颈癌筛查指南（一）": "3_cervical_screening_guide1",
+      "9_单行本_子宫颈癌PAX1联合JAM3双基因甲基化检测流程、报告及临床应用专家共识": "9_pax1jam3_consensus",
+      "12_中国子宫颈癌筛查指南（二）_李明珠": "12_cervical_screening_guide2",
+      "13_中国老年医学学会妇科分会_2025_分子检测技术用于宫颈癌筛查和早期诊断中国专家共识(2025年版)": "13_molecular_testing_consensus",
+      "14_European_Society_of_Gynaecological_Oncology_European_Network_of_Gynaecological_Advocacy_Groups_Position_on_risk-based_cervical_cancer_screening": "14_esgo_position_screening",
+      "15_【发布稿】《肿瘤DNA甲基化标志物检测技术规范》": "15_methylation_tech_spec"
+    },
+    "endometrial": {
+      "丁春明_等_-_2024_-_肿瘤DNA甲基化标志物检测及临床应用专家共识（2024版）": "1_dna_methylation_consensus2024",
+      "中华医学会妇科肿瘤学分会_2026_子宫内膜癌基因甲基化筛查技术临床应用专家共识（2026版）": "2_ec_methylation_consensus2026",
+      "王超_等_-_2025_-_子宫内膜癌三级预防策略中国专家共识（2025年版）": "3_ec_prevention_consensus2025"
+    },
+    "ovarian": {
+      "15_【发布稿】《肿瘤DNA甲基化标志物检测技术规范》": "1_methylation_tech_spec"
+    }
+  }
+}

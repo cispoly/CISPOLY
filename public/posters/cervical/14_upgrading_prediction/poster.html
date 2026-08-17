@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAX1/JAM3 Methylation Predicts Pathological Upgrading Before Conization — Chen et al. 2025, Sci Rep</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #6v2：均衡三栏，中栏 ROC 预测模型为主角；与 #1-5 布局均不同）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、白色 stat 卡、红色高亮表格
+  - 布局：标题带 → 三栏（左 540px：①背景与目的 ②研究设计；中 1fr：③预测模型 ROC【统计卡+ROC 大图+阈值 callout】；右 540px：④危险因素【OR 块+ΔCt 对比小图】⑤模型验证【校准+DCA 双图+要点】）→ 全宽临床意义带
+  - 选图：Fig.4 ROC（中栏主角）、Fig.2 ΔCt 对比 + Fig.3 预测模型 + Fig.5 校准 + Fig.6 DCA（右栏）；Fig.1 流程图不用
+  - 约束：所有文字/图片不超出背景框；结果占最大面积；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1720px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1720px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1780px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 540px minmax(0, 1fr) 540px; gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 8px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel table, .panel .statrow, .panel .wstrip, .panel .tnote, .panel .callout, .panel .figrow, .panel .orblk { flex: 0 0 auto; }
+  .panel h3 { font-size: 14.5px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11.5px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 13.5px; line-height: 1.45; color: var(--muted); }
+  body.lang-en .panel li { line-height: 1.36; }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 1px 0 6px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 4px 5px; text-align: center; }
+  .stat .big { font-size: 23px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 10px; color: var(--muted); margin-top: 2px; line-height: 1.25; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; }
+  .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .wstrip { display: flex; align-items: center; gap: 6px; margin: 1px 0 6px; }
+  .wstrip .wchip { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 5px; padding: 8px 4px; text-align: center; font-size: 10.5px; font-weight: 600; color: var(--accent-deep); }
+  .wstrip .warr { color: var(--secondary); font-size: 14px; font-weight: 800; }
+
+  .chips { display: flex; align-items: center; gap: 6px; margin: 1px 0 6px; }
+  .chips .chip { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 5px; padding: 6px 4px; text-align: center; font-size: 10.5px; font-weight: 600; color: var(--accent-deep); }
+  .chips .charr { color: var(--secondary); font-size: 14px; font-weight: 800; }
+
+  .upgrade { display: flex; flex-direction: column; gap: 5px; margin: 2px 0 4px; }
+
+  .flow3 { display: flex; align-items: stretch; gap: 6px; margin: 1px 0 7px; }
+  .f3 { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 8px 6px; text-align: center; }
+  .f3 .f3n { font-size: 11px; font-weight: 800; color: var(--muted); letter-spacing: 0.5px; }
+  .f3 .f3d { font-size: 12px; font-weight: 700; color: var(--text); margin-top: 3px; line-height: 1.35; }
+  .f3.hot { background: var(--panel-alt); border-color: rgba(215,75,74,0.5); }
+  .f3.hot .f3d { color: var(--accent-deep); }
+  .f3arr { align-self: center; color: var(--secondary); font-size: 16px; font-weight: 800; }
+
+  .minitable { width: 100%; border-collapse: collapse; margin: 2px 0 4px 0; font-size: 12px; }
+  .minitable th { background: rgba(215,75,74,0.12); color: var(--accent-deep); font-weight: 700; padding: 4px 6px; text-align: left; border-bottom: 2px solid var(--line); font-size: 11px; }
+  .minitable td { padding: 5px 6px; border-bottom: 1px solid var(--line); color: var(--muted); }
+  .minitable tr:last-child td { border-bottom: none; }
+  .uprow { display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 7px 10px; }
+  .uprow .upl { flex: 0 0 92px; font-size: 11.5px; font-weight: 700; color: var(--text); }
+  .uprow .uparr { color: var(--secondary); font-size: 14px; font-weight: 800; }
+  .uprow .upr { font-size: 11px; color: var(--accent-deep); font-weight: 600; }
+
+  .figrow { display: flex; gap: 10px; align-items: flex-start; justify-content: center; }
+  .fig { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px 5px; text-align: center; }
+  .fig img { display: inline-block; height: auto; max-height: 215px; width: auto; border-radius: 3px; }
+  .fig .figcap { font-size: 10.5px; color: var(--muted); font-style: italic; line-height: 1.35; margin-top: 4px; text-align: left; max-width: 300px; }
+  .fig .figcap strong { color: var(--primary); font-style: normal; }
+  .fig.roc img { max-height: 280px; }
+
+  .callout { display: flex; align-items: center; gap: 12px; background: #fff; border: 1.5px solid rgba(215,75,74,0.5); border-radius: 8px; padding: 9px 12px; margin: 2px 0 7px; }
+  .callout .big { font-size: 24px; font-weight: 800; color: var(--primary); white-space: nowrap; font-family: "Courier New", Consolas, monospace; }
+  .callout .tx { font-size: 11.5px; line-height: 1.4; color: var(--muted); }
+  .callout .tx b { color: var(--accent-deep); }
+
+  .orblk { display: flex; gap: 10px; margin: 1px 0 7px; }
+  .or { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; }
+  .or .orn { font-size: 11px; color: var(--muted); font-weight: 700; }
+  .or .orv { font-size: 22px; font-weight: 800; color: var(--primary); margin-top: 2px; font-family: Georgia, serif; }
+  .or .ord { font-size: 10.5px; color: var(--muted); line-height: 1.35; margin-top: 1px; }
+
+  .tnote { font-size: 10.5px; color: var(--muted); line-height: 1.4; margin-top: 2px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Sci Rep · 2025;15:17684 · Prediction Study · China</div>
+    <h1 data-i18n="title">PAX1/JAM3 Methylation Predicts Pathological Upgrading Before Conization</h1>
+    <div class="title_alt" data-i18n="title_alt">PAX1/JAM3 甲基化预测锥切术前宫颈病变的病理升级</div>
+    <div class="subtitle" data-i18n="subtitle">88-woman model study · ΔCt PAX1 + cervical canal lesions predict upgrading (AUC 0.818, Sp 94.4%) · cut-off ΔCt PAX1 &lt; 4.34 flags upgrading risk</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Chen X, Xu H, Zhao L, Jiang H, Shou H (correspondence)</div>
+      <div class="source" data-i18n="source">Zhejiang Provincial People's Hospital · CISCER® kit (NMPA Class III, No. 20233400253) · doi: <a href="https://doi.org/10.1038/s41598-025-01422-3" target="_blank" rel="noopener">10.1038/s41598-025-01422-3</a></div>
+    </div>
+  </header>
+
+  <!-- 主体三栏 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Problem</strong>: colposcopy biopsy vs conization pathology often differ — upgrading 23.1%, downgrading 33.6%.</li>
+          <li data-i18n="s1b"><strong>Consequences</strong>: underdiagnosis delays treatment; overdiagnosis causes unnecessary surgery (pregnancy risks).</li>
+          <li data-i18n="s1c"><strong>Objective</strong>: use non-invasive PAX1/JAM3 methylation to predict pathological upgrading before conization.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">549</div><div class="lab" data-i18n="s2s4">collected</div></div>
+          <div class="stat"><div class="big">461</div><div class="lab" data-i18n="s2s5">excluded</div></div>
+          <div class="stat"><div class="big">88</div><div class="lab" data-i18n="s2s6">analyzed</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">23.1%</div><div class="lab" data-i18n="s2s7">upgrade (lit.)</div></div>
+          <div class="stat"><div class="big">33.6%</div><div class="lab" data-i18n="s2s8">downgrade</div></div>
+        </div>
+        <div class="chips">
+          <span class="chip" data-i18n="ch1">Dec 2020</span><span class="charr">→</span>
+          <span class="chip" data-i18n="ch2">colposcopy + methylation</span><span class="charr">→</span>
+          <span class="chip" data-i18n="ch3">Apr 2022 · conization</span>
+        </div>
+        <div class="wstrip">
+          <span class="wchip" data-i18n="ws1">Colposcopy biopsy</span><span class="warr">+</span>
+          <span class="wchip" data-i18n="ws2">Methylation (ΔCt PAX1/JAM3)</span><span class="warr">+</span>
+          <span class="wchip" data-i18n="ws3">Conization pathology</span>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Setting</strong>: Zhejiang Provincial People's Hospital, Dec 2020 – Apr 2022; two pathologists.</li>
+          <li data-i18n="s2b"><strong>Upgrading</strong>: CIN1→CIN2/3+ · CIN2→CIN3/cancer · CIN3→cancer.</li>
+          <li data-i18n="s2c"><strong>Assay</strong>: CISCER® real-time PCR kit (NMPA III), GAPDH internal control.</li>
+          <li data-i18n="s2d"><strong>Analysis</strong>: univariate + multivariate logistic; ROC/Youden; calibration + DCA.</li>
+          <li data-i18n="s2f"><strong>Pathology</strong>: 2020 WHO; highest grade; two pathologists.</li>
+        </ul>
+        <table class="minitable">
+          <tr><th data-i18n="ex_h1">Exclusion criteria</th></tr>
+          <tr><td data-i18n="ex1">① CDB cancer / AIS / adenocarcinoma</td></tr>
+          <tr><td data-i18n="ex2">② conization elsewhere / unable</td></tr>
+          <tr><td data-i18n="ex3">③ lost to follow-up</td></tr>
+          <tr><td data-i18n="ex4">④ prior cervical treatment / hysterectomy / CRT</td></tr>
+        </table>
+        <div class="upgrade">
+          <div class="uprow"><span class="upl" data-i18n="up1">CDB CIN1</span><span class="uparr">→</span><span class="upr" data-i18n="up1r">CIN2 / CIN3 / cancer</span></div>
+          <div class="uprow"><span class="upl" data-i18n="up2">CDB CIN2</span><span class="uparr">→</span><span class="upr" data-i18n="up2r">CIN3 / cancer</span></div>
+          <div class="uprow"><span class="upl" data-i18n="up3">CDB CIN3</span><span class="uparr">→</span><span class="upr" data-i18n="up3r">cervical cancer</span></div>
+        </div>
+        <div class="tnote" data-i18n="s2g">Upgrading = conization pathology one grade higher than colposcopy biopsy (2020 WHO).</div>
+      </div>
+    </section>
+
+    <!-- 中栏：预测模型 ROC -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">3</span><span data-i18n="s3t">Prediction Model — ROC</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">0.818</div><div class="lab" data-i18n="s3s1">AUC (0.720–0.916)</div></div>
+          <div class="stat"><div class="big">94.4%</div><div class="lab" data-i18n="s3s2">Specificity</div></div>
+          <div class="stat"><div class="big">60%</div><div class="lab" data-i18n="s3s3">Sensitivity</div></div>
+        </div>
+        <div class="figrow">
+          <div class="fig roc">
+            <img src="images/fig4_roc.jpg" alt="ROC curve of the clinical prediction model">
+            <div class="figcap"><strong>Fig. 4</strong> <span data-i18n="s3c1">ROC — ΔCt PAX1 + cervical canal lesions predict upgrading; good discrimination.</span></div>
+          </div>
+          <div class="fig roc">
+            <img src="images/fig3_model.jpg" alt="Clinical prediction model">
+            <div class="figcap"><strong>Fig. 3</strong> <span data-i18n="s4c2">Logistic prediction model components.</span></div>
+          </div>
+        </div>
+        <div class="callout">
+          <div class="big">ΔCt &lt; 4.34</div>
+          <div class="tx"><b data-i18n="s3c2a">PAX1 cut-off (max Youden)</b><br><span data-i18n="s3c2b">lower ΔCt PAX1 → higher upgrading risk</span></div>
+        </div>
+        <ul>
+          <li data-i18n="s3a"><strong>Model</strong>: ΔCt PAX1 + cervical canal lesions; independent predictors on multivariate analysis.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow" style="background: var(--panel-alt);">
+        <h3><span class="num">4</span><span data-i18n="s4t">Model in Practice</span></h3>
+        <div class="flow3">
+          <div class="f3"><div class="f3n" data-i18n="f3n1">Step 1</div><div class="f3d" data-i18n="f3d1">Measure ΔCt PAX1 pre-op</div></div>
+          <div class="f3arr">→</div>
+          <div class="f3 hot"><div class="f3n" data-i18n="f3n2">Step 2</div><div class="f3d" data-i18n="f3d2">ΔCt &lt; 4.34 → upgrading likely</div></div>
+          <div class="f3arr">→</div>
+          <div class="f3"><div class="f3n" data-i18n="f3n3">Step 3</div><div class="f3d" data-i18n="f3d3">Plan wider / deeper conization</div></div>
+        </div>
+        <div class="callout" style="margin-top:4px;">
+          <div class="big">0.818</div>
+          <div class="tx"><b data-i18n="s4c1a">Model discrimination</b><br><span data-i18n="s4c1b">Se 60% · Sp 94.4% at max Youden · OR 0.035 (P=0.02)</span></div>
+        </div>
+        <div class="tnote" data-i18n="s4d">Cut-off ΔCt PAX1 = 4.34 defined by maximizing Youden index.</div>
+        <ul>
+          <li data-i18n="s4a"><strong>ΔCt ≥ 4.34</strong>: upgrading less likely — may defer or narrow surgery.</li>
+          <li data-i18n="s4b"><strong>Goal</strong>: right-size treatment, avoid under- and over-treatment.</li>
+          <li data-i18n="s4c"><strong>Any candidate</strong> for conization with pre-op methylation can be stratified.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">Independent Risk Factors</span></h3>
+        <div class="orblk">
+          <div class="or"><div class="orn" data-i18n="s4n1">ΔCt PAX1</div><div class="orv">OR 0.784</div><div class="ord" data-i18n="s4d1">95% CI 0.644–0.956 · P=0.016</div></div>
+          <div class="or"><div class="orn" data-i18n="s4n2">Cervical canal lesion</div><div class="orv">OR 3.469</div><div class="ord" data-i18n="s4d2">95% CI 1.014–11.870 · P=0.048</div></div>
+        </div>
+        <div class="figrow">
+          <div class="fig">
+            <img src="images/fig2_deltact.jpg" alt="ΔCt JAM3 and PAX1 levels of upgrade vs not-upgrade">
+            <div class="figcap"><strong>Fig. 2</strong> <span data-i18n="s4c1">ΔCt PAX1/JAM3 — not-upgrade group significantly higher (P&lt;0.01).</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Model Validation</span></h3>
+        <div class="figrow">
+          <div class="fig">
+            <img src="images/fig5_calibration.jpg" alt="Calibration curve">
+            <div class="figcap"><strong>Fig. 5</strong> <span data-i18n="s5c1">Calibration — mean abs error 0.031 (bootstrap ×1000).</span></div>
+          </div>
+          <div class="fig">
+            <img src="images/fig6_dca.jpg" alt="DCA curve">
+            <div class="figcap"><strong>Fig. 6</strong> <span data-i18n="s5c2">DCA — net benefit across 0–0.3 thresholds.</span></div>
+          </div>
+        </div>
+        <ul style="margin-top:6px;">
+          <li data-i18n="s5a"><strong>Discrimination</strong>: AUC 0.818 — good ability to distinguish upgrading.</li>
+          <li data-i18n="s5b"><strong>Calibration &amp; utility</strong>: predicted vs actual agree (err 0.031); DCA favors model over treat-all/none.</li>
+        </ul>
+        <div class="tnote" data-i18n="s5d">Well-calibrated and clinically useful across decision thresholds.</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>ΔCt PAX1 &lt; 4.34</b> strongly suggests pathological upgrading before conization — a non-invasive triage marker to guide surgery timing and extent.</li>
+      <li data-i18n="c2"><b>Model (ΔCt PAX1 + canal lesions)</b>: AUC 0.818 with 94.4% specificity — helps avoid both delayed treatment and unnecessary conization.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Sci Rep · 2025;15:17684 · Prediction Study · China",
+      title: "PAX1/JAM3 Methylation Predicts Pathological Upgrading Before Conization",
+      title_alt: "PAX1/JAM3 甲基化预测锥切术前宫颈病变的病理升级",
+      subtitle: "88-woman model study · ΔCt PAX1 + cervical canal lesions predict upgrading (AUC 0.818, Sp 94.4%) · cut-off ΔCt PAX1 < 4.34 flags upgrading risk",
+      authors: "Chen X, Xu H, Zhao L, Jiang H, Shou H (correspondence)",
+      source: 'Zhejiang Provincial People\'s Hospital · CISCER® kit (NMPA Class III, No. 20233400253) · doi: <a href="https://doi.org/10.1038/s41598-025-01422-3" target="_blank" rel="noopener">10.1038/s41598-025-01422-3</a>',
+      s1t: "Background & Objective",
+      s1a: "<strong>Problem</strong>: colposcopy biopsy vs conization pathology often differ — upgrading 23.1%, downgrading 33.6%.",
+      s1b: "<strong>Consequences</strong>: underdiagnosis delays treatment; overdiagnosis causes unnecessary surgery (pregnancy risks).",
+      s1c: "<strong>Objective</strong>: use non-invasive PAX1/JAM3 methylation to predict pathological upgrading before conization.",
+      s2t: "Study Design & Cohort",
+      s2s1: "colposcopy patients", s2s2: "included", s2s3: "center",
+      s2s4: "collected", s2s5: "excluded", s2s6: "analyzed",
+      ch1: "Dec 2020", ch2: "colposcopy + methylation", ch3: "Apr 2022 · conization",
+      ws1: "Colposcopy biopsy", ws2: "Methylation (ΔCt PAX1/JAM3)", ws3: "Conization pathology",
+      s2a: "<strong>Setting</strong>: Zhejiang Provincial People's Hospital; Dec 2020 – Apr 2022.",
+      s2b: "<strong>Upgrading</strong>: CIN1→CIN2/3+, CIN2→CIN3/cancer, CIN3→cancer.",
+      s2c: "<strong>Assay</strong>: CISCER® real-time PCR (NMPA III); GAPDH control.",
+      s2d: "<strong>Analysis</strong>: logistic; ROC/Youden; calibration + DCA.",
+      s2f: "<strong>Pathology</strong>: 2020 WHO; highest grade.",
+      up1: "CDB CIN1", up1r: "CIN2 / CIN3 / cancer", up2: "CDB CIN2", up2r: "CIN3 / cancer", up3: "CDB CIN3", up3r: "cervical cancer",
+      s2g: "Upgrading = conization grade one above colposcopy biopsy (2020 WHO).",
+      s2h: "Positive rule: ΔCt PAX1 ≤ 6.6 / ΔCt JAM3 ≤ 10.0 (CISCER®).",
+      ex_h1: "Exclusion criteria", ex1: "① CDB cancer / AIS / adenocarcinoma", ex2: "② conization elsewhere / unable", ex3: "③ lost to follow-up", ex4: "④ prior cervical treatment / hysterectomy / CRT",
+      s3t: "Prediction Model — ROC",
+      s3s1: "AUC (0.720–0.916)", s3s2: "Specificity", s3s3: "Sensitivity",
+      s3c1: "ROC — ΔCt PAX1 + cervical canal lesions predict upgrading; good discrimination.",
+      s3c2a: "PAX1 cut-off (max Youden)", s3c2b: "lower ΔCt PAX1 → higher upgrading risk",
+      s3a: "<strong>Model</strong>: ΔCt PAX1 + cervical canal lesions; independent predictors on multivariate analysis.",
+      s4t: "Model in Practice",
+      f3n1: "Step 1", f3d1: "Measure ΔCt PAX1 pre-op",
+      f3n2: "Step 2", f3d2: "ΔCt < 4.34 → upgrading likely",
+      f3n3: "Step 3", f3d3: "Plan wider / deeper conization",
+      s4c1a: "Model discrimination", s4c1b: "Se 60% · Sp 94.4% at max Youden · OR 0.035 (P=0.02)",
+      s4a: "<strong>ΔCt ≥ 4.34</strong>: upgrading less likely — may defer or narrow surgery.",
+      s4b: "<strong>Goal</strong>: right-size treatment, avoid under- and over-treatment.",
+      s4c: "<strong>Any candidate</strong> for conization with pre-op methylation can be stratified.",
+      s4d: "Cut-off ΔCt PAX1 = 4.34 defined by maximizing Youden index.",
+      s4t: "Independent Risk Factors",
+      s4n1: "ΔCt PAX1", s4d1: "95% CI 0.644–0.956 · P=0.016",
+      s4n2: "Cervical canal lesion", s4d2: "95% CI 1.014–11.870 · P=0.048",
+      s4c1: "ΔCt PAX1/JAM3 — not-upgrade group significantly higher (P<0.01).",
+      s4c2: "Logistic prediction model components.",
+      s5t: "Model Validation",
+      s5c1: "Calibration — mean abs error 0.031 (bootstrap ×1000).",
+      s5c2: "DCA — net benefit across 0–0.3 thresholds.",
+      s5a: "<strong>Discrimination</strong>: AUC 0.818 — good ability to distinguish upgrading.",
+      s5b: "<strong>Calibration & utility</strong>: predicted vs actual agree (err 0.031); DCA favors model over treat-all/none.",
+      s5d: "Well-calibrated and clinically useful across decision thresholds.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>ΔCt PAX1 < 4.34</b> strongly suggests pathological upgrading before conization — a non-invasive triage marker to guide surgery timing and extent.",
+      c2: "<b>Model (ΔCt PAX1 + canal lesions)</b>: AUC 0.818 with 94.4% specificity — helps avoid both delayed treatment and unnecessary conization."
+    },
+    zh: {
+      kicker: "Sci Rep · 2025;15:17684 · 预测研究 · 中国",
+      title: "PAX1/JAM3 甲基化预测锥切术前宫颈病变的病理升级",
+      title_alt: "PAX1/JAM3 Methylation Predicts Pathological Upgrading Before Conization",
+      subtitle: "88 例建模研究 · ΔCt PAX1 + 宫颈管病变预测升级（AUC 0.818、特异度 94.4%）· 阈值 ΔCt PAX1 < 4.34 提示升级风险",
+      authors: "陈晓艳、徐虎斌、赵灵倩、蒋海民、寿华锋（通讯）",
+      source: '浙江省人民医院 · CISCER® 试剂盒（NMPA III 类，No. 20233400253）· doi: <a href="https://doi.org/10.1038/s41598-025-01422-3" target="_blank" rel="noopener">10.1038/s41598-025-01422-3</a>',
+      s1t: "背景与目的",
+      s1a: "<strong>问题</strong>：阴道镜活检与锥切病理常不一致——升级 23.1%、降级 33.6%。",
+      s1b: "<strong>后果</strong>：漏诊延误治疗；过度诊断导致不必要手术（妊娠风险）。",
+      s1c: "<strong>目的</strong>：用无创 PAX1/JAM3 甲基化预测锥切前病理升级。",
+      s2t: "研究设计与队列",
+      s2s1: "阴道镜患者", s2s2: "例纳入", s2s3: "家中心",
+      s2s4: "例收集", s2s5: "例排除", s2s6: "例分析",
+      ch1: "2020.12", ch2: "阴道镜 + 甲基化", ch3: "2022.4 · 锥切",
+      ws1: "阴道镜活检", ws2: "甲基化（ΔCt PAX1/JAM3）", ws3: "锥切病理",
+      s2a: "<strong>地点</strong>：浙江省人民医院，2020.12–2022.4；两名病理医师。",
+      s2b: "<strong>升级定义</strong>：CIN1→CIN2/3+ · CIN2→CIN3/癌 · CIN3→癌。",
+      s2c: "<strong>检测</strong>：CISCER® 实时 PCR 试剂盒（NMPA III 类），GAPDH 内参。",
+      s2d: "<strong>分析</strong>：单因素 + 多因素 Logistic；ROC/Youden；校准 + DCA。",
+      s2f: "<strong>病理</strong>：2020 WHO 分类；取最高级别；两名病理医师。",
+      up1: "CDB CIN1", up1r: "CIN2 / CIN3 / 癌", up2: "CDB CIN2", up2r: "CIN3 / 癌", up3: "CDB CIN3", up3r: "宫颈癌",
+      s2g: "升级 = 锥切病理较阴道镜活检高一级（2020 WHO）。",
+      s2h: "阳性判读：ΔCt PAX1 ≤ 6.6 / ΔCt JAM3 ≤ 10.0（CISCER®）。",
+      ex_h1: "排除标准", ex1: "① CDB 癌 / AIS / 腺癌", ex2: "② 院外锥切 / 无法锥切", ex3: "③ 失访", ex4: "④ 既往宫颈治疗 / 子宫切除 / 放化疗",
+      s3t: "预测模型 —— ROC",
+      s3s1: "AUC（0.720–0.916）", s3s2: "特异度", s3s3: "灵敏度",
+      s3c1: "ROC——ΔCt PAX1 + 宫颈管病变预测升级；区分度良好。",
+      s3c2a: "PAX1 阈值（最大 Youden）", s3c2b: "ΔCt PAX1 越低 → 升级风险越高",
+      s3a: "<strong>模型</strong>：ΔCt PAX1 + 宫颈管病变；多因素分析均为独立预测因素。",
+      s4t: "临床应用",
+      f3n1: "第 1 步", f3d1: "术前测 ΔCt PAX1",
+      f3n2: "第 2 步", f3d2: "ΔCt < 4.34 → 升级可能",
+      f3n3: "第 3 步", f3d3: "计划更宽/更深锥切",
+      s4c1a: "模型区分度", s4c1b: "最大 Youden 时 Se 60% · Sp 94.4% · OR 0.035（P=0.02）",
+      s4a: "<strong>ΔCt ≥ 4.34</strong>：升级可能性低——可推迟或缩小手术。",
+      s4b: "<strong>目标</strong>：恰如其分的治疗，避免过度与不足。",
+      s4c: "<strong>任何</strong>拟锥切且术前有甲基化结果者均可分层。",
+      s4d: "阈值 ΔCt PAX1 = 4.34 由最大化 Youden 指数确定。",
+      s4t: "独立危险因素",
+      s4n1: "ΔCt PAX1", s4d1: "95% CI 0.644–0.956 · P=0.016",
+      s4n2: "宫颈管病变", s4d2: "95% CI 1.014–11.870 · P=0.048",
+      s4c1: "ΔCt PAX1/JAM3——未升级组显著更高（P&lt;0.01）。",
+      s4c2: "Logistic 预测模型组成。",
+      s5t: "模型验证",
+      s5c1: "校准曲线——平均绝对误差 0.031（bootstrap ×1000）。",
+      s5c2: "DCA——0–0.3 阈值区间净获益。",
+      s5a: "<strong>区分度</strong>：AUC 0.818——区分升级能力良好。",
+      s5b: "<strong>校准与效用</strong>：预测与实际一致（误差 0.031）；DCA 优于全部干预/不干预。",
+      s5d: "校准良好，跨决策阈值均具临床效用。",
+      c_ttl: "临床意义",
+      c1: "<b>ΔCt PAX1 < 4.34</b> 强烈提示锥切前病理升级——可作为无创分诊标志物，指导手术时机与范围。",
+      c2: "<b>预测模型（ΔCt PAX1 + 宫颈管病变）</b>：AUC 0.818、特异度 94.4%——兼顾避免延误治疗与不必要锥切。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CISCER Across Cervical Transformation Zones — Zhong 2026</title>
+<!--
+  设计说明（布局 BA：转化区亚组 + ROC）：
+  - 标题带 → hero（1398 例 · TZ-3 Se 81.5% · TZ-3 AUC 0.856 · 转诊 2.9/1）
+  - 左列：① 转化区与筛查 ② 研究设计（1782→1398 队列）
+  - 右列：③ TZ 亚组性能矩阵（表 4×4 行）④ ROC 图 + 侧栏（转诊效率）⑤ 风险分层
+  - 临床意义带
+-->
+<style>
+  :root { --primary:#D74B4A; --secondary:#F07A76; --accent:#F7C9C7; --accent-deep:#B83A39;
+    --bg:#FFFFFF; --panel:rgba(233,233,233,0.55); --panel-alt:rgba(240,122,118,0.10);
+    --text:#3A3232; --muted:#5C5252; --line:rgba(215,75,74,0.22); }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:100%; height:100%; overflow:hidden; font-family:"Segoe UI","Helvetica Neue",Arial,"Microsoft YaHei",sans-serif; color:var(--text); background:var(--bg); }
+  body { display:flex; align-items:center; justify-content:center; }
+  .poster { width:2100px; height:1080px; display:flex; flex-direction:column; background:#FFF; padding:14px 26px; zoom:calc(min(100vw/2100px,100vh/1080px)); flex:none; position:relative; }
+
+  .titleband { background:linear-gradient(135deg,rgba(215,75,74,0.94),rgba(215,75,74,0.86) 50%,rgba(240,122,118,0.9)); color:#fff; padding:13px 32px 12px; flex:0 0 auto; border-radius:10px 10px 0 0; position:relative; overflow:hidden; }
+  .langswitch { position:absolute; top:12px; right:18px; display:flex; gap:4px; background:rgba(255,255,255,0.18); border-radius:16px; padding:3px; z-index:3; }
+  .langswitch button { border:none; background:transparent; color:#fff; cursor:pointer; font:600 11px/1 "Segoe UI",sans-serif; padding:5px 12px; border-radius:13px; letter-spacing:.5px; }
+  .langswitch button.on { background:#fff; color:var(--accent-deep); }
+  .kicker { font-size:12px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.9); font-weight:600; margin-bottom:4px; padding-right:150px; }
+  .titleband h1 { font-size:24px; font-weight:700; line-height:1.16; max-width:1740px; }
+  .titleband .title_alt { font-size:15px; font-weight:500; line-height:1.3; color:rgba(255,255,255,0.88); margin-top:3px; max-width:1740px; }
+  .titleband .subtitle { font-size:13.5px; color:rgba(255,255,255,0.92); margin-top:4px; max-width:1800px; }
+  .titleband .meta { margin-top:6px; border-top:1px solid rgba(255,255,255,0.32); padding-top:5px; font-size:11px; line-height:1.35; color:rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight:600; color:#FFF; }
+
+  .hero { flex:0 0 auto; height:92px; background:#FFF; border:1px solid var(--line); border-bottom:none; display:flex; align-items:stretch; gap:10px; padding:8px 6px; }
+  .hero .stat { flex:1; background:var(--panel-alt); border:1px solid rgba(215,75,74,0.28); border-radius:8px; padding:6px; text-align:center; display:flex; flex-direction:column; justify-content:center; }
+  .hero .stat .big { font-size:20px; font-weight:800; color:var(--primary); line-height:1.05; }
+  .hero .stat .lab { font-size:9px; color:var(--muted); margin-top:2px; line-height:1.2; }
+  .hero .stat.hot { background:linear-gradient(135deg,rgba(215,75,74,0.95),rgba(240,122,118,0.92)); border-color:var(--accent-deep); }
+  .hero .stat.hot .big { color:#fff; } .hero .stat.hot .lab { color:rgba(255,255,255,0.92); font-weight:600; }
+
+  .main { flex:1 1 auto; min-height:0; display:grid; grid-template-columns:560px minmax(0,1fr); gap:14px; padding-top:10px; }
+  .col { display:flex; flex-direction:column; gap:10px; min-height:0; min-width:0; }
+  .panel { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:8px 14px 6px; flex:0 0 auto; display:flex; flex-direction:column; min-height:0; overflow:hidden; }
+  .panel.grow { flex:1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .cmp, .panel .figrow, .panel .tnote { flex:0 0 auto; }
+  .panel h3 { font-size:14px; font-weight:700; color:var(--primary); border-bottom:2px solid var(--accent-deep); padding-bottom:3px; margin-bottom:5px; display:flex; align-items:center; gap:6px; }
+  .panel h3 .num { display:inline-flex; align-items:center; justify-content:center; width:19px; height:19px; background:rgba(215,75,74,0.85); color:#fff; border-radius:5px; font-size:11px; flex:0 0 auto; }
+  .panel p, .panel li { font-size:12px; line-height:1.4; color:var(--muted); }
+  .panel ul { list-style:none; }
+  .panel ul li { padding-left:14px; position:relative; margin-bottom:5px; }
+  body.lang-en .panel ul li { margin-bottom:7px; }
+  .panel ul li::before { content:""; position:absolute; left:0; top:6px; width:6px; height:6px; border-radius:50%; background:var(--secondary); }
+  .panel ul li strong { color:var(--primary); }
+  .panel ul li:last-child { margin-bottom:0; }
+
+  .statrow { display:flex; gap:8px; margin:0 0 5px; }
+  .stat { flex:1; background:#fff; border:1px solid var(--line); border-radius:6px; padding:10px 4px; text-align:center; }
+  .stat .big { font-size:17px; font-weight:800; color:var(--primary); line-height:1.05; }
+  .stat .lab { font-size:9px; color:var(--muted); margin-top:2px; line-height:1.2; }
+  .stat.hot { background:linear-gradient(135deg,rgba(215,75,74,0.95),rgba(240,122,118,0.92)); border-color:var(--accent-deep); }
+  .stat.hot .big { color:#fff; } .stat.hot .lab { color:rgba(255,255,255,0.92); font-weight:600; }
+
+  .cmp { width:100%; border-collapse:collapse; margin-bottom:5px; }
+  .cmp th, .cmp td { border:1px solid rgba(215,75,74,0.25); font-size:10px; padding:3.5px 5px; text-align:center; line-height:1.2; }
+  .cmp th { background:rgba(215,75,74,0.85); color:#fff; font-weight:700; }
+  .cmp td:first-child { text-align:left; font-weight:600; color:var(--text); }
+  .cmp tr.hot td { background:var(--panel-alt); }
+
+  .figrow { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr); gap:12px; align-items:center; }
+  .figrow .fig { text-align:center; align-self:center; }
+  .figrow .fig img { max-height:240px; width:auto; max-width:100%; display:block; margin:0 auto; align-self:center; }
+  .figrow .side { min-width:0; }
+  .figrow .side ul li { font-size:11.5px; }
+
+  .tnote { font-size:10px; color:var(--muted); line-height:1.36; margin-top:6px; }
+  .tnote b { color:var(--accent-deep); }
+
+  .clinical { flex:0 0 auto; background:linear-gradient(135deg,rgba(215,75,74,0.92),rgba(215,75,74,0.8) 60%,rgba(240,122,118,0.88)); border-radius:0 0 10px 10px; color:#fff; padding:10px 26px; display:flex; gap:20px; align-items:center; }
+  .clinical .ttl { font-size:15px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.95); flex:0 0 auto; border-right:1.5px solid rgba(255,255,255,0.35); padding-right:16px; }
+  .clinical ul { list-style:none; flex:1 1 auto; min-width:0; }
+  .clinical ul li { font-size:13px; line-height:1.48; color:rgba(255,255,255,0.96); padding-left:15px; position:relative; margin-bottom:3px; }
+  .clinical ul li:last-child { margin-bottom:0; }
+  .clinical ul li::before { content:"▸"; position:absolute; left:0; top:0; color:#FFD9D6; }
+  .clinical ul li b { color:#FFE3E1; }
+  body.lang-zh .panel ul li { line-height:1.66; margin-bottom:6px; }
+  .zhonly { display:none; }
+  body.lang-zh .zhonly { display:flex; }
+  body.lang-zh .zhonly.block { display:block; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Research Article · Tumor Markers</div>
+    <h1 data-i18n="title">Clinical Utility of Cytological Methylation Assay in Cervical Cancer Screening Across Various Transformation Zones</h1>
+    <div class="title_alt" data-i18n="title_alt">细胞学甲基化检测在不同宫颈转化区的宫颈癌筛查临床应用价值</div>
+    <div class="subtitle" data-i18n="subtitle">1782 colposcopy-referred women · 1190 with TZ classification · CISCER vs LBC vs hrHPV across TZ-1/2/3</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Zhong X, Jin X, Cheng Y, Chao X, Kong L, Wang J, Liu P, Liou Y, Xin D, Lang J, Li L · PUMCH · Origin-Poly · Tsinghua Changgung · Chuiyangliu</div>
+      <div class="source" data-i18n="source">Int J Cancer 2026 · Received 30 Jan 2026 · Accepted 28 May 2026</div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="stat hot"><div class="big">1398</div><div class="lab" data-i18n="h1">women analyzed</div></div>
+    <div class="stat hot"><div class="big">81.5%</div><div class="lab" data-i18n="h2">TZ-3 Se (CIN3+)</div></div>
+    <div class="stat hot"><div class="big">0.856</div><div class="lab" data-i18n="h3">TZ-3 AUC</div></div>
+    <div class="stat"><div class="big">2.9→3.2</div><div class="lab" data-i18n="h4">colposcopy/CIN3+</div></div>
+  </div>
+
+  <main class="main">
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Transformation Zones &amp; Screening</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">TZ-1/2</div><div class="lab" data-i18n="s1s1">visible SCJ</div></div>
+          <div class="stat"><div class="big">TZ-3</div><div class="lab" data-i18n="s1s2">SCJ not visible</div></div>
+          <div class="stat"><div class="big">90-70-90</div><div class="lab" data-i18n="s1s3">WHO targets</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s1a"><strong>TZ types</strong>: TZ-1/2 — squamocolumnar junction fully/partially visible; TZ-3 — junction not visible (atrophy, post-treatment).</li>
+          <li data-i18n="s1b"><strong>Challenge</strong>: TZ-3 colposcopy is difficult, raising missed CIN3+ and unnecessary referrals in routine screening.</li>
+          <li data-i18n="s1c"><strong>Question</strong>: does cytological PAX1/JAM3 methylation (CISCER) perform consistently across TZ types?</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">1782</div><div class="lab" data-i18n="s2s1">screened</div></div>
+          <div class="stat hot"><div class="big">1398</div><div class="lab" data-i18n="s2s2">analyzed</div></div>
+          <div class="stat"><div class="big">1190</div><div class="lab" data-i18n="s2s3">TZ classified</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Setting</strong>: Nov 2020–Oct 2022, PUMCH colposcopy referrals; all underwent LBC + hrHPV genotyping + CISCER.</li>
+          <li data-i18n="s2b"><strong>Endpoint</strong>: CIN3+ detection; performance compared across all women and TZ-1/TZ-2/TZ-3 subgroups.</li>
+          <li data-i18n="s2c"><strong>Comparators</strong>: LBC ≥ASC-US · hrHPV+ · HPV16/18+ · hrHPV+CISCER combined strategy.</li>
+          <li data-i18n="s2d"><strong>Outcomes</strong>: Se/Sp/AUC, CIN3+ risk given positive test, colposcopy referrals per CIN3+ detected.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">34.6%</div><div class="lab" data-i18n="s2s4">CIN3+ risk overall</div></div>
+          <div class="stat"><div class="big">31.4%</div><div class="lab" data-i18n="s2s5">CIN3+ risk TZ-3</div></div>
+          <div class="stat"><div class="big">CISCER+</div><div class="lab" data-i18n="s2s6">highest risk marker</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2e"><strong>Specimen</strong>: same cytology sample used for LBC and methylation — no extra collection step.</li>
+          <li data-i18n="s2f"><strong>Classification</strong>: TZ type recorded at colposcopy; ECC used where indicated for TZ-3.</li>
+          <li data-i18n="s2g"><strong>Reference</strong>: histopathology (biopsy/ECC/conization) as the CIN3+ standard.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">1782</div><div class="lab" data-i18n="s2s7">referred</div></div>
+          <div class="stat"><div class="big">384</div><div class="lab" data-i18n="s2s8">excluded</div></div>
+          <div class="stat"><div class="big">208</div><div class="lab" data-i18n="s2s9">no TZ record</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2h"><strong>Timeline</strong>: 2-year enrollment (Nov 2020 – Oct 2022) at a national referral center.</li>
+          <li data-i18n="s2i"><strong>Subgroup</strong>: 1190 women with documented TZ classification formed the TZ analysis set.</li>
+        </ul>
+        <div class="zhonly block" style="margin-top:3px;"><span class="tnote" data-i18n="s2z">设计要点：全部受试者接受 LBC、hrHPV 分型与 CISCER 三种检测，以组织病理 CIN3+ 为终点，按 TZ 亚组比较诊断性能与转诊效率。</span></div>
+      </div>
+    </section>
+
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">3</span><span data-i18n="s3t">CISCER Performance by TZ (CIN3+)</span></h3>
+        <table class="cmp">
+          <tr><th data-i18n="c3h1">Group</th><th data-i18n="c3h2">Se %</th><th data-i18n="c3h3">Sp %</th><th data-i18n="c3h4">AUC</th><th data-i18n="c3h5">CIN3+ risk</th><th data-i18n="c3h6">Ref/CIN3+</th></tr>
+          <tr class="hot"><td>All women</td><td>67.4</td><td>91.0</td><td>0.792</td><td>34.6%</td><td>2.9</td></tr>
+          <tr><td>TZ-1</td><td>72.0</td><td>94.2</td><td>0.831</td><td>—</td><td>—</td></tr>
+          <tr><td>TZ-2</td><td>48.3</td><td>91.3</td><td>0.698</td><td>—</td><td>—</td></tr>
+          <tr class="hot"><td>TZ-3</td><td>81.5</td><td>89.8</td><td>0.856</td><td>31.4%</td><td>3.2</td></tr>
+        </table>
+        <div class="tnote" data-i18n="s3n">CISCER achieved the highest diagnostic accuracy vs LBC≥ASC-US, hrHPV+ and HPV16/18+ in every TZ group; strongest gain in TZ-3 (AUC 0.856, Se 81.5%).</div>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">ROC &amp; Referral Efficiency</span></h3>
+        <div class="figrow">
+          <div class="fig"><img src="images/fig_roc_tz.jpg" alt="ROC across TZ"></div>
+          <div class="side">
+            <ul>
+              <li data-i18n="s4a"><strong>TZ-3 best</strong>: highest AUC among all strategies — improved CIN3+ discrimination where colposcopy is hardest.</li>
+              <li data-i18n="s4b"><strong>Fewest referrals</strong>: 2.9 (overall) and 3.2 (TZ-3) colposcopies per CIN3+ detected vs conventional tests.</li>
+              <li data-i18n="s4c"><strong>Combination</strong>: hrHPV + CISCER further improved risk stratification.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Risk Stratification &amp; Utility</span></h3>
+        <ul>
+          <li data-i18n="s5a"><strong>Highest positive risk</strong>: CISCER+ carried the highest CIN3+ probability (34.6% overall, 31.4% TZ-3) — better than LBC/hrHPV positivity.</li>
+          <li data-i18n="s5b"><strong>Referral reduction</strong>: substantially fewer unnecessary colposcopies than cytology and HPV genotyping.</li>
+          <li data-i18n="s5c"><strong>Across TZ spectrum</strong>: consistent high specificity (≥89.8%) in all subgroups — low false-positive referral burden.</li>
+          <li data-i18n="s5d"><strong>Practical role</strong>: cytological methylation assay fits routine screening workflows, including TZ-3 women.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">≥89.8</div><div class="lab" data-i18n="s5s1">Sp % all TZ</div></div>
+          <div class="stat"><div class="big">0.856</div><div class="lab" data-i18n="s5s2">TZ-3 AUC</div></div>
+          <div class="stat"><div class="big">2.9</div><div class="lab" data-i18n="s5s3">ref per CIN3+</div></div>
+        </div>
+        <div class="tnote" data-i18n="s5n">CISCER: PAX1/JAM3 methylation in cervical cytology specimens; same-sample workflow as LBC.</div>
+      </div>
+    </section>
+  </main>
+
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Works where it matters most</b>: CISCER delivers the best CIN3+ discrimination in TZ-3 — the hardest-to-screen subgroup — improving accuracy and cutting unnecessary referrals.</li>
+      <li data-i18n="c2"><b>One assay, all zones</b>: consistent high specificity across TZ-1/2/3 supports cytological methylation as a reliable screening/triage adjunct.</li>
+    </ul>
+  </div>
+
+</div>
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Research Article · Tumor Markers",
+      title: "Clinical Utility of Cytological Methylation Assay in Cervical Cancer Screening Across Various Transformation Zones",
+      title_alt: "细胞学甲基化检测在不同宫颈转化区的宫颈癌筛查临床应用价值",
+      subtitle: "1782 colposcopy-referred women · 1190 with TZ classification · CISCER vs LBC vs hrHPV across TZ-1/2/3",
+      authors: "Zhong X, Jin X, Cheng Y, Chao X, Kong L, Wang J, Liu P, Liou Y, Xin D, Lang J, Li L · PUMCH · Origin-Poly · Tsinghua Changgung · Chuiyangliu",
+      source: "Int J Cancer 2026 · Received 30 Jan 2026 · Accepted 28 May 2026",
+      h1: "women analyzed", h2: "TZ-3 Se (CIN3+)", h3: "TZ-3 AUC", h4: "colposcopy/CIN3+",
+      s1t: "Transformation Zones & Screening",
+      s1s1: "visible SCJ", s1s2: "SCJ not visible", s1s3: "WHO targets",
+      s1a: "<strong>TZ types</strong>: TZ-1/2 — squamocolumnar junction fully/partially visible; TZ-3 — junction not visible (atrophy, post-treatment).",
+      s1b: "<strong>Challenge</strong>: TZ-3 colposcopy is difficult, raising missed CIN3+ and unnecessary referrals in routine screening.",
+      s1c: "<strong>Question</strong>: does cytological PAX1/JAM3 methylation (CISCER) perform consistently across TZ types?",
+      s2t: "Study Design",
+      s2s1: "screened", s2s2: "analyzed", s2s3: "TZ classified",
+      s2a: "<strong>Setting</strong>: Nov 2020–Oct 2022, PUMCH colposcopy referrals; all underwent LBC + hrHPV genotyping + CISCER.",
+      s2b: "<strong>Endpoint</strong>: CIN3+ detection; performance compared across all women and TZ-1/TZ-2/TZ-3 subgroups.",
+      s2c: "<strong>Comparators</strong>: LBC ≥ASC-US · hrHPV+ · HPV16/18+ · hrHPV+CISCER combined strategy.",
+      s2d: "<strong>Outcomes</strong>: Se/Sp/AUC, CIN3+ risk given positive test, colposcopy referrals per CIN3+ detected.",
+      s2e: "<strong>Specimen</strong>: same cytology sample used for LBC and methylation — no extra collection step.",
+      s2f: "<strong>Classification</strong>: TZ type recorded at colposcopy; ECC used where indicated for TZ-3.",
+      s2g: "<strong>Reference</strong>: histopathology (biopsy/ECC/conization) as the CIN3+ standard.",
+      s2s7: "referred", s2s8: "excluded", s2s9: "no TZ record",
+      s2h: "<strong>Timeline</strong>: 2-year enrollment (Nov 2020 – Oct 2022) at a national referral center.",
+      s2i: "<strong>Subgroup</strong>: 1190 women with documented TZ classification formed the TZ analysis set.",
+      s2s4: "CIN3+ risk overall", s2s5: "CIN3+ risk TZ-3", s2s6: "highest risk marker",
+      s2z: "设计要点：全部受试者接受 LBC、hrHPV 分型与 CISCER 三种检测，以组织病理 CIN3+ 为终点，按 TZ 亚组比较诊断性能与转诊效率。",
+      s3t: "CISCER Performance by TZ (CIN3+)",
+      c3h1: "Group", c3h2: "Se %", c3h3: "Sp %", c3h4: "AUC", c3h5: "CIN3+ risk", c3h6: "Ref/CIN3+",
+      s3n: "CISCER achieved the highest diagnostic accuracy vs LBC≥ASC-US, hrHPV+ and HPV16/18+ in every TZ group; strongest gain in TZ-3 (AUC 0.856, Se 81.5%).",
+      s4t: "ROC & Referral Efficiency",
+      s4a: "<strong>TZ-3 best</strong>: highest AUC among all strategies — improved CIN3+ discrimination where colposcopy is hardest.",
+      s4b: "<strong>Fewest referrals</strong>: 2.9 (overall) and 3.2 (TZ-3) colposcopies per CIN3+ detected vs conventional tests.",
+      s4c: "<strong>Combination</strong>: hrHPV + CISCER further improved risk stratification.",
+      s5t: "Risk Stratification & Utility",
+      s5a: "<strong>Highest positive risk</strong>: CISCER+ carried the highest CIN3+ probability (34.6% overall, 31.4% TZ-3) — better than LBC/hrHPV positivity.",
+      s5b: "<strong>Referral reduction</strong>: substantially fewer unnecessary colposcopies than cytology and HPV genotyping.",
+      s5c: "<strong>Across TZ spectrum</strong>: consistent high specificity (≥89.8%) in all subgroups — low false-positive referral burden.",
+      s5d: "<strong>Practical role</strong>: cytological methylation assay fits routine screening workflows, including TZ-3 women.",
+      s5s1: "Sp % all TZ", s5s2: "TZ-3 AUC", s5s3: "ref per CIN3+",
+      s5n: "CISCER: PAX1/JAM3 methylation in cervical cytology specimens; same-sample workflow as LBC.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Works where it matters most</b>: CISCER delivers the best CIN3+ discrimination in TZ-3 — the hardest-to-screen subgroup — improving accuracy and cutting unnecessary referrals.",
+      c2: "<b>One assay, all zones</b>: consistent high specificity across TZ-1/2/3 supports cytological methylation as a reliable screening/triage adjunct."
+    },
+    zh: {
+      kicker: "研究论文 · 肿瘤标志物",
+      title: "细胞学甲基化检测在不同宫颈转化区的宫颈癌筛查临床应用价值",
+      title_alt: "Clinical Utility of Cytological Methylation Assay in Cervical Cancer Screening Across Various Transformation Zones",
+      subtitle: "1782 例阴道镜转诊 · 1190 例有 TZ 分类 · CISCER vs LBC vs hrHPV 跨 TZ-1/2/3",
+      authors: "钟晓瑛、金西桐、程亚楠、晁小佩、孔令华、王婧、刘培、刘玉立、辛德梅、郎景和、李雷 · 北京协和医院 · 起源聚禾 · 清华长庚 · 垂杨柳",
+      source: "Int J Cancer 2026 · 收稿 2026-01-30 · 接收 2026-05-28",
+      h1: "分析人数", h2: "TZ-3 Se (CIN3+)", h3: "TZ-3 AUC", h4: "阴道镜/CIN3+",
+      s1t: "转化区与筛查",
+      s1s1: "可见鳞柱交界", s1s2: "交界不可见", s1s3: "WHO 目标",
+      s1a: "<strong>TZ 类型</strong>：TZ-1/2——鳞柱交界完全/部分可见；TZ-3——交界不可见（萎缩、治疗后）。",
+      s1b: "<strong>挑战</strong>：TZ-3 阴道镜检查困难，增加 CIN3+ 漏诊与不必要转诊。",
+      s1c: "<strong>问题</strong>：细胞学 PAX1/JAM3 甲基化（CISCER）在不同 TZ 类型是否表现一致？",
+      s2t: "研究设计",
+      s2s1: "筛查", s2s2: "分析", s2s3: "TZ 分类",
+      s2a: "<strong>场景</strong>：2020.11–2022.10 北京协和医院阴道镜转诊；全部行 LBC + hrHPV 分型 + CISCER。",
+      s2b: "<strong>终点</strong>：CIN3+ 检出；在全人群与 TZ-1/2/3 亚组间比较性能。",
+      s2c: "<strong>对照</strong>：LBC ≥ASC-US · hrHPV+ · HPV16/18+ · hrHPV+CISCER 联合策略。",
+      s2d: "<strong>结局</strong>：Se/Sp/AUC、阳性时 CIN3+ 风险、每检出 1 例 CIN3+ 的阴道镜转诊数。",
+      s2e: "<strong>标本</strong>：同一细胞学样本用于 LBC 与甲基化——无需额外采集。",
+      s2f: "<strong>分类</strong>：阴道镜记录 TZ 类型；TZ-3 酌情行 ECC。",
+      s2g: "<strong>金标准</strong>：组织病理（活检/ECC/锥切）作为 CIN3+ 标准。",
+      s2s7: "转诊", s2s8: "排除", s2s9: "无 TZ 记录",
+      s2h: "<strong>时间线</strong>：国家转诊中心 2 年入组（2020.11–2022.10）。",
+      s2i: "<strong>亚组</strong>：1190 例有 TZ 分类记录构成 TZ 分析集。",
+      s2s4: "总体 CIN3+ 风险", s2s5: "TZ-3 CIN3+ 风险", s2s6: "最高风险标志",
+      s2z: "设计要点：全部受试者接受 LBC、hrHPV 分型与 CISCER 三种检测，以组织病理 CIN3+ 为终点，按 TZ 亚组比较诊断性能与转诊效率。",
+      s3t: "CISCER 各 TZ 性能（CIN3+）",
+      c3h1: "分组", c3h2: "Se %", c3h3: "Sp %", c3h4: "AUC", c3h5: "CIN3+ 风险", c3h6: "转诊/CIN3+",
+      s3n: "每个 TZ 组中 CISCER 均优于 LBC≥ASC-US、hrHPV+ 与 HPV16/18+；TZ-3 增益最大（AUC 0.856、Se 81.5%）。",
+      s4t: "ROC 与转诊效率",
+      s4a: "<strong>TZ-3 最佳</strong>：所有策略中 AUC 最高——在阴道镜最困难处改善 CIN3+ 分辨。",
+      s4b: "<strong>转诊最少</strong>：每检出 1 例 CIN3+ 仅需 2.9（总体）/3.2（TZ-3）次阴道镜，优于传统检测。",
+      s4c: "<strong>联合</strong>：hrHPV + CISCER 进一步改善风险分层。",
+      s5t: "风险分层与价值",
+      s5a: "<strong>阳性风险最高</strong>：CISCER+ 的 CIN3+ 概率最高（总体 34.6%、TZ-3 31.4%）——优于 LBC/hrHPV 阳性。",
+      s5b: "<strong>减少转诊</strong>：不必要阴道镜显著少于细胞学与 HPV 分型。",
+      s5c: "<strong>全 TZ 谱</strong>：各亚组特异度一致高（≥89.8%）——假阳性转诊负担低。",
+      s5d: "<strong>实用角色</strong>：细胞学甲基化检测契合常规筛查流程，包括 TZ-3 女性。",
+      s5s1: "全 TZ Sp %", s5s2: "TZ-3 AUC", s5s3: "每 CIN3+ 转诊",
+      s5n: "CISCER：宫颈细胞学标本 PAX1/JAM3 甲基化；与 LBC 同样本流程。",
+      c_ttl: "临床意义",
+      c1: "<b>在最难处最有效</b>：CISCER 在 TZ-3——最难筛查亚组——提供最佳 CIN3+ 分辨，提升准确性并减少不必要转诊。",
+      c2: "<b>一测覆盖全区域</b>：TZ-1/2/3 特异度一致高，支持细胞学甲基化作为可靠的筛查/分流补充。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

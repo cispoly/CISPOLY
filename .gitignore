@@ -1,0 +1,46 @@
+# ===== 依赖与构建产物（可再生） =====
+node_modules/
+dist/
+tsconfig.tsbuildinfo
+.preview/
+
+# Python 海报工具链环境
+.venv/
+__pycache__/
+
+# ===== src/data 生成文件（npm run build 时由 build-data.ts 重新生成，勿手工编辑） =====
+# 注意：src/data 下其余文件（修正层 JSON、*.en.json 英文翻译、china-map.json、医院数据 ts）
+# 都是手工维护的输入，必须提交入库，不要加入忽略列表！
+src/data/papers.json
+src/data/guidelines.json
+src/data/blogs.json
+src/data/products.json
+src/data/company.json
+src/data/index.json
+src/data/papers.body.json
+src/data/guidelines.body.json
+src/data/blogs.body.json
+
+# ===== 可再生的静态资源（build-data.ts 从 source/blogs 自动复制） =====
+public/blogs/
+
+# ===== 本地原始素材归档（本地保留备查，不入库） =====
+# 论文/指南原始 PDF（已解析为 md + paper-fields-v2.json）
+source/pdf/
+# 海报草稿区（线上实际使用 public/posters/）
+source/blogs/posters/
+# hero 图与期刊封面原图（public/ 内已放压缩版）
+source/images/
+# 产品资料 PDF（内容已固化进 build-data.ts 的 PRODUCTS/COMPANY 常量）
+source/product_infomation/
+# 微信导入工作区的原始图片（构建不读取）
+source/blogs/cispoly-news-update/raw/asserts/
+
+# ===== 编辑器与系统 =====
+.DS_Store
+*.local
+.vscode/
+.obsidian/
+
+# AI 工具本地配置
+.claudian/

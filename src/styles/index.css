@@ -1,0 +1,228 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* 标题字距收紧，更高级 */
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply tracking-tight;
+  }
+
+  ::selection {
+    @apply bg-brand-100 text-brand-700;
+  }
+}
+
+@layer components {
+  /* 版心容器 */
+  .shell {
+    @apply mx-auto w-full max-w-shell px-6 md:px-10 lg:px-16;
+  }
+
+  /* 小节标题统一前缀装饰 */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-brand-600;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply inline-block h-px w-8 bg-brand-500;
+  }
+
+  /* 主按钮 */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-7 py-3.5 text-sm font-semibold text-white shadow-soft transition-all duration-300 hover:bg-brand-600 hover:shadow-lift active:scale-[0.98];
+  }
+
+  /* 次按钮（描边） */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink/15 bg-white/70 px-7 py-3.5 text-sm font-semibold text-ink backdrop-blur transition-all duration-300 hover:border-brand-300 hover:text-brand-600;
+  }
+
+  /* 通用卡片 */
+  .card {
+    @apply rounded-2xl border border-line bg-white shadow-soft transition-all duration-500;
+  }
+  .card-hover {
+    @apply hover:-translate-y-1.5 hover:border-brand-200 hover:shadow-card;
+  }
+
+  /* prose 排版（博客/详情 markdown） */
+  .prose-cispoly {
+    @apply text-[15px] leading-[1.85] text-ink/90;
+  }
+  .prose-cispoly h1 {
+    @apply mb-5 mt-10 text-2xl font-bold text-ink;
+  }
+  .prose-cispoly h2 {
+    @apply mb-4 mt-9 border-l-4 border-brand-500 pl-3 text-xl font-bold text-ink;
+  }
+  .prose-cispoly h3 {
+    @apply mb-3 mt-6 text-lg font-semibold text-ink;
+  }
+  .prose-cispoly p {
+    @apply my-4;
+  }
+  .prose-cispoly ul {
+    @apply my-4 list-disc space-y-1.5 pl-5;
+  }
+  .prose-cispoly ol {
+    @apply my-4 list-decimal space-y-1.5 pl-5;
+  }
+  .prose-cispoly blockquote {
+    @apply my-5 border-l-4 border-brand-200 bg-brand-50/50 py-2 pl-4 italic text-inkSoft;
+  }
+  .prose-cispoly img {
+    @apply my-6 rounded-xl shadow-soft;
+  }
+  .prose-cispoly table {
+    @apply my-6 w-full border-collapse overflow-hidden rounded-lg text-sm;
+  }
+  .prose-cispoly th {
+    @apply border border-line bg-canvas px-3 py-2 text-left font-semibold;
+  }
+  .prose-cispoly td {
+    @apply border border-line px-3 py-2;
+  }
+  .prose-cispoly a {
+    @apply text-brand-600 underline-offset-2 hover:underline;
+  }
+  .prose-cispoly code {
+    @apply rounded bg-canvas px-1.5 py-0.5 font-mono text-[0.85em] text-brand-700;
+  }
+
+  /* 博客「关于聚禾生物 / About CISPOLY」品牌横幅 */
+  .about-cispoly-banner {
+    @apply relative mt-10 mb-6 flex items-center justify-between gap-6 overflow-hidden rounded-2xl px-7 py-6 text-white shadow-lift;
+    background: linear-gradient(155deg, #e05c59 0%, #d74b4a 38%, #b33b3a 72%, #a03534 100%);
+  }
+  .about-cispoly-banner::before {
+    content: 'C';
+    @apply pointer-events-none absolute -top-10 right-2 select-none font-black leading-none text-white/[0.09];
+    font-size: 8rem;
+  }
+  .about-cispoly-banner::after {
+    content: '';
+    @apply pointer-events-none absolute -left-10 -top-14 h-40 w-40 rounded-full bg-white/15 blur-2xl;
+  }
+  .about-cispoly-banner .about-cispoly-title {
+    @apply relative text-xl font-bold tracking-tight md:text-2xl;
+  }
+  .about-cispoly-banner .about-cispoly-tag {
+    @apply relative mt-1.5 text-[11px] font-semibold uppercase tracking-[0.3em] text-white/60;
+  }
+  .about-cispoly-banner .about-cispoly-brand {
+    @apply relative shrink-0;
+  }
+  .about-cispoly-banner .about-cispoly-brand img {
+    @apply h-10 w-auto brightness-0 invert md:h-12;
+  }
+}
+
+/* 自定义滚动条（克制） */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d9d2cd;
+  border-radius: 999px;
+  border: 3px solid #faf8f6;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c4bbb4;
+}
+
+/* ===== 合作医院地图动效 ===== */
+
+/* 红点扩散环（用 transform scale + opacity，避免 SMIL 兼容问题） */
+.map-pulse-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mapPulseRing 2.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+.map-pulse-ring--slow {
+  animation-duration: 3.6s;
+  animation-delay: 0.6s;
+}
+@keyframes mapPulseRing {
+  0% {
+    transform: scale(0.35);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+/* 中心圆点呼吸（牵头点） */
+.map-dot-core {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mapDotBreath 2.2s ease-in-out infinite;
+}
+@keyframes mapDotBreath {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.18);
+  }
+}
+
+/* 南海九段线：虚线流动（明显流动效果） */
+.map-nine-line {
+  animation: mapNineFlow 3s linear infinite;
+}
+@keyframes mapNineFlow {
+  to {
+    stroke-dashoffset: -27;
+  }
+}
+
+/* 高亮省份呼吸（明显呼吸效果） */
+.map-province-active {
+  animation: mapProvinceBreath 3s ease-in-out infinite;
+}
+@keyframes mapProvinceBreath {
+  0%,
+  100% {
+    fill-opacity: 0.78;
+  }
+  50% {
+    fill-opacity: 1;
+  }
+}
+
+/* 地图容器整体淡入 */
+.map-enter {
+  animation: mapEnter 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes mapEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

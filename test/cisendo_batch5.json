@@ -1,0 +1,269 @@
+[
+  {
+    "id": "6_蔡炳昕_等_-_2024_-_禾蔻安双基因甲基化检测在子宫内膜癌筛查中的应用价值",
+    "cancer": "endometrial",
+    "kicker": "子宫内膜癌 · 兰州大学学报(医学版) 2024;50(7) · 回顾性",
+    "kicker_zh": "子宫内膜癌 · 兰州大学学报(医学版) 2024;50(7) · 回顾性",
+    "title": "禾蔻安双基因甲基化检测在子宫内膜癌筛查中的应用价值",
+    "title_zh": "禾蔻安双基因甲基化检测在子宫内膜癌筛查中的应用价值",
+    "subtitle": "216 例 AUB 患者——双基因联合灵敏度 91.2%、特异度 96.7%，优于超声与 CA125",
+    "subtitle_zh": "216 例 AUB 患者——双基因联合灵敏度 91.2%、特异度 96.7%，优于超声与 CA125",
+    "authors": "蔡炳鑫, 李刘玉, 刘博, 刘沛, 王林海, 王依杉, 刘禹利, 王子云, 杜珺",
+    "authors_zh": "蔡炳鑫, 李刘玉, 刘博, 刘沛, 王林海, 王依杉, 刘禹利, 王子云, 杜珺",
+    "source": "兰州大学学报(医学版) 2024;50(7)",
+    "source_zh": "兰州大学学报(医学版) 2024;50(7)",
+    "panels": [
+      {
+        "title": "研究背景",
+        "title_zh": "研究背景",
+        "bullets": [
+          "<strong>背景</strong>：子宫内膜癌早期筛查缺乏无创手段；超声与 CA125 灵敏度有限。",
+          "<strong>目的</strong>：评估禾蔻安（CISENDO）CDO1/CELF4 双基因甲基化检测在子宫内膜癌筛查中的应用价值。"
+        ],
+        "bullets_zh": [
+          "<strong>背景</strong>：子宫内膜癌早期筛查缺乏无创手段；超声与 CA125 灵敏度有限。",
+          "<strong>目的</strong>：评估禾蔻安（CISENDO）CDO1/CELF4 双基因甲基化检测在子宫内膜癌筛查中的应用价值。"
+        ]
+      },
+      {
+        "title": "方法",
+        "title_zh": "方法",
+        "stats": [
+          {"big": "216", "lab_en": "AUB patients", "lab_zh": "AUB 患者"},
+          {"big": "34", "lab_en": "EC cases", "lab_zh": "内膜癌 34 例"},
+          {"big": "96.7%", "lab_en": "specificity", "lab_zh": "特异度"}
+        ],
+        "bullets": [
+          "<strong>设计</strong>：回顾性单中心（2021.7–2022.6）；甘肃省妇幼保健院宫腔镜门诊。",
+          "<strong>人群</strong>：216 例异常子宫出血患者（内膜癌 34、良性 182）。",
+          "<strong>检测</strong>：TCT 剩余宫颈脱落细胞行 CDO1/CELF4 双基因甲基化（PCR-荧光探针法）；阳性 = ΔCp<sub>CDO1</sub> ≤ 8.4 或 ΔCp<sub>CELF4</sub> ≤ 8.8。",
+          "<strong>金标准</strong>：宫腔镜下内膜组织病理。"
+        ],
+        "bullets_zh": [
+          "<strong>设计</strong>：回顾性单中心（2021.7–2022.6）；甘肃省妇幼保健院宫腔镜门诊。",
+          "<strong>人群</strong>：216 例异常子宫出血患者（内膜癌 34、良性 182）。",
+          "<strong>检测</strong>：TCT 剩余宫颈脱落细胞行 CDO1/CELF4 双基因甲基化（PCR-荧光探针法）；阳性 = ΔCp<sub>CDO1</sub> ≤ 8.4 或 ΔCp<sub>CELF4</sub> ≤ 8.8。",
+          "<strong>金标准</strong>：宫腔镜下内膜组织病理。"
+        ]
+      },
+      {
+        "title": "核心结果",
+        "title_zh": "核心结果",
+        "bullets": [
+          "<strong>双基因联合</strong>：灵敏度 91.2% · 特异度 96.7% · PPV 83.8% · NPV 98.3%。",
+          "<strong>单基因</strong>：CELF4<sup>m</sup> 88.2%/97.3%（AUC 最大）；CDO1<sup>m</sup> 79.4%/97.8%。",
+          "<strong>显著优于传统</strong>：超声（灵敏度 55.9%、特异度 78.6%）与 CA125（32.4%/76.4%）。",
+          "<strong>多因素 OR</strong>：CELF4<sup>m</sup> 60.995、CDO1<sup>m</sup> 22.351、绝经 18.702、BMI 3.970。"
+        ],
+        "bullets_zh": [
+          "<strong>双基因联合</strong>：灵敏度 91.2% · 特异度 96.7% · PPV 83.8% · NPV 98.3%。",
+          "<strong>单基因</strong>：CELF4<sup>m</sup> 88.2%/97.3%（AUC 最大）；CDO1<sup>m</sup> 79.4%/97.8%。",
+          "<strong>显著优于传统</strong>：超声（灵敏度 55.9%、特异度 78.6%）与 CA125（32.4%/76.4%）。",
+          "<strong>多因素 OR</strong>：CELF4<sup>m</sup> 60.995、CDO1<sup>m</sup> 22.351、绝经 18.702、BMI 3.970。"
+        ]
+      },
+      {
+        "title": "结论",
+        "title_zh": "结论",
+        "bullets": [
+          "<strong>筛查价值</strong>：双基因甲基化较血清 CA125 与超声具有更高敏感性和特异性，可提示子宫内膜癌高风险。",
+          "<strong>前景</strong>：有望成为子宫内膜癌无创早期筛查的重要方法（需多中心前瞻验证）。"
+        ],
+        "bullets_zh": [
+          "<strong>筛查价值</strong>：双基因甲基化较血清 CA125 与超声具有更高敏感性和特异性，可提示子宫内膜癌高风险。",
+          "<strong>前景</strong>：有望成为子宫内膜癌无创早期筛查的重要方法（需多中心前瞻验证）。"
+        ]
+      }
+    ],
+    "takeaway": {
+      "title": "核心结论",
+      "title_zh": "核心结论",
+      "bullets": [
+        "<strong>91.2% 灵敏度 / 96.7% 特异度</strong>——双基因甲基化筛查 EC 显著优于超声与 CA125。",
+        "<strong>无创早筛</strong>：利用宫颈脱落细胞，无需侵入性内膜取样。"
+      ],
+      "bullets_zh": [
+        "<strong>91.2% 灵敏度 / 96.7% 特异度</strong>——双基因甲基化筛查 EC 显著优于超声与 CA125。",
+        "<strong>无创早筛</strong>：利用宫颈脱落细胞，无需侵入性内膜取样。"
+      ]
+    }
+  },
+  {
+    "id": "1_孔令华_et_al_2023_DNA甲基化检测在绝经后女性子宫内膜癌筛查中的应用价值",
+    "cancer": "endometrial",
+    "kicker": "子宫内膜癌 · 中华医学杂志 2023;103(12):907–912 · 横断面",
+    "kicker_zh": "子宫内膜癌 · 中华医学杂志 2023;103(12):907–912 · 横断面",
+    "title": "DNA 甲基化检测在绝经后女性子宫内膜癌筛查中的应用价值",
+    "title_zh": "DNA 甲基化检测在绝经后女性子宫内膜癌筛查中的应用价值",
+    "subtitle": "143 例绝经后女性——双基因甲基化灵敏度 87.5%、特异度 90.8%、AUC 0.89",
+    "subtitle_zh": "143 例绝经后女性——双基因甲基化灵敏度 87.5%、特异度 90.8%、AUC 0.89",
+    "authors": "孔令华, 肖晓萍, 万茹, 钞晓培, 陈晓静, 王婧, 吴焕文, 李雷",
+    "authors_zh": "孔令华, 肖晓萍, 万茹, 钞晓培, 陈晓静, 王婧, 吴焕文, 李雷",
+    "source": "中华医学杂志 2023;103(12):907–912 · DOI <a href=\"https://doi.org/10.3760/cma.j.cn112137-20220929-02058\" target=\"_blank\" rel=\"noopener\">10.3760/cma.j.cn112137-20220929-02058</a>",
+    "source_zh": "中华医学杂志 2023;103(12):907–912 · DOI <a href=\"https://doi.org/10.3760/cma.j.cn112137-20220929-02058\" target=\"_blank\" rel=\"noopener\">10.3760/cma.j.cn112137-20220929-02058</a>",
+    "panels": [
+      {
+        "title": "研究背景",
+        "title_zh": "研究背景",
+        "bullets": [
+          "<strong>背景</strong>：绝经后子宫内膜癌筛查依赖超声与症状，准确性有限；无创分子筛查有待验证。",
+          "<strong>目的</strong>：评估宫颈细胞学残留样本 CDO1<sup>m</sup>/CELF4<sup>m</sup> 甲基化检测在绝经后女性 EC 筛查中的价值。"
+        ],
+        "bullets_zh": [
+          "<strong>背景</strong>：绝经后子宫内膜癌筛查依赖超声与症状，准确性有限；无创分子筛查有待验证。",
+          "<strong>目的</strong>：评估宫颈细胞学残留样本 CDO1<sup>m</sup>/CELF4<sup>m</sup> 甲基化检测在绝经后女性 EC 筛查中的价值。"
+        ]
+      },
+      {
+        "title": "方法",
+        "title_zh": "方法",
+        "stats": [
+          {"big": "143", "lab_en": "postmenopausal", "lab_zh": "绝经后女性"},
+          {"big": "56", "lab_en": "EC cases", "lab_zh": "内膜癌 56 例"},
+          {"big": "0.89", "lab_en": "AUC", "lab_zh": "AUC"}
+        ],
+        "bullets": [
+          "<strong>设计</strong>：横断面研究（2020.5–2021.10）；北京协和医院。",
+          "<strong>人群</strong>：143 例绝经后可疑内膜病变（内膜癌 56、对照 87：良性 80 + 增生 3 + 其他癌 4）。",
+          "<strong>检测</strong>：残留宫颈细胞学样本 2 ml 行 CDO1<sup>m</sup>/CELF4<sup>m</sup> 甲基化（PCR-荧光探针法）；阳性 = ΔCt<sub>CDO1</sub> ≤ 8.4 或 ΔCt<sub>CELF4</sub> ≤ 8.8。",
+          "<strong>金标准</strong>：宫腔镜下内膜组织病理。"
+        ],
+        "bullets_zh": [
+          "<strong>设计</strong>：横断面研究（2020.5–2021.10）；北京协和医院。",
+          "<strong>人群</strong>：143 例绝经后可疑内膜病变（内膜癌 56、对照 87：良性 80 + 增生 3 + 其他癌 4）。",
+          "<strong>检测</strong>：残留宫颈细胞学样本 2 ml 行 CDO1<sup>m</sup>/CELF4<sup>m</sup> 甲基化（PCR-荧光探针法）；阳性 = ΔCt<sub>CDO1</sub> ≤ 8.4 或 ΔCt<sub>CELF4</sub> ≤ 8.8。",
+          "<strong>金标准</strong>：宫腔镜下内膜组织病理。"
+        ]
+      },
+      {
+        "title": "核心结果",
+        "title_zh": "核心结果",
+        "bullets": [
+          "<strong>双基因甲基化</strong>：灵敏度 87.5% · 特异度 90.8% · PPV 86.0% · NPV 91.9% · AUC 0.89——各指标中最高。",
+          "<strong>TVS 联合</strong>：灵敏度升至 100%，特异度降至 59.8%。",
+          "<strong>多因素 OR</strong>：CELF4<sup>m</sup> 44.01、CDO1<sup>m</sup> 17.34、CA125≥35 33.23、ET≥5 mm 14.45。",
+          "<strong>甲基化差异</strong>：内膜癌组中位 ΔCt（5.2/4.9）显著低于对照组（17.4/16.4）。"
+        ],
+        "bullets_zh": [
+          "<strong>双基因甲基化</strong>：灵敏度 87.5% · 特异度 90.8% · PPV 86.0% · NPV 91.9% · AUC 0.89——各指标中最高。",
+          "<strong>TVS 联合</strong>：灵敏度升至 100%，特异度降至 59.8%。",
+          "<strong>多因素 OR</strong>：CELF4<sup>m</sup> 44.01、CDO1<sup>m</sup> 17.34、CA125≥35 33.23、ET≥5 mm 14.45。",
+          "<strong>甲基化差异</strong>：内膜癌组中位 ΔCt（5.2/4.9）显著低于对照组（17.4/16.4）。"
+        ]
+      },
+      {
+        "title": "结论",
+        "title_zh": "结论",
+        "bullets": [
+          "<strong>筛查优势</strong>：绝经后女性宫颈细胞学 DNA 甲基化筛查内膜癌的准确性优于其他无创临床方案。",
+          "<strong>联合 TVS</strong>：可改善筛查敏感性——有价值的无创筛查手段。"
+        ],
+        "bullets_zh": [
+          "<strong>筛查优势</strong>：绝经后女性宫颈细胞学 DNA 甲基化筛查内膜癌的准确性优于其他无创临床方案。",
+          "<strong>联合 TVS</strong>：可改善筛查敏感性——有价值的无创筛查手段。"
+        ]
+      }
+    ],
+    "takeaway": {
+      "title": "核心结论",
+      "title_zh": "核心结论",
+      "bullets": [
+        "<strong>AUC 0.89 领先各指标</strong>——绝经后 EC 无创筛查的分子方案。",
+        "<strong>TVS 联合 100% 灵敏度</strong>——敏感性与特异性的灵活平衡。"
+      ],
+      "bullets_zh": [
+        "<strong>AUC 0.89 领先各指标</strong>——绝经后 EC 无创筛查的分子方案。",
+        "<strong>TVS 联合 100% 灵敏度</strong>——敏感性与特异性的灵活平衡。"
+      ]
+    }
+  },
+  {
+    "id": "2_赵行平_et_al_2023_DNA甲基化检测在育龄期异常子宫出血女性子宫内膜癌诊断中的应用价值",
+    "cancer": "endometrial",
+    "kicker": "子宫内膜癌 · 中华检验医学杂志 2023;46(4):367–374 · 前瞻",
+    "kicker_zh": "子宫内膜癌 · 中华检验医学杂志 2023;46(4):367–374 · 前瞻",
+    "title": "DNA 甲基化检测在育龄期异常子宫出血女性子宫内膜癌诊断中的应用价值",
+    "title_zh": "DNA 甲基化检测在育龄期异常子宫出血女性子宫内膜癌诊断中的应用价值",
+    "subtitle": "517 例育龄期 AUB 女性——双基因甲基化灵敏度 91.7%、特异度 88.8%、AUC 0.90",
+    "subtitle_zh": "517 例育龄期 AUB 女性——双基因甲基化灵敏度 91.7%、特异度 88.8%、AUC 0.90",
+    "authors": "赵行平, 徐大宝, 马洁稚, 傅英钦, 李斌玉, 靳希桐, 刘禹利, 刘沛",
+    "authors_zh": "赵行平, 徐大宝, 马洁稚, 傅英钦, 李斌玉, 靳希桐, 刘禹利, 刘沛",
+    "source": "中华检验医学杂志 2023;46(4):367–374",
+    "source_zh": "中华检验医学杂志 2023;46(4):367–374",
+    "panels": [
+      {
+        "title": "研究背景",
+        "title_zh": "研究背景",
+        "bullets": [
+          "<strong>背景</strong>：育龄期 AUB 常见而内膜癌少见——需无创、高敏感的分流手段以减少有创检查并保护生育力。",
+          "<strong>目的</strong>：评估宫颈细胞学 DNA 甲基化检测在育龄期 AUB 女性子宫内膜癌诊断中的价值。"
+        ],
+        "bullets_zh": [
+          "<strong>背景</strong>：育龄期 AUB 常见而内膜癌少见——需无创、高敏感的分流手段以减少有创检查并保护生育力。",
+          "<strong>目的</strong>：评估宫颈细胞学 DNA 甲基化检测在育龄期 AUB 女性子宫内膜癌诊断中的价值。"
+        ]
+      },
+      {
+        "title": "方法",
+        "title_zh": "方法",
+        "stats": [
+          {"big": "517", "lab_en": "reproductive-age AUB", "lab_zh": "育龄期 AUB"},
+          {"big": "24", "lab_en": "EC cases", "lab_zh": "内膜癌 24 例"},
+          {"big": "0.90", "lab_en": "AUC", "lab_zh": "AUC"}
+        ],
+        "bullets": [
+          "<strong>设计</strong>：前瞻性单中心（2021.11–2022.10）；中南大学湘雅三医院。",
+          "<strong>人群</strong>：517 例有宫腔镜指征的育龄期 AUB/异常排液（内膜癌 24、对照 493）。",
+          "<strong>检测</strong>：TCT 残留样本 2 ml 行 CDO1/CELF4 甲基化（PCR-荧光探针法）；阳性 = ΔCt<sub>CDO1</sub> ≤ 8.4 或 ΔCt<sub>CELF4</sub> ≤ 8.8。",
+          "<strong>金标准</strong>：宫腔镜组织病理。"
+        ],
+        "bullets_zh": [
+          "<strong>设计</strong>：前瞻性单中心（2021.11–2022.10）；中南大学湘雅三医院。",
+          "<strong>人群</strong>：517 例有宫腔镜指征的育龄期 AUB/异常排液（内膜癌 24、对照 493）。",
+          "<strong>检测</strong>：TCT 残留样本 2 ml 行 CDO1/CELF4 甲基化（PCR-荧光探针法）；阳性 = ΔCt<sub>CDO1</sub> ≤ 8.4 或 ΔCt<sub>CELF4</sub> ≤ 8.8。",
+          "<strong>金标准</strong>：宫腔镜组织病理。"
+        ]
+      },
+      {
+        "title": "核心结果",
+        "title_zh": "核心结果",
+        "bullets": [
+          "<strong>双基因甲基化</strong>：灵敏度 91.7% · 特异度 88.8% · PPV 28.9% · NPV 99.5% · AUC 0.90——高于所有无创单项。",
+          "<strong>比值比</strong>：双基因 87.39、CDO1<sup>m</sup> 69.62、CELF4<sup>m</sup> 23.64、ET≥11 mm 9.49。",
+          "<strong>联合</strong>：+TVS 灵敏度 95.0%；BMI+超声+甲基化三联 100% 灵敏度。",
+          "<strong>ET&lt;11 mm 亚组</strong>：甲基化仍独立预测（双基因 AUC 0.87）。"
+        ],
+        "bullets_zh": [
+          "<strong>双基因甲基化</strong>：灵敏度 91.7% · 特异度 88.8% · PPV 28.9% · NPV 99.5% · AUC 0.90——高于所有无创单项。",
+          "<strong>比值比</strong>：双基因 87.39、CDO1<sup>m</sup> 69.62、CELF4<sup>m</sup> 23.64、ET≥11 mm 9.49。",
+          "<strong>联合</strong>：+TVS 灵敏度 95.0%；BMI+超声+甲基化三联 100% 灵敏度。",
+          "<strong>ET&lt;11 mm 亚组</strong>：甲基化仍独立预测（双基因 AUC 0.87）。"
+        ]
+      },
+      {
+        "title": "结论",
+        "title_zh": "结论",
+        "bullets": [
+          "<strong>无创高敏感</strong>：对育龄期 AUB 女性，宫颈细胞学 DNA 甲基化诊断 EC 优于其他无创方案。",
+          "<strong>保护生育力</strong>：简便、无创、高敏感——可减少有创检查并保护生育力。"
+        ],
+        "bullets_zh": [
+          "<strong>无创高敏感</strong>：对育龄期 AUB 女性，宫颈细胞学 DNA 甲基化诊断 EC 优于其他无创方案。",
+          "<strong>保护生育力</strong>：简便、无创、高敏感——可减少有创检查并保护生育力。"
+        ]
+      }
+    ],
+    "takeaway": {
+      "title": "核心结论",
+      "title_zh": "核心结论",
+      "bullets": [
+        "<strong>AUC 0.90 / 灵敏度 91.7%</strong>——育龄期 AUB 女性 EC 的最佳无创诊断。",
+        "<strong>NPV 99.5%</strong>——阴性可安全避免宫腔镜，保护生育力。"
+      ],
+      "bullets_zh": [
+        "<strong>AUC 0.90 / 灵敏度 91.7%</strong>——育龄期 AUB 女性 EC 的最佳无创诊断。",
+        "<strong>NPV 99.5%</strong>——阴性可安全避免宫腔镜，保护生育力。"
+      ]
+    }
+  }
+]

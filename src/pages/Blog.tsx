@@ -17,6 +17,7 @@ export default function Blog() {
   const isEn = lang === 'en'
   const blogTags = (b: typeof blogs[0]) => (isEn && b.tagsEn ? b.tagsEn : b.tags)
   const blogTitle = (b: typeof blogs[0]) => (isEn && b.titleEn ? b.titleEn : b.title)
+  const blogCover = (b: typeof blogs[0]) => (isEn && b.coverEn ? b.coverEn : b.cover)
   const activeTags = isEn
     ? [...new Set(blogs.flatMap((b) => b.tagsEn || b.tags))].sort()
     : allTags
@@ -85,7 +86,7 @@ export default function Blog() {
           {filtered.length === 0 ? (
             <p className="py-20 text-center text-inkSoft">{t('blog.notFound')}</p>
           ) : (
-            <div className="mx-auto flex max-w-3xl flex-col gap-4">
+            <div className="mx-auto flex max-w-[62.4rem] flex-col gap-4">
               {filtered.map((b, i) => (
                 <Reveal key={b.slug} delay={(i % 3) * 0.06}>
                   <Link
@@ -94,9 +95,9 @@ export default function Blog() {
                   >
                     {/* 左侧封面图：宽度固定、高度按封面比例(≈2.35:1)自适应，object-cover 完整展示不裁切 */}
                     <div className="my-3 ml-3 aspect-[2.35/1] w-28 shrink-0 self-center overflow-hidden rounded-lg bg-[#F3EDEA] sm:my-4 sm:ml-4 sm:w-36 md:w-44">
-                      {b.cover ? (
+                      {blogCover(b) ? (
                         <img
-                          src={b.cover}
+                          src={blogCover(b) as string}
                           alt=""
                           loading="lazy"
                           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"

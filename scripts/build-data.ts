@@ -1,7 +1,7 @@
 /**
  * CISPOLY 数据构建管道
- * 扫描 source/ 目录，解析论文、指南、博客 → 生成 src/data/*.json
- * 后续新增文件即自动收录，零改码。
+ * 扫描 contents/ 目录，解析论文、指南、博客 → 生成 src/data/*.json
+ * 后续新增文件即自动收录，零改码。（source/ 为本地原始素材归档，不参与构建）
  *
  * 运行：tsx scripts/build-data.ts
  */
@@ -9,7 +9,7 @@ import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync, copyFi
 import { join, basename, extname } from 'node:path'
 
 const ROOT = process.cwd()
-const SRC = join(ROOT, 'source')
+const SRC = join(ROOT, 'contents')
 const OUT = join(ROOT, 'src', 'data')
 mkdirSync(OUT, { recursive: true })
 
@@ -21,7 +21,7 @@ function readMd(p: string): string {
 function listMd(dir: string): string[] {
   if (!existsSync(dir)) return []
   return readdirSync(dir)
-    .filter((f) => extname(f).toLowerCase() === '.md')
+    .filter((f) => extname(f).toLowerCase() === '.md' && !f.endsWith('.en.md'))
     .map((f) => join(dir, f))
     .sort()
 }
@@ -785,17 +785,18 @@ function cleanBlogBody(raw: string): string {
 }
 
 function buildBlogs() {
-  const blogDir = join(SRC, 'blogs', '聚禾生物cispoly')
-  const files = listMd(blogDir)
+  const blogDir = join(SRC, 'blogs')
+  const files = listMd(blogDir).filter((f) => !basename(f).endsWith('.en.md'))
   const posts: BlogPost[] = []
 
   for (const f of files) {
     const raw = readMd(f)
     const name = basename(f)
-    const slug = name.replace(/^\[[^\]]*\]/, '').replace(/\.md$/, '').replace(/[^\w\u4e00-\u9fa5-]/g, '-')
 
     // frontmatter 优先，回退旧逻辑
     const { fm, body: bodyAfterFm } = parseFrontmatter(raw)
+    const fmSlug = typeof fm.slug === 'string' ? fm.slug.trim() : ''
+    const slug = fmSlug || name.replace(/^\[[^\]]*\]/, '').replace(/\.md$/, '').replace(/[^\w\u4e00-\u9fa5-]/g, '-')
     const fmTitle = typeof fm.title === 'string' ? fm.title.trim() : ''
     const fmDate = typeof fm.date === 'string' ? fm.date.trim() : ''
     const fmLastModified = typeof fm.lastModified === 'string' ? fm.lastModified.trim() : ''
@@ -861,6 +862,54 @@ function buildBlogs() {
   writeJson('blogs.body.json', bodies)
   console.log(`  blogs: ${posts.length} 篇`)
   return posts
+}
+
+// ---------- 英文博客（同目录 *.en.md，frontmatter: title/tags/excerpt） ----------
+function buildBlogsEn(blogDir: string) {
+  const enFiles = readdirSync(blogDir)
+    .filter((f) => f.endsWith('.en.md'))
+    .map((f) => join(blogDir, f))
+    .sort()
+  const enIndex: Record<string, Partial<{ titleEn: string; tagsEn: string[]; excerptEn: string }>> = {}
+  const enBodies: Record<string, string> = {}
+  for (const f of enFiles) {
+    const name = basename(f)
+    const raw = readMd(f)
+    const { fm, body } = parseFrontmatter(raw)
+    const fmSlug = typeof fm.slug === 'string' ? fm.slug.trim() : ''
+    const slug = fmSlug || name.replace(/^\[[^\]]*\]/, '').replace(/\.en\.md$/, '').replace(/[^\w\u4e00-\u9fa5-]/g, '-')
+    // 与中文同构：相对图片引用（./images/...）复制到 public 并改写为 /blogs/<slug>/ 绝对路径
+    const localized = localizeBlogImages(body, blogDir, slug)
+    // 字段缺失时不覆盖（前端回退中文）
+    const fields: Partial<{ titleEn: string; tagsEn: string[]; excerptEn: string; coverEn: string }> = {}
+    const titleEn = typeof fm.title === 'string' ? fm.title.trim() : ''
+    const tagsEn = Array.isArray(fm.tags) ? (fm.tags as string[]).filter(Boolean) : []
+    const excerptEn = typeof fm.excerpt === 'string' ? fm.excerpt.trim() : ''
+    const fmCoverEn = typeof fm.cover === 'string' ? fm.cover.trim() : ''
+    if (titleEn) fields.titleEn = titleEn
+    if (tagsEn.length) fields.tagsEn = tagsEn
+    if (excerptEn) fields.excerptEn = excerptEn
+    if (fmCoverEn) {
+      if (fmCoverEn.startsWith('./') || fmCoverEn.startsWith('.\\')) {
+        // 与中文 cover 同构：源图复制到 public/blogs/<slug>/cover.<ext>，输出稳定 URL
+        const src = join(blogDir, fmCoverEn.replace(/^\.\\?\//, ''))
+        const pubDir = join(ROOT, 'public', 'blogs', slug)
+        mkdirSync(pubDir, { recursive: true })
+        const nm = /^cover\./i.test(basename(fmCoverEn)) ? basename(fmCoverEn) : `cover${extname(fmCoverEn)}`
+        if (existsSync(src)) {
+          try { copyFileSync(src, join(pubDir, nm)) } catch { /* 忽略 */ }
+        }
+        fields.coverEn = `/blogs/${slug}/${nm}`
+      } else {
+        fields.coverEn = fmCoverEn
+      }
+    }
+    if (Object.keys(fields).length) enIndex[slug] = fields
+    enBodies[slug] = stripBlogHeader(localized)
+  }
+  writeJson('blogs.en.json', enIndex)
+  writeJson('blogs.body.en.json', enBodies)
+  console.log(`  blogs en: ${enFiles.length} 篇`)
 }
 
 // ---------- 产品数据（手工结构化，源自 source PDF 解析） ----------
@@ -1063,10 +1112,10 @@ function buildCompany() {
 // ---------- 引用格式（citation） ----------
 // 权威来源：用户整理的 4 个引用列表 markdown（clippings/.../引用列表.md）
 const CITATION_LISTS: { path: string; cancer?: 'cervical' | 'endometrial' | 'ovarian' }[] = [
-  { path: join(ROOT, 'source/blogs/cispoly-news-update/raw/clippings/academic_papers/宫颈癌文献引用列表.md'), cancer: 'cervical' },
-  { path: join(ROOT, 'source/blogs/cispoly-news-update/raw/clippings/academic_papers/子宫内膜癌引用列表.md'), cancer: 'endometrial' },
-  { path: join(ROOT, 'source/blogs/cispoly-news-update/raw/clippings/academic_papers/卵巢癌引用列表.md'), cancer: 'ovarian' },
-  { path: join(ROOT, 'source/blogs/cispoly-news-update/raw/clippings/clinical_guidelines/指南共识引用列表.md') },
+  { path: join(ROOT, 'contents/citation_lists/宫颈癌文献引用列表.md'), cancer: 'cervical' },
+  { path: join(ROOT, 'contents/citation_lists/子宫内膜癌引用列表.md'), cancer: 'endometrial' },
+  { path: join(ROOT, 'contents/citation_lists/卵巢癌引用列表.md'), cancer: 'ovarian' },
+  { path: join(ROOT, 'contents/citation_lists/指南共识引用列表.md') },
 ]
 
 /** 归一化标题：去 HTML、统一标点、去空白，用于模糊匹配 */
@@ -1158,6 +1207,7 @@ console.log('CISPOLY 数据构建中…')
 const papers = buildPapers()
 const guidelines = buildGuidelines()
 const blogs = buildBlogs()
+buildBlogsEn(join(SRC, 'blogs'))
 const products = buildProducts()
 const company = buildCompany()
 

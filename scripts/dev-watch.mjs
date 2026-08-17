@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * CISPOLY 开发服务器：监听 source/ 数据文件变化 → 自动重建数据 → Vite HMR 刷新页面
+ * CISPOLY 开发服务器：监听 contents/ 数据文件变化 → 自动重建数据 → Vite HMR 刷新页面
  *
  * 用法：npm run dev（替代原来的 "tsx scripts/build-data.ts && vite"）
  * - 启动时先构建一次数据，再启动 Vite
- * - 监听 source/blogs、source/academic_published_papers、source/clinical_guidelines 下
+ * - 监听 contents/blogs、contents/academic_published_papers、contents/clinical_guidelines 下
  *   所有文件（md / 图片等）变化，防抖 600ms 后自动重跑 build-data.ts
  * - Vite 检测到 src/data/*.json 变化后自动热更新/刷新页面
  */
@@ -15,7 +15,7 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
-const SRC = join(ROOT, 'source')
+const SRC = join(ROOT, 'contents')
 const WATCH_DIRS = [
   join(SRC, 'blogs'),
   join(SRC, 'academic_published_papers'),
@@ -93,7 +93,7 @@ for (const dir of WATCH_DIRS) {
     console.error(`[watch] 无法监听 ${dir}: ${err.message}`)
   }
 }
-console.log('[watch] 修改 source/ 下的 markdown 或图片后，页面将自动更新（Ctrl+C 退出）\n')
+console.log('[watch] 修改 contents/ 下的 markdown 或图片后，页面将自动更新（Ctrl+C 退出）\n')
 
 process.on('SIGINT', () => {
   vite.kill()

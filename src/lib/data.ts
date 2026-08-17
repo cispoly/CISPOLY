@@ -62,6 +62,7 @@ interface BlogIndex {
   lastModified: string
   lastModifiedLabel: string
   cover: string | undefined
+  coverEn?: string
   excerpt: string
   excerptEn?: string
   tags: string[]

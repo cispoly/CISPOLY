@@ -193,9 +193,9 @@ export default function Home() {
                   className="card card-hover group flex h-full flex-col overflow-hidden"
                 >
                   <div className="aspect-[2.35/1] overflow-hidden bg-canvas">
-                    {b.cover && (
+                    {(lang === 'en' && b.coverEn ? b.coverEn : b.cover) && (
                       <img
-                        src={b.cover}
+                        src={(lang === 'en' && b.coverEn ? b.coverEn : b.cover) as string}
                         alt=""
                         loading="lazy"
                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"

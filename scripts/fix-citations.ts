@@ -1,8 +1,8 @@
 /**
  * 引用信息纠正脚本 v2
  * 以 4 个权威 list 为来源：
- *  - source/pdf/academic_published_papers/{CISCER,CISENDO,CISOVA}/cis*_paper_list.md（论文）
- *  - source/clinical_guidelines/guidelines_list.md（指南）
+ *  - contents/academic_published_papers/cis*_paper_list.md（论文）
+ *  - contents/clinical_guidelines/guidelines_list.md（指南）
  *
  * 纠正字段：标题 title / 期刊 journal / 年份 year / DOI / 卷 volume / 页 pages
  * 匹配策略：作者+年份 → 标题关键词 → 人工补充
@@ -13,7 +13,7 @@ import { readFileSync, readdirSync, writeFileSync, mkdirSync, existsSync } from 
 import { join, basename } from 'node:path'
 
 const ROOT = process.cwd()
-const SRC = join(ROOT, 'source')
+const SRC = join(ROOT, 'contents')
 const OUT = join(ROOT, 'src', 'data')
 mkdirSync(OUT, { recursive: true })
 
@@ -175,7 +175,7 @@ function main() {
   const lists: Record<string, Citation[]> = {
     CISCER: parseListFile(join(SRC, 'academic_published_papers', 'ciscer_paper_list.md')),
     CISENDO: parseListFile(join(SRC, 'academic_published_papers', 'cisendo_paper_list.md')),
-    CISOVA: parseListFile(join(SRC, 'pdf', 'academic_published_papers', 'CISOVA', 'cisova_paper_list.md')),
+    CISOVA: parseListFile(join(SRC, 'academic_published_papers', 'cisova_paper_list.md')),
   }
   for (const [k, v] of Object.entries(lists)) console.log(`  ${k} list: ${v.length} 条引用`)
 

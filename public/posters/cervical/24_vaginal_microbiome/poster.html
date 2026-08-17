@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vaginal Microecology, Methylation &amp; Cervical Lesions — Wu et al. 2026</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #23：微生态-甲基化-病变三环中介）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、大数字卡、条形对比
+  - 布局：标题带 → hero（492 例 / 4 组 / ΔCtJ OR 0.871 / 中介效应 −0.099）→ 两栏（左 560px：①背景与目的 ②研究设计【四组构成】；右 1fr：③微生态差异 ④中介路径图【L. crispatus → PAX1m → 病变】⑤风险因素与要点）→ 全宽临床意义带
+  - 选图：中介分析图（945x398）
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 98px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 22px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .figrow { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 7px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 1px 0 6px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 14px 4px; text-align: center; }
+  .stat .big { font-size: 18px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .figrow { display: flex; gap: 12px; align-items: flex-start; justify-content: center; }
+  .medrow { display: flex; gap: 10px; margin: 2px 0 8px; }
+  .medcard { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 8px 6px; text-align: center; }
+  .medcard .n { font-size: 17px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .medcard .l { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .svgwrap { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px 2px; margin: 2px 0 6px; }
+  .svgwrap svg { display: block; width: 100%; height: auto; }
+  .fig { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px 5px; text-align: center; min-width: 0; }
+  .fig img { display: inline-block; height: auto; max-height: 78px; width: auto; max-width: 100%; border-radius: 3px; }
+  .fig .figcap { font-size: 10px; color: var(--muted); font-style: italic; line-height: 1.3; margin-top: 3px; text-align: left; }
+  .fig .figcap strong { color: var(--primary); font-style: normal; }
+
+  .spbars { margin: 2px 0 8px; }
+  .spb { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .spb .sbl { flex: 0 0 150px; font-size: 12px; font-weight: 700; color: var(--text); text-align: right; }
+  .spb .sbt { flex: 1 1 auto; height: 24px; background: #F1E7E7; border-radius: 5px; overflow: hidden; position: relative; }
+  .spb .sbf { height: 100%; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 13px; font-weight: 800; color: #fff; }
+  .spb.win .sbf { background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); }
+  .spb.lose .sbf { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); color: #6B5755; }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 8px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+  body.lang-zh .panel ul li { line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Chin J Lab Med · 2026;49(2) · Cross-Sectional · China</div>
+    <h1 data-i18n="title">Vaginal Microecology, PAX1/JAM3 Methylation &amp; Cervical Lesions</h1>
+    <div class="title_alt" data-i18n="title_alt">阴道微生态影响宫颈细胞 DNA 甲基化水平与宫颈病变的相关性研究</div>
+    <div class="subtitle" data-i18n="subtitle">492 women · microecology &amp; methylation differ by lesion grade · L. crispatus protective · PAX1m/JAM3m correlate with grade · full mediation via PAX1 methylation</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Wu S, Lv W, Zhao X, Ma J, Xu D, Zhang D</div>
+      <div class="source" data-i18n="source">Xiangya 3rd Hospital, Central South University · 中华检验医学杂志 · 2026;49(2):172–180</div>
+    </div>
+  </header>
+
+  <!-- hero：四组 + 核心发现 -->
+  <div class="hero">
+    <div class="stat"><div class="big">492</div><div class="lab" data-i18n="h1">women</div></div>
+    <div class="stat"><div class="big">4</div><div class="lab" data-i18n="h2">lesion groups</div></div>
+    <div class="stat hot"><div class="big">OR 0.871</div><div class="lab" data-i18n="h3">ΔCtJ per grade (P&lt;0.001)</div></div>
+    <div class="stat"><div class="big">−0.099</div><div class="lab" data-i18n="h4">mediation effect</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Question</strong>: does vaginal microecology influence cervical lesions via DNA methylation?</li>
+          <li data-i18n="s1b"><strong>Objective</strong>: correlate microecology, PAX1/JAM3 methylation &amp; lesion grade; test mediation.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">81</div><div class="lab" data-i18n="s2s1">HPV/TCT(−)</div></div>
+          <div class="stat"><div class="big">236</div><div class="lab" data-i18n="s2s2">chronic inflam.</div></div>
+          <div class="stat"><div class="big">117</div><div class="lab" data-i18n="s2s3">LSIL</div></div>
+          <div class="stat hot"><div class="big">58</div><div class="lab" data-i18n="s2s4">HSIL</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">81</div><div class="lab" data-i18n="s2s1">HPV/TCT(−)</div></div>
+          <div class="stat"><div class="big">236</div><div class="lab" data-i18n="s2s2">chronic inflam.</div></div>
+          <div class="stat"><div class="big">117</div><div class="lab" data-i18n="s2s3">LSIL</div></div>
+          <div class="stat hot"><div class="big">58</div><div class="lab" data-i18n="s2s4">HSIL</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">BMI</div><div class="lab" data-i18n="s2s5">differs (neg. group highest)</div></div>
+          <div class="stat"><div class="big">孕次</div><div class="lab" data-i18n="s2s6">parity differs</div></div>
+          <div class="stat hot"><div class="big">16/18</div><div class="lab" data-i18n="s2s7">HPV16/18 ↑ in HSIL</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Setting</strong>: Xiangya 3rd Hospital, Apr 2022 – Aug 2024; cross-sectional.</li>
+          <li data-i18n="s2b"><strong>Grouping</strong>: HPV/TCT + colposcopy biopsy pathology → 4 ordered groups.</li>
+          <li data-i18n="s2e"><strong>Samples</strong>: vaginal swab (qualitative flora) + cervical cells (PAX1/JAM3 ΔCt).</li>
+          <li data-i18n="s2f"><strong>Microecology panel</strong>: density · diversity · Nugent · pH · dominant flora · leukocyte esterase · lactobacilli.</li>
+          <li data-i18n="s2c"><strong>Analysis</strong>: ANOVA / Kruskal-Wallis · ordinal logistic · linear regression · mediation (Process 4.1, 5000 boot).</li>
+          <li data-i18n="s2d"><strong>Outcome</strong>: lesion grade ordered from negative → chronic inflammation → LSIL → HSIL.</li>
+          <li data-i18n="s2h"><strong>Groups</strong>: only non-negative groups were hrHPV+, HSIL with more HPV16/18.</li>
+          <li data-i18n="s2i"><strong>Statistics</strong>: LSD pairwise · Pearson χ² · Spearman; mediation bootstrap 5000.</li>
+        </ul>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s2g1">ΔCtP by grade</div><div class="sbt"><div class="sbf" style="width:75%">P&lt;0.001 ↓</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s2g2">ΔCtJ by grade</div><div class="sbt"><div class="sbf" style="width:75%">P&lt;0.001 ↓</div></div></div>
+        </div>
+        <div class="tnote" data-i18n="s2n">Lower ΔCt = higher methylation; both increase with lesion grade.</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">3</span><span data-i18n="s3t">Microecology Differs by Grade</span></h3>
+        <ul>
+          <li data-i18n="s3a"><strong>Dysbiosis markers</strong>: density, diversity, Nugent, pH, dominant flora, leukocyte esterase — differ across groups (P&lt;0.05).</li>
+          <li data-i18n="s3b"><strong>Lactobacillus</strong>: L. iners &amp; L. crispatus detection differ (P&lt;0.05) — L. crispatus protective.</li>
+        </ul>
+        <div class="spbars">
+          <div class="spb lose"><div class="sbl" data-i18n="s3a2">pH ↑ with grade</div><div class="sbt"><div class="sbf" style="width:60%">↑</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s3a3">L. crispatus</div><div class="sbt"><div class="sbf" style="width:40%">protective ↓</div></div></div>
+        </div>
+      </div>
+
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">4</span><span data-i18n="s4t">Mediation — the Key Finding</span></h3>
+        <div class="medrow">
+          <div class="medcard hot" style="background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep);"><div class="n" style="color:#fff;">−0.099</div><div class="l" style="color:rgba(255,255,255,0.92); font-weight:600;" data-i18n="s4m1">mediation effect</div></div>
+          <div class="medcard"><div class="n">−0.170 ~ −0.039</div><div class="l" data-i18n="s4m2">95% CI (excludes 0)</div></div>
+          <div class="medcard"><div class="n">0.906</div><div class="l" data-i18n="s4m3">OR via mediator</div></div>
+          <div class="medcard"><div class="n">−9.4%</div><div class="l" data-i18n="s4m4">risk per SD of ΔCtP</div></div>
+        </div>
+        <div class="svgwrap">
+          <svg viewBox="0 0 900 86" xmlns="http://www.w3.org/2000/svg" role="img">
+            <defs>
+              <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#B83A39"/></marker>
+              <marker id="arrg" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#8C9E8F"/></marker>
+            </defs>
+            <rect x="30" y="10" width="210" height="52" rx="9" fill="#fff" stroke="#B83A39" stroke-width="2"/>
+            <text x="135" y="33" text-anchor="middle" font-size="15" font-weight="700" fill="#3A3232">L. crispatus (+)</text>
+            <text x="135" y="52" text-anchor="middle" font-size="11" fill="#5C5252">protective flora</text>
+            <rect x="345" y="10" width="210" height="52" rx="9" fill="#fff" stroke="#D74B4A" stroke-width="2"/>
+            <text x="450" y="33" text-anchor="middle" font-size="15" font-weight="700" fill="#3A3232">PAX1 methylation</text>
+            <text x="450" y="52" text-anchor="middle" font-size="11" fill="#5C5252">ΔCtP ↓ = hypermethylation</text>
+            <rect x="660" y="10" width="210" height="52" rx="9" fill="#fff" stroke="#B83A39" stroke-width="2"/>
+            <text x="765" y="33" text-anchor="middle" font-size="15" font-weight="700" fill="#3A3232">Lesion grade</text>
+            <text x="765" y="52" text-anchor="middle" font-size="11" fill="#5C5252">neg → inflam → LSIL → HSIL</text>
+            <line x1="240" y1="36" x2="345" y2="36" stroke="#B83A39" stroke-width="2" marker-end="url(#arr)"/>
+            <text x="292" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#B83A39">β pos · P=0.049</text>
+            <text x="292" y="58" text-anchor="middle" font-size="10" fill="#5C5252">flora ↓ methylation</text>
+            <line x1="555" y1="36" x2="660" y2="36" stroke="#B83A39" stroke-width="2" marker-end="url(#arr)"/>
+            <text x="607" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#B83A39">β −0.075 · OR 0.928</text>
+            <text x="607" y="58" text-anchor="middle" font-size="10" fill="#5C5252">methylation ↑ grade</text>
+            <line x1="140" y1="72" x2="765" y2="72" stroke="#8C9E8F" stroke-width="1.6" stroke-dasharray="6 5" marker-end="url(#arrg)"/>
+            <text x="452" y="81" text-anchor="middle" font-size="11" font-style="italic" fill="#6B7A6E">direct effect ns (−0.101, 95%CI −0.266~0.063) → <tspan font-weight="700" fill="#B83A39">full mediation</tspan></text>
+          </svg>
+        </div>
+        <ul style="margin-top:4px;">
+          <li data-i18n="s4a"><strong>Full mediation</strong>: L. crispatus acts through PAX1 methylation (OR 0.906); direct effect ns.</li>
+          <li data-i18n="s4b"><strong>Mechanism</strong>: protective flora ↑ → methylation ↓ → lower lesion risk.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Risk Factors &amp; Methylation Drivers</span></h3>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s5a1">Parity (per grade)</div><div class="sbt"><div class="sbf" style="width:56.8%">OR 1.136</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s5a2">ΔCtJ (per grade)</div><div class="sbt"><div class="sbf" style="width:43.5%">OR 0.871</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s5a3">ΔCtP (per grade)</div><div class="sbt"><div class="sbf" style="width:46.4%">OR 0.928</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s5a4">L. crispatus (+)</div><div class="sbt"><div class="sbf" style="width:26.1%">OR 0.523</div></div></div>
+        </div>
+        <ul>
+          <li data-i18n="s5a"><strong>Methylation drivers</strong>: older age &amp; hrHPV (esp. 16/18) raise PAX1/JAM3 methylation.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Microecology and methylation are linked</b>: L. crispatus protects against cervical lesions fully through lowering PAX1 methylation (mediator OR 0.906).</li>
+      <li data-i18n="c2"><b>PAX1/JAM3 methylation tracks lesion grade</b> — an objective adjunct for stratified management; restoring protective flora may reduce progression risk.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Chin J Lab Med · 2026;49(2) · Cross-Sectional · China",
+      title: "Vaginal Microecology, PAX1/JAM3 Methylation & Cervical Lesions",
+      title_alt: "阴道微生态影响宫颈细胞 DNA 甲基化水平与宫颈病变的相关性研究",
+      subtitle: "492 women · microecology & methylation differ by lesion grade · L. crispatus protective · PAX1m/JAM3m correlate with grade · full mediation via PAX1 methylation",
+      authors: "Wu S, Lv W, Zhao X, Ma J, Xu D, Zhang D",
+      source: "Xiangya 3rd Hospital, Central South University · Chin J Lab Med 2026;49(2):172–180",
+      h1: "women", h2: "lesion groups", h3: "ΔCtJ per grade (P<0.001)", h4: "mediation effect",
+      s1t: "Background & Objective",
+      s1a: "<strong>Question</strong>: does vaginal microecology influence cervical lesions via DNA methylation?",
+      s1b: "<strong>Objective</strong>: correlate microecology, PAX1/JAM3 methylation & lesion grade; test mediation.",
+      s2t: "Study Design & Cohort",
+      s2s1: "HPV/TCT(−)", s2s2: "chronic inflam.", s2s3: "LSIL", s2s4: "HSIL",
+      s2a: "<strong>Setting</strong>: Xiangya 3rd Hospital, Apr 2022 – Aug 2024; cross-sectional.",
+      s2b: "<strong>Grouping</strong>: HPV/TCT + colposcopy biopsy pathology → 4 ordered groups.",
+      s2e: "<strong>Samples</strong>: vaginal swab (qualitative flora) + cervical cells (PAX1/JAM3 ΔCt).",
+      s2f: "<strong>Microecology panel</strong>: density · diversity · Nugent · pH · dominant flora · leukocyte esterase · lactobacilli.",
+      s2c: "<strong>Analysis</strong>: ANOVA / Kruskal-Wallis · ordinal logistic · linear regression · mediation (Process 4.1, 5000 boot).",
+      s2g1: "ΔCtP by grade", s2g2: "ΔCtJ by grade", s2s5: "differs (neg. group highest)", s2s6: "parity differs", s2s7: "HPV16/18 ↑ in HSIL",
+      s2d: "<strong>Outcome</strong>: lesion grade ordered from negative → chronic inflammation → LSIL → HSIL.",
+      s2h: "<strong>Groups</strong>: only non-negative groups were hrHPV+, HSIL with more HPV16/18.",
+      s2i: "<strong>Statistics</strong>: LSD pairwise · Pearson χ² · Spearman; mediation bootstrap 5000.",
+      s2n: "Lower ΔCt = higher methylation; both increase with lesion grade.",
+      s3t: "Microecology Differs by Grade",
+      s3a: "<strong>Dysbiosis markers</strong>: density, diversity, Nugent, pH, dominant flora, leukocyte esterase — differ across groups (P<0.05).",
+      s3b: "<strong>Lactobacillus</strong>: L. iners & L. crispatus detection differ (P<0.05) — L. crispatus protective.",
+      s3a1: "Nugent ↑ with grade", s3a2: "pH ↑ with grade", s3a3: "L. crispatus",
+      s4t: "Mediation — the Key Finding",
+      s4c1: "Original mediation output — Bootstrap path coefficients (5000 resamples).",
+      s4m1: "mediation effect", s4m2: "95% CI (excludes 0)", s4m3: "OR via mediator", s4m4: "risk per SD of ΔCtP",
+      s4a: "<strong>Full mediation</strong>: L. crispatus acts through PAX1 methylation (OR 0.906); direct effect ns.",
+      s4b: "<strong>Mechanism</strong>: protective flora ↑ → methylation ↓ → lower lesion risk.",
+      s5t: "Risk Factors & Methylation Drivers",
+      s5a1: "Parity (per grade)", s5a2: "ΔCtJ (per grade)", s5a3: "ΔCtP (per grade)", s5a4: "L. crispatus (+)",
+      s5a: "<strong>Methylation drivers</strong>: older age & hrHPV (esp. 16/18) raise PAX1/JAM3 methylation.",
+      s5b: "<strong>Protective flora</strong>: L. crispatus(+) associates with lower PAX1 methylation (P=0.049).",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Microecology and methylation are linked</b>: L. crispatus protects against cervical lesions fully through lowering PAX1 methylation (mediator OR 0.906).",
+      c2: "<b>PAX1/JAM3 methylation tracks lesion grade</b> — an objective adjunct for stratified management; restoring protective flora may reduce progression risk."
+    },
+    zh: {
+      kicker: "中华检验医学杂志 · 2026;49(2) · 横断面 · 中国",
+      title: "阴道微生态影响宫颈细胞 DNA 甲基化水平与宫颈病变的相关性研究",
+      title_alt: "Vaginal Microecology, PAX1/JAM3 Methylation & Cervical Lesions",
+      subtitle: "492 例 · 微生态与甲基化随病变分级差异显著 · 卷曲乳杆菌保护性 · PAX1m/JAM3m 与病变等级相关 · PAX1 甲基化完全中介",
+      authors: "吴思、吕卫刚、赵行平、马洁稚、徐大宝、章迪",
+      source: "中南大学湘雅三医院 · 中华检验医学杂志 2026;49(2):172–180",
+      h1: "女性", h2: "病变分组", h3: "ΔCtJ 每级 OR 0.871（P&lt;0.001）", h4: "中介效应",
+      s1t: "背景与目的",
+      s1a: "<strong>问题</strong>：阴道微生态是否通过 DNA 甲基化影响宫颈病变？",
+      s1b: "<strong>目的</strong>：分析微生态、PAX1/JAM3 甲基化与病变等级的相关性，检验中介效应。",
+      s2t: "研究设计与队列",
+      s2s1: "HPV/TCT 阴性", s2s2: "慢性炎", s2s3: "LSIL", s2s4: "HSIL",
+      s2a: "<strong>地点</strong>：湘雅三医院，2022.4–2024.8；横断面研究。",
+      s2b: "<strong>分组</strong>：HPV/TCT + 阴道镜活检病理 → 4 个有序组。",
+      s2e: "<strong>标本</strong>：阴道拭子（菌群定性）+ 宫颈脱落细胞（PAX1/JAM3 ΔCt）。",
+      s2f: "<strong>微生态指标</strong>：密集度 · 多样性 · Nugent · pH · 优势菌 · 白细胞酯酶 · 乳杆菌。",
+      s2c: "<strong>分析</strong>：方差分析 / Kruskal-Wallis · 有序 Logistic · 线性回归 · 中介效应（Process 4.1，5000 次 Bootstrap）。",
+      s2g1: "ΔCtP 随分级", s2g2: "ΔCtJ 随分级", s2s5: "差异（阴性组最高）", s2s6: "孕次差异", s2s7: "HPV16/18 在 HSIL 更高",
+      s2d: "<strong>结局</strong>：病变等级按 阴性→慢性炎→LSIL→HSIL 四个等级有序排列；病理为金标准。",
+      s2h: "<strong>分组</strong>：仅非阴性组 hrHPV 阳性，HSIL 组 HPV16/18 占比更高。",
+      s2i: "<strong>统计</strong>：LSD 两两比较 · Pearson χ² · Spearman；中介效应 Bootstrap 重复抽样 5000 次检验。",
+      s2n: "ΔCt 越低 = 甲基化越高；两者随病变等级升高。",
+      s3t: "微生态随分级差异显著",
+      s3a: "<strong>菌群失衡指标</strong>：密集度、多样性、Nugent、pH、优势菌、白细胞酯酶——各组差异显著（P&lt;0.05）。",
+      s3b: "<strong>乳杆菌</strong>：惰性乳杆菌、卷曲乳杆菌检出率差异显著（P&lt;0.05）——卷曲乳杆菌具保护性。",
+      s3a1: "Nugent 随分级 ↑", s3a2: "pH 随分级 ↑", s3a3: "卷曲乳杆菌",
+      s4t: "中介效应——核心发现",
+      s4c1: "原始中介输出——Bootstrap 路径系数（5000 次重抽样）。",
+      s4m1: "中介效应", s4m2: "95%CI（不含 0）", s4m3: "经中介 OR", s4m4: "ΔCtP 每 SD 风险",
+      s4a: "<strong>完全中介</strong>：卷曲乳杆菌经 PAX1 甲基化发挥保护作用（OR 0.906）；直接效应无统计学意义。",
+      s4b: "<strong>机制</strong>：保护性菌群 ↑ → 甲基化 ↓ → 病变风险降低。",
+      s5t: "危险因素与甲基化驱动因素",
+      s5a1: "孕次（每级）", s5a2: "ΔCtJ（每级）", s5a3: "ΔCtP（每级）", s5a4: "卷曲乳杆菌(+)",
+      s5a: "<strong>甲基化驱动因素</strong>：年龄增长与 hrHPV（尤其 16/18 型）升高 PAX1/JAM3 甲基化。",
+      s5b: "<strong>保护性菌群</strong>：卷曲乳杆菌(+) 与更低 PAX1 甲基化相关（P=0.049）。",
+      c_ttl: "临床意义",
+      c1: "<b>微生态与甲基化密切相关</b>：卷曲乳杆菌通过降低 PAX1 甲基化（中介 OR 0.906）完全介导对宫颈病变的保护作用。",
+      c2: "<b>PAX1/JAM3 甲基化随病变分级升高</b>——客观分层管理的辅助指标；恢复保护性菌群或可降低进展风险。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

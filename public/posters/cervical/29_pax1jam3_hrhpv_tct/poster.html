@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAX1/JAM3, HR-HPV, TCT &amp; High-Grade Lesions — Geng 2026</title>
+<!--
+  设计说明（布局 BB：OR 条形英雄 + 三项 Logistic 回归 · 无图）：
+  - 标题带 → hero（409 例 · JAM3 OR 8.215 · PAX1 OR 4.145 · 16/18 OR 6.801）
+  - 左列：① 背景与目的 ② 方法与队列
+  - 右列：③ HSIL 独立危险因素 OR 条形（JAM3/PAX1/16/18/TCT）④ 甲基化阳性率梯度 ⑤ 风险分层意义
+  - 临床意义带
+-->
+<style>
+  :root { --primary:#D74B4A; --secondary:#F07A76; --accent:#F7C9C7; --accent-deep:#B83A39;
+    --bg:#FFFFFF; --panel:rgba(233,233,233,0.55); --panel-alt:rgba(240,122,118,0.10);
+    --text:#3A3232; --muted:#5C5252; --line:rgba(215,75,74,0.22); }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:100%; height:100%; overflow:hidden; font-family:"Segoe UI","Helvetica Neue",Arial,"Microsoft YaHei",sans-serif; color:var(--text); background:var(--bg); }
+  body { display:flex; align-items:center; justify-content:center; }
+  .poster { width:2100px; height:1080px; display:flex; flex-direction:column; background:#FFF; padding:14px 26px; zoom:calc(min(100vw/2100px,100vh/1080px)); flex:none; position:relative; }
+
+  .titleband { background:linear-gradient(135deg,rgba(215,75,74,0.94),rgba(215,75,74,0.86) 50%,rgba(240,122,118,0.9)); color:#fff; padding:13px 32px 12px; flex:0 0 auto; border-radius:10px 10px 0 0; position:relative; overflow:hidden; }
+  .langswitch { position:absolute; top:12px; right:18px; display:flex; gap:4px; background:rgba(255,255,255,0.18); border-radius:16px; padding:3px; z-index:3; }
+  .langswitch button { border:none; background:transparent; color:#fff; cursor:pointer; font:600 11px/1 "Segoe UI",sans-serif; padding:5px 12px; border-radius:13px; letter-spacing:.5px; }
+  .langswitch button.on { background:#fff; color:var(--accent-deep); }
+  .kicker { font-size:12px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.9); font-weight:600; margin-bottom:4px; padding-right:150px; }
+  .titleband h1 { font-size:23px; font-weight:700; line-height:1.16; max-width:1730px; }
+  .titleband .title_alt { font-size:15px; font-weight:500; line-height:1.3; color:rgba(255,255,255,0.88); margin-top:3px; max-width:1740px; }
+  .titleband .subtitle { font-size:13.5px; color:rgba(255,255,255,0.92); margin-top:4px; max-width:1800px; }
+  .titleband .meta { margin-top:6px; border-top:1px solid rgba(255,255,255,0.32); padding-top:5px; font-size:11px; line-height:1.35; color:rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight:600; color:#FFF; }
+
+  .hero { flex:0 0 auto; height:92px; background:#FFF; border:1px solid var(--line); border-bottom:none; display:flex; align-items:stretch; gap:10px; padding:8px 6px; }
+  .hero .stat { flex:1; background:var(--panel-alt); border:1px solid rgba(215,75,74,0.28); border-radius:8px; padding:6px; text-align:center; display:flex; flex-direction:column; justify-content:center; }
+  .hero .stat .big { font-size:19px; font-weight:800; color:var(--primary); line-height:1.05; }
+  .hero .stat .lab { font-size:9px; color:var(--muted); margin-top:2px; line-height:1.2; }
+  .hero .stat.hot { background:linear-gradient(135deg,rgba(215,75,74,0.95),rgba(240,122,118,0.92)); border-color:var(--accent-deep); }
+  .hero .stat.hot .big { color:#fff; } .hero .stat.hot .lab { color:rgba(255,255,255,0.92); font-weight:600; }
+
+  .main { flex:1 1 auto; min-height:0; display:grid; grid-template-columns:560px minmax(0,1fr); gap:14px; padding-top:10px; }
+  .col { display:flex; flex-direction:column; gap:10px; min-height:0; min-width:0; }
+  .panel { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:8px 14px 6px; flex:0 0 auto; display:flex; flex-direction:column; min-height:0; overflow:hidden; }
+  .panel.grow { flex:1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .orbar, .panel .tnote { flex:0 0 auto; }
+  .panel h3 { font-size:14px; font-weight:700; color:var(--primary); border-bottom:2px solid var(--accent-deep); padding-bottom:3px; margin-bottom:5px; display:flex; align-items:center; gap:6px; }
+  .panel h3 .num { display:inline-flex; align-items:center; justify-content:center; width:19px; height:19px; background:rgba(215,75,74,0.85); color:#fff; border-radius:5px; font-size:11px; flex:0 0 auto; }
+  .panel p, .panel li { font-size:12px; line-height:1.4; color:var(--muted); }
+  .panel ul { list-style:none; }
+  .panel ul li { padding-left:14px; position:relative; margin-bottom:5px; }
+  body.lang-en .panel ul li { margin-bottom:8px; }
+  .panel ul li::before { content:""; position:absolute; left:0; top:6px; width:6px; height:6px; border-radius:50%; background:var(--secondary); }
+  .panel ul li strong { color:var(--primary); }
+  .panel ul li:last-child { margin-bottom:0; }
+
+  .statrow { display:flex; gap:8px; margin:0 0 5px; }
+  .stat { flex:1; background:#fff; border:1px solid var(--line); border-radius:6px; padding:10px 4px; text-align:center; }
+  .stat .big { font-size:17px; font-weight:800; color:var(--primary); line-height:1.05; }
+  .stat .lab { font-size:9px; color:var(--muted); margin-top:2px; line-height:1.2; }
+  .stat.hot { background:linear-gradient(135deg,rgba(215,75,74,0.95),rgba(240,122,118,0.92)); border-color:var(--accent-deep); }
+  .stat.hot .big { color:#fff; } .stat.hot .lab { color:rgba(255,255,255,0.92); font-weight:600; }
+
+  .orbar { margin:2px 0 6px; }
+  .orb { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+  .orb .obl { flex:0 0 240px; font-size:11.5px; font-weight:700; color:var(--text); text-align:right; }
+  .orb .obt { flex:1 1 auto; height:24px; background:#F1E7E7; border-radius:5px; overflow:hidden; position:relative; }
+  .orb .obf { height:100%; border-radius:5px; display:flex; align-items:center; justify-content:flex-end; padding-right:10px; font-size:12.5px; font-weight:800; color:#fff; white-space:nowrap; }
+  .orb.win .obf { background:linear-gradient(90deg,var(--secondary) 0%,var(--primary) 100%); }
+  .orb.lose .obf { background:linear-gradient(90deg,#C9A9A7 0%,#D8B0AE 100%); color:#6B5755; }
+  .orb .obv { flex:0 0 70px; font-size:12px; font-weight:700; color:var(--primary); }
+
+  .tnote { font-size:10px; color:var(--muted); line-height:1.36; margin-top:3px; }
+  .tnote b { color:var(--accent-deep); }
+
+  .clinical { flex:0 0 auto; background:linear-gradient(135deg,rgba(215,75,74,0.92),rgba(215,75,74,0.8) 60%,rgba(240,122,118,0.88)); border-radius:0 0 10px 10px; color:#fff; padding:10px 26px; display:flex; gap:20px; align-items:center; }
+  .clinical .ttl { font-size:15px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.95); flex:0 0 auto; border-right:1.5px solid rgba(255,255,255,0.35); padding-right:16px; }
+  .clinical ul { list-style:none; flex:1 1 auto; min-width:0; }
+  .clinical ul li { font-size:13px; line-height:1.48; color:rgba(255,255,255,0.96); padding-left:15px; position:relative; margin-bottom:3px; }
+  .clinical ul li:last-child { margin-bottom:0; }
+  .clinical ul li::before { content:"▸"; position:absolute; left:0; top:0; color:#FFD9D6; }
+  .clinical ul li b { color:#FFE3E1; }
+  body.lang-zh .panel ul li { line-height:1.6; margin-bottom:5px; }
+  .zhonly { display:none; }
+  body.lang-zh .zhonly { display:flex; }
+  body.lang-zh .zhonly.block { display:block; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">BMC Women's Health · Multinomial Logistic Regression</div>
+    <h1 data-i18n="title">Association of PAX1/JAM3 Methylation, HR-HPV &amp; TCT with High-Grade Cervical Lesions</h1>
+    <div class="title_alt" data-i18n="title_alt">高危队列中 PAX1/JAM3 基因甲基化、HR-HPV 与 TCT 与宫颈高级别病变的相关性</div>
+    <div class="subtitle" data-i18n="subtitle">409-woman colposcopy-referred cohort · multinomial logistic regression · JAM3 OR 8.215</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Geng T, Li S (co-first), Bian Y, Li X, Bian Y · First Hospital of Hebei Medical University</div>
+      <div class="source" data-i18n="source">BMC Women's Health 2026 · DOI 10.1186/s12905-026-04622-9 · Published 25 Jun 2026</div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="stat hot"><div class="big">409</div><div class="lab" data-i18n="h1">high-risk cohort</div></div>
+    <div class="stat hot"><div class="big">8.215</div><div class="lab" data-i18n="h2">JAM3 OR (HSIL)</div></div>
+    <div class="stat hot"><div class="big">4.145</div><div class="lab" data-i18n="h3">PAX1 OR (HSIL)</div></div>
+    <div class="stat"><div class="big">36.2%</div><div class="lab" data-i18n="h4">HSIL prevalence</div></div>
+  </div>
+
+  <main class="main">
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">132.8千</div><div class="lab" data-i18n="s1s1">China new cases 2022</div></div>
+          <div class="stat"><div class="big">49.8千</div><div class="lab" data-i18n="s1s2">deaths 2022</div></div>
+          <div class="stat"><div class="big">TCT</div><div class="lab" data-i18n="s1s3">resource-limited scale</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s1a"><strong>Foundation</strong>: HR-HPV + TCT is the backbone of screening, but TCT needs equipment/personnel and HPV over-refers.</li>
+          <li data-i18n="s1b"><strong>Methylation</strong>: PAX1/JAM3 reflect host transforming infection — a candidate objective marker.</li>
+          <li data-i18n="s1c"><strong>Aim</strong>: identify independent risk factors for LSIL and HSIL progression in a high-risk cohort.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Methods &amp; Cohort</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">2023.1–2025.4</div><div class="lab" data-i18n="s2s1">enrollment</div></div>
+          <div class="stat hot"><div class="big">39 y</div><div class="lab" data-i18n="s2s2">median age</div></div>
+          <div class="stat"><div class="big">78%</div><div class="lab" data-i18n="s2s3">premenopausal</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Cohort</strong>: colposcopy-directed biopsy for abnormal TCT, HR-HPV or positive PAX1/JAM3 methylation.</li>
+          <li data-i18n="s2b"><strong>Pathology</strong>: Inflammation 168 (41.1%) · LSIL/CIN1 93 (22.7%) · HSIL/CIN2-3 148 (36.2%).</li>
+          <li data-i18n="s2c"><strong>Markers</strong>: HR-HPV (other 46.0% · 16/18 46.5%) · non-NILM TCT 44.3% · PAX1+ 14.4% · JAM3+ 17.6%.</li>
+          <li data-i18n="s2d"><strong>Statistics</strong>: multinomial logistic regression (proportional-odds violated, P=0.024); LR χ²=145.916; VIF &lt;5.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">14.4%</div><div class="lab" data-i18n="s2s4">PAX1+</div></div>
+          <div class="stat"><div class="big">17.6%</div><div class="lab" data-i18n="s2s5">JAM3+</div></div>
+          <div class="stat"><div class="big">46.5%</div><div class="lab" data-i18n="s2s6">HPV16/18+</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">41.1%</div><div class="lab" data-i18n="s2s7">inflammation</div></div>
+          <div class="stat"><div class="big">22.7%</div><div class="lab" data-i18n="s2s8">LSIL/CIN1</div></div>
+          <div class="stat"><div class="big">36.2%</div><div class="lab" data-i18n="s2s9">HSIL/CIN2-3</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2e"><strong>Proportional-odds check</strong>: violated (P=0.024) → multinomial model chosen to separate LSIL vs HSIL risk.</li>
+          <li data-i18n="s2f"><strong>Univariate screen</strong>: age, gravidity, age at first sex, partners, menopausal status, HPV, TCT and methylation all P&lt;0.05.</li>
+          <li data-i18n="s2g"><strong>Model fit</strong>: LR χ²=145.916; VIF &lt;5 confirms no collinearity among markers.</li>
+        </ul>
+        <div class="zhonly block" style="margin-top:3px;"><span class="tnote" data-i18n="s2z">方法要点：采用无序多项 Logistic 回归分析 LSIL 与 HSIL 的独立危险因素；甲基化阳性率从炎症（3.0%/3.6%）向 HSIL（30.4%/37.2%）陡升。</span></div>
+        <div class="zhonly block" style="margin-top:3px;"><span class="tnote" data-i18n="s2z2">核心结论：JAM3 甲基化（OR 8.215）与 PAX1 甲基化（OR 4.145）为 HSIL 最强的独立危险因素，优于非NILM TCT（OR 2.399）。</span></div>
+      </div>
+    </section>
+
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Independent Risk Factors for HSIL (vs Inflammation)</span></h3>
+        <div class="orbar">
+          <div class="orb win"><div class="obl" data-i18n="s3l1">JAM3 methylation +</div><div class="obt"><div class="obf" style="width:100%">8.215</div></div><div class="obv">OR 8.22</div></div>
+          <div class="orb win"><div class="obl" data-i18n="s3l2">Very-high-risk HPV 16/18</div><div class="obt"><div class="obf" style="width:83%">6.801</div></div><div class="obv">OR 6.80</div></div>
+          <div class="orb win"><div class="obl" data-i18n="s3l3">PAX1 methylation +</div><div class="obt"><div class="obf" style="width:50%">4.145</div></div><div class="obv">OR 4.15</div></div>
+          <div class="orb lose"><div class="obl" data-i18n="s3l4">Non-NILM TCT</div><div class="obt"><div class="obf" style="width:29%">2.399</div></div><div class="obv">OR 2.40</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s3a"><strong>JAM3 methylation strongest</strong>: OR 8.215 (95% CI 2.907–23.213, P&lt;0.001) for HSIL — the top independent marker.</li>
+          <li data-i18n="s3b"><strong>PAX1 adds value</strong>: OR 4.145 independently of HPV type and cytology — molecular layer beyond conventional tests.</li>
+          <li data-i18n="s3c"><strong>HPV16/18</strong>: OR 6.801 remains a major driver; TCT (OR 2.399) contributes but weaker.</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">Methylation Positivity Gradient</span></h3>
+        <div class="orbar">
+          <div class="orb lose"><div class="obl" data-i18n="s4l1">PAX1 · Inflammation</div><div class="obt"><div class="obf" style="width:8%">3.0%</div></div><div class="obv">3.0%</div></div>
+          <div class="orb win"><div class="obl" data-i18n="s4l2">PAX1 · HSIL</div><div class="obt"><div class="obf" style="width:82%">30.4%</div></div><div class="obv">30.4%</div></div>
+          <div class="orb lose"><div class="obl" data-i18n="s4l3">JAM3 · Inflammation</div><div class="obt"><div class="obf" style="width:10%">3.6%</div></div><div class="obv">3.6%</div></div>
+          <div class="orb win"><div class="obl" data-i18n="s4l4">JAM3 · HSIL</div><div class="obt"><div class="obf" style="width:100%">37.2%</div></div><div class="obv">37.2%</div></div>
+        </div>
+        <div class="tnote" data-i18n="s4n">Positivity rises steeply from inflammation to HSIL — a clear dose–response supporting clinical use.</div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Risk Stratification &amp; Significance</span></h3>
+        <ul>
+          <li data-i18n="s5a"><strong>Independent association</strong>: HR-HPV, non-NILM TCT and PAX1/JAM3 methylation each independently link to high-grade lesions.</li>
+          <li data-i18n="s5b"><strong>Objective add-on</strong>: methylation quantifies host transformation — strengthens risk stratification beyond HPV/TCT alone.</li>
+          <li data-i18n="s5c"><strong>Decision support</strong>: positive methylation flags high-risk women for colposcopy despite negative cytology.</li>
+          <li data-i18n="s5d"><strong>Next steps</strong>: larger prospective studies to validate utility and cost-effectiveness in routine screening.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">30.4%</div><div class="lab" data-i18n="s5s1">PAX1+ in HSIL</div></div>
+          <div class="stat"><div class="big">37.2%</div><div class="lab" data-i18n="s5s2">JAM3+ in HSIL</div></div>
+          <div class="stat"><div class="big">3–4%</div><div class="lab" data-i18n="s5s3">in inflammation</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s5e"><strong>Low-grade signal</strong>: methylation not significant for LSIL — viral/cytological drivers dominate early lesions.</li>
+          <li data-i18n="s5f"><strong>High-grade signal</strong>: methylation becomes a decisive independent factor at the HSIL stage.</li>
+        </ul>
+        <div class="tnote" data-i18n="s5n">Methylation assay: PCR–fluorescence probe; positive = ΔCt PAX1 ≤6.6 or JAM3 ≤10.0; CV &lt;5% intra, &lt;10% inter.</div>
+      </div>
+    </section>
+  </main>
+
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Methylation as top marker</b>: JAM3 (OR 8.215) and PAX1 (OR 4.145) are the strongest independent HSIL risk factors in a high-risk cohort.</li>
+      <li data-i18n="c2"><b>Enhanced stratification</b>: combining PAX1/JAM3 methylation with HPV &amp; TCT improves identification of women needing colposcopy.</li>
+    </ul>
+  </div>
+
+</div>
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "BMC Women's Health · Multinomial Logistic Regression",
+      title: "Association of PAX1/JAM3 Methylation, HR-HPV & TCT with High-Grade Cervical Lesions",
+      title_alt: "高危队列中 PAX1/JAM3 基因甲基化、HR-HPV 与 TCT 与宫颈高级别病变的相关性",
+      subtitle: "409-woman colposcopy-referred cohort · multinomial logistic regression · JAM3 OR 8.215",
+      authors: "Geng T, Li S (co-first), Bian Y, Li X, Bian Y · First Hospital of Hebei Medical University",
+      source: "BMC Women's Health 2026 · DOI 10.1186/s12905-026-04622-9 · Published 25 Jun 2026",
+      h1: "high-risk cohort", h2: "JAM3 OR (HSIL)", h3: "PAX1 OR (HSIL)", h4: "HSIL prevalence",
+      s1t: "Background & Objective",
+      s1s1: "China new cases 2022", s1s2: "deaths 2022", s1s3: "resource-limited scale",
+      s1a: "<strong>Foundation</strong>: HR-HPV + TCT is the backbone of screening, but TCT needs equipment/personnel and HPV over-refers.",
+      s1b: "<strong>Methylation</strong>: PAX1/JAM3 reflect host transforming infection — a candidate objective marker.",
+      s1c: "<strong>Aim</strong>: identify independent risk factors for LSIL and HSIL progression in a high-risk cohort.",
+      s2t: "Methods & Cohort",
+      s2s1: "enrollment", s2s2: "median age", s2s3: "premenopausal",
+      s2a: "<strong>Cohort</strong>: colposcopy-directed biopsy for abnormal TCT, HR-HPV or positive PAX1/JAM3 methylation.",
+      s2b: "<strong>Pathology</strong>: Inflammation 168 (41.1%) · LSIL/CIN1 93 (22.7%) · HSIL/CIN2-3 148 (36.2%).",
+      s2c: "<strong>Markers</strong>: HR-HPV (other 46.0% · 16/18 46.5%) · non-NILM TCT 44.3% · PAX1+ 14.4% · JAM3+ 17.6%.",
+      s2d: "<strong>Statistics</strong>: multinomial logistic regression (proportional-odds violated, P=0.024); LR χ²=145.916; VIF <5.",
+      s2s7: "inflammation", s2s8: "LSIL/CIN1", s2s9: "HSIL/CIN2-3",
+      s2e: "<strong>Proportional-odds check</strong>: violated (P=0.024) → multinomial model chosen to separate LSIL vs HSIL risk.",
+      s2f: "<strong>Univariate screen</strong>: age, gravidity, age at first sex, partners, menopausal status, HPV, TCT and methylation all P<0.05.",
+      s2g: "<strong>Model fit</strong>: LR χ²=145.916; VIF <5 confirms no collinearity among markers.",
+      s2s4: "PAX1+", s2s5: "JAM3+", s2s6: "HPV16/18+",
+      s2z: "方法要点：采用无序多项 Logistic 回归分析 LSIL 与 HSIL 的独立危险因素；甲基化阳性率从炎症（3.0%/3.6%）向 HSIL（30.4%/37.2%）陡升。",
+      s2z2: "核心结论：JAM3 甲基化（OR 8.215）与 PAX1 甲基化（OR 4.145）为 HSIL 最强的独立危险因素，优于非NILM TCT（OR 2.399）。",
+      s3t: "Independent Risk Factors for HSIL (vs Inflammation)",
+      s3l1: "JAM3 methylation +", s3l2: "Very-high-risk HPV 16/18", s3l3: "PAX1 methylation +", s3l4: "Non-NILM TCT",
+      s3a: "<strong>JAM3 methylation strongest</strong>: OR 8.215 (95% CI 2.907–23.213, P<0.001) for HSIL — the top independent marker.",
+      s3b: "<strong>PAX1 adds value</strong>: OR 4.145 independently of HPV type and cytology — molecular layer beyond conventional tests.",
+      s3c: "<strong>HPV16/18</strong>: OR 6.801 remains a major driver; TCT (OR 2.399) contributes but weaker.",
+      s4t: "Methylation Positivity Gradient",
+      s4l1: "PAX1 · Inflammation", s4l2: "PAX1 · HSIL", s4l3: "JAM3 · Inflammation", s4l4: "JAM3 · HSIL",
+      s4n: "Positivity rises steeply from inflammation to HSIL — a clear dose–response supporting clinical use.",
+      s5t: "Risk Stratification & Significance",
+      s5a: "<strong>Independent association</strong>: HR-HPV, non-NILM TCT and PAX1/JAM3 methylation each independently link to high-grade lesions.",
+      s5b: "<strong>Objective add-on</strong>: methylation quantifies host transformation — strengthens risk stratification beyond HPV/TCT alone.",
+      s5c: "<strong>Decision support</strong>: positive methylation flags high-risk women for colposcopy despite negative cytology.",
+      s5d: "<strong>Next steps</strong>: larger prospective studies to validate utility and cost-effectiveness in routine screening.",
+      s5s1: "PAX1+ in HSIL", s5s2: "JAM3+ in HSIL", s5s3: "in inflammation",
+      s5e: "<strong>Low-grade signal</strong>: methylation not significant for LSIL — viral/cytological drivers dominate early lesions.",
+      s5f: "<strong>High-grade signal</strong>: methylation becomes a decisive independent factor at the HSIL stage.",
+      s5n: "Methylation assay: PCR–fluorescence probe; positive = ΔCt PAX1 ≤6.6 or JAM3 ≤10.0; CV <5% intra, <10% inter.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Methylation as top marker</b>: JAM3 (OR 8.215) and PAX1 (OR 4.145) are the strongest independent HSIL risk factors in a high-risk cohort.",
+      c2: "<b>Enhanced stratification</b>: combining PAX1/JAM3 methylation with HPV & TCT improves identification of women needing colposcopy."
+    },
+    zh: {
+      kicker: "BMC 女性健康 · 多项 Logistic 回归",
+      title: "高危队列中 PAX1/JAM3 基因甲基化、HR-HPV 与 TCT 与宫颈高级别病变的相关性",
+      title_alt: "Association of PAX1/JAM3 Methylation, HR-HPV & TCT with High-Grade Cervical Lesions",
+      subtitle: "409 例阴道镜转诊高危队列 · 多项 Logistic 回归 · JAM3 OR 8.215",
+      authors: "耿同瑶、李思佳（并列一作）、边亚楠、李晓东、边亚辉 · 河北医科大学第一医院",
+      source: "BMC Women's Health 2026 · DOI 10.1186/s12905-026-04622-9 · 2026-06-25 在线发表",
+      h1: "高危队列", h2: "JAM3 OR（HSIL）", h3: "PAX1 OR（HSIL）", h4: "HSIL 患病率",
+      s1t: "背景与目的",
+      s1s1: "中国 2022 新发", s1s2: "2022 死亡", s1s3: "资源受限推广",
+      s1a: "<strong>基础</strong>：HR-HPV + TCT 为筛查支柱，但 TCT 依赖设备与人员、HPV 过度转诊。",
+      s1b: "<strong>甲基化</strong>：PAX1/JAM3 反映宿主转化感染——候选客观标志物。",
+      s1c: "<strong>目的</strong>：在高危队列中识别 LSIL 与 HSIL 进展的独立危险因素。",
+      s2t: "方法与队列",
+      s2s1: "入组期", s2s2: "中位年龄", s2s3: "绝经前",
+      s2a: "<strong>队列</strong>：因 TCT 异常、HR-HPV 或 PAX1/JAM3 甲基化阳性行阴道镜活检。",
+      s2b: "<strong>病理</strong>：炎症 168（41.1%）· LSIL/CIN1 93（22.7%）· HSIL/CIN2-3 148（36.2%）。",
+      s2c: "<strong>标志物</strong>：HR-HPV（其他 46.0% · 16/18 46.5%）· 非NILM TCT 44.3% · PAX1+ 14.4% · JAM3+ 17.6%。",
+      s2d: "<strong>统计</strong>：无序多项 Logistic 回归（比例优势假定不成立，P=0.024）；LR χ²=145.916；VIF &lt;5。",
+      s2s7: "炎症", s2s8: "LSIL/CIN1", s2s9: "HSIL/CIN2-3",
+      s2e: "<strong>比例优势检验</strong>：不成立（P=0.024）→ 选择多项模型分离 LSIL 与 HSIL 风险。",
+      s2f: "<strong>单因素筛查</strong>：年龄、孕次、初潮/首性年龄、性伴数、绝经状态、HPV、TCT 与甲基化均 P&lt;0.05。",
+      s2g: "<strong>模型拟合</strong>：LR χ²=145.916；VIF &lt;5 证实标志物间无共线性。",
+      s2s4: "PAX1+", s2s5: "JAM3+", s2s6: "HPV16/18+",
+      s2z: "方法要点：采用无序多项 Logistic 回归分析 LSIL 与 HSIL 的独立危险因素；甲基化阳性率从炎症（3.0%/3.6%）向 HSIL（30.4%/37.2%）陡升。",
+      s2z2: "核心结论：JAM3 甲基化（OR 8.215）与 PAX1 甲基化（OR 4.145）为 HSIL 最强的独立危险因素，优于非NILM TCT（OR 2.399）。",
+      s3t: "HSIL 独立危险因素（vs 炎症）",
+      s3l1: "JAM3 甲基化 +", s3l2: "极高危 HPV 16/18", s3l3: "PAX1 甲基化 +", s3l4: "非NILM TCT",
+      s3a: "<strong>JAM3 甲基化最强</strong>：HSIL OR 8.215（95%CI 2.907–23.213，P&lt;0.001）——头号独立标志物。",
+      s3b: "<strong>PAX1 增值</strong>：OR 4.145，独立于 HPV 型别与细胞学——超越传统检测的分子层。",
+      s3c: "<strong>HPV16/18</strong>：OR 6.801 仍为重要驱动；TCT（OR 2.399）有贡献但较弱。",
+      s4t: "甲基化阳性率梯度",
+      s4l1: "PAX1 · 炎症", s4l2: "PAX1 · HSIL", s4l3: "JAM3 · 炎症", s4l4: "JAM3 · HSIL",
+      s4n: "阳性率从炎症到 HSIL 陡升——清晰的剂量-反应关系支持临床应用。",
+      s5t: "风险分层与意义",
+      s5a: "<strong>独立关联</strong>：HR-HPV、非NILM TCT 与 PAX1/JAM3 甲基化均独立关联高级别病变。",
+      s5b: "<strong>客观补充</strong>：甲基化定量宿主转化——强化单一 HPV/TCT 之外的风险分层。",
+      s5c: "<strong>决策支持</strong>：细胞学阴性但甲基化阳性者标记高危，提示阴道镜。",
+      s5d: "<strong>下一步</strong>：更大规模前瞻研究验证常规筛查中的效用与成本效益。",
+      s5s1: "HSIL 中 PAX1+", s5s2: "HSIL 中 JAM3+", s5s3: "炎症中",
+      s5e: "<strong>低级别信号</strong>：甲基化对 LSIL 不显著——早期病变由病毒/细胞学驱动主导。",
+      s5f: "<strong>高级别信号</strong>：甲基化在 HSIL 阶段成为决定性独立因素。",
+      s5n: "甲基化检测：PCR-荧光探针；阳性 = ΔCt PAX1 ≤6.6 或 JAM3 ≤10.0；批内 CV &lt;5%、批间 &lt;10%。",
+      c_ttl: "临床意义",
+      c1: "<b>甲基化登顶</b>：JAM3（OR 8.215）与 PAX1（OR 4.145）是高危队列中 HSIL 最强的独立危险因素。",
+      c2: "<b>强化分层</b>：PAX1/JAM3 甲基化联合 HPV 与 TCT 改善需行阴道镜女性的识别。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

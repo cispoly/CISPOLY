@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CDO1/CELF4 Methylation as Dominant EC Predictor — Wang et al. 2026</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #27：绝经前后双队列 + 一致性）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、大数字卡、条形对比
+  - 布局：标题带 → hero（573 例 / 绝经前 Se 89.7% / 绝经后 Se 91.7% / aOR 103.9 红卡）→ 两栏（左 560px：①背景与目的 ②研究设计；右 1fr：③绝经前效能 ④绝经后效能 ⑤甲基化-TVS 一致性与主导预测【原图 + aOR】）→ 全宽临床意义带
+  - 选图：甲基化-TVS 一致性（1423×714）
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 98px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 22px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .figrow { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 0 0 5px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 10px 4px; text-align: center; }
+  .stat .big { font-size: 18px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .figrow { display: flex; gap: 12px; align-items: flex-start; justify-content: center; }
+  .fig { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px 5px; text-align: center; min-width: 0; }
+  .fig img { display: inline-block; height: auto; max-height: 178px; width: auto; max-width: 100%; border-radius: 3px; align-self: center; }
+  .fig .figcap { font-size: 10px; color: var(--muted); font-style: italic; line-height: 1.3; margin-top: 3px; text-align: left; }
+  .fig .figcap strong { color: var(--primary); font-style: normal; }
+
+  .spbars { margin: 2px 0 6px; }
+  .spb { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+  .spb .sbl { flex: 0 0 150px; font-size: 11.5px; font-weight: 700; color: var(--text); text-align: right; }
+  .spb .sbt { flex: 1 1 auto; height: 20px; background: #F1E7E7; border-radius: 5px; overflow: hidden; position: relative; }
+  .spb .sbf { height: 100%; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 12px; font-weight: 800; color: #fff; }
+  .spb.win .sbf { background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); }
+  .spb.lose .sbf { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); color: #6B5755; }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 3px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; flex: 1 1 auto; min-height: 0; }
+  .duo .half { background: rgba(255,255,255,0.6); border: 1px solid rgba(215,75,74,0.18); border-radius: 8px; padding: 7px 12px 5px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .duo .half .ht { font-size: 13px; font-weight: 800; color: var(--primary); border-bottom: 1.5px solid var(--accent); padding-bottom: 2px; margin-bottom: 2px; }
+  .concord { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); grid-template-rows: 1fr; gap: 12px; align-items: stretch; margin: 2px 0 0; }
+  .concord .fig { display: flex; flex-direction: column; justify-content: center; }
+  .concord .fig img { align-self: center; max-height: 300px; }
+  .concord .side { display: flex; flex-direction: column; justify-content: center; gap: 5px; min-width: 0; }
+  .concord .side .statrow { margin-bottom: 4px; }
+  .concord .side ul { margin-top: 2px; }
+  body.lang-zh .panel ul li { line-height: 1.42; margin-bottom: 5px; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Gynecol Oncol · 2026 · Prospective Cohort · China</div>
+    <h1 data-i18n="title">CDO1/CELF4 Methylation as Dominant Endometrial Cancer Predictor</h1>
+    <div class="title_alt" data-i18n="title_alt">CDO1 与 CELF4 甲基化检测是子宫内膜癌的主导预测因子——绝经前后队列分析</div>
+    <div class="subtitle" data-i18n="subtitle">573 hysteroscopy-referred women (41 EC + 8 EIN) · pre-meno Se 89.7%/AUC 0.91 · post-meno Se 91.7%/AUC 0.92 · adjusted OR 103.9/118.0</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Wang X, Zheng L, Zhu G, Wang S, Li W, Liu J, Gao H, Liu X, Li G, Li L, Hong L</div>
+      <div class="source" data-i18n="source">Hainan General Hospital · Peking Union Medical College Hospital · 2026</div>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="stat"><div class="big">573</div><div class="lab" data-i18n="h1">hysteroscopy-referred</div></div>
+    <div class="stat"><div class="big">89.7%</div><div class="lab" data-i18n="h2">Se · premenopausal</div></div>
+    <div class="stat"><div class="big">91.7%</div><div class="lab" data-i18n="h3">Se · postmenopausal</div></div>
+    <div class="stat hot"><div class="big">OR 103.9</div><div class="lab" data-i18n="h4">strongest predictor</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Problem</strong>: EC incidence rising; no general screening; TVS/ET thresholds unreliable, esp. premenopausal.</li>
+          <li data-i18n="s1b"><strong>Objective</strong>: evaluate CISENDO (CDO1/CELF4 methylation) ± endometrial thickness (ET) for EC triage.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">524</div><div class="lab" data-i18n="s2s1">non-EC</div></div>
+          <div class="stat hot"><div class="big">41</div><div class="lab" data-i18n="s2s2">EC</div></div>
+          <div class="stat"><div class="big">8</div><div class="lab" data-i18n="s2s3">EIN</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Setting</strong>: Hainan General Hospital; prospective, Jan–Jun 2022; hysteroscopy-referred.</li>
+          <li data-i18n="s2b"><strong>Assay</strong>: CDO1/CELF4 methylation (CISENDO) on cervical scrapings + TVS ET.</li>
+          <li data-i18n="s2c"><strong>Analysis</strong>: stratified by menopause; univariate &amp; multivariate logistic (aOR).</li>
+          <li data-i18n="s2d"><strong>EC profile</strong>: 92.7% endometrioid; 70.7% FIGO stage I — early-stage detection.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">608</div><div class="lab" data-i18n="s2s4">enrolled</div></div>
+          <div class="stat"><div class="big">573</div><div class="lab" data-i18n="s2s5">analyzed</div></div>
+          <div class="stat"><div class="big">2022.1–6</div><div class="lab" data-i18n="s2s6">enrollment</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2e"><strong>Inclusion</strong>: ≥18 y, hysteroscopy indication, informed consent.</li>
+          <li data-i18n="s2f"><strong>Exclusion</strong>: incomplete data · prior gynecologic cancer · hysterectomy · pregnancy.</li>
+          <li data-i18n="s2g"><strong>Readout</strong>: ΔCt cut-offs — CDO1 8.4 · CELF4 8.8.</li>
+          <li data-i18n="s2h"><strong>Menopause</strong>: amenorrhea ≥12 months (guideline-based).</li>
+        </ul>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s2j1">aOR · premenopausal</div><div class="sbt"><div class="sbf" style="width:88%">103.9</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s2j2">aOR · postmenopausal</div><div class="sbt"><div class="sbf" style="width:100%">118.0</div></div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2i"><strong>OR rule</strong> (either positive): max sensitivity — Se 96.6%/100%.</li>
+          <li data-i18n="s2j"><strong>AND rule</strong> (both positive): max specificity — Sp 97.2%/98.0%.</li>
+          <li data-i18n="s2k"><strong>NPV &gt;90%</strong> across most combinations — safe deferral.</li>
+        </ul>
+        <div class="spbars">
+          <div class="spb lose"><div class="sbl" data-i18n="s2l1">ET alone (premenopausal)</div><div class="sbt"><div class="sbf" style="width:57%">AUC 0.57</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s2l2">CISENDO + ET (co-test)</div><div class="sbt"><div class="sbf" style="width:83%">AUC 0.83</div></div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2m"><strong>Ultrasound limitation</strong>: ET alone AUC 0.57 — methylation co-test lifts to 0.83.</li>
+        </ul>
+        <div class="tnote" data-i18n="s2n">Methylation was the strongest independent EC predictor vs all clinical/ultrasound factors (P&lt;0.001).</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Performance by Menopausal Status</span></h3>
+        <div class="duo">
+          <div class="half">
+            <div class="ht" data-i18n="s3h">Premenopausal</div>
+            <div class="statrow">
+              <div class="stat hot"><div class="big">89.7%</div><div class="lab" data-i18n="s3s1">Se</div></div>
+              <div class="stat"><div class="big">93.0%</div><div class="lab" data-i18n="s3s2">Sp</div></div>
+              <div class="stat"><div class="big">0.91</div><div class="lab" data-i18n="s3s3">AUC</div></div>
+            </div>
+            <div class="spbars">
+              <div class="spb win"><div class="sbl" data-i18n="s3a1">+ ET ≥11 mm</div><div class="sbt"><div class="sbf" style="width:96.6%">Se 96.6%</div></div></div>
+            </div>
+            <ul>
+              <li data-i18n="s3a"><strong>55.2% EC</strong>: ET &lt;11 mm yet CISENDO(+) — catches what ultrasound misses.</li>
+            </ul>
+          </div>
+          <div class="half">
+            <div class="ht" data-i18n="s4h">Postmenopausal</div>
+            <div class="statrow">
+              <div class="stat hot"><div class="big">91.7%</div><div class="lab" data-i18n="s4s1">Se</div></div>
+              <div class="stat"><div class="big">91.8%</div><div class="lab" data-i18n="s4s2">Sp</div></div>
+              <div class="stat"><div class="big">0.92</div><div class="lab" data-i18n="s4s3">AUC</div></div>
+            </div>
+            <div class="spbars">
+              <div class="spb win"><div class="sbl" data-i18n="s4a1">+ ET ≥5 mm</div><div class="sbt"><div class="sbf" style="width:100%">Se 100%</div></div></div>
+            </div>
+            <ul>
+              <li data-i18n="s4a"><strong>52.7% non-EC</strong>: ET ≥5 mm yet CISENDO(−) — cuts false alarms.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">4</span><span data-i18n="s4t">Methylation–TVS Concordance</span></h3>
+        <div class="concord">
+          <div class="fig">
+            <img src="images/fig_concordance.jpg" alt="Methylation-TVS concordance across menopausal status">
+            <div class="figcap"><strong>Fig.</strong> <span data-i18n="s4c1">Methylation–TVS concordance — risk-stratification across pre/postmenopausal groups.</span></div>
+          </div>
+          <div class="side">
+            <div class="statrow">
+              <div class="stat hot"><div class="big">97.2%</div><div class="lab" data-i18n="s5a1">pre non-EC ruled out</div></div>
+              <div class="stat hot"><div class="big">92.9%</div><div class="lab" data-i18n="s5a2">post non-EC ruled out</div></div>
+            </div>
+            <div class="statrow">
+              <div class="stat"><div class="big">53.1%</div><div class="lab" data-i18n="s5b1">post ET ≥5 mm · CISENDO(−)</div></div>
+              <div class="stat"><div class="big">23.9%</div><div class="lab" data-i18n="s5b2">pre ET ≥11 mm · CISENDO(−)</div></div>
+            </div>
+            <ul>
+              <li data-i18n="s5c"><strong>Few misclassified</strong>: isolated methylation+ with thin ET only 4.2% (pre) / 1.0% (post).</li>
+              <li data-i18n="s5d"><strong>Corrects ultrasound</strong>: methylation clears ET-driven false positives &amp; negatives.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>CISENDO is the dominant EC predictor</b> (aOR 103.9/118.0) with high accuracy in both menopausal groups (AUC 0.91/0.92).</li>
+      <li data-i18n="c2"><b>Non-invasive triage</b>: methylation + ET refines referral for hysteroscopy; reduces unnecessary invasive assessment.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Gynecol Oncol · 2026 · Prospective Cohort · China",
+      title: "CDO1/CELF4 Methylation as Dominant Endometrial Cancer Predictor",
+      title_alt: "CDO1 与 CELF4 甲基化检测是子宫内膜癌的主导预测因子——绝经前后队列分析",
+      subtitle: "573 hysteroscopy-referred women (41 EC + 8 EIN) · pre-meno Se 89.7%/AUC 0.91 · post-meno Se 91.7%/AUC 0.92 · adjusted OR 103.9/118.0",
+      authors: "Wang X, Zheng L, Zhu G, Wang S, Li W, Liu J, Gao H, Liu X, Li G, Li L, Hong L",
+      source: "Hainan General Hospital · Peking Union Medical College Hospital · 2026",
+      h1: "hysteroscopy-referred", h2: "Se · premenopausal", h3: "Se · postmenopausal", h4: "strongest predictor",
+      s1t: "Background & Objective",
+      s1a: "<strong>Problem</strong>: EC incidence rising; no general screening; TVS/ET thresholds unreliable, esp. premenopausal.",
+      s1b: "<strong>Objective</strong>: evaluate CISENDO (CDO1/CELF4 methylation) ± endometrial thickness (ET) for EC triage.",
+      s2t: "Study Design & Cohort",
+      s2s1: "non-EC", s2s2: "EC", s2s3: "EIN",
+      s2a: "<strong>Setting</strong>: Hainan General Hospital; prospective, Jan–Jun 2022; hysteroscopy-referred.",
+      s2b: "<strong>Assay</strong>: CDO1/CELF4 methylation (CISENDO) on cervical scrapings + TVS ET.",
+      s2c: "<strong>Analysis</strong>: stratified by menopause; univariate & multivariate logistic (aOR).",
+      s2d: "<strong>EC profile</strong>: 92.7% endometrioid; 70.7% FIGO stage I — early-stage detection.",
+      s2s4: "enrolled", s2s5: "analyzed", s2s6: "enrollment",
+      s2e: "<strong>Inclusion</strong>: ≥18 y, hysteroscopy indication, informed consent.",
+      s2f: "<strong>Exclusion</strong>: incomplete data · prior gynecologic cancer · hysterectomy · pregnancy.",
+      s2g: "<strong>Readout</strong>: ΔCt cut-offs — CDO1 8.4 · CELF4 8.8.",
+      s2h: "<strong>Menopause</strong>: amenorrhea ≥12 months (guideline-based).",
+      s2i: "<strong>OR rule</strong> (either positive): max sensitivity — Se 96.6%/100%.",
+      s2j: "<strong>AND rule</strong> (both positive): max specificity — Sp 97.2%/98.0%.",
+      s2k: "<strong>NPV >90%</strong> across most combinations — safe deferral.",
+      s2l1: "ET alone (premenopausal)", s2l2: "CISENDO + ET (co-test)",
+      s2m: "<strong>Ultrasound limitation</strong>: ET alone AUC 0.57 — methylation co-test lifts to 0.83.",
+      s2j1: "aOR · premenopausal", s2j2: "aOR · postmenopausal",
+      s2n: "Methylation was the strongest independent EC predictor vs all clinical/ultrasound factors (P<0.001).",
+      s3t: "Performance by Menopausal Status",
+      s3h: "Premenopausal",
+      s3s1: "Se", s3s2: "Sp", s3s3: "AUC",
+      s3a1: "+ ET ≥11 mm",
+      s3a: "<strong>55.2% EC</strong>: ET <11 mm yet CISENDO(+) — catches what ultrasound misses.",
+      s4h: "Postmenopausal",
+      s4s1: "Se", s4s2: "Sp", s4s3: "AUC",
+      s4a1: "+ ET ≥5 mm",
+      s4a: "<strong>52.7% non-EC</strong>: ET ≥5 mm yet CISENDO(−) — cuts false alarms.",
+      s4t: "Methylation–TVS Concordance",
+      s4c1: "Methylation–TVS concordance — risk-stratification across pre/postmenopausal groups.",
+      s5a1: "pre non-EC ruled out", s5a2: "post non-EC ruled out", s5b1: "post ET ≥5 mm · CISENDO(−)", s5b2: "pre ET ≥11 mm · CISENDO(−)",
+      s5c: "<strong>Few misclassified</strong>: isolated methylation+ with thin ET only 4.2% (pre) / 1.0% (post).",
+      s5d: "<strong>Corrects ultrasound</strong>: methylation clears ET-driven false positives & negatives.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>CISENDO is the dominant EC predictor</b> (aOR 103.9/118.0) with high accuracy in both menopausal groups (AUC 0.91/0.92).",
+      c2: "<b>Non-invasive triage</b>: methylation + ET refines referral for hysteroscopy; reduces unnecessary invasive assessment."
+    },
+    zh: {
+      kicker: "Gynecol Oncol · 2026 · 前瞻性队列 · 中国",
+      title: "CDO1 与 CELF4 甲基化检测是子宫内膜癌的主导预测因子",
+      title_alt: "CDO1 and CELF4 methylation assay as the dominant predictor of endometrial cancer: pre- and post-menopausal cohorts",
+      subtitle: "573 例宫腔镜转诊女性（41 例 EC + 8 例 EIN）· 绝经前 Se 89.7%/AUC 0.91 · 绝经后 Se 91.7%/AUC 0.92 · 校正 OR 103.9/118.0",
+      authors: "王秀珍、郑朗、朱根海、王胜潭、李伟、刘军、高浩成、刘晓航、李桂飞、李雷、洪澜",
+      source: "海南省人民医院 · 北京协和医院 · 2026",
+      h1: "宫腔镜转诊", h2: "Se · 绝经前", h3: "Se · 绝经后", h4: "最强预测因子",
+      s1t: "背景与目的",
+      s1a: "<strong>问题</strong>：子宫内膜癌发病率上升；缺乏普筛；TVS/ET 阈值不可靠，尤其绝经前。",
+      s1b: "<strong>目的</strong>：评估 CISENDO（CDO1/CELF4 甲基化）± 内膜厚度（ET）用于 EC 分诊。",
+      s2t: "研究设计与队列",
+      s2s1: "非 EC", s2s2: "EC", s2s3: "EIN",
+      s2a: "<strong>地点</strong>：海南省人民医院；前瞻性，2022.1–6；宫腔镜转诊。",
+      s2b: "<strong>检测</strong>：宫颈拭子 CDO1/CELF4 甲基化（CISENDO）+ TVS 内膜厚度。",
+      s2c: "<strong>分析</strong>：按绝经分层；单因素与多因素 Logistic（aOR）。",
+      s2d: "<strong>EC 特征</strong>：92.7% 子宫内膜样；70.7% FIGO I 期——早期检出。",
+      s2s4: "入组", s2s5: "纳入分析", s2s6: "入组期",
+      s2e: "<strong>纳入</strong>：≥18 岁、有宫腔镜指征、知情同意。",
+      s2f: "<strong>排除</strong>：资料不全 · 既往妇科肿瘤 · 子宫切除 · 妊娠。",
+      s2g: "<strong>判读</strong>：ΔCt 阈值——CDO1 8.4 · CELF4 8.8。",
+      s2h: "<strong>绝经</strong>：闭经 ≥12 个月（按指南）。",
+      s2i: "<strong>OR 规则</strong>（任一阳性）：灵敏度最高——Se 96.6%/100%。",
+      s2j: "<strong>AND 规则</strong>（双阳性）：特异度最高——Sp 97.2%/98.0%。",
+      s2k: "<strong>NPV &gt;90%</strong>——大多数组合下可安全推迟。",
+      s2l1: "ET 单独（绝经前）", s2l2: "CISENDO + ET（联合）",
+      s2m: "<strong>超声局限</strong>：ET 单独 AUC 仅 0.57——联合甲基化提升至 0.83。",
+      s2j1: "aOR · 绝经前", s2j2: "aOR · 绝经后",
+      s2n: "甲基化是强于所有临床/超声因素的最强 EC 独立预测因子（P&lt;0.001）。",
+      s3t: "按绝经状态分层效能",
+      s3h: "绝经前",
+      s3s1: "Se", s3s2: "Sp", s3s3: "AUC",
+      s3a1: "+ ET ≥11 mm",
+      s3a: "<strong>55.2% EC</strong>：ET &lt;11 mm 但 CISENDO(+)——捕捉超声漏诊。",
+      s4h: "绝经后",
+      s4s1: "Se", s4s2: "Sp", s4s3: "AUC",
+      s4a1: "+ ET ≥5 mm",
+      s4a: "<strong>52.7% 非 EC</strong>：ET ≥5 mm 但 CISENDO(−)——减少假警报。",
+      s4t: "甲基化–TVS 一致性",
+      s4c1: "甲基化–TVS 一致性——绝经前后风险分层。",
+      s5a1: "绝经前非 EC 排除", s5a2: "绝经后非 EC 排除", s5b1: "绝经后 ET ≥5 mm · CISENDO(−)", s5b2: "绝经前 ET ≥11 mm · CISENDO(−)",
+      s5c: "<strong>误分极少</strong>：薄内膜下孤立甲基化(+) 仅 4.2%（前）/ 1.0%（后）。",
+      s5d: "<strong>纠正超声</strong>：甲基化清除 ET 导致的假阳性与假阴性。",
+      c_ttl: "临床意义",
+      c1: "<b>CISENDO 是 EC 主导预测因子</b>（aOR 103.9/118.0），绝经前后准确度均高（AUC 0.91/0.92）。",
+      c2: "<b>无创分诊</b>：甲基化 + ET 优化宫腔镜转诊——减少不必要的有创评估。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

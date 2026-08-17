@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JAM3 Methylation in CIN Grading &amp; Post-op Recurrence — Lou 2024</title>
+<!--
+  设计说明（布局 BC：JAM3 分级梯度 + 复发预测 · 无图）：
+  - 标题带 → hero（200 例 · 4%→54% 梯度 · 复发预测 AUC · 联合检测增益）
+  - 左列：① 背景与目的 ② 研究设计
+  - 右列：③ 分级梯度条形（4/10/38/54%）④ 复发预测（ROC/AUC + statrow）⑤ 与传统筛查互补
+  - 临床意义带
+-->
+<style>
+  :root { --primary:#D74B4A; --secondary:#F07A76; --accent:#F7C9C7; --accent-deep:#B83A39;
+    --bg:#FFFFFF; --panel:rgba(233,233,233,0.55); --panel-alt:rgba(240,122,118,0.10);
+    --text:#3A3232; --muted:#5C5252; --line:rgba(215,75,74,0.22); }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:100%; height:100%; overflow:hidden; font-family:"Segoe UI","Helvetica Neue",Arial,"Microsoft YaHei",sans-serif; color:var(--text); background:var(--bg); }
+  body { display:flex; align-items:center; justify-content:center; }
+  .poster { width:2100px; height:1080px; display:flex; flex-direction:column; background:#FFF; padding:14px 26px; zoom:calc(min(100vw/2100px,100vh/1080px)); flex:none; position:relative; }
+
+  .titleband { background:linear-gradient(135deg,rgba(215,75,74,0.94),rgba(215,75,74,0.86) 50%,rgba(240,122,118,0.9)); color:#fff; padding:13px 32px 12px; flex:0 0 auto; border-radius:10px 10px 0 0; position:relative; overflow:hidden; }
+  .langswitch { position:absolute; top:12px; right:18px; display:flex; gap:4px; background:rgba(255,255,255,0.18); border-radius:16px; padding:3px; z-index:3; }
+  .langswitch button { border:none; background:transparent; color:#fff; cursor:pointer; font:600 11px/1 "Segoe UI",sans-serif; padding:5px 12px; border-radius:13px; letter-spacing:.5px; }
+  .langswitch button.on { background:#fff; color:var(--accent-deep); }
+  .kicker { font-size:12px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.9); font-weight:600; margin-bottom:4px; padding-right:150px; }
+  .titleband h1 { font-size:24px; font-weight:700; line-height:1.16; max-width:1730px; }
+  .titleband .title_alt { font-size:15px; font-weight:500; line-height:1.3; color:rgba(255,255,255,0.88); margin-top:3px; max-width:1740px; }
+  .titleband .subtitle { font-size:13.5px; color:rgba(255,255,255,0.92); margin-top:4px; max-width:1800px; }
+  .titleband .meta { margin-top:6px; border-top:1px solid rgba(255,255,255,0.32); padding-top:5px; font-size:11px; line-height:1.35; color:rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight:600; color:#FFF; }
+
+  .hero { flex:0 0 auto; height:92px; background:#FFF; border:1px solid var(--line); border-bottom:none; display:flex; align-items:stretch; gap:10px; padding:8px 6px; }
+  .hero .stat { flex:1; background:var(--panel-alt); border:1px solid rgba(215,75,74,0.28); border-radius:8px; padding:6px; text-align:center; display:flex; flex-direction:column; justify-content:center; }
+  .hero .stat .big { font-size:19px; font-weight:800; color:var(--primary); line-height:1.05; }
+  .hero .stat .lab { font-size:9px; color:var(--muted); margin-top:2px; line-height:1.2; }
+  .hero .stat.hot { background:linear-gradient(135deg,rgba(215,75,74,0.95),rgba(240,122,118,0.92)); border-color:var(--accent-deep); }
+  .hero .stat.hot .big { color:#fff; } .hero .stat.hot .lab { color:rgba(255,255,255,0.92); font-weight:600; }
+
+  .main { flex:1 1 auto; min-height:0; display:grid; grid-template-columns:560px minmax(0,1fr); gap:14px; padding-top:10px; }
+  .col { display:flex; flex-direction:column; gap:8px; min-height:0; min-width:0; }
+  .panel { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:7px 13px 5px; flex:0 0 auto; display:flex; flex-direction:column; min-height:0; overflow:hidden; }
+  .panel.grow { flex:1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .orbar, .panel .tnote { flex:0 0 auto; }
+  .panel h3 { font-size:14px; font-weight:700; color:var(--primary); border-bottom:2px solid var(--accent-deep); padding-bottom:3px; margin-bottom:5px; display:flex; align-items:center; gap:6px; }
+  .panel h3 .num { display:inline-flex; align-items:center; justify-content:center; width:19px; height:19px; background:rgba(215,75,74,0.85); color:#fff; border-radius:5px; font-size:11px; flex:0 0 auto; }
+  .panel p, .panel li { font-size:12px; line-height:1.4; color:var(--muted); }
+  .panel ul { list-style:none; }
+  .panel ul li { padding-left:14px; position:relative; margin-bottom:5px; }
+  body.lang-en .panel ul li { margin-bottom:8px; }
+  .panel ul li::before { content:""; position:absolute; left:0; top:6px; width:6px; height:6px; border-radius:50%; background:var(--secondary); }
+  .panel ul li strong { color:var(--primary); }
+  .panel ul li:last-child { margin-bottom:0; }
+
+  .statrow { display:flex; gap:8px; margin:0 0 5px; }
+  .stat { flex:1; background:#fff; border:1px solid var(--line); border-radius:6px; padding:10px 4px; text-align:center; }
+  .stat .big { font-size:17px; font-weight:800; color:var(--primary); line-height:1.05; }
+  .stat .lab { font-size:9px; color:var(--muted); margin-top:2px; line-height:1.2; }
+  .stat.hot { background:linear-gradient(135deg,rgba(215,75,74,0.95),rgba(240,122,118,0.92)); border-color:var(--accent-deep); }
+  .stat.hot .big { color:#fff; } .stat.hot .lab { color:rgba(255,255,255,0.92); font-weight:600; }
+
+  .orbar { margin:2px 0 6px; }
+  .orb { display:flex; align-items:center; gap:10px; margin-bottom:7px; }
+  .orb .obl { flex:0 0 220px; font-size:11.5px; font-weight:700; color:var(--text); text-align:right; }
+  .orb .obt { flex:1 1 auto; height:26px; background:#F1E7E7; border-radius:5px; overflow:hidden; position:relative; }
+  .orb .obf { height:100%; border-radius:5px; display:flex; align-items:center; justify-content:flex-end; padding-right:10px; font-size:13px; font-weight:800; color:#fff; white-space:nowrap; }
+  .orb.win .obf { background:linear-gradient(90deg,var(--secondary) 0%,var(--primary) 100%); }
+  .orb.lose .obf { background:linear-gradient(90deg,#C9A9A7 0%,#D8B0AE 100%); color:#6B5755; }
+  .orb .obv { flex:0 0 60px; font-size:12.5px; font-weight:700; color:var(--primary); }
+
+  .tnote { font-size:10px; color:var(--muted); line-height:1.36; margin-top:7px; }
+  .tnote b { color:var(--accent-deep); }
+
+  .clinical { flex:0 0 auto; background:linear-gradient(135deg,rgba(215,75,74,0.92),rgba(215,75,74,0.8) 60%,rgba(240,122,118,0.88)); border-radius:0 0 10px 10px; color:#fff; padding:10px 26px; display:flex; gap:20px; align-items:center; }
+  .clinical .ttl { font-size:15px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.95); flex:0 0 auto; border-right:1.5px solid rgba(255,255,255,0.35); padding-right:16px; }
+  .clinical ul { list-style:none; flex:1 1 auto; min-width:0; }
+  .clinical ul li { font-size:13px; line-height:1.48; color:rgba(255,255,255,0.96); padding-left:15px; position:relative; margin-bottom:3px; }
+  .clinical ul li:last-child { margin-bottom:0; }
+  .clinical ul li::before { content:"▸"; position:absolute; left:0; top:0; color:#FFD9D6; }
+  .clinical ul li b { color:#FFE3E1; }
+  body.lang-zh .panel ul li { line-height:1.66; margin-bottom:5px; }
+  .zhonly { display:none; }
+  body.lang-zh .zhonly { display:flex; }
+  body.lang-zh .zhonly.block { display:block; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Clinical Study · 临床研究</div>
+    <h1 data-i18n="title">JAM3 Gene DNA Methylation in Predicting Cervical High-Grade Lesions &amp; Postoperative Recurrence</h1>
+    <div class="title_alt" data-i18n="title_alt">JAM3 基因 DNA 甲基化在宫颈高级别上皮内瘤变及术后复发预测的临床研究</div>
+    <div class="subtitle" data-i18n="subtitle">200 biopsy cases (normal/CIN I/II/III × 50) · methylation gradient 4%→54% · recurrence prediction</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">娄琰琰、刘元涛、赵淑婷、陈青、曹佃霞、公维涛、郝长宏 · 临沂市中心医院妇科/疼痛科/病理科</div>
+      <div class="source" data-i18n="source">Advances in Clinical Medicine 2024;14(7):1293-1299 · DOI 10.12677/acm.2024.1472146</div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="stat hot"><div class="big">200</div><div class="lab" data-i18n="h1">biopsy cases</div></div>
+    <div class="stat hot"><div class="big">4%→54%</div><div class="lab" data-i18n="h2">JAM3+ gradient</div></div>
+    <div class="stat hot"><div class="big">AUC</div><div class="lab" data-i18n="h3">recurrence prediction</div></div>
+    <div class="stat"><div class="big">50×4</div><div class="lab" data-i18n="h4">balanced groups</div></div>
+  </div>
+
+  <main class="main">
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">HSIL</div><div class="lab" data-i18n="s1s1">key precursor</div></div>
+          <div class="stat"><div class="big">HPV</div><div class="lab" data-i18n="s1s2">low specificity</div></div>
+          <div class="stat"><div class="big">TCT</div><div class="lab" data-i18n="s1s3">subjective</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s1a"><strong>Precursor burden</strong>: high-grade CIN untreated → substantial progression risk to invasive cancer.</li>
+          <li data-i18n="s1b"><strong>Conventional limits</strong>: HPV low specificity; TCT low sensitivity &amp; operator-dependent — imperfect grading.</li>
+          <li data-i18n="s1c"><strong>Methylation rationale</strong>: JAM3 (tight-junction molecule) promoter methylation is a key epigenetic event in carcinogenesis.</li>
+          <li data-i18n="s1d"><strong>Aim</strong>: JAM3 methylation for HSIL detection, CIN grading and postoperative recurrence prediction.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">50×4</div><div class="lab" data-i18n="s2s1">normal/CIN I/II/III</div></div>
+          <div class="stat hot"><div class="big">2020–2023</div><div class="lab" data-i18n="s2s2">enrollment</div></div>
+          <div class="stat"><div class="big">Linyi</div><div class="lab" data-i18n="s2s3">central hospital</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Cases</strong>: 200 cervical biopsy cases requiring biopsy; single fixed sampler; histology-confirmed groups of 50 each.</li>
+          <li data-i18n="s2b"><strong>Workup</strong>: HPV testing + liquid-based cytology (TCT) + JAM3 DNA methylation assay on pathological specimens.</li>
+          <li data-i18n="s2c"><strong>Method</strong>: bisulfite-based methylation detection; agarose gel (2.0%, 1×TAE) + UV imaging; BiQAnalyzer analysis.</li>
+          <li data-i18n="s2d"><strong>Statistics</strong>: ANOVA across groups; ROC &amp; AUC for recurrence; cutoff (Ct) by ROC; P&lt;0.01 significant.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">HPV</div><div class="lab" data-i18n="s2s4">genotyping</div></div>
+          <div class="stat hot"><div class="big">TCT</div><div class="lab" data-i18n="s2s5">cytology</div></div>
+          <div class="stat"><div class="big">JAM3</div><div class="lab" data-i18n="s2s6">methylation</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2e"><strong>Follow-up</strong>: recurrence tracked after treatment; recurrent vs cured comparison for prediction modeling.</li>
+          <li data-i18n="s2f"><strong>Specimen</strong>: pathological-section DNA used for methylation; bisulfite conversion before PCR.</li>
+          <li data-i18n="s2g"><strong>Endpoint</strong>: JAM3 methylation compared across grades and between recurrence vs cured patients.</li>
+        </ul>
+        <div class="tnote" style="margin-top:5px;">LOU Y et al. · Adv Clin Med 2024 · 200 cases, four groups × 50 · pathological specimens.</div>
+        <div class="zhonly block" style="margin-top:3px;"><span class="tnote" data-i18n="s2z">设计要点：四组各 50 例、病理金标准确认；每位患者行 HPV、TCT 与 JAM3 甲基化三种检测，治疗后追踪复发。</span></div>
+        <div class="zhonly block" style="margin-top:3px;"><span class="tnote" data-i18n="s2z2">核心结果：JAM3 甲基化阳性率随 CIN 分级显著升高（正常 4%→CIN III 54%，两两比较 P&lt;0.01），并支持术后复发预测。</span></div>
+        <div class="zhonly block" style="margin-top:3px;"><span class="tnote" data-i18n="s2z3">联合价值：JAM3 甲基化与 HPV、TCT 互补，提升高级别 CIN 检出，为个体化术后随访提供客观依据。</span></div>
+        <div class="zhonly block" style="margin-top:3px;"><span class="tnote" data-i18n="s2z4">随访意义：ROC 确定 Ct 阈值后，JAM3 甲基化可辅助判断复发风险，指导随访频率与干预时机。</span></div>
+      </div>
+    </section>
+
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">JAM3 Methylation Rises with Lesion Grade</span></h3>
+        <div class="orbar">
+          <div class="orb lose"><div class="obl" data-i18n="s3l1">Normal</div><div class="obt"><div class="obf" style="width:8%">4%</div></div><div class="obv">4%</div></div>
+          <div class="orb lose"><div class="obl" data-i18n="s3l2">CIN I</div><div class="obt"><div class="obf" style="width:19%">10%</div></div><div class="obv">10%</div></div>
+          <div class="orb win"><div class="obl" data-i18n="s3l3">CIN II</div><div class="obt"><div class="obf" style="width:70%">38%</div></div><div class="obv">38%</div></div>
+          <div class="orb win"><div class="obl" data-i18n="s3l4">CIN III</div><div class="obt"><div class="obf" style="width:100%">54%</div></div><div class="obv">54%</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s3a"><strong>Progressive gradient</strong>: JAM3+ rises 4% → 10% → 38% → 54% across severity.</li>
+          <li data-i18n="s3b"><strong>All pairwise significant</strong>: normal vs CIN I vs CIN II vs CIN III differences P&lt;0.01.</li>
+          <li data-i18n="s3c"><strong>Grading support</strong>: methylation mirrors histologic grade — aids CIN II/III discrimination.</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">Postoperative Recurrence Prediction</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">ROC</div><div class="lab" data-i18n="s4s1">cutoff by Ct</div></div>
+          <div class="stat hot"><div class="big">AUC</div><div class="lab" data-i18n="s4s2">recurrence</div></div>
+          <div class="stat"><div class="big">P&lt;0.01</div><div class="lab" data-i18n="s4s3">significant</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s4a"><strong>Recurrence vs cured</strong>: JAM3 methylation compared between recurrent and cured patients after treatment.</li>
+          <li data-i18n="s4b"><strong>ROC-based cutoff</strong>: Ct threshold derived to discriminate recurrence with high accuracy.</li>
+          <li data-i18n="s4c"><strong>Clinical track</strong>: methylation adds an objective signal for post-treatment surveillance.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Complement to HPV &amp; TCT</span></h3>
+        <ul>
+          <li data-i18n="s5a"><strong>HPV shortfall</strong>: high sensitivity but low specificity — JAM3 methylation compensates false-positive burden.</li>
+          <li data-i18n="s5b"><strong>TCT shortfall</strong>: low sensitivity &amp; subjective — methylation adds objective molecular signal for high-grade lesions.</li>
+          <li data-i18n="s5c"><strong>Combined use</strong>: joint detection raises detection rate of high-grade CIN beyond single conventional tests.</li>
+          <li data-i18n="s5d"><strong>Surveillance role</strong>: postoperative recurrence prediction supports personalized follow-up intensity.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">54%</div><div class="lab" data-i18n="s5s1">JAM3+ in CIN III</div></div>
+          <div class="stat"><div class="big">38%</div><div class="lab" data-i18n="s5s2">JAM3+ in CIN II</div></div>
+          <div class="stat"><div class="big">4%</div><div class="lab" data-i18n="s5s3">normal</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s5e"><strong>Objective marker</strong>: molecular readout independent of cytologist interpretation.</li>
+          <li data-i18n="s5f"><strong>Cost-effective</strong>: same biopsy specimen — no additional invasive sampling.</li>
+        </ul>
+        <div class="tnote" data-i18n="s5n">Pathological-specimen DNA analyzed; results support JAM3 as an adjunct methylation marker in CIN management.</div>
+      </div>
+    </section>
+  </main>
+
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Grade-linked biomarker</b>: JAM3 methylation positivity rises stepwise with CIN severity (4%→54%), supporting HSIL triage and grading.</li>
+      <li data-i18n="c2"><b>Recurrence signal</b>: methylation-based prediction after treatment adds an objective layer to post-op surveillance.</li>
+    </ul>
+  </div>
+
+</div>
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Clinical Study · 临床研究",
+      title: "JAM3 Gene DNA Methylation in Predicting Cervical High-Grade Lesions & Postoperative Recurrence",
+      title_alt: "JAM3 基因 DNA 甲基化在宫颈高级别上皮内瘤变及术后复发预测的临床研究",
+      subtitle: "200 biopsy cases (normal/CIN I/II/III × 50) · methylation gradient 4%→54% · recurrence prediction",
+      authors: "娄琰琰、刘元涛、赵淑婷、陈青、曹佃霞、公维涛、郝长宏 · 临沂市中心医院妇科/疼痛科/病理科",
+      source: "Advances in Clinical Medicine 2024;14(7):1293-1299 · DOI 10.12677/acm.2024.1472146",
+      h1: "biopsy cases", h2: "JAM3+ gradient", h3: "recurrence prediction", h4: "balanced groups",
+      s1t: "Background & Objective",
+      s1s1: "key precursor", s1s2: "low specificity", s1s3: "subjective",
+      s1a: "<strong>Precursor burden</strong>: high-grade CIN untreated → substantial progression risk to invasive cancer.",
+      s1b: "<strong>Conventional limits</strong>: HPV low specificity; TCT low sensitivity & operator-dependent — imperfect grading.",
+      s1c: "<strong>Methylation rationale</strong>: JAM3 (tight-junction molecule) promoter methylation is a key epigenetic event in carcinogenesis.",
+      s1d: "<strong>Aim</strong>: JAM3 methylation for HSIL detection, CIN grading and postoperative recurrence prediction.",
+      s2t: "Study Design",
+      s2s1: "normal/CIN I/II/III", s2s2: "enrollment", s2s3: "central hospital",
+      s2a: "<strong>Cases</strong>: 200 cervical biopsy cases requiring biopsy; single fixed sampler; histology-confirmed groups of 50 each.",
+      s2b: "<strong>Workup</strong>: HPV testing + liquid-based cytology (TCT) + JAM3 DNA methylation assay on pathological specimens.",
+      s2c: "<strong>Method</strong>: bisulfite-based methylation detection; agarose gel (2.0%, 1×TAE) + UV imaging; BiQAnalyzer analysis.",
+      s2d: "<strong>Statistics</strong>: ANOVA across groups; ROC & AUC for recurrence; cutoff (Ct) by ROC; P<0.01 significant.",
+      s2s4: "genotyping", s2s5: "cytology", s2s6: "methylation",
+      s2e: "<strong>Follow-up</strong>: recurrence tracked after treatment; recurrent vs cured comparison for prediction modeling.",
+      s2f: "<strong>Specimen</strong>: pathological-section DNA used for methylation; bisulfite conversion before PCR.",
+      s2g: "<strong>Endpoint</strong>: JAM3 methylation compared across grades and between recurrence vs cured patients.",
+      s2z: "设计要点：四组各 50 例、病理金标准确认；每位患者行 HPV、TCT 与 JAM3 甲基化三种检测，治疗后追踪复发。",
+      s2z2: "核心结果：JAM3 甲基化阳性率随 CIN 分级显著升高（正常 4%→CIN III 54%，两两比较 P&lt;0.01），并支持术后复发预测。",
+      s2z3: "联合价值：JAM3 甲基化与 HPV、TCT 互补，提升高级别 CIN 检出，为个体化术后随访提供客观依据。",
+      s2z4: "随访意义：ROC 确定 Ct 阈值后，JAM3 甲基化可辅助判断复发风险，指导随访频率与干预时机。",
+      s3t: "JAM3 Methylation Rises with Lesion Grade",
+      s3l1: "Normal", s3l2: "CIN I", s3l3: "CIN II", s3l4: "CIN III",
+      s3a: "<strong>Progressive gradient</strong>: JAM3+ rises 4% → 10% → 38% → 54% across severity.",
+      s3b: "<strong>All pairwise significant</strong>: normal vs CIN I vs CIN II vs CIN III differences P<0.01.",
+      s3c: "<strong>Grading support</strong>: methylation mirrors histologic grade — aids CIN II/III discrimination.",
+      s4t: "Postoperative Recurrence Prediction",
+      s4s1: "cutoff by Ct", s4s2: "recurrence", s4s3: "significant",
+      s4a: "<strong>Recurrence vs cured</strong>: JAM3 methylation compared between recurrent and cured patients after treatment.",
+      s4b: "<strong>ROC-based cutoff</strong>: Ct threshold derived to discriminate recurrence with high accuracy.",
+      s4c: "<strong>Clinical track</strong>: methylation adds an objective signal for post-treatment surveillance.",
+      s5t: "Complement to HPV & TCT",
+      s5a: "<strong>HPV shortfall</strong>: high sensitivity but low specificity — JAM3 methylation compensates false-positive burden.",
+      s5b: "<strong>TCT shortfall</strong>: low sensitivity & subjective — methylation adds objective molecular signal for high-grade lesions.",
+      s5c: "<strong>Combined use</strong>: joint detection raises detection rate of high-grade CIN beyond single conventional tests.",
+      s5d: "<strong>Surveillance role</strong>: postoperative recurrence prediction supports personalized follow-up intensity.",
+      s5s1: "JAM3+ in CIN III", s5s2: "JAM3+ in CIN II", s5s3: "normal",
+      s5e: "<strong>Objective marker</strong>: molecular readout independent of cytologist interpretation.",
+      s5f: "<strong>Cost-effective</strong>: same biopsy specimen — no additional invasive sampling.",
+      s5n: "Pathological-specimen DNA analyzed; results support JAM3 as an adjunct methylation marker in CIN management.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Grade-linked biomarker</b>: JAM3 methylation positivity rises stepwise with CIN severity (4%→54%), supporting HSIL triage and grading.",
+      c2: "<b>Recurrence signal</b>: methylation-based prediction after treatment adds an objective layer to post-op surveillance."
+    },
+    zh: {
+      kicker: "临床研究 · Clinical Study",
+      title: "JAM3 基因 DNA 甲基化在宫颈高级别上皮内瘤变及术后复发预测的临床研究",
+      title_alt: "JAM3 Gene DNA Methylation in Predicting Cervical High-Grade Lesions & Postoperative Recurrence",
+      subtitle: "200 例宫颈活检（正常/CIN I/II/III 各 50）· 甲基化梯度 4%→54% · 复发预测",
+      authors: "娄琰琰、刘元涛、赵淑婷、陈青、曹佃霞、公维涛、郝长宏 · 临沂市中心医院妇科/疼痛科/病理科",
+      source: "临床医学进展 2024;14(7):1293-1299 · DOI 10.12677/acm.2024.1472146",
+      h1: "活检例数", h2: "JAM3+ 梯度", h3: "复发预测", h4: "均衡分组",
+      s1t: "背景与目的",
+      s1s1: "关键癌前病变", s1s2: "特异度低", s1s3: "主观性",
+      s1a: "<strong>癌前负担</strong>：高级别 CIN 不治疗→显著进展为浸润癌风险。",
+      s1b: "<strong>常规局限</strong>：HPV 特异度低；TCT 灵敏度低且依赖判读者——分级不理想。",
+      s1c: "<strong>甲基化依据</strong>：JAM3（紧密连接分子）启动子甲基化是癌变关键表观遗传事件。",
+      s1d: "<strong>目的</strong>：JAM3 甲基化用于 HSIL 检出、CIN 分级与术后复发预测。",
+      s2t: "研究设计",
+      s2s1: "正常/CIN I/II/III", s2s2: "入组期", s2s3: "中心医院",
+      s2a: "<strong>病例</strong>：200 例需活检宫颈病例；固定单一采样者；病理确认各组各 50 例。",
+      s2b: "<strong>检查</strong>：每例行 HPV 检测、液基细胞学（TCT）与病理标本 JAM3 DNA 甲基化检测。",
+      s2c: "<strong>方法</strong>：重亚硫酸盐甲基化检测；琼脂糖凝胶（2.0%，1×TAE）+ 紫外成像；BiQAnalyzer 分析。",
+      s2d: "<strong>统计</strong>：组间 ANOVA；复发 ROC 与 AUC；Ct 阈值由 ROC 确定；P&lt;0.01 显著。",
+      s2s4: "分型", s2s5: "细胞学", s2s6: "甲基化",
+      s2e: "<strong>随访</strong>：治疗后追踪复发；复发 vs 治愈比较用于预测建模。",
+      s2f: "<strong>标本</strong>：病理切片 DNA 行甲基化检测；PCR 前重亚硫酸盐转化。",
+      s2g: "<strong>终点</strong>：比较各级别及复发 vs 治愈患者的 JAM3 甲基化。",
+      s2z: "设计要点：四组各 50 例、病理金标准确认；每位患者行 HPV、TCT 与 JAM3 甲基化三种检测，治疗后追踪复发。",
+      s2z2: "核心结果：JAM3 甲基化阳性率随 CIN 分级显著升高（正常 4%→CIN III 54%，两两比较 P&lt;0.01），并支持术后复发预测。",
+      s2z3: "联合价值：JAM3 甲基化与 HPV、TCT 互补，提升高级别 CIN 检出，为个体化术后随访提供客观依据。",
+      s2z4: "随访意义：ROC 确定 Ct 阈值后，JAM3 甲基化可辅助判断复发风险，指导随访频率与干预时机。",
+      s3t: "JAM3 甲基化随病变分级升高",
+      s3l1: "正常", s3l2: "CIN I", s3l3: "CIN II", s3l4: "CIN III",
+      s3a: "<strong>渐进梯度</strong>：JAM3+ 阳性率随严重度 4%→10%→38%→54% 上升。",
+      s3b: "<strong>两两均显著</strong>：正常 vs CIN I vs CIN II vs CIN III 差异 P&lt;0.01。",
+      s3c: "<strong>分级支持</strong>：甲基化反映组织学分级——辅助 CIN II/III 鉴别。",
+      s4t: "术后复发预测",
+      s4s1: "Ct 确定阈值", s4s2: "复发 AUC", s4s3: "显著",
+      s4a: "<strong>复发 vs 治愈</strong>：比较治疗后复发与治愈患者 JAM3 甲基化。",
+      s4b: "<strong>ROC 阈值</strong>：以 Ct 阈值高准确区分复发。",
+      s4c: "<strong>临床路径</strong>：甲基化为治疗后监测提供客观信号。",
+      s5t: "与 HPV、TCT 互补",
+      s5a: "<strong>HPV 短板</strong>：灵敏度高但特异度低——JAM3 甲基化弥补假阳性负担。",
+      s5b: "<strong>TCT 短板</strong>：灵敏度低且主观——甲基化为高级别病变提供客观分子信号。",
+      s5c: "<strong>联合使用</strong>：联合检测提升高级别 CIN 检出率，优于单一常规检测。",
+      s5d: "<strong>监测角色</strong>：术后复发预测支持个体化随访强度。",
+      s5s1: "CIN III 中 JAM3+", s5s2: "CIN II 中 JAM3+", s5s3: "正常",
+      s5e: "<strong>客观标志物</strong>：分子读数不依赖细胞学判读者。",
+      s5f: "<strong>经济</strong>：同一活检标本——无需额外有创采样。",
+      s5n: "分析病理标本 DNA；结果支持 JAM3 作为 CIN 管理的辅助甲基化标志物。",
+      c_ttl: "临床意义",
+      c1: "<b>分级关联标志物</b>：JAM3 甲基化阳性率随 CIN 严重度阶梯上升（4%→54%），支持 HSIL 分流与分级。",
+      c2: "<b>复发信号</b>：基于甲基化的治疗后预测为术后监测增加客观层。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

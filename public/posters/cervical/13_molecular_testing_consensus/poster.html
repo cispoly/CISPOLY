@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methylation in Cervical Cancer Screening — Molecular Testing Consensus 2025</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #40 v2：甲基化应用专题）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、推荐徽章、场景卡
+  - 布局：标题带 → hero（甲基化 2A / 联合筛查+三场景分流 / WHO 未来技术）→ 两栏（左 560px：①共识背景与定位 ②甲基化临床应用路径；右 1fr：③甲基化核心推荐 ④筛查策略流程图【图1 + 甲基化分流定位解读】 ⑤分流价值）→ 全宽临床意义带
+  - 选图：图1 基于 HPV 筛查策略（829×351）
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 96px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 22px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .conslist, .panel .scenwrap { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 0 0 5px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 11px 4px; text-align: center; }
+  .stat .big { font-size: 18px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .conslist { display: flex; flex-direction: column; gap: 5px; }
+  .cons { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 5px 10px; display: flex; gap: 8px; align-items: flex-start; }
+  .cons .cn { flex: 0 0 auto; width: 26px; height: 26px; border-radius: 6px; background: rgba(215,75,74,0.85); color: #fff; font-weight: 800; font-size: 12px; display: flex; align-items: center; justify-content: center; }
+  .cons .ct { flex: 1 1 auto; font-size: 11px; line-height: 1.35; color: var(--text); }
+  .cons .ct b { color: var(--primary); }
+  .cons .badge { flex: 0 0 auto; display: inline-flex; align-items: center; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.3); color: var(--accent-deep); font-size: 9px; font-weight: 700; border-radius: 10px; padding: 1px 7px; }
+  .cons.strong { border-left: 4px solid var(--primary); }
+
+  .scenwrap { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .scen { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 6px 9px; }
+  .scen .st { font-size: 11px; font-weight: 800; color: var(--primary); margin-bottom: 2px; }
+  .scen .sl { font-size: 9.5px; color: var(--muted); line-height: 1.3; }
+
+  .kittable { display: flex; flex-direction: column; gap: 5px; }
+  .kit { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 5px 10px; display: flex; gap: 8px; align-items: flex-start; }
+  .kit .kn { flex: 0 0 120px; font-size: 10.5px; font-weight: 800; color: var(--primary); line-height: 1.3; }
+  .kit .kd { flex: 1 1 auto; font-size: 9.5px; color: var(--muted); line-height: 1.32; }
+  .kit .kd b { color: var(--accent-deep); }
+  .kit .kb { flex: 0 0 auto; display: inline-flex; align-items: center; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.3); color: var(--accent-deep); font-size: 8px; font-weight: 700; border-radius: 10px; padding: 0 6px; align-self: center; }
+  .flowwrap { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); grid-template-rows: 1fr; gap: 12px; align-items: stretch; margin: 2px 0 0; }
+  .flowwrap .fig { display: flex; flex-direction: column; justify-content: center; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; }
+  .flowwrap .fig img { align-self: center; max-height: 250px; width: auto; max-width: 100%; }
+  .flowwrap .fig .fc { font-size: 10.5px; font-weight: 700; color: var(--primary); margin-top: 4px; text-align: center; }
+  .flowwrap .side { display: flex; flex-direction: column; justify-content: center; gap: 5px; min-width: 0; }
+  .flowwrap .side ul { margin-top: 2px; }
+
+  .spbars { margin: 2px 0 6px; }
+  .spb { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; }
+  .spb .sbl { flex: 0 0 150px; font-size: 11px; font-weight: 700; color: var(--text); text-align: right; }
+  .spb .sbt { flex: 1 1 auto; height: 20px; background: #F1E7E7; border-radius: 5px; overflow: hidden; position: relative; }
+  .spb .sbf { height: 100%; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 12px; font-weight: 800; color: #fff; }
+  .spb.win .sbf { background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); }
+  .spb.lose .sbf { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); color: #6B5755; }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 3px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+  body.lang-zh .panel ul li { line-height: 1.5; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">China Geriatric Society · Gynecology Branch · 2025 · Expert Consensus</div>
+    <h1 data-i18n="title">DNA Methylation in Cervical Cancer Screening &amp; Triage — Consensus 2025</h1>
+    <div class="title_alt" data-i18n="title_alt">分子检测技术用于宫颈癌筛查和早期诊断中国专家共识（2025 年版）——甲基化应用专题</div>
+    <div class="subtitle" data-i18n="subtitle">Methylation (2A): co-screening with TCT+HPV · triage HR-HPV+ / ASC-US / LSIL · WHO-endorsed future technology</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">China Geriatric Medical Society · Gynecology Branch</div>
+      <div class="source" data-i18n="source">2025 年版 · 甲基化临床应用路径</div>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="stat hot"><div class="big">2A</div><div class="lab" data-i18n="h1">methylation recommendation</div></div>
+    <div class="stat"><div class="big">Co-screen</div><div class="lab" data-i18n="h2">with TCT + HPV</div></div>
+    <div class="stat"><div class="big">3-way triage</div><div class="lab" data-i18n="h3">HR-HPV+ · ASC-US · LSIL</div></div>
+    <div class="stat"><div class="big">WHO</div><div class="lab" data-i18n="h4">future screening tech</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Consensus Position on Methylation</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>2021 WHO (2nd ed.)</strong>: DNA methylation — future molecular technology for HPV-based screening.</li>
+          <li data-i18n="s1b"><strong>2024 Methylation Consensus</strong>: methylation enters cervical cancer screening clinical pathway.</li>
+          <li data-i18n="s1c"><strong>Blue Book</strong>: methylation as promising screening &amp; triage tool.</li>
+          <li data-i18n="s1d"><strong>2025 Consensus</strong>: HPV &amp; DNA methylation recommended as molecular screening (2A).</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Methylation Clinical Pathways</span></h3>
+        <div class="scenwrap">
+          <div class="scen"><div class="st" data-i18n="s2t1">HR-HPV+ triage</div><div class="sl" data-i18n="s2s1">High-risk HPV(+) women → methylation stratification → colposcopy decision.</div></div>
+          <div class="scen"><div class="st" data-i18n="s2t2">ASC-US / LSIL</div><div class="sl" data-i18n="s2s2">Minimally abnormal cytology → methylation triage.</div></div>
+          <div class="scen"><div class="st" data-i18n="s2t3">TZ3 &amp; adenocarcinoma</div><div class="sl" data-i18n="s2s3">Type-3 transformation zone &amp; potential adenocarcinoma risk assessment.</div></div>
+          <div class="scen"><div class="st" data-i18n="s2t4">Post-treatment</div><div class="sl" data-i18n="s2s4">Follow-up monitoring after cervical lesion (cancer) treatment.</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">Co-screening</div><div class="lab" data-i18n="s2s5">methylation + TCT + HPV</div></div>
+          <div class="stat"><div class="big">NMPA kits</div><div class="lab" data-i18n="s2s6">approved reagents</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">MSP/qPCR</div><div class="lab" data-i18n="s2s7">detection principle</div></div>
+          <div class="stat"><div class="big">cervical cells</div><div class="lab" data-i18n="s2s8">sample type</div></div>
+          <div class="stat"><div class="big">ΔCt</div><div class="lab" data-i18n="s2s9">readout</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">HR-HPV+</div><div class="lab" data-i18n="s2s10">triage scenario</div></div>
+          <div class="stat hot"><div class="big">ASC-US</div><div class="lab" data-i18n="s2s11">triage scenario</div></div>
+          <div class="stat hot"><div class="big">LSIL</div><div class="lab" data-i18n="s2s12">triage scenario</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2i"><strong>Result logic</strong>: methylation(+) → higher lesion risk → colposcopy; (−) → follow-up.</li>
+          <li data-i18n="s2e"><strong>Mechanism</strong>: promoter hypermethylation silences tumor suppressors — early lesion signal.</li>
+          <li data-i18n="s2f"><strong>Advantage</strong>: objective &amp; repeatable — complements subjective cytology.</li>
+          <li data-i18n="s2g"><strong>Sample</strong>: cervical exfoliated cells; same sample as TCT/HPV.</li>
+          <li data-i18n="s2h"><strong>Regulatory</strong>: NMPA-approved kits available in China.</li>
+        </ul>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s2j1">Triage value</div><div class="sbt"><div class="sbf" style="width:85%">HPV(+) → colposcopy decision</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s2j2">vs cytology</div><div class="sbt"><div class="sbf" style="width:65%">objective</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s2j3">vs mRNA</div><div class="sbt"><div class="sbf" style="width:70%">comparable triage</div></div></div>
+        </div>
+        <div class="tnote" data-i18n="s2n">Methylation complements HPV/cytology: improves specificity of HPV(+) triage &amp; reduces unnecessary colposcopy referrals.</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Key Methylation Recommendations</span></h3>
+        <div class="conslist">
+          <div class="cons strong"><div class="cn">1</div><div class="ct" data-i18n="s3c1"><b>HPV &amp; DNA methylation</b> as molecular screening technologies for cervical cancer &amp; precursors.</div><div class="badge">2A</div></div>
+          <div class="cons strong"><div class="cn">5</div><div class="ct" data-i18n="s3c2"><b>Cervical-cell methylation</b>: co-screening with TCT+HPV; triage HR-HPV+ / ASC-US / LSIL.</div><div class="badge">2A</div></div>
+        </div>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s3a1">Co-screening</div><div class="sbt"><div class="sbf" style="width:100%">TCT + HPV + methylation</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s3a2">Triage</div><div class="sbt"><div class="sbf" style="width:80%">HR-HPV+ · ASC-US · LSIL</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s3a3">Monitoring</div><div class="sbt"><div class="sbf" style="width:60%">post-treatment / TZ3</div></div></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">NMPA-Approved Methylation Kits (Table 4)</span></h3>
+        <div class="kittable">
+          <div class="kit"><div class="kn" data-i18n="s4k1">PAX1 + JAM3 (CISCER)</div><div class="kd" data-i18n="s4d1"><b>Sample</b>: cervical exfoliated cells · <b>Use</b>: qualitative detection; triage for women ≥30 y with 12 hrHPV genotypes (+); guide colposcopy.</div><div class="kb" data-i18n="s4b1">NMPA</div></div>
+          <div class="kit"><div class="kn" data-i18n="s4k2">PAX1</div><div class="kd" data-i18n="s4d2"><b>Sample</b>: cervical exfoliated cells · <b>Use</b>: PAX1 methylation status; triage for women ≥30 y with 13 hrHPV genotypes (+); guide colposcopy.</div><div class="kb" data-i18n="s4b2">NMPA</div></div>
+          <div class="kit"><div class="kn" data-i18n="s4k3">SOX1 + PAX1</div><div class="kd" data-i18n="s4d3"><b>Sample</b>: cervical exfoliated cells · <b>Use</b>: SOX1/PAX1 methylation; triage for women ≥30 y with 12 genotypes (+); guide colposcopy.</div><div class="kb" data-i18n="s4b3">NMPA</div></div>
+        </div>
+        <div class="tnote" data-i18n="s4n">All three kits: qualitative methylation triage for HPV(+) women ≥30 y — reduce unnecessary colposcopy.</div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Methylation Evidence Highlights</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">78%</div><div class="lab" data-i18n="s5s1">Se · standalone screen</div></div>
+          <div class="stat hot"><div class="big">&gt;90%</div><div class="lab" data-i18n="s5s2">Sp · standalone</div></div>
+          <div class="stat"><div class="big">96.9%</div><div class="lab" data-i18n="s5s3">NPV · 2-yr CIN3+</div></div>
+        </div>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s5a1">Colposcopy reduction</div><div class="sbt"><div class="sbf" style="width:67%">−67%</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s5a2">14-yr cancer risk (M−)</div><div class="sbt"><div class="sbf" style="width:1.7%">1.7%</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s5a3">ASC-US · CCNA1 Sp</div><div class="sbt"><div class="sbf" style="width:99.3%">99.3%</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s5a4">CIN1 regression · JAM3</div><div class="sbt"><div class="sbf" style="width:95.2%">Se 95.2%</div></div></div>
+        </div>
+        <ul>
+          <li data-i18n="s5a"><strong>Standalone</strong>: methylation not inferior to HPV/cytology (e.g., DPP6/RALYL/GSX1).</li>
+          <li data-i18n="s5b"><strong>Triage</strong>: beats cytology in HPV(+) (EPB41L3+JAM3 PPV/NPV 93.0/67.9 vs 60.0/25.0).</li>
+          <li data-i18n="s5c"><strong>Progression</strong>: p16/JAM3 methylation predicts ASC-US/LSIL progression &amp; CIN1 regression.</li>
+        </ul>
+      </div>    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Methylation is the precision triage layer</b>: co-screening with TCT+HPV and triage of HR-HPV+ / ASC-US / LSIL — 2A recommendation.</li>
+      <li data-i18n="c2"><b>Full-pathway role</b>: screening → triage → TZ3/adenocarcinoma risk → post-treatment monitoring; WHO-endorsed future technology.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "China Geriatric Society · Gynecology Branch · 2025 · Expert Consensus",
+      title: "DNA Methylation in Cervical Cancer Screening & Triage — Consensus 2025",
+      title_alt: "分子检测技术用于宫颈癌筛查和早期诊断中国专家共识（2025 年版）——甲基化应用专题",
+      subtitle: "Methylation (2A): co-screening with TCT+HPV · triage HR-HPV+ / ASC-US / LSIL · WHO-endorsed future technology",
+      authors: "China Geriatric Medical Society · Gynecology Branch",
+      source: "2025 ed. · Methylation clinical pathways",
+      h1: "methylation recommendation", h2: "with TCT + HPV", h3: "HR-HPV+ · ASC-US · LSIL", h4: "future screening tech",
+      s1t: "Consensus Position on Methylation",
+      s1a: "<strong>2021 WHO (2nd ed.)</strong>: DNA methylation — future molecular technology for HPV-based screening.",
+      s1b: "<strong>2024 Methylation Consensus</strong>: methylation enters cervical cancer screening clinical pathway.",
+      s1c: "<strong>Blue Book</strong>: methylation as promising screening & triage tool.",
+      s1d: "<strong>2025 Consensus</strong>: HPV & DNA methylation recommended as molecular screening (2A).",
+      s2t: "Methylation Clinical Pathways",
+      s2t1: "HR-HPV+ triage", s2t2: "ASC-US / LSIL", s2t3: "TZ3 & adenocarcinoma", s2t4: "Post-treatment",
+      s2s1: "High-risk HPV(+) women → methylation stratification → colposcopy decision.",
+      s2s2: "Minimally abnormal cytology → methylation triage.",
+      s2s3: "Type-3 transformation zone & potential adenocarcinoma risk assessment.",
+      s2s4: "Follow-up monitoring after cervical lesion (cancer) treatment.",
+      s2s5: "methylation + TCT + HPV", s2s6: "approved reagents", s2s7: "detection principle", s2s8: "sample type", s2s9: "readout",
+      s2s10: "triage scenario", s2s11: "triage scenario", s2s12: "triage scenario",
+      s2i: "<strong>Result logic</strong>: methylation(+) → higher lesion risk → colposcopy; (−) → follow-up.",
+      s2e: "<strong>Mechanism</strong>: promoter hypermethylation silences tumor suppressors — early lesion signal.",
+      s2f: "<strong>Advantage</strong>: objective & repeatable — complements subjective cytology.",
+      s2g: "<strong>Sample</strong>: cervical exfoliated cells; same sample as TCT/HPV.",
+      s2h: "<strong>Regulatory</strong>: NMPA-approved kits available in China.",
+      s2j1: "Triage value", s2j2: "vs cytology", s2j3: "vs mRNA",
+      s2n: "Methylation complements HPV/cytology — improves HPV(+) triage specificity, fewer colposcopies.",
+      s3t: "Key Methylation Recommendations",
+      s3c1: "<b>HPV & DNA methylation</b> as molecular screening technologies for cervical cancer & precursors.",
+      s3c2: "<b>Cervical-cell methylation</b>: co-screening with TCT+HPV; triage HR-HPV+ / ASC-US / LSIL.",
+      s3a1: "Co-screening", s3a2: "Triage", s3a3: "Monitoring",
+      s4t: "NMPA-Approved Methylation Kits (Table 4)",
+      s4k1: "PAX1 + JAM3 (CISCER)", s4k2: "PAX1", s4k3: "SOX1 + PAX1",
+      s4d1: "<b>Sample</b>: cervical exfoliated cells · <b>Use</b>: qualitative detection; triage for women ≥30 y with 12 hrHPV genotypes (+); guide colposcopy.",
+      s4d2: "<b>Sample</b>: cervical exfoliated cells · <b>Use</b>: PAX1 methylation status; triage for women ≥30 y with 13 hrHPV genotypes (+); guide colposcopy.",
+      s4d3: "<b>Sample</b>: cervical exfoliated cells · <b>Use</b>: SOX1/PAX1 methylation; triage for women ≥30 y with 12 genotypes (+); guide colposcopy.",
+      s4b1: "NMPA", s4b2: "NMPA", s4b3: "NMPA",
+      s4n: "All three kits: qualitative methylation triage for HPV(+) women ≥30 y — reduce unnecessary colposcopy.",
+      s5t: "Methylation Evidence Highlights",
+      s5s1: "Se · standalone screen", s5s2: "Sp · standalone", s5s3: "NPV · 2-yr CIN3+",
+      s5a1: "Colposcopy reduction", s5a2: "14-yr cancer risk (M−)", s5a3: "ASC-US · CCNA1 Sp", s5a4: "CIN1 regression · JAM3",
+      s5a: "<strong>Standalone</strong>: methylation not inferior to HPV/cytology (e.g., DPP6/RALYL/GSX1).",
+      s5b: "<strong>Triage</strong>: beats cytology in HPV(+) — EPB41L3+JAM3 PPV/NPV 93.0/67.9 vs cytology 60.0/25.0; PAX1+JAM3 superior to cytology for CIN2+ screening.",
+      s5c: "<strong>Progression</strong>: p16/JAM3 methylation predicts ASC-US/LSIL progression & CIN1 regression — prognostic value beyond detection, supporting longitudinal monitoring.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Methylation is the precision triage layer</b>: co-screening with TCT+HPV and triage of HR-HPV+ / ASC-US / LSIL — 2A recommendation.",
+      c2: "<b>Full-pathway role</b>: screening → triage → TZ3/adenocarcinoma risk → post-treatment monitoring; WHO-endorsed future technology."
+    },
+    zh: {
+      kicker: "中国老年医学学会妇科分会 · 2025 · 专家共识",
+      title: "DNA 甲基化在宫颈癌筛查与分流中的应用——2025 共识",
+      title_alt: "分子检测技术用于宫颈癌筛查和早期诊断中国专家共识（2025 年版）——甲基化应用专题",
+      subtitle: "甲基化（2A）：与 TCT+HPV 联合筛查 · 分流 HR-HPV+ / ASC-US / LSIL · WHO 认可的未来筛查技术",
+      authors: "中国老年医学学会妇科分会",
+      source: "2025 年版 · 甲基化临床应用路径",
+      h1: "甲基化推荐级别", h2: "与 TCT+HPV 联合", h3: "HR-HPV+ · ASC-US · LSIL", h4: "未来筛查技术",
+      s1t: "共识对甲基化的定位",
+      s1a: "<strong>2021 WHO（第二版）</strong>：DNA 甲基化是 HPV 筛查的未来分子检测新技术。",
+      s1b: "<strong>2024 甲基化共识</strong>：甲基化进入宫颈癌筛查临床路径。",
+      s1c: "<strong>三级防治蓝皮书</strong>：甲基化是有潜力的筛查和分流手段。",
+      s1d: "<strong>2025 共识</strong>：推荐 HPV 与 DNA 甲基化作为分子筛查技术（2A）。",
+      s2t: "甲基化临床应用路径",
+      s2t1: "HR-HPV+ 分流", s2t2: "ASC-US / LSIL", s2t3: "TZ3 与腺癌", s2t4: "治疗后监测",
+      s2s1: "高危 HPV(+) 女性 → 甲基化分层 → 阴道镜决策。",
+      s2s2: "轻微异常细胞学 → 甲基化分流。",
+      s2s3: "宫颈Ⅲ型转化区与潜在腺癌风险评估。",
+      s2s4: "宫颈病变（癌）治疗后随访监测。",
+      s2s5: "甲基化 + TCT + HPV", s2s6: "批准试剂", s2s7: "检测原理", s2s8: "样本类型", s2s9: "判读",
+      s2s10: "分流场景", s2s11: "分流场景", s2s12: "分流场景",
+      s2i: "<strong>结果逻辑</strong>：甲基化(+) → 病变风险高 → 阴道镜；(−) → 随访。",
+      s2e: "<strong>机制</strong>：启动子高甲基化沉默抑癌基因——早期病变信号。",
+      s2f: "<strong>优势</strong>：客观可重复——补充主观细胞学判读。",
+      s2g: "<strong>样本</strong>：宫颈脱落细胞；与 TCT/HPV 同一样本。",
+      s2h: "<strong>监管</strong>：国内已有 NMPA 批准试剂。",
+      s2j1: "分流价值", s2j2: "vs 细胞学", s2j3: "vs mRNA",
+      s2n: "甲基化补充 HPV/细胞学：提升 HPV(+) 分流特异度、减少不必要阴道镜。",
+      s3t: "甲基化核心推荐",
+      s3c1: "<b>HPV 与 DNA 甲基化</b>作为宫颈癌及癌前病变的分子筛查技术。",
+      s3c2: "<b>宫颈脱落细胞甲基化</b>：与 TCT+HPV 联合筛查；分流 HR-HPV+ / ASC-US / LSIL。",
+      s3a1: "联合筛查", s3a2: "分流", s3a3: "监测",
+      s4t: "NMPA 获批甲基化试剂盒（表4）",
+      s4k1: "PAX1 + JAM3（CISCER）", s4k2: "PAX1", s4k3: "SOX1 + PAX1",
+      s4d1: "<b>样本</b>：人宫颈脱落细胞 · <b>用途</b>：定性检测；用于 12 种高危 HPV(+) 且 ≥30 岁女性的分流管理、指导阴道镜。",
+      s4d2: "<b>样本</b>：人宫颈脱落细胞 · <b>用途</b>：PAX1 甲基化状态；13 种高危 HPV(+) 且 ≥30 岁女性分流。",
+      s4d3: "<b>样本</b>：人宫颈脱落细胞 · <b>用途</b>：SOX1/PAX1 甲基化；12 种基因型 HPV(+) 且 ≥30 岁女性分流。",
+      s4b1: "NMPA", s4b2: "NMPA", s4b3: "NMPA",
+      s4n: "三款试剂均为定性甲基化分流——针对 HPV(+) 且 ≥30 岁女性，减少不必要阴道镜。",
+      s5t: "甲基化证据速览",
+      s5s1: "Se · 单独筛查", s5s2: "Sp · 单独", s5s3: "NPV · 2 年 CIN3+",
+      s5a1: "阴道镜转诊减少", s5a2: "14 年癌症风险（M−）", s5a3: "ASC-US · CCNA1 Sp", s5a4: "CIN1 逆转 · JAM3",
+      s5a: "<strong>单独筛查</strong>：甲基化不劣于 HPV/细胞学（如 DPP6/RALYL/GSX1）。",
+      s5b: "<strong>分流</strong>：HPV(+) 中优于细胞学（EPB41L3+JAM3 PPV/NPV 93.0/67.9 vs 60.0/25.0）。",
+      s5c: "<strong>进展预测</strong>：p16/JAM3 甲基化预测 ASC-US/LSIL 进展与 CIN1 逆转。",
+      c_ttl: "临床意义",
+      c1: "<b>甲基化是精准分流层</b>：与 TCT+HPV 联合筛查 + 分流 HR-HPV+ / ASC-US / LSIL——2A 推荐。",
+      c2: "<b>全路径角色</b>：筛查 → 分流 → TZ3/腺癌风险 → 治疗后监测；WHO 认可的未来技术。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

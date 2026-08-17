@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Self-Sampling PAX1/JAM3 Methylation for Cervical Cancer Screening — Yu et al. 2024</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #20：自采样一致性主题，与 #1-19 均不同）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、白色 stat 卡、红色高亮表格
+  - 布局：标题带 → 一致性 hero（r=0.858/0.828 · Kappa 0.90 · CIN3+ Se 96.0%）→ 两栏（左 560px：①背景与目的 ②研究设计【272 例病理分布】；右 1fr：③一致性结果【r 条形 + Kappa 卡 + Bland-Altman 说明】④ΔCP 分布图 ⑤临床性能【stat 卡 + 要点】）→ 全宽临床意义带
+  - 选图：ΔCP 分布图（945x626）
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 96px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 23px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel table, .panel .statrow, .panel .tnote, .panel .figrow, .panel .spbars { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 4px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .figrow { display: flex; gap: 12px; align-items: flex-start; justify-content: center; }
+  .fig { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px 5px; text-align: center; min-width: 0; }
+  .fig img { display: inline-block; height: auto; max-height: 200px; width: auto; max-width: 100%; border-radius: 3px; }
+  .fig svg { display: block; height: 200px; width: auto; margin: 0 auto; }
+  .fig .figcap { font-size: 10px; color: var(--muted); font-style: italic; line-height: 1.3; margin-top: 3px; text-align: left; }
+  .fig .figcap strong { color: var(--primary); font-style: normal; }
+
+  .statrow { display: flex; gap: 8px; margin: 1px 0 6px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 11px 4px; text-align: center; }
+  .stat .big { font-size: 18px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .spbars { margin: 2px 0 8px; }
+  .spb { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+  .spb .sbl { flex: 0 0 170px; font-size: 12px; font-weight: 700; color: var(--text); text-align: right; }
+  .spb .sbt { flex: 1 1 auto; height: 30px; background: #F1E7E7; border-radius: 5px; overflow: hidden; position: relative; }
+  .spb .sbf { height: 100%; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 14px; font-weight: 800; color: #fff; }
+  .spb .sbf { background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); }
+
+  .hbar { display: flex; gap: 6px; margin-top: 6px; align-items: flex-end; }
+  .hbar .b { flex: 1; text-align: center; }
+  .hbar .bar { background: linear-gradient(180deg, var(--secondary) 0%, var(--accent) 130%); border-radius: 4px 4px 0 0; height: 46px; }
+  .hbar .b1 .bar { height: 104px; } .hbar .b2 .bar { height: 74px; } .hbar .b3 .bar { height: 44px; } .hbar .b4 .bar { height: 30px; } .hbar .b5 .bar { height: 27px; }
+  .hbar .lb { font-size: 9px; color: var(--muted); margin-top: 2px; }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 2px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Chin J Lab Med · 2024;47(4) · Self-Sampling Study · China</div>
+    <h1 data-i18n="title">Self-Sampling PAX1/JAM3 Methylation for Cervical Cancer Screening</h1>
+    <div class="title_alt" data-i18n="title_alt">女性阴道自采样本检测 PAX1/JAM3 双基因甲基化标志物作为子宫颈癌筛查的可行性评估</div>
+    <div class="subtitle" data-i18n="subtitle">272 women · self vs clinician sampling highly consistent (r 0.858/0.828, κ 0.90) · CIN2+ Se 77.6% / Sp 87.2% · CIN3+ Se 96.0% combined</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Yu F, Ma J, Zhou X, Li G, Peng J, Li P, Zeng F, Xie X, Dong W</div>
+      <div class="source" data-i18n="source">中华检验医学杂志 · 2024;47(4):419–427</div>
+    </div>
+  </header>
+
+  <!-- 一致性 hero -->
+  <div class="hero">
+    <div class="stat hot"><div class="big">0.858</div><div class="lab" data-i18n="h1">r · PAX1 self vs clinician</div></div>
+    <div class="stat"><div class="big">0.828</div><div class="lab" data-i18n="h2">r · JAM3</div></div>
+    <div class="stat"><div class="big">κ 0.90</div><div class="lab" data-i18n="h3">overall agreement</div></div>
+    <div class="stat"><div class="big">77.6%</div><div class="lab" data-i18n="h4">Se · CIN2+ (self)</div></div>
+    <div class="stat"><div class="big">96.0%</div><div class="lab" data-i18n="h5">Se · CIN3+ combined</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Access</strong>: self-sampling removes barriers (privacy, distance) — key for screening coverage.</li>
+          <li data-i18n="s1b"><strong>Validate</strong>: is vaginal self-sample PAX1/JAM3 methylation as accurate as clinician sampling?</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">272</div><div class="lab" data-i18n="s2s1">women analyzed</div></div>
+          <div class="stat"><div class="big">81</div><div class="lab" data-i18n="s2s2">consistency group</div></div>
+          <div class="stat"><div class="big">191</div><div class="lab" data-i18n="s2s3">clinical group</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Design</strong>: single-center cross-sectional, colposcopy clinic, Jan–Nov 2023.</li>
+          <li data-i18n="s2b"><strong>Paired samples</strong>: vaginal self-swab + clinician sampling, same qPCR methylation.</li>
+          <li data-i18n="s2c"><strong>Reference</strong>: histopathology; Spearman, Kappa, Bland-Altman.</li>
+          <li data-i18n="s2d"><strong>Histology</strong>: normal/cervicitis 37.5% · CIN1 26.4% · CIN2 15.8% · CIN3 10.7% · cancer 9.6%.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">102</div><div class="lab" data-i18n="s2s4">normal / cervicitis</div></div>
+          <div class="stat"><div class="big">72</div><div class="lab" data-i18n="s2s5">CIN1</div></div>
+          <div class="stat"><div class="big">43</div><div class="lab" data-i18n="s2s6">CIN2</div></div>
+          <div class="stat"><div class="big">29</div><div class="lab" data-i18n="s2s7">CIN3</div></div>
+          <div class="stat"><div class="big">26</div><div class="lab" data-i18n="s2s8">cancer</div></div>
+        </div>
+        <div class="hbar">
+          <div class="b b1"><div class="bar"></div><div class="lb" data-i18n="s2h1">Normal</div></div>
+          <div class="b b2"><div class="bar"></div><div class="lb" data-i18n="s2h2">CIN1</div></div>
+          <div class="b b3"><div class="bar"></div><div class="lb" data-i18n="s2h3">CIN2</div></div>
+          <div class="b b4"><div class="bar"></div><div class="lb" data-i18n="s2h4">CIN3</div></div>
+          <div class="b b5"><div class="bar"></div><div class="lb" data-i18n="s2h5">Cancer</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2e"><strong>Inclusion</strong>: colposcopy-referred women with both self &amp; clinician samples.</li>
+          <li data-i18n="s2f"><strong>Assay</strong>: CISCER® PAX1/JAM3 kit (PCR-fluorescence); SLAN-96S.</li>
+          <li data-i18n="s2g"><strong>Statistics</strong>: Spearman, Kappa, Bland-Altman, ROC/AUC, logistic.</li>
+          <li data-i18n="s2h"><strong>Stratification</strong>: pre- vs post-menopausal performance.</li>
+          <li data-i18n="s2i"><strong>Consistency arm</strong>: 81 paired samples (41 &lt;CIN2 + 40 CIN2+).</li>
+          <li data-i18n="s2j"><strong>Clinical arm</strong>: 191 women for performance vs HPV &amp; cytology.</li>
+          <li data-i18n="s2k"><strong>Sample size</strong>: RMLE-based non-inferiority, ≥34 CIN2+.</li>
+          <li data-i18n="s2l"><strong>Compare</strong>: self-sample methylation vs HPV &amp; LBC and combinations.</li>
+          <li data-i18n="s2m"><strong>Ethics</strong>: institutional approval; informed consent.</li>
+        </ul>
+        <div class="tnote" data-i18n="s2n">Menopausal stratification also analyzed for self-sample performance.</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">3</span><span data-i18n="s3t">Sampling Consistency</span></h3>
+        <div class="spbars">
+          <div class="spb"><div class="sbl" data-i18n="s3a1">PAX1 · self vs clinician</div><div class="sbt"><div class="sbf" style="width:85.8%">r=0.858</div></div></div>
+          <div class="spb"><div class="sbl" data-i18n="s3a2">JAM3 · self vs clinician</div><div class="sbt"><div class="sbf" style="width:82.8%">r=0.828</div></div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">0.90</div><div class="lab" data-i18n="s3s1">Kappa · all</div></div>
+          <div class="stat"><div class="big">0.84</div><div class="lab" data-i18n="s3s2">Kappa · CIN2+</div></div>
+          <div class="stat"><div class="big">0.72</div><div class="lab" data-i18n="s3s3">Kappa · &lt;CIN2</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s3a"><strong>Agreement</strong>: Bland-Altman confirms good concordance; P all &gt;0.05.</li>
+          <li data-i18n="s3b"><strong>No bias</strong>: self vs clinician Se 77.5% vs 82.5% · Sp 92.7% vs 87.8% — no significant difference.</li>
+        </ul>
+      </div>
+
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">4</span><span data-i18n="s4t">Methylation Signal by Grade</span></h3>
+        <div class="figrow">
+          <div class="fig">
+            <img src="images/fig_deltacp.jpg" alt="ΔCP distribution by lesion grade in self-samples">
+            <div class="figcap"><strong>Fig.</strong> <span data-i18n="s4c1">Self-sample ΔCP by grade — CIN2+ significantly different from normal (P&lt;0.05).</span></div>
+          </div>
+          <div class="fig">
+            <svg viewBox="0 0 440 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CIN3+ sensitivity by method">
+              <line x1="40" y1="260" x2="410" y2="260" stroke="#D9D4D2" stroke-width="1.5"/>
+              <g stroke="#EDE5E3" stroke-width="1"><line x1="40" y1="85" x2="410" y2="85"/><line x1="40" y1="150" x2="410" y2="150"/><line x1="40" y1="215" x2="410" y2="215"/></g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="11" fill="#5C5252"><text x="38" y="264">0</text><text x="38" y="89">50%</text><text x="38" y="154">100%</text></g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="12" font-weight="700" fill="#3A3232"><text x="200" y="16" text-anchor="middle" data-i18n="pg0">CIN3+ sensitivity — self-sample</text></g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="11" fill="#5C5252" text-anchor="end">
+                <text x="190" y="70" data-i18n="pg1">Methylation + HPV16/18</text>
+                <text x="190" y="120" data-i18n="pg2">hrHPV</text>
+                <text x="190" y="170" data-i18n="pg3">Cytology (LBC)</text>
+              </g>
+              <g>
+                <rect x="200" y="54" width="210" height="28" fill="#D74B4A" rx="3"/>
+                <rect x="200" y="104" width="199" height="28" fill="#E58A78" rx="3"/>
+                <rect x="200" y="154" width="175" height="28" fill="#C9A9A7" rx="3"/>
+              </g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="12.5" font-weight="800" fill="#B83A39">
+                <text x="420" y="74">96.0%</text>
+                <text x="409" y="124">92.0%</text>
+                <text x="385" y="174">82.6%</text>
+              </g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="9.5" fill="#5C5252"><text x="40" y="292" data-i18n="pg4">data: clinical arm, CIN3+ · combination best</text></g>
+            </svg>
+            <div class="figcap"><strong>Fig.</strong> <span data-i18n="s4c2">CIN3+ sensitivity — methylation combination 96.0% best.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Clinical Performance</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">77.6%</div><div class="lab" data-i18n="s5s1">Se · CIN2+</div></div>
+          <div class="stat"><div class="big">87.2%</div><div class="lab" data-i18n="s5s2">Sp · CIN2+</div></div>
+          <div class="stat"><div class="big">89.9%</div><div class="lab" data-i18n="s5s3">NPV · CIN2+</div></div>
+          <div class="stat"><div class="big">96.0%</div><div class="lab" data-i18n="s5s4">Se · CIN3+ (combo)</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s5a"><strong>Combined</strong>: methylation + HPV16/18 → Se 89.7% (CIN2+) / 96.0% (CIN3+) — beats hrHPV 92.0% &amp; cytology 82.6%.</li>
+          <li data-i18n="s5b"><strong>Specificity &amp; PPV</strong>: methylation alone/combined higher than hrHPV, HPV16/18 &amp; cytology (P&lt;0.005).</li>
+          <li data-i18n="s5c"><strong>Feasible</strong>: home self-swab — expands screening access &amp; compliance.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Vaginal self-sampling for PAX1/JAM3 methylation is feasible and accurate</b> — high consistency with clinician sampling (r 0.83–0.86, κ 0.90) and good CIN2+/CIN3+ performance.</li>
+      <li data-i18n="c2"><b>Self-sampling</b> removes access barriers and supports broader, community-based cervical cancer screening.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Chin J Lab Med · 2024;47(4) · Self-Sampling Study · China",
+      title: "Self-Sampling PAX1/JAM3 Methylation for Cervical Cancer Screening",
+      title_alt: "女性阴道自采样本检测 PAX1/JAM3 双基因甲基化标志物作为子宫颈癌筛查的可行性评估",
+      subtitle: "272 women · self vs clinician sampling highly consistent (r 0.858/0.828, κ 0.90) · CIN2+ Se 77.6% / Sp 87.2% · CIN3+ Se 96.0% combined",
+      authors: "Yu F, Ma J, Zhou X, Li G, Peng J, Li P, Zeng F, Xie X, Dong W",
+      source: "中华检验医学杂志 · 2024;47(4):419–427",
+      h1: "r · PAX1 self vs clinician", h2: "r · JAM3", h3: "overall agreement", h4: "Se · CIN2+ (self)", h5: "Se · CIN3+ combined",
+      s1t: "Background & Objective",
+      s1a: "<strong>Access</strong>: self-sampling removes barriers (privacy, distance) — key for screening coverage.",
+      s1b: "<strong>Validate</strong>: is vaginal self-sample PAX1/JAM3 methylation as accurate as clinician sampling?",
+      s2t: "Study Design & Cohort",
+      s2s1: "women analyzed", s2s2: "consistency group", s2s3: "clinical group",
+      s2a: "<strong>Design</strong>: single-center cross-sectional, colposcopy clinic, Jan–Nov 2023.",
+      s2b: "<strong>Paired samples</strong>: vaginal self-swab + clinician sampling, same qPCR methylation.",
+      s2c: "<strong>Reference</strong>: histopathology; Spearman, Kappa, Bland-Altman.",
+      s2d: "<strong>Histology</strong>: normal/cervicitis 37.5% · CIN1 26.4% · CIN2 15.8% · CIN3 10.7% · cancer 9.6%.",
+      s2e: "<strong>Inclusion</strong>: colposcopy-referred women with both self & clinician samples.",
+      s2f: "<strong>Assay</strong>: CISCER® PAX1/JAM3 kit (PCR-fluorescence); SLAN-96S.",
+      s2g: "<strong>Statistics</strong>: Spearman, Kappa, Bland-Altman, ROC/AUC, logistic.",
+      s2h: "<strong>Stratification</strong>: pre- vs post-menopausal performance.",
+      s2i: "<strong>Consistency arm</strong>: 81 paired samples (41 <CIN2 + 40 CIN2+).",
+      s2j: "<strong>Clinical arm</strong>: 191 women for performance vs HPV & cytology.",
+      s2k: "<strong>Sample size</strong>: RMLE-based non-inferiority, ≥34 CIN2+.",
+      s2l: "<strong>Compare</strong>: self-sample methylation vs HPV & LBC and combinations.",
+      s2m: "<strong>Ethics</strong>: institutional approval; informed consent.",
+      s2s4: "normal / cervicitis", s2s5: "CIN1", s2s6: "CIN2", s2s7: "CIN3", s2s8: "cancer",
+      s2h1: "Normal", s2h2: "CIN1", s2h3: "CIN2", s2h4: "CIN3", s2h5: "Cancer",
+      s2n: "Menopausal stratification also analyzed for self-sample performance.",
+      s3t: "Sampling Consistency",
+      s3a1: "PAX1 · self vs clinician", s3a2: "JAM3 · self vs clinician",
+      s3s1: "Kappa · all", s3s2: "Kappa · CIN2+", s3s3: "Kappa · <CIN2",
+      s3a: "<strong>Agreement</strong>: Bland-Altman confirms good concordance; P all >0.05.",
+      s3b: "<strong>No bias</strong>: self vs clinician Se 77.5% vs 82.5% · Sp 92.7% vs 87.8% — no significant difference.",
+      s4t: "Methylation Signal by Grade",
+      s4c1: "Self-sample ΔCP by grade — CIN2+ significantly different from normal (P<0.05).",
+      s4c2: "CIN3+ sensitivity — methylation combination 96.0% best.",
+      pg0: "CIN3+ sensitivity — self-sample", pg1: "Methylation + HPV16/18", pg2: "hrHPV", pg3: "Cytology (LBC)", pg4: "data: clinical arm, CIN3+ · combination best",
+      s5t: "Clinical Performance",
+      s5s1: "Se · CIN2+", s5s2: "Sp · CIN2+", s5s3: "NPV · CIN2+", s5s4: "Se · CIN3+ (combo)",
+      s5a: "<strong>Combined</strong>: methylation + HPV16/18 → Se 89.7% (CIN2+) / 96.0% (CIN3+) — beats hrHPV 92.0% & cytology 82.6%.",
+      s5b: "<strong>Specificity & PPV</strong>: methylation alone/combined higher than hrHPV, HPV16/18 & cytology (P<0.005).",
+      s5c: "<strong>Feasible</strong>: home self-swab — expands screening access & compliance.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Vaginal self-sampling for PAX1/JAM3 methylation is feasible and accurate</b> — high consistency with clinician sampling (r 0.83–0.86, κ 0.90) and good CIN2+/CIN3+ performance.",
+      c2: "<b>Self-sampling</b> removes access barriers and supports broader, community-based cervical cancer screening."
+    },
+    zh: {
+      kicker: "中华检验医学杂志 · 2024;47(4) · 自采样本研究 · 中国",
+      title: "女性阴道自采样本检测 PAX1/JAM3 双基因甲基化标志物作为子宫颈癌筛查的可行性评估",
+      title_alt: "Self-Sampling PAX1/JAM3 Methylation for Cervical Cancer Screening",
+      subtitle: "272 例女性 · 自采与医生采样高度一致（r 0.858/0.828、κ 0.90）· CIN2+ Se 77.6% / Sp 87.2% · 联合 CIN3+ Se 96.0%",
+      authors: "余芙蓉、马洁稚、周希、李根林、彭嘉琪、李萍、曾飞、谢小兵、董巍檑",
+      source: "中华检验医学杂志 · 2024;47(4):419–427",
+      h1: "r · PAX1 自采 vs 医采", h2: "r · JAM3", h3: "总体一致性", h4: "灵敏度 · CIN2+（自采）", h5: "联合 CIN3+ 灵敏度",
+      s1t: "背景与目的",
+      s1a: "<strong>可及性</strong>：自采样消除隐私与距离障碍——提升筛查覆盖率。",
+      s1b: "<strong>验证</strong>：阴道自采样本的 PAX1/JAM3 甲基化是否与医生采样同样准确？",
+      s2t: "研究设计与队列",
+      s2s1: "例分析女性", s2s2: "一致性组", s2s3: "临床研究组",
+      s2a: "<strong>设计</strong>：单中心横断面，阴道镜门诊，2023.1–11。",
+      s2b: "<strong>配对样本</strong>：阴道自采拭子 + 医生采样，同一 qPCR 甲基化检测。",
+      s2c: "<strong>金标准</strong>：组织病理；Spearman、Kappa、Bland-Altman。",
+      s2d: "<strong>病理</strong>：正常/宫颈炎 37.5% · CIN1 26.4% · CIN2 15.8% · CIN3 10.7% · 癌 9.6%。",
+      s2e: "<strong>入组</strong>：阴道镜转诊女性，同时具备自采与医采样本。",
+      s2f: "<strong>试剂</strong>：CISCER® PAX1/JAM3 试剂盒（PCR-荧光）；SLAN-96S。",
+      s2g: "<strong>统计</strong>：Spearman、Kappa、Bland-Altman、ROC/AUC、Logistic。",
+      s2h: "<strong>分层</strong>：绝经前与绝经后性能分析。",
+      s2i: "<strong>一致性组</strong>：81 对配对样本（41 &lt;CIN2 + 40 CIN2+）。",
+      s2j: "<strong>临床组</strong>：191 例，与 HPV、细胞学比较。",
+      s2k: "<strong>样本量</strong>：RMLE 非劣效设计，≥34 例 CIN2+。",
+      s2l: "<strong>比较</strong>：自采甲基化 vs HPV、LBC 及其组合。",
+      s2m: "<strong>伦理</strong>：机构批准；知情同意。",
+      s2s4: "正常/宫颈炎", s2s5: "CIN1", s2s6: "CIN2", s2s7: "CIN3", s2s8: "癌",
+      s2h1: "正常", s2h2: "CIN1", s2h3: "CIN2", s2h4: "CIN3", s2h5: "癌",
+      s2n: "另分析绝经前后女性的自采检测性能。",
+      s3t: "采样一致性",
+      s3a1: "PAX1 · 自采 vs 医采", s3a2: "JAM3 · 自采 vs 医采",
+      s3s1: "Kappa · 全部", s3s2: "Kappa · CIN2+", s3s3: "Kappa · <CIN2",
+      s3a: "<strong>一致性</strong>：Bland-Altman 证实一致性良好；P 均 &gt;0.05。",
+      s3b: "<strong>无偏倚</strong>：自采 vs 医采 Se 77.5% vs 82.5% · Sp 92.7% vs 87.8%——差异无统计学意义。",
+      s4t: "分级甲基化信号",
+      s4c1: "自采样本 ΔCP 按级别——CIN2+ 与正常组差异显著（P&lt;0.05）。",
+      s4c2: "CIN3+ 灵敏度——甲基化联合 96.0% 最佳。",
+      pg0: "CIN3+ 灵敏度——自采样本", pg1: "甲基化 + HPV16/18", pg2: "hrHPV", pg3: "细胞学（LBC）", pg4: "数据：临床组 CIN3+ · 联合最佳",
+      s5t: "临床性能",
+      s5s1: "灵敏度 · CIN2+", s5s2: "特异度 · CIN2+", s5s3: "NPV · CIN2+", s5s4: "联合 CIN3+ 灵敏度",
+      s5a: "<strong>联合</strong>：甲基化 + HPV16/18 → CIN2+ Se 89.7% / CIN3+ 96.0%——优于 hrHPV 92.0% 与细胞学 82.6%。",
+      s5b: "<strong>特异度与 PPV</strong>：甲基化单独/联合均高于 hrHPV、HPV16/18 与细胞学（P&lt;0.005）。",
+      s5c: "<strong>可行</strong>：居家自采拭子——扩展筛查可及性与依从性。",
+      c_ttl: "临床意义",
+      c1: "<b>阴道自采样本行 PAX1/JAM3 甲基化检测可行且准确</b>——与医生采样高度一致（r 0.83–0.86、κ 0.90），CIN2+/CIN3+ 性能良好。",
+      c2: "<b>自采样</b> 消除可及性障碍，支持更广泛的社区宫颈癌筛查。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

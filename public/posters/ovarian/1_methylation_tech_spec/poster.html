@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Technical Specification: Tumor DNA Methylation Biomarker Detection — T/CITS 727—2026</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #44：检测技术规范）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、流程卡、质控卡
+  - 布局：标题带 → hero（三阶段全流程 / 三级质控 / T/CITS 727—2026 / 7 类标本）→ 两栏（左 560px：①范围与标本类型 ②检测前要求；右 1fr：③检测中要求 ④检测后要求 ⑤质量控制）→ 全宽临床意义带
+  - 无图：全部用流程卡/质控卡呈现
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 96px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 20px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .cardgrid { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 0 0 5px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 14px 4px; text-align: center; }
+  .stat .big { font-size: 17px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .cardgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; display: flex; gap: 8px; align-items: flex-start; }
+  .card .cn { flex: 0 0 auto; width: 24px; height: 24px; border-radius: 6px; background: rgba(215,75,74,0.85); color: #fff; font-weight: 800; font-size: 11px; display: flex; align-items: center; justify-content: center; }
+  .card .ct { flex: 1 1 auto; font-size: 10.5px; line-height: 1.32; color: var(--text); }
+  .card .ct b { color: var(--primary); }
+  .card.hot { border-left: 4px solid var(--primary); background: var(--panel-alt); }
+
+  .prodgrid { display: flex; flex-direction: column; gap: 5px; }
+  .prod { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; display: flex; gap: 8px; align-items: center; }
+  .prod .pl { flex: 0 0 130px; font-size: 11px; font-weight: 800; color: var(--primary); line-height: 1.25; }
+  .prod .pd { flex: 1 1 auto; font-size: 10px; color: var(--muted); line-height: 1.3; }
+  .prod .pd b { color: var(--accent-deep); }
+  .prod .pb { flex: 0 0 auto; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.3); color: var(--accent-deep); font-size: 8.5px; font-weight: 700; border-radius: 10px; padding: 1px 8px; }
+  .prod.hot { border-left: 4px solid var(--primary); background: var(--panel-alt); }
+  .cancertag { display: inline-flex; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 1px 7px; font-size: 9px; font-weight: 700; color: var(--primary); margin: 1px 2px; }
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 3px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+  body.lang-zh .panel ul li { line-height: 1.36; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">T/CITS 727—2026 · China Inspection &amp; Testing Society · Technical Standard</div>
+    <h1 data-i18n="title">Technical Specification: Tumor DNA Methylation Biomarker Detection</h1>
+    <div class="title_alt" data-i18n="title_alt">肿瘤 DNA 甲基化标志物检测技术规范</div>
+    <div class="subtitle" data-i18n="subtitle">Full workflow (pre-test · testing · post-test) + three-level QC (internal · external · performance validation) · 7 specimen types · issued 2026-06-03</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Chongqing TCM Hospital · Jilin Univ 1st Hospital · CAMS Cancer Hospital · PUMCH et al.</div>
+      <div class="source" data-i18n="source">T/CITS 727—2026 · 中国检验检测学会归口 · 2026-06-03 发布/实施</div>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="stat hot"><div class="big">3-stage</div><div class="lab" data-i18n="h1">pre-test · testing · post-test</div></div>
+    <div class="stat hot"><div class="big">3-level QC</div><div class="lab" data-i18n="h2">internal · EQA · validation</div></div>
+    <div class="stat"><div class="big">7</div><div class="lab" data-i18n="h3">specimen types</div></div>
+    <div class="stat"><div class="big">2026</div><div class="lab" data-i18n="h4">T/CITS 727—2026</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Scope &amp; Specimen Types</span></h3>
+        <div class="cardgrid">
+          <div class="card"><div class="cn">T</div><div class="ct" data-i18n="s1c1"><b>Tissue</b>: fresh frozen · FFPE.</div></div>
+          <div class="card"><div class="cn">B</div><div class="ct" data-i18n="s1c2"><b>Blood</b>: gDNA from PBMC · cfDNA/ctDNA.</div></div>
+          <div class="card"><div class="cn">U</div><div class="ct" data-i18n="s1c3"><b>Urine</b>: exfoliated cells / cfDNA.</div></div>
+          <div class="card"><div class="cn">F</div><div class="ct" data-i18n="s1c4"><b>Fluids/lavage</b>: effusion · BAL · bladder lavage.</div></div>
+          <div class="card"><div class="cn">S</div><div class="ct" data-i18n="s1c5"><b>Stool</b>: cells / DNA.</div></div>
+          <div class="card"><div class="cn">W</div><div class="ct" data-i18n="s1c6"><b>Swab</b>: cervical · uterine · oral.</div></div>
+          <div class="card"><div class="cn">O</div><div class="ct" data-i18n="s1c7"><b>Other</b>: sputum · CSF.</div></div>
+        </div>
+        <div class="tnote" data-i18n="s1n">Applies to medical institutions &amp; testing organizations performing tumor methylation assays.</div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Pre-Test Requirements</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">Consent</div><div class="lab" data-i18n="s2s1">informed consent</div></div>
+          <div class="stat"><div class="big">2×10 mL</div><div class="lab" data-i18n="s2s2">whole blood for cfDNA</div></div>
+          <div class="stat"><div class="big">EDTA</div><div class="lab" data-i18n="s2s3">no heparin</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Collection</strong>: informed consent; minimum volume + backup; hemolyzed/lipemic/icteric blood re-drawn.</li>
+          <li data-i18n="s2b"><strong>Storage</strong>: blood separate 4–6 h (4°C ≤24 h; preservative tube ≤3 d); tissue −70°C or FFPE 3–5 y.</li>
+          <li data-i18n="s2c"><strong>Swab</strong>: dry ≤3 d RT · in solution 2–8°C ≤7 d · −20°C ≤30 d.</li>
+          <li data-i18n="s2d"><strong>Transport</strong>: GB/T 42186 cold-chain box, insulated &amp; leak-proof.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">−70°C</div><div class="lab" data-i18n="s2s4">tissue storage</div></div>
+          <div class="stat"><div class="big">3–5 y</div><div class="lab" data-i18n="s2s5">FFPE RT</div></div>
+          <div class="stat"><div class="big">24 h</div><div class="lab" data-i18n="s2s6">blood 4°C</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">4–6 h</div><div class="lab" data-i18n="s2s7">blood separation window</div></div>
+          <div class="stat"><div class="big">≤3 d</div><div class="lab" data-i18n="s2s8">preservative tube</div></div>
+          <div class="stat"><div class="big">≥10 ng/μL</div><div class="lab" data-i18n="s2s9">DNA concentration</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2e"><strong>Blood rule</strong>: never freeze RBC-containing samples before separation.</li>
+          <li data-i18n="s2f"><strong>Fluids/urine</strong>: separated components long-term −70°C; avoid repeated freeze-thaw.</li>
+          <li data-i18n="s2g"><strong>Stool</strong>: preservative solution; ship promptly.</li>
+          <li data-i18n="s2h"><strong>Consent</strong>: explain purpose, method &amp; precautions before collection.</li>
+        </ul>
+        <div class="tnote" data-i18n="s2n">Quality gate before testing: hemolysis rejection · cold-chain compliance (GB/T 42186) · backup specimen for reflex testing.</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Appendix A — Approved Methylation Products (Table A.1)</span></h3>
+        <div class="prodgrid">
+          <div class="prod hot"><div class="pl" data-i18n="s3p1">PAX1 / JAM3 (CISCER)</div><div class="pd" data-i18n="s3d1"><b>Cervical brushing</b> · dual-gene combo · cervical cancer screening &amp; triage.</div><div class="pb" data-i18n="s3b1">宫颈癌</div></div>
+          <div class="prod hot"><div class="pl" data-i18n="s3p2">CDO1 / CELF4 (CISENDO)</div><div class="pd" data-i18n="s3d2"><b>Cervical/uterine brushing</b> · dual-gene combo · endometrial cancer detection.</div><div class="pb" data-i18n="s3b2">子宫内膜癌</div></div>
+          <div class="prod hot"><div class="pl" data-i18n="s3p3">CDO1 / HOXA9</div><div class="pd" data-i18n="s3d3"><b>Blood (cfDNA)</b> · dual-gene combo · ovarian cancer diagnosis.</div><div class="pb" data-i18n="s3b3">卵巢癌</div></div>
+        </div>
+        <div class="tnote" data-i18n="s3n">Appendix A lists approved tumor methylation assays across 11 cancer types — from cervical/endometrial/ovarian to colorectal, gastric, esophageal, liver, lung, bladder, urothelial &amp; glioma.</div>
+        <div>
+          <span class="cancertag" data-i18n="s3t1">Cervical</span><span class="cancertag" data-i18n="s3t2">Endometrial</span><span class="cancertag" data-i18n="s3t3">Ovarian</span><span class="cancertag" data-i18n="s3t4">Colorectal</span><span class="cancertag" data-i18n="s3t5">Gastric</span><span class="cancertag" data-i18n="s3t6">Esophageal</span><span class="cancertag" data-i18n="s3t7">Liver</span><span class="cancertag" data-i18n="s3t8">Lung</span><span class="cancertag" data-i18n="s3t9">Bladder</span><span class="cancertag" data-i18n="s3t10">Urothelial</span><span class="cancertag" data-i18n="s3t11">Glioma</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">Testing Requirements</span></h3>
+        <div class="cardgrid">
+          <div class="card hot"><div class="cn">qPCR</div><div class="ct" data-i18n="s4c1"><b>qPCR</b>: 1–few markers; gene-amplification lab rules.</div></div>
+          <div class="card"><div class="cn">dPCR</div><div class="ct" data-i18n="s4c2"><b>dPCR</b>: trace/low-frequency absolute quantitation.</div></div>
+          <div class="card"><div class="cn">NGS</div><div class="ct" data-i18n="s4c3"><b>NGS</b>: hundreds–whole genome; GB/T 30989.</div></div>
+          <div class="card"><div class="cn">MS</div><div class="ct" data-i18n="s4c4"><b>MALDI-TOF MS</b>: multi-CpG level analysis per kit.</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s4a"><strong>Extraction</strong>: column/magnetic bead; separate cfDNA &amp; cell zones; tumor enrichment if &lt;20% cells; purity OD260/280 1.8–2.0, ≥10 ng/μL.</li>
+          <li data-i18n="s4b"><strong>Conversion</strong>: bisulfite or enzymatic; check efficiency &amp; recovery.</li>
+          <li data-i18n="s4c"><strong>Detection</strong>: SOP per method; cfDNA fragment profile checked for gDNA contamination.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Post-Test &amp; Quality Control</span></h3>
+        <ul>
+          <li data-i18n="s5a"><strong>Report</strong>: patient · specimen (type/QC) · test (method/panel) · results (±/quantitative) · interpretation · limitations · signatures.</li>
+          <li data-i18n="s5b"><strong>Interpretation</strong>: integrate clinical context; grade per guidelines; NMPA items per product standards; multi-gene overall risk score.</li>
+        </ul>
+        <div class="cardgrid">
+          <div class="card hot"><div class="cn">1</div><div class="ct" data-i18n="s5c1"><b>Internal QC</b> (WS/T 641): control charts, reference materials; correct on out-of-control.</div></div>
+          <div class="card hot"><div class="cn">2</div><div class="ct" data-i18n="s5c2"><b>EQA</b> (WS/T 644): accredited ring trials; problem list + corrective actions; periodic training.</div></div>
+          <div class="card hot"><div class="cn">3</div><div class="ct" data-i18n="s5c3"><b>Performance validation</b>: accuracy · precision (intra/inter) · LOD · specificity · reportable range.</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">5</div><div class="lab" data-i18n="s5s1">validation metrics</div></div>
+          <div class="stat"><div class="big">7</div><div class="lab" data-i18n="s5s2">report elements</div></div>
+          <div class="stat"><div class="big">±/quant</div><div class="lab" data-i18n="s5s3">result format</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s5e"><strong>Limitations</strong>: report inherent method limits &amp; evidence level of unclear variants.</li>
+          <li data-i18n="s5f"><strong>Risk model</strong>: overall score/category stability validated for multi-gene panels.</li>
+          <li data-i18n="s5d"><strong>When</strong>: new method/system or major change (reagent/platform/bioinformatics).</li>
+        </ul>
+      </div>    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Standardized laboratory pathway</b>: pre-test → testing → post-test requirements with three-level QC ensure reliable tumor methylation results.</li>
+      <li data-i18n="c2"><b>Practice-ready</b>: 7 specimen types, 4 platforms, evidence-graded reporting — basis for methylation assays entering screening/triage workflows.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "T/CITS 727—2026 · China Inspection & Testing Society · Technical Standard",
+      title: "Technical Specification: Tumor DNA Methylation Biomarker Detection",
+      title_alt: "肿瘤 DNA 甲基化标志物检测技术规范",
+      subtitle: "Full workflow (pre-test · testing · post-test) + three-level QC (internal · external · performance validation) · 7 specimen types · issued 2026-06-03",
+      authors: "Chongqing TCM Hospital · Jilin Univ 1st Hospital · CAMS Cancer Hospital · PUMCH et al.",
+      source: "T/CITS 727—2026 · China Inspection & Testing Society · issued/effective 2026-06-03",
+      h1: "pre-test · testing · post-test", h2: "internal · EQA · validation", h3: "specimen types", h4: "T/CITS 727—2026",
+      s1t: "Scope & Specimen Types",
+      s1c1: "<b>Tissue</b>: fresh frozen · FFPE.", s1c2: "<b>Blood</b>: gDNA from PBMC · cfDNA/ctDNA.",
+      s1c3: "<b>Urine</b>: exfoliated cells / cfDNA.", s1c4: "<b>Fluids/lavage</b>: effusion · BAL · bladder lavage.",
+      s1c5: "<b>Stool</b>: cells / DNA.", s1c6: "<b>Swab</b>: cervical · uterine · oral.", s1c7: "<b>Other</b>: sputum · CSF.",
+      s1n: "Applies to medical institutions & testing organizations performing tumor methylation assays.",
+      s2t: "Pre-Test Requirements",
+      s2s1: "informed consent", s2s2: "whole blood for cfDNA", s2s3: "no heparin",
+      s2a: "<strong>Collection</strong>: informed consent; minimum volume + backup; hemolyzed/lipemic/icteric blood re-drawn.",
+      s2b: "<strong>Storage</strong>: blood separate 4–6 h (4°C ≤24 h; preservative tube ≤3 d); tissue −70°C or FFPE 3–5 y.",
+      s2c: "<strong>Swab</strong>: dry ≤3 d RT · in solution 2–8°C ≤7 d · −20°C ≤30 d.",
+      s2d: "<strong>Transport</strong>: GB/T 42186 cold-chain box, insulated & leak-proof.",
+      s2s4: "tissue storage", s2s5: "FFPE RT", s2s6: "blood 4°C",
+      s2s7: "blood separation window", s2s8: "preservative tube", s2s9: "DNA concentration",
+      s2e: "<strong>Blood rule</strong>: never freeze RBC-containing samples before separation.",
+      s2f: "<strong>Fluids/urine</strong>: separated components long-term −70°C; avoid repeated freeze-thaw.",
+      s2g: "<strong>Stool</strong>: preservative solution; ship promptly.",
+      s2h: "<strong>Consent</strong>: explain purpose, method & precautions before collection.",
+      s2n: "Quality gate before testing: hemolysis rejection · cold-chain compliance · backup specimen.",
+      s3t: "Appendix A — Approved Methylation Products (Table A.1)",
+      s3p1: "PAX1 / JAM3 (CISCER)", s3p2: "CDO1 / CELF4 (CISENDO)", s3p3: "CDO1 / HOXA9",
+      s3d1: "<b>Cervical brushing</b> · dual-gene combo · cervical cancer screening & triage.",
+      s3d2: "<b>Cervical/uterine brushing</b> · dual-gene combo · endometrial cancer detection.",
+      s3d3: "<b>Blood (cfDNA)</b> · dual-gene combo · ovarian cancer diagnosis.",
+      s3b1: "宫颈癌", s3b2: "子宫内膜癌", s3b3: "卵巢癌",
+      s3n: "Appendix A lists approved tumor methylation assays across 11 cancer types — from cervical/endometrial/ovarian to colorectal, gastric, esophageal, liver, lung, bladder, urothelial & glioma.",
+      s3t1: "Cervical", s3t2: "Endometrial", s3t3: "Ovarian", s3t4: "Colorectal", s3t5: "Gastric", s3t6: "Esophageal", s3t7: "Liver", s3t8: "Lung", s3t9: "Bladder", s3t10: "Urothelial", s3t11: "Glioma",
+      s4t: "Testing Requirements",
+      s4c1: "<b>qPCR</b>: 1–few markers; gene-amplification lab rules.",
+      s3c2: "<b>dPCR</b>: trace/low-frequency absolute quantitation.",
+      s3c3: "<b>NGS</b>: hundreds–whole genome; GB/T 30989.",
+      s3c4: "<b>MALDI-TOF MS</b>: multi-CpG level analysis per kit.",
+      s3a: "<strong>Extraction</strong>: column/magnetic bead; separate cfDNA & cell zones; tumor enrichment if <20% cells; purity OD260/280 1.8–2.0, ≥10 ng/μL.",
+      s3b: "<strong>Conversion</strong>: bisulfite or enzymatic; check efficiency & recovery.",
+      s3c: "<strong>Detection</strong>: SOP per method; cfDNA fragment profile checked for gDNA contamination.",
+      s4t: "Post-Test Requirements",
+      s4a: "<strong>Report</strong>: patient info · specimen info (type/QC) · test info (method/panel) · results (±/quantitative) · interpretation · limitations · signatures.",
+      s4b: "<strong>Interpretation</strong>: integrate clinical context; grade per guidelines & databases; NMPA-registered items follow product standards.",
+      s4c: "<strong>Multi-gene</strong>: give overall risk score/category (high/low); note unclear variants with evidence level; drug-sensitivity hints.",
+      s5t: "Quality Control — Three Levels",
+      s5c1: "<b>Internal QC</b> (WS/T 641): control charts, reference materials; correct on out-of-control.",
+      s5c2: "<b>EQA</b> (WS/T 644): accredited ring trials; problem list + corrective actions; periodic training.",
+      s5c3: "<b>Performance validation</b>: accuracy · precision (intra/inter) · LOD · specificity · reportable range.",
+      s5s4: "report elements", s5s5: "interpretation levels", s5s6: "result format",
+      s5d: "<strong>Risk model</strong>: overall score/category stability validated for multi-gene panels.",
+      s5e: "<strong>Limitations</strong>: report inherent method limits & evidence level of unclear variants.",
+      s5s1: "validation metrics", s5s2: "report elements", s5s3: "result format",
+      s5e: "<strong>Limitations</strong>: report inherent method limits & evidence level of unclear variants.",
+      s5f: "<strong>Risk model</strong>: overall score/category stability validated for multi-gene panels.",
+      s5g: "<strong>Personnel</strong>: periodic training & capability assessment with EQA outcomes.",
+      s5a: "<strong>When</strong>: new method/system or major change (reagent/platform/bioinformatics).",
+      s5b: "<strong>Multi-gene</strong>: validate overall risk model stability & reproducibility.",
+      s5s1: "validation metrics", s5s2: "reference materials", s5s3: "intra + inter precision",
+      s5c: "<strong>EQA practice</strong>: domestic + international ring trials; personnel capability assessment.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Standardized laboratory pathway</b>: pre-test → testing → post-test requirements with three-level QC ensure reliable tumor methylation results.",
+      c2: "<b>Practice-ready</b>: 7 specimen types, 4 platforms, evidence-graded reporting — basis for methylation assays entering screening/triage workflows."
+    },
+    zh: {
+      kicker: "T/CITS 727—2026 · 中国检验检测学会 · 技术标准",
+      title: "肿瘤 DNA 甲基化标志物检测技术规范",
+      title_alt: "Technical Specification: Tumor DNA Methylation Biomarker Detection",
+      subtitle: "全流程（检测前 · 检测中 · 检测后）+ 三级质控（室内 · 室间 · 性能验证）· 7 类标本 · 2026-06-03 发布",
+      authors: "重庆市中医院 · 吉林大学第一医院 · 中国医学科学院肿瘤医院 · 北京协和医院等",
+      source: "T/CITS 727—2026 · 中国检验检测学会归口 · 2026-06-03 发布/实施",
+      h1: "检测前 · 检测中 · 检测后", h2: "室内 · 室间 · 性能验证", h3: "标本类型", h4: "T/CITS 727—2026",
+      s1t: "范围与标本类型",
+      s1c1: "<b>组织</b>：新鲜冷冻 · FFPE。", s1c2: "<b>血液</b>：PBMC 基因组 DNA · cfDNA/ctDNA。",
+      s1c3: "<b>尿液</b>：脱落细胞 / cfDNA。", s1c4: "<b>体液/灌洗液</b>：积液 · 肺泡灌洗 · 膀胱灌洗。",
+      s1c5: "<b>粪便</b>：脱落细胞 / DNA。", s1c6: "<b>拭子</b>：宫颈 · 宫腔 · 口腔。", s1c7: "<b>其他</b>：痰液 · 脑脊液。",
+      s1n: "适用于医疗机构、检测机构等开展肿瘤 DNA 甲基化标志物检测的规范化操作。",
+      s2t: "检测前要求",
+      s2s1: "知情同意", s2s2: "cfDNA 全血量", s2s3: "禁用肝素",
+      s2a: "<strong>采集</strong>：采集前知情同意；最小体积 + 备份标本；溶血/脂血/黄疸重新采集。",
+      s2b: "<strong>保存</strong>：血液 4–6 h 内分离（4°C ≤24 h；防腐采血管 ≤3 d）；组织离体后 −70°C 或制成 FFPE 室温保存 3–5 年。",
+      s2c: "<strong>拭子</strong>：风干保存室温 ≤3 d；置于保存液 2–8°C ≤7 d、−20°C ≤30 d；运输符合冷链规范。",
+      s2d: "<strong>运输</strong>：按 GB/T 42186 使用专用标本运输箱，采取保温、防震与防泄漏措施。",
+      s2s4: "组织保存", s2s5: "FFPE 室温", s2s6: "血液 4°C",
+      s2s7: "血液分离窗口", s2s8: "防腐管", s2s9: "DNA 浓度",
+      s2e: "<strong>血液规则</strong>：含红细胞血样分离前不得冻存。",
+      s2f: "<strong>尿液/体液</strong>：分离后组分 −70°C 长期保存；避免反复冻融。",
+      s2g: "<strong>粪便</strong>：置于含防腐剂保存液，尽快送检。",
+      s2h: "<strong>知情同意</strong>：采集前说明目的、方法与注意事项。",
+      s2n: "检测前质量关口：溶血拒收 · 冷链合规（GB/T 42186）· 备份标本用于补充检测。",
+      s3t: "附录 A——获批甲基化检测产品（表 A.1）",
+      s3p1: "PAX1 / JAM3（CISCER）", s3p2: "CDO1 / CELF4（CISENDO）", s3p3: "CDO1 / HOXA9",
+      s3d1: "<b>宫颈刷取</b> · 双靶基因组合 · 宫颈癌筛查与分流。",
+      s3d2: "<b>宫颈/宫腔刷取</b> · 双靶基因组合 · 子宫内膜癌检测。",
+      s3d3: "<b>血液（cfDNA）</b> · 双靶基因组合 · 卵巢癌诊断。",
+      s3b1: "宫颈癌", s3b2: "子宫内膜癌", s3b3: "卵巢癌",
+      s3n: "附录 A 列出 11 个癌种的获批肿瘤甲基化检测——从宫颈/内膜/卵巢到结直肠、胃、食管、肝、肺、膀胱、尿路上皮与胶质瘤。",
+      s3t1: "宫颈癌", s3t2: "子宫内膜癌", s3t3: "卵巢癌", s3t4: "结直肠癌", s3t5: "胃癌", s3t6: "食管癌", s3t7: "肝癌", s3t8: "肺癌", s3t9: "膀胱癌", s3t10: "尿路上皮癌", s3t11: "胶质瘤",
+      s4t: "检测中要求",
+      s4c1: "<b>qPCR</b>：1–数个标志物；符合基因扩增实验室管理。",
+      s3c2: "<b>dPCR</b>：微量/低频标志物绝对定量。",
+      s3c3: "<b>NGS</b>：数百–全基因组；按 GB/T 30989。",
+      s3c4: "<b>MALDI-TOF MS</b>：连续 CpG 位点水平分析，按试剂盒说明。",
+      s3a: "<strong>提取</strong>：离心柱/磁珠；cfDNA 与细胞分区防污染；肿瘤比例 &lt;20% 富集；纯度 OD260/280 1.8–2.0，≥10 ng/μL。",
+      s3b: "<strong>转化</strong>：重亚硫酸盐或酶学；核查效率与回收率。",
+      s3c: "<strong>检测</strong>：按方法 SOP；cfDNA 评估片段分布排除 gDNA 污染。",
+      s4t: "检测后要求",
+      s4a: "<strong>报告</strong>：患者信息 · 标本信息（类型/质控）· 检测信息（方法/组合）· 结果（±/定量）· 解读 · 局限 · 签字。",
+      s4b: "<strong>解读</strong>：结合临床；按指南/数据库分级；NMPA 注册项目按说明书判定。",
+      s4c: "<strong>多基因</strong>：给出整体风险评分/分类；意义不明注明证据等级；药物敏感性提示。",
+      s5t: "质量控制——三级",
+      s5c1: "<b>室内质控</b>（WS/T 641）：质控图、标准物质；失控纠正。",
+      s5c2: "<b>室间质评</b>（WS/T 644）：权威机构质评；问题清单与纠正；周期性培训考核。",
+      s5c3: "<b>性能验证</b>：准确度 · 精密度（批内/批间）· 检出限 · 特异度 · 可报告范围。",
+      s5s4: "报告要素", s5s5: "解读层级", s5s6: "结果格式",
+      s5d: "<strong>风险模型</strong>：多基因组合整体评分/分类稳定性验证。",
+      s5e: "<strong>局限</strong>：报告方法固有限制与意义不明变异的证据等级。",
+      s5s1: "验证指标", s5s2: "报告要素", s5s3: "结果格式",
+      s5e: "<strong>局限</strong>：报告方法固有限制与意义不明变异的证据等级。",
+      s5f: "<strong>风险模型</strong>：多基因组合整体评分/分类稳定性验证。",
+      s5g: "<strong>人员</strong>：结合室间质评结果定期培训与能力考核。",
+      s5a: "<strong>时机</strong>：新方法/系统或重大变更（试剂/平台/生信）。",
+      s5b: "<strong>多基因</strong>：验证整体风险模型稳定性与可重复性。",
+      s5s1: "验证指标", s5s2: "标准物质", s5s3: "批内+批间精密度",
+      s5c: "<strong>室间质评实践</strong>：国内外环评；人员能力考核。",
+      c_ttl: "临床意义",
+      c1: "<b>标准化实验室路径</b>：检测前→中→后要求 + 三级质控，确保肿瘤甲基化结果可靠。",
+      c2: "<b>可落地</b>：7 类标本、4 种平台、证据分级报告——甲基化检测进入筛查/分流流程的基础。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

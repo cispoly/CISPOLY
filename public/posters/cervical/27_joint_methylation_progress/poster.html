@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAX1/JAM3 Dual-Gene Methylation in Cervical Lesion Management — He et al. 2026 Review</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #14：综述 → 技术流程 + 全程管理路径四阶段，与 #12/#13 综述均不同）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、白色 stat 卡、红色高亮表格
+  - 布局：标题带 → 判读 hero（ΔCt 标准 + 关键数据）→ 两栏（左 540px：①双基因机制与优势 ②检测技术流程【四步 flow + 判读 + 质控/共识】；右 1fr：③全程管理路径【筛查 / HR-HPV+ / 细胞学异常 / CIN2+·术后 四阶段卡】）→ 全宽临床意义带
+  - 无图：全部用流程条/表格/阶段卡呈现
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  /* 判读 hero */
+  .read { flex: 0 0 auto; height: 98px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: center; gap: 14px; padding: 8px 12px; }
+  .read .rcut { flex: 0 0 460px; background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.9) 100%); border-radius: 10px;
+    padding: 10px 16px; height: 100%; display: flex; flex-direction: column; justify-content: center; }
+  .read .rcut .rt { font-size: 11px; font-weight: 800; color: #fff; letter-spacing: 1px; }
+  .read .rcut .rv { font-size: 17px; font-weight: 800; color: #fff; margin-top: 3px; font-family: "Courier New", Consolas, monospace; }
+  .read .rstats { flex: 1; display: flex; gap: 10px; height: 100%; }
+  .read .rstat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .read .rstat .big { font-size: 20px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .read .rstat .lab { font-size: 9.5px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 540px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel table, .panel .statrow, .panel .tnote, .panel .flow4, .panel .stage { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 4px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .flow4 { display: flex; align-items: stretch; gap: 6px; margin: 1px 0 7px; }
+  .f4 { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 12px 5px; text-align: center; }
+  .f4 .f4n { font-size: 9.5px; font-weight: 800; color: var(--muted); }
+  .f4 .f4d { font-size: 11px; font-weight: 700; color: var(--text); margin-top: 3px; line-height: 1.3; }
+  .f4.hot { background: var(--panel-alt); border-color: rgba(215,75,74,0.5); }
+  .f4arr { align-self: center; color: var(--secondary); font-size: 14px; font-weight: 800; }
+
+  .statrow { display: flex; gap: 8px; margin: 1px 0 6px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 9px 4px; text-align: center; }
+  .stat .big { font-size: 19px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9.5px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+
+  .minitable { width: 100%; border-collapse: collapse; margin: 2px 0 4px 0; font-size: 10.5px; }
+  .minitable th { background: rgba(215,75,74,0.12); color: var(--accent-deep); font-weight: 700; padding: 3px 5px; text-align: left; border-bottom: 2px solid var(--line); font-size: 10px; }
+  .minitable td { padding: 4px 5px; border-bottom: 1px solid var(--line); color: var(--muted); }
+  .minitable td:first-child { font-weight: 600; color: var(--text); }
+  .minitable tr:last-child td { border-bottom: none; }
+  .minitable .highlight { color: var(--primary); font-weight: 700; }
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 2px; }
+  .tnote b { color: var(--accent-deep); }
+
+  /* 阶段卡 */
+  .stages { display: flex; flex-direction: column; gap: 7px; }
+  .stage { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 9px 12px; }
+  .stage .sh { display: flex; align-items: center; gap: 8px; }
+  .stage .sn { flex: 0 0 24px; width: 24px; height: 24px; border-radius: 50%; background: var(--panel-alt); border: 1.5px solid rgba(215,75,74,0.4);
+    display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: var(--accent-deep); }
+  .stage .st { font-size: 13px; font-weight: 800; color: var(--text); }
+  .stage .sd { font-size: 11px; color: var(--muted); line-height: 1.4; margin: 4px 0 0 32px; }
+  .stage .sd b { color: var(--accent-deep); }
+  .stage.hot { background: var(--panel-alt); border-color: rgba(215,75,74,0.5); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Int J Obstet Gynecol · 2026;53(3) · Review · China</div>
+    <h1 data-i18n="title">PAX1/JAM3 Dual-Gene Methylation in Cervical Lesion Management</h1>
+    <div class="title_alt" data-i18n="title_alt">PAX1/JAM3 双基因联合甲基化检测在宫颈病变管理中的研究进展</div>
+    <div class="subtitle" data-i18n="subtitle">Review · dual-gene quantitative methylation: screening → hrHPV+ triage → cytology-abnormal triage → CIN2+ &amp; post-op management</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">He Q, Huang Z, Wang Y, An Y, Feng S (correspondence)</div>
+      <div class="source" data-i18n="source">Northwest Minzu University · 940th Hospital · 国际妇产科学杂志 · doi: <a href="https://doi.org/10.12280/gjfckx.20251474" target="_blank" rel="noopener">10.12280/gjfckx.20251474</a></div>
+    </div>
+  </header>
+
+  <!-- 判读 hero -->
+  <div class="read">
+    <div class="rcut">
+      <div class="rt" data-i18n="r1t">Positive readout (dual-gene)</div>
+      <div class="rv" data-i18n="r1v">ΔCt PAX1 ≤ 6.6 &nbsp;or&nbsp; ΔCt JAM3 ≤ 10.0</div>
+    </div>
+    <div class="rstats">
+      <div class="rstat"><div class="big">0.872</div><div class="lab" data-i18n="r2">AUC · CIN3+ (vs TCT 0.580)</div></div>
+      <div class="rstat"><div class="big">74.1%</div><div class="lab" data-i18n="r3">Se · CIN2+</div></div>
+      <div class="rstat"><div class="big">95.9%</div><div class="lab" data-i18n="r4">Sp · CIN2+</div></div>
+      <div class="rstat"><div class="big">0.932</div><div class="lab" data-i18n="r5">AUC · PAX1+HPV+TCT</div></div>
+    </div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Dual-Gene Biology &amp; Advantage</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">PAX1</div><div class="lab" data-i18n="s1s1">squamous-sensitive · early marker</div></div>
+          <div class="stat"><div class="big">JAM3</div><div class="lab" data-i18n="s1s2">adenocarcinoma-sensitive · aggressive phenotype</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s1a"><strong>Complementarity</strong>: PAX1 early &amp; squamous; JAM3 aggressive &amp; adenocarcinoma — joint detection boosts high-grade lesion detection.</li>
+          <li data-i18n="s1b"><strong>Quantitative</strong>: ΔCt-based, objective reflection of epigenetic disorder — risk, type &amp; stage assessment.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Assay Workflow &amp; QC</span></h3>
+        <div class="flow4">
+          <div class="f4 hot"><div class="f4n" data-i18n="f1n">Step 1</div><div class="f4d" data-i18n="f1d">Sample: cervical brush / self-swab</div></div>
+          <div class="f4arr">→</div>
+          <div class="f4"><div class="f4n" data-i18n="f2n">Step 2</div><div class="f4d" data-i18n="f2d">DNA + bisulfite conversion</div></div>
+          <div class="f4arr">→</div>
+          <div class="f4"><div class="f4n" data-i18n="f3n">Step 3</div><div class="f4d" data-i18n="f3d">qPCR (PAX1 / JAM3)</div></div>
+          <div class="f4arr">→</div>
+          <div class="f4"><div class="f4n" data-i18n="f4n">Step 4</div><div class="f4d" data-i18n="f4d">ΔCt readout &amp; report</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Self-sampling</strong>: home vaginal swab feasible — improves compliance &amp; access.</li>
+          <li data-i18n="s2b"><strong>Alternative</strong>: MSRE-qPCR panel (JAM3/PCDHGB7/SORCS1; PAX1/ZNF671/ASCL1) — no bisulfite, higher DNA recovery.</li>
+          <li data-i18n="s2c"><strong>QC standard</strong>: 2025 five-society expert consensus — first national clinical standard for cervical DNA methylation.</li>
+          <li data-i18n="s2d"><strong>Sample</strong>: cervical exfoliated cells — same brush &amp; media as TCT/HPV, easy integration.</li>
+          <li data-i18n="s2e"><strong>Readout rule</strong>: ΔCt PAX1 ≤ 6.6 or ΔCt JAM3 ≤ 10.0 → positive; lower ΔCt = higher methylation.</li>
+          <li data-i18n="s2f"><strong>Clinical value</strong>: independent triage OR combined with HPV/TCT for screening.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">74.1%</div><div class="lab" data-i18n="s2s1">Se · CIN2+</div></div>
+          <div class="stat"><div class="big">95.9%</div><div class="lab" data-i18n="s2s2">Sp · CIN2+</div></div>
+          <div class="stat"><div class="big">0.932</div><div class="lab" data-i18n="s2s3">AUC combined</div></div>
+        </div>
+        <table class="minitable">
+          <tr><th data-i18n="q_h1">Item</th><th data-i18n="q_h2">Standard</th></tr>
+          <tr><td data-i18n="q_r1a">Positive</td><td class="highlight" data-i18n="q_r1b">ΔCt PAX1 ≤ 6.6 or ΔCt JAM3 ≤ 10.0</td></tr>
+          <tr><td data-i18n="q_r2a">Sample</td><td data-i18n="q_r2b">cervical exfoliated cells (brush / self-swab)</td></tr>
+          <tr><td data-i18n="q_r3a">Method</td><td data-i18n="q_r3b">bisulfite + qPCR; MSRE-qPCR alternative</td></tr>
+        </table>
+        <div class="statrow">
+          <div class="stat"><div class="big">ΔCt</div><div class="lab" data-i18n="q_s1">quantitative readout</div></div>
+          <div class="stat"><div class="big">2025</div><div class="lab" data-i18n="q_s2">expert consensus</div></div>
+          <div class="stat"><div class="big">NMPA</div><div class="lab" data-i18n="q_s3">approved kit context</div></div>
+        </div>
+        <div class="tnote" data-i18n="s2g">First national clinical standard for cervical DNA methylation (2025 expert consensus) — standardized lab workflow &amp; reporting.</div>
+      </div>
+    </section>
+
+    <!-- 右栏：全程管理路径 -->
+    <section class="col">
+      <div class="panel grow">
+        <h3><span class="num">3</span><span data-i18n="s3t">Full-Pathway Clinical Management</span></h3>
+        <div class="stages">
+          <div class="stage hot"><div class="sh"><div class="sn">1</div><div class="st" data-i18n="sg1t">Screening</div></div>
+            <div class="sd" data-i18n="sg1d"><b>AUC 0.872 (CIN3+)</b> vs TCT 0.580 / HPV 0.503 · CIN2+ Se 74.1% / Sp 95.9% · independent or combined (ΔCtPAX1+HPV+TCT AUC 0.932).</div></div>
+          <div class="stage"><div class="sh"><div class="sn">2</div><div class="st" data-i18n="sg2t">hrHPV+ triage</div></div>
+            <div class="sd" data-i18n="sg2d">HPV16/18+ (n=334): Se 89.0% / Sp 95.3%, AUC 0.921 · <b>referrals cut ~70%</b> (1.12 per CIN2+) · 14-y cumulative cancer risk 1.7% if methylation-negative.</div></div>
+          <div class="stage"><div class="sh"><div class="sn">3</div><div class="st" data-i18n="sg3t">Cytology-abnormal triage</div></div>
+            <div class="sd" data-i18n="sg3d">ASC-US (n=322): Se 83.8% / Sp 95.8%, referrals −79.5% · mildly abnormal: CIN3+ Se 74.9% / Sp 89.1% · <b>CIN3+ risk 40.5% (+) vs 2.7% (−)</b>.</div></div>
+          <div class="stage"><div class="sh"><div class="sn">4</div><div class="st" data-i18n="sg4t">CIN2+ &amp; post-op</div></div>
+            <div class="sd" data-i18n="sg4d">ΔCt PAX1 &lt; 4.34 → low short-term progression, may defer conization · <b>post-op: 6-mo methylation(+) → 30.8% CIN2/3 recurrence vs &lt;4% (−)</b>.</div></div>
+        </div>
+        <table class="minitable">
+          <tr><th data-i18n="e_h1">Setting</th><th data-i18n="e_h2">Se %</th><th data-i18n="e_h3">Sp %</th><th data-i18n="e_h4">AUC</th><th data-i18n="e_h5">Impact</th></tr>
+          <tr><td class="highlight" data-i18n="e_r1a">Screening (CIN2+)</td><td class="highlight">74.1</td><td class="highlight">95.9</td><td>0.872</td><td data-i18n="e_r1d">beats TCT/HPV</td></tr>
+          <tr><td data-i18n="e_r2a">HPV16/18+ (n=334)</td><td>89.0</td><td>95.3</td><td>0.921</td><td data-i18n="e_r2d">referrals −70%</td></tr>
+          <tr><td data-i18n="e_r3a">ASC-US (n=322)</td><td>83.8</td><td>95.8</td><td>—</td><td data-i18n="e_r3d">referrals −79.5%</td></tr>
+          <tr><td data-i18n="e_r4a">Mildly abnormal</td><td>74.9</td><td>89.1</td><td>—</td><td data-i18n="e_r4d">risk 40.5% vs 2.7%</td></tr>
+        </table>
+        <div class="statrow">
+          <div class="stat"><div class="big">−70%</div><div class="lab" data-i18n="s3s1">HPV16/18 referrals</div></div>
+          <div class="stat"><div class="big">1.12</div><div class="lab" data-i18n="s3s2">referrals per CIN2+</div></div>
+          <div class="stat"><div class="big">30.8%</div><div class="lab" data-i18n="s3s3">post-op recurrence if (+)</div></div>
+          <div class="stat"><div class="big">&lt;4%</div><div class="lab" data-i18n="s3s4">if (−)</div></div>
+        </div>
+        <table class="minitable">
+          <tr><th data-i18n="u_h1">Model (Sun, n=276 HSIL)</th><th data-i18n="u_h2">AUC</th></tr>
+          <tr><td class="highlight" data-i18n="u_r1a">ΔCt PAX1 + HPV + TCT</td><td class="highlight">0.932</td></tr>
+          <tr><td data-i18n="u_r2a">ΔCt JAM3 + HPV + TCT</td><td>0.926</td></tr>
+          <tr><td data-i18n="u_r3a">ΔCt PAX1 / ΔCt JAM3</td><td>0.867 / 0.841</td></tr>
+          <tr><td data-i18n="u_r4a">HPV / TCT alone</td><td>0.791 / 0.784</td></tr>
+        </table>
+        <div class="statrow">
+          <div class="stat"><div class="big">0.932</div><div class="lab" data-i18n="u2s1">ΔCtPAX1+HPV+TCT</div></div>
+          <div class="stat"><div class="big">0.926</div><div class="lab" data-i18n="u2s2">ΔCtJAM3+HPV+TCT</div></div>
+          <div class="stat"><div class="big">0.867</div><div class="lab" data-i18n="u2s3">ΔCtPAX1 alone</div></div>
+          <div class="stat"><div class="big">0.841</div><div class="lab" data-i18n="u2s4">ΔCtJAM3 alone</div></div>
+        </div>
+        <div class="tnote" data-i18n="s3n">Methylation complements HPV &amp; cytology — reducing over-treatment while preserving cancer detection.</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>PAX1/JAM3 dual-gene methylation</b> is an objective, high-sensitivity &amp; high-specificity molecular tool across the cervical lesion pathway — screening, hrHPV+/ASC-US triage, and CIN2+ post-treatment monitoring.</li>
+      <li data-i18n="c2"><b>Future</b>: AI + self-sampling + primary-care smart screening; post-op recurrence risk systems — full-course precision management of cervical cancer.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Int J Obstet Gynecol · 2026;53(3) · Review · China",
+      title: "PAX1/JAM3 Dual-Gene Methylation in Cervical Lesion Management",
+      title_alt: "PAX1/JAM3 双基因联合甲基化检测在宫颈病变管理中的研究进展",
+      subtitle: "Review · dual-gene quantitative methylation: screening → hrHPV+ triage → cytology-abnormal triage → CIN2+ & post-op management",
+      authors: "He Q, Huang Z, Wang Y, An Y, Feng S (correspondence)",
+      source: 'Northwest Minzu University · 940th Hospital · 国际妇产科学杂志 · doi: <a href="https://doi.org/10.12280/gjfckx.20251474" target="_blank" rel="noopener">10.12280/gjfckx.20251474</a>',
+      r1t: "Positive readout (dual-gene)", r1v: "ΔCt PAX1 ≤ 6.6 or ΔCt JAM3 ≤ 10.0",
+      r2: "AUC · CIN3+ (vs TCT 0.580)", r3: "Se · CIN2+", r4: "Sp · CIN2+", r5: "AUC · PAX1+HPV+TCT",
+      s1t: "Dual-Gene Biology & Advantage",
+      s1s1: "squamous-sensitive · early marker", s1s2: "adenocarcinoma-sensitive · aggressive phenotype",
+      s1a: "<strong>Complementarity</strong>: PAX1 early & squamous; JAM3 aggressive & adenocarcinoma — joint detection boosts high-grade lesion detection.",
+      s1b: "<strong>Quantitative</strong>: ΔCt-based, objective reflection of epigenetic disorder — risk, type & stage assessment.",
+      s2t: "Assay Workflow & QC",
+      f1n: "Step 1", f1d: "Sample: cervical brush / self-swab", f2n: "Step 2", f2d: "DNA + bisulfite conversion", f3n: "Step 3", f3d: "qPCR (PAX1 / JAM3)", f4n: "Step 4", f4d: "ΔCt readout & report",
+      s2a: "<strong>Self-sampling</strong>: home vaginal swab feasible — better compliance.",
+      s2b: "<strong>Alternative</strong>: MSRE-qPCR panels (no bisulfite, higher DNA recovery).",
+      s2c: "<strong>QC standard</strong>: 2025 five-society expert consensus — first national standard.",
+      s2d: "<strong>Sample</strong>: cervical exfoliated cells — same brush & media as TCT/HPV, easy integration.",
+      s2e: "<strong>Readout rule</strong>: ΔCt PAX1 ≤ 6.6 or ΔCt JAM3 ≤ 10.0 → positive; lower ΔCt = higher methylation.",
+      s2f: "<strong>Clinical value</strong>: independent triage OR combined with HPV/TCT for screening.",
+      s2s1: "Se · CIN2+", s2s2: "Sp · CIN2+", s2s3: "AUC combined",
+      s2g: "First national clinical standard for cervical DNA methylation (2025 expert consensus) — standardized lab workflow & reporting.",      s3t: "Full-Pathway Clinical Management",
+      sg1t: "Screening", sg1d: "<b>AUC 0.872 (CIN3+)</b> vs TCT 0.580 / HPV 0.503 · CIN2+ Se 74.1% / Sp 95.9% · independent or combined (ΔCtPAX1+HPV+TCT AUC 0.932).",
+      sg2t: "hrHPV+ triage", sg2d: "HPV16/18+ (n=334): Se 89.0% / Sp 95.3%, AUC 0.921 · <b>referrals cut ~70%</b> (1.12 per CIN2+) · 14-y cumulative cancer risk 1.7% if methylation-negative.",
+      sg3t: "Cytology-abnormal triage", sg3d: "ASC-US (n=322): Se 83.8% / Sp 95.8%, referrals −79.5% · mildly abnormal: CIN3+ Se 74.9% / Sp 89.1% · <b>CIN3+ risk 40.5% (+) vs 2.7% (−)</b>.",
+      sg4t: "CIN2+ & post-op", sg4d: "ΔCt PAX1 < 4.34 → low short-term progression, may defer conization · <b>post-op: 6-mo methylation(+) → 30.8% CIN2/3 recurrence vs <4% (−)</b>.",
+      e_h1: "Setting", e_h2: "Se %", e_h3: "Sp %", e_h4: "AUC", e_h5: "Impact",
+      e_r1a: "Screening (CIN2+)", e_r1d: "beats TCT/HPV", e_r2a: "HPV16/18+ (n=334)", e_r2d: "referrals −70%",
+      e_r3a: "ASC-US (n=322)", e_r3d: "referrals −79.5%", e_r4a: "Mildly abnormal", e_r4d: "risk 40.5% vs 2.7%",
+      s3s1: "HPV16/18 referrals", s3s2: "referrals per CIN2+", s3s3: "post-op recurrence if (+)", s3s4: "if (−)",
+      s3n: "Methylation complements HPV & cytology — reducing over-treatment while preserving cancer detection.",      c_ttl: "Clinical Significance",
+      c1: "<b>PAX1/JAM3 dual-gene methylation</b> is an objective, high-sensitivity & high-specificity molecular tool across the cervical lesion pathway — screening, hrHPV+/ASC-US triage, and CIN2+ post-treatment monitoring.",
+      c2: "<b>Future</b>: AI + self-sampling + primary-care smart screening; post-op recurrence risk systems — full-course precision management of cervical cancer."
+    },
+    zh: {
+      kicker: "国际妇产科学杂志 · 2026;53(3) · 综述 · 中国",
+      title: "PAX1/JAM3 双基因联合甲基化检测在宫颈病变管理中的研究进展",
+      title_alt: "PAX1/JAM3 Dual-Gene Methylation in Cervical Lesion Management",
+      subtitle: "综述 · 双基因定量甲基化：筛查 → hrHPV+ 分诊 → 细胞学异常分诊 → CIN2+ 与术后管理",
+      authors: "何倩楠、黄子杰、王一帆、安雨声、冯淑娴（通讯）",
+      source: '西北民族大学 · 联勤保障部队第九四〇医院 · 国际妇产科学杂志 · doi: <a href="https://doi.org/10.12280/gjfckx.20251474" target="_blank" rel="noopener">10.12280/gjfckx.20251474</a>',
+      r1t: "阳性判读（双基因）", r1v: "ΔCt PAX1 ≤ 6.6 或 ΔCt JAM3 ≤ 10.0",
+      r2: "AUC · CIN3+（vs TCT 0.580）", r3: "灵敏度 · CIN2+", r4: "特异度 · CIN2+", r5: "AUC · PAX1+HPV+TCT",
+      s1t: "双基因生物学与优势",
+      s1s1: "鳞癌敏感 · 早期标志", s1s2: "腺癌敏感 · 侵袭表型",
+      s1a: "<strong>互补性</strong>：PAX1 早筛且对鳞癌敏感；JAM3 与侵袭性/腺癌相关——联合提高高级别病变检出效能。",
+      s1b: "<strong>定量</strong>：基于 ΔCt 客观反映表观遗传紊乱程度——评估风险、病理类型与进展阶段。",
+      s2t: "检测流程与质控",
+      f1n: "第 1 步", f1d: "采样：宫颈刷 / 自采拭子", f2n: "第 2 步", f2d: "DNA + 亚硫酸盐转化", f3n: "第 3 步", f3d: "qPCR（PAX1 / JAM3）", f4n: "第 4 步", f4d: "ΔCt 判读与报告",
+      s2a: "<strong>自采样</strong>：居家阴道拭子可行——提升依从性与可及性。",
+      s2b: "<strong>新技术</strong>：MSRE-qPCR 三联组合（JAM3/PCDHGB7/SORCS1；PAX1/ZNF671/ASCL1）——免亚硫酸盐、DNA 回收率更高。",
+      s2c: "<strong>质控标准</strong>：2025 年五大机构专家共识——国内首个宫颈癌 DNA 甲基化临床应用标准。",
+      s2d: "<strong>样本</strong>：宫颈脱落细胞——与 TCT/HPV 相同的采样刷与保存液，便于整合。",
+      s2e: "<strong>判读规则</strong>：ΔCt PAX1 ≤ 6.6 或 ΔCt JAM3 ≤ 10.0 即阳性；ΔCt 越低甲基化越高。",
+      s2f: "<strong>临床价值</strong>：独立分诊，或与 HPV/TCT 联合用于筛查。",
+      s2s1: "灵敏度 · CIN2+", s2s2: "特异度 · CIN2+", s2s3: "联合 AUC",
+      s2g: "国内首个宫颈癌 DNA 甲基化临床应用标准（2025 专家共识）——规范实验室流程与报告。",      s3t: "全程临床管理路径",
+      sg1t: "筛查", sg1d: "<b>AUC 0.872（CIN3+）</b> vs TCT 0.580 / HPV 0.503 · CIN2+ Se 74.1% / Sp 95.9% · 独立或联合（ΔCtPAX1+HPV+TCT AUC 0.932）。",
+      sg2t: "hrHPV+ 分诊", sg2d: "HPV16/18+（n=334）：Se 89.0% / Sp 95.3%、AUC 0.921 · <b>转诊减少约 70%</b>（1.12 次/CIN2+）· 甲基化阴性 14 年累积癌风险 1.7%。",
+      sg3t: "细胞学异常分诊", sg3d: "ASC-US（n=322）：Se 83.8% / Sp 95.8%、转诊 −79.5% · 轻微异常：CIN3+ Se 74.9% / Sp 89.1% · <b>CIN3+ 风险 40.5%（+）vs 2.7%（−）</b>。",
+      sg4t: "CIN2+ 与术后", sg4d: "ΔCt PAX1 < 4.34 → 短期进展风险低，可延迟锥切 · <b>术后 6 月甲基化(+) → CIN2/3 复发 30.8% vs <4%（−）</b>。",
+      e_h1: "情境", e_h2: "灵敏度%", e_h3: "特异度%", e_h4: "AUC", e_h5: "影响",
+      e_r1a: "筛查（CIN2+）", e_r1d: "优于 TCT/HPV", e_r2a: "HPV16/18+（n=334）", e_r2d: "转诊 −70%",
+      e_r3a: "ASC-US（n=322）", e_r3d: "转诊 −79.5%", e_r4a: "轻微异常", e_r4d: "风险 40.5% vs 2.7%",
+      s3s1: "HPV16/18 转诊", s3s2: "每例 CIN2+ 转诊", s3s3: "术后复发（+）", s3s4: "（−）",
+      s3n: "甲基化与 HPV、细胞学互补——减少过度治疗同时保障癌症检出。",      c_ttl: "临床意义",
+      c1: "<b>PAX1/JAM3 双基因甲基化</b> 是贯穿宫颈病变全程的客观、高灵敏度与高特异度分子工具——筛查、hrHPV+/ASC-US 分诊、CIN2+ 术后监测。",
+      c2: "<b>未来</b>：AI + 自采样 + 基层智慧筛查；术后复发风险评估体系——实现宫颈癌全程精准管理。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

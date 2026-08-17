@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ESGO/ENGAGe Position: Risk-Based Cervical Cancer Screening — 2026</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #43：ESGO 风险筛查立场）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、主张卡、条形对比
+  - 布局：标题带 → hero（HPV 初筛替代 / 性别中立疫苗 / 分型个体化 / 甲基化转诊 −86%）→ 两栏（左 560px：①背景与 RISCC 项目 ②方法与证据；右 1fr：③六大核心主张 ④甲基化转诊减少 ⑤实施呼吁）→ 全宽临床意义带
+  - 无图：全部用主张卡/条形呈现
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 96px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 20px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .posgrid { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 6px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 0 0 5px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 13px 4px; text-align: center; }
+  .stat .big { font-size: 17px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .posgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .pos { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; display: flex; gap: 8px; align-items: flex-start; }
+  .pos .pn { flex: 0 0 auto; width: 24px; height: 24px; border-radius: 6px; background: rgba(215,75,74,0.85); color: #fff; font-weight: 800; font-size: 11px; display: flex; align-items: center; justify-content: center; }
+  .pos .pt { flex: 1 1 auto; font-size: 10.5px; line-height: 1.32; color: var(--text); }
+  .pos .pt b { color: var(--primary); }
+  .pos.hot { border-left: 4px solid var(--primary); background: var(--panel-alt); }
+
+  .spbars { margin: 2px 0 6px; }
+  .spb { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .spb .sbl { flex: 0 0 150px; font-size: 11px; font-weight: 700; color: var(--text); text-align: right; }
+  .spb .sbt { flex: 1 1 auto; height: 18px; background: #F1E7E7; border-radius: 5px; overflow: hidden; position: relative; }
+  .spb .sbf { height: 100%; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 12px; font-weight: 800; color: #fff; }
+  .spb.win .sbf { background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); }
+  .spb.lose .sbf { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); color: #6B5755; }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 6px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+  body.lang-zh .panel ul li { line-height: 1.52; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">ESGO/ENGAGe Position · 2026 · Based on RISCC Horizon 2020</div>
+    <h1 data-i18n="title">Risk-Based Cervical Cancer Screening — ESGO/ENGAGe Position</h1>
+    <div class="title_alt" data-i18n="title_alt">European Society of Gynaecological Oncology / ENGAGe Position on risk-based cervical cancer screening</div>
+    <div class="subtitle" data-i18n="subtitle">HPV primary replaces cytology · gender-neutral vaccination · genotyping individualizes risk · methylation cuts colposcopy referrals (FAM19A4/miR124-2 −86%)</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Joura E, Chatzistamatiou K, Gultekin M, Sehouli J, Toth I, Toth R — on behalf of ESGO</div>
+      <div class="source" data-i18n="source">RISCC Consortium · Horizon 2020 (2020–2024) · 11 partners · CoheaHr cohort &gt;150,000 women</div>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="stat hot"><div class="big">HPV 1st</div><div class="lab" data-i18n="h1">replaces cytology (60–70% ↑ protection)</div></div>
+    <div class="stat"><div class="big">Neutral</div><div class="lab" data-i18n="h2">gender-neutral vaccination</div></div>
+    <div class="stat"><div class="big">Genotype</div><div class="lab" data-i18n="h3">individualized risk (OR 5.8 HPV16)</div></div>
+    <div class="stat hot"><div class="big">−86%</div><div class="lab" data-i18n="h4">colposcopy referrals by methylation</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; RISCC Project</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>RISCC</strong>: 4-yr Horizon 2020 consortium — develop &amp; validate risk-stratified screening; ESGO/ENGAGe among 11 partners.</li>
+          <li data-i18n="s1b"><strong>Driver</strong>: WHO 90-70-90 pillars; one-size-fits-all rarely works — fine-tuning needed.</li>
+          <li data-i18n="s1c"><strong>Evidence base</strong>: CoheaHr cohort &gt;150,000 women; vaccination-rate risk models; e-health platforms.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Evidence &amp; Method</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">60–70%</div><div class="lab" data-i18n="s2s1">greater protection vs cytology</div></div>
+          <div class="stat"><div class="big">OR 5.8</div><div class="lab" data-i18n="s2s2">HPV16 risk persistence</div></div>
+          <div class="stat"><div class="big">OR 3.4</div><div class="lab" data-i18n="s2s3">other hrHPV persistence</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>HPV vs cytology</strong>: randomized trials show 60–70% greater protection against invasive cancer; mRNA similar sensitivity, slightly better specificity.</li>
+          <li data-i18n="s2b"><strong>Lower specificity</strong> (Cochrane) → triage of HPV(+) is a necessary step.</li>
+          <li data-i18n="s2c"><strong>Genotyping</strong>: 2 consecutive hrHPV+ raises CIN3 risk, esp. HPV16.</li>
+          <li data-i18n="s2d"><strong>Method</strong>: ESGO SOP working group; unanimous approval.</li>
+        </ul>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s2j1">HPV16 persistence</div><div class="sbt"><div class="sbf" style="width:58%">OR 5.8</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s2j2">Other hrHPV persistence</div><div class="sbt"><div class="sbf" style="width:34%">OR 3.4</div></div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">DNA</div><div class="lab" data-i18n="s2s4">primary test</div></div>
+          <div class="stat"><div class="big">mRNA</div><div class="lab" data-i18n="s2s5">similar Se · better Sp</div></div>
+          <div class="stat"><div class="big">validated</div><div class="lab" data-i18n="s2s6">quality indicators</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2i"><strong>Organized programs</strong>: use highly accurate, clinically validated tests meeting quality indicators.</li>
+          <li data-i18n="s2j"><strong>Targeted intensity</strong>: intense for high-risk, lighter for low-risk — cost-effective budgeting.</li>
+          <li data-i18n="s2e"><strong>Self-sampling</strong>: PCR-based tests only; validate for clinician samples first; similar Se/Sp.</li>
+          <li data-i18n="s2f"><strong>Vaccine economics</strong>: gender-neutral cost-effective when coverage suboptimal; girls-only better once WHO targets met.</li>
+          <li data-i18n="s2g"><strong>Risk models</strong>: vaccination-coverage-dependent risk profiles for (pre)cancer.</li>
+          <li data-i18n="s2h"><strong>Digital</strong>: mobile/e-health platforms to recruit &amp; educate women and providers.</li>
+        </ul>
+        <div class="tnote" data-i18n="s2n">Risk parameters: HPV genotype + age + screening history + vaccination status; targeted screening intensity by risk stratum.</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Six Core Positions</span></h3>
+        <div class="posgrid">
+          <div class="pos hot"><div class="pn">1</div><div class="pt" data-i18n="s3c1"><b>HPV DNA primary</b> — replace cytology &amp; co-testing; clinically validated tests.</div></div>
+          <div class="pos"><div class="pn">2</div><div class="pt" data-i18n="s3c2"><b>Gender-neutral vaccination</b> — accelerate herd immunity when coverage suboptimal.</div></div>
+          <div class="pos"><div class="pn">3</div><div class="pt" data-i18n="s3c3"><b>HPV genotyping</b> + age + history — individualized risk assessment.</div></div>
+          <div class="pos hot"><div class="pn">4</div><div class="pt" data-i18n="s3c4"><b>Methylation triage</b> — molecular approach, fewer colposcopy referrals.</div></div>
+          <div class="pos"><div class="pn">5</div><div class="pt" data-i18n="s3c5"><b>Vaccinated cohorts</b> — longer intervals · conservative HSIL management · genotyping substitution.</div></div>
+          <div class="pos"><div class="pn">6</div><div class="pt" data-i18n="s3c6"><b>Self-sampling + PCR-HPV</b> — safe, effective; flexible access pathways.</div></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">Methylation — Colposcopy Referral Reduction</span></h3>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s4a1">FAM19A4/miR124-2 · direct</div><div class="sbt"><div class="sbf" style="width:86%">−86%</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s4a2">ASCL1/LHX8 · direct</div><div class="sbt"><div class="sbf" style="width:71%">−71%</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s4a3">FAM19A4/miR124-2 · 1yr</div><div class="sbt"><div class="sbf" style="width:42%">−42%</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s4a4">ASCL1/LHX8 · 1yr</div><div class="sbt"><div class="sbf" style="width:36%">−36%</div></div></div>
+        </div>
+        <ul>
+          <li data-i18n="s4a"><strong>Fully molecular pathway</strong>: methylation triage basis for sensitive, automated patient triage.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Implementation Call</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">90%</div><div class="lab" data-i18n="s5s1">vaccination</div></div>
+          <div class="stat hot"><div class="big">70%</div><div class="lab" data-i18n="s5s2">screening</div></div>
+          <div class="stat hot"><div class="big">90%</div><div class="lab" data-i18n="s5s3">treatment</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">6</div><div class="lab" data-i18n="s5s4">core positions</div></div>
+          <div class="stat"><div class="big">3</div><div class="lab" data-i18n="s5s5">WHO pillars</div></div>
+          <div class="stat"><div class="big">150k+</div><div class="lab" data-i18n="s5s6">CoheaHr cohort</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s5f"><strong>Registry value</strong>: link invitation, screening, HPV, pathology &amp; vaccination to optimize as immunity evolves.</li>
+          <li data-i18n="s5g"><strong>Budget reallocation</strong>: redirect funds from low-risk screening to high-need sectors.</li>
+          <li data-i18n="s5a"><strong>Reform</strong>: risk-stratified, patient-centered strategies in European programs.</li>
+          <li data-i18n="s5b"><strong>Infrastructure</strong>: integrated population registries · standardized quality indicators.</li>
+          <li data-i18n="s5c"><strong>Monitoring</strong>: real-time surveillance of participation, vaccination &amp; outcomes.</li>
+          <li data-i18n="s5d"><strong>Access</strong>: multiple self-sampling pathways (onsite / by mail) for under-screened groups.</li>
+          <li data-i18n="s5e"><strong>Linked data</strong>: screening · HPV · histopathology · vaccination · invitation histories — identify gaps &amp; adapt.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Risk-based screening is the future</b>: HPV primary + genotyping + methylation triage + self-sampling — replacing one-size-fits-all cytology.</li>
+      <li data-i18n="c2"><b>Methylation is central</b>: reduces colposcopy referrals by up to 86% — a key component of the fully molecular pathway.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "ESGO/ENGAGe Position · 2026 · Based on RISCC Horizon 2020",
+      title: "Risk-Based Cervical Cancer Screening — ESGO/ENGAGe Position",
+      title_alt: "European Society of Gynaecological Oncology / ENGAGe Position on risk-based cervical cancer screening",
+      subtitle: "HPV primary replaces cytology · gender-neutral vaccination · genotyping individualizes risk · methylation cuts colposcopy referrals (FAM19A4/miR124-2 −86%)",
+      authors: "Joura E, Chatzistamatiou K, Gultekin M, Sehouli J, Toth I, Toth R — on behalf of ESGO",
+      source: "RISCC Consortium · Horizon 2020 (2020–2024) · 11 partners · CoheaHr cohort >150,000 women",
+      h1: "replaces cytology (60–70% ↑ protection)", h2: "gender-neutral vaccination", h3: "individualized risk (OR 5.8 HPV16)", h4: "colposcopy referrals by methylation",
+      s1t: "Background & RISCC Project",
+      s1a: "<strong>RISCC</strong>: 4-yr Horizon 2020 consortium — develop & validate risk-stratified screening; ESGO/ENGAGe among 11 partners.",
+      s1b: "<strong>Driver</strong>: WHO 90-70-90 pillars; one-size-fits-all rarely works — fine-tuning needed.",
+      s1c: "<strong>Evidence base</strong>: CoheaHr cohort >150,000 women; vaccination-rate risk models; e-health platforms.",
+      s2t: "Evidence & Method",
+      s2s1: "greater protection vs cytology", s2s2: "HPV16 risk persistence", s2s3: "other hrHPV persistence",
+      s2a: "<strong>HPV vs cytology</strong>: randomized trials show 60–70% greater protection against invasive cancer; mRNA similar sensitivity, slightly better specificity.",
+      s2b: "<strong>Lower specificity</strong> (Cochrane) → triage of HPV(+) is a necessary step.",
+      s2c: "<strong>Genotyping</strong>: 2 consecutive hrHPV+ raises CIN3 risk, esp. HPV16.",
+      s2d: "<strong>Method</strong>: ESGO SOP working group; unanimous approval.",
+      s2j1: "HPV16 persistence", s2j2: "Other hrHPV persistence",
+      s2s4: "primary test", s2s5: "similar Se · better Sp", s2s6: "quality indicators",
+      s2i: "<strong>Organized programs</strong>: use highly accurate, clinically validated tests meeting quality indicators.",
+      s2j: "<strong>Targeted intensity</strong>: intense for high-risk, lighter for low-risk — cost-effective budgeting.",
+      s2e: "<strong>Self-sampling</strong>: PCR-based tests only; validate for clinician samples first; similar Se/Sp.",
+      s2f: "<strong>Vaccine economics</strong>: gender-neutral cost-effective when coverage suboptimal; girls-only better once WHO targets met.",
+      s2g: "<strong>Risk models</strong>: vaccination-coverage-dependent risk profiles for (pre)cancer.",
+      s2h: "<strong>Digital</strong>: mobile/e-health platforms to recruit & educate women and providers.",
+      s2n: "Risk parameters: HPV genotype + age + screening history + vaccination status.",
+      s3t: "Six Core Positions",
+      s3c1: "<b>HPV DNA primary</b> — replace cytology & co-testing; clinically validated tests.",
+      s3c2: "<b>Gender-neutral vaccination</b> — accelerate herd immunity when coverage suboptimal.",
+      s3c3: "<b>HPV genotyping</b> + age + history — individualized risk assessment.",
+      s3c4: "<b>Methylation triage</b> — molecular approach, fewer colposcopy referrals.",
+      s3c5: "<b>Vaccinated cohorts</b> — longer intervals · conservative HSIL management · genotyping substitution.",
+      s3c6: "<b>Self-sampling + PCR-HPV</b> — safe, effective; flexible access pathways.",
+      s4t: "Methylation — Colposcopy Referral Reduction",
+      s4a1: "FAM19A4/miR124-2 · direct", s4a2: "ASCL1/LHX8 · direct", s4a3: "FAM19A4/miR124-2 · 1yr", s4a4: "ASCL1/LHX8 · 1yr",
+      s4a: "<strong>Fully molecular pathway</strong>: methylation triage basis for sensitive, automated patient triage.",
+      s5t: "Implementation Call",
+      s5s4: "core positions", s5s5: "WHO pillars", s5s6: "CoheaHr cohort",
+      s5f: "<strong>Registry value</strong>: link invitation, screening, HPV, pathology & vaccination to optimize as immunity evolves.",
+      s5g: "<strong>Budget reallocation</strong>: redirect funds from low-risk screening to high-need sectors.",
+      s5a: "<strong>Reform</strong>: risk-stratified, patient-centered strategies in European programs.",
+      s5b: "<strong>Infrastructure</strong>: integrated population registries · standardized quality indicators.",
+      s5c: "<strong>Monitoring</strong>: real-time surveillance of participation, vaccination & outcomes.",
+      s5d: "<strong>Access</strong>: multiple self-sampling pathways (onsite / by mail) for under-screened groups.",
+      s5s1: "vaccination", s5s2: "screening", s5s3: "treatment",
+      s5e: "<strong>Linked data</strong>: screening · HPV · histopathology · vaccination · invitation histories — identify gaps & adapt.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Risk-based screening is the future</b>: HPV primary + genotyping + methylation triage + self-sampling — replacing one-size-fits-all cytology.",
+      c2: "<b>Methylation is central</b>: reduces colposcopy referrals by up to 86% — a key component of the fully molecular pathway."
+    },
+    zh: {
+      kicker: "ESGO/ENGAGe 立场 · 2026 · 基于 RISCC Horizon 2020",
+      title: "基于风险的子宫颈癌筛查——ESGO/ENGAGe 立场",
+      title_alt: "European Society of Gynaecological Oncology / ENGAGe Position on risk-based cervical cancer screening",
+      subtitle: "HPV 初筛替代细胞学 · 性别中立疫苗接种 · 分型个体化风险 · 甲基化减少阴道镜转诊（FAM19A4/miR124-2 −86%）",
+      authors: "Joura E、Chatzistamatiou K、Gultekin M、Sehouli J、Toth I、Toth R——代表 ESGO",
+      source: "RISCC 联盟 · Horizon 2020（2020–2024）· 11 个伙伴 · CoheaHr 队列 &gt;15 万女性",
+      h1: "替代细胞学（保护↑60–70%）", h2: "性别中立疫苗", h3: "个体化风险（HPV16 OR 5.8）", h4: "甲基化减少阴道镜转诊",
+      s1t: "背景与 RISCC 项目",
+      s1a: "<strong>RISCC</strong>：4 年 Horizon 2020 联盟——开发并验证风险分层筛查；ESGO/ENGAGe 为 11 个伙伴之一。",
+      s1b: "<strong>驱动</strong>：WHO 90-70-90 支柱；一刀切模式难以奏效——需要精细调整。",
+      s1c: "<strong>证据基础</strong>：CoheaHr 队列 &gt;15 万女性；疫苗接种率风险模型；e-health 平台。",
+      s2t: "证据与方法",
+      s2s1: "较细胞学保护更高", s2s2: "HPV16 风险持续", s2s3: "其他 hrHPV 持续",
+      s2a: "<strong>HPV vs 细胞学</strong>：随机试验显示对浸润癌保护提高 60–70%；mRNA 灵敏度相当、特异度略优。",
+      s2b: "<strong>特异度较低</strong>（Cochrane）→ HPV(+) 分流是必要环节。",
+      s2c: "<strong>分型</strong>：连续 2 次 hrHPV+ 升高 CIN3 风险，尤其 HPV16。",
+      s2d: "<strong>方法</strong>：ESGO SOP 工作组；一致通过。",
+      s2j1: "HPV16 持续感染", s2j2: "其他 hrHPV 持续",
+      s2s4: "初筛检测", s2s5: "灵敏度相当 · 特异略优", s2s6: "质控指标",
+      s2i: "<strong>组织化筛查</strong>：使用符合质控指标的高准确、临床验证检测。",
+      s2j: "<strong>靶向强度</strong>：高危加强、低危放宽——成本效益预算。",
+      s2e: "<strong>自采样</strong>：仅限 PCR 类检测；先在医师样本验证；Se/Sp 相当。",
+      s2f: "<strong>疫苗经济学</strong>：覆盖率不足时性别中立接种具成本效益；达标后仅女孩接种更优。",
+      s2g: "<strong>风险模型</strong>：按疫苗接种覆盖率的（癌前）病变风险谱。",
+      s2h: "<strong>数字化</strong>：移动/e-health 平台招募并教育女性与医务人员。",
+      s2n: "风险参数：HPV 型别 + 年龄 + 筛查史 + 疫苗接种状态。",
+      s3t: "六大核心主张",
+      s3c1: "<b>HPV DNA 初筛</b>——替代细胞学与联合筛查；使用临床验证检测。",
+      s3c2: "<b>性别中立疫苗</b>——覆盖率不足时加速群体免疫。",
+      s3c3: "<b>HPV 分型</b> + 年龄 + 筛查史——个体化风险评估。",
+      s3c4: "<b>甲基化分流</b>——全分子路径，减少阴道镜转诊。",
+      s3c5: "<b>疫苗队列</b>——延长间隔 · 非疫苗型 HSIL 保守管理 · 分型替代。",
+      s3c6: "<b>自采样 + PCR-HPV</b>——安全有效；灵活获取途径。",
+      s4t: "甲基化——阴道镜转诊减少",
+      s4a1: "FAM19A4/miR124-2 · 直接", s4a2: "ASCL1/LHX8 · 直接", s4a3: "FAM19A4/miR124-2 · 1 年", s4a4: "ASCL1/LHX8 · 1 年",
+      s4a: "<strong>全分子路径</strong>：甲基化分流是灵敏、自动化患者分诊的基础。",
+      s5t: "实施呼吁",
+      s5s4: "核心主张", s5s5: "WHO 支柱", s5s6: "CoheaHr 队列",
+      s5f: "<strong>登记价值</strong>：联动邀请、筛查、HPV、病理与疫苗——随人群免疫演变优化。",
+      s5g: "<strong>预算重分配</strong>：将低风险筛查资金转向高需求领域。",
+      s5a: "<strong>改革</strong>：欧洲项目采用风险分层、以患者为中心的策略。",
+      s5b: "<strong>基础设施</strong>：整合人群登记 · 标准化质控指标。",
+      s5c: "<strong>监测</strong>：实时监测参与率、疫苗接种与结局。",
+      s5d: "<strong>可及性</strong>：多种自采样途径（现场/邮寄）覆盖未充分筛查人群。",
+      s5s1: "疫苗接种", s5s2: "筛查", s5s3: "治疗",
+      s5e: "<strong>数据联动</strong>：筛查 · HPV · 病理 · 疫苗 · 邀请记录——识别缺口并调整。",
+      c_ttl: "临床意义",
+      c1: "<b>风险分层筛查是未来</b>：HPV 初筛 + 分型 + 甲基化分流 + 自采样——替代一刀切细胞学。",
+      c2: "<b>甲基化居于核心</b>：最多减少 86% 阴道镜转诊——全分子路径的关键组件。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

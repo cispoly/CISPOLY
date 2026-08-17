@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CISENDO Dual-Gene Methylation for EC Screening in AUB — Cai et al. 2024</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #37：三法对比）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、大数字卡、条形对比
+  - 布局：标题带 → hero（216 例 / Se 91.2% / Sp 96.7% / CELF4m OR 60.995）→ 两栏（左 560px：①背景与目的 ②研究设计；右 1fr：③OR 对比 ④ROC【原图+侧栏】 ⑤三法效能对比）→ 全宽临床意义带
+  - 选图：ROC（757×666）
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 96px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 22px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .duowrap { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 0 0 5px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 12px 4px; text-align: center; }
+  .stat .big { font-size: 18px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+  .stat.cool { background: #fff; border-color: rgba(140,158,143,0.6); }
+  .stat.cool .big { color: #5C7A63; }
+
+  .duowrap { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); grid-template-rows: 1fr; gap: 12px; align-items: stretch; margin: 2px 0 0; }
+  .duowrap .fig { display: flex; flex-direction: column; justify-content: center; }
+  .duowrap .fig img { align-self: center; max-height: 217px; }
+  .duowrap .side { display: flex; flex-direction: column; justify-content: center; gap: 5px; min-width: 0; }
+  .duowrap .side ul { margin-top: 2px; }
+  .fig { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px 5px; text-align: center; min-width: 0; }
+  .fig img { display: inline-block; height: auto; max-height: 250px; width: auto; max-width: 100%; border-radius: 3px; align-self: center; }
+  .fig .figcap { font-size: 10px; color: var(--muted); font-style: italic; line-height: 1.3; margin-top: 3px; text-align: left; }
+  .fig .figcap strong { color: var(--primary); font-style: normal; }
+
+  .spbars { margin: 2px 0 6px; }
+  .spb { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+  .spb .sbl { flex: 0 0 150px; font-size: 11.5px; font-weight: 700; color: var(--text); text-align: right; }
+  .spb .sbt { flex: 1 1 auto; height: 18px; background: #F1E7E7; border-radius: 5px; overflow: hidden; position: relative; }
+  .spb .sbf { height: 100%; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 12px; font-weight: 800; color: #fff; }
+  .spb.win .sbf { background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); }
+  .spb.lose .sbf { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); color: #6B5755; }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 3px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+  body.lang-zh .panel ul li { line-height: 1.5; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">J Lanzhou Univ (Med Sci) · 2024(07) · Screening Study · China</div>
+    <h1 data-i18n="title">CISENDO Dual-Gene Methylation for EC Screening in AUB</h1>
+    <div class="title_alt" data-i18n="title_alt">禾蔻安双基因甲基化检测在子宫内膜癌筛查中的应用价值</div>
+    <div class="subtitle" data-i18n="subtitle">216 AUB women · CISENDO Se 91.2% / Sp 96.7% · CELF4m OR 60.995 · beats ultrasound &amp; CA125</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Cai B, Li L, Liu B, Liu P, Wang L, Wang Y, Liu Y, Wang Z, Du J</div>
+      <div class="source" data-i18n="source">Gansu MCH Hospital · Beijing Origin-Poly Bio-Tec · Guangdong Pharma Univ · J Lanzhou Univ (Med Sci) 2024(07)</div>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="stat"><div class="big">216</div><div class="lab" data-i18n="h1">AUB women</div></div>
+    <div class="stat hot"><div class="big">91.2%</div><div class="lab" data-i18n="h2">Se · CISENDO</div></div>
+    <div class="stat hot"><div class="big">96.7%</div><div class="lab" data-i18n="h3">Sp · CISENDO</div></div>
+    <div class="stat"><div class="big">OR 60.995</div><div class="lab" data-i18n="h4">CELF4m</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Problem</strong>: AUB common but EC rare; ultrasound &amp; CA125 cannot confirm EC; invasive hysteroscopy over-used.</li>
+          <li data-i18n="s1b"><strong>Objective</strong>: value of CISENDO (CDO1/CELF4) dual-gene methylation for EC screening in AUB.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">216</div><div class="lab" data-i18n="s2s1">AUB hysteroscopy</div></div>
+          <div class="stat"><div class="big">2021.7–22.6</div><div class="lab" data-i18n="s2s2">enrollment</div></div>
+          <div class="stat"><div class="big">histology</div><div class="lab" data-i18n="s2s3">gold standard</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Setting</strong>: Gansu MCH hysteroscopy clinic; cervical cells → CDO1/CELF4 methylation.</li>
+          <li data-i18n="s2b"><strong>Comparators</strong>: ultrasound (ET) &amp; serum CA125.</li>
+          <li data-i18n="s2c"><strong>Univariate</strong>: age (P=0.001) · BMI (P=0.002) · diabetes (P=0.012) · menopause (P&lt;0.001) · methylation (P&lt;0.001).</li>
+          <li data-i18n="s2d"><strong>Multivariate</strong>: BMI OR 3.970 · menopause OR 18.702 · CDO1m OR 22.351 · CELF4m OR 60.995.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">91.2%</div><div class="lab" data-i18n="s2s4">Se (76.3–98.1)</div></div>
+          <div class="stat hot"><div class="big">96.7%</div><div class="lab" data-i18n="s2s5">Sp (93.0–98.8)</div></div>
+          <div class="stat"><div class="big">60.995</div><div class="lab" data-i18n="s2s6">CELF4m OR</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">91.2%</div><div class="lab" data-i18n="s2s7">Se · CISENDO</div></div>
+          <div class="stat"><div class="big">55.9%</div><div class="lab" data-i18n="s2s8">Se · US</div></div>
+          <div class="stat"><div class="big">32.4%</div><div class="lab" data-i18n="s2s9">Se · CA125</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2e"><strong>Inclusion</strong>: AUB women at Gansu MCH hysteroscopy clinic; complete data.</li>
+          <li data-i18n="s2f"><strong>Exclusion</strong>: prior treatment · other malignancy · invalid samples.</li>
+          <li data-i18n="s2g"><strong>Statistics</strong>: univariate + binary logistic (OR) · Se/Sp/PPV/NPV/AUC.</li>
+          <li data-i18n="s2h"><strong>Focus</strong>: postmenopausal women — highest screening value.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">60.995</div><div class="lab" data-i18n="s2s10">CELF4m OR</div></div>
+          <div class="stat"><div class="big">22.351</div><div class="lab" data-i18n="s2s11">CDO1m OR</div></div>
+          <div class="stat"><div class="big">18.702</div><div class="lab" data-i18n="s2s12">menopause OR</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2i"><strong>Missed-diagnosis risk</strong>: many AUB women avoid hysteroscopy — delay EC diagnosis.</li>
+          <li data-i18n="s2j"><strong>Invasive risks</strong>: perforation · adhesion · infection — avoided by methylation triage.</li>
+        </ul>
+        <div class="tnote" data-i18n="s2n">Funded: Lanzhou Sci-Tech Bureau 2022-5-92 · Gansu NSF 23JRRA1380; CISENDO outperforms US &amp; CA125 across Se/Sp.</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Risk Factors — OR Comparison</span></h3>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s3a1">CELF4m</div><div class="sbt"><div class="sbf" style="width:100%">OR 60.995</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s3a2">CDO1m</div><div class="sbt"><div class="sbf" style="width:36.6%">OR 22.351</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s3a3">Menopause</div><div class="sbt"><div class="sbf" style="width:30.7%">OR 18.702</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s3a4">BMI</div><div class="sbt"><div class="sbf" style="width:6.5%">OR 3.970</div></div></div>
+        </div>
+        <ul>
+          <li data-i18n="s3a"><strong>Methylation leads</strong>: CELF4m OR 60.995 (5.99–620.92) — dominant EC risk signal.</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">ROC &amp; Head-to-Head</span></h3>
+        <div class="duowrap">
+          <div class="fig">
+            <img src="images/fig_roc.jpg" alt="ROC curves CISENDO vs ultrasound vs CA125">
+            <div class="figcap"><strong>Fig.</strong> <span data-i18n="s4c1">ROC — CISENDO dual-gene vs ultrasound &amp; CA125.</span></div>
+          </div>
+          <div class="side">
+            <div class="statrow">
+              <div class="stat hot"><div class="big">91.2%</div><div class="lab" data-i18n="s4s1">Se · CISENDO</div></div>
+              <div class="stat hot"><div class="big">96.7%</div><div class="lab" data-i18n="s4s2">Sp · CISENDO</div></div>
+            </div>
+            <div class="statrow">
+              <div class="stat"><div class="big">55.9%</div><div class="lab" data-i18n="s4s3">Se · US</div></div>
+              <div class="stat"><div class="big">32.4%</div><div class="lab" data-i18n="s4s4">Se · CA125</div></div>
+            </div>
+            <ul>
+              <li data-i18n="s4a"><strong>Clear superiority</strong>: methylation ≫ ultrasound &amp; CA125 for EC screening.</li>
+              <li data-i18n="s4b"><strong>Postmenopausal</strong>: highest value — flags high-risk women.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Three-Method Performance</span></h3>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s5a1">CISENDO Se</div><div class="sbt"><div class="sbf" style="width:91.2%">91.2%</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s5a2">CISENDO Sp</div><div class="sbt"><div class="sbf" style="width:96.7%">96.7%</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s5a3">US Se</div><div class="sbt"><div class="sbf" style="width:55.9%">55.9%</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s5a4">US Sp</div><div class="sbt"><div class="sbf" style="width:78.6%">78.6%</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s5a5">CA125 Se</div><div class="sbt"><div class="sbf" style="width:32.4%">32.4%</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s5a6">CA125 Sp</div><div class="sbt"><div class="sbf" style="width:76.4%">76.4%</div></div></div>
+        </div>
+        <ul>
+          <li data-i18n="s5a"><strong>Non-invasive screening</strong>: dual-gene methylation best balances Se &amp; Sp.</li>
+          <li data-i18n="s5b"><strong>Reduces invasive burden</strong>: fewer unnecessary hysteroscopies/biopsies.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Best non-invasive EC screening in AUB</b>: CISENDO dual-gene methylation (Se 91.2%, Sp 96.7%) far exceeds ultrasound (55.9%) &amp; CA125 (32.4%).</li>
+      <li data-i18n="c2"><b>High-risk flagging</b>: methylation signals EC risk especially in postmenopausal women — guides timely invasive confirmation.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "J Lanzhou Univ (Med Sci) · 2024(07) · Screening Study · China",
+      title: "CISENDO Dual-Gene Methylation for EC Screening in AUB",
+      title_alt: "禾蔻安双基因甲基化检测在子宫内膜癌筛查中的应用价值",
+      subtitle: "216 AUB women · CISENDO Se 91.2% / Sp 96.7% · CELF4m OR 60.995 · beats ultrasound & CA125",
+      authors: "Cai B, Li L, Liu B, Liu P, Wang L, Wang Y, Liu Y, Wang Z, Du J",
+      source: "Gansu MCH Hospital · Beijing Origin-Poly Bio-Tec · Guangdong Pharma Univ · J Lanzhou Univ (Med Sci) 2024(07)",
+      h1: "AUB women", h2: "Se · CISENDO", h3: "Sp · CISENDO", h4: "CELF4m",
+      s1t: "Background & Objective",
+      s1a: "<strong>Problem</strong>: AUB common but EC rare; ultrasound & CA125 cannot confirm EC; invasive hysteroscopy over-used.",
+      s1b: "<strong>Objective</strong>: value of CISENDO (CDO1/CELF4) dual-gene methylation for EC screening in AUB.",
+      s2t: "Study Design & Cohort",
+      s2s1: "AUB hysteroscopy", s2s2: "enrollment", s2s3: "gold standard",
+      s2a: "<strong>Setting</strong>: Gansu MCH hysteroscopy clinic; cervical cells → CDO1/CELF4 methylation.",
+      s2b: "<strong>Comparators</strong>: ultrasound (ET) & serum CA125.",
+      s2c: "<strong>Univariate</strong>: age (P=0.001) · BMI (P=0.002) · diabetes (P=0.012) · menopause (P<0.001) · methylation (P<0.001).",
+      s2d: "<strong>Multivariate</strong>: BMI OR 3.970 · menopause OR 18.702 · CDO1m OR 22.351 · CELF4m OR 60.995.",
+      s2s7: "Se · CISENDO", s2s8: "Se · US", s2s9: "Se · CA125",
+      s2e: "<strong>Inclusion</strong>: AUB women at Gansu MCH hysteroscopy clinic; complete data.",
+      s2f: "<strong>Exclusion</strong>: prior treatment · other malignancy · invalid samples.",
+      s2g: "<strong>Statistics</strong>: univariate + binary logistic (OR) · Se/Sp/PPV/NPV/AUC.",
+      s2h: "<strong>Focus</strong>: postmenopausal women — highest screening value.",
+      s2s10: "CELF4m OR", s2s11: "CDO1m OR", s2s12: "menopause OR",
+      s2i: "<strong>Missed-diagnosis risk</strong>: many AUB women avoid hysteroscopy — delay EC diagnosis.",
+      s2j: "<strong>Invasive risks</strong>: perforation · adhesion · infection — avoided by methylation triage.",
+      s2s4: "Se (76.3–98.1)", s2s5: "Sp (93.0–98.8)", s2s6: "CELF4m OR",
+      s2n: "Funded: Lanzhou Sci-Tech Bureau 2022-5-92 · Gansu NSF 23JRRA1380.",
+      s3t: "Risk Factors — OR Comparison",
+      s3a1: "CELF4m", s3a2: "CDO1m", s3a3: "Menopause", s3a4: "BMI",
+      s3a: "<strong>Methylation leads</strong>: CELF4m OR 60.995 (5.99–620.92) — dominant EC risk signal.",
+      s4t: "ROC & Head-to-Head",
+      s4c1: "ROC — CISENDO dual-gene vs ultrasound & CA125.",
+      s4s1: "Se · CISENDO", s4s2: "Sp · CISENDO", s4s3: "Se · US", s4s4: "Se · CA125",
+      s4a: "<strong>Clear superiority</strong>: methylation ≫ ultrasound & CA125 for EC screening.",
+      s4b: "<strong>Postmenopausal</strong>: highest value — flags high-risk women.",
+      s5t: "Three-Method Performance",
+      s5a1: "CISENDO Se", s5a2: "CISENDO Sp", s5a3: "US Se", s5a4: "US Sp", s5a5: "CA125 Se", s5a6: "CA125 Sp",
+      s5a: "<strong>Non-invasive screening</strong>: dual-gene methylation best balances Se & Sp.",
+      s5b: "<strong>Reduces invasive burden</strong>: fewer unnecessary hysteroscopies/biopsies.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Best non-invasive EC screening in AUB</b>: CISENDO dual-gene methylation (Se 91.2%, Sp 96.7%) far exceeds ultrasound (55.9%) & CA125 (32.4%).",
+      c2: "<b>High-risk flagging</b>: methylation signals EC risk especially in postmenopausal women — guides timely invasive confirmation."
+    },
+    zh: {
+      kicker: "兰州大学学报（医学版）· 2024(07) · 筛查研究 · 中国",
+      title: "禾蔻安双基因甲基化检测在子宫内膜癌筛查中的应用价值",
+      title_alt: "CISENDO Dual-Gene Methylation for EC Screening in AUB",
+      subtitle: "216 例 AUB 女性 · CISENDO Se 91.2% / Sp 96.7% · CELF4m OR 60.995 · 优于超声与 CA125",
+      authors: "蔡冰心、李柳玉、刘波、刘培、王林海、王依珊、刘禹利、王子云、杜珺",
+      source: "甘肃省妇幼保健院 · 北京起源聚禾生物 · 广东药科大学附属第一医院 · 兰州大学学报（医学版）2024(07)",
+      h1: "AUB 女性", h2: "Se · CISENDO", h3: "Sp · CISENDO", h4: "CELF4m",
+      s1t: "背景与目的",
+      s1a: "<strong>问题</strong>：AUB 常见但 EC 少；超声与 CA125 无法确诊 EC；有创宫腔镜过度使用。",
+      s1b: "<strong>目的</strong>：评估 CISENDO（CDO1/CELF4）双基因甲基化对 AUB 女性 EC 筛查的价值。",
+      s2t: "研究设计与队列",
+      s2s1: "AUB 宫腔镜", s2s2: "入组期", s2s3: "金标准",
+      s2a: "<strong>地点</strong>：甘肃省妇幼保健院宫腔镜门诊；宫颈细胞 → CDO1/CELF4 甲基化。",
+      s2b: "<strong>对比</strong>：超声（内膜厚度）与血清 CA125。",
+      s2c: "<strong>单因素</strong>：年龄（P=0.001）· BMI（P=0.002）· 糖尿病（P=0.012）· 绝经（P&lt;0.001）· 甲基化（P&lt;0.001）。",
+      s2d: "<strong>多因素</strong>：BMI OR 3.970 · 绝经 OR 18.702 · CDO1m OR 22.351 · CELF4m OR 60.995。",
+      s2s7: "Se · CISENDO", s2s8: "Se · 超声", s2s9: "Se · CA125",
+      s2e: "<strong>纳入</strong>：甘肃省妇幼宫腔镜门诊 AUB 女性；资料完整。",
+      s2f: "<strong>排除</strong>：既往治疗 · 其他恶性肿瘤 · 标本无效。",
+      s2g: "<strong>统计</strong>：单因素 + 二元 Logistic（OR）· Se/Sp/PPV/NPV/AUC。",
+      s2h: "<strong>重点</strong>：绝经后女性——筛查价值最高。",
+      s2s10: "CELF4m OR", s2s11: "CDO1m OR", s2s12: "绝经 OR",
+      s2i: "<strong>漏诊风险</strong>：许多 AUB 女性抗拒宫腔镜——延误 EC 诊断。",
+      s2j: "<strong>有创风险</strong>：穿孔 · 粘连 · 感染——甲基化分诊可避免。",
+      s2s4: "Se（76.3–98.1）", s2s5: "Sp（93.0–98.8）", s2s6: "CELF4m OR",
+      s2n: "基金：兰州市科技局 2022-5-92 · 甘肃省自然科学基金 23JRRA1380。",
+      s3t: "危险因素——OR 对比",
+      s3a1: "CELF4m", s3a2: "CDO1m", s3a3: "绝经", s3a4: "BMI",
+      s3a: "<strong>甲基化占主导</strong>：CELF4m OR 60.995（5.99–620.92）——核心 EC 风险信号。",
+      s4t: "ROC 与直接对比",
+      s4c1: "ROC——CISENDO 双基因 vs 超声与 CA125。",
+      s4s1: "Se · CISENDO", s4s2: "Sp · CISENDO", s4s3: "Se · 超声", s4s4: "Se · CA125",
+      s4a: "<strong>明显优势</strong>：甲基化 ≫ 超声与 CA125。",
+      s4b: "<strong>绝经后</strong>：价值最高——提示高风险女性。",
+      s5t: "三法效能对比",
+      s5a1: "CISENDO Se", s5a2: "CISENDO Sp", s5a3: "超声 Se", s5a4: "超声 Sp", s5a5: "CA125 Se", s5a6: "CA125 Sp",
+      s5a: "<strong>无创筛查</strong>：双基因甲基化 Se/Sp 最平衡。",
+      s5b: "<strong>减少有创负担</strong>：减少不必要宫腔镜/活检。",
+      c_ttl: "临床意义",
+      c1: "<b>AUB 最佳无创 EC 筛查</b>：CISENDO 双基因甲基化（Se 91.2%、Sp 96.7%）远超超声（55.9%）与 CA125（32.4%）。",
+      c2: "<b>高风险提示</b>：甲基化尤其提示绝经后女性 EC 风险——指导及时有创确诊。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

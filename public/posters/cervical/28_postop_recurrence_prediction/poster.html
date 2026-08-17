@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methylation Predicts Post-Conization Residual/Recurrence in HSIL — Liu et al. 2026</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #22：术后监测预测主题，与 #1-21 均不同）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、大数字卡、大条形对比
+  - 布局：标题带 → 术后监测 hero（18.33% 不良结局 + 双基因 Se 91.3%/NPV 94.29%/AUC 0.765）→ 两栏（左 560px：①背景与目的 ②研究设计【120 例 + 基线】；右 1fr：③甲基化阳性率 ④独立危险因素 OR ⑤预测效能）→ 全宽临床意义带
+  - 无图：全部用大卡/条形呈现
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 104px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 25px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .big4 { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 6px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 1px 0 6px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 13px 4px; text-align: center; }
+  .stat .big { font-size: 19px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .big4 { display: flex; gap: 8px; margin: 1px 0 8px; }
+  .big4 .b4 { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 9px 6px; text-align: center; }
+  .big4 .b4 .n { font-size: 26px; font-weight: 800; color: var(--primary); line-height: 1.02; }
+  .big4 .b4 .l { font-size: 9px; color: var(--muted); margin-top: 3px; line-height: 1.2; }
+  .big4 .b4.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .big4 .b4.hot .n { color: #fff; } .big4 .b4.hot .l { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .spbars { margin: 2px 0 8px; }
+  .spb { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .spb .sbl { flex: 0 0 170px; font-size: 12px; font-weight: 700; color: var(--text); text-align: right; }
+  .spb .sbt { flex: 1 1 auto; height: 32px; background: #F1E7E7; border-radius: 5px; overflow: hidden; position: relative; }
+  .spb .sbf { height: 100%; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 14px; font-weight: 800; color: #fff; }
+  .spb.win .sbf { background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); }
+  .spb.lose .sbf { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); color: #6B5755; }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 4px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Post-Conization Study · Guilin MCH Hospital · China</div>
+    <h1 data-i18n="title">Methylation Predicts Residual / Recurrence After HSIL Conization</h1>
+    <div class="title_alt" data-i18n="title_alt">宫颈脱落细胞基因甲基化检测对宫颈高级别病变术后残留及复发风险的预测意义</div>
+    <div class="subtitle" data-i18n="subtitle">120 HSIL post-conization · 12-mo follow-up · dual-gene methylation: Se 91.3%, NPV 94.29%, AUC 0.765 · PAX1 &amp; dual-methylation independent risk factors</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Liu X, Yu X</div>
+      <div class="source" data-i18n="source">Guilin Maternal &amp; Child Health Hospital, Guangxi</div>
+    </div>
+  </header>
+
+  <!-- 术后监测 hero -->
+  <div class="hero">
+    <div class="stat"><div class="big">18.33%</div><div class="lab" data-i18n="h1">post-op adverse (13 residual + 9 recurred)</div></div>
+    <div class="stat hot"><div class="big">91.3%</div><div class="lab" data-i18n="h2">Se · dual-gene prediction</div></div>
+    <div class="stat"><div class="big">94.3%</div><div class="lab" data-i18n="h3">NPV · dual-gene</div></div>
+    <div class="stat"><div class="big">0.765</div><div class="lab" data-i18n="h4">AUC · dual-gene</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Problem</strong>: post-conization residual 5–15% &amp; recurrence 3–10% — TCT/HPV follow-up is limited.</li>
+          <li data-i18n="s1b"><strong>Objective</strong>: evaluate PAX1/JAM3 methylation to predict post-op residual &amp; recurrence.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">120</div><div class="lab" data-i18n="s2s1">HSIL patients</div></div>
+          <div class="stat"><div class="big">12 mo</div><div class="lab" data-i18n="s2s2">follow-up</div></div>
+          <div class="stat"><div class="big">41.9y</div><div class="lab" data-i18n="s2s3">mean age</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Setting</strong>: Guilin MCH Hospital, Jan 2023 – Dec 2024; conization (CKC 45 / LEEP 75).</li>
+          <li data-i18n="s2b"><strong>Assay</strong>: MSP methylation of PAX1 / JAM3 from pre-op cervical cells.</li>
+          <li data-i18n="s2c"><strong>Outcome</strong>: residual or recurrence within 12 months (22/120).</li>
+          <li data-i18n="s2d"><strong>HPV</strong>: hrHPV+ 87.5% (HPV16 53 · HPV18 26 · other 26).</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">87.5%</div><div class="lab" data-i18n="s2s4">hrHPV+</div></div>
+          <div class="stat"><div class="big">53</div><div class="lab" data-i18n="s2s5">HPV16</div></div>
+          <div class="stat"><div class="big">26</div><div class="lab" data-i18n="s2s6">HPV18</div></div>
+          <div class="stat"><div class="big">26</div><div class="lab" data-i18n="s2s7">other hrHPV</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">45</div><div class="lab" data-i18n="s2s8">CKC conization</div></div>
+          <div class="stat"><div class="big">75</div><div class="lab" data-i18n="s2s9">LEEP conization</div></div>
+          <div class="stat"><div class="big">37</div><div class="lab" data-i18n="s2s10">canal involvement</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2e"><strong>Inclusion</strong>: first-diagnosed HSIL, conization, pre-op methylation, complete records.</li>
+          <li data-i18n="s2f"><strong>Exclusion</strong>: other cancer, surgical contraindication, pregnancy, immunosuppression, invasive cancer.</li>
+          <li data-i18n="s2g"><strong>Follow-up</strong>: 12 months — TCT/HPV + colposcopy as needed.</li>
+          <li data-i18n="s2h"><strong>Statistics</strong>: χ² / multivariate logistic / ROC.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">13</div><div class="lab" data-i18n="s2s11">residual</div></div>
+          <div class="stat"><div class="big">9</div><div class="lab" data-i18n="s2s12">recurred</div></div>
+          <div class="stat"><div class="big">22</div><div class="lab" data-i18n="s2s13">adverse outcomes</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2i"><strong>Adverse link</strong>: methylation(+) significantly associated with post-op residual/recurrence.</li>
+          <li data-i18n="s2j"><strong>Best predictor</strong>: dual-gene methylation — highest OR &amp; prediction accuracy.</li>
+          <li data-i18n="s2k"><strong>Mechanism</strong>: methylation persists in residual disease — a molecular trace.</li>
+        </ul>
+        <div class="tnote" data-i18n="s2n">Univariate → multivariate logistic; OR &amp; ROC evaluation.</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Methylation Positivity</span></h3>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s3a1">PAX1m</div><div class="sbt"><div class="sbf" style="width:51.7%">51.67%</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s3a2">JAM3m</div><div class="sbt"><div class="sbf" style="width:43.3%">43.33%</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s3a3">Dual-gene (either)</div><div class="sbt"><div class="sbf" style="width:54.2%">54.17%</div></div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">42</div><div class="lab" data-i18n="s3s1">single-gene positive</div></div>
+          <div class="stat"><div class="big">23</div><div class="lab" data-i18n="s3s2">dual-gene positive</div></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">Independent Risk Factors</span></h3>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s4a1">Dual-gene methylation</div><div class="sbt"><div class="sbf" style="width:86.5%">OR 8.654</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s4a2">PAX1m</div><div class="sbt"><div class="sbf" style="width:58.9%">OR 5.892</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s4a3">JAM3m (ns)</div><div class="sbt"><div class="sbf" style="width:20%">ns</div></div></div>
+        </div>
+        <div class="tnote" data-i18n="s4n">Multivariate: PAX1m OR 5.892 (1.985–17.596, P=0.001) · dual OR 8.654 (2.783–26.927, P&lt;0.001).</div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Dual-Gene Prediction</span></h3>
+        <div class="big4">
+          <div class="b4 hot"><div class="n">91.3%</div><div class="l" data-i18n="s5s1">Sensitivity</div></div>
+          <div class="b4"><div class="n">45.4%</div><div class="l" data-i18n="s5s2">Specificity</div></div>
+          <div class="b4"><div class="n">30.2%</div><div class="l" data-i18n="s5s3">PPV</div></div>
+          <div class="b4 hot"><div class="n">94.3%</div><div class="l" data-i18n="s5s4">NPV</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s5a"><strong>High NPV</strong>: methylation(−) → low risk of residual/recurrence — safe follow-up.</li>
+          <li data-i18n="s5b"><strong>AUC 0.765</strong>: higher than single-gene tests — practical post-op monitoring.</li>
+          <li data-i18n="s5c"><strong>Actionable</strong>: dual-gene(+) → intensified surveillance &amp; earlier intervention.</li>
+        </ul>
+        <div class="tnote" data-i18n="s5n">Methylation complements TCT/HPV in post-conization follow-up.</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>PAX1 methylation and dual-gene methylation are independent risk factors</b> for post-conization residual/recurrence (OR 5.89 / 8.65).</li>
+      <li data-i18n="c2"><b>Dual-gene methylation (Se 91.3%, NPV 94.3%, AUC 0.765)</b> is a practical predictor — guiding individualized post-op follow-up.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Post-Conization Study · Guilin MCH Hospital · China",
+      title: "Methylation Predicts Residual / Recurrence After HSIL Conization",
+      title_alt: "宫颈脱落细胞基因甲基化检测对宫颈高级别病变术后残留及复发风险的预测意义",
+      subtitle: "120 HSIL post-conization · 12-mo follow-up · dual-gene methylation: Se 91.3%, NPV 94.29%, AUC 0.765 · PAX1 & dual-methylation independent risk factors",
+      authors: "Liu X, Yu X",
+      source: "Guilin Maternal & Child Health Hospital, Guangxi",
+      h1: "post-op adverse (13 residual + 9 recurred)", h2: "Se · dual-gene prediction", h3: "NPV · dual-gene", h4: "AUC · dual-gene",
+      s1t: "Background & Objective",
+      s1a: "<strong>Problem</strong>: post-conization residual 5–15% & recurrence 3–10% — TCT/HPV follow-up is limited.",
+      s1b: "<strong>Objective</strong>: evaluate PAX1/JAM3 methylation to predict post-op residual & recurrence.",
+      s2t: "Study Design & Cohort",
+      s2s1: "HSIL patients", s2s2: "follow-up", s2s3: "mean age",
+      s2a: "<strong>Setting</strong>: Guilin MCH Hospital, Jan 2023 – Dec 2024; conization (CKC 45 / LEEP 75).",
+      s2b: "<strong>Assay</strong>: MSP methylation of PAX1 / JAM3 from pre-op cervical cells.",
+      s2c: "<strong>Outcome</strong>: residual or recurrence within 12 months (22/120).",
+      s2d: "<strong>HPV</strong>: hrHPV+ 87.5%; HPV16 53 · HPV18 26.",
+      s2e: "<strong>Inclusion</strong>: first HSIL, conization, pre-op methylation.",
+      s2f: "<strong>Exclusion</strong>: other cancer, surgical contraindication, pregnancy, immunosuppression, invasive cancer.",
+      s2g: "<strong>Follow-up</strong>: 12 months — TCT/HPV + colposcopy as needed.",
+      s2h: "<strong>Statistics</strong>: χ² / multivariate logistic / ROC.",
+      s2i: "<strong>Adverse link</strong>: methylation(+) significantly associated with post-op residual/recurrence.",
+      s2j: "<strong>Best predictor</strong>: dual-gene methylation — highest OR & prediction accuracy.",
+      s2k: "<strong>Mechanism</strong>: methylation persists in residual disease — a molecular trace.",
+      s2s11: "residual", s2s12: "recurred", s2s13: "adverse outcomes",
+      s2s4: "hrHPV+", s2s5: "HPV16", s2s6: "HPV18", s2s7: "other hrHPV",
+      s2s8: "CKC conization", s2s9: "LEEP conization", s2s10: "canal involvement",
+      s2n: "Univariate → multivariate logistic; OR & ROC evaluation.",
+      s3t: "Methylation Positivity",
+      s3a1: "PAX1m", s3a2: "JAM3m", s3a3: "Dual-gene (either)",
+      s3s1: "single-gene positive", s3s2: "dual-gene positive",
+      s4t: "Independent Risk Factors",
+      s4a1: "Dual-gene methylation", s4a2: "PAX1m", s4a3: "JAM3m (ns)",
+      s4n: "Multivariate: PAX1m OR 5.892 (1.985–17.596, P=0.001) · dual OR 8.654 (2.783–26.927, P<0.001).",
+      s5t: "Dual-Gene Prediction",
+      s5s1: "Sensitivity", s5s2: "Specificity", s5s3: "PPV", s5s4: "NPV",
+      s5a: "<strong>High NPV</strong>: methylation(−) → low risk of residual/recurrence — safe follow-up.",
+      s5b: "<strong>AUC 0.765</strong>: higher than single-gene tests — practical post-op monitoring.",
+      s5c: "<strong>Actionable</strong>: dual-gene(+) → intensified surveillance & earlier intervention.",
+      s5n: "Methylation complements TCT/HPV in post-conization follow-up.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>PAX1 methylation and dual-gene methylation are independent risk factors</b> for post-conization residual/recurrence (OR 5.89 / 8.65).",
+      c2: "<b>Dual-gene methylation (Se 91.3%, NPV 94.3%, AUC 0.765)</b> is a practical predictor — guiding individualized post-op follow-up."
+    },
+    zh: {
+      kicker: "术后研究 · 桂林市妇幼保健院 · 中国",
+      title: "宫颈脱落细胞基因甲基化检测对宫颈高级别病变术后残留及复发风险的预测意义",
+      title_alt: "Methylation Predicts Residual / Recurrence After HSIL Conization",
+      subtitle: "120 例 HSIL 术后 · 随访 12 个月 · 双基因甲基化：Se 91.3%、NPV 94.29%、AUC 0.765 · PAX1 与双基因甲基化为独立危险因素",
+      authors: "刘勋姣、玉秀美",
+      source: "桂林市妇幼保健院，广西桂林",
+      h1: "术后不良结局（13 残留 + 9 复发）", h2: "灵敏度 · 双基因预测", h3: "NPV · 双基因", h4: "AUC · 双基因",
+      s1t: "背景与目的",
+      s1a: "<strong>问题</strong>：术后残留 5–15%、复发 3–10%——TCT/HPV 随访存在局限。",
+      s1b: "<strong>目的</strong>：评估 PAX1/JAM3 甲基化对术后残留与复发的预测价值。",
+      s2t: "研究设计与队列",
+      s2s1: "HSIL 患者", s2s2: "随访", s2s3: "平均年龄",
+      s2a: "<strong>地点</strong>：桂林妇幼，2023.1–2024.12；锥切（CKC 45 / LEEP 75）。",
+      s2b: "<strong>检测</strong>：术前脱落细胞 MSP 检测 PAX1 / JAM3 甲基化。",
+      s2c: "<strong>结局</strong>：12 个月内残留或复发（22/120）。",
+      s2d: "<strong>HPV</strong>：hrHPV+ 87.5%（HPV16 53 · HPV18 26 · 其他 26）。",
+      s2e: "<strong>入组</strong>：首次确诊 HSIL、行锥切、术前甲基化、资料完整。",
+      s2f: "<strong>排除</strong>：其他肿瘤、手术禁忌、妊娠、免疫抑制、浸润癌。",
+      s2g: "<strong>随访</strong>：12 个月——TCT/HPV + 必要时阴道镜。",
+      s2h: "<strong>统计</strong>：χ² / 多因素 Logistic / ROC。",
+      s2i: "<strong>不良关联</strong>：甲基化(+) 与术后残留/复发显著相关。",
+      s2j: "<strong>最佳预测</strong>：双基因甲基化——OR 与预测准确度最高。",
+      s2k: "<strong>机制</strong>：残留病变中甲基化持续存在——分子痕迹。",
+      s2s11: "残留", s2s12: "复发", s2s13: "不良结局",
+      s2s4: "hrHPV+", s2s5: "HPV16", s2s6: "HPV18", s2s7: "其他高危型",
+      s2s8: "CKC 锥切", s2s9: "LEEP 锥切", s2s10: "累及宫颈管",
+      s2n: "单因素与多因素 Logistic 回归分析；OR 与 ROC 曲线评估预测效能，JAM3 单独无统计学意义。",
+      s3t: "甲基化阳性率",
+      s3a1: "PAX1m", s3a2: "JAM3m", s3a3: "双基因（任一）",
+      s3s1: "单基因阳性", s3s2: "双基因阳性",
+      s4t: "独立危险因素",
+      s4a1: "双基因甲基化", s4a2: "PAX1m", s4a3: "JAM3m（无显著）",
+      s4n: "多因素：PAX1m OR 5.892（1.985–17.596，P=0.001）· 双基因 OR 8.654（2.783–26.927，P&lt;0.001）。",
+      s5t: "双基因预测效能",
+      s5s1: "灵敏度", s5s2: "特异度", s5s3: "PPV", s5s4: "NPV",
+      s5a: "<strong>高 NPV</strong>：甲基化(−) → 残留/复发风险低——可安全随访。",
+      s5b: "<strong>AUC 0.765</strong>：优于单基因检测——实用的术后监测手段。",
+      s5c: "<strong>可落地</strong>：双基因(+) → 加强监测与更早干预。",
+      s5n: "甲基化与 TCT/HPV 互补，完善锥切术后随访。",
+      c_ttl: "临床意义",
+      c1: "<b>PAX1 甲基化与双基因甲基化是锥切术后残留/复发的独立危险因素</b>（OR 5.89 / 8.65）。",
+      c2: "<b>双基因甲基化（Se 91.3%、NPV 94.3%、AUC 0.765）</b>是实用预测指标——指导个体化术后随访。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

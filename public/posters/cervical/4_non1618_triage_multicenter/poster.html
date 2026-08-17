@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAX1m/JAM3m Triage in Non-16/18 hrHPV+ Women — Chen et al. 2024, Clinical Epigenetics</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #1，非九宫格）：
+  - 风格：品牌红（#D74B4A / #F07A76 / #B83A39）、红色渐变标题带、编号小节标题、点式 bullet、白色 stat 卡、红色高亮表格
+  - 布局（结果优先）：标题带（自动高度不裁剪）→ 全宽证据统计条 → 两栏（左窄 520px：①背景与目的 ②研究设计；右宽 1fr：③结果图 ④性能+转诊 ⑤癌症安全与风险管理）→ 全宽临床意义带
+  - 不用研究流程图；结果图 Fig.2（ΔCt）放大展示；右侧结果区占最大面积
+  - 约束：所有文字/图片不超出背景框（面板 overflow:hidden + 子元素 flex:0 0 auto；图限高居中保持比例）
+-->
+<style>
+  :root {
+    --primary: #D74B4A;
+    --secondary: #F07A76;
+    --accent: #F7C9C7;
+    --accent-deep: #B83A39;
+    --bg: #FFFFFF;
+    --panel: rgba(233, 233, 233, 0.55);
+    --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232;
+    --muted: #5C5252;
+    --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif;
+    color: var(--text); background: var(--bg);
+  }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster {
+    width: 2100px; height: 1080px;
+    display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px;
+    zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none;
+    position: relative;
+  }
+
+  /* ===== 标题带（自动高度） ===== */
+  .titleband {
+    background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto;
+    border-radius: 10px 10px 0 0; position: relative; overflow: hidden;
+  }
+  .langswitch {
+    position: absolute; top: 12px; right: 18px;
+    display: flex; gap: 4px; background: rgba(255,255,255,0.18);
+    border-radius: 16px; padding: 3px; z-index: 3;
+  }
+  .langswitch button {
+    border: none; background: transparent; color: #fff; cursor: pointer;
+    font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px;
+    letter-spacing: 0.5px; transition: background .15s;
+  }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
+    color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px;
+    padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.15; letter-spacing: 0.2px; max-width: 1680px; }
+  .titleband .title_alt {
+    font-size: 15.5px; font-weight: 500; line-height: 1.3;
+    color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1680px;
+  }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1750px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px;
+    font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  /* ===== 全宽证据统计条 ===== */
+  .evidence {
+    flex: 0 0 auto; height: 88px;
+    background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px;
+  }
+  .evidence .stat {
+    flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28);
+    border-radius: 8px; padding: 7px 6px 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .evidence .stat .big { font-size: 27px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .evidence .stat .lab { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.25; letter-spacing: 0.4px; }
+  .evidence .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .evidence .stat.hot .big { color: #fff; }
+  .evidence .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  /* ===== 主体（两栏：左背景 / 右结果） ===== */
+  .main {
+    flex: 1 1 auto; min-height: 0;
+    display: grid; grid-template-columns: 520px minmax(0, 1fr); gap: 14px;
+    padding-top: 10px;
+  }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
+    padding: 9px 15px 8px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden;
+  }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel .figwrap, .panel ul, .panel table, .panel .statrow, .panel .flowrow, .panel .hbar, .panel .refbar, .panel .tnote, .panel .rows, .panel .wstrip { flex: 0 0 auto; }
+  .panel h3 {
+    font-size: 14.5px; font-weight: 700; color: var(--primary);
+    border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 6px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .panel h3 .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 20px; height: 20px; background: rgba(215,75,74,0.85); color: #fff;
+    border-radius: 5px; font-size: 11.5px; flex: 0 0 auto;
+  }
+  .panel p, .panel li { font-size: 13.5px; line-height: 1.45; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .panel ul li::before {
+    content: ""; position: absolute; left: 0; top: 7px; width: 6px; height: 6px;
+    border-radius: 50%; background: var(--secondary);
+  }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 1px 0 7px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 4px 5px; text-align: center; }
+  .stat .big { font-size: 21px; font-weight: 800; color: var(--primary); line-height: 1.1; }
+  .stat .lab { font-size: 10px; color: var(--muted); margin-top: 2px; line-height: 1.3; }
+  .stat .lab .subsub { font-size: 11px; font-weight: 700; color: var(--accent-deep); margin-top: 1px; }
+
+  .flowrow { display: flex; align-items: center; gap: 6px; margin: 5px 0 7px; }
+  .flowrow .step { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 7px 6px 6px; text-align: center; }
+  .flowrow .step .n { font-size: 19px; font-weight: 800; color: var(--primary); line-height: 1.1; }
+  .flowrow .step .d { font-size: 9.5px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .flowrow .arr { color: var(--secondary); font-size: 16px; font-weight: 800; flex: 0 0 auto; }
+
+  .hbar { display: flex; gap: 6px; margin-top: 7px; align-items: flex-end; }
+  .hbar .b { flex: 1; text-align: center; }
+  .hbar .bar { background: linear-gradient(180deg, var(--secondary) 0%, var(--accent) 130%); border-radius: 4px 4px 0 0; }
+  .hbar .b1 .bar { height: 84px; }
+  .hbar .b2 .bar { height: 34px; }
+  .hbar .b3 .bar { height: 28px; }
+  .hbar .b4 .bar { height: 12px; }
+  .hbar .vl { font-size: 12px; font-weight: 700; color: var(--accent-deep); margin-top: 2px; }
+  .hbar .lb { font-size: 10px; color: var(--muted); margin-top: 2px; line-height: 1.25; }
+
+  .wstrip { display: flex; align-items: center; gap: 6px; margin: 1px 0 7px; }
+  .wstrip .wchip { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 5px; padding: 6px 4px; text-align: center; font-size: 11px; font-weight: 600; color: var(--accent-deep); }
+  .wstrip .warr { color: var(--secondary); font-size: 14px; font-weight: 800; }
+
+  /* 队列时间轴（语言中性） */
+  .timeline { margin: 1px 0 7px; }
+  .trow { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+  .trow:last-child { margin-bottom: 0; }
+  .trow .tl { flex: 0 0 156px; font-size: 10.5px; color: var(--muted); font-weight: 600; text-align: right; }
+  .trow .ttrack { flex: 1 1 auto; height: 14px; background: #F1E7E7; border-radius: 3px; overflow: hidden; }
+  .trow .tfill { height: 100%; background: linear-gradient(90deg, var(--accent) 0%, var(--primary) 100%); border-radius: 3px; }
+  .trow .tv { flex: 0 0 44px; font-size: 11px; font-weight: 800; color: var(--accent-deep); }
+
+  /* 结果图 */
+  .figwrap { text-align: center; }
+  .figwrap img { display: inline-block; height: auto; max-height: 250px; width: auto; border: 1px solid var(--line); border-radius: 5px; background: #fff; }
+  .figwrap .figcap { font-size: 11.5px; color: var(--muted); font-style: italic; line-height: 1.4; margin-top: 5px; text-align: left; }
+  .figwrap .figcap strong { color: var(--primary); font-style: normal; }
+
+  /* 图左文右（结果图单元） */
+  .figcell { display: flex; flex-direction: column; justify-content: center; }
+  .figcell img { display: block; max-height: 230px; max-width: 100%; width: auto; height: auto; margin: 0 auto; border: 1px solid var(--line); border-radius: 5px; background: #fff; }
+  .figcell svg { display: block; height: 230px; width: auto; margin: 0 auto; }
+  .figcell .figcap { font-size: 11.5px; color: var(--muted); font-style: italic; line-height: 1.4; margin-top: 5px; }
+  .figcell .figcap strong { color: var(--primary); font-style: normal; }
+
+  /* 并排子块（宽面板内部） */
+  .rows { display: flex; gap: 18px; align-items: stretch; }
+  .rows .cell { flex: 1; min-width: 0; }
+
+  .minitable { width: 100%; border-collapse: collapse; margin: 2px 0 4px 0; font-size: 12px; }
+  .minitable th { background: rgba(215,75,74,0.12); color: var(--accent-deep); font-weight: 700; padding: 4px 6px; text-align: left; border-bottom: 2px solid var(--line); font-size: 11px; }
+  .minitable td { padding: 4px 6px; border-bottom: 1px solid var(--line); color: var(--muted); }
+  .minitable td:first-child { font-weight: 600; color: var(--text); }
+  .minitable tr:last-child td { border-bottom: none; }
+  .minitable .highlight { color: var(--primary); font-weight: 700; }
+  .tnote { font-size: 11px; color: var(--muted); line-height: 1.45; margin-top: 2px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .refbar { margin: 1px 0 6px; }
+  .refrow { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .refrow:last-child { margin-bottom: 0; }
+  .refrow .rlab { flex: 0 0 118px; font-size: 11.5px; color: var(--muted); font-weight: 600; text-align: right; }
+  .refrow .rtrack { flex: 1 1 auto; height: 22px; background: #F1E7E7; border-radius: 4px; overflow: hidden; }
+  .refrow .rfill { height: 100%; background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); border-radius: 4px; }
+  .refrow .rfill.dim { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); }
+  .refrow .rval { flex: 0 0 58px; font-size: 12.5px; font-weight: 800; color: var(--accent-deep); }
+
+  /* ===== 全宽临床意义带 ===== */
+  .clinical {
+    flex: 0 0 auto;
+    background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff;
+    padding: 10px 26px; display: flex; gap: 20px; align-items: center;
+  }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch">
+      <button id="btn-en" class="on">EN</button>
+      <button id="btn-zh">中文</button>
+    </div>
+    <div class="kicker" data-i18n="kicker">Clinical Epigenetics · 2024;16:108 · Multicenter Prospective Study · China</div>
+    <h1 data-i18n="title">PAX1m/JAM3m Triage in Non-16/18 hrHPV-Positive Women: A Multicenter Prospective Study in China</h1>
+    <div class="title_alt" data-i18n="title_alt">PAX1m/JAM3m 双基因甲基化在非 16/18 型高危 HPV 阳性女性中的分诊效能——中国多中心前瞻性研究</div>
+    <div class="subtitle" data-i18n="subtitle">1,851 women with histology · sensitivity comparable to cytology (84.8% vs 90.1%), specificity far higher (88.5% vs 26.7%), colposcopy referrals cut 57.2%</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Chen X, Jin X, Kong L, Liou Y, Liu P, Dong Z, Zhou S, Qi B, Fei J, Chen X, Xiong G, Hu Y, Liu S, Zhou J, Shou H, Li L (correspondence)</div>
+      <div class="source" data-i18n="source">Multicenter · 6 hospitals · China · CISCER® DNA Methylation Kit (NMPA-approved) · doi: <a href="https://doi.org/10.1186/s13148-024-01731-w" target="_blank" rel="noopener">10.1186/s13148-024-01731-w</a></div>
+    </div>
+  </header>
+
+  <!-- 证据统计条 -->
+  <div class="evidence">
+    <div class="stat"><div class="big">84.8%</div><div class="lab" data-i18n="e1">Sensitivity · PAX1m/JAM3m</div></div>
+    <div class="stat"><div class="big">88.5%</div><div class="lab" data-i18n="e2">Specificity · PAX1m/JAM3m</div></div>
+    <div class="stat"><div class="big">0.866</div><div class="lab" data-i18n="e3">AUC · highest of all triage</div></div>
+    <div class="stat"><div class="big">98.5%</div><div class="lab" data-i18n="e4">NPV · negative safety</div></div>
+    <div class="stat hot"><div class="big">−57.2%</div><div class="lab" data-i18n="e5">Colposcopy referrals</div></div>
+  </div>
+
+  <!-- 主体：左背景 / 右结果 -->
+  <main class="main">
+
+    <!-- 左栏：背景与目的 / 研究设计 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Burden</strong>: non-16/18 hrHPV types drive much HSIL+/cancer in Asia; triage still relies on cytology.</li>
+          <li data-i18n="s1b"><strong>Cytology limits</strong>: subjective, lab-dependent, low specificity (26.7%) → colposcopy overreferral.</li>
+          <li data-i18n="s1c"><strong>Objective</strong>: validate CISCER® <strong>PAX1m/JAM3m</strong> for CIN3+ triage in non-16/18 hrHPV+ women.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+        <div class="flowrow">
+          <div class="step"><div class="n">30,084</div><div class="d" data-i18n="s2f1">screened · 6 hospitals</div></div>
+          <div class="arr">→</div>
+          <div class="step"><div class="n">4,735</div><div class="d" data-i18n="s2f2">non-16/18 hrHPV+</div></div>
+          <div class="arr">→</div>
+          <div class="step"><div class="n">1,851</div><div class="d" data-i18n="s2f3">with histology</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">2</div><div class="lab" data-i18n="s2s1">prospective cohorts</div></div>
+          <div class="stat"><div class="big">6</div><div class="lab" data-i18n="s2s2">hospitals</div></div>
+          <div class="stat"><div class="big">42y</div><div class="lab" data-i18n="s2s3">median age</div></div>
+        </div>
+        <div class="wstrip">
+          <span class="wchip" data-i18n="ws1">HPV genotyping</span><span class="warr">+</span>
+          <span class="wchip" data-i18n="ws2">LBC cytology</span><span class="warr">+</span>
+          <span class="wchip" data-i18n="ws3">PAX1m/JAM3m</span>
+        </div>
+        <div class="timeline">
+          <div class="trow"><span class="tl" data-i18n="tl1">METHY3 · 2020.11–2021.12</span><div class="ttrack"><div class="tfill" style="width:56%"></div></div><span class="tv">14 mo</span></div>
+          <div class="trow"><span class="tl" data-i18n="tl2">METHY4 · 2022.05–2022.10</span><div class="ttrack"><div class="tfill" style="width:22%"></div></div><span class="tv">6 mo</span></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Cohorts</strong>: METHY3 + METHY4, opportunistic screening; lab blinded.</li>
+          <li data-i18n="s2b"><strong>Endpoint</strong>: CIN3+ detection; comparator LBC ≥ASC-US; colposcopy/surgery histology.</li>
+          <li data-i18n="s2c"><strong>Statistics</strong>: ROC/AUC, McNemar; SPSS 26 / R 4.1.2.</li>
+          <li data-i18n="s2d"><strong>Inclusion</strong>: ≥18 y, intact cervix, no severe immunodeficiency.</li>
+          <li data-i18n="s2e"><strong>Assay</strong>: bisulfite conversion + qPCR (GAPDH control, ABI 7500).</li>
+          <li data-i18n="s2f"><strong>Outcome</strong>: 151 CIN3+ (131 CIN3 + 20 cancers) among 1,851.</li>
+        </ul>
+        <div class="hbar">
+          <div class="b b1"><div class="bar"></div><div class="vl">82.3%</div><div class="lb" data-i18n="s2h1">Normal/CIN1</div></div>
+          <div class="b b2"><div class="bar"></div><div class="vl">9.6%</div><div class="lb" data-i18n="s2h2">CIN2</div></div>
+          <div class="b b3"><div class="bar"></div><div class="vl">7.1%</div><div class="lb" data-i18n="s2h3">CIN3</div></div>
+          <div class="b b4"><div class="bar"></div><div class="vl">1.1%</div><div class="lb" data-i18n="s2h4">Cancer (n=20)</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 右栏：结果 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Key Results — Signal &amp; Performance</span></h3>
+        <div class="rows">
+          <div class="cell figcell">
+            <img src="images/fig2_deltact_distribution.jpg" alt="PAX1/JAM3 ΔCt distributions by pathology and cytology">
+            <div class="figcap"><strong>Fig. 2</strong> <span data-i18n="s3c">PAX1/JAM3 ΔCt by histology &amp; LBC grade — rises with severity (P&lt;0.05).</span></div>
+          </div>
+          <div class="cell figcell">
+            <svg viewBox="0 0 620 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sensitivity vs specificity by triage method">
+              <line x1="40" y1="280" x2="590" y2="280" stroke="#D9D4D2" stroke-width="1.5"/>
+              <line x1="40" y1="20" x2="40" y2="280" stroke="#D9D4D2" stroke-width="1.5"/>
+              <g stroke="#EDE5E3" stroke-width="1">
+                <line x1="40" y1="85" x2="590" y2="85"/>
+                <line x1="40" y1="150" x2="590" y2="150"/>
+                <line x1="40" y1="215" x2="590" y2="215"/>
+              </g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="12" fill="#5C5252">
+                <text x="38" y="284">0%</text><text x="38" y="89">25%</text><text x="38" y="154">50%</text><text x="38" y="219">75%</text><text x="38" y="24">100%</text>
+              </g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="13.5" font-weight="700" fill="#3A3232">
+                <text x="150" y="17" text-anchor="middle" data-i18n="sg1">Sensitivity</text>
+                <text x="460" y="17" text-anchor="middle" data-i18n="sg2">Specificity</text>
+              </g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="11.5" fill="#5C5252" text-anchor="middle">
+                <text x="125" y="293" data-i18n="sl1">P/J(+)</text>
+                <text x="200" y="293" data-i18n="sl2">LBC≥ASC-US</text>
+                <text x="435" y="293" data-i18n="sl3">P/J(+)</text>
+                <text x="510" y="293" data-i18n="sl4">LBC≥ASC-US</text>
+              </g>
+              <g>
+                <rect x="96" y="59" width="58" height="221" fill="#D74B4A" rx="2"/>
+                <rect x="158" y="45" width="58" height="235" fill="#C9A9A7" rx="2"/>
+                <rect x="406" y="50" width="58" height="230" fill="#D74B4A" rx="2"/>
+                <rect x="468" y="210" width="58" height="70" fill="#C9A9A7" rx="2"/>
+              </g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="12.5" font-weight="800" fill="#B83A39" text-anchor="middle">
+                <text x="125" y="52">84.8</text>
+                <text x="187" y="38">90.1</text>
+                <text x="435" y="43">88.5</text>
+                <text x="497" y="203">26.7</text>
+              </g>
+            </svg>
+            <div class="figcap"><strong>Fig. 3</strong> <span data-i18n="s3g">Se vs Sp by triage (data: Table 2) — methylation: high both; cytology: high Se, very low Sp.</span></div>
+          </div>
+          <div class="cell figcell">
+            <svg viewBox="0 0 620 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Odds ratio for CIN3+ by triage method">
+              <line x1="150" y1="36" x2="150" y2="252" stroke="#D9D4D2" stroke-width="1.5"/>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="12.5" font-weight="700" fill="#3A3232">
+                <text x="150" y="24" text-anchor="middle" data-i18n="og0">Odds ratio for CIN3+</text>
+              </g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="11.5" fill="#5C5252" text-anchor="end">
+                <text x="142" y="81" data-i18n="og1">PAX1m/JAM3m</text>
+                <text x="142" y="125" data-i18n="og2">JAM3m</text>
+                <text x="142" y="169" data-i18n="og3">PAX1m</text>
+                <text x="142" y="213" data-i18n="og4">LBC ≥ASC-US</text>
+              </g>
+              <g>
+                <rect x="150" y="66" width="382" height="26" fill="#D74B4A" rx="3"/>
+                <rect x="150" y="110" width="345" height="26" fill="#E58A78" rx="3"/>
+                <rect x="150" y="154" width="262" height="26" fill="#E8A29A" rx="3"/>
+                <rect x="150" y="198" width="30" height="26" fill="#C9A9A7" rx="3"/>
+              </g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="12" font-weight="800" fill="#B83A39">
+                <text x="542" y="83">42.6</text>
+                <text x="505" y="127">38.4</text>
+                <text x="422" y="171">29.1</text>
+                <text x="190" y="215">3.3</text>
+              </g>
+              <g font-family="Segoe UI, Arial, Microsoft YaHei, sans-serif" font-size="10" fill="#5C5252">
+                <text x="150" y="290" data-i18n="og5">OR (95% CI) vs marker-negative · P &lt; 0.001 · data: Table 3</text>
+              </g>
+            </svg>
+            <div class="figcap"><strong>Fig. 4</strong> <span data-i18n="s3i">OR for CIN3+ (Table 3) — P/J(+) 42.6 vs LBC(+) 3.3.</span></div>
+          </div>
+        </div>
+        <div class="tnote" data-i18n="s3h"><b>Dose–response:</b> ΔCt falls as lesions progress — all 20 cancers were PAX1m/JAM3m(+); positive = ΔCt PAX1 ≤ 6.6 or ΔCt JAM3 ≤ 10.0.</div>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">CIN3+ Detection &amp; Referral Burden</span></h3>
+        <div class="rows">
+          <div class="cell">
+            <table class="minitable">
+              <tr><th data-i18n="t_h1">Method</th><th data-i18n="t_h2">Sens. %</th><th data-i18n="t_h3">Spec. %</th><th data-i18n="t_h4">AUC</th><th data-i18n="t_h5">NPV %</th></tr>
+              <tr><td class="highlight" data-i18n="t_r1a">PAX1m/JAM3m (+)</td><td class="highlight">84.8</td><td class="highlight">88.5</td><td class="highlight">0.866</td><td>98.5</td></tr>
+              <tr><td data-i18n="t_r2a">LBC ≥ ASC-US</td><td>90.1</td><td>26.7</td><td>0.584</td><td>96.8</td></tr>
+              <tr><td data-i18n="t_r3a">LBC or P/J (+)</td><td>98.0</td><td>24.8</td><td>0.614</td><td>99.3</td></tr>
+            </table>
+            <div class="tnote" data-i18n="s4note">OR for CIN3+: <b>P/J(+) 42.6</b> (27.1–69.6) vs LBC(+) 3.3 (2.0–5.9), P&lt;0.001.</div>
+          </div>
+          <div class="cell">
+            <table class="minitable">
+              <tr><th data-i18n="r_h1">Triage</th><th data-i18n="r_h2">Referred</th><th data-i18n="r_h3">% of 1,851</th></tr>
+              <tr><td class="highlight" data-i18n="r_r1a">PAX1m/JAM3m (+)</td><td class="highlight">323</td><td class="highlight">17.45%</td></tr>
+              <tr><td data-i18n="r_r2a">LBC ≥ ASC-US</td><td>1,382</td><td>74.66%</td></tr>
+              <tr><td data-i18n="r_r3a">LBC or P/J (+)</td><td>1,427</td><td>77.09%</td></tr>
+            </table>
+            <div class="tnote" data-i18n="rnote">Methylation alone keeps the <b>lowest referral burden</b>.</div>
+          </div>
+          <div class="cell">
+            <div class="refbar">
+              <div class="refrow"><span class="rlab" data-i18n="rbar1">LBC ≥ ASC-US</span><div class="rtrack"><div class="rfill dim" style="width:74.7%"></div></div><span class="rval">74.7%</span></div>
+              <div class="refrow"><span class="rlab" data-i18n="rbar2">PAX1m/JAM3m</span><div class="rtrack"><div class="rfill" style="width:17.5%"></div></div><span class="rval">17.5%</span></div>
+            </div>
+            <div class="tnote" data-i18n="rbar3">Referral rate — P/J(+) triage cuts referrals by 57.2%.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Cancer Safety &amp; Risk-Based Management</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">20 / 20</div><div class="lab" data-i18n="s5s1">cancers caught by P/J(+)<div class="subsub" data-i18n="s5s1b">100%</div></div></div>
+          <div class="stat"><div class="big">16 / 20</div><div class="lab" data-i18n="s5s2">caught by LBC ≥ASC-US<div class="subsub" data-i18n="s5s2b">80% — 4 missed</div></div></div>
+          <div class="stat"><div class="big">42.6</div><div class="lab" data-i18n="s5s3">OR for CIN3+ if P/J(+)</div></div>
+          <div class="stat"><div class="big">98.5%</div><div class="lab" data-i18n="s5s4">NPV if P/J(−)</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s5a"><strong>Missed by cytology</strong>: 3 SCC + 1 ADC — all four were P/J(+).</li>
+          <li data-i18n="s5b"><strong>P/J(+)</strong> → direct colposcopy (high CIN3+ odds); <strong>P/J(−)</strong> → safe follow-up (NPV 98.5%).</li>
+          <li data-i18n="s5c"><strong>Standalone</strong>: adding cytology gives no triage advantage — methylation alone is the better strategy.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- 全宽临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>For non-16/18 hrHPV+ women,</b> PAX1m/JAM3m is a ready-to-use reflex triage: sensitivity comparable to cytology, far higher specificity, 57% fewer colposcopy referrals, and zero cancer missed.</li>
+      <li data-i18n="c2"><b>Routine implementation</b> reduces burden on patients, colposcopy services, and healthcare costs for this large screening group.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Clinical Epigenetics · 2024;16:108 · Multicenter Prospective Study · China",
+      title: "PAX1m/JAM3m Triage in Non-16/18 hrHPV-Positive Women: A Multicenter Prospective Study in China",
+      title_alt: "PAX1m/JAM3m 双基因甲基化在非 16/18 型高危 HPV 阳性女性中的分诊效能——中国多中心前瞻性研究",
+      subtitle: "1,851 women with histology · sensitivity comparable to cytology (84.8% vs 90.1%), specificity far higher (88.5% vs 26.7%), colposcopy referrals cut 57.2%",
+      authors: "Chen X, Jin X, Kong L, Liou Y, Liu P, Dong Z, Zhou S, Qi B, Fei J, Chen X, Xiong G, Hu Y, Liu S, Zhou J, Shou H, Li L (correspondence)",
+      source: 'Multicenter · 6 hospitals · China · CISCER® DNA Methylation Kit (NMPA-approved) · doi: <a href="https://doi.org/10.1186/s13148-024-01731-w" target="_blank" rel="noopener">10.1186/s13148-024-01731-w</a>',
+      e1: "Sensitivity · PAX1m/JAM3m", e2: "Specificity · PAX1m/JAM3m", e3: "AUC · highest of all triage", e4: "NPV · negative safety", e5: "Colposcopy referrals",
+      s1t: "Background & Objective",
+      s1a: "<strong>Burden</strong>: non-16/18 hrHPV types drive much HSIL+/cancer in Asia; triage still relies on cytology.",
+      s1b: "<strong>Cytology limits</strong>: subjective, lab-dependent, low specificity (26.7%) → colposcopy overreferral.",
+      s1c: "<strong>Objective</strong>: validate CISCER® <strong>PAX1m/JAM3m</strong> for CIN3+ triage in non-16/18 hrHPV+ women.",
+      s2t: "Study Design & Cohort",
+      s2f1: "screened · 6 hospitals", s2f2: "non-16/18 hrHPV+", s2f3: "with histology",
+      s2s1: "prospective cohorts", s2s2: "hospitals", s2s3: "median age",
+      ws1: "HPV genotyping", ws2: "LBC cytology", ws3: "PAX1m/JAM3m",
+      tl1: "METHY3 · 2020.11–2021.12", tl2: "METHY4 · 2022.05–2022.10",
+      s2a: "<strong>Cohorts</strong>: METHY3 + METHY4, opportunistic screening; lab blinded.",
+      s2b: "<strong>Endpoint</strong>: CIN3+ detection; comparator LBC ≥ASC-US; colposcopy/surgery histology.",
+      s2c: "<strong>Statistics</strong>: ROC/AUC, McNemar; SPSS 26 / R 4.1.2.",
+      s2d: "<strong>Inclusion</strong>: ≥18 y, intact cervix, no severe immunodeficiency.",
+      s2e: "<strong>Assay</strong>: bisulfite conversion + qPCR (GAPDH control, ABI 7500).",
+      s2f: "<strong>Outcome</strong>: 151 CIN3+ (131 CIN3 + 20 cancers) among 1,851.",
+      s2h1: "Normal/CIN1", s2h2: "CIN2", s2h3: "CIN3", s2h4: "Cancer (n=20)",
+      s3t: "Key Results — Signal & Performance",
+      s3c: "PAX1/JAM3 ΔCt by histology & LBC grade — rises with severity (P<0.05).",
+      s3g: "Se vs Sp by triage (data: Table 2) — methylation: high both; cytology: high Se, very low Sp.",
+      s3h: "<b>Dose–response:</b> ΔCt falls as lesions progress — all 20 cancers were PAX1m/JAM3m(+); positive = ΔCt PAX1 ≤ 6.6 or ΔCt JAM3 ≤ 10.0.",
+      sg1: "Sensitivity", sg2: "Specificity", sl1: "P/J(+)", sl2: "LBC≥ASC-US", sl3: "P/J(+)", sl4: "LBC≥ASC-US",
+      og0: "Odds ratio for CIN3+", og1: "PAX1m/JAM3m", og2: "JAM3m", og3: "PAX1m", og4: "LBC ≥ASC-US", og5: "OR (95% CI) vs marker-negative · P < 0.001 · data: Table 3",
+      s3i: "OR for CIN3+ (Table 3) — P/J(+) 42.6 vs LBC(+) 3.3.",
+      s4t: "CIN3+ Detection & Referral Burden",
+      t_h1: "Method", t_h2: "Sens. %", t_h3: "Spec. %", t_h4: "AUC", t_h5: "NPV %",
+      t_r1a: "PAX1m/JAM3m (+)", t_r2a: "LBC ≥ ASC-US", t_r3a: "LBC or P/J (+)",
+      s4note: "OR for CIN3+: <b>P/J(+) 42.6</b> (27.1–69.6) vs LBC(+) 3.3 (2.0–5.9), P<0.001.",
+      r_h1: "Triage", r_h2: "Referred", r_h3: "% of 1,851",
+      r_r1a: "PAX1m/JAM3m (+)", r_r2a: "LBC ≥ ASC-US", r_r3a: "LBC or P/J (+)",
+      rnote: "Methylation alone keeps the <b>lowest referral burden</b>.",
+      rbar1: "LBC ≥ ASC-US", rbar2: "PAX1m/JAM3m",
+      rbar3: "Referral rate — P/J(+) triage cuts referrals by 57.2%.",
+      s5t: "Cancer Safety & Risk-Based Management",
+      s5s1: "cancers caught by P/J(+)", s5s1b: "100%", s5s2: "caught by LBC ≥ASC-US", s5s2b: "80% — 4 missed",
+      s5s3: "OR for CIN3+ if P/J(+)", s5s4: "NPV if P/J(−)",
+      s5a: "<strong>Missed by cytology</strong>: 3 SCC + 1 ADC — all four were P/J(+).",
+      s5b: "<strong>P/J(+)</strong> → direct colposcopy (high CIN3+ odds); <strong>P/J(−)</strong> → safe follow-up (NPV 98.5%).",
+      s5c: "<strong>Standalone</strong>: adding cytology gives no triage advantage — methylation alone is the better strategy.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>For non-16/18 hrHPV+ women,</b> PAX1m/JAM3m is a ready-to-use reflex triage: sensitivity comparable to cytology, far higher specificity, 57% fewer colposcopy referrals, and zero cancer missed.",
+      c2: "<b>Routine implementation</b> reduces burden on patients, colposcopy services, and healthcare costs for this large screening group."
+    },
+    zh: {
+      kicker: "临床表观遗传学 · 2024;16:108 · 多中心前瞻性研究 · 中国",
+      title: "PAX1m/JAM3m 在非 16/18 型高危 HPV 阳性女性中的分诊效能：中国多中心前瞻性研究",
+      title_alt: "PAX1m/JAM3m Triage in Non-16/18 hrHPV-Positive Women: A Multicenter Prospective Study in China",
+      subtitle: "1,851 例有组织学结果 · 灵敏度与细胞学相当（84.8% vs 90.1%），特异度显著更高（88.5% vs 26.7%），阴道镜转诊减少 57.2%",
+      authors: "陈晓静、金西同、孔令华、刘雨莉等 16 位作者（通讯：李雷）",
+      source: '多中心 · 中国 6 家医院 · CISCER® 宫颈癌 DNA 甲基化检测试剂盒（NMPA 获批）· doi: <a href="https://doi.org/10.1186/s13148-024-01731-w" target="_blank" rel="noopener">10.1186/s13148-024-01731-w</a>',
+      e1: "灵敏度 · PAX1m/JAM3m", e2: "特异度 · PAX1m/JAM3m", e3: "AUC · 所有分诊方案最高", e4: "NPV · 阴性安全性", e5: "阴道镜转诊",
+      s1t: "背景与目的",
+      s1a: "<strong>负担</strong>：非 16/18 型高危 HPV 在亚洲 HSIL+/癌症中占比高，目前仍依赖细胞学分诊。",
+      s1b: "<strong>细胞学局限</strong>：主观、依赖实验室，特异度仅 26.7%，导致大量不必要的阴道镜转诊。",
+      s1c: "<strong>目的</strong>：验证 CISCER® <strong>PAX1m/JAM3m</strong> 在非 16/18 hrHPV+ 女性中检测 CIN3+ 的分诊效能。",
+      s2t: "研究设计与队列",
+      s2f1: "筛查 · 6 家医院", s2f2: "非 16/18 hrHPV+", s2f3: "有组织学结果",
+      s2s1: "前瞻性队列", s2s2: "家医院", s2s3: "中位年龄",
+      ws1: "HPV 分型", ws2: "LBC 细胞学", ws3: "PAX1m/JAM3m",
+      tl1: "METHY3 · 2020.11–2021.12", tl2: "METHY4 · 2022.5–2022.10",
+      s2a: "<strong>队列</strong>：METHY3 + METHY4，机会性筛查；实验室设盲。",
+      s2b: "<strong>终点</strong>：CIN3+ 检出；对照 LBC ≥ASC-US；组织学来自阴道镜/手术。",
+      s2c: "<strong>统计</strong>：ROC/AUC、McNemar；SPSS 26 / R 4.1.2。",
+      s2d: "<strong>入排</strong>：≥18 岁、宫颈完整、无严重免疫缺陷。",
+      s2e: "<strong>检测</strong>：亚硫酸盐转化 + qPCR（GAPDH 内参，ABI 7500）。",
+      s2f: "<strong>结局</strong>：1,851 例中 CIN3+ 151 例（131 CIN3 + 20 癌症）。",
+      s2h1: "正常/CIN1", s2h2: "CIN2", s2h3: "CIN3", s2h4: "癌症 (n=20)",
+      s3t: "关键结果——信号与性能",
+      s3c: "PAX1/JAM3 ΔCt 按组织学与 LBC 分级分布——病变越重甲基化越高（P&lt;0.05）。",
+      s3g: "各分诊方案灵敏度 vs 特异度（数据：表 2）——甲基化两项均高；细胞学灵敏度高但特异度极低。",
+      s3h: "<b>量效关系：</b>病变进展时 ΔCt 降低——20 例癌症全部 PAX1m/JAM3m(+)；阳性判读 = ΔCt PAX1 ≤ 6.6 或 ΔCt JAM3 ≤ 10.0。",
+      sg1: "灵敏度", sg2: "特异度", sl1: "P/J(+)", sl2: "LBC≥ASC-US", sl3: "P/J(+)", sl4: "LBC≥ASC-US",
+      og0: "CIN3+ 的优势比", og1: "PAX1m/JAM3m", og2: "JAM3m", og3: "PAX1m", og4: "LBC ≥ASC-US", og5: "OR（95% CI）vs 标志物阴性 · P < 0.001 · 数据：表 3",
+      s3i: "CIN3+ 的 OR（表 3）——P/J(+) 42.6 vs LBC(+) 3.3。",
+      s4t: "CIN3+ 检出与转诊负担",
+      t_h1: "方法", t_h2: "灵敏度%", t_h3: "特异度%", t_h4: "AUC", t_h5: "NPV%",
+      t_r1a: "PAX1m/JAM3m (+)", t_r2a: "LBC ≥ ASC-US", t_r3a: "LBC 或 P/J (+)",
+      s4note: "CIN3+ 的 OR：<b>P/J(+) 42.6</b>（27.1–69.6）vs LBC(+) 3.3（2.0–5.9），P&lt;0.001。",
+      r_h1: "分诊", r_h2: "转诊例数", r_h3: "占 1,851 比例",
+      r_r1a: "PAX1m/JAM3m (+)", r_r2a: "LBC ≥ ASC-US", r_r3a: "LBC 或 P/J (+)",
+      rnote: "单独甲基化分诊的<b>转诊负担最低</b>。",
+      rbar1: "LBC ≥ ASC-US", rbar2: "PAX1m/JAM3m",
+      rbar3: "转诊率——P/J(+) 分诊减少转诊 57.2%。",
+      s5t: "癌症安全与风险管理",
+      s5s1: "癌症被 P/J(+) 检出", s5s1b: "100%", s5s2: "被 LBC ≥ASC-US 检出", s5s2b: "80% — 漏 4 例",
+      s5s3: "P/J(+) 时 CIN3+ 的 OR", s5s4: "P/J(−) 时的 NPV",
+      s5a: "<strong>细胞学漏诊</strong>：3 例鳞癌 + 1 例腺癌——全部 P/J(+)。",
+      s5b: "<strong>P/J(+)</strong> → 直接阴道镜（CIN3+ 风险高）；<strong>P/J(−)</strong> → 安全随访（NPV 98.5%）。",
+      s5c: "<strong>独立使用</strong>：加做细胞学无额外获益——单独甲基化即为更优策略。",
+      c_ttl: "临床意义",
+      c1: "<b>对非 16/18 hrHPV+ 女性，</b>PAX1m/JAM3m 是可直接落地的反射分诊：灵敏度与细胞学相当、特异度显著更高、阴道镜转诊减少 57%、癌症零漏诊。",
+      c2: "<b>常规应用</b> 可同时减轻患者、阴道镜服务与医疗费用负担。"
+    }
+  };
+
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

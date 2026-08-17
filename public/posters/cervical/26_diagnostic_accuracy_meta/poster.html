@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DNA Methylation for CIN3+/Cervical Cancer Detection — Ellis et al. 2026, Eur J Cancer</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #5：奖台排行榜 podium，与 #1 两栏 / #2 决策规则三栏 / #3 bento / #4 脊柱横带 均不同）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、白色 stat 卡、红色高亮表格
+  - 布局：标题带 → 奖台排行榜（JAM3/C13ORF18/PAX1 三张 DOR 榜，高度递进）→ 两栏（左 620px：①背景与目的 ②方法与证据；右 1fr：③标志物排行表 + ④结果图并排 + ⑤要点）→ 全宽临床意义带
+  - 选图：table2_markers.jpg（791x416 宽幅，13 标志物汇总表）+ posttest_probability.jpg（789x687，阴性后验概率图）+ forest_markers.jpg（670x996，竖长森林图）—— 后两张并排；PRISMA 流程图不用
+  - 约束：所有文字/图片不超出背景框；结果占最大面积；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1700px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1700px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1760px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  /* 奖台排行榜 */
+  .podium { flex: 0 0 auto; height: 128px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: flex-end; gap: 12px; padding: 10px 12px 0; }
+  .pod { flex: 1; border-radius: 10px 10px 0 0; padding: 9px 10px 8px; text-align: center; position: relative; }
+  .pod .rank { font-size: 12px; font-weight: 800; letter-spacing: 1px; color: #fff; opacity: 0.9; }
+  .pod .marker { font-size: 22px; font-weight: 800; color: #fff; margin-top: 2px; font-family: Georgia, "Times New Roman", serif; }
+  .pod .dor { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.95); margin-top: 2px; }
+  .pod .sub { font-size: 10.5px; color: rgba(255,255,255,0.85); margin-top: 1px; }
+  .pod.g1 { height: 92px; background: linear-gradient(180deg, rgba(215,75,74,0.98) 0%, rgba(215,75,74,0.9) 100%); }
+  .pod.g2 { height: 74px; background: linear-gradient(180deg, rgba(215,75,74,0.88) 0%, rgba(240,122,118,0.85) 100%); }
+  .pod.g3 { height: 60px; background: linear-gradient(180deg, rgba(240,122,118,0.85) 0%, rgba(240,122,118,0.7) 100%); }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 620px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 8px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel table, .panel .statrow, .panel .figrow, .panel .tnote, .panel .statcards { flex: 0 0 auto; }
+  .panel h3 { font-size: 14.5px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11.5px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 13.5px; line-height: 1.45; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 1px 0 6px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 4px 4px 4px; text-align: center; }
+  .stat .big { font-size: 21px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 10px; color: var(--muted); margin-top: 2px; line-height: 1.25; }
+
+  .chips { display: flex; align-items: center; gap: 6px; margin: 1px 0 6px; }
+  .chips .chip { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 5px; padding: 5px 4px; text-align: center; font-size: 11.5px; font-weight: 600; color: var(--accent-deep); }
+  .chips .charr { color: var(--secondary); font-size: 14px; font-weight: 800; }
+
+  .hbar { display: flex; flex-direction: column; gap: 3px; margin: 1px 0 5px; }
+  .hb { display: flex; align-items: center; gap: 8px; }
+  .hb .hbl { flex: 0 0 118px; font-size: 10.5px; color: var(--muted); font-weight: 600; text-align: right; }
+  .hb .htrack { flex: 1 1 auto; height: 11px; background: #F1E7E7; border-radius: 3px; overflow: hidden; }
+  .hb .hfill { height: 100%; background: linear-gradient(90deg, var(--accent) 0%, var(--primary) 100%); border-radius: 3px; }
+  .hb .hv { flex: 0 0 52px; font-size: 11px; font-weight: 800; color: var(--accent-deep); }
+
+  .minitable { width: 100%; border-collapse: collapse; margin: 2px 0 4px 0; font-size: 12px; }
+  .minitable th { background: rgba(215,75,74,0.12); color: var(--accent-deep); font-weight: 700; padding: 4px 6px; text-align: left; border-bottom: 2px solid var(--line); font-size: 11px; }
+  .minitable td { padding: 4px 6px; border-bottom: 1px solid var(--line); color: var(--muted); }
+  .minitable td:first-child { font-weight: 600; color: var(--text); }
+  .minitable tr:last-child td { border-bottom: none; }
+  .minitable .highlight { color: var(--primary); font-weight: 700; }
+  .tnote { font-size: 11px; color: var(--muted); line-height: 1.45; margin-top: 2px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .figrow { display: flex; gap: 14px; align-items: flex-start; justify-content: center; }
+  .fig { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px 5px; text-align: center; }
+  .fig img { display: inline-block; height: auto; max-height: 300px; width: auto; border-radius: 3px; }
+  .fig .figcap { font-size: 10.5px; color: var(--muted); font-style: italic; line-height: 1.35; margin-top: 4px; text-align: left; max-width: 330px; }
+  .fig .figcap strong { color: var(--primary); font-style: normal; }
+  .fig.tall img { max-height: 330px; }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Eur J Cancer · 2026 · Systematic Review &amp; Meta-Analysis · IF 7.9</div>
+    <h1 data-i18n="title">DNA Methylation Tests for High-Grade Cervical Lesions &amp; Cancer: Systematic Review &amp; Meta-Analysis</h1>
+    <div class="title_alt" data-i18n="title_alt">DNA 甲基化检测对高级别宫颈病变与宫颈癌的诊断效能：系统综述与 Meta 分析</div>
+    <div class="subtitle" data-i18n="subtitle">125 studies · 49,242 women · JAM3, C13ORF18, PAX1 most accurate for CIN3+ in hrHPV+ women · EPB41L3 lowest NLR → 1.35% post-test probability</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Ellis LB et al. · PROSPERO CRD42022299760</div>
+      <div class="source" data-i18n="source">Open access · doi: <a href="https://doi.org/10.1016/j.ejca.2026.116823" target="_blank" rel="noopener">10.1016/j.ejca.2026.116823</a></div>
+    </div>
+  </header>
+
+  <!-- 奖台排行榜 -->
+  <div class="podium">
+    <div class="pod g2">
+      <div class="rank" data-i18n="p2r">2nd · DOR</div>
+      <div class="marker">C13ORF18</div>
+      <div class="dor" data-i18n="p2d">DOR 19.50 · Sp 93%</div>
+      <div class="sub" data-i18n="p2s">Se 61% (49–72)</div>
+    </div>
+    <div class="pod g1">
+      <div class="rank" data-i18n="p1r">1st · DOR</div>
+      <div class="marker">JAM3</div>
+      <div class="dor" data-i18n="p1d">DOR 20.82 · Se 74% · Sp 88%</div>
+      <div class="sub" data-i18n="p1s">CIN3+ · hrHPV+ women</div>
+    </div>
+    <div class="pod g3">
+      <div class="rank" data-i18n="p3r">3rd · DOR</div>
+      <div class="marker">PAX1</div>
+      <div class="dor" data-i18n="p3d">DOR 17.13 · Sp 87%</div>
+      <div class="sub" data-i18n="p3s">Se 71% (64–77)</div>
+    </div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Problem</strong>: cytology triage has modest sensitivity (53–75%) and inter-observer variability; many countries now use hrHPV primary screening, needing reliable triage.</li>
+          <li data-i18n="s1b"><strong>Methylation</strong>: measurable epigenetic change correlated with malignant transformation; many markers proposed but rarely head-to-head compared.</li>
+          <li data-i18n="s1c"><strong>Objective</strong>: collate all published human/viral DNA methylation tests for CIN3+/ICC and estimate pooled diagnostic accuracy in hrHPV+ women.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Methods &amp; Evidence Base</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">2,097</div><div class="lab" data-i18n="s2s1">records screened</div></div>
+          <div class="stat"><div class="big">125</div><div class="lab" data-i18n="s2s2">studies included</div></div>
+          <div class="stat"><div class="big">49,242</div><div class="lab" data-i18n="s2s3">women</div></div>
+        </div>
+        <div class="chips">
+          <span class="chip" data-i18n="ch1">2,097 screened</span><span class="charr">→</span>
+          <span class="chip" data-i18n="ch2">784 full-text</span><span class="charr">→</span>
+          <span class="chip" data-i18n="ch3">125 included</span>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">13</div><div class="lab" data-i18n="s2s4">markers · primary</div></div>
+          <div class="stat"><div class="big">32</div><div class="lab" data-i18n="s2s5">markers · all women</div></div>
+          <div class="stat"><div class="big">GRADE</div><div class="lab" data-i18n="s2s6">certainty</div></div>
+        </div>
+        <table class="minitable">
+          <tr><th data-i18n="rk_h1">Pre-test risk</th><th data-i18n="rk_h2">Post-test (−) EPB41L3</th><th data-i18n="rk_h3">10/13 markers</th></tr>
+          <tr><td data-i18n="rk_r1a">Low · 5%</td><td class="highlight">1.35%</td><td>&lt;2%</td></tr>
+          <tr><td data-i18n="rk_r2a">Moderate · 9%</td><td>2.51%</td><td>&lt;2%</td></tr>
+          <tr><td data-i18n="rk_r3a">High · 17%</td><td>≈5%</td><td>&lt;3%</td></tr>
+        </table>
+        <div class="hbar">
+          <div class="hb"><div class="hbl" data-i18n="hb1">EPB41L3</div><div class="htrack"><div class="hfill" style="width:13%"></div></div><span class="hv">1.35%</span></div>
+          <div class="hb"><div class="hbl" data-i18n="hb2">JAM3</div><div class="htrack"><div class="hfill" style="width:18%"></div></div><span class="hv">1.8%</span></div>
+          <div class="hb"><div class="hbl" data-i18n="hb3">PAX1</div><div class="htrack"><div class="hfill" style="width:20%"></div></div><span class="hv">2.0%</span></div>
+          <div class="hb"><div class="hbl" data-i18n="hb4">FAM19A4/miR124-2</div><div class="htrack"><div class="hfill" style="width:27%"></div></div><span class="hv">2.66%</span></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Search</strong>: MEDLINE, Embase, CENTRAL to 31 Mar 2025; PROSPERO CRD42022299760; PRISMA-DTA.</li>
+          <li data-i18n="s2b"><strong>Analysis</strong>: bivariate random-effects meta-analysis per marker; HSROC; QUADAS-2 risk of bias; GRADE.</li>
+          <li data-i18n="s2c"><strong>Primary endpoint</strong>: CIN3+ in hrHPV+ women; secondary CIN2+/ICC; each marker analysed separately.</li>
+          <li data-i18n="s2d"><strong>Pre/post-test</strong>: low (5%) / moderate (9%) / high (17%) risk settings; referral threshold ≥10% post-test probability.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">3</span><span data-i18n="s3t">Top Markers — CIN3+ in hrHPV+ Women</span></h3>
+        <table class="minitable">
+          <tr><th data-i18n="t_h1">Marker</th><th data-i18n="t_h2">DOR</th><th data-i18n="t_h3">Se %</th><th data-i18n="t_h4">Sp %</th><th data-i18n="t_h5">NLR</th></tr>
+          <tr><td class="highlight" data-i18n="t_r1a">JAM3</td><td class="highlight">20.82</td><td>74</td><td>88</td><td>0.30</td></tr>
+          <tr><td data-i18n="t_r2a">C13ORF18</td><td>19.50</td><td>61</td><td class="highlight">93</td><td>0.42</td></tr>
+          <tr><td data-i18n="t_r3a">PAX1</td><td>17.13</td><td>71</td><td>87</td><td>0.33</td></tr>
+          <tr><td data-i18n="t_r4a">S5 classifier</td><td>4.46</td><td class="highlight">84</td><td>47</td><td>0.34</td></tr>
+        </table>
+        <div class="tnote" data-i18n="s3note">Highest sensitivity: S5 (84%); highest specificity: C13ORF18 (93%); lowest NLR: <b>EPB41L3 0.26</b>.</div>
+      </div>
+
+      <div class="panel grow" style="background: var(--panel-alt);">
+        <h3><span class="num">4</span><span data-i18n="s4t">Results — Post-Test Probability &amp; Forest</span></h3>
+        <div class="figrow">
+          <div class="fig">
+            <img src="images/posttest_probability.jpg" alt="Post-test probability plot by pre-test risk setting">
+            <div class="figcap"><strong>Fig.</strong> <span data-i18n="s4c1">Negative post-test probability — EPB41L3 1.35% in low-risk setting; 10/13 markers &lt;2%.</span></div>
+          </div>
+          <div class="fig tall">
+            <img src="images/forest_markers.jpg" alt="Forest plot of marker accuracy">
+            <div class="figcap"><strong>Fig.</strong> <span data-i18n="s4c2">Marker-level forest plots of pooled accuracy (per marker meta-analysis).</span></div>
+          </div>
+        </div>
+        <ul style="margin-top:6px;">
+          <li data-i18n="s4a"><strong>Rule-out power</strong>: all 13/13 markers reach ≤3% negative post-test probability; none reach &lt;1%.</li>
+          <li data-i18n="s4b"><strong>Certainty</strong>: JAM3/C13ORF18/PAX1 best by DOR — consistent with CISCER® dual-gene test.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Methylation tests provide high diagnostic accuracy for CIN3+/ICC</b> in hrHPV+ women; JAM3, C13ORF18 and PAX1 are the most accurate markers — supporting methylation-based triage in HPV-positive screening.</li>
+      <li data-i18n="c2"><b>Negative results are safe</b> (post-test probability ≤3%, often &lt;2%) — but most markers still need rigorous validation in European, sub-Saharan African and Indian settings.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Eur J Cancer · 2026 · Systematic Review & Meta-Analysis · IF 7.9",
+      title: "DNA Methylation Tests for High-Grade Cervical Lesions & Cancer: Systematic Review & Meta-Analysis",
+      title_alt: "DNA 甲基化检测对高级别宫颈病变与宫颈癌的诊断效能：系统综述与 Meta 分析",
+      subtitle: "125 studies · 49,242 women · JAM3, C13ORF18, PAX1 most accurate for CIN3+ in hrHPV+ women · EPB41L3 lowest NLR → 1.35% post-test probability",
+      authors: "Ellis LB et al. · PROSPERO CRD42022299760",
+      source: 'Open access · doi: <a href="https://doi.org/10.1016/j.ejca.2026.116823" target="_blank" rel="noopener">10.1016/j.ejca.2026.116823</a>',
+      p2r: "2nd · DOR", p2d: "DOR 19.50 · Sp 93%", p2s: "Se 61% (49–72)",
+      p1r: "1st · DOR", p1d: "DOR 20.82 · Se 74% · Sp 88%", p1s: "CIN3+ · hrHPV+ women",
+      p3r: "3rd · DOR", p3d: "DOR 17.13 · Sp 87%", p3s: "Se 71% (64–77)",
+      s1t: "Background & Objective",
+      s1a: "<strong>Problem</strong>: cytology triage has modest sensitivity (53–75%) and inter-observer variability; many countries now use hrHPV primary screening, needing reliable triage.",
+      s1b: "<strong>Methylation</strong>: measurable epigenetic change correlated with malignant transformation; many markers proposed but rarely head-to-head compared.",
+      s1c: "<strong>Objective</strong>: collate all published human/viral DNA methylation tests for CIN3+/ICC and estimate pooled diagnostic accuracy in hrHPV+ women.",
+      s2t: "Methods & Evidence Base",
+      s2s1: "records screened", s2s2: "studies included", s2s3: "women",
+      ch1: "2,097 screened", ch2: "784 full-text", ch3: "125 included",
+      s2s4: "markers · primary", s2s5: "markers · all women", s2s6: "certainty",
+      rk_h1: "Pre-test risk", rk_h2: "Post-test (−) EPB41L3", rk_h3: "10/13 markers",
+      rk_r1a: "Low · 5%", rk_r2a: "Moderate · 9%", rk_r3a: "High · 17%",
+      hb1: "EPB41L3", hb2: "JAM3", hb3: "PAX1", hb4: "FAM19A4/miR124-2",
+      s2a: "<strong>Search</strong>: MEDLINE/Embase/CENTRAL to 2025; PROSPERO CRD42022299760.",
+      s2b: "<strong>Analysis</strong>: bivariate random-effects meta-analysis per marker; HSROC; QUADAS-2 risk of bias; GRADE.",
+      s2c: "<strong>Primary endpoint</strong>: CIN3+ in hrHPV+; secondary CIN2+/ICC; each marker separate.",
+      s2d: "<strong>Pre/post-test</strong>: low (5%) / moderate (9%) / high (17%); referral ≥10% post-test probability.",
+      s3t: "Top Markers — CIN3+ in hrHPV+ Women",
+      t_h1: "Marker", t_h2: "DOR", t_h3: "Se %", t_h4: "Sp %", t_h5: "NLR",
+      t_r1a: "JAM3", t_r2a: "C13ORF18", t_r3a: "PAX1", t_r4a: "S5 classifier",
+      s3note: "Highest sensitivity: S5 (84%); highest specificity: C13ORF18 (93%); lowest NLR: <b>EPB41L3 0.26</b>.",
+      s4t: "Results — Post-Test Probability & Forest",
+      s4c1: "Negative post-test probability — EPB41L3 1.35% in low-risk setting; 10/13 markers <2%.",
+      s4c2: "Marker-level forest plots of pooled accuracy (per marker meta-analysis).",
+      s4a: "<strong>Rule-out power</strong>: all 13/13 markers reach ≤3% negative post-test probability; none reach <1%.",
+      s4b: "<strong>Certainty</strong>: JAM3/C13ORF18/PAX1 best by DOR — consistent with CISCER® dual-gene test.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Methylation tests provide high diagnostic accuracy for CIN3+/ICC</b> in hrHPV+ women; JAM3, C13ORF18 and PAX1 are the most accurate markers — supporting methylation-based triage in HPV-positive screening.",
+      c2: "<b>Negative results are safe</b> (post-test probability ≤3%, often <2%) — but most markers still need rigorous validation in European, sub-Saharan African and Indian settings."
+    },
+    zh: {
+      kicker: "Eur J Cancer · 2026 · 系统综述与 Meta 分析 · IF 7.9",
+      title: "DNA 甲基化检测对高级别宫颈病变与宫颈癌的诊断效能：系统综述与 Meta 分析",
+      title_alt: "DNA Methylation Tests for High-Grade Cervical Lesions & Cancer: Systematic Review & Meta-Analysis",
+      subtitle: "125 项研究 · 49,242 例女性 · hrHPV+ 女性 CIN3+ 检测中 JAM3、C13ORF18、PAX1 最准确 · EPB41L3 NLR 最低 → 后验概率 1.35%",
+      authors: "Ellis LB 等 · PROSPERO CRD42022299760",
+      source: '开放获取 · doi: <a href="https://doi.org/10.1016/j.ejca.2026.116823" target="_blank" rel="noopener">10.1016/j.ejca.2026.116823</a>',
+      p2r: "第 2 · DOR", p2d: "DOR 19.50 · 特异度 93%", p2s: "灵敏度 61%（49–72）",
+      p1r: "第 1 · DOR", p1d: "DOR 20.82 · Se 74% · Sp 88%", p1s: "CIN3+ · hrHPV+ 女性",
+      p3r: "第 3 · DOR", p3d: "DOR 17.13 · 特异度 87%", p3s: "灵敏度 71%（64–77）",
+      s1t: "背景与目的",
+      s1a: "<strong>问题</strong>：细胞学分诊灵敏度有限（53–75%）且观察者间差异大；多国已采用 hrHPV 初筛，需要可靠的分诊手段。",
+      s1b: "<strong>甲基化</strong>：可测定的表观遗传改变，与恶性转化相关；候选标志物多，但极少头对头比较。",
+      s1c: "<strong>目的</strong>：汇总所有已发表的人源/病毒 DNA 甲基化检测对 CIN3+/宫颈癌的诊断效能，估算 hrHPV+ 女性中的合并准确度。",
+      s2t: "方法与证据基础",
+      s2s1: "条记录筛选", s2s2: "项研究纳入", s2s3: "例女性",
+      ch1: "筛选 2,097 篇", ch2: "全文 784 篇", ch3: "纳入 125 篇",
+      s2s4: "标志物 · 主要分析", s2s5: "标志物 · 全部女性", s2s6: "证据分级",
+      rk_h1: "先验风险", rk_h2: "EPB41L3 阴性后验", rk_h3: "10/13 标志物",
+      rk_r1a: "低 · 5%", rk_r2a: "中 · 9%", rk_r3a: "高 · 17%",
+      hb1: "EPB41L3", hb2: "JAM3", hb3: "PAX1", hb4: "FAM19A4/miR124-2",
+      s2a: "<strong>检索</strong>：MEDLINE、Embase、CENTRAL 至 2025.3.31；PROSPERO CRD42022299760；PRISMA-DTA。",
+      s2b: "<strong>分析</strong>：各标志物双变量随机效应 Meta 分析；HSROC；QUADAS-2 偏倚评估；GRADE。",
+      s2c: "<strong>主要终点</strong>：hrHPV+ 女性 CIN3+；次要 CIN2+/宫颈癌；各标志物独立分析。",
+      s2d: "<strong>先验/后验</strong>：低（5%）/中（9%）/高（17%）风险情境；转诊阈值 ≥10% 后验概率。",
+      s3t: "最佳标志物 —— hrHPV+ 女性 CIN3+",
+      t_h1: "标志物", t_h2: "DOR", t_h3: "灵敏度%", t_h4: "特异度%", t_h5: "NLR",
+      t_r1a: "JAM3", t_r2a: "C13ORF18", t_r3a: "PAX1", t_r4a: "S5 分类器",
+      s3note: "灵敏度最高：S5（84%）；特异度最高：C13ORF18（93%）；NLR 最低：<b>EPB41L3 0.26</b>。",
+      s4t: "结果——后验概率与森林图",
+      s4c1: "阴性后验概率——低风险情境 EPB41L3 1.35%；10/13 标志物 &lt;2%。",
+      s4c2: "各标志物合并准确度的森林图（逐标志物 Meta 分析）。",
+      s4a: "<strong>排除能力</strong>：13/13 标志物阴性后验概率 ≤3%；无一达到 &lt;1%。",
+      s4b: "<strong>证据强度</strong>：JAM3/C13ORF18/PAX1 DOR 最优——与 CISCER® 双基因检测一致。",
+      c_ttl: "临床意义",
+      c1: "<b>甲基化检测对 hrHPV+ 女性 CIN3+/宫颈癌具有高诊断效能；</b>JAM3、C13ORF18、PAX1 是最准确标志物——支持 HPV 阳性筛查中采用甲基化分诊。",
+      c2: "<b>阴性结果安全</b>（后验概率 ≤3%，多为 &lt;2%）——但多数标志物仍需在欧洲、撒哈拉以南非洲与印度严格验证。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CDO1/CELF4 Methylation for EC Screening in Premenopausal AUB — Zhao et al. 2025</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #29：绝经前 AUB 筛查）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、大数字卡、条形对比
+  - 布局：标题带 → hero（296 例 / CDO1m OR 64.49 红卡 / 双基因 Se 85.7% / Sp 87.6%）→ 两栏（左 560px：①背景与目的 ②研究设计；右 1fr：③危险因素 OR 条形 ④ROC 与双基因效能 ⑤亚组联合 AUC）→ 全宽临床意义带
+  - 选图：ROC（482×389）
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 98px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 22px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .figrow, .panel .rocwrap { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 0 0 5px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 12px 4px; text-align: center; }
+  .stat .big { font-size: 18px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .figrow { display: flex; gap: 12px; align-items: flex-start; justify-content: center; }
+  .fig { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px 5px; text-align: center; min-width: 0; }
+  .fig img { display: inline-block; height: auto; max-height: 200px; width: auto; max-width: 100%; border-radius: 3px; align-self: center; }
+  .fig .figcap { font-size: 10px; color: var(--muted); font-style: italic; line-height: 1.3; margin-top: 3px; text-align: left; }
+  .fig .figcap strong { color: var(--primary); font-style: normal; }
+
+  .rocwrap { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); grid-template-rows: 1fr; gap: 12px; align-items: stretch; margin: 2px 0 0; }
+  .rocwrap .fig { display: flex; flex-direction: column; justify-content: center; }
+  .rocwrap .fig img { align-self: center; max-height: 240px; }
+  .rocwrap .side { display: flex; flex-direction: column; justify-content: center; gap: 6px; min-width: 0; }
+  .rocwrap .side ul { margin-top: 2px; }
+
+  .spbars { margin: 2px 0 6px; }
+  .spb { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+  .spb .sbl { flex: 0 0 150px; font-size: 11.5px; font-weight: 700; color: var(--text); text-align: right; }
+  .spb .sbt { flex: 1 1 auto; height: 20px; background: #F1E7E7; border-radius: 5px; overflow: hidden; position: relative; }
+  .spb .sbf { height: 100%; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 12px; font-weight: 800; color: #fff; }
+  .spb.win .sbf { background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); }
+  .spb.lose .sbf { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); color: #6B5755; }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 3px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+  body.lang-zh .panel ul li { line-height: 1.45; margin-bottom: 5px; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Int J Gynecol Cancer · 2025;35(10):102110 · Screening Study · China</div>
+    <h1 data-i18n="title">CDO1/CELF4 Methylation for EC Screening in Premenopausal AUB</h1>
+    <div class="title_alt" data-i18n="title_alt">DNA methylation detection is a significant biomarker for screening endometrial cancer in premenopausal women with abnormal uterine bleeding</div>
+    <div class="subtitle" data-i18n="subtitle">296 premenopausal AUB women · CDO1m OR 64.49 · dual-gene Se 85.7% / Sp 87.6% · dual + BMI/ET AUC up to 0.955</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Zhao X, Yang Y, Fu Y, Lv W, Xu D</div>
+      <div class="source" data-i18n="source">Third Xiangya Hospital, Central South University · Int J Gynecol Cancer 2025;35(10):102110 · doi:10.1136/ijgc-2024-005723</div>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="stat"><div class="big">296</div><div class="lab" data-i18n="h1">premenopausal AUB</div></div>
+    <div class="stat hot"><div class="big">OR 64.49</div><div class="lab" data-i18n="h2">CDO1m risk factor</div></div>
+    <div class="stat"><div class="big">85.7%</div><div class="lab" data-i18n="h3">dual-gene Se</div></div>
+    <div class="stat"><div class="big">87.6%</div><div class="lab" data-i18n="h4">dual-gene Sp</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Problem</strong>: AUB is common but few have EC; TVS &amp; CA125 limited; invasive hysteroscopy over-used.</li>
+          <li data-i18n="s1b"><strong>Objective</strong>: validate CDO1m/CELF4m screening in premenopausal AUB, alone &amp; combined with BMI/ET.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">296</div><div class="lab" data-i18n="s2s1">premenopausal AUB</div></div>
+          <div class="stat"><div class="big">2021.11–22.10</div><div class="lab" data-i18n="s2s2">enrollment</div></div>
+          <div class="stat"><div class="big">hysteroscopy</div><div class="lab" data-i18n="s2s3">gold standard</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Setting</strong>: Third Xiangya Hospital OB/GYN; consecutive premenopausal AUB.</li>
+          <li data-i18n="s2b"><strong>Assays</strong>: ThinPrep cervical cells → CDO1m/CELF4m; TVS ET; serum CA125.</li>
+          <li data-i18n="s2c"><strong>Readout</strong>: CDO1m ΔCt ≤8.4 · CELF4m ΔCt ≤8.8 · dual = either positive.</li>
+          <li data-i18n="s2d"><strong>Analysis</strong>: univariate logistic (OR) · ROC/AUC · subgroup by BMI &amp; ET.</li>
+          <li data-i18n="s2e"><strong>Cut-offs</strong>: BMI ≥25 · ET ≥11 mm (premenopausal proliferative phase).</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">64.49</div><div class="lab" data-i18n="s2s4">CDO1m OR (20.5–203.3)</div></div>
+          <div class="stat"><div class="big">42.53</div><div class="lab" data-i18n="s2s5">dual OR (11.9–152.0)</div></div>
+          <div class="stat"><div class="big">12.79</div><div class="lab" data-i18n="s2s6">CELF4m OR (4.9–33.3)</div></div>
+        </div>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s2j1">dual Se</div><div class="sbt"><div class="sbf" style="width:85.7%">85.7%</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s2j2">dual Sp</div><div class="sbt"><div class="sbf" style="width:87.6%">87.6%</div></div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">Se 85.7%</div><div class="lab" data-i18n="s2s7">dual · sensitivity</div></div>
+          <div class="stat"><div class="big">Sp 87.6%</div><div class="lab" data-i18n="s2s8">dual · specificity</div></div>
+          <div class="stat"><div class="big">AUC 0.955</div><div class="lab" data-i18n="s2s9">best combo</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2l"><strong>AUB spectrum</strong>: menorrhagia · cycle irregularity · intermenstrual spotting.</li>
+          <li data-i18n="s2m"><strong>Outcome</strong>: EC confirmed by hysteroscopic histology in this cohort.</li>
+          <li data-i18n="s2f"><strong>Why premenopausal AUB</strong>: younger EC is rising; TVS thresholds controversial in this group.</li>
+          <li data-i18n="s2g"><strong>CA125</strong>: classic marker but low accuracy — included for comparison.</li>
+          <li data-i18n="s2h"><strong>Reuse</strong>: ThinPrep sample also serves cytology — no extra collection.</li>
+          <li data-i18n="s2i"><strong>Protection</strong>: fewer unnecessary hysteroscopies preserves fertility &amp; reduces burden.</li>
+        </ul>
+        <ul>
+          <li data-i18n="s2j"><strong>Best model</strong>: BMI &lt;25 + ET + dual methylation AUC 0.955 — near-perfect screening.</li>
+          <li data-i18n="s2k"><strong>Independent value</strong>: each methylation marker significant even after BMI/ET adjustment.</li>
+        </ul>
+        <div class="tnote" data-i18n="s2n">Methylation outperformed other non-invasive indicators in this premenopausal AUB cohort; combining with BMI or ET further improves screening.</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Risk Factors — OR Comparison</span></h3>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s3a1">CDO1m</div><div class="sbt"><div class="sbf" style="width:100%">OR 64.49</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s3a2">Dual-gene</div><div class="sbt"><div class="sbf" style="width:66%">OR 42.53</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s3a3">CELF4m</div><div class="sbt"><div class="sbf" style="width:20%">OR 12.79</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s3a4">ET ≥11 mm</div><div class="sbt"><div class="sbf" style="width:13%">OR 8.41</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s3a5">BMI ≥25</div><div class="sbt"><div class="sbf" style="width:7.4%">OR 4.76</div></div></div>
+        </div>
+        <ul>
+          <li data-i18n="s3a"><strong>Methylation dominates</strong>: CDO1m OR 64.49 (20.46–203.33) — far above ET/BMI.</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">ROC &amp; Dual-Gene Performance</span></h3>
+        <div class="rocwrap">
+          <div class="fig">
+            <img src="images/fig_roc.jpg" alt="ROC curves of methylation, ET and combinations">
+            <div class="figcap"><strong>Fig.</strong> <span data-i18n="s4c1">ROC — ET, single/dual methylation &amp; combined models for EC screening.</span></div>
+          </div>
+          <div class="side">
+            <div class="statrow">
+              <div class="stat hot"><div class="big">85.7%</div><div class="lab" data-i18n="s4s1">Se · dual</div></div>
+              <div class="stat hot"><div class="big">87.6%</div><div class="lab" data-i18n="s4s2">Sp · dual</div></div>
+            </div>
+            <ul>
+              <li data-i18n="s4a"><strong>Best balance</strong>: dual-gene methylation highest Se/Sp among single tests.</li>
+              <li data-i18n="s4b"><strong>Combination</strong>: dual + BMI or ET lifts screening efficiency further.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Subgroup Combined AUC</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">0.955</div><div class="lab" data-i18n="s5s1">BMI &lt;25 · ET+dual</div></div>
+          <div class="stat hot"><div class="big">0.898</div><div class="lab" data-i18n="s5s2">BMI ≥25 · ET+dual</div></div>
+          <div class="stat"><div class="big">0.938</div><div class="lab" data-i18n="s5s3">ET ≥11 · BMI+dual</div></div>
+          <div class="stat"><div class="big">0.906</div><div class="lab" data-i18n="s5s4">ET &lt;11 · BMI+dual</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s5a"><strong>Consistently high</strong>: combined models reach AUC 0.90–0.96 in every subgroup.</li>
+          <li data-i18n="s5b"><strong>Practical</strong>: methylation + TVS/BMI is a simple clinic-based screening step.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Non-invasive EC screening for premenopausal AUB</b>: CDO1/CELF4 methylation (Se 85.7%, Sp 87.6%) beats TVS &amp; CA125.</li>
+      <li data-i18n="c2"><b>Reduces unnecessary hysteroscopy</b>: dual-gene + BMI/ET triage (AUC up to 0.955) — fewer invasive procedures, lower psychological burden.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Int J Gynecol Cancer · 2025;35(10):102110 · Screening Study · China",
+      title: "CDO1/CELF4 Methylation for EC Screening in Premenopausal AUB",
+      title_alt: "DNA methylation detection is a significant biomarker for screening endometrial cancer in premenopausal women with abnormal uterine bleeding",
+      subtitle: "296 premenopausal AUB women · CDO1m OR 64.49 · dual-gene Se 85.7% / Sp 87.6% · dual + BMI/ET AUC up to 0.955",
+      authors: "Zhao X, Yang Y, Fu Y, Lv W, Xu D",
+      source: "Third Xiangya Hospital, Central South University · Int J Gynecol Cancer 2025;35(10):102110 · doi:10.1136/ijgc-2024-005723",
+      h1: "premenopausal AUB", h2: "CDO1m risk factor", h3: "dual-gene Se", h4: "dual-gene Sp",
+      s1t: "Background & Objective",
+      s1a: "<strong>Problem</strong>: AUB is common but few have EC; TVS & CA125 limited; invasive hysteroscopy over-used.",
+      s1b: "<strong>Objective</strong>: validate CDO1m/CELF4m screening in premenopausal AUB, alone & combined with BMI/ET.",
+      s2t: "Study Design & Cohort",
+      s2s1: "premenopausal AUB", s2s2: "enrollment", s2s3: "gold standard",
+      s2a: "<strong>Setting</strong>: Third Xiangya Hospital OB/GYN; consecutive premenopausal AUB.",
+      s2b: "<strong>Assays</strong>: ThinPrep cervical cells → CDO1m/CELF4m; TVS ET; serum CA125.",
+      s2c: "<strong>Readout</strong>: CDO1m ΔCt ≤8.4 · CELF4m ΔCt ≤8.8 · dual = either positive.",
+      s2d: "<strong>Analysis</strong>: univariate logistic (OR) · ROC/AUC · subgroup by BMI & ET.",
+      s2e: "<strong>Cut-offs</strong>: BMI ≥25 · ET ≥11 mm (premenopausal proliferative phase).",
+      s2s4: "CDO1m OR (20.5–203.3)", s2s5: "dual OR (11.9–152.0)", s2s6: "CELF4m OR (4.9–33.3)",
+      s2j1: "dual Se", s2j2: "dual Sp",
+      s2s7: "dual · sensitivity", s2s8: "dual · specificity", s2s9: "best combo",
+      s2l: "<strong>AUB spectrum</strong>: menorrhagia · cycle irregularity · intermenstrual spotting.",
+      s2m: "<strong>Outcome</strong>: EC confirmed by hysteroscopic histology in this cohort.",
+      s2f: "<strong>Why premenopausal AUB</strong>: younger EC is rising; TVS thresholds controversial in this group.",
+      s2g: "<strong>CA125</strong>: classic marker but low accuracy — included for comparison.",
+      s2h: "<strong>Reuse</strong>: ThinPrep sample also serves cytology — no extra collection.",
+      s2i: "<strong>Protection</strong>: fewer unnecessary hysteroscopies preserves fertility & reduces burden.",
+      s2j: "<strong>Best model</strong>: BMI <25 + ET + dual methylation AUC 0.955 — near-perfect screening.",
+      s2k: "<strong>Independent value</strong>: each methylation marker significant even after BMI/ET adjustment.",
+      s2n: "Methylation outperformed other non-invasive indicators in this premenopausal AUB cohort.",
+      s3t: "Risk Factors — OR Comparison",
+      s3a1: "CDO1m", s3a2: "Dual-gene", s3a3: "CELF4m", s3a4: "ET ≥11 mm", s3a5: "BMI ≥25",
+      s3a: "<strong>Methylation dominates</strong>: CDO1m OR 64.49 (20.46–203.33) — far above ET/BMI.",
+      s4t: "ROC & Dual-Gene Performance",
+      s4c1: "ROC — ET, single/dual methylation & combined models for EC screening.",
+      s4s1: "Se · dual", s4s2: "Sp · dual",
+      s4a: "<strong>Best balance</strong>: dual-gene methylation highest Se/Sp among single tests.",
+      s4b: "<strong>Combination</strong>: dual + BMI or ET lifts screening efficiency further.",
+      s5t: "Subgroup Combined AUC",
+      s5s1: "BMI <25 · ET+dual", s5s2: "BMI ≥25 · ET+dual", s5s3: "ET ≥11 · BMI+dual", s5s4: "ET <11 · BMI+dual",
+      s5a: "<strong>Consistently high</strong>: combined models reach AUC 0.90–0.96 in every subgroup.",
+      s5b: "<strong>Practical</strong>: methylation + TVS/BMI is a simple clinic-based screening step.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Non-invasive EC screening for premenopausal AUB</b>: CDO1/CELF4 methylation (Se 85.7%, Sp 87.6%) beats TVS & CA125.",
+      c2: "<b>Reduces unnecessary hysteroscopy</b>: dual-gene + BMI/ET triage (AUC up to 0.955) — fewer invasive procedures, lower psychological burden."
+    },
+    zh: {
+      kicker: "Int J Gynecol Cancer · 2025;35(10):102110 · 筛查研究 · 中国",
+      title: "CDO1/CELF4 甲基化用于绝经前异常子宫出血女性子宫内膜癌筛查",
+      title_alt: "DNA 甲基化检测是绝经前异常子宫出血女性子宫内膜癌筛查的重要生物标志物",
+      subtitle: "296 例绝经前 AUB · CDO1m OR 64.49 · 双基因 Se 85.7% / Sp 87.6% · 双基因 + BMI/ET AUC 最高 0.955",
+      authors: "赵行平、杨艳飞、傅银琴、吕卫刚、徐大宝",
+      source: "中南大学湘雅三医院 · Int J Gynecol Cancer 2025;35(10):102110 · doi:10.1136/ijgc-2024-005723",
+      h1: "绝经前 AUB", h2: "CDO1m 危险因素", h3: "双基因 Se", h4: "双基因 Sp",
+      s1t: "背景与目的",
+      s1a: "<strong>问题</strong>：AUB 常见但 EC 占比低；TVS 与 CA125 局限；有创宫腔镜过度使用。",
+      s1b: "<strong>目的</strong>：验证 CDO1m/CELF4m 在绝经前 AUB 中的筛查价值——单独及联合 BMI/ET。",
+      s2t: "研究设计与队列",
+      s2s1: "绝经前 AUB", s2s2: "入组期", s2s3: "金标准",
+      s2a: "<strong>地点</strong>：湘雅三医院妇产科；连续纳入绝经前 AUB。",
+      s2b: "<strong>检测</strong>：ThinPrep 宫颈细胞 → CDO1m/CELF4m；TVS 内膜厚度；血清 CA125。",
+      s2c: "<strong>判读</strong>：CDO1m ΔCt ≤8.4 · CELF4m ΔCt ≤8.8 · 双基因 = 任一阳性。",
+      s2d: "<strong>分析</strong>：单因素 Logistic（OR）· ROC/AUC · 按 BMI 与 ET 亚组。",
+      s2e: "<strong>阈值</strong>：BMI ≥25 · ET ≥11 mm（绝经前增殖期）。",
+      s2s4: "CDO1m OR（20.5–203.3）", s2s5: "双基因 OR（11.9–152.0）", s2s6: "CELF4m OR（4.9–33.3）",
+      s2j1: "双基因 Se", s2j2: "双基因 Sp",
+      s2s7: "双基因 · 灵敏度", s2s8: "双基因 · 特异度", s2s9: "最佳组合",
+      s2l: "<strong>AUB 表现谱</strong>：月经过多 · 周期紊乱 · 经间期出血。",
+      s2m: "<strong>结局</strong>：本队列 EC 经宫腔镜组织学确认。",
+      s2f: "<strong>为何选绝经前 AUB</strong>：年轻 EC 增多；该人群 TVS 阈值存在争议。",
+      s2g: "<strong>CA125</strong>：经典标志物但准确度低——纳入对比。",
+      s2h: "<strong>复用</strong>：ThinPrep 样本同时用于细胞学——无需额外采集。",
+      s2i: "<strong>保护</strong>：减少不必要宫腔镜——保护生育力、减轻负担。",
+      s2j: "<strong>最佳模型</strong>：BMI &lt;25 + ET + 双基因甲基化 AUC 0.955——近乎理想筛查。",
+      s2k: "<strong>独立价值</strong>：校正 BMI/ET 后各甲基化标志物仍显著。",
+      s2n: "在本绝经前 AUB 队列中，甲基化优于其他无创指标。",
+      s3t: "危险因素——OR 对比",
+      s3a1: "CDO1m", s3a2: "双基因", s3a3: "CELF4m", s3a4: "ET ≥11 mm", s3a5: "BMI ≥25",
+      s3a: "<strong>甲基化占主导</strong>：CDO1m OR 64.49（20.46–203.33）——远高于 ET/BMI。",
+      s4t: "ROC 与双基因效能",
+      s4c1: "ROC——ET、单/双基因甲基化及联合模型筛查 EC。",
+      s4s1: "Se · 双基因", s4s2: "Sp · 双基因",
+      s4a: "<strong>最佳平衡</strong>：双基因甲基化在单项检测中 Se/Sp 最高。",
+      s4b: "<strong>联合</strong>：双基因 + BMI 或 ET 进一步提升筛查效率。",
+      s5t: "亚组联合 AUC",
+      s5s1: "BMI &lt;25 · ET+双基因", s5s2: "BMI ≥25 · ET+双基因", s5s3: "ET ≥11 · BMI+双基因", s5s4: "ET &lt;11 · BMI+双基因",
+      s5a: "<strong>一致高水平</strong>：各亚组联合模型 AUC 均达 0.90–0.96。",
+      s5b: "<strong>实用</strong>：甲基化 + TVS/BMI 是简便的门诊筛查步骤。",
+      c_ttl: "临床意义",
+      c1: "<b>绝经前 AUB 无创筛查</b>：CDO1/CELF4 甲基化（Se 85.7%、Sp 87.6%）优于 TVS 与 CA125。",
+      c2: "<b>减少不必要宫腔镜</b>：双基因 + BMI/ET 分诊（AUC 最高 0.955）——减少有创检查与心理负担。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

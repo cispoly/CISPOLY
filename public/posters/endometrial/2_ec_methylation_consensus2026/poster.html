@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expert Consensus: Gene Methylation Screening for Endometrial Cancer — 2026</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #47：三人群推荐矩阵）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、推荐徽章、人群矩阵、决策卡
+  - 布局：标题带 → hero（3 目标人群 / 11 条推荐 / NMPA 批准 / 超声+甲基化联合）→ 两栏（左 560px：①背景与规范 ②关键问题与流程；右 1fr：③三人群推荐矩阵 ④超声×甲基化决策 ⑤采样与金标准）→ 全宽临床意义带
+  - 无图：全部用人群矩阵/决策卡呈现
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 96px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 20px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .groupmx, .panel .decgrid { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 0 0 5px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 11px 4px; text-align: center; }
+  .stat .big { font-size: 17px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .qgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+  .qcard { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; display: flex; gap: 8px; align-items: flex-start; }
+  .qcard .qn { flex: 0 0 auto; width: 22px; height: 22px; border-radius: 6px; background: rgba(215,75,74,0.85); color: #fff; font-weight: 800; font-size: 11px; display: flex; align-items: center; justify-content: center; }
+  .qcard .qt { flex: 1 1 auto; font-size: 10px; color: var(--muted); line-height: 1.3; }
+  .qcard .qt b { color: var(--primary); }
+  .qcard.hot { border-left: 4px solid var(--primary); background: var(--panel-alt); }
+  .pipeline { display: flex; align-items: stretch; gap: 4px; margin: 6px 0; }
+  .pstep { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 4px 6px; text-align: center; }
+  .pstep .pt { font-size: 10.5px; font-weight: 800; color: var(--primary); }
+  .pstep .pl { font-size: 8.5px; color: var(--muted); line-height: 1.25; margin-top: 1px; }
+  .pstep.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .pstep.hot .pt { color: #fff; } .pstep.hot .pl { color: rgba(255,255,255,0.92); }
+  .parrow { flex: 0 0 auto; align-self: center; font-size: 14px; font-weight: 800; color: var(--secondary); }
+  .groupmx { display: flex; flex-direction: column; gap: 6px; }
+  .grp { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; display: flex; gap: 12px; align-items: flex-start; }
+  .grp .gn { flex: 0 0 215px; font-size: 11.5px; font-weight: 800; color: var(--primary); line-height: 1.4; word-break: normal; }
+  .grp .gd { flex: 1 1 auto; font-size: 10.5px; color: var(--muted); line-height: 1.42; word-break: normal; overflow-wrap: break-word; }
+  .grp .gd b { color: var(--accent-deep); }
+  .grp .gb { flex: 0 0 auto; display: inline-flex; align-items: center; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.3); color: var(--accent-deep); font-size: 8.5px; font-weight: 700; border-radius: 10px; padding: 2px 8px; white-space: nowrap; align-self: center; }
+  .grp.hot { border-left: 4px solid var(--primary); background: var(--panel-alt); }
+
+  .decgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .dec { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; }
+  .dec .dt { font-size: 11.5px; font-weight: 800; color: var(--primary); margin-bottom: 3px; white-space: nowrap; }
+  .dec .dl { font-size: 10px; color: var(--muted); line-height: 1.4; word-break: normal; overflow-wrap: break-word; }
+  .dec .dl b { color: var(--accent-deep); }
+  .dec.hot { border-left: 4px solid var(--primary); background: var(--panel-alt); }
+
+  .flowroute { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 5px 10px; }
+  .flowroute img { display: block; max-height: 144px; width: auto; max-width: 100%; margin: 0 auto; }
+  .flowroute .fc { font-size: 10px; font-weight: 700; color: var(--primary); margin-top: 3px; text-align: center; }
+  .flowpops { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 6px; }
+  .fpop { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 5px 8px; }
+  .fpop img { display: block; max-height: 196px; width: auto; max-width: 100%; margin: 0 auto; }
+  .fpop .fc { font-size: 9.5px; font-weight: 700; color: var(--primary); margin-top: 3px; text-align: center; }
+  .fpop .fl { font-size: 8.5px; color: var(--muted); line-height: 1.25; margin-top: 1px; }
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 8px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+  body.lang-zh .panel ul li { line-height: 1.5; margin-bottom: 5px; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Natl Med J China · 2026;106(26):2701–2710 · Expert Consensus</div>
+    <h1 data-i18n="title">Gene Methylation Screening for Endometrial Cancer — Clinical Consensus 2026</h1>
+    <div class="title_alt" data-i18n="title_alt">子宫内膜癌基因甲基化筛查技术临床应用专家共识（2026 版）</div>
+    <div class="subtitle" data-i18n="subtitle">3 target populations · 11 recommendations (4 strong) · NMPA-approved methylation screening (2025) · ultrasound + methylation joint strategy</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">CSGO-CMA · CRHA OB/GYN · CMIHE Women's Health</div>
+      <div class="source" data-i18n="source">Natl Med J China 2026;106(26):2701–2710 · PREPARE-2026CN508 · Modified Delphi</div>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="stat hot"><div class="big">3</div><div class="lab" data-i18n="h1">target populations</div></div>
+    <div class="stat hot"><div class="big">11</div><div class="lab" data-i18n="h2">recommendations (4 strong)</div></div>
+    <div class="stat"><div class="big">NMPA</div><div class="lab" data-i18n="h3">approved 2025</div></div>
+    <div class="stat"><div class="big">TVS + Methyl</div><div class="lab" data-i18n="h4">joint screening</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Framework</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">84,520</div><div class="lab" data-i18n="s1s1">new cases China 2022</div></div>
+          <div class="stat"><div class="big">17,543</div><div class="lab" data-i18n="s1s2">deaths</div></div>
+          <div class="stat hot"><div class="big">&gt;90%</div><div class="lab" data-i18n="s1s3">early 5-y survival</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s1a"><strong>Selective screening</strong>: unlike cervical general screening, target high-risk groups.</li>
+          <li data-i18n="s1b"><strong>2025 NMPA</strong>: gene methylation screening approved — fills non-invasive gap.</li>
+          <li data-i18n="s1c"><strong>Method</strong>: WHO manual + Chinese guidance + RIGHT; modified Delphi (≥90% strong, 80–90% recommend).</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Key Questions &amp; Workflow</span></h3>
+        <div class="qgrid">
+          <div class="qcard hot"><div class="qn">1</div><div class="qt" data-i18n="s2a"><b>Suitability</b> — screening tech comparison.</div></div>
+          <div class="qcard"><div class="qn">2</div><div class="qt" data-i18n="s2b"><b>Sampling</b> — standardized workflow for methylation.</div></div>
+          <div class="qcard"><div class="qn">3</div><div class="qt" data-i18n="s2c1"><b>Symptomatic</b> — screening strategy.</div></div>
+          <div class="qcard"><div class="qn">4</div><div class="qt" data-i18n="s2c2"><b>Increased risk</b> — screening strategy.</div></div>
+          <div class="qcard"><div class="qn">5</div><div class="qt" data-i18n="s2c3"><b>High risk</b> — screening strategy.</div></div>
+          <div class="qcard"><div class="qn">6</div><div class="qt" data-i18n="s2d"><b>Management paths</b> — per TVS/methylation result.</div></div>
+        </div>
+        <div class="pipeline">
+          <div class="pstep"><div class="pt" data-i18n="s2p1">Sampling</div><div class="pl" data-i18n="s2p1l">standardized cells</div></div>
+          <div class="parrow">›</div>
+          <div class="pstep"><div class="pt" data-i18n="s2p2">TVS</div><div class="pl" data-i18n="s2p2l">primary screen</div></div>
+          <div class="parrow">›</div>
+          <div class="pstep hot"><div class="pt" data-i18n="s2p3">Methylation</div><div class="pl" data-i18n="s2p3l">joint triage</div></div>
+          <div class="parrow">›</div>
+          <div class="pstep"><div class="pt" data-i18n="s2p4">Pathology</div><div class="pl" data-i18n="s2p4l">gold standard</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">Symptomatic</div><div class="lab" data-i18n="s2s4">postmeno bleeding</div></div>
+          <div class="stat"><div class="big">Increased</div><div class="lab" data-i18n="s2s5">&gt;45 y · obesity · metabolic</div></div>
+          <div class="stat"><div class="big">High risk</div><div class="lab" data-i18n="s2s6">Lynch · family</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">Symptomatic</div><div class="lab" data-i18n="s2s7">screen promptly</div></div>
+          <div class="stat"><div class="big">45+ y</div><div class="lab" data-i18n="s2s8">increased-risk start</div></div>
+          <div class="stat"><div class="big">30–35 y</div><div class="lab" data-i18n="s2s9">Lynch surveillance</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2e"><strong>TVS limits</strong>: ET threshold debate; low specificity in AUB.</li>
+          <li data-i18n="s2f"><strong>Pathology limits</strong>: invasive · sampling failure · focal-lesion miss.</li>
+          <li data-i18n="s2g"><strong>Methylation edge</strong>: non-invasive · objective · fills screening gap.</li>
+          <li data-i18n="s2h"><strong>Panel</strong>: gynecology oncology · pathology · molecular diagnosis · epidemiology.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">4 / 11</div><div class="lab" data-i18n="s2j1">strong recommendations</div></div>
+          <div class="stat"><div class="big">7 / 11</div><div class="lab" data-i18n="s2j2">recommendations</div></div>
+          <div class="stat"><div class="big">80–90%</div><div class="lab" data-i18n="s2j3">vote threshold</div></div>
+        </div>
+        <div class="tnote" data-i18n="s2n">Evidence searched to 2025-12-31; multidisciplinary expert panel (oncology · pathology · epidemiology); 3-yr update plan.</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Recommendations &amp; Decision Matrix</span></h3>
+        <div class="groupmx">
+          <div class="grp hot"><div class="gn" data-i18n="s3g1">Symptomatic (postmeno bleeding)</div><div class="gd" data-i18n="s3d1"><b>Rec 1,4</b>: TVS first + methylation joint screening (strong); <b>Rec 5–6</b>: TVS(−)/M(+) → biopsy; TVS(+)/M(−) postmeno still biopsy.</div><div class="gb">强推 1,4</div></div>
+          <div class="grp"><div class="gn" data-i18n="s3g2">Increased risk (&gt;45 y · obesity · metabolic)</div><div class="gd" data-i18n="s3d2"><b>Rec 7</b>: annual TVS (strong); <b>Rec 8</b>: TVS(+) → add methylation; M(+) → pathology.</div><div class="gb">强推 7</div></div>
+          <div class="grp hot"><div class="gn" data-i18n="s3g3">High risk (Lynch · family history)</div><div class="gd" data-i18n="s3d3"><b>Rec 9</b>: annual TVS + methylation (strong); <b>Rec 10–11</b>: M(+) → biopsy; M(−) → close follow-up + genetic counseling/testing.</div><div class="gb">强推 9</div></div>
+        </div>
+        <div class="decgrid">
+          <div class="dec hot"><div class="dt" data-i18n="s4t1">TVS(−) · M(+)</div><div class="dl" data-i18n="s4l1">→ D&amp;C or hysteroscopic biopsy → pathology confirm.</div></div>
+          <div class="dec"><div class="dt" data-i18n="s4t2">TVS(−) · M(−)</div><div class="dl" data-i18n="s4l2">→ follow-up observation (symptomatic); high-risk: close follow-up + genetics.</div></div>
+          <div class="dec hot"><div class="dt" data-i18n="s4t3">TVS(+) · M(+)</div><div class="dl" data-i18n="s4l3">→ pathology confirmation required (all groups).</div></div>
+          <div class="dec"><div class="dt" data-i18n="s4t4">TVS(+) · M(−)</div><div class="dl" data-i18n="s4l4">→ postmenopausal: still pathology; premenopausal: symptomatic care + close follow-up.</div></div>
+        </div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">4</span><span data-i18n="s4t">Screening Flowcharts (Fig 1–4)</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">3</div><div class="lab" data-i18n="s4s7">target populations</div></div>
+          <div class="stat"><div class="big">11</div><div class="lab" data-i18n="s4s8">recommendations</div></div>
+          <div class="stat"><div class="big">NMPA 2025</div><div class="lab" data-i18n="s4s9">approved screening</div></div>
+        </div>
+        <div class="flowpops">
+          <div class="fpop"><img src="images/fig_pop1.png" alt="Fig2 symptomatic population flow"><div class="fc" data-i18n="s4f2">Fig 2 · Symptomatic (AUB)</div><div class="fl" data-i18n="s4l5">Postmeno TVS(+) · M(+) → priority hysteroscopic targeted biopsy.</div></div>
+          <div class="fpop"><img src="images/fig_pop2.png" alt="Fig3 increased-risk population flow"><div class="fc" data-i18n="s4f3">Fig 3 · Increased risk</div><div class="fl" data-i18n="s4l6">Obesity/metabolic — annual TVS; abnormal → methylation → pathology.</div></div>
+          <div class="fpop"><img src="images/fig_pop3.png" alt="Fig4 high-risk population flow"><div class="fc" data-i18n="s4f4">Fig 4 · High risk (Lynch)</div><div class="fl" data-i18n="s4l7">Annual TVS + methylation; M(+) → biopsy; M(−) → surveillance + genetics.</div></div>
+        </div>
+        <ul style="margin-top:4px;">
+          <li data-i18n="s4a2"><strong>Fig 2 (symptomatic)</strong>: TVS first → methylation joint → biopsy per matrix; postmeno M(+) prioritized for hysteroscopic biopsy.</li>
+          <li data-i18n="s4b2"><strong>Fig 3 (increased risk)</strong>: annual TVS; abnormal → methylation → pathology; normal → clinical follow-up.</li>
+          <li data-i18n="s4c2"><strong>Fig 4 (high risk)</strong>: annual TVS + methylation; M(+) → biopsy; M(−) → close surveillance + genetic testing.</li>
+        </ul>
+        <div class="tnote" data-i18n="s4n">Postmenopausal US-abnormal with methylation(+) — treat as high priority: choose hysteroscopic targeted biopsy to avoid missed diagnosis.</div>
+      </div>    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Structured selective screening</b>: symptomatic / increased-risk / high-risk populations each have tailored ultrasound + methylation strategies (11 recommendations).</li>
+      <li data-i18n="c2"><b>NMPA-approved methylation</b>: fills the non-invasive screening gap — with clear US×methylation management paths.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Natl Med J China · 2026;106(26):2701–2710 · Expert Consensus",
+      title: "Gene Methylation Screening for Endometrial Cancer — Clinical Consensus 2026",
+      title_alt: "子宫内膜癌基因甲基化筛查技术临床应用专家共识（2026 版）",
+      subtitle: "3 target populations · 11 recommendations (4 strong) · NMPA-approved methylation screening (2025) · ultrasound + methylation joint strategy",
+      authors: "CSGO-CMA · CRHA OB/GYN · CMIHE Women's Health",
+      source: "Natl Med J China 2026;106(26):2701–2710 · PREPARE-2026CN508 · Modified Delphi",
+      h1: "target populations", h2: "recommendations (4 strong)", h3: "approved 2025", h4: "joint screening",
+      s1t: "Background & Framework",
+      s1s1: "new cases China 2022", s1s2: "deaths", s1s3: "early 5-y survival",
+      s1a: "<strong>Selective screening</strong>: unlike cervical general screening, target high-risk groups.",
+      s1b: "<strong>2025 NMPA</strong>: gene methylation screening approved — fills non-invasive gap.",
+      s1c: "<strong>Method</strong>: WHO manual + Chinese guidance + RIGHT; modified Delphi (≥90% strong, 80–90% recommend).",
+      s2t: "Key Questions & Workflow",
+      s2a: "<b>Suitability</b> — screening tech comparison.",
+      s2b: "<b>Sampling</b> — standardized workflow for methylation.",
+      s2c1: "<b>Symptomatic</b> — screening strategy.",
+      s2c2: "<b>Increased risk</b> — screening strategy.",
+      s2c3: "<b>High risk</b> — screening strategy.",
+      s2d: "<b>Management paths</b> — per TVS/methylation result.",
+      s2p1: "Sampling", s2p1l: "standardized cells", s2p2: "TVS", s2p2l: "primary screen", s2p3: "Methylation", s2p3l: "joint triage", s2p4: "Pathology", s2p4l: "gold standard",
+      s2s4: "postmeno bleeding", s2s5: ">45 y · obesity · metabolic", s2s6: "Lynch · family",
+      s2s7: "screen promptly", s2s8: "increased-risk start", s2s9: "Lynch surveillance",
+      s2e: "<strong>TVS limits</strong>: ET threshold debate; low specificity in AUB.",
+      s2f: "<strong>Pathology limits</strong>: invasive · sampling failure · focal-lesion miss.",
+      s2g: "<strong>Methylation edge</strong>: non-invasive · objective · fills screening gap.",
+      s2h: "<strong>Panel</strong>: gynecology oncology · pathology · molecular diagnosis · epidemiology.",
+      s2j1: "strong recommendations", s2j2: "recommendations", s2j3: "vote threshold",
+      s2s1: "primary screen", s2s2: "joint triage", s2s3: "gold standard",
+      s2n: "Evidence searched to 2025-12-31; multidisciplinary expert panel (oncology · pathology · epidemiology).",
+      s3t: "Recommendations & Decision Matrix",
+      s3g1: "Symptomatic (postmeno bleeding)", s3g2: "Increased risk (>45 y · obesity · metabolic)", s3g3: "High risk (Lynch · family history)",
+      s3d1: "<b>Rec 1,4</b>: TVS first + methylation joint screening (strong); <b>Rec 5–6</b>: TVS(−)/M(+) → biopsy; TVS(+)/M(−) postmeno still biopsy.",
+      s3d2: "<b>Rec 7</b>: annual TVS (strong); <b>Rec 8</b>: TVS(+) → add methylation; M(+) → pathology.",
+      s3d3: "<b>Rec 9</b>: annual TVS + methylation (strong); <b>Rec 10–11</b>: M(+) → biopsy; M(−) → close follow-up + genetic counseling/testing.",
+      s4t: "Screening Flowcharts (Fig 1–4)",
+      s4r1: "Fig 1 · Overall consensus technical route",
+      s4f2: "Fig 2 · Symptomatic (AUB)", s4f3: "Fig 3 · Increased risk", s4f4: "Fig 4 · High risk (Lynch)",
+      s4s7: "target populations", s4s8: "recommendations", s4s9: "approved screening",
+      s4t1: "TVS(−) · M(+)", s4t2: "TVS(−) · M(−)", s4t3: "TVS(+) · M(+)", s4t4: "TVS(+) · M(−)",
+      s4l1: "→ D&C or hysteroscopic biopsy → pathology confirm.",
+      s4l2: "→ follow-up observation (symptomatic); high-risk: close follow-up + genetics.",
+      s4l3: "→ pathology confirmation required (all groups).",
+      s4l4: "→ postmenopausal: still pathology; premenopausal: symptomatic care + close follow-up.",
+      s4l5: "Postmeno TVS(+) · M(+) → priority hysteroscopic targeted biopsy.",
+      s4l6: "Obesity/metabolic — annual TVS; abnormal → methylation → pathology.",
+      s4l7: "Annual TVS + methylation; M(+) → biopsy; M(−) → surveillance + genetics.",
+      s4n: "Postmenopausal US-abnormal with methylation(+) — treat as high priority: choose hysteroscopic targeted biopsy to avoid missed diagnosis.",
+      s4a2: "<strong>Fig 2 (symptomatic)</strong>: TVS first → methylation joint → biopsy per matrix; postmeno M(+) prioritized for hysteroscopic biopsy.",
+      s4b2: "<strong>Fig 3 (increased risk)</strong>: annual TVS; abnormal → methylation → pathology; normal → clinical follow-up.",
+      s4c2: "<strong>Fig 4 (high risk)</strong>: annual TVS + methylation; M(+) → biopsy; M(−) → close surveillance + genetic testing.",
+      s5t: "Sampling & Gold Standard",
+      s5a: "<strong>Rec 2</strong>: endometrial histopathology = gold standard; thin-prep cytology / micro-histology from minimally invasive sampling — effective screening.",
+      s5s4: "recommendations", s5s5: "≥90% votes", s5s6: "80–90% votes",
+      s5e: "<strong>Sampling assurance</strong>: standardized cell-sampling protocol secures adequate specimens for methylation assay.",
+      s5f: "<strong>Joint strategy</strong>: annual TVS + methylation for high-risk groups (Rec 9) — strongest early-catch layer.",
+      s5b: "<strong>Rec 3</strong>: standardized sampling protocol ensures sufficient material for methylation.",
+      s5c: "<strong>Update</strong>: consensus planned update ~3 years or upon major advances.",
+      s5s1: "gold standard", s5s2: "thin-prep / micro-histology", s5s3: "molecular screening",
+      s5d: "<strong>Toolbox</strong>: ultrasound + methylation + cytology + pathology — layered screening architecture.",
+      s5n: "Methylation + ultrasound joint strategy reduces unnecessary invasive procedures while catching early-stage EC.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Structured selective screening</b>: symptomatic / increased-risk / high-risk populations each have tailored ultrasound + methylation strategies (11 recommendations).",
+      c2: "<b>NMPA-approved methylation</b>: fills the non-invasive screening gap — with clear US×methylation management paths."
+    },
+    zh: {
+      kicker: "中华医学杂志 · 2026;106(26):2701–2710 · 专家共识",
+      title: "子宫内膜癌基因甲基化筛查技术临床应用专家共识（2026 版）",
+      title_alt: "Gene Methylation Screening for Endometrial Cancer — Clinical Consensus 2026",
+      subtitle: "3 类目标人群 · 11 条推荐（4 条强推荐）· 2025 年 NMPA 批准甲基化筛查 · 超声 + 甲基化联合策略",
+      authors: "中华医学会妇科肿瘤学分会 · 中国研究型医院学会妇产科学专委会 · 中国医促会妇产健康医学分会",
+      source: "中华医学杂志 2026;106(26):2701–2710 · PREPARE-2026CN508 · 改良德尔菲法",
+      h1: "目标人群", h2: "推荐意见（4 强推）", h3: "2025 年批准", h4: "联合筛查",
+      s1t: "背景与框架",
+      s1s1: "2022 中国新发", s1s2: "死亡", s1s3: "早期 5 年生存",
+      s1a: "<strong>选择性筛查</strong>：不同于宫颈普遍筛查，聚焦高危人群。",
+      s1b: "<strong>2025 NMPA</strong>：基因甲基化筛查获批——填补无创筛查空白。",
+      s1c: "<strong>方法</strong>：WHO 手册 + 中国指导原则 + RIGHT；改良德尔菲（≥90% 强推、80–90% 推荐）。",
+      s2t: "关键问题与流程",
+      s2a: "<b>适用性</b>——筛查技术比较。",
+      s2b: "<b>采样</b>——甲基化标准化流程。",
+      s2c1: "<b>有症状</b>——筛查策略。",
+      s2c2: "<b>风险增加</b>——筛查策略。",
+      s2c3: "<b>高风险</b>——筛查策略。",
+      s2d: "<b>处理路径</b>——按 TVS/甲基化结果。",
+      s2p1: "采样", s2p1l: "标准化细胞", s2p2: "TVS", s2p2l: "初筛", s2p3: "甲基化", s2p3l: "联合分流", s2p4: "病理", s2p4l: "金标准",
+      s2s4: "绝经后出血", s2s5: "&gt;45 岁 · 肥胖 · 代谢", s2s6: "Lynch · 家族",
+      s2s7: "及时筛查", s2s8: "风险增加起筛", s2s9: "Lynch 监测",
+      s2e: "<strong>超声局限</strong>：内膜厚度阈值争议；AUB 特异度低。",
+      s2f: "<strong>病理局限</strong>：有创 · 取样失败 · 局灶漏诊。",
+      s2g: "<strong>甲基化优势</strong>：无创 · 客观 · 填补筛查空白。",
+      s2h: "<strong>专家组</strong>：妇科肿瘤 · 病理 · 分子诊断 · 流行病学。",
+      s2j1: "强推荐", s2j2: "推荐", s2j3: "投票阈值",
+      s2s1: "初筛", s2s2: "联合分流", s2s3: "金标准",
+      s2n: "证据检索至 2025-12-31；多学科专家组（肿瘤 · 病理 · 流行病学）。",
+      s3t: "推荐意见与决策矩阵",
+      s3g1: "有症状（绝经后出血）", s3g2: "风险增加（&gt;45 岁 · 肥胖 · 代谢）", s3g3: "高风险（Lynch · 家族史）",
+      s3d1: "<b>推荐1、4</b>：超声初评 + 甲基化联合筛查（强推）；<b>推荐5–6</b>：TVS(−)/M(+) → 活检；TVS(+)/M(−) 绝经后仍活检。",
+      s3d2: "<b>推荐7</b>：每年超声（强推）；<b>推荐8</b>：TVS(+) → 加做甲基化；M(+) → 病理。",
+      s3d3: "<b>推荐9</b>：每年超声 + 甲基化（强推）；<b>推荐10–11</b>：M(+) → 活检；M(−) → 密切随访 + 遗传咨询/基因检测。",
+      s4t: "筛查流程图（图1–4）",
+      s4r1: "图1 · 共识整体技术路线",
+      s4f2: "图2 · 有症状（AUB）", s4f3: "图3 · 风险增加", s4f4: "图4 · 高风险（Lynch）",
+      s4s7: "目标人群", s4s8: "推荐意见", s4s9: "批准筛查",
+      s4t1: "TVS(−) · M(+)", s4t2: "TVS(−) · M(−)", s4t3: "TVS(+) · M(+)", s4t4: "TVS(+) · M(−)",
+      s4l1: "→ 诊刮或宫腔镜活检 → 病理确诊。",
+      s4l2: "→ 随访观察（有症状）；高风险：密切随访 + 遗传咨询。",
+      s4l3: "→ 均需组织病理确诊（所有人群）。",
+      s4l4: "→ 绝经后仍需病理；绝经前对症处理 + 密切随访。",
+      s4l5: "绝经后 TVS(+)·M(+) → 优先宫腔镜下定位活检。",
+      s4l6: "肥胖/代谢——每年超声；异常 → 甲基化 → 病理。",
+      s4l7: "每年超声 + 甲基化；M(+) → 活检；M(−) → 监测 + 遗传咨询。",
+      s4n: "绝经后超声异常且甲基化(+)——高度重视，优先宫腔镜下定位活检，避免漏诊。",
+      s4a2: "<strong>图2（有症状）</strong>：超声初评 → 甲基化联合 → 按矩阵活检；绝经后 M(+) 优先宫腔镜活检。",
+      s4b2: "<strong>图3（风险增加）</strong>：每年超声；异常 → 甲基化 → 病理；正常 → 临床随访。",
+      s4c2: "<strong>图4（高风险）</strong>：每年超声 + 甲基化；M(+) → 活检；M(−) → 密切监测 + 基因检测。",
+      s5t: "采样与金标准",
+      s5a: "<strong>推荐2</strong>：内膜组织病理 = 金标准；微无创取材薄层液基细胞学/微组织病理为有效筛查方案。",
+      s5s4: "推荐意见", s5s5: "≥90% 票", s5s6: "80–90% 票",
+      s5e: "<strong>标本保障</strong>：标准化细胞采样方案保障甲基化足量标本。",
+      s5f: "<strong>联合策略</strong>：高风险人群每年超声 + 甲基化（推荐9）——最强早捕获层。",
+      s5b: "<strong>推荐3</strong>：标准化采样方案保障甲基化足量标本。",
+      s5c: "<strong>更新</strong>：约 3 年或重大进展时更新共识。",
+      s5s1: "金标准", s5s2: "薄层液基/微组织病理", s5s3: "分子筛查",
+      s5d: "<strong>工具箱</strong>：超声 + 甲基化 + 细胞学 + 病理——分层筛查架构。",
+      s5n: "甲基化 + 超声联合策略——减少不必要有创检查，同时捕捉早期 EC。",
+      c_ttl: "临床意义",
+      c1: "<b>结构化选择性筛查</b>：有症状/风险增加/高风险人群各有定制超声 + 甲基化策略（11 条推荐）。",
+      c2: "<b>NMPA 批准甲基化</b>：填补无创筛查空白——伴清晰的超声×甲基化管理路径。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

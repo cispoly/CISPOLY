@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expert Consensus: Tumor DNA Methylation Biomarkers &amp; Clinical Application — 2024</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #45：2024 甲基化共识）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、场景卡、批准证据
+  - 布局：标题带 → hero（10 条共识 / 强推荐为主 / 脱落细胞+血液双路径 / 全病程应用）→ 两栏（左 560px：①背景与规范 ②检测规范；右 1fr：③临床应用场景 ④获批证据 ⑤未来方向）→ 全宽临床意义带
+  - 无图：全部用场景卡/证据卡呈现
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 96px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 20px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .scengrid { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 0 0 5px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 11px 4px; text-align: center; }
+  .stat .big { font-size: 17px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .scengrid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .scen { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; display: flex; gap: 8px; align-items: flex-start; }
+  .scen .sn { flex: 0 0 auto; width: 24px; height: 24px; border-radius: 6px; background: rgba(215,75,74,0.85); color: #fff; font-weight: 800; font-size: 11px; display: flex; align-items: center; justify-content: center; }
+  .scen .st { flex: 1 1 auto; font-size: 10.5px; line-height: 1.32; color: var(--text); }
+  .scen .st b { color: var(--primary); }
+  .scen.hot { border-left: 4px solid var(--primary); background: var(--panel-alt); }
+
+  .spbars { margin: 2px 0 6px; }
+  .spb { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+  .spb .sbl { flex: 0 0 150px; font-size: 11px; font-weight: 700; color: var(--text); text-align: right; }
+  .spb .sbt { flex: 1 1 auto; height: 20px; background: #F1E7E7; border-radius: 5px; overflow: hidden; position: relative; }
+  .spb .sbf { height: 100%; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 12px; font-weight: 800; color: #fff; }
+  .spb.win .sbf { background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); }
+  .spb.lose .sbf { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); color: #6B5755; }
+
+  .prodrow { display: flex; gap: 8px; }
+  .prod { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 7px 10px; }
+  .prod .pn { font-size: 12px; font-weight: 800; color: var(--primary); }
+  .prod .pd { font-size: 10px; color: var(--muted); line-height: 1.3; margin-top: 2px; }
+  .prod .pb { display: inline-block; margin-top: 3px; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.3); color: var(--accent-deep); font-size: 8.5px; font-weight: 700; border-radius: 10px; padding: 1px 8px; }
+  .prod.hot { border-left: 4px solid var(--primary); background: var(--panel-alt); }
+  .pathrow { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .path { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; }
+  .path .pt { font-size: 11px; font-weight: 800; color: var(--primary); margin-bottom: 3px; }
+  .path .pl { font-size: 9.5px; color: var(--muted); line-height: 1.3; }
+  .path .pl b { color: var(--accent-deep); }
+  .flow2 { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); grid-template-rows: 1fr; gap: 12px; align-items: stretch; margin: 2px 0 0; }
+  .flow2 .fig { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; display: flex; flex-direction: column; justify-content: center; }
+  .flow2 .fig img { align-self: center; max-height: 300px; width: auto; max-width: 100%; }
+  .flow2 .fig .fc { font-size: 10.5px; font-weight: 700; color: var(--primary); margin-top: 4px; text-align: center; }
+  .flow2 .side { display: flex; flex-direction: column; justify-content: center; gap: 5px; min-width: 0; }
+  .flowfig2 { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; }
+  .flowfig2 img { display: block; max-height: 266px; width: auto; max-width: 100%; margin: 0 auto; }
+  .flowfig2 .fc { font-size: 10.5px; font-weight: 700; color: var(--primary); margin-top: 3px; text-align: center; }
+  .flowfig2 .fl { font-size: 9.5px; color: var(--muted); line-height: 1.3; margin-top: 2px; }
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 3px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+  body.lang-en .panel ul li { margin-bottom: 4px; }
+  body.lang-zh .panel ul li { line-height: 1.5; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">CACA Tumor Markers Committee · 2024 · Expert Consensus</div>
+    <h1 data-i18n="title">Tumor DNA Methylation Biomarkers: Detection &amp; Clinical Application — Consensus 2024</h1>
+    <div class="title_alt" data-i18n="title_alt">肿瘤 DNA 甲基化标志物检测及临床应用专家共识（2024 版）</div>
+    <div class="subtitle" data-i18n="subtitle">10 expert statements (mostly strong) · exfoliated-cell + blood dual pathways approved · full-course application: screening → diagnosis → companion → MRD → recurrence</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Ding C, Guo W, Mao R, Nian W, Xiang T, Yu J, Yang Z, Zhang H — CACA Tumor Markers Committee</div>
+      <div class="source" data-i18n="source">Chin J Cancer Prev Treat 2024;16(2):129–142 · OCEBM evidence levels · international guideline registry</div>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="stat hot"><div class="big">10</div><div class="lab" data-i18n="h1">expert statements (strong)</div></div>
+    <div class="stat"><div class="big">Exfoliated</div><div class="lab" data-i18n="h2">cervical · bladder · CRC · lung approved</div></div>
+    <div class="stat"><div class="big">Blood</div><div class="lab" data-i18n="h3">CRC · gastric · lung · liver approved</div></div>
+    <div class="stat"><div class="big">Full-course</div><div class="lab" data-i18n="h4">screening → MRD → recurrence</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Framework</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Scope</strong>: definition · clinical significance · testing specs · data processing · full-course application.</li>
+          <li data-i18n="s1b"><strong>Method</strong>: OCEBM evidence grading; expert vote — &gt;90% strong, 70–90% recommend.</li>
+          <li data-i18n="s1c"><strong>Platforms</strong>: PCR (simple) · nucleic-acid mass spec (mid-throughput) · NGS (high-throughput, complex, costly).</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Testing Standards</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">Minimize</div><div class="lab" data-i18n="s2s1">transport time · early separation</div></div>
+          <div class="stat"><div class="big">No heparin</div><div class="lab" data-i18n="s2s2">avoid hemolysis</div></div>
+          <div class="stat"><div class="big">2-step</div><div class="lab" data-i18n="s2s3">centrifugation for cfDNA</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Sample</strong>: no freeze of RBC blood before separation; preservative solution for stool.</li>
+          <li data-i18n="s2b"><strong>Quality</strong>: concentration · purity · integrity per sample type; fragment profile to exclude gDNA contamination.</li>
+          <li data-i18n="s2c"><strong>Conversion</strong>: bisulfite or enzymatic, fit specimen &amp; application.</li>
+          <li data-i18n="s2d"><strong>Platform choice</strong>: balance marker number · scenario · conditions (PCR/mass-spec/NGS).</li>
+        </ul>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s2j1">PCR</div><div class="sbt"><div class="sbf" style="width:40%">simple · few markers</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s2j2">Mass spec</div><div class="sbt"><div class="sbf" style="width:60%">mid-throughput · mid-cost</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s2j3">NGS</div><div class="sbt"><div class="sbf" style="width:100%">high-throughput · complex</div></div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">Bisulfite</div><div class="lab" data-i18n="s2s4">conversion</div></div>
+          <div class="stat hot"><div class="big">Enzymatic</div><div class="lab" data-i18n="s2s5">conversion</div></div>
+          <div class="stat"><div class="big">PCR/MS/NGS</div><div class="lab" data-i18n="s2s6">platforms</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">Conc.</div><div class="lab" data-i18n="s2s7">quality metric</div></div>
+          <div class="stat hot"><div class="big">Purity</div><div class="lab" data-i18n="s2s8">quality metric</div></div>
+          <div class="stat hot"><div class="big">Integrity</div><div class="lab" data-i18n="s2s9">quality metric</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2k"><strong>Reproducibility</strong>: essential before clinical adoption of any methylation assay.</li>
+          <li data-i18n="s2i"><strong>Purpose-fit</strong>: screening, diagnosis, companion &amp; MRD each shape assay design.</li>
+          <li data-i18n="s2j"><strong>Data pipeline</strong>: raw → QC → methylation levels → clinical interpretation.</li>
+          <li data-i18n="s2e"><strong>Blood for cfDNA</strong>: sufficient volume, two-step centrifugation, no freeze before separation.</li>
+          <li data-i18n="s2f"><strong>Data QC</strong>: platform-dependent thresholds; reproducibility &amp; stability required.</li>
+          <li data-i18n="s2g"><strong>Validation</strong>: each specimen type has its own quality acceptance criteria.</li>
+          <li data-i18n="s2h"><strong>Technology watch</strong>: follow latest conversion &amp; platform advances.</li>
+        </ul>
+        <div class="tnote" data-i18n="s2n">Consensus: sampling, extraction/conversion &amp; platform selection all standardized (strong recommendations); assay choice balances markers, scenario &amp; lab conditions.</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Product Use Scenarios — Cervical &amp; Endometrial</span></h3>
+        <div class="prodrow">
+          <div class="prod hot"><div class="pn" data-i18n="s3p1">PAX1 / JAM3 (CISCER)</div><div class="pd" data-i18n="s3d1">Cervical brushing methylation — hrHPV(+) triage, cytology-free stratification; recommended by consensus.</div><div class="pb" data-i18n="s3b1">宫颈癌</div></div>
+          <div class="prod hot"><div class="pn" data-i18n="s3p2">CDO1 / CELF4 (CISENDO)</div><div class="pd" data-i18n="s3d2">Cervical/uterine brushing methylation — endometrial cancer detection &amp; screening; recommended by consensus.</div><div class="pb" data-i18n="s3b2">子宫内膜癌</div></div>
+        </div>
+        <div class="pathrow">
+          <div class="path"><div class="pt" data-i18n="s3t1">Cervical cancer screening pathway (4)</div><div class="pl" data-i18n="s3l1"><b>①</b> hrHPV(+) high-risk / cytology-abnormal stratification · <b>②</b> TZ3 &amp; potential adenocarcinoma risk · <b>③</b> post-treatment monitoring · <b>④</b> exit-screening assessment.</div></div>
+          <div class="path"><div class="pt" data-i18n="s3t2">Endometrial cancer screening pathway (3)</div><div class="pl" data-i18n="s3l2"><b>①</b> imaging + methylation co-screening · <b>②</b> genital bleeding stratified management · <b>③</b> high-risk population screening.</div></div>
+        </div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">4</span><span data-i18n="s4t">Recommended Flowchart — Cervical Cancer Methylation (Fig 1)</span></h3>
+        <div class="flow2">
+          <div class="fig">
+            <img src="images/fig_flow.jpg" alt="Recommended cervical cancer methylation screening flowchart">
+            <div class="fc" data-i18n="s4t1">Fig 1 · Suggested workflow for cervical cancer DNA methylation screening</div>
+          </div>
+          <div class="side">
+            <div class="fl" data-i18n="s4d1"><b>Entry</b>: HPV(+) high-risk or cytology-abnormal women → methylation triage → colposcopy decision; <b>extended</b>: TZ3/adenocarcinoma risk, post-treatment monitoring &amp; exit assessment.</div>
+            <div class="statrow">
+              <div class="stat hot"><div class="big">4</div><div class="lab" data-i18n="s4s1">cervical pathways</div></div>
+              <div class="stat hot"><div class="big">3</div><div class="lab" data-i18n="s4s2">endometrial pathways</div></div>
+              <div class="stat"><div class="big">2</div><div class="lab" data-i18n="s4s3">endorsed dual-gene kits</div></div>
+            </div>
+            <ul>
+              <li data-i18n="s4a"><strong>PCDHGB7</strong>: SJTU IHPH — specificity superior to cytology in non-16/18 hrHPV+ triage.</li>
+              <li data-i18n="s4b"><strong>PAX1 methylation</strong>: 2 large Chinese studies — hrHPV+ stratified management.</li>
+              <li data-i18n="s4c"><strong>CDO1/CELF4</strong>: endometrial Se/Sp validated; BHLHE22/CDO1/HAND2 Se 86.0%.</li>
+              <li data-i18n="s4d"><strong>Approved exfoliated kits</strong>: cervical · bladder · CRC · lung (NMPA).</li>
+              <li data-i18n="s4e"><strong>Endometrial PCDHGB7</strong>: early Se 85.71%/Sp 80.60% — CE certified.</li>
+              <li data-i18n="s4f"><strong>Self-sampling</strong>: tampon samples match physician collection.</li>
+            </ul>
+            <div class="tnote" data-i18n="s4n">Fig 1 + pathways anchor recommended usage — endorses PAX1/JAM3 (cervical) &amp; CDO1/CELF4 (endometrial).</div>
+          </div>
+        </div>
+      </div>    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Full-course methylation utility</b>: screening → adjunct diagnosis → companion (MGMT) → MRD → recurrence monitoring — 10 strong statements.</li>
+      <li data-i18n="c2"><b>Dual non-invasive pathways approved</b>: exfoliated-cell &amp; blood-based kits — cervical, bladder, CRC, lung, gastric, liver &amp; ovarian frontier.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "CACA Tumor Markers Committee · 2024 · Expert Consensus",
+      title: "Tumor DNA Methylation Biomarkers: Detection & Clinical Application — Consensus 2024",
+      title_alt: "肿瘤 DNA 甲基化标志物检测及临床应用专家共识（2024 版）",
+      subtitle: "10 expert statements (mostly strong) · exfoliated-cell + blood dual pathways approved · full-course application: screening → diagnosis → companion → MRD → recurrence",
+      authors: "Ding C, Guo W, Mao R, Nian W, Xiang T, Yu J, Yang Z, Zhang H — CACA Tumor Markers Committee",
+      source: "Chin J Cancer Prev Treat 2024;16(2):129–142 · OCEBM evidence levels · international guideline registry",
+      h1: "expert statements (strong)", h2: "cervical · bladder · CRC · lung approved", h3: "CRC · gastric · lung · liver approved", h4: "screening → MRD → recurrence",
+      s1t: "Background & Framework",
+      s1a: "<strong>Scope</strong>: definition · clinical significance · testing specs · data processing · full-course application.",
+      s1b: "<strong>Method</strong>: OCEBM evidence grading; expert vote — >90% strong, 70–90% recommend.",
+      s1c: "<strong>Platforms</strong>: PCR (simple) · nucleic-acid mass spec (mid-throughput) · NGS (high-throughput, complex, costly).",
+      s2t: "Testing Standards",
+      s2s1: "transport time · early separation", s2s2: "avoid hemolysis", s2s3: "centrifugation for cfDNA",
+      s2a: "<strong>Sample</strong>: no freeze of RBC blood before separation; preservative solution for stool.",
+      s2b: "<strong>Quality</strong>: concentration · purity · integrity per sample type; fragment profile to exclude gDNA contamination.",
+      s2c: "<strong>Conversion</strong>: bisulfite or enzymatic, fit specimen & application.",
+      s2d: "<strong>Platform choice</strong>: balance marker number · scenario · conditions (PCR/mass-spec/NGS).",
+      s2j1: "PCR", s2j2: "Mass spec", s2j3: "NGS",
+      s2s4: "conversion", s2s5: "conversion", s2s6: "platforms",
+      s2s7: "quality metric", s2s8: "quality metric", s2s9: "quality metric",
+      s2k: "<strong>Reproducibility</strong>: essential before clinical adoption of any methylation assay.",
+      s2i: "<strong>Purpose-fit</strong>: screening, diagnosis, companion & MRD each shape assay design.",
+      s2j: "<strong>Pipeline</strong>: raw → QC → methylation levels → clinical interpretation.",
+      s2e: "<strong>cfDNA blood</strong>: sufficient volume, two-step centrifugation, no pre-freeze.",
+      s2f: "<strong>Data QC</strong>: platform-dependent thresholds; reproducibility & stability required.",
+      s2g: "<strong>Validation</strong>: each specimen type has its own quality acceptance criteria.",
+      s2h: "<strong>Technology watch</strong>: follow latest conversion & platform advances.",
+      s2n: "Sampling, conversion & platform selection all standardized (strong recommendations).",
+      s3t: "Product Use Scenarios — Cervical & Endometrial",
+      s3p1: "PAX1 / JAM3 (CISCER)", s3p2: "CDO1 / CELF4 (CISENDO)",
+      s3d1: "Cervical brushing methylation — hrHPV(+) triage, cytology-free stratification; recommended by consensus.",
+      s3d2: "Cervical/uterine brushing methylation — endometrial cancer detection & screening; recommended by consensus.",
+      s3b1: "宫颈癌", s3b2: "子宫内膜癌",
+      s3t1: "Cervical cancer screening pathway (4)", s3t2: "Endometrial cancer screening pathway (3)",
+      s3l1: "<b>①</b> hrHPV(+) high-risk / cytology-abnormal stratification · <b>②</b> TZ3 & potential adenocarcinoma risk · <b>③</b> post-treatment monitoring · <b>④</b> exit-screening assessment.",
+      s3l2: "<b>①</b> imaging + methylation co-screening · <b>②</b> genital bleeding stratified management · <b>③</b> high-risk population screening.",
+      s3c1: "<b>Pan-cancer screening</b>: shared markers for primary screen; tissue-of-origin panels for precision.",
+      s3c2: "<b>Adjunct diagnosis</b>: helps difficult pathology; molecular subtyping; CNS methylation classifiers.",
+      s3c3: "<b>Exfoliated-cell early detection</b>: cervical · bladder · CRC · lung approved — non-invasive.",
+      s3c4: "<b>Blood-based diagnosis</b>: CRC/gastric/lung/liver kits approved; ovarian promising.",
+      s3c5: "<b>Companion (MGMT)</b>: glioma temozolomide sensitivity; cfDNA monitoring of therapy response.",
+      s3c6: "<b>MRD & recurrence</b>: CRC/breast post-remission MRD; liver/CRC/prostate dynamic monitoring.",
+      s4t: "Recommended Flowchart — Cervical Cancer Methylation (Fig 1)",
+      s4t1: "Fig 1 · Suggested workflow for cervical cancer DNA methylation screening",
+      s4s1: "cervical pathways", s4s2: "endometrial pathways", s4s3: "endorsed dual-gene kits",
+      s4d1: "<b>Entry</b>: HPV(+) high-risk or cytology-abnormal women → methylation triage → colposcopy decision; <b>+ extended</b>: TZ3/adenocarcinoma risk, post-treatment monitoring & exit assessment.",
+      s4a1: "Exfoliated cells", s4a2: "Blood", s4a3: "Ovarian (blood)", s4a4: "Tissue-of-origin",
+      s4a: "<strong>PCDHGB7</strong>: SJTU IHPH cohort — superior specificity over cytology in non-16/18 hrHPV+ triage.",
+      s4b: "<strong>PAX1 methylation</strong>: 2 large Chinese studies — hrHPV+ stratified management (Se/Sp reported per study).",
+      s4c: "<strong>CDO1/CELF4</strong>: endometrial detection Se/Sp validated; BHLHE22/CDO1/HAND2 Se 86.0%.",
+      s4d: "<strong>Approved exfoliated-cell kits</strong>: cervical · bladder · CRC · lung — NMPA approved, clinically feasible.",
+      s4e: "<strong>Endometrial PCDHGB7</strong>: early-stage Se 85.71% / Sp 80.60% — CE certified product.",
+      s4f: "<strong>Self-sampling</strong>: tampon-collected vaginal samples match physician sampling for methylation.",
+      s4n: "Fig 1 and the clinical pathways (4 cervical + 3 endometrial scenarios) anchor recommended product usage — the consensus endorses PAX1/JAM3 for cervical and CDO1/CELF4 for endometrial methylation assays.",
+      s5t: "Future Directions",
+      s5a: "<strong>Single-cell</strong> methylation analysis — deeper biology.",
+      s5b: "<strong>Combined biomarkers</strong>: methylation + other marker types → robust models.",
+      s5c: "<strong>AI/ML</strong>: deep learning on methylation data to identify diagnostic/prognostic markers.",
+      s5s1: "application scenarios", s5s2: "approved kit pathways", s5s3: "mature companion marker",
+      s5d: "<strong>Origin tracing</strong>: tissue/cfDNA methylation promising — no approved kit yet.",
+      s5e: "<strong>Companion expansion</strong>: liver/gastric/breast/renal/CRC/pancreatic drug sensitivity — pending trials.",
+      s5f: "<strong>Therapy monitoring</strong>: cfDNA methylation for lung/ovarian response — QC standards needed.",
+      s5g: "<strong>MRD value</strong>: methylation MRD complements mutation-based detection (no clonal-hematopoiesis interference).",
+      s5h: "<strong>Recurrence models</strong>: conventional recurrence markers combined with methylation prediction models further improve monitoring efficacy.",
+      s5i: "<strong>Evidence-graded</strong>: unclear variants noted with evidence level; NMPA items follow product standards.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Full-course methylation utility</b>: screening → adjunct diagnosis → companion (MGMT) → MRD → recurrence monitoring — 10 strong statements.",
+      c2: "<b>Dual non-invasive pathways approved</b>: exfoliated-cell & blood-based kits — cervical, bladder, CRC, lung, gastric, liver & ovarian frontier."
+    },
+    zh: {
+      kicker: "中国抗癌协会肿瘤标志专业委员会 · 2024 · 专家共识",
+      title: "肿瘤 DNA 甲基化标志物检测及临床应用专家共识（2024 版）",
+      title_alt: "Tumor DNA Methylation Biomarkers: Detection & Clinical Application — Consensus 2024",
+      subtitle: "10 条专家共识（多为强推荐）· 脱落细胞 + 血液双路径获批 · 全病程应用：筛查→诊断→伴随→MRD→复发监测",
+      authors: "丁春明、郭玮、毛瑞芳、辇伟奇、向廷秀、于津浦、杨政权、张海伟——中国抗癌协会肿瘤标志专业委员会",
+      source: "中国癌症防治杂志 2024;16(2):129–142 · OCEBM 证据等级 · 国际实践指南注册平台登记",
+      h1: "专家共识（强推荐）", h2: "宫颈 · 膀胱 · 结直肠 · 肺获批", h3: "结直肠 · 胃 · 肺 · 肝获批", h4: "筛查→MRD→复发监测",
+      s1t: "背景与框架",
+      s1a: "<strong>范围</strong>：定义 · 临床意义 · 检测规范 · 数据处理 · 全病程应用。",
+      s1b: "<strong>方法</strong>：OCEBM 证据分级；专家投票——&gt;90% 强推荐、70–90% 推荐。",
+      s1c: "<strong>平台</strong>：PCR（简便）· 核酸质谱（中通量）· NGS（高通量、复杂、成本高）。",
+      s2t: "检测规范",
+      s2s1: "减少转运 · 及早分离", s2s2: "避免溶血", s2s3: "两步离心",
+      s2a: "<strong>样本</strong>：含红细胞血样分离前不冻存；粪便用防腐剂保存液。",
+      s2b: "<strong>质量</strong>：按样本类型评价浓度/纯度/完整性；片段分布排除 gDNA 污染。",
+      s2c: "<strong>转化</strong>：重亚硫酸盐或酶学，适配标本与应用。",
+      s2d: "<strong>平台选择</strong>：综合标志物数量 · 场景 · 条件（PCR/质谱/NGS）。",
+      s2j1: "PCR", s2j2: "核酸质谱", s2j3: "NGS",
+      s2s4: "转化", s2s5: "转化", s2s6: "平台",
+      s2s7: "质控指标", s2s8: "质控指标", s2s9: "质控指标",
+      s2k: "<strong>可重复性</strong>：临床采用任何甲基化检测前必需。",
+      s2i: "<strong>场景适配</strong>：筛查/诊断/伴随/MRD 各自影响检测设计。",
+      s2j: "<strong>数据流程</strong>：原始数据 → 质控 → 甲基化水平 → 临床解读。",
+      s2e: "<strong>cfDNA 采血</strong>：足量、两步离心、分离前不冻存。",
+      s2f: "<strong>数据质控</strong>：按平台设阈值；要求可重复与稳定。",
+      s2g: "<strong>验证</strong>：各标本类型有相应质量合格标准。",
+      s2h: "<strong>技术跟踪</strong>：关注转化与平台最新进展。",
+      s2n: "共识：采样、提取转化与平台选择均规范化（强推荐）。",
+      s3t: "产品使用场景——宫颈癌与子宫内膜癌",
+      s3p1: "PAX1 / JAM3（CISCER）", s3p2: "CDO1 / CELF4（CISENDO）",
+      s3d1: "宫颈刷取甲基化——hrHPV(+) 分流、免细胞学分层；共识推荐。",
+      s3d2: "宫颈/宫腔刷取甲基化——子宫内膜癌检测与筛查；共识推荐。",
+      s3b1: "宫颈癌", s3b2: "子宫内膜癌",
+      s3t1: "宫颈癌筛检路径（4 项）", s3t2: "子宫内膜癌筛检路径（3 项）",
+      s3l1: "<b>①</b> HPV(+) 高风险/细胞学异常分层 · <b>②</b> Ⅲ型转化区与潜在腺癌风险 · <b>③</b> 治疗后监测 · <b>④</b> 退出筛查评估。",
+      s3l2: "<b>①</b> 影像学联合甲基化筛检 · <b>②</b> 生殖道出血分层管理 · <b>③</b> 内膜癌高风险人群筛查。",
+      s3c1: "<b>泛癌早筛</b>：共享标志物初筛；组织溯源组合更精准。",
+      s3c2: "<b>辅助诊断</b>：病理困难标本；分子分型；CNS 甲基化分类器。",
+      s3c3: "<b>脱落细胞早筛早诊</b>：宫颈 · 膀胱 · 结直肠 · 肺获批——无创。",
+      s3c4: "<b>血液诊断</b>：结直肠/胃/肺/肝试剂获批；卵巢有前景。",
+      s3c5: "<b>伴随诊断（MGMT）</b>：胶质瘤替莫唑胺敏感性；cfDNA 疗效监测。",
+      s3c6: "<b>MRD 与复发</b>：结直肠/乳腺缓解后 MRD；肝/结直肠/前列腺动态监测。",
+      s4t: "推荐流程图——宫颈癌甲基化（图1）",
+      s4t1: "图1 · 子宫颈癌 DNA 甲基化检测建议流程图",
+      s4s1: "宫颈路径", s4s2: "内膜路径", s4s3: "推荐双基因试剂",
+      s4d1: "<b>入口</b>：HPV(+) 高风险或细胞学异常女性 → 甲基化分流 → 阴道镜决策；<b>扩展</b>：Ⅲ型转化区/腺癌风险、治疗后监测与退出评估。",
+      s4a1: "脱落细胞", s4a2: "血液", s4a3: "卵巢（血液）", s4a4: "组织溯源",
+      s4a: "<strong>PCDHGB7</strong>：国际和平妇幼队列——非 16/18 hrHPV+ 分流特异度优于细胞学。",
+      s4b: "<strong>PAX1 甲基化</strong>：两项中国大型研究——hrHPV+ 分层管理。",
+      s4c: "<strong>CDO1/CELF4</strong>：内膜检测 Se/Sp 已验证；BHLHE22/CDO1/HAND2 Se 86.0%。",
+      s4d: "<strong>获批脱落细胞试剂</strong>：宫颈 · 膀胱 · 结直肠 · 肺——NMPA 批准，具临床可行性。",
+      s4e: "<strong>内膜 PCDHGB7</strong>：早期 Se 85.71% / Sp 80.60%——CE 认证产品。",
+      s4f: "<strong>自采样</strong>：卫生棉条阴道样本与医师采样甲基化水平一致。",
+      s4n: "图1 + 临床路径（宫颈 4 项 + 内膜 3 项）锚定推荐产品使用——支持 PAX1/JAM3 与 CDO1/CELF4 检测。",
+      s5t: "未来方向",
+      s5a: "<strong>单细胞</strong>甲基化分析——更深生物学。",
+      s5b: "<strong>组合标志物</strong>：甲基化 + 其他标志物 → 稳健模型。",
+      s5c: "<strong>AI/ML</strong>：对甲基化数据深度学习，识别诊断/预后标志物。",
+      s5s1: "应用场景", s5s2: "获批试剂路径", s5s3: "成熟伴随标志物",
+      s5d: "<strong>组织溯源</strong>：组织/cfDNA 甲基化有前景——尚无获批试剂。",
+      s5e: "<strong>伴随扩展</strong>：肝/胃/乳腺/肾/结直肠/胰腺药敏——待临床试验。",
+      s5f: "<strong>疗效监测</strong>：cfDNA 甲基化监测肺癌/卵巢反应——需建立质控标准。",
+      s5g: "<strong>MRD 价值</strong>：甲基化 MRD 补充突变检测（不受克隆造血干扰）。",
+      s5h: "<strong>复发模型</strong>：常规标志物 + 甲基化预测模型提升监测效能。",
+      s5i: "<strong>证据分级</strong>：意义不明变异注明证据等级；NMPA 项目按产品标准。",
+      c_ttl: "临床意义",
+      c1: "<b>甲基化全病程价值</b>：筛查→辅助诊断→伴随（MGMT）→MRD→复发监测——10 条强推荐。",
+      c2: "<b>双无创路径获批</b>：脱落细胞与血液试剂——宫颈、膀胱、结直肠、肺、胃、肝及卵巢前沿。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

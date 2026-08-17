@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAX1/JAM3 Methylation for Cervical Adenocarcinoma — Feng et al. 2026 Review</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #13：腺癌专病综述 → 左机制图 + 右应用角色，与 #1-12 均不同）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、白色 stat 卡、红色高亮表格
+  - 布局：标题带 → hero（腺癌困境 vs 双基因方案）→ 两栏（左 600px：①腺癌筛查困境 ②双基因机制【Fig.1 PAX1/Wnt + Fig.2 JAM3 机制图】；右 1fr：③临床应用角色【5 张角色卡】④判读标准 callout ⑤挑战与未来）→ 全宽临床意义带
+  - 选图：Fig.1 PAX1/Wnt 机制图（720x520）+ Fig.2 JAM3 功能图（720x406）——两图并排或叠放
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  /* hero 困境 vs 方案 */
+  .hero { flex: 0 0 auto; height: 104px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; gap: 12px; padding: 8px 10px; }
+  .side { flex: 1; border-radius: 10px; padding: 9px 14px; display: flex; flex-direction: column; justify-content: center; }
+  .side .st { font-size: 11px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; margin-bottom: 4px; }
+  .side .big { font-size: 19px; font-weight: 800; line-height: 1.12; }
+  .side .sub { font-size: 11px; line-height: 1.4; margin-top: 3px; }
+  .side.now { background: #F3EDED; border: 1px solid #D9C9C7; }
+  .side.now .st { color: #8A6E6B; } .side.now .big { color: #8A6E6B; } .side.now .sub { color: #6B5755; }
+  .side.new { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.9) 100%); }
+  .side.new .st { color: rgba(255,255,255,0.9); } .side.new .big { color: #fff; } .side.new .sub { color: rgba(255,255,255,0.95); }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 600px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel table, .panel .statrow, .panel .tnote, .panel .figrow, .panel .rolecard { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 4px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .figrow { display: flex; gap: 12px; align-items: flex-start; justify-content: center; }
+  .fig { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 7px 8px 5px; text-align: center; min-width: 0; }
+  .fig img { display: inline-block; height: auto; max-height: 178px; width: auto; max-width: 100%; border-radius: 3px; }
+  .fig.big img { max-height: 275px; }
+  .fig .figcap { font-size: 10px; color: var(--muted); font-style: italic; line-height: 1.3; margin-top: 3px; text-align: left; }
+  .fig .figcap strong { color: var(--primary); font-style: normal; }
+
+  .rolgrid { display: flex; flex-direction: column; gap: 7px; margin: 1px 0 6px; }
+  .rolecard { display: flex; gap: 12px; align-items: center; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 7px 11px; }
+  .rolecard .rn { flex: 0 0 46px; width: 46px; height: 46px; border-radius: 50%; background: var(--panel-alt); border: 1.5px solid rgba(215,75,74,0.4);
+    display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 800; color: var(--accent-deep); }
+  .rolecard .rt { font-size: 12.5px; font-weight: 700; color: var(--text); }
+  .rolecard .rd { font-size: 10.5px; color: var(--muted); line-height: 1.35; margin-top: 1px; }
+  .rolecard.hot { background: var(--panel-alt); border-color: rgba(215,75,74,0.5); }
+
+  .callout { display: flex; align-items: center; gap: 12px; background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.9) 100%); border-radius: 8px; padding: 8px 14px; }
+  .callout .big { font-size: 17px; font-weight: 800; color: #fff; white-space: nowrap; font-family: "Courier New", Consolas, monospace; }
+  .callout .tx { font-size: 11px; color: rgba(255,255,255,0.95); line-height: 1.35; }
+  .callout .tx b { color: #FFE3E1; }
+
+  .wstrip { display: flex; align-items: center; gap: 6px; margin: 1px 0 6px; }
+  .wstrip .wchip { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 5px; padding: 8px 4px; text-align: center; font-size: 10px; font-weight: 600; color: var(--accent-deep); }
+  .wstrip .warr { color: var(--secondary); font-size: 14px; font-weight: 800; }
+
+  .statrow { display: flex; gap: 8px; margin: 1px 0 6px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 10px 4px; text-align: center; }
+  .stat .big { font-size: 19px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9.5px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+
+  .orblk { display: flex; gap: 8px; margin: 1px 0 6px; }
+  .or { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px 9px; }
+  .or .orn { font-size: 10px; font-weight: 800; color: var(--accent-deep); }
+  .or .orv { font-size: 15px; font-weight: 800; color: var(--text); margin-top: 2px; }
+  .or .ord { font-size: 9.5px; color: var(--muted); line-height: 1.3; margin-top: 2px; }
+  .or.hot { background: var(--panel-alt); border-color: rgba(215,75,74,0.5); }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 4px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Am J Cancer Res · 2026;16(4) · Review · China</div>
+    <h1 data-i18n="title">PAX1/JAM3 Methylation — Biomarker for Early Detection &amp; Management of Cervical Adenocarcinoma</h1>
+    <div class="title_alt" data-i18n="title_alt">PAX1/JAM3 甲基化——宫颈腺癌早期检测与精准管理的生物标志物</div>
+    <div class="subtitle" data-i18n="subtitle">Review · cervical adenocarcinoma: hidden site, cytology-blind, ~15% HPV-negative · PAX1/JAM3 hypermethylation = objective, high-accuracy molecular marker</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Feng S, Wang D, He Q, An Y, Li S, Liu L</div>
+      <div class="source" data-i18n="source">doi: <a href="https://doi.org/10.62347/SATU5579" target="_blank" rel="noopener">10.62347/SATU5579</a></div>
+    </div>
+  </header>
+
+  <!-- hero 困境 vs 方案 -->
+  <div class="hero">
+    <div class="side now">
+      <div class="st" data-i18n="h1t">Cervical adenocarcinoma dilemma</div>
+      <div class="big" data-i18n="h1b">Hidden · cytology-blind · HPV gap</div>
+      <div class="sub" data-i18n="h1s">10–25% of cervical cancer · TCT sensitivity low · ~15% HPV-negative · high recurrence &amp; poor prognosis.</div>
+    </div>
+    <div class="side new">
+      <div class="st" data-i18n="h2t">PAX1/JAM3 methylation solution</div>
+      <div class="big" data-i18n="h2b">Objective dual-gene marker</div>
+      <div class="sub" data-i18n="h2s">Hypermethylated in adenocarcinoma · high sensitivity &amp; specificity · complements cytology &amp; HPV.</div>
+    </div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏：困境 + 机制 -->
+    <section class="col">
+      <div class="panel grow" style="background: var(--panel-alt);">
+        <h3><span class="num">2</span><span data-i18n="s2t">Dual-Gene Mechanism — Key Figures</span></h3>
+        <div class="figrow">
+          <div class="fig big">
+            <img src="images/fig1_pax1_wnt.jpg" alt="PAX1 gene and Wnt pathway mechanism">
+            <div class="figcap"><strong>Fig. 1</strong> <span data-i18n="s2c1">PAX1 inhibits Wnt by competing for TCF7L2 (PIASy); hypermethylation releases inhibition → proliferation &amp; invasion.</span></div>
+          </div>
+        </div>
+        <div class="figrow" style="margin-top:6px;">
+          <div class="fig big">
+            <img src="images/fig2_jam3.jpg" alt="JAM3 function and regulation">
+            <div class="figcap"><strong>Fig. 2</strong> <span data-i18n="s2c2">JAM3 maintains tissue barriers; silencing → EMT via HIF-1α/VEGFA → migration &amp; invasion.</span></div>
+          </div>
+        </div>
+        <ul style="margin-top:4px;">
+          <li data-i18n="s2a"><strong>Both genes</strong>: hypermethylated in cervical adenocarcinoma — objective dual-gene readout.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 右栏：应用 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Why Adenocarcinoma Is Missed</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Hidden site</strong>: endocervical columnar origin — early lesions rarely visible to cytology/colposcopy.</li>
+          <li data-i18n="s1b"><strong>HPV gap</strong>: ~15% of CA are HPV-negative; HR-HPV PPV low in adenocarcinoma.</li>
+          <li data-i18n="s1c"><strong>Outcome</strong>: high recurrence/metastasis after treatment; poor overall prognosis.</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">3</span><span data-i18n="s3t">Mechanism Interpretation</span></h3>
+        <div class="orblk">
+          <div class="or hot"><div class="orn" data-i18n="m1n">PAX1 · tumor suppressor</div><div class="orv" data-i18n="m1v">Wnt pathway brake</div><div class="ord" data-i18n="m1d">Competes for TCF7L2 (PIASy) → inhibits β-catenin; silencing releases Wnt &amp; EGF/MAPK.</div></div>
+          <div class="or"><div class="orn" data-i18n="m2n">JAM3 · adhesion molecule</div><div class="orv" data-i18n="m2v">Barrier / EMT</div><div class="ord" data-i18n="m2d">Maintains barriers &amp; permeability; silencing → EMT via HIF-1α/VEGFA → metastasis.</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s3a"><strong>Severity link</strong>: methylation rises normal → LSIL → HSIL → cancer.</li>
+          <li data-i18n="s3b"><strong>Readout</strong>: ΔCt PAX1 ≤ 6.6 or ΔCt JAM3 ≤ 10.0.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">4</span><span data-i18n="s4t">Clinical Roles in CA Management</span></h3>
+        <div class="rolgrid">
+          <div class="rolecard hot"><div class="rn">1</div><div class="rt" data-i18n="s4r1t">Screening sensitivity &amp; specificity</div><div class="rd" data-i18n="s4r1d">Improves early CA detection over TCT / HPV alone.</div></div>
+          <div class="rolecard"><div class="rn">2</div><div class="rt" data-i18n="s4r2t">hrHPV+ reflex triage</div><div class="rd" data-i18n="s4r2d">Precise risk stratification for HPV-positive women.</div></div>
+          <div class="rolecard"><div class="rn">3</div><div class="rt" data-i18n="s4r3t">Cytologically abnormal cases</div><div class="rd" data-i18n="s4r3d">Compensates morphological diagnostic uncertainty.</div></div>
+          <div class="rolecard"><div class="rn">4</div><div class="rt" data-i18n="s4r4t">Dynamic risk &amp; prognosis</div><div class="rd" data-i18n="s4r4d">Quantitative stratification — from qualitative to quantitative management.</div></div>
+          <div class="rolecard"><div class="rn">5</div><div class="rt" data-i18n="s4r5t">Personalized treatment</div><div class="rd" data-i18n="s4r5d">Epigenetic-based navigation for therapy decisions.</div></div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="big" data-i18n="s5b">ΔCt PAX1 ≤ 6.6<br>ΔCt JAM3 ≤ 10.0</div>
+        <div class="tx"><b data-i18n="s5t">Dual-gene positive readout</b><br><span data-i18n="s5d">either gene positive → high-risk signal for CA / CIN2+</span></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>PAX1/JAM3 dual-gene methylation</b> is hypermethylated in cervical adenocarcinoma and offers high diagnostic sensitivity &amp; specificity — an objective complement to cytology and HPV for early CA detection.</li>
+      <li data-i18n="c2"><b>Beyond screening</b>, it enables risk stratification, prognosis and treatment-response monitoring — supporting precision management of cervical adenocarcinoma.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Am J Cancer Res · 2026;16(4) · Review · China",
+      title: "PAX1/JAM3 Methylation — Biomarker for Early Detection & Management of Cervical Adenocarcinoma",
+      title_alt: "PAX1/JAM3 甲基化——宫颈腺癌早期检测与精准管理的生物标志物",
+      subtitle: "Review · cervical adenocarcinoma: hidden site, cytology-blind, ~15% HPV-negative · PAX1/JAM3 hypermethylation = objective, high-accuracy molecular marker",
+      authors: "Feng S, Wang D, He Q, An Y, Li S, Liu L",
+      source: 'doi: <a href="https://doi.org/10.62347/SATU5579" target="_blank" rel="noopener">10.62347/SATU5579</a>',
+      h1t: "Cervical adenocarcinoma dilemma",
+      h1b: "Hidden · cytology-blind · HPV gap",
+      h1s: "10–25% of cervical cancer · TCT sensitivity low · ~15% HPV-negative · high recurrence & poor prognosis.",
+      h2t: "PAX1/JAM3 methylation solution",
+      h2b: "Objective dual-gene marker",
+      h2s: "Hypermethylated in adenocarcinoma · high sensitivity & specificity · complements cytology & HPV.",
+      s1t: "Why Adenocarcinoma Is Missed",
+      s1a: "<strong>Hidden site</strong>: endocervical columnar origin — early lesions rarely visible to cytology/colposcopy.",
+      s1b: "<strong>HPV gap</strong>: ~15% of CA are HPV-negative; HR-HPV PPV low in adenocarcinoma.",
+      s1c: "<strong>Outcome</strong>: high recurrence/metastasis after treatment; poor overall prognosis.",
+      s1d: "<strong>Need</strong>: objective, high-sensitivity & high-specificity molecular markers.",
+      s2t: "Dual-Gene Mechanism",
+      s2c1: "PAX1 competes for TCF7L2 (PIASy) → inhibits Wnt; hypermethylation releases it.",
+      s2c2: "JAM3 maintains barriers; loss → EMT via HIF-1α/VEGFA, migration & invasion.",
+      s2a: "<strong>PAX1</strong>: tumor suppressor; methylation silences → Wnt/EGF-MAPK activation, proliferation & invasion.",
+      s2b: "<strong>JAM3</strong>: adhesion molecule; methylation silencing → EMT & metastasis promotion.",
+      s2c: "<strong>Readout</strong>: ΔCt PAX1 ≤ 6.6 or ΔCt JAM3 ≤ 10.0 (dual-gene positive).",
+      s2d: "<strong>PAX1 development role</strong>: conserved paired-box factor; SCID/OTFCS2 when lost.",
+      s2e: "<strong>JAM3 broader role</strong>: tumor suppressor in esophageal cancer & LSCC (Wnt / Hippo).",
+      s2f: "<strong>Severity link</strong>: methylation rises from normal → LSIL → HSIL → cancer.",
+      s2s1: "CA share of cervical cancer", s2s2: "CA HPV-negative", s2s3: "PAX1 · JAM3 panel",
+      s2g: "Methylation of PAX1/JAM3 is an early molecular event in cervical carcinogenesis — especially in adenocarcinoma.",      s3t: "Mechanism Interpretation",
+      m1n: "PAX1 · tumor suppressor", m1v: "Wnt pathway brake", m1d: "Competes for TCF7L2 (PIASy) → inhibits β-catenin; silencing releases Wnt & EGF/MAPK.",
+      m2n: "JAM3 · adhesion molecule", m2v: "Barrier / EMT", m2d: "Maintains barriers & permeability; silencing → EMT via HIF-1α/VEGFA → metastasis.",
+      s3a: "<strong>Severity link</strong>: methylation rises normal → LSIL → HSIL → cancer.",
+      s3b: "<strong>Readout</strong>: ΔCt PAX1 ≤ 6.6 or ΔCt JAM3 ≤ 10.0.",
+      s4t: "Clinical Roles in CA Management",
+      s4r1t: "Screening sensitivity & specificity", s4r1d: "Improves early CA detection over TCT / HPV alone.",
+      s4r2t: "hrHPV+ reflex triage", s4r2d: "Precise risk stratification for HPV-positive women.",
+      s4r3t: "Cytologically abnormal cases", s4r3d: "Compensates morphological diagnostic uncertainty.",
+      s4r4t: "Dynamic risk & prognosis", s4r4d: "Quantitative stratification — from qualitative to quantitative management.",
+      s4r5t: "Personalized treatment", s4r5d: "Epigenetic-based navigation for therapy decisions.",
+      s4b: "ΔCt PAX1 ≤ 6.6<br>ΔCt JAM3 ≤ 10.0", s4t: "Dual-gene positive readout", s4d: "either gene positive → high-risk signal for CA / CIN2+",
+      s5t: "Challenges & Outlook",
+      s5a: "<strong>Standardization</strong>: sample type, DNA quality & cut-off consistency still need unified control.",
+      s5b: "<strong>Evidence</strong>: more prospective & multi-center data on adenocarcinoma required.",
+      s5c: "<strong>Direction</strong>: dynamic monitoring of treatment response; combination with HPV & cytology.",
+      s5d: "<strong>Future</strong>: methylation-guided precision prevention & control strategy for CA.",
+      s5e: "<strong>Integration</strong>: dual-gene + TCT + HPV as a joint screening pathway.",
+      ch1: "Standardize", ch2: "Prospective evidence", ch3: "Precision CA care",
+      s5f: "Real-world application needs lower cost & robust sample handling protocols.",      c_ttl: "Clinical Significance",
+      c1: "<b>PAX1/JAM3 dual-gene methylation</b> is hypermethylated in cervical adenocarcinoma and offers high diagnostic sensitivity & specificity — an objective complement to cytology and HPV for early CA detection.",
+      c2: "<b>Beyond screening</b>, it enables risk stratification, prognosis and treatment-response monitoring — supporting precision management of cervical adenocarcinoma."
+    },
+    zh: {
+      kicker: "Am J Cancer Res · 2026;16(4) · 综述 · 中国",
+      title: "PAX1/JAM3 甲基化——宫颈腺癌早期检测与精准管理的生物标志物",
+      title_alt: "PAX1/JAM3 Methylation — Biomarker for Early Detection & Management of Cervical Adenocarcinoma",
+      subtitle: "综述 · 宫颈腺癌：位置隐匿、细胞学不敏感、约 15% HPV 阴性 · PAX1/JAM3 高甲基化 = 客观、高准确度的分子标志物",
+      authors: "冯淑贤、王丹、何倩男、安玉胜、李赛男、刘玲",
+      source: 'doi: <a href="https://doi.org/10.62347/SATU5579" target="_blank" rel="noopener">10.62347/SATU5579</a>',
+      h1t: "宫颈腺癌困境",
+      h1b: "隐匿 · 细胞学盲区 · HPV 缺口",
+      h1s: "占宫颈癌 10–25% · TCT 灵敏度低 · 约 15% HPV 阴性 · 复发转移高、预后差。",
+      h2t: "PAX1/JAM3 甲基化方案",
+      h2b: "客观双基因标志物",
+      h2s: "腺癌中显著高甲基化 · 高灵敏度与特异度 · 与细胞学/HPV 互补。",
+      s1t: "腺癌为何易漏诊",
+      s1a: "<strong>位置隐匿</strong>：源于宫颈管柱状上皮——早期病变细胞学/阴道镜难以发现。",
+      s1b: "<strong>HPV 缺口</strong>：约 15% 腺癌 HPV 阴性；hr-HPV 对腺癌阳性预测值低。",
+      s1c: "<strong>结局</strong>：治疗后复发与转移风险高，总体预后差。",
+      s1d: "<strong>需求</strong>：客观、高灵敏度与高特异度的分子标志物。",
+      s2t: "双基因机制",
+      s2c1: "PAX1 竞争 TCF7L2（PIASy）→ 抑制 Wnt；高甲基化解除抑制。",
+      s2c2: "JAM3 维持屏障；缺失 → 经 HIF-1α/VEGFA 驱动 EMT、迁移与侵袭。",
+      s2a: "<strong>PAX1</strong>：抑癌基因；甲基化沉默 → Wnt/EGF-MAPK 激活，增殖与侵袭。",
+      s2b: "<strong>JAM3</strong>：黏附分子；甲基化沉默 → 促进 EMT 与转移。",
+      s2c: "<strong>判读</strong>：ΔCt PAX1 ≤ 6.6 或 ΔCt JAM3 ≤ 10.0（双基因阳性）。",
+      s2d: "<strong>PAX1 发育作用</strong>：保守配对盒因子；缺失导致 SCID/OTFCS2。",
+      s2e: "<strong>JAM3 更广作用</strong>：在食管癌与喉鳞癌中为抑癌基因（Wnt / Hippo）。",
+      s2f: "<strong>严重度关联</strong>：甲基化自正常 → LSIL → HSIL → 癌逐级升高。",
+      s2s1: "腺癌占宫颈癌比例", s2s2: "腺癌 HPV 阴性", s2s3: "PAX1 · JAM3 组合",
+      s2g: "PAX1/JAM3 甲基化是宫颈癌变中的早期分子事件——腺癌中尤为显著。",      s3t: "机制解读",
+      m1n: "PAX1 · 抑癌基因", m1v: "Wnt 通路刹车", m1d: "竞争 TCF7L2（PIASy）→ 抑制 β-catenin；沉默后释放 Wnt 与 EGF/MAPK。",
+      m2n: "JAM3 · 黏附分子", m2v: "屏障 / EMT", m2d: "维持屏障与通透性；沉默 → 经 HIF-1α/VEGFA 驱动 EMT → 转移。",
+      s3a: "<strong>严重度关联</strong>：甲基化自正常 → LSIL → HSIL → 癌逐级升高。",
+      s3b: "<strong>判读</strong>：ΔCt PAX1 ≤ 6.6 或 ΔCt JAM3 ≤ 10.0。",
+      s4t: "腺癌管理中的临床角色",
+      s4r1t: "筛查灵敏度与特异度", s4r1d: "较单纯 TCT/HPV 提高早期腺癌检出。",
+      s4r2t: "hrHPV+ 反射分诊", s4r2d: "对 HPV 阳性女性进行精准风险分层。",
+      s4r3t: "细胞学异常人群", s4r3d: "弥补形态学诊断的不确定性。",
+      s4r4t: "动态风险与预后", s4r4d: "定量分层——从定性到定量管理。",
+      s4r5t: "个体化治疗", s4r5d: "基于表观遗传标志的诊疗导航。",
+      s4b: "ΔCt PAX1 ≤ 6.6<br>ΔCt JAM3 ≤ 10.0", s4t: "双基因阳性判读", s4d: "任一基因阳性 → 腺癌/CIN2+ 高风险信号",
+      s5t: "挑战与展望",
+      s5a: "<strong>标准化</strong>：样本类型、DNA 质量与阈值一致性需统一质控。",
+      s5b: "<strong>证据</strong>：腺癌仍需更多前瞻性与多中心数据。",
+      s5c: "<strong>方向</strong>：治疗应答动态监测；与 HPV、细胞学联合。",
+      s5d: "<strong>未来</strong>：甲基化指导的腺癌精准防控策略。",
+      s5e: "<strong>整合</strong>：双基因 + TCT + HPV 联合筛查路径。",
+      ch1: "标准化", ch2: "前瞻证据", ch3: "腺癌精准诊疗",
+      s5f: "实际应用需降低成本并建立稳健的样本处理流程。",      c_ttl: "临床意义",
+      c1: "<b>PAX1/JAM3 双基因甲基化</b> 在宫颈腺癌中显著高甲基化，具备高诊断灵敏度与特异度——是细胞学与 HPV 之外早期检出腺癌的客观补充。",
+      c2: "<b>超越筛查</b>：支持风险分层、预后与治疗应答监测——助力宫颈腺癌精准管理。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

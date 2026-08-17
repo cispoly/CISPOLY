@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DNA Methylation for Postmenopausal EC Screening — Kong et al. 2023</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #30：绝经后筛查）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、大数字卡、条形对比
+  - 布局：标题带 → hero（143 例 / 双基因 Se 87.5% / Sp 90.8% / TVS+DNA Se 100% 红卡）→ 两栏（左 560px：①背景与目的 ②研究设计；右 1fr：③危险因素 OR ④双基因效能与 TVS 联合 ⑤ROC【宽幅原图 + 侧栏】）→ 全宽临床意义带
+  - 选图：ROC 宽幅（1000×279）
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 98px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 22px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .matrix, .panel .rocwrap { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 0 0 5px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 11px 4px; text-align: center; }
+  .stat .big { font-size: 18px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+  .stat.cool { background: #fff; border-color: rgba(140,158,143,0.6); }
+  .stat.cool .big { color: #5C7A63; }
+
+  .matrix { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 0 0 6px; }
+  .mcell { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px 6px; text-align: center; }
+  .mcell .n { font-size: 21px; font-weight: 800; color: var(--primary); line-height: 1.02; }
+  .mcell .l { font-size: 9px; color: var(--muted); margin-top: 3px; line-height: 1.2; }
+  .mcell.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .mcell.hot .n { color: #fff; } .mcell.hot .l { color: rgba(255,255,255,0.92); font-weight: 600; }
+  .mcell.cool { background: #fff; border-color: rgba(140,158,143,0.6); }
+  .mcell.cool .n { color: #5C7A63; }
+
+  .figrow { display: flex; gap: 12px; align-items: flex-start; justify-content: center; }
+  .fig { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px 5px; text-align: center; min-width: 0; }
+  .fig img { display: inline-block; height: auto; max-height: 170px; width: auto; max-width: 100%; border-radius: 3px; align-self: center; }
+  .fig .figcap { font-size: 10px; color: var(--muted); font-style: italic; line-height: 1.3; margin-top: 3px; text-align: left; }
+  .fig .figcap strong { color: var(--primary); font-style: normal; }
+
+  .rocwrap { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(0,1.4fr) minmax(0,1fr); grid-template-rows: 1fr; gap: 12px; align-items: stretch; margin: 2px 0 0; }
+  .rocwrap .fig { display: flex; flex-direction: column; justify-content: center; }
+  .rocwrap .fig img { align-self: center; max-height: 200px; }
+  .rocwrap .side { display: flex; flex-direction: column; justify-content: center; gap: 5px; min-width: 0; }
+  .rocwrap .side ul { margin-top: 2px; }
+
+  .spbars { margin: 2px 0 6px; }
+  .spb { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+  .spb .sbl { flex: 0 0 150px; font-size: 11.5px; font-weight: 700; color: var(--text); text-align: right; }
+  .spb .sbt { flex: 1 1 auto; height: 20px; background: #F1E7E7; border-radius: 5px; overflow: hidden; position: relative; }
+  .spb .sbf { height: 100%; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 12px; font-weight: 800; color: #fff; }
+  .spb.win .sbf { background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); }
+  .spb.lose .sbf { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); color: #6B5755; }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 3px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+  body.lang-zh .panel ul li { line-height: 1.42; margin-bottom: 5px; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Natl Med J China · 2023;103(12):907–912 · Cross-Sectional · China</div>
+    <h1 data-i18n="title">DNA Methylation for Postmenopausal EC Screening</h1>
+    <div class="title_alt" data-i18n="title_alt">DNA 甲基化检测在绝经后女性子宫内膜癌筛查中的应用价值</div>
+    <div class="subtitle" data-i18n="subtitle">143 postmenopausal women (56 EC + 87 controls) · dual-gene Se 87.5% / Sp 90.8% · TVS+DNA Se 100% · CELF4m OR 44.01</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Kong L, Xiao X, Wan R, Chao X, Chen X, Wang J, Wu H, Li L</div>
+      <div class="source" data-i18n="source">Peking Union Medical College Hospital · 中华医学杂志 2023;103(12):907–912 · doi:10.3760/cma.j.cn112137-20220929-02058</div>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="stat"><div class="big">143</div><div class="lab" data-i18n="h1">postmenopausal (56 EC)</div></div>
+    <div class="stat hot"><div class="big">87.5%</div><div class="lab" data-i18n="h2">dual Se</div></div>
+    <div class="stat"><div class="big">90.8%</div><div class="lab" data-i18n="h3">dual Sp</div></div>
+    <div class="stat hot"><div class="big">100%</div><div class="lab" data-i18n="h4">TVS + DNA Se</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Problem</strong>: no non-invasive EC screening recommended; invasive assessment has high miss rates.</li>
+          <li data-i18n="s1b"><strong>Objective</strong>: value of cervical cell CDO1m/CELF4m ± TVS for postmenopausal EC screening.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">56</div><div class="lab" data-i18n="s2s1">EC · 59.3y</div></div>
+          <div class="stat"><div class="big">87</div><div class="lab" data-i18n="s2s2">control · 61.1y</div></div>
+          <div class="stat"><div class="big">2020.5–21.10</div><div class="lab" data-i18n="s2s3">enrollment</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Setting</strong>: PUMCH; postmenopausal women, suspected lesions, hysteroscopy-referred.</li>
+          <li data-i18n="s2b"><strong>Assays</strong>: cervical cells → CDO1m/CELF4m (ΔCt ≤8.4 / ≤8.8) + TVS ET + CA125.</li>
+          <li data-i18n="s2c"><strong>Reference</strong>: hysteroscopic histopathology = gold standard.</li>
+          <li data-i18n="s2d"><strong>Inclusion</strong>: ≥40 y postmenopausal; suspected lesion per guideline; consent.</li>
+          <li data-i18n="s2e"><strong>Cut-offs</strong>: TVS positive ET ≥5 mm · CA125 ≥35 U/ml.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">87.5%</div><div class="lab" data-i18n="s2s4">dual Se (75.9–94.8)</div></div>
+          <div class="stat"><div class="big">90.8%</div><div class="lab" data-i18n="s2s5">dual Sp (82.7–95.9)</div></div>
+          <div class="stat"><div class="big">100%</div><div class="lab" data-i18n="s2s6">TVS+DNA Se</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">100%</div><div class="lab" data-i18n="s2s7">NPV · TVS+DNA</div></div>
+          <div class="stat"><div class="big">61.5%</div><div class="lab" data-i18n="s2s8">PPV · TVS+DNA</div></div>
+          <div class="stat"><div class="big">86.0%</div><div class="lab" data-i18n="s2s9">PPV · dual</div></div>
+        </div>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s2j1">TVS+DNA Se</div><div class="sbt"><div class="sbf" style="width:100%">100%</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s2j2">TVS+DNA Sp</div><div class="sbt"><div class="sbf" style="width:59.8%">59.8%</div></div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">P=0.051</div><div class="lab" data-i18n="s2s10">age EC vs control</div></div>
+          <div class="stat"><div class="big">≥40y</div><div class="lab" data-i18n="s2s11">inclusion age</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2j"><strong>Design note</strong>: TVS + DNA maximal sensitivity; dual alone best specificity balance.</li>
+          <li data-i18n="s2k"><strong>Practice fit</strong>: fits opportunistic screening for postmenopausal bleeding workup.</li>
+          <li data-i18n="s2f"><strong>First exfoliated-cell epigenetics study</strong> for EC screening in China — novel approach.</li>
+          <li data-i18n="s2g"><strong>Why not blood ctDNA</strong>: low tumor-cell abundance lacks sensitivity for early EC.</li>
+          <li data-i18n="s2h"><strong>Cell advantages</strong>: fully non-invasive · easy collection · ample cells · histology-concordant.</li>
+          <li data-i18n="s2i"><strong>Gene choice</strong>: CDO1/CELF4 distinguish EC from cervical lesions &amp; subtypes.</li>
+        </ul>
+        <div class="tnote" data-i18n="s2n">Ethics ZS-2740 · cross-sectional design · multivariable logistic + ROC.</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Risk Factors — OR Comparison</span></h3>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s3a1">CELF4m</div><div class="sbt"><div class="sbf" style="width:100%">OR 44.01</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s3a2">CA125 ≥35</div><div class="sbt"><div class="sbf" style="width:75.5%">OR 33.23</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s3a3">CDO1m</div><div class="sbt"><div class="sbf" style="width:39.4%">OR 17.34</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s3a4">ET ≥5 mm</div><div class="sbt"><div class="sbf" style="width:32.8%">OR 14.45</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s3a5">Postmeno bleeding</div><div class="sbt"><div class="sbf" style="width:19.1%">OR 8.41</div></div></div>
+        </div>
+        <ul>
+          <li data-i18n="s3a"><strong>Methylation leads</strong>: CELF4m OR 44.01 (6.79–285.25) &amp; CDO1m 17.34 — above CA125/ET.</li>
+        </ul>
+      </div>
+
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">4</span><span data-i18n="s4t">Dual-Gene &amp; TVS Combination</span></h3>
+        <div class="matrix">
+          <div class="mcell hot"><div class="n">87.5%</div><div class="l" data-i18n="s4s1">Se · dual</div></div>
+          <div class="mcell hot"><div class="n">90.8%</div><div class="l" data-i18n="s4s2">Sp · dual</div></div>
+          <div class="mcell"><div class="n">86.0%</div><div class="l" data-i18n="s4s3">PPV</div></div>
+          <div class="mcell cool"><div class="n">91.9%</div><div class="l" data-i18n="s4s4">NPV</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">100%</div><div class="lab" data-i18n="s4s5">Se · TVS+DNA</div></div>
+          <div class="stat"><div class="big">59.8%</div><div class="lab" data-i18n="s4s6">Sp · TVS+DNA</div></div>
+          <div class="stat cool"><div class="big">100%</div><div class="lab" data-i18n="s4s7">NPV · TVS+DNA</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s4a"><strong>TVS + DNA</strong>: sensitivity reaches 100% — no EC missed; specificity drops to 59.8%.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">ROC — Screening Accuracy</span></h3>
+        <div class="rocwrap">
+          <div class="fig">
+            <img src="images/fig_roc.png" alt="ROC curves for EC screening indicators">
+            <div class="figcap"><strong>Fig.</strong> <span data-i18n="s5c1">ROC — dual-gene methylation vs TVS &amp; other indicators.</span></div>
+          </div>
+          <div class="side">
+            <div class="statrow">
+              <div class="stat hot"><div class="big">AUC↑</div><div class="lab" data-i18n="s5s1">dual best single</div></div>
+              <div class="stat"><div class="big">100%</div><div class="lab" data-i18n="s5s2">TVS+DNA Se</div></div>
+            </div>
+            <ul>
+              <li data-i18n="s5a"><strong>Accuracy</strong>: methylation outperforms other non-invasive indicators in postmenopausal women.</li>
+              <li data-i18n="s5b"><strong>Balanced default</strong>: dual-gene alone (Se 87.5/Sp 90.8) — good specificity for triage.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Best non-invasive postmenopausal screening</b>: cervical-cell CDO1/CELF4 methylation (Se 87.5%, Sp 90.8%) beats CA125 &amp; TVS alone.</li>
+      <li data-i18n="c2"><b>TVS + methylation for maximum sensitivity</b>: Se 100% — a simple out-patient path to avoid missed EC.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Natl Med J China · 2023;103(12):907–912 · Cross-Sectional · China",
+      title: "DNA Methylation for Postmenopausal EC Screening",
+      title_alt: "DNA 甲基化检测在绝经后女性子宫内膜癌筛查中的应用价值",
+      subtitle: "143 postmenopausal women (56 EC + 87 controls) · dual-gene Se 87.5% / Sp 90.8% · TVS+DNA Se 100% · CELF4m OR 44.01",
+      authors: "Kong L, Xiao X, Wan R, Chao X, Chen X, Wang J, Wu H, Li L",
+      source: "Peking Union Medical College Hospital · Natl Med J China 2023;103(12):907–912 · doi:10.3760/cma.j.cn112137-20220929-02058",
+      h1: "postmenopausal (56 EC)", h2: "dual Se", h3: "dual Sp", h4: "TVS + DNA Se",
+      s1t: "Background & Objective",
+      s1a: "<strong>Problem</strong>: no non-invasive EC screening recommended; invasive assessment has high miss rates.",
+      s1b: "<strong>Objective</strong>: value of cervical cell CDO1m/CELF4m ± TVS for postmenopausal EC screening.",
+      s2t: "Study Design & Cohort",
+      s2s1: "EC · 59.3y", s2s2: "control · 61.1y", s2s3: "enrollment",
+      s2a: "<strong>Setting</strong>: PUMCH; postmenopausal women, suspected lesions, hysteroscopy-referred.",
+      s2b: "<strong>Assays</strong>: cervical cells → CDO1m/CELF4m (ΔCt ≤8.4 / ≤8.8) + TVS ET + CA125.",
+      s2c: "<strong>Reference</strong>: hysteroscopic histopathology = gold standard.",
+      s2d: "<strong>Inclusion</strong>: ≥40 y postmenopausal; suspected lesion per guideline; consent.",
+      s2e: "<strong>Cut-offs</strong>: TVS positive ET ≥5 mm · CA125 ≥35 U/ml.",
+      s2s7: "NPV · TVS+DNA", s2s8: "PPV · TVS+DNA", s2s9: "PPV · dual",
+      s2j1: "TVS+DNA Se", s2j2: "TVS+DNA Sp",
+      s2s10: "age EC vs control", s2s11: "inclusion age",
+      s2j: "<strong>Design note</strong>: TVS + DNA maximal sensitivity; dual alone best specificity balance.",
+      s2k: "<strong>Practice fit</strong>: fits opportunistic screening for postmenopausal bleeding workup.",
+      s2f: "<strong>First exfoliated-cell epigenetics study</strong> for EC screening in China — novel approach.",
+      s2g: "<strong>Why not blood ctDNA</strong>: low tumor-cell abundance lacks sensitivity for early EC.",
+      s2h: "<strong>Cell advantages</strong>: fully non-invasive · easy collection · ample cells · histology-concordant.",
+      s2i: "<strong>Gene choice</strong>: CDO1/CELF4 distinguish EC from cervical lesions & subtypes.",
+      s2s4: "dual Se (75.9–94.8)", s2s5: "dual Sp (82.7–95.9)", s2s6: "TVS+DNA Se",
+      s2n: "Ethics ZS-2740 · cross-sectional design · multivariable logistic + ROC.",
+      s3t: "Risk Factors — OR Comparison",
+      s3a1: "CELF4m", s3a2: "CA125 ≥35", s3a3: "CDO1m", s3a4: "ET ≥5 mm", s3a5: "Postmeno bleeding",
+      s3a: "<strong>Methylation leads</strong>: CELF4m OR 44.01 (6.79–285.25) & CDO1m 17.34 — above CA125/ET.",
+      s4t: "Dual-Gene & TVS Combination",
+      s4s1: "Se · dual", s4s2: "Sp · dual", s4s3: "PPV", s4s4: "NPV",
+      s4s5: "Se · TVS+DNA", s4s6: "Sp · TVS+DNA", s4s7: "NPV · TVS+DNA",
+      s4a: "<strong>TVS + DNA</strong>: sensitivity reaches 100% — no EC missed; specificity drops to 59.8%.",
+      s5t: "ROC — Screening Accuracy",
+      s5c1: "ROC — dual-gene methylation vs TVS & other indicators.",
+      s5s1: "dual best single", s5s2: "TVS+DNA Se",
+      s5a: "<strong>Accuracy</strong>: methylation outperforms other non-invasive indicators in postmenopausal women.",
+      s5b: "<strong>Balanced default</strong>: dual-gene alone (Se 87.5/Sp 90.8) — good specificity for triage.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Best non-invasive postmenopausal screening</b>: cervical-cell CDO1/CELF4 methylation (Se 87.5%, Sp 90.8%) beats CA125 & TVS alone.",
+      c2: "<b>TVS + methylation for maximum sensitivity</b>: Se 100% — a simple out-patient path to avoid missed EC."
+    },
+    zh: {
+      kicker: "中华医学杂志 · 2023;103(12):907–912 · 横断面 · 中国",
+      title: "DNA 甲基化检测在绝经后女性子宫内膜癌筛查中的应用价值",
+      title_alt: "DNA Methylation for Postmenopausal EC Screening",
+      subtitle: "143 例绝经后女性（56 例 EC + 87 例对照）· 双基因 Se 87.5% / Sp 90.8% · TVS+DNA Se 100% · CELF4m OR 44.01",
+      authors: "孔令华、肖晓萍、万茹、钞晓培、陈晓静、王婧、吴焕文、李雷",
+      source: "北京协和医院 · 中华医学杂志 2023;103(12):907–912 · doi:10.3760/cma.j.cn112137-20220929-02058",
+      h1: "绝经后（56 例 EC）", h2: "双基因 Se", h3: "双基因 Sp", h4: "TVS+DNA Se",
+      s1t: "背景与目的",
+      s1a: "<strong>问题</strong>：无推荐的无创 EC 筛查；有创评估漏诊率高。",
+      s1b: "<strong>目的</strong>：评估宫颈脱落细胞 CDO1m/CELF4m ± TVS 对绝经后 EC 的筛查价值。",
+      s2t: "研究设计与队列",
+      s2s1: "EC · 59.3岁", s2s2: "对照 · 61.1岁", s2s3: "入组期",
+      s2a: "<strong>地点</strong>：北京协和医院；绝经后疑似病变、拟行宫腔镜。",
+      s2b: "<strong>检测</strong>：宫颈细胞 → CDO1m/CELF4m（ΔCt ≤8.4/≤8.8）+ TVS 内膜厚度 + CA125。",
+      s2c: "<strong>金标准</strong>：宫腔镜组织病理。",
+      s2d: "<strong>纳入</strong>：≥40 岁绝经后；按指南怀疑病变；知情同意。",
+      s2e: "<strong>阈值</strong>：TVS 阳性 ET ≥5 mm · CA125 ≥35 U/ml。",
+      s2s7: "NPV · TVS+DNA", s2s8: "PPV · TVS+DNA", s2s9: "PPV · 双基因",
+      s2j1: "TVS+DNA Se", s2j2: "TVS+DNA Sp",
+      s2s10: "年龄 EC vs 对照", s2s11: "纳入年龄",
+      s2j: "<strong>设计要点</strong>：TVS+DNA 灵敏度最大；单用双基因特异度最平衡。",
+      s2k: "<strong>实践契合</strong>：适用于绝经后出血门诊的机会性筛查。",
+      s2f: "<strong>国内首个脱落细胞表观遗传学研究</strong>用于 EC 筛查——创新路径。",
+      s2g: "<strong>为何不用血液 ctDNA</strong>：肿瘤细胞丰度不足，对早期 EC 缺乏灵敏度。",
+      s2h: "<strong>细胞优势</strong>：完全无创 · 取材方便 · 细胞量充分 · 与组织学一致。",
+      s2i: "<strong>基因选择</strong>：CDO1/CELF4 可区分 EC 与宫颈病变及亚型。",
+      s2s4: "双基因 Se（75.9–94.8）", s2s5: "双基因 Sp（82.7–95.9）", s2s6: "TVS+DNA Se",
+      s2n: "伦理 ZS-2740 · 横断面设计 · 多因素 Logistic + ROC。",
+      s3t: "危险因素——OR 对比",
+      s3a1: "CELF4m", s3a2: "CA125 ≥35", s3a3: "CDO1m", s3a4: "ET ≥5 mm", s3a5: "绝经后出血",
+      s3a: "<strong>甲基化领先</strong>：CELF4m OR 44.01（6.79–285.25）、CDO1m 17.34——高于 CA125/ET。",
+      s4t: "双基因与 TVS 联合",
+      s4s1: "Se · 双基因", s4s2: "Sp · 双基因", s4s3: "PPV", s4s4: "NPV",
+      s4s5: "Se · TVS+DNA", s4s6: "Sp · TVS+DNA", s4s7: "NPV · TVS+DNA",
+      s4a: "<strong>TVS+DNA</strong>：灵敏度达 100%——不漏诊 EC；特异度降至 59.8%。",
+      s5t: "ROC——筛查准确度",
+      s5c1: "ROC——双基因甲基化 vs TVS 及其他指标。",
+      s5s1: "双基因最佳单项", s5s2: "TVS+DNA Se",
+      s5a: "<strong>准确度</strong>：甲基化优于绝经后其他无创筛查指标。",
+      s5b: "<strong>平衡默认</strong>：单用双基因（Se 87.5/Sp 90.8）——分诊特异度良好。",
+      c_ttl: "临床意义",
+      c1: "<b>最佳绝经后无创筛查</b>：宫颈脱落细胞 CDO1/CELF4 甲基化（Se 87.5%、Sp 90.8%）优于 CA125 与单独 TVS。",
+      c2: "<b>TVS + 甲基化追求最大灵敏度</b>：Se 100%——简便门诊路径，避免漏诊 EC。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

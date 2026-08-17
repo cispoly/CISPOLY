@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JAM3/PAX1 Methylation for HSIL Diagnosis in hr-HPV+ Women — Sun et al. 2024, BMC Cancer</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #2，非九宫格，与样例两栏布局区分）：
+  - 风格：品牌红（#D74B4A/#F07A76/#B83A39）、红色渐变标题带、编号小节标题、点式 bullet、白色 stat 卡、红色高亮表格
+  - 布局（决策规则 hero + 三栏）：标题带 → 全宽「决策规则」条（3 个关键阈值/模型规则块）→ 三栏（左 500px：①背景与目的 ②研究设计；中 1fr：③ROC+相关性热图双图 ④决策规则 2×2；右 560px：⑤六方法性能表 ⑥决策树图）→ 全宽临床意义带
+  - 选图（已逐张查看）：
+    * fig3_roc.jpg（798x464，宽幅 1.72:1）：6 种方法 ROC，AUC 对比直观 → 选中（中栏主图）
+    * fig1_heatmap.jpg（633x490，1.29:1）：临床变量相关热图，ΔCtJ 相关最强 → 选中（中栏副图）
+    * fig2_tree.jpg（778x473，宽幅 1.64:1）：条件推断树，可直接落地的分诊规则 → 选中（右栏）
+  - 约束：所有文字/图片不超出背景框；结果占最大面积；背景仅两块；不放研究流程图；最后一块为临床意义
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  /* 标题带 */
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1690px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1690px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1760px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  /* 决策规则条 */
+  .rules { flex: 0 0 auto; height: 106px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 9px 6px; }
+  .rule { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 8px 10px;
+    display: flex; flex-direction: column; justify-content: center; position: relative; }
+  .rule .rl { font-size: 10.5px; color: var(--muted); font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; }
+  .rule .rm { font-size: 20px; font-weight: 800; color: var(--primary); margin-top: 3px; font-family: "Courier New", Consolas, monospace; }
+  .rule .rv { font-size: 15px; font-weight: 700; color: var(--accent-deep); margin-top: 2px; }
+  .rule.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .rule.hot .rl { color: rgba(255,255,255,0.85); }
+  .rule.hot .rm { color: #fff; }
+  .rule.hot .rv { color: #FFE3E1; }
+
+  /* 主体三栏 */
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 500px minmax(0, 1fr) 560px; gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 8px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel table, .panel .statrow, .panel .flowrow, .panel .hbar, .panel .wstrip, .panel .figrow, .panel .tnote, .panel .rulegrid { flex: 0 0 auto; }
+  .panel h3 { font-size: 14.5px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11.5px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 13.5px; line-height: 1.45; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 1px 0 7px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 4px 5px; text-align: center; }
+  .stat .big { font-size: 24px; font-weight: 800; color: var(--primary); line-height: 1.1; }
+  .stat .lab { font-size: 10px; color: var(--muted); margin-top: 2px; line-height: 1.3; }
+
+  .wstrip { display: flex; align-items: center; gap: 6px; margin: 1px 0 7px; }
+  .wstrip .wchip { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 5px; padding: 11px 4px; text-align: center; font-size: 11px; font-weight: 600; color: var(--accent-deep); }
+  .wstrip .warr { color: var(--secondary); font-size: 14px; font-weight: 800; }
+
+  /* 队列柱条（左栏） */
+  .hbar { display: flex; gap: 6px; margin-top: 7px; align-items: flex-end; }
+  .hbar .b { flex: 1; text-align: center; }
+  .hbar .bar { background: linear-gradient(180deg, var(--secondary) 0%, var(--accent) 130%); border-radius: 4px 4px 0 0; }
+  .hbar .b1 .bar { height: 116px; }
+  .hbar .b2 .bar { height: 26px; }
+  .hbar .vl { font-size: 13px; font-weight: 700; color: var(--accent-deep); margin-top: 2px; }
+  .hbar .lb { font-size: 10.5px; color: var(--muted); margin-top: 2px; line-height: 1.25; }
+
+  /* 图行（限高居中） */
+  .figrow { display: flex; gap: 12px; align-items: flex-start; justify-content: center; }
+  .fig { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 7px 9px 6px; text-align: center; }
+  .fig img { display: inline-block; height: auto; max-height: 245px; width: auto; border-radius: 3px; }
+  .fig .figcap { font-size: 11px; color: var(--muted); font-style: italic; line-height: 1.35; margin-top: 5px; text-align: left; max-width: 400px; }
+  .fig .figcap strong { color: var(--primary); font-style: normal; }
+
+  /* 决策规则 2×2 */
+  .rulegrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 1px 0 7px; }
+  .rg { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 7px 9px; }
+  .rg .rgc { font-size: 12.5px; font-weight: 800; color: var(--primary); font-family: "Courier New", Consolas, monospace; }
+  .rg .rgv { font-size: 12px; font-weight: 700; color: var(--accent-deep); margin-top: 1px; }
+  .rg.hot { background: var(--panel-alt); border-color: rgba(215,75,74,0.45); }
+
+  .minitable { width: 100%; border-collapse: collapse; margin: 2px 0 4px 0; font-size: 11.5px; }
+  .minitable th { background: rgba(215,75,74,0.12); color: var(--accent-deep); font-weight: 700; padding: 3px 5px; text-align: left; border-bottom: 2px solid var(--line); font-size: 10.5px; }
+  .minitable td { padding: 3px 5px; border-bottom: 1px solid var(--line); color: var(--muted); }
+  .minitable td:first-child { font-weight: 600; color: var(--text); }
+  .minitable tr:last-child td { border-bottom: none; }
+  .minitable .highlight { color: var(--primary); font-weight: 700; }
+  .tnote { font-size: 11px; color: var(--muted); line-height: 1.45; margin-top: 2px; }
+  .tnote b { color: var(--accent-deep); }
+
+  /* 临床意义带 */
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">BMC Cancer · 2024;24:1514 · Cross-Sectional Study · China</div>
+    <h1 data-i18n="title">JAM3/PAX1 Methylation for HSIL Diagnosis in hr-HPV-Positive Women</h1>
+    <div class="title_alt" data-i18n="title_alt">JAM3/PAX1 甲基化在 hr-HPV 感染女性中诊断高级别鳞状上皮内病变（HSIL）的效能</div>
+    <div class="subtitle" data-i18n="subtitle">276 hr-HPV+ women · ΔCtP + TCT + HPV combined reaches AUC 0.932 · decision-tree cutoffs identify 96.4–99.1% non-HSIL</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Sun D, Shu C, Zeng F, Xu D (correspondence), Zhao X (correspondence)</div>
+      <div class="source" data-i18n="source">Third Xiangya Hospital, Central South University · qPCR methylation (GAPDH control) · doi: <a href="https://doi.org/10.1186/s12885-024-13299-y" target="_blank" rel="noopener">10.1186/s12885-024-13299-y</a></div>
+    </div>
+  </header>
+
+  <!-- 决策规则条 -->
+  <div class="rules">
+    <div class="rule"><div class="rl" data-i18n="r1l">Decision rule · ΔCtJ</div><div class="rm">ΔCtJ &gt; 11.66</div><div class="rv" data-i18n="r1v">→ 96.4% non-HSIL</div></div>
+    <div class="rule"><div class="rl" data-i18n="r2l">Decision rule · ΔCtP</div><div class="rm">ΔCtP &gt; 10.97</div><div class="rv" data-i18n="r2v">→ 99.1% non-HSIL</div></div>
+    <div class="rule hot"><div class="rl" data-i18n="r3l">Best combined model</div><div class="rm">ΔCtP + TCT + HPV</div><div class="rv" data-i18n="r3v">AUC 0.932 · Se 91.2%</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Challenge</strong>: catching HSIL early prevents invasive cancer; hr-HPV testing is sensitive but low-specificity.</li>
+          <li data-i18n="s1b"><strong>TCT limits</strong>: low sensitivity, subjective (esp. ASCUS); NGS HPV-integration is accurate but costly.</li>
+          <li data-i18n="s1c"><strong>Objective</strong>: evaluate JAM3 (ΔCtJ) &amp; PAX1 (ΔCtP) methylation for HSIL diagnosis vs TCT/HPV.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">276</div><div class="lab" data-i18n="s2s1">hr-HPV+ enrolled</div></div>
+          <div class="stat"><div class="big">242</div><div class="lab" data-i18n="s2s2">non-HSIL</div></div>
+          <div class="stat"><div class="big">34</div><div class="lab" data-i18n="s2s3">HSIL (CIN2–3)</div></div>
+        </div>
+        <div class="wstrip">
+          <span class="wchip" data-i18n="ws1">HPV</span><span class="warr">+</span>
+          <span class="wchip" data-i18n="ws2">TCT cytology</span><span class="warr">+</span>
+          <span class="wchip" data-i18n="ws3">JAM3/PAX1 methylation</span>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Setting</strong>: Third Xiangya Hospital, Aug–Nov 2022; ethics approved (No. 23137).</li>
+          <li data-i18n="s2b"><strong>Methods</strong>: exfoliated cervical cells → HPV + TCT + qPCR methylation (GAPDH control).</li>
+          <li data-i18n="s2c"><strong>Analysis</strong>: logistic regression; conditional inference tree; ROC/AUC.</li>
+          <li data-i18n="s2d"><strong>Pathology</strong>: colposcopy-directed biopsy; chronic cervicitis/CIN1 = non-HSIL.</li>
+          <li data-i18n="s2e"><strong>Risk factors (multivariate)</strong>: ΔCtJ, ΔCtP, ASC-US, HPV16.</li>
+          <li data-i18n="s2f"><strong>Cutoffs (CART)</strong>: diagnose HSIL ΔCtJ ≤ 9.95 / ΔCtP ≤ 6.23; rule out ΔCtJ &gt; 11.66 / ΔCtP &gt; 10.97.</li>
+          <li data-i18n="s2g"><strong>Inclusion/exclusion</strong>: no vaginal meds 3 mo / sex 2 d; no recent cervical therapy.</li>
+        </ul>
+        <div class="hbar">
+          <div class="b b1"><div class="bar"></div><div class="vl">87.7%</div><div class="lb" data-i18n="s2h1">non-HSIL (n=242)</div></div>
+          <div class="b b2"><div class="bar"></div><div class="vl">12.3%</div><div class="lb" data-i18n="s2h2">HSIL (n=34)</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 中栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">ROC Curves &amp; Correlation</span></h3>
+        <div class="figrow">
+          <div class="fig">
+            <img src="images/fig3_roc.jpg" alt="ROC curves of each clinical index for HSIL diagnosis">
+            <div class="figcap"><strong>Fig. 3</strong> <span data-i18n="s3c1">ROC curves — ΔCtP+TCT+HPV highest AUC 0.932; TCT/HPV alone lowest.</span></div>
+          </div>
+          <div class="fig">
+            <img src="images/fig1_heatmap.jpg" alt="Correlation heatmap between clinical variables">
+            <div class="figcap"><strong>Fig. 1</strong> <span data-i18n="s3c2">Correlation heatmap — pathology vs ΔCtJ r=−0.532, ΔCtP r=−0.447 (P&lt;0.05).</span></div>
+          </div>
+        </div>
+        <ul style="margin-top:5px;">
+          <li data-i18n="s3a"><strong>Combination wins</strong>: ΔCtP+TCT+HPV AUC 0.932 &gt; ΔCtJ+TCT+HPV 0.926 &gt; single markers (0.867/0.841) &gt; TCT 0.791, HPV 0.784.</li>
+          <li data-i18n="s3b"><strong>Methylation tracks severity</strong>: lower ΔCt (higher methylation) correlates with HSIL.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">4</span><span data-i18n="s4t">Decision Rules — Directly Actionable</span></h3>
+        <div class="rulegrid">
+          <div class="rg hot"><div class="rgc" data-i18n="rg1c">ΔCtJ ≤ 9.95</div><div class="rgv" data-i18n="rg1v">73.1% HSIL — high risk</div></div>
+          <div class="rg"><div class="rgc" data-i18n="rg2c">ΔCtJ &gt; 11.66</div><div class="rgv" data-i18n="rg2v">96.4% non-HSIL</div></div>
+          <div class="rg hot"><div class="rgc" data-i18n="rg3c">ΔCtP ≤ 6.23</div><div class="rgv" data-i18n="rg3v">67.7% HSIL — high risk</div></div>
+          <div class="rg"><div class="rgc" data-i18n="rg4c">ΔCtP &gt; 10.97</div><div class="rgv" data-i18n="rg4v">99.1% non-HSIL</div></div>
+          <div class="rg"><div class="rgc" data-i18n="rg5c">ΔCtP &gt; 6.23 + TCT LSIL/ASC-US</div><div class="rgv" data-i18n="rg5v">97.9% non-HSIL</div></div>
+          <div class="rg"><div class="rgc" data-i18n="rg6c">ΔCtJ &gt; 9.95 + TCT NILM + HPV 18/52/other</div><div class="rgv" data-i18n="rg6v">100% non-HSIL</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s4a"><strong>Tree model</strong>: cutoffs from CART; as ΔCt rises, HSIL probability falls sharply.</li>
+          <li data-i18n="s4b"><strong>Rule-out power</strong>: ΔCtP &gt; 10.97 or ΔCtJ &gt; 11.66 safely rules out HSIL in clinic.</li>
+          <li data-i18n="s4c"><strong>Combined tree (D)</strong>: ΔCtP+TCT+HPV stratified non-HSIL up to 97.9–100% — best model.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">5</span><span data-i18n="s5t">Six-Model Comparison — HSIL</span></h3>
+        <table class="minitable">
+          <tr><th data-i18n="t_h1">Model</th><th data-i18n="t_h2">Se %</th><th data-i18n="t_h3">Sp %</th><th data-i18n="t_h4">PPV %</th><th data-i18n="t_h5">NPV %</th><th data-i18n="t_h6">AUC</th></tr>
+          <tr><td class="highlight" data-i18n="t_r5a">ΔCtP+TCT+HPV</td><td class="highlight">91.2</td><td>87.2</td><td>50.0</td><td class="highlight">98.6</td><td class="highlight">0.932</td></tr>
+          <tr><td data-i18n="t_r6a">ΔCtJ+TCT+HPV</td><td>88.2</td><td>84.7</td><td>44.8</td><td>98.1</td><td>0.926</td></tr>
+          <tr><td data-i18n="t_r3a">ΔCtP</td><td>76.5</td><td>83.1</td><td>38.8</td><td>96.2</td><td>0.867</td></tr>
+          <tr><td data-i18n="t_r4a">ΔCtJ</td><td>76.5</td><td>88.0</td><td>47.3</td><td>96.4</td><td>0.841</td></tr>
+          <tr><td data-i18n="t_r1a">TCT</td><td>67.6</td><td>81.4</td><td>33.8</td><td>94.7</td><td>0.791</td></tr>
+          <tr><td data-i18n="t_r2a">HPV</td><td>76.5</td><td>66.9</td><td>24.5</td><td>95.3</td><td>0.784</td></tr>
+        </table>
+        <div class="tnote" data-i18n="s5note">Combining methylation with routine tests beats any single test; TCT/HPV alone rank lowest.</div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">6</span><span data-i18n="s6t">Conditional Inference Tree</span></h3>
+        <div class="figrow">
+          <div class="fig">
+            <img src="images/fig2_tree.jpg" alt="Conditional inference tree for hierarchical HSIL diagnosis">
+            <div class="figcap"><strong>Fig. 2</strong> <span data-i18n="s6c">Tree-based rules (A–D) using ΔCtJ / ΔCtP with TCT &amp; HPV — interpretable, easy to implement.</span></div>
+          </div>
+        </div>
+        <ul style="margin-top:5px;">
+          <li data-i18n="s6a"><strong>Interpretable</strong>: recursive binary splitting gives direct clinical decision rules.</li>
+          <li data-i18n="s6b"><strong>Tree C</strong>: adding TCT/HPV to ΔCtJ did not beat ΔCtJ alone.</li>
+          <li data-i18n="s6c2"><strong>Tree D</strong>: adding TCT/HPV improved ΔCtP stratification (AUC 0.932).</li>
+        </ul>
+        <div class="tnote" data-i18n="s6d">A: ΔCtJ · B: ΔCtP · C: ΔCtJ+TCT+HPV · D: ΔCtP+TCT+HPV</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>In hr-HPV+ women,</b> cervical cytology methylation (ΔCtP/ΔCtJ) outperforms TCT or HPV alone; ΔCtP + TCT + HPV gives the most accurate HSIL screen (AUC 0.932, NPV 98.6%).</li>
+      <li data-i18n="c2"><b>Directly actionable rules</b>: ΔCtP &gt; 10.97 / ΔCtJ &gt; 11.66 rule out HSIL with 99.1% / 96.4% certainty — reducing unnecessary colposcopy.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "BMC Cancer · 2024;24:1514 · Cross-Sectional Study · China",
+      title: "JAM3/PAX1 Methylation for HSIL Diagnosis in hr-HPV-Positive Women",
+      title_alt: "JAM3/PAX1 甲基化在 hr-HPV 感染女性中诊断高级别鳞状上皮内病变（HSIL）的效能",
+      subtitle: "276 hr-HPV+ women · ΔCtP + TCT + HPV combined reaches AUC 0.932 · decision-tree cutoffs identify 96.4–99.1% non-HSIL",
+      authors: "Sun D, Shu C, Zeng F, Xu D (correspondence), Zhao X (correspondence)",
+      source: 'Third Xiangya Hospital, Central South University · qPCR methylation (GAPDH control) · doi: <a href="https://doi.org/10.1186/s12885-024-13299-y" target="_blank" rel="noopener">10.1186/s12885-024-13299-y</a>',
+      r1l: "Decision rule · ΔCtJ", r1v: "→ 96.4% non-HSIL",
+      r2l: "Decision rule · ΔCtP", r2v: "→ 99.1% non-HSIL",
+      r3l: "Best combined model", r3v: "AUC 0.932 · Se 91.2%",
+      s1t: "Background & Objective",
+      s1a: "<strong>Challenge</strong>: catching HSIL early prevents invasive cancer; hr-HPV testing is sensitive but low-specificity.",
+      s1b: "<strong>TCT limits</strong>: low sensitivity, subjective (esp. ASCUS); NGS HPV-integration is accurate but costly.",
+      s1c: "<strong>Objective</strong>: evaluate JAM3 (ΔCtJ) &amp; PAX1 (ΔCtP) methylation for HSIL diagnosis vs TCT/HPV.",
+      s2t: "Study Design & Cohort",
+      s2s1: "hr-HPV+ enrolled", s2s2: "non-HSIL", s2s3: "HSIL (CIN2–3)",
+      ws1: "HPV", ws2: "TCT cytology", ws3: "JAM3/PAX1 methylation",
+      s2a: "<strong>Setting</strong>: Third Xiangya Hospital, Aug–Nov 2022 (ethics No. 23137).",
+      s2b: "<strong>Methods</strong>: exfoliated cervical cells → HPV + TCT + qPCR methylation (GAPDH control).",
+      s2c: "<strong>Analysis</strong>: logistic regression; conditional inference tree; ROC/AUC.",
+      s2d: "<strong>Pathology</strong>: colposcopy-directed biopsy; chronic cervicitis/CIN1 = non-HSIL.",
+      s2e: "<strong>Risk factors (multivariate)</strong>: ΔCtJ, ΔCtP, ASC-US, HPV16.",
+      s2f: "<strong>Cutoffs (CART)</strong>: ΔCtJ ≤ 9.95 / ΔCtP ≤ 6.23 → HSIL; > 11.66 / > 10.97 → rule out.",
+      s2g: "<strong>Inclusion</strong>: no vaginal meds 3 mo, no sex 2 d.",
+      s2h1: "non-HSIL (n=242)", s2h2: "HSIL (n=34)",
+      s3t: "ROC Curves & Correlation",
+      s3c1: "ROC curves — ΔCtP+TCT+HPV highest AUC 0.932; TCT/HPV alone lowest.",
+      s3c2: "Correlation heatmap — pathology vs ΔCtJ r=−0.532, ΔCtP r=−0.447 (P<0.05).",
+      s3a: "<strong>Combination wins</strong>: ΔCtP+TCT+HPV AUC 0.932 > ΔCtJ+TCT+HPV 0.926 > single markers (0.867/0.841) > TCT 0.791, HPV 0.784.",
+      s3b: "<strong>Methylation tracks severity</strong>: lower ΔCt (higher methylation) correlates with HSIL.",
+      s4t: "Decision Rules — Directly Actionable",
+      rg1c: "ΔCtJ ≤ 9.95", rg1v: "73.1% HSIL — high risk",
+      rg2c: "ΔCtJ > 11.66", rg2v: "96.4% non-HSIL",
+      rg3c: "ΔCtP ≤ 6.23", rg3v: "67.7% HSIL — high risk",
+      rg4c: "ΔCtP > 10.97", rg4v: "99.1% non-HSIL",
+      rg5c: "ΔCtP > 6.23 + TCT LSIL/ASC-US", rg5v: "97.9% non-HSIL",
+      rg6c: "ΔCtJ > 9.95 + TCT NILM + HPV 18/52/other", rg6v: "100% non-HSIL",
+      s4a: "<strong>Tree model</strong>: cutoffs from CART; as ΔCt rises, HSIL probability falls sharply.",
+      s4b: "<strong>Rule-out power</strong>: ΔCtP > 10.97 or ΔCtJ > 11.66 safely rules out HSIL in clinic.",
+      s4c: "<strong>Combined tree (D)</strong>: ΔCtP+TCT+HPV stratified non-HSIL up to 97.9–100% — best model.",
+      s5t: "Six-Model Comparison — HSIL",
+      t_h1: "Model", t_h2: "Se %", t_h3: "Sp %", t_h4: "PPV %", t_h5: "NPV %", t_h6: "AUC",
+      t_r1a: "TCT", t_r2a: "HPV", t_r3a: "ΔCtP", t_r4a: "ΔCtJ", t_r5a: "ΔCtP+TCT+HPV", t_r6a: "ΔCtJ+TCT+HPV",
+      s5note: "Combining methylation with routine tests beats any single test; TCT/HPV alone rank lowest.",
+      s6t: "Conditional Inference Tree",
+      s6c: "Tree-based rules (A–D) using ΔCtJ / ΔCtP with TCT & HPV — interpretable, easy to implement.",
+      s6a: "<strong>Interpretable</strong>: recursive binary splitting gives direct clinical decision rules.",
+      s6b: "<strong>Tree C</strong>: adding TCT/HPV to ΔCtJ did not beat ΔCtJ alone.",
+      s6c2: "<strong>Tree D</strong>: adding TCT/HPV improved ΔCtP stratification (AUC 0.932).",
+      s6d: "A: ΔCtJ · B: ΔCtP · C: ΔCtJ+TCT+HPV · D: ΔCtP+TCT+HPV",
+      c_ttl: "Clinical Significance",
+      c1: "<b>In hr-HPV+ women,</b> cervical cytology methylation (ΔCtP/ΔCtJ) outperforms TCT or HPV alone; ΔCtP + TCT + HPV gives the most accurate HSIL screen (AUC 0.932, NPV 98.6%).",
+      c2: "<b>Directly actionable rules</b>: ΔCtP > 10.97 / ΔCtJ > 11.66 rule out HSIL with 99.1% / 96.4% certainty — reducing unnecessary colposcopy."
+    },
+    zh: {
+      kicker: "BMC Cancer · 2024;24:1514 · 横断面研究 · 中国",
+      title: "JAM3/PAX1 甲基化在 hr-HPV 感染女性中诊断高级别鳞状上皮内病变（HSIL）的效能",
+      title_alt: "JAM3/PAX1 Methylation for HSIL Diagnosis in hr-HPV-Positive Women",
+      subtitle: "276 例 hr-HPV+ 女性 · ΔCtP+TCT+HPV 联合 AUC 达 0.932 · 决策树阈值可识别 96.4%–99.1% 非 HSIL",
+      authors: "孙丹、舒昌发、曾飞、徐大宝（通讯）、赵行平（通讯）",
+      source: '中南大学湘雅三医院 · qPCR 甲基化（GAPDH 内参）· doi: <a href="https://doi.org/10.1186/s12885-024-13299-y" target="_blank" rel="noopener">10.1186/s12885-024-13299-y</a>',
+      r1l: "决策规则 · ΔCtJ", r1v: "→ 96.4% 非 HSIL",
+      r2l: "决策规则 · ΔCtP", r2v: "→ 99.1% 非 HSIL",
+      r3l: "最优联合模型", r3v: "AUC 0.932 · Se 91.2%",
+      s1t: "背景与目的",
+      s1a: "<strong>挑战</strong>：早期发现 HSIL 可预防浸润癌；hr-HPV 检测敏感但特异度低。",
+      s1b: "<strong>TCT 局限</strong>：灵敏度低、主观性强（尤其 ASC-US）；NGS HPV 整合准确但昂贵。",
+      s1c: "<strong>目的</strong>：评估 JAM3（ΔCtJ）与 PAX1（ΔCtP）甲基化诊断 HSIL 的效能 vs TCT/HPV。",
+      s2t: "研究设计与队列",
+      s2s1: "hr-HPV+ 纳入", s2s2: "非 HSIL", s2s3: "HSIL (CIN2–3)",
+      ws1: "HPV", ws2: "TCT 细胞学", ws3: "JAM3/PAX1 甲基化",
+      s2a: "<strong>地点</strong>：湘雅三医院，2022.8–11；伦理批准（No. 23137）。",
+      s2b: "<strong>方法</strong>：宫颈脱落细胞 → HPV + TCT + qPCR 甲基化（GAPDH 内参）。",
+      s2c: "<strong>分析</strong>：Logistic 回归；条件推断树；ROC/AUC。",
+      s2d: "<strong>病理</strong>：阴道镜指引活检；慢性宫颈炎/CIN1 为非 HSIL。",
+      s2e: "<strong>独立危险因素（多因素）</strong>：ΔCtJ、ΔCtP、ASC-US、HPV16。",
+      s2f: "<strong>阈值（CART）</strong>：诊断 HSIL ΔCtJ ≤ 9.95 / ΔCtP ≤ 6.23；排除 ΔCtJ &gt; 11.66 / ΔCtP &gt; 10.97。",
+      s2g: "<strong>入排标准</strong>：3 个月无阴道用药 / 2 天无性生活；近期无宫颈治疗。",
+      s2h1: "非 HSIL (n=242)", s2h2: "HSIL (n=34)",
+      s3t: "ROC 曲线与相关性",
+      s3c1: "ROC 曲线——ΔCtP+TCT+HPV AUC 最高 0.932；单独 TCT/HPV 最低。",
+      s3c2: "相关性热图——病理 vs ΔCtJ r=−0.532、ΔCtP r=−0.447（P&lt;0.05）。",
+      s3a: "<strong>联合最优</strong>：ΔCtP+TCT+HPV 0.932 &gt; ΔCtJ+TCT+HPV 0.926 &gt; 单项（0.867/0.841）&gt; TCT 0.791、HPV 0.784。",
+      s3b: "<strong>甲基化随严重度升高</strong>：ΔCt 越低（甲基化越高）越接近 HSIL。",
+      s4t: "决策规则——可直接落地",
+      rg1c: "ΔCtJ ≤ 9.95", rg1v: "73.1% HSIL——高风险",
+      rg2c: "ΔCtJ > 11.66", rg2v: "96.4% 非 HSIL",
+      rg3c: "ΔCtP ≤ 6.23", rg3v: "67.7% HSIL——高风险",
+      rg4c: "ΔCtP > 10.97", rg4v: "99.1% 非 HSIL",
+      rg5c: "ΔCtP > 6.23 + TCT LSIL/ASC-US", rg5v: "97.9% 非 HSIL",
+      rg6c: "ΔCtJ > 9.95 + TCT NILM + HPV 18/52/其他", rg6v: "100% 非 HSIL",
+      s4a: "<strong>树模型</strong>：阈值来自 CART；ΔCt 越高，HSIL 概率急剧下降。",
+      s4b: "<strong>排除能力</strong>：ΔCtP &gt; 10.97 或 ΔCtJ &gt; 11.66 可安全排除 HSIL，减少不必要阴道镜。",
+      s4c: "<strong>联合树（D）</strong>：ΔCtP+TCT+HPV 将非 HSIL 分层至 97.9–100%——最优模型。",
+      s5t: "六模型对比 —— HSIL",
+      t_h1: "模型", t_h2: "灵敏度%", t_h3: "特异度%", t_h4: "PPV%", t_h5: "NPV%", t_h6: "AUC",
+      t_r1a: "TCT", t_r2a: "HPV", t_r3a: "ΔCtP", t_r4a: "ΔCtJ", t_r5a: "ΔCtP+TCT+HPV", t_r6a: "ΔCtJ+TCT+HPV",
+      s5note: "甲基化联合常规检测优于任何单项；TCT/HPV 单独排名最低。",
+      s6t: "条件推断树",
+      s6c: "基于 ΔCtJ/ΔCtP 联合 TCT 与 HPV 的树规则（A–D）——可解释、易落地。",
+      s6a: "<strong>可解释</strong>：递归二分裂给出直接的临床决策规则。",
+      s6b: "<strong>树 C</strong>：ΔCtJ 联合 TCT/HPV 并不优于单独 ΔCtJ。",
+      s6c2: "<strong>树 D</strong>：ΔCtP 联合 TCT/HPV 分层更优（AUC 0.932）。",
+      s6d: "A：ΔCtJ · B：ΔCtP · C：ΔCtJ+TCT+HPV · D：ΔCtP+TCT+HPV",
+      c_ttl: "临床意义",
+      c1: "<b>在 hr-HPV+ 女性中，</b>宫颈细胞学甲基化（ΔCtP/ΔCtJ）优于单独 TCT 或 HPV；ΔCtP+TCT+HPV 提供最准确的 HSIL 筛查（AUC 0.932、NPV 98.6%）。",
+      c2: "<b>可直接落地的规则</b>：ΔCtP &gt; 10.97 / ΔCtJ &gt; 11.66 分别以 99.1%/96.4% 排除 HSIL——减少不必要阴道镜。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

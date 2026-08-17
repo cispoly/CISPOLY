@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAX1/JAM3 Methylation for CIN Prediction — Zhou 2025</title>
+<!--
+  设计说明（布局 BD：初步研究 · 联合预测）：
+  - 标题带 → hero（144 例 · AUC 0.8789 · PPV 96.9% · OR 6.32）
+  - 左列：① 背景与目的 ② 研究设计
+  - 右列：③ 甲基化阳性率（68.8/56.3/6.4/1.2%）④ 联合预测策略（表）⑤ 风险分层价值
+  - 临床意义带
+-->
+<style>
+  :root { --primary:#D74B4A; --secondary:#F07A76; --accent:#F7C9C7; --accent-deep:#B83A39;
+    --bg:#FFFFFF; --panel:rgba(233,233,233,0.55); --panel-alt:rgba(240,122,118,0.10);
+    --text:#3A3232; --muted:#5C5252; --line:rgba(215,75,74,0.22); }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:100%; height:100%; overflow:hidden; font-family:"Segoe UI","Helvetica Neue",Arial,"Microsoft YaHei",sans-serif; color:var(--text); background:var(--bg); }
+  body { display:flex; align-items:center; justify-content:center; }
+  .poster { width:2100px; height:1080px; display:flex; flex-direction:column; background:#FFF; padding:14px 26px; zoom:calc(min(100vw/2100px,100vh/1080px)); flex:none; position:relative; }
+
+  .titleband { background:linear-gradient(135deg,rgba(215,75,74,0.94),rgba(215,75,74,0.86) 50%,rgba(240,122,118,0.9)); color:#fff; padding:13px 32px 12px; flex:0 0 auto; border-radius:10px 10px 0 0; position:relative; overflow:hidden; }
+  .langswitch { position:absolute; top:12px; right:18px; display:flex; gap:4px; background:rgba(255,255,255,0.18); border-radius:16px; padding:3px; z-index:3; }
+  .langswitch button { border:none; background:transparent; color:#fff; cursor:pointer; font:600 11px/1 "Segoe UI",sans-serif; padding:5px 12px; border-radius:13px; letter-spacing:.5px; }
+  .langswitch button.on { background:#fff; color:var(--accent-deep); }
+  .kicker { font-size:12px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.9); font-weight:600; margin-bottom:4px; padding-right:150px; }
+  .titleband h1 { font-size:24px; font-weight:700; line-height:1.16; max-width:1730px; }
+  .titleband .title_alt { font-size:15px; font-weight:500; line-height:1.3; color:rgba(255,255,255,0.88); margin-top:3px; max-width:1740px; }
+  .titleband .subtitle { font-size:13.5px; color:rgba(255,255,255,0.92); margin-top:4px; max-width:1800px; }
+  .titleband .meta { margin-top:6px; border-top:1px solid rgba(255,255,255,0.32); padding-top:5px; font-size:11px; line-height:1.35; color:rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight:600; color:#FFF; }
+
+  .hero { flex:0 0 auto; height:92px; background:#FFF; border:1px solid var(--line); border-bottom:none; display:flex; align-items:stretch; gap:10px; padding:8px 6px; }
+  .hero .stat { flex:1; background:var(--panel-alt); border:1px solid rgba(215,75,74,0.28); border-radius:8px; padding:6px; text-align:center; display:flex; flex-direction:column; justify-content:center; }
+  .hero .stat .big { font-size:19px; font-weight:800; color:var(--primary); line-height:1.05; }
+  .hero .stat .lab { font-size:9px; color:var(--muted); margin-top:2px; line-height:1.2; }
+  .hero .stat.hot { background:linear-gradient(135deg,rgba(215,75,74,0.95),rgba(240,122,118,0.92)); border-color:var(--accent-deep); }
+  .hero .stat.hot .big { color:#fff; } .hero .stat.hot .lab { color:rgba(255,255,255,0.92); font-weight:600; }
+
+  .main { flex:1 1 auto; min-height:0; display:grid; grid-template-columns:560px minmax(0,1fr); gap:14px; padding-top:10px; }
+  .col { display:flex; flex-direction:column; gap:8px; min-height:0; min-width:0; }
+  .panel { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:7px 13px 5px; flex:0 0 auto; display:flex; flex-direction:column; min-height:0; overflow:hidden; }
+  .panel.grow { flex:1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .cmp, .panel .tnote { flex:0 0 auto; }
+  .panel h3 { font-size:14px; font-weight:700; color:var(--primary); border-bottom:2px solid var(--accent-deep); padding-bottom:3px; margin-bottom:5px; display:flex; align-items:center; gap:6px; }
+  .panel h3 .num { display:inline-flex; align-items:center; justify-content:center; width:19px; height:19px; background:rgba(215,75,74,0.85); color:#fff; border-radius:5px; font-size:11px; flex:0 0 auto; }
+  .panel p, .panel li { font-size:12px; line-height:1.4; color:var(--muted); }
+  .panel ul { list-style:none; }
+  .panel ul li { padding-left:14px; position:relative; margin-bottom:5px; }
+  body.lang-en .panel ul li { margin-bottom:9px; }
+  .panel ul li::before { content:""; position:absolute; left:0; top:6px; width:6px; height:6px; border-radius:50%; background:var(--secondary); }
+  .panel ul li strong { color:var(--primary); }
+  .panel ul li:last-child { margin-bottom:0; }
+
+  .statrow { display:flex; gap:8px; margin:0 0 5px; }
+  .stat { flex:1; background:#fff; border:1px solid var(--line); border-radius:6px; padding:10px 4px; text-align:center; }
+  .stat .big { font-size:17px; font-weight:800; color:var(--primary); line-height:1.05; }
+  .stat .lab { font-size:9px; color:var(--muted); margin-top:2px; line-height:1.2; }
+  .stat.hot { background:linear-gradient(135deg,rgba(215,75,74,0.95),rgba(240,122,118,0.92)); border-color:var(--accent-deep); }
+  .stat.hot .big { color:#fff; } .stat.hot .lab { color:rgba(255,255,255,0.92); font-weight:600; }
+
+  .cmp { width:100%; border-collapse:collapse; margin-bottom:5px; }
+  .cmp th, .cmp td { border:1px solid rgba(215,75,74,0.25); font-size:10.5px; padding:4px 6px; text-align:center; line-height:1.25; }
+  .cmp th { background:rgba(215,75,74,0.85); color:#fff; font-weight:700; }
+  .cmp td:first-child { text-align:left; font-weight:600; color:var(--text); }
+  .cmp tr.hot td { background:var(--panel-alt); }
+
+  .tnote { font-size:10px; color:var(--muted); line-height:1.36; margin-top:3px; }
+  .tnote b { color:var(--accent-deep); }
+
+  .clinical { flex:0 0 auto; background:linear-gradient(135deg,rgba(215,75,74,0.92),rgba(215,75,74,0.8) 60%,rgba(240,122,118,0.88)); border-radius:0 0 10px 10px; color:#fff; padding:10px 26px; display:flex; gap:20px; align-items:center; }
+  .clinical .ttl { font-size:15px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.95); flex:0 0 auto; border-right:1.5px solid rgba(255,255,255,0.35); padding-right:16px; }
+  .clinical ul { list-style:none; flex:1 1 auto; min-width:0; }
+  .clinical ul li { font-size:13px; line-height:1.48; color:rgba(255,255,255,0.96); padding-left:15px; position:relative; margin-bottom:3px; }
+  .clinical ul li:last-child { margin-bottom:0; }
+  .clinical ul li::before { content:"▸"; position:absolute; left:0; top:0; color:#FFD9D6; }
+  .clinical ul li b { color:#FFE3E1; }
+  body.lang-zh .panel ul li { line-height:1.6; margin-bottom:5px; }
+  .zhonly { display:none; }
+  body.lang-zh .zhonly { display:flex; }
+  body.lang-zh .zhonly.block { display:block; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Preliminary Study · 初步研究</div>
+    <h1 data-i18n="title">Predictive Effect of PAX1/JAM3 Methylation in Cervical Exfoliated Cells for Cervical Intraepithelial Neoplasia</h1>
+    <div class="title_alt" data-i18n="title_alt">宫颈脱落细胞 PAX1、JAM3 基因甲基化对宫颈上皮内瘤变预测作用的初步研究</div>
+    <div class="subtitle" data-i18n="subtitle">144 subjects · dual-gene methylation + HPV genotyping · CIN2+ prediction AUC 0.8789</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">周敏、左娟、周戴、陈丹、侯达 · 长沙市妇幼保健院</div>
+      <div class="source" data-i18n="source">湖南师范大学学报（医学版）2025;22(6):123-128</div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="stat hot"><div class="big">0.8789</div><div class="lab" data-i18n="h1">CIN2+ AUC (combined)</div></div>
+    <div class="stat hot"><div class="big">96.9%</div><div class="lab" data-i18n="h2">PPV 16/18 + meth+</div></div>
+    <div class="stat hot"><div class="big">6.32</div><div class="lab" data-i18n="h3">OR (95%CI 3.45–11.28)</div></div>
+    <div class="stat"><div class="big">144</div><div class="lab" data-i18n="h4">subjects</div></div>
+  </div>
+
+  <main class="main">
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <div class="statrow">
+          <div class="stat"><div class="big">hrHPV</div><div class="lab" data-i18n="s1s1">high Se, low Sp</div></div>
+          <div class="stat"><div class="big">TCT</div><div class="lab" data-i18n="s1s2">subjective</div></div>
+          <div class="stat"><div class="big">Methy</div><div class="lab" data-i18n="s1s3">early event</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s1a"><strong>Screening challenge</strong>: hrHPV high sensitivity but low specificity; cytology depends on reader experience.</li>
+          <li data-i18n="s1b"><strong>Epigenetics</strong>: DNA methylation is an early event; PAX1/JAM3 hypermethylation tracks lesion progression.</li>
+          <li data-i18n="s1c"><strong>Aim</strong>: evaluate PAX1/JAM3 methylation in exfoliated cells for predicting CIN2+.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">144</div><div class="lab" data-i18n="s2s1">subjects</div></div>
+          <div class="stat hot"><div class="big">2</div><div class="lab" data-i18n="s2s2">methylation genes</div></div>
+          <div class="stat"><div class="big">4</div><div class="lab" data-i18n="s2s3">test methods</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Cohort</strong>: Jul 2023 – Dec 2024, Changsha Maternal &amp; Child Health Hospital; 144 subjects.</li>
+          <li data-i18n="s2b"><strong>Tests</strong>: HPV genotyping + TCT + PAX1/JAM3 methylation + colposcopy pathology for all.</li>
+          <li data-i18n="s2c"><strong>Endpoint</strong>: predictive performance for high-grade CIN (CIN2+).</li>
+          <li data-i18n="s2d"><strong>Groups</strong>: CIN2+ vs CIN1 vs chronic cervicitis comparison for methylation positivity.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">68.8%</div><div class="lab" data-i18n="s2s4">PAX1+ in CIN2+</div></div>
+          <div class="stat"><div class="big">56.3%</div><div class="lab" data-i18n="s2s5">JAM3+ in CIN2+</div></div>
+          <div class="stat"><div class="big">1.2–6.4%</div><div class="lab" data-i18n="s2s6">controls</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">4</div><div class="lab" data-i18n="s2s7">assays per subject</div></div>
+          <div class="stat"><div class="big">18 mo</div><div class="lab" data-i18n="s2s8">enrollment window</div></div>
+          <div class="stat"><div class="big">CIN2+</div><div class="lab" data-i18n="s2s9">primary endpoint</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2e"><strong>Sampling</strong>: non-invasive cervical exfoliated cells — same sample used for cytology and methylation.</li>
+          <li data-i18n="s2f"><strong>Combined strategy</strong>: methylation readout integrated with HPV genotyping for risk stratification.</li>
+          <li data-i18n="s2g"><strong>Statistics</strong>: ROC/AUC for combined model; PPV/NPV; OR with 95% CI; P&lt;0.05 significant.</li>
+        </ul>
+        <div class="tnote" style="margin-top:5px;">ZHOU M et al. · J Hunan Normal Univ (Med Sci) 2025;22(6):123-128 · Changsha MCH.</div>
+        <div class="tnote" style="margin-top:4px;">Methylation panel: PAX1 &amp; JAM3 (dual-gene) on cervical exfoliated cells; combined with HPV genotyping.</div>
+        <div class="tnote" style="margin-top:4px;">Reference: colposcopy-directed pathology (CIN2+ as endpoint).</div>
+        <div class="zhonly block" style="margin-top:3px;"><span class="tnote" data-i18n="s2z">设计要点：144 例均完成 HPV 分型、TCT、PAX1/JAM3 甲基化与阴道镜病理；终点为 CIN2+ 预测效能；甲基化阳性率随病变加重呈剂量-反应。</span></div>
+        <div class="zhonly block" style="margin-top:3px;"><span class="tnote" data-i18n="s2z2">核心结果：CIN2+ 中 PAX1、JAM3 甲基化阳性率分别为 68.8% 与 56.3%，对照组仅 1.2%–6.4%（P&lt;0.001），呈剂量-反应关系。</span></div>
+      </div>
+    </section>
+
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Methylation Positivity by Group</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">68.8%</div><div class="lab" data-i18n="s3s1">CIN2+ PAX1</div></div>
+          <div class="stat hot"><div class="big">56.3%</div><div class="lab" data-i18n="s3s2">CIN2+ JAM3</div></div>
+          <div class="stat"><div class="big">6.4%</div><div class="lab" data-i18n="s3s3">CIN1 PAX1</div></div>
+          <div class="stat"><div class="big">1.2%</div><div class="lab" data-i18n="s3s4">cervicitis</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s3a"><strong>Dose–response</strong>: positivity rises with lesion severity (cervicitis 1.2% → CIN2+ 68.8%, P&lt;0.001).</li>
+          <li data-i18n="s3b"><strong>Early signal</strong>: CIN1 PAX1+ 6.4% — low, consistent with early-stage biology.</li>
+          <li data-i18n="s3c"><strong>Discrimination</strong>: methylation clearly separates CIN2+ from controls.</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">Combined Prediction Strategy</span></h3>
+        <table class="cmp">
+          <tr><th data-i18n="c4h1">Strategy</th><th data-i18n="c4h2">Metric</th><th data-i18n="c4h3">Result</th></tr>
+          <tr class="hot"><td>Methylation + HPV genotyping</td><td>AUC</td><td>0.8789</td></tr>
+          <tr><td>HPV alone</td><td>F1</td><td>59.1%</td></tr>
+          <tr class="hot"><td>HPV16/18 + any methylation+</td><td>PPV</td><td>96.9%</td></tr>
+          <tr><td>hrHPV+ &amp; methylation+</td><td>OR (95% CI)</td><td>6.32 (3.45–11.28)</td></tr>
+        </table>
+        <ul>
+          <li data-i18n="s4a"><strong>Combined gain</strong>: dual-gene methylation + HPV typing significantly outperforms HPV alone (F1 59.1%, P&lt;0.01).</li>
+          <li data-i18n="s4b"><strong>Highest PPV</strong>: HPV16/18 + any methylation+ → CIN2+ PPV 96.9% — practical for triage of uncertain cytology.</li>
+          <li data-i18n="s4c"><strong>Risk link</strong>: hrHPV infection with methylation+ → CIN2+ OR 6.32.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Risk Stratification &amp; Value</span></h3>
+        <ul>
+          <li data-i18n="s5a"><strong>High-risk flag</strong>: HPV16/18 + methylation+ → CIN2+ PPV up to 96.9% — prioritize colposcopy.</li>
+          <li data-i18n="s5b"><strong>Low-risk triage</strong>: methylation-negative hrHPV carriers have markedly lower CIN2+ risk — fewer unnecessary referrals.</li>
+          <li data-i18n="s5c"><strong>Uncertain cytology</strong>: ASC-US/LSIL cases can be objectively stratified by methylation status.</li>
+          <li data-i18n="s5d"><strong>Objective + accessible</strong>: exfoliated-cell sampling is convenient for outpatient opportunistic screening.</li>
+          <li data-i18n="s5e"><strong>Limit</strong>: preliminary, limited sample; needs larger prospective validation.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">59.1%</div><div class="lab" data-i18n="s5s1">HPV-alone F1</div></div>
+          <div class="stat"><div class="big">↑</div><div class="lab" data-i18n="s5s2">combined gain</div></div>
+          <div class="stat"><div class="big">0.8789</div><div class="lab" data-i18n="s5s3">combined AUC</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s5f"><strong>F1 improvement</strong>: combined model significantly raises F1 over HPV alone (P&lt;0.01).</li>
+          <li data-i18n="s5g"><strong>Patient benefit</strong>: fewer unnecessary colposcopies and less anxiety for low-risk carriers.</li>
+        </ul>
+        <div class="tnote" data-i18n="s5n">Methylation complements HPV (viral infection) by measuring host malignant transformation.</div>
+      </div>
+    </section>
+  </main>
+
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Combined prediction works</b>: PAX1/JAM3 methylation + HPV genotyping reaches CIN2+ AUC 0.8789 — significantly better than HPV alone.</li>
+      <li data-i18n="c2"><b>Practical triage</b>: HPV16/18 + methylation+ gives 96.9% CIN2+ PPV — a non-invasive triage tool for uncertain cytology.</li>
+    </ul>
+  </div>
+
+</div>
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Preliminary Study · 初步研究",
+      title: "Predictive Effect of PAX1/JAM3 Methylation in Cervical Exfoliated Cells for Cervical Intraepithelial Neoplasia",
+      title_alt: "宫颈脱落细胞 PAX1、JAM3 基因甲基化对宫颈上皮内瘤变预测作用的初步研究",
+      subtitle: "144 subjects · dual-gene methylation + HPV genotyping · CIN2+ prediction AUC 0.8789",
+      authors: "周敏、左娟、周戴、陈丹、侯达 · 长沙市妇幼保健院",
+      source: "湖南师范大学学报（医学版）2025;22(6):123-128",
+      h1: "CIN2+ AUC (combined)", h2: "PPV 16/18 + meth+", h3: "OR (95%CI 3.45–11.28)", h4: "subjects",
+      s1t: "Background & Objective",
+      s1s1: "high Se, low Sp", s1s2: "subjective", s1s3: "early event",
+      s1a: "<strong>Screening challenge</strong>: hrHPV high sensitivity but low specificity; cytology depends on reader experience.",
+      s1b: "<strong>Epigenetics</strong>: DNA methylation is an early event; PAX1/JAM3 hypermethylation tracks lesion progression.",
+      s1c: "<strong>Aim</strong>: evaluate PAX1/JAM3 methylation in exfoliated cells for predicting CIN2+.",
+      s2t: "Study Design",
+      s2s1: "subjects", s2s2: "methylation genes", s2s3: "test methods",
+      s2a: "<strong>Cohort</strong>: Jul 2023 – Dec 2024, Changsha Maternal & Child Health Hospital; 144 subjects.",
+      s2b: "<strong>Tests</strong>: HPV genotyping + TCT + PAX1/JAM3 methylation + colposcopy pathology for all.",
+      s2c: "<strong>Endpoint</strong>: predictive performance for high-grade CIN (CIN2+).",
+      s2d: "<strong>Groups</strong>: CIN2+ vs CIN1 vs chronic cervicitis comparison for methylation positivity.",
+      s2s7: "assays per subject", s2s8: "enrollment window", s2s9: "primary endpoint",
+      s2e: "<strong>Sampling</strong>: non-invasive cervical exfoliated cells — same sample used for cytology and methylation.",
+      s2f: "<strong>Combined strategy</strong>: methylation readout integrated with HPV genotyping for risk stratification.",
+      s2g: "<strong>Statistics</strong>: ROC/AUC for combined model; PPV/NPV; OR with 95% CI; P<0.05 significant.",
+      s2s4: "PAX1+ in CIN2+", s2s5: "JAM3+ in CIN2+", s2s6: "controls",
+      s2z: "设计要点：144 例均完成 HPV 分型、TCT、PAX1/JAM3 甲基化与阴道镜病理；终点为 CIN2+ 预测效能；甲基化阳性率随病变加重呈剂量-反应。",
+      s2z2: "核心结果：CIN2+ 中 PAX1、JAM3 甲基化阳性率分别为 68.8% 与 56.3%，对照组仅 1.2%–6.4%（P&lt;0.001），呈剂量-反应关系。",
+      s3t: "Methylation Positivity by Group",
+      s3s1: "CIN2+ PAX1", s3s2: "CIN2+ JAM3", s3s3: "CIN1 PAX1", s3s4: "cervicitis",
+      s3a: "<strong>Dose–response</strong>: positivity rises with lesion severity (cervicitis 1.2% → CIN2+ 68.8%, P<0.001).",
+      s3b: "<strong>Early signal</strong>: CIN1 PAX1+ 6.4% — low, consistent with early-stage biology.",
+      s3c: "<strong>Discrimination</strong>: methylation clearly separates CIN2+ from controls.",
+      s4t: "Combined Prediction Strategy",
+      c4h1: "Strategy", c4h2: "Metric", c4h3: "Result",
+      s4a: "<strong>Combined gain</strong>: dual-gene methylation + HPV typing significantly outperforms HPV alone (F1 59.1%, P<0.01).",
+      s4b: "<strong>Highest PPV</strong>: HPV16/18 + any methylation+ → CIN2+ PPV 96.9% — practical for triage of uncertain cytology.",
+      s4c: "<strong>Risk link</strong>: hrHPV infection with methylation+ → CIN2+ OR 6.32.",
+      s5t: "Risk Stratification & Value",
+      s5a: "<strong>High-risk flag</strong>: HPV16/18 + methylation+ → CIN2+ PPV up to 96.9% — prioritize colposcopy.",
+      s5b: "<strong>Low-risk triage</strong>: methylation-negative hrHPV carriers have markedly lower CIN2+ risk — fewer unnecessary referrals.",
+      s5c: "<strong>Uncertain cytology</strong>: ASC-US/LSIL cases can be objectively stratified by methylation status.",
+      s5d: "<strong>Objective + accessible</strong>: exfoliated-cell sampling is convenient for outpatient opportunistic screening.",
+      s5e: "<strong>Limit</strong>: preliminary, limited sample; needs larger prospective validation.",
+      s5s1: "HPV-alone F1", s5s2: "combined gain", s5s3: "combined AUC",
+      s5f: "<strong>F1 improvement</strong>: combined model significantly raises F1 over HPV alone (P<0.01).",
+      s5g: "<strong>Patient benefit</strong>: fewer unnecessary colposcopies and less anxiety for low-risk carriers.",
+      s5n: "Methylation complements HPV (viral infection) by measuring host malignant transformation.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Combined prediction works</b>: PAX1/JAM3 methylation + HPV genotyping reaches CIN2+ AUC 0.8789 — significantly better than HPV alone.",
+      c2: "<b>Practical triage</b>: HPV16/18 + methylation+ gives 96.9% CIN2+ PPV — a non-invasive triage tool for uncertain cytology."
+    },
+    zh: {
+      kicker: "初步研究 · Preliminary Study",
+      title: "宫颈脱落细胞 PAX1、JAM3 基因甲基化对宫颈上皮内瘤变预测作用的初步研究",
+      title_alt: "Predictive Effect of PAX1/JAM3 Methylation in Cervical Exfoliated Cells for Cervical Intraepithelial Neoplasia",
+      subtitle: "144 例受试者 · 双基因甲基化 + HPV 分型 · CIN2+ 预测 AUC 0.8789",
+      authors: "周敏、左娟、周戴、陈丹、侯达 · 长沙市妇幼保健院",
+      source: "湖南师范大学学报（医学版）2025;22(6):123-128",
+      h1: "CIN2+ AUC（联合）", h2: "16/18+ 甲基化+ PPV", h3: "OR（95%CI 3.45–11.28）", h4: "受试者",
+      s1t: "背景与目的",
+      s1s1: "高 Se 低 Sp", s1s2: "主观性", s1s3: "早期事件",
+      s1a: "<strong>筛查挑战</strong>：hrHPV 灵敏度高但特异度低；细胞学依赖判读者经验。",
+      s1b: "<strong>表观遗传</strong>：DNA 甲基化为早期事件；PAX1/JAM3 高甲基化随病变进展。",
+      s1c: "<strong>目的</strong>：评估脱落细胞 PAX1/JAM3 甲基化对 CIN2+ 的预测价值。",
+      s2t: "研究设计",
+      s2s1: "受试者", s2s2: "甲基化基因", s2s3: "检测方法",
+      s2a: "<strong>队列</strong>：2023.7–2024.12 长沙市妇幼保健院 144 例受试者。",
+      s2b: "<strong>检测</strong>：均行 HPV 分型、TCT、PAX1/JAM3 甲基化及阴道镜病理。",
+      s2c: "<strong>终点</strong>：对高级别 CIN（CIN2+）的预测效能。",
+      s2d: "<strong>分组</strong>：CIN2+ vs CIN1 vs 慢性宫颈炎比较甲基化阳性率。",
+      s2s7: "每人检测", s2s8: "入组窗口", s2s9: "主要终点",
+      s2e: "<strong>采样</strong>：无创宫颈脱落细胞——同一样本用于细胞学与甲基化。",
+      s2f: "<strong>联合策略</strong>：甲基化读数与 HPV 分型整合进行风险分层。",
+      s2g: "<strong>统计</strong>：联合模型 ROC/AUC；PPV/NPV；OR 及 95%CI；P&lt;0.05 显著。",
+      s2s4: "CIN2+ PAX1+", s2s5: "CIN2+ JAM3+", s2s6: "对照组",
+      s2z: "设计要点：144 例均完成 HPV 分型、TCT、PAX1/JAM3 甲基化与阴道镜病理；终点为 CIN2+ 预测效能；甲基化阳性率随病变加重呈剂量-反应。",
+      s2z2: "核心结果：CIN2+ 中 PAX1、JAM3 甲基化阳性率分别为 68.8% 与 56.3%，对照组仅 1.2%–6.4%（P&lt;0.001），呈剂量-反应关系。",
+      s3t: "各分组甲基化阳性率",
+      s3s1: "CIN2+ PAX1", s3s2: "CIN2+ JAM3", s3s3: "CIN1 PAX1", s3s4: "宫颈炎",
+      s3a: "<strong>剂量-反应</strong>：阳性率随病变严重度升高（宫颈炎 1.2% → CIN2+ 68.8%，P&lt;0.001）。",
+      s3b: "<strong>早期信号</strong>：CIN1 PAX1+ 6.4%——较低，符合早期生物学。",
+      s3c: "<strong>鉴别力</strong>：甲基化清晰区分 CIN2+ 与对照。",
+      s4t: "联合预测策略",
+      c4h1: "策略", c4h2: "指标", c4h3: "结果",
+      s4a: "<strong>联合增益</strong>：双基因甲基化 + HPV 分型显著优于单一 HPV（F1 59.1%，P&lt;0.01）。",
+      s4b: "<strong>最高 PPV</strong>：HPV16/18 + 任一甲基化阳性 → CIN2+ PPV 96.9%——适用于细胞学不确定分流。",
+      s4c: "<strong>风险关联</strong>：hrHPV 感染且甲基化阳性 → CIN2+ OR 6.32。",
+      s5t: "风险分层与价值",
+      s5a: "<strong>高危标记</strong>：HPV16/18 + 甲基化阳性 → CIN2+ PPV 高达 96.9%——优先阴道镜。",
+      s5b: "<strong>低危分流</strong>：甲基化阴性 hrHPV 携带者 CIN2+ 风险显著降低——减少不必要转诊。",
+      s5c: "<strong>细胞学不确定</strong>：ASC-US/LSIL 病例可按甲基化状态客观分层。",
+      s5d: "<strong>客观 + 可及</strong>：脱落细胞采样便捷，适合门诊机会性筛查。",
+      s5e: "<strong>局限</strong>：初步研究，样本有限；需更大规模前瞻验证。",
+      s5s1: "HPV 单独 F1", s5s2: "联合增益", s5s3: "联合 AUC",
+      s5f: "<strong>F1 提升</strong>：联合模型显著提高 F1 于单一 HPV（P&lt;0.01）。",
+      s5g: "<strong>患者获益</strong>：低危携带者减少不必要阴道镜与焦虑。",
+      s5n: "甲基化通过测量宿主恶性转化补充 HPV（病毒感染）。",
+      c_ttl: "临床意义",
+      c1: "<b>联合预测有效</b>：PAX1/JAM3 甲基化 + HPV 分型 CIN2+ AUC 达 0.8789——显著优于单一 HPV。",
+      c2: "<b>实用分流</b>：HPV16/18 + 甲基化阳性 CIN2+ PPV 96.9%——细胞学不确定时的无创分流工具。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

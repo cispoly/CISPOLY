@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guidelines for Cervical Cancer Screening in China (II) — Abnormal Result Triage</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #42：异常分流指南）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、推荐徽章、流程图网格
+  - 布局：标题带 → hero（细胞学主分流 1类 / 双染 2A / 甲基化 2B / HPV整合 2B）→ 两栏（左 560px：①背景与目的 ②分流方法总览；右 1fr：③四张管理流程图【2×2 网格 + 分支解读】 ④甲基化分流【2B 重点】与 HPV 整合）→ 全宽临床意义带
+  - 选图：图1-4 管理流程图（全部重点展示）
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 96px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 20px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .grid4, .panel .methodcards { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 6px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 0 0 5px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 12px 4px; text-align: center; }
+  .stat .big { font-size: 18px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .methodcards { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .meth { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; display: flex; gap: 8px; align-items: flex-start; }
+  .meth .mn { flex: 0 0 auto; width: 24px; height: 24px; border-radius: 6px; background: rgba(215,75,74,0.85); color: #fff; font-weight: 800; font-size: 11px; display: flex; align-items: center; justify-content: center; }
+  .meth .mt { flex: 1 1 auto; font-size: 10.5px; line-height: 1.32; color: var(--text); }
+  .meth .mt b { color: var(--primary); }
+  .meth .badge { flex: 0 0 auto; display: inline-flex; align-items: center; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.3); color: var(--accent-deep); font-size: 8px; font-weight: 700; border-radius: 10px; padding: 0 6px; align-self: center; }
+  .meth.top { border-left: 4px solid var(--primary); }
+
+  .grid4 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .flowcard { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 5px 8px; }
+  .flowcard img { display: block; max-height: 172px; width: auto; max-width: 100%; margin: 0 auto; }
+  .flowcard .fc { font-size: 10px; font-weight: 700; color: var(--primary); margin-top: 3px; }
+  .flowcard .fl { font-size: 8.8px; color: var(--muted); line-height: 1.28; }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 8px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+  body.lang-zh .panel ul li { line-height: 1.5; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">China · 7 Societies · Clinical Guideline · Abnormal-Result Triage</div>
+    <h1 data-i18n="title">Guidelines for Cervical Cancer Screening in China (II) — Triage</h1>
+    <div class="title_alt" data-i18n="title_alt">中国子宫颈癌筛查指南（二）——筛查异常的分流管理</div>
+    <div class="subtitle" data-i18n="subtitle">Cytology primary triage (1类) · p16/Ki-67 dual stain (2A) · methylation for 12 HR-HPV (2B) · HPV integration (2B)</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">CSCCP · CGCS · CFC · CMCHS · CSGO-CMA · CMIHE · CPMA</div>
+      <div class="source" data-i18n="source">7 Chinese medical societies · Part II: triage of abnormal screening results</div>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="stat hot"><div class="big">Cytology</div><div class="lab" data-i18n="h1">primary triage · 1类</div></div>
+    <div class="stat"><div class="big">Dual stain</div><div class="lab" data-i18n="h2">p16/Ki-67 · 2A</div></div>
+    <div class="stat hot"><div class="big">Methylation</div><div class="lab" data-i18n="h3">12 HR-HPV triage · 2B</div></div>
+    <div class="stat"><div class="big">HPV integration</div><div class="lab" data-i18n="h4">HR-HPV triage · 2B</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Goal</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Goal</strong>: standardize triage of abnormal results — avoid overdiagnosis AND missed diagnosis.</li>
+          <li data-i18n="s1b"><strong>Burden</strong>: 150,700 new &amp; 55,700 deaths in China 2022 (22.7%/16.0% of world).</li>
+          <li data-i18n="s1c"><strong>Context</strong>: builds on Screening Guideline (I); WHO elimination strategy.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Triage Methods Overview</span></h3>
+        <div class="methodcards">
+          <div class="meth top"><div class="mn">1</div><div class="mt" data-i18n="s2c1"><b>Cytology</b> — main triage for HR-HPV(+) primary screening.</div><div class="badge">1类</div></div>
+          <div class="meth"><div class="mn">2</div><div class="mt" data-i18n="s2c2"><b>p16/Ki-67 dual stain</b> — HPV(+) no-genotype / 12 HR-HPV; co-test NILM/ASC-US/LSIL.</div><div class="badge">2A</div></div>
+          <div class="meth top"><div class="mn">3</div><div class="mt" data-i18n="s2c3"><b>Methylation</b> — triage of 12 HR-HPV(+) to reduce colposcopy referrals.</div><div class="badge">2B</div></div>
+          <div class="meth"><div class="mn">4</div><div class="mt" data-i18n="s2c4"><b>HPV integration</b> — HR-HPV(+) triage; positive → colposcopy.</div><div class="badge">2B</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Reagents</strong>: all new methods need authoritative approval &amp; validated indications.</li>
+          <li data-i18n="s2b"><strong>Others</strong>: extended genotyping / viral load — more evidence needed.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">76.6%</div><div class="lab" data-i18n="s2s1">HPV16 in SCC</div></div>
+          <div class="stat"><div class="big">7.9%</div><div class="lab" data-i18n="s2s2">HPV18 in SCC</div></div>
+          <div class="stat"><div class="big">3.2%</div><div class="lab" data-i18n="s2s3">HPV31 in SCC</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">35.1%</div><div class="lab" data-i18n="s2s4">HPV16 in adeno</div></div>
+          <div class="stat"><div class="big">30.6%</div><div class="lab" data-i18n="s2s5">HPV18 in adeno</div></div>
+          <div class="stat"><div class="big">74.5%</div><div class="lab" data-i18n="s2s6">hrHPV in adeno</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">52/58/16</div><div class="lab" data-i18n="s2s7">CIN1 common types</div></div>
+          <div class="stat"><div class="big">16/58/52/33/31</div><div class="lab" data-i18n="s2s8">CIN2/3+ types</div></div>
+          <div class="stat"><div class="big">15.0%</div><div class="lab" data-i18n="s2s9">HPV prevalence ≥20 y</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2g"><strong>Why triage</strong>: HPV(+) mostly transient — triage spares low-risk women from colposcopy.</li>
+          <li data-i18n="s2h"><strong>Risk principle</strong>: same risk, same management (ASCCP).</li>
+          <li data-i18n="s2c"><strong>Dual stain scope</strong>: HPV(+) no-genotype / 12 HR-HPV; co-test NILM/ASC-US/LSIL.</li>
+          <li data-i18n="s2d"><strong>Methylation mechanism</strong>: CpG promoter methylation silences suppressors — triage signal.</li>
+          <li data-i18n="s2e"><strong>Integration mechanism</strong>: HPV DNA integration into host genome — risk stratifier.</li>
+          <li data-i18n="s2f"><strong>Reagent gate</strong>: authoritative approval + clinically validated indications for each method.</li>
+        </ul>
+        <div class="tnote" data-i18n="s2n">Refined triage = precision management: fewer unnecessary colposcopies, fewer missed lesions; cytology remains the workhorse, molecular methods add precision.</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel grow" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">Management Flowcharts (Fig 1–4)</span></h3>
+        <div class="grid4">
+          <div class="flowcard">
+            <img src="images/fig_f1.jpg" alt="Fig1 HPV primary screening abnormal management">
+            <div class="fc" data-i18n="s3t1">Fig 1 · HPV(+) primary screening</div>
+            <div class="fl" data-i18n="s3d1">No-genotype → cytology triage or genotyping · 16/18+ → colposcopy · 12 HR-HPV+ → cytology triage.</div>
+          </div>
+          <div class="flowcard">
+            <img src="images/fig_f2.jpg" alt="Fig2 cytology primary screening abnormal management">
+            <div class="fc" data-i18n="s3t2">Fig 2 · Cytology(+) primary screening</div>
+            <div class="fl" data-i18n="s3d2">ASC-US/LSIL → HPV-based triage · ASC-H/HSIL/AGC → colposcopy · SCC/adeno → immediate referral.</div>
+          </div>
+          <div class="flowcard">
+            <img src="images/fig_f3.jpg" alt="Fig3 co-testing abnormal management">
+            <div class="fc" data-i18n="s3t3">Fig 3 · Co-testing abnormal</div>
+            <div class="fl" data-i18n="s3d3">Risk-based per ASCCP 2019: combine HPV &amp; cytology strata to decide colposcopy vs follow-up.</div>
+          </div>
+          <div class="flowcard">
+            <img src="images/fig_f4.jpg" alt="Fig4 dual stain triage">
+            <div class="fc" data-i18n="s3t4">Fig 4 · p16/Ki-67 dual stain</div>
+            <div class="fl" data-i18n="s3d4">DS(+) → colposcopy · DS(−) → 1-yr follow-up (HR-HPV no-genotype / 12 HR-HPV; co-test NILM/ASC-US/LSIL).</div>
+          </div>
+        </div>
+        <div class="tnote" data-i18n="s3n">Four management flows cover HPV-primary, cytology-primary, co-testing and dual-stain triage pathways.</div>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">Methylation Triage (2B) &amp; HPV Integration</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">12 HR-HPV+</div><div class="lab" data-i18n="s4s1">methylation triage target</div></div>
+          <div class="stat"><div class="big">colposcopy ↓</div><div class="lab" data-i18n="s4s2">referral reduction</div></div>
+          <div class="stat"><div class="big">2B</div><div class="lab" data-i18n="s4s3">recommendation class</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s4a"><strong>Methylation</strong>: CpG-island promoter hypermethylation silences tumor suppressors — early lesion signal for triage.</li>
+          <li data-i18n="s4b"><strong>Reagents</strong>: approved &amp; clinically validated for 12 HR-HPV(+) triage.</li>
+          <li data-i18n="s4c"><strong>HPV integration</strong>: integration(+) → high-risk, full colposcopy &amp; histology; (−) → 1-yr follow-up.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>Standardized abnormal-result triage</b>: cytology (1类), dual stain (2A), methylation &amp; HPV integration (2B) — precision management to avoid over- and under-diagnosis.</li>
+      <li data-i18n="c2"><b>Methylation is an official triage option</b> for 12 HR-HPV(+) women — reduces unnecessary colposcopy referrals.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "China · 7 Societies · Clinical Guideline · Abnormal-Result Triage",
+      title: "Guidelines for Cervical Cancer Screening in China (II) — Triage",
+      title_alt: "中国子宫颈癌筛查指南（二）——筛查异常的分流管理",
+      subtitle: "Cytology primary triage (1类) · p16/Ki-67 dual stain (2A) · methylation for 12 HR-HPV (2B) · HPV integration (2B)",
+      authors: "CSCCP · CGCS · CFC · CMCHS · CSGO-CMA · CMIHE · CPMA",
+      source: "7 Chinese medical societies · Part II: triage of abnormal screening results",
+      h1: "primary triage · 1类", h2: "p16/Ki-67 · 2A", h3: "12 HR-HPV triage · 2B", h4: "HR-HPV triage · 2B",
+      s1t: "Background & Goal",
+      s1a: "<strong>Goal</strong>: standardize triage of abnormal results — avoid overdiagnosis AND missed diagnosis.",
+      s1b: "<strong>Burden</strong>: 150,700 new & 55,700 deaths in China 2022 (22.7%/16.0% of world).",
+      s1c: "<strong>Context</strong>: builds on Screening Guideline (I); WHO elimination strategy.",
+      s2t: "Triage Methods Overview",
+      s2c1: "<b>Cytology</b> — main triage for HR-HPV(+) primary screening.",
+      s2c2: "<b>p16/Ki-67 dual stain</b> — HPV(+) no-genotype / 12 HR-HPV; co-test NILM/ASC-US/LSIL.",
+      s2c3: "<b>Methylation</b> — triage of 12 HR-HPV(+) to reduce colposcopy referrals.",
+      s2c4: "<b>HPV integration</b> — HR-HPV(+) triage; positive → colposcopy.",
+      s2a: "<strong>Reagents</strong>: all new methods need authoritative approval & validated indications.",
+      s2b: "<strong>Others</strong>: extended genotyping / viral load — more evidence needed.",
+      s2s1: "HPV16 in SCC", s2s2: "HPV18 in SCC", s2s3: "HPV31 in SCC",
+      s2s4: "HPV16 in adeno", s2s5: "HPV18 in adeno", s2s6: "hrHPV in adeno",
+      s2s7: "CIN1 common types", s2s8: "CIN2/3+ types", s2s9: "HPV prevalence ≥20 y",
+      s2g: "<strong>Why triage</strong>: HPV(+) mostly transient — triage spares low-risk women from colposcopy.",
+      s2h: "<strong>Risk principle</strong>: same risk, same management (ASCCP).",
+      s2c: "<strong>Dual stain scope</strong>: HPV(+) no-genotype / 12 HR-HPV; co-test NILM/ASC-US/LSIL.",
+      s2d: "<strong>Methylation mechanism</strong>: CpG promoter methylation silences suppressors — triage signal.",
+      s2e: "<strong>Integration mechanism</strong>: HPV DNA integration into host genome — risk stratifier.",
+      s2f: "<strong>Reagent gate</strong>: authoritative approval + clinically validated indications for each method.",
+      s2n: "Refined triage = precision management: fewer unnecessary colposcopies, fewer missed lesions.",
+      s3t: "Management Flowcharts (Fig 1–4)",
+      s3t1: "Fig 1 · HPV(+) primary screening", s3t2: "Fig 2 · Cytology(+) primary screening", s3t3: "Fig 3 · Co-testing abnormal", s3t4: "Fig 4 · p16/Ki-67 dual stain",
+      s3d1: "No-genotype → cytology triage or genotyping · 16/18+ → colposcopy · 12 HR-HPV+ → cytology triage.",
+      s3d2: "ASC-US/LSIL → HPV-based triage · ASC-H/HSIL/AGC → colposcopy · SCC/adeno → immediate referral.",
+      s3d3: "Risk-based per ASCCP 2019: combine HPV & cytology strata to decide colposcopy vs follow-up.",
+      s3d4: "DS(+) → colposcopy · DS(−) → 1-yr follow-up (HR-HPV no-genotype / 12 HR-HPV; co-test NILM/ASC-US/LSIL).",
+      s3n: "Four management flows cover HPV-primary, cytology-primary, co-testing and dual-stain triage pathways.",
+      s4t: "Methylation Triage (2B) & HPV Integration",
+      s4s1: "methylation triage target", s4s2: "referral reduction", s4s3: "recommendation class",
+      s4a: "<strong>Methylation</strong>: CpG-island promoter hypermethylation silences tumor suppressors — early lesion signal for triage.",
+      s4b: "<strong>Reagents</strong>: approved & clinically validated for 12 HR-HPV(+) triage.",
+      s4c: "<strong>HPV integration</strong>: integration(+) → high-risk, full colposcopy & histology; (−) → 1-yr follow-up.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>Standardized abnormal-result triage</b>: cytology (1类), dual stain (2A), methylation & HPV integration (2B) — precision management to avoid over- and under-diagnosis.",
+      c2: "<b>Methylation is an official triage option</b> for 12 HR-HPV(+) women — reduces unnecessary colposcopy referrals."
+    },
+    zh: {
+      kicker: "中国 · 7 学（协）会 · 临床指南 · 异常分流",
+      title: "中国子宫颈癌筛查指南（二）——筛查异常的分流管理",
+      title_alt: "Guidelines for Cervical Cancer Screening in China (II) — Triage",
+      subtitle: "细胞学主分流（1 类）· p16/Ki-67 双染（2A）· 甲基化用于 12 种 HR-HPV 分流（2B）· HPV 整合（2B）",
+      authors: "CSCCP · 中国抗癌协会宫颈癌专委会 · 中国癌症基金会 · 中国妇幼健康研究会 · 中华医学会妇科肿瘤学分会 · 中国医促会 · 中华预防医学会",
+      source: "7 个学（协）会联合 · 第二部分：筛查异常的分流管理",
+      h1: "主分流 · 1 类", h2: "p16/Ki-67 · 2A", h3: "12 HR-HPV 分流 · 2B", h4: "HR-HPV 分流 · 2B",
+      s1t: "背景与目的",
+      s1a: "<strong>目的</strong>：规范筛查异常的分流——避免过度诊断同时减少漏诊。",
+      s1b: "<strong>负担</strong>：2022 年中国新发 15.07 万、死亡 5.57 万（占全球 22.7%/16.0%）。",
+      s1c: "<strong>背景</strong>：基于筛查指南（一）；WHO 消除战略。",
+      s2t: "分流方法总览",
+      s2c1: "<b>细胞学</b>——HR-HPV(+) 初筛的主要分流方法。",
+      s2c2: "<b>p16/Ki-67 双染</b>——HPV(+) 不分型 / 12 HR-HPV；联合筛查 NILM/ASC-US/LSIL。",
+      s2c3: "<b>甲基化</b>——12 HR-HPV(+) 分流，降低阴道镜转诊率。",
+      s2c4: "<b>HPV 整合</b>——HR-HPV(+) 分流；整合阳性 → 阴道镜。",
+      s2a: "<strong>试剂</strong>：新方法均需权威认可、临床验证适应证。",
+      s2b: "<strong>其他</strong>：拓展分型 / 病毒载量——需更多证据。",
+      s2s1: "鳞癌 HPV16", s2s2: "鳞癌 HPV18", s2s3: "鳞癌 HPV31",
+      s2s4: "腺癌 HPV16", s2s5: "腺癌 HPV18", s2s6: "腺癌 hrHPV",
+      s2s7: "CIN1 常见型别", s2s8: "CIN2/3+ 常见型别", s2s9: "≥20 岁 HPV 患病率",
+      s2g: "<strong>为何分流</strong>：HPV(+) 多为一过性——分流免除低风险女性阴道镜。",
+      s2h: "<strong>风险原则</strong>：同等风险同等管理（ASCCP）。",
+      s2c: "<strong>双染范围</strong>：HPV(+) 不分型 / 12 HR-HPV；联合 NILM/ASC-US/LSIL。",
+      s2d: "<strong>甲基化机制</strong>：CpG 启动子甲基化沉默抑癌基因——分流信号。",
+      s2e: "<strong>整合机制</strong>：HPV DNA 整合入宿主基因组——风险分层。",
+      s2f: "<strong>试剂门槛</strong>：权威认可 + 临床验证适应证。",
+      s2n: "精细分流 = 精准管理：减少不必要阴道镜，减少漏诊。",
+      s3t: "管理流程图（图1–4）",
+      s3t1: "图1 · HPV(+) 初筛异常", s3t2: "图2 · 细胞学(+) 初筛异常", s3t3: "图3 · 联合筛查异常", s3t4: "图4 · p16/Ki-67 双染分流",
+      s3d1: "不分型 → 细胞学分流或分型 · 16/18+ → 阴道镜 · 12 HR-HPV+ → 细胞学分流。",
+      s3d2: "ASC-US/LSIL → HPV 分流 · ASC-H/HSIL/AGC → 阴道镜 · SCC/腺癌 → 立即转诊。",
+      s3d3: "按 ASCCP 2019 风险评估：结合 HPV 与细胞学分层决定阴道镜或随访。",
+      s3d4: "双染(+) → 阴道镜 · 双染(−) → 1 年随访（HR-HPV 不分型 / 12 HR-HPV；联合 NILM/ASC-US/LSIL）。",
+      s3n: "四张流程图覆盖 HPV 初筛、细胞学初筛、联合筛查与双染分流路径。",
+      s4t: "甲基化分流（2B）与 HPV 整合",
+      s4s1: "甲基化分流目标人群", s4s2: "转诊减少", s4s3: "推荐级别",
+      s4a: "<strong>甲基化</strong>：CpG 岛启动子高甲基化沉默抑癌基因——早期病变信号用于分流。",
+      s4b: "<strong>试剂</strong>：经认可且验证可用于 12 HR-HPV(+) 分流。",
+      s4c: "<strong>HPV 整合</strong>：整合(+) → 高风险，全面阴道镜与组织学；(−) → 1 年随访。",
+      c_ttl: "临床意义",
+      c1: "<b>规范异常分流</b>：细胞学（1 类）、双染（2A）、甲基化与 HPV 整合（2B）——精准管理避免过度与漏诊。",
+      c2: "<b>甲基化是官方分流选项</b>——用于 12 种 HR-HPV(+) 女性，减少不必要阴道镜转诊。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

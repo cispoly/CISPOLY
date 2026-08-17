@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Serum cfDNA CDO1/HOXA9 Methylation for Ovarian Cancer — Hou et al. 2024</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #38：cfDNA 甲基化卵巢癌）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、大数字卡、条形对比
+  - 布局：标题带 → hero（151 例 / 双基因 AUC 0.936 / Se 89.7% / Sp 97.5%）→ 两栏（左 560px：①背景与目的 ②研究设计；右 1fr：③AUC 阶梯 ④效能与 OR ⑤FIGO 分期检出）→ 全宽临床意义带
+  - 无图：全部用大卡/条形呈现
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 96px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 22px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .matrix { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 7px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 0 0 5px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 13px 4px; text-align: center; }
+  .stat .big { font-size: 18px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .matrix { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 0 0 6px; }
+  .mcell { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px 6px; text-align: center; }
+  .mcell .n { font-size: 21px; font-weight: 800; color: var(--primary); line-height: 1.02; }
+  .mcell .l { font-size: 9px; color: var(--muted); margin-top: 3px; line-height: 1.2; }
+  .mcell.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .mcell.hot .n { color: #fff; } .mcell.hot .l { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .spbars { margin: 2px 0 6px; }
+  .spb { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+  .spb .sbl { flex: 0 0 150px; font-size: 11.5px; font-weight: 700; color: var(--text); text-align: right; }
+  .spb .sbt { flex: 1 1 auto; height: 19px; background: #F1E7E7; border-radius: 5px; overflow: hidden; position: relative; }
+  .spb .sbf { height: 100%; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 12px; font-weight: 800; color: #fff; }
+  .spb.win .sbf { background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); }
+  .spb.lose .sbf { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); color: #6B5755; }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 6px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+  body.lang-zh .panel ul li { line-height: 1.5; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Chin J Lab Med · 2024;47(4):401–406 · Case-Control · China</div>
+    <h1 data-i18n="title">Serum cfDNA CDO1/HOXA9 Methylation for Ovarian Cancer</h1>
+    <div class="title_alt" data-i18n="title_alt">血清中 CDO1 基因与 HOXA9 基因启动子甲基化高表达在卵巢癌诊断中的意义</div>
+    <div class="subtitle" data-i18n="subtitle">151 women (29 OC + 122 benign) · dual AUC 0.936 · Se 89.7% / Sp 97.5% · early stage 12/14 · adjusted OR 31.75</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Hou Q, Yuan Y, Li Y, Gong Z, Zhang Q, Feng D, Gong Y, Wang L, Liu P, Xie X, He L</div>
+      <div class="source" data-i18n="source">Chengdu Women &amp; Children Central Hospital · 中华检验医学杂志 2024;47(4):401–406</div>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="stat"><div class="big">151</div><div class="lab" data-i18n="h1">ovarian mass (29 OC)</div></div>
+    <div class="stat hot"><div class="big">0.936</div><div class="lab" data-i18n="h2">AUC · dual</div></div>
+    <div class="stat"><div class="big">89.7%</div><div class="lab" data-i18n="h3">Sensitivity</div></div>
+    <div class="stat"><div class="big">97.5%</div><div class="lab" data-i18n="h4">Specificity</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Problem</strong>: OC #3 incidence / #2 mortality among female genital cancers; stage I 5y-survival 90% vs IV 20%.</li>
+          <li data-i18n="s1b"><strong>Objective</strong>: cfDNA CDO1/HOXA9 methylation for OC detection &amp; stratified management.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">29</div><div class="lab" data-i18n="s2s1">ovarian cancer</div></div>
+          <div class="stat"><div class="big">122</div><div class="lab" data-i18n="s2s2">benign</div></div>
+          <div class="stat"><div class="big">2022.1–23.10</div><div class="lab" data-i18n="s2s3">enrollment</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Setting</strong>: Chengdu Women &amp; Children Central Hospital; mass surgery indication.</li>
+          <li data-i18n="s2b"><strong>Assays</strong>: serum CA125 · HE4 · ROMA · cfDNA CDO1/HOXA9 methylation.</li>
+          <li data-i18n="s2c"><strong>Reference</strong>: laparoscopic ovarian histopathology = gold standard.</li>
+          <li data-i18n="s2d"><strong>Profile</strong>: 98.4% benign premenopausal vs 75.9% OC postmenopausal.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">31.75</div><div class="lab" data-i18n="s2s4">adj. OR dual (1.84–1084.3)</div></div>
+          <div class="stat"><div class="big">343.78</div><div class="lab" data-i18n="s2s5">unadj. OR dual</div></div>
+          <div class="stat"><div class="big">124.67</div><div class="lab" data-i18n="s2s6">unadj. OR ROMA</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">0.936</div><div class="lab" data-i18n="s2s7">AUC (0.878–0.994)</div></div>
+          <div class="stat"><div class="big">89.7%</div><div class="lab" data-i18n="s2s8">Se (73.6–96.4)</div></div>
+          <div class="stat"><div class="big">97.5%</div><div class="lab" data-i18n="s2s9">Sp (93.0–99.2)</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2i"><strong>cfDNA advantage</strong>: repeatable blood draw — dynamic monitoring possible.</li>
+          <li data-i18n="s2j"><strong>Stratified care</strong>: methylation(+) → aggressive work-up; (−) → benign follow-up.</li>
+        </ul>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s2j1">Dual methyl · unadj</div><div class="sbt"><div class="sbf" style="width:100%">OR 343.78</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s2j2">ROMA · unadj</div><div class="sbt"><div class="sbf" style="width:36.3%">OR 124.67</div></div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2e"><strong>Inclusion</strong>: ovarian mass surgery indication; complete clinical data.</li>
+          <li data-i18n="s2f"><strong>Exclusion</strong>: prior treatment · other malignancy · invalid samples.</li>
+          <li data-i18n="s2g"><strong>Statistics</strong>: Mann-Whitney U · Fisher exact · logistic (OR) · ROC/AUC.</li>
+          <li data-i18n="s2h"><strong>Blood vs tissue</strong>: cfDNA avoids invasive ovarian biopsy.</li>
+        </ul>
+        <div class="tnote" data-i18n="s2n">After adjusting age/menopause/ROMA, dual-methylation(+) carries 31.75× OC risk; ROC DeLong P for AUC comparisons.</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">AUC Ladder — All Markers</span></h3>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s3a1">Dual methyl</div><div class="sbt"><div class="sbf" style="width:93.6%">0.936</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s3a2">ROMA</div><div class="sbt"><div class="sbf" style="width:86.7%">0.867</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s3a3">CDO1m</div><div class="sbt"><div class="sbf" style="width:81.9%">0.819</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s3a4">HE4</div><div class="sbt"><div class="sbf" style="width:77.6%">0.776</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s3a5">HOXA9m</div><div class="sbt"><div class="sbf" style="width:76.4%">0.764</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s3a6">CA125</div><div class="sbt"><div class="sbf" style="width:70.4%">0.704</div></div></div>
+        </div>
+        <ul>
+          <li data-i18n="s3a"><strong>Methylation on top</strong>: dual AUC 0.936 ≫ ROMA &amp; all serological markers.</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">Dual-Gene Performance</span></h3>
+        <div class="matrix">
+          <div class="mcell hot"><div class="n">0.936</div><div class="l" data-i18n="s4s1">AUC (0.878–0.994)</div></div>
+          <div class="mcell hot"><div class="n">89.7%</div><div class="l" data-i18n="s4s2">Se (73.6–96.4)</div></div>
+          <div class="mcell hot"><div class="n">97.5%</div><div class="l" data-i18n="s4s3">Sp (93.0–99.2)</div></div>
+          <div class="mcell"><div class="n">31.75</div><div class="l" data-i18n="s4s4">adj. OR</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s4a"><strong>Blood-based</strong>: cfDNA methylation — simple liquid biopsy, no tissue needed.</li>
+          <li data-i18n="s4b"><strong>High specificity</strong>: 97.5% — few false positives among benign masses.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Detection by FIGO Stage</span></h3>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s5a1">Early I–II · dual</div><div class="sbt"><div class="sbf" style="width:85.7%">12/14</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s5a2">Early · CA125</div><div class="sbt"><div class="sbf" style="width:71.4%">10/14</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s5a3">Early · ROMA</div><div class="sbt"><div class="sbf" style="width:64.3%">9/14</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s5a4">Late III–IV · dual</div><div class="sbt"><div class="sbf" style="width:90%">9/10</div></div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">12/14</div><div class="lab" data-i18n="s5s1">early I–II · dual</div></div>
+          <div class="stat"><div class="big">10/14</div><div class="lab" data-i18n="s5s2">early · CA125</div></div>
+          <div class="stat"><div class="big">9/14</div><div class="lab" data-i18n="s5s3">early · ROMA</div></div>
+          <div class="stat hot"><div class="big">9/10</div><div class="lab" data-i18n="s5s4">late III–IV · dual</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s5a"><strong>Early detection</strong>: dual-methylation best at stage I–II (12/14) — key for survival.</li>
+          <li data-i18n="s5b"><strong>Late stage</strong>: 9/10 positive — stays the best marker.</li>
+          <li data-i18n="s5c"><strong>All scenarios</strong>: dual + ROMA + CDO1m + CA125 positive in metastatic/unstaged cases.</li>
+          <li data-i18n="s5d"><strong>Why blood</strong>: cfDNA repeatable &amp; patient-friendly — complements tissue diagnosis.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>High-accuracy OC detection from blood</b>: cfDNA CDO1/HOXA9 methylation (AUC 0.936, Se 89.7%, Sp 97.5%) — outperforms CA125/HE4/ROMA.</li>
+      <li data-i18n="c2"><b>Early-stage value</b>: best positivity at FIGO I–II (12/14) — supports early diagnosis &amp; stratified management.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Chin J Lab Med · 2024;47(4):401–406 · Case-Control · China",
+      title: "Serum cfDNA CDO1/HOXA9 Methylation for Ovarian Cancer",
+      title_alt: "血清中 CDO1 基因与 HOXA9 基因启动子甲基化高表达在卵巢癌诊断中的意义",
+      subtitle: "151 women (29 OC + 122 benign) · dual AUC 0.936 · Se 89.7% / Sp 97.5% · early stage 12/14 · adjusted OR 31.75",
+      authors: "Hou Q, Yuan Y, Li Y, Gong Z, Zhang Q, Feng D, Gong Y, Wang L, Liu P, Xie X, He L",
+      source: "Chengdu Women & Children Central Hospital · Chin J Lab Med 2024;47(4):401–406",
+      h1: "ovarian mass (29 OC)", h2: "AUC · dual", h3: "Sensitivity", h4: "Specificity",
+      s1t: "Background & Objective",
+      s1a: "<strong>Problem</strong>: OC #3 incidence / #2 mortality among female genital cancers; stage I 5y-survival 90% vs IV 20%.",
+      s1b: "<strong>Objective</strong>: cfDNA CDO1/HOXA9 methylation for OC detection & stratified management.",
+      s2t: "Study Design & Cohort",
+      s2s1: "ovarian cancer", s2s2: "benign", s2s3: "enrollment",
+      s2a: "<strong>Setting</strong>: Chengdu Women & Children Central Hospital; mass surgery indication.",
+      s2b: "<strong>Assays</strong>: serum CA125 · HE4 · ROMA · cfDNA CDO1/HOXA9 methylation.",
+      s2c: "<strong>Reference</strong>: laparoscopic ovarian histopathology = gold standard.",
+      s2d: "<strong>Profile</strong>: 98.4% benign premenopausal vs 75.9% OC postmenopausal.",
+      s2j1: "Dual methyl · unadj", s2j2: "ROMA · unadj",
+      s2e: "<strong>Inclusion</strong>: ovarian mass surgery indication; complete clinical data.",
+      s2f: "<strong>Exclusion</strong>: prior treatment · other malignancy · invalid samples.",
+      s2g: "<strong>Statistics</strong>: Mann-Whitney U · Fisher exact · logistic (OR) · ROC/AUC.",
+      s2h: "<strong>Blood vs tissue</strong>: cfDNA avoids invasive ovarian biopsy.",
+      s2s7: "AUC (0.878–0.994)", s2s8: "Se (73.6–96.4)", s2s9: "Sp (93.0–99.2)",
+      s2i: "<strong>cfDNA advantage</strong>: repeatable blood draw — dynamic monitoring possible.",
+      s2j: "<strong>Stratified care</strong>: methylation(+) → aggressive work-up; (−) → benign follow-up.",
+      s2s4: "adj. OR dual (1.84–1084.3)", s2s5: "unadj. OR dual", s2s6: "unadj. OR ROMA",
+      s2n: "After adjusting age/menopause/ROMA, dual-methylation(+) carries 31.75× OC risk; ROC DeLong P-values used for AUC comparisons across markers.",
+      s3t: "AUC Ladder — All Markers",
+      s3a1: "Dual methyl", s3a2: "ROMA", s3a3: "CDO1m", s3a4: "HE4", s3a5: "HOXA9m", s3a6: "CA125",
+      s3a: "<strong>Methylation on top</strong>: dual AUC 0.936 ≫ ROMA & all serological markers.",
+      s4t: "Dual-Gene Performance",
+      s4s1: "AUC (0.878–0.994)", s4s2: "Se (73.6–96.4)", s4s3: "Sp (93.0–99.2)", s4s4: "adj. OR",
+      s4a: "<strong>Blood-based</strong>: cfDNA methylation — simple liquid biopsy, no tissue needed.",
+      s4b: "<strong>High specificity</strong>: 97.5% — few false positives among benign masses.",
+      s5t: "Detection by FIGO Stage",
+      s5a1: "Early I–II · dual", s5a2: "Early · CA125", s5a3: "Early · ROMA", s5a4: "Late III–IV · dual",
+      s5a: "<strong>Early detection</strong>: dual-methylation best at stage I–II (12/14) — key for survival.",
+      s5b: "<strong>Late stage</strong>: 9/10 positive — stays the best marker.",
+      s5s1: "early I–II · dual", s5s2: "early · CA125", s5s3: "early · ROMA", s5s4: "late III–IV · dual",
+      s5c: "<strong>All scenarios</strong>: dual + ROMA + CDO1m + CA125 positive in metastatic/unstaged cases.",
+      s5d: "<strong>Why blood</strong>: cfDNA repeatable & patient-friendly — complements tissue diagnosis.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>High-accuracy OC detection from blood</b>: cfDNA CDO1/HOXA9 methylation (AUC 0.936, Se 89.7%, Sp 97.5%) — outperforms CA125/HE4/ROMA.",
+      c2: "<b>Early-stage value</b>: best positivity at FIGO I–II (12/14) — supports early diagnosis & stratified management."
+    },
+    zh: {
+      kicker: "中华检验医学杂志 · 2024;47(4):401–406 · 病例对照 · 中国",
+      title: "血清 cfDNA CDO1/HOXA9 甲基化检测卵巢癌",
+      title_alt: "血清中 CDO1 基因与 HOXA9 基因启动子甲基化高表达在卵巢癌诊断中的意义",
+      subtitle: "151 例（29 例卵巢癌 + 122 例良性）· 双基因 AUC 0.936 · Se 89.7% / Sp 97.5% · 早期 12/14 · 校正 OR 31.75",
+      authors: "侯倩男、袁宇、李燕、龚照林、张强、冯丹、宫远福、王林海、刘沛、谢小兵、何丽",
+      source: "成都市妇女儿童中心医院 · 中华检验医学杂志 2024;47(4):401–406",
+      h1: "卵巢肿块（29 例癌）", h2: "AUC · 双基因", h3: "灵敏度", h4: "特异度",
+      s1t: "背景与目的",
+      s1a: "<strong>问题</strong>：卵巢癌年发病率第 3、死亡率第 2；I 期 5 年生存 90% vs IV 期 20%。",
+      s1b: "<strong>目的</strong>：cfDNA CDO1/HOXA9 甲基化用于卵巢癌检测与分层管理。",
+      s2t: "研究设计与队列",
+      s2s1: "卵巢癌", s2s2: "良性", s2s3: "入组期",
+      s2a: "<strong>地点</strong>：成都市妇女儿童中心医院；卵巢肿块手术指征。",
+      s2b: "<strong>检测</strong>：血清 CA125 · HE4 · ROMA · cfDNA CDO1/HOXA9 甲基化。",
+      s2c: "<strong>金标准</strong>：腹腔镜卵巢组织病理。",
+      s2d: "<strong>特征</strong>：98.4% 良性为绝经前 vs 75.9% 卵巢癌为绝经后。",
+      s2j1: "双基因 · 未校正", s2j2: "ROMA · 未校正",
+      s2e: "<strong>纳入</strong>：卵巢肿块手术指征；临床资料完整。",
+      s2f: "<strong>排除</strong>：既往治疗 · 其他恶性肿瘤 · 标本无效。",
+      s2g: "<strong>统计</strong>：Mann-Whitney U · Fisher 精确 · Logistic（OR）· ROC/AUC。",
+      s2h: "<strong>血液 vs 组织</strong>：cfDNA 避免有创卵巢活检。",
+      s2s7: "AUC（0.878–0.994）", s2s8: "Se（73.6–96.4）", s2s9: "Sp（93.0–99.2）",
+      s2i: "<strong>cfDNA 优势</strong>：可重复采血——支持动态监测。",
+      s2j: "<strong>分层管理</strong>：甲基化(+) → 积极检查；(−) → 良性随访。",
+      s2s4: "校正 OR 双基因（1.84–1084.3）", s2s5: "未校正 OR 双基因", s2s6: "未校正 OR ROMA",
+      s2n: "校正年龄/绝经/ROMA 后，双基因甲基化(+) 卵巢癌风险 31.75 倍。",
+      s3t: "AUC 阶梯——所有标志物",
+      s3a1: "双基因甲基化", s3a2: "ROMA", s3a3: "CDO1m", s3a4: "HE4", s3a5: "HOXA9m", s3a6: "CA125",
+      s3a: "<strong>甲基化居首</strong>：双基因 AUC 0.936 ≫ ROMA 及所有血清标志物。",
+      s4t: "双基因效能",
+      s4s1: "AUC（0.878–0.994）", s4s2: "Se（73.6–96.4）", s4s3: "Sp（93.0–99.2）", s4s4: "校正 OR",
+      s4a: "<strong>血液检测</strong>：cfDNA 甲基化——简便液体活检，无需组织。",
+      s4b: "<strong>高特异度</strong>：97.5%——良性肿块中假阳性极少。",
+      s5t: "按 FIGO 分期检出",
+      s5a1: "早期 I–II · 双基因", s5a2: "早期 · CA125", s5a3: "早期 · ROMA", s5a4: "晚期 III–IV · 双基因",
+      s5a: "<strong>早期检出</strong>：双基因在 I–II 期最佳（12/14）——生存关键。",
+      s5b: "<strong>晚期</strong>：9/10 阳性——仍为最佳标志物。",
+      s5s1: "早期 I–II · 双基因", s5s2: "早期 · CA125", s5s3: "早期 · ROMA", s5s4: "晚期 III–IV · 双基因",
+      s5c: "<strong>全场景</strong>：转移/未分期病例中双基因 + ROMA + CDO1m + CA125 均阳性。",
+      s5d: "<strong>为何血液</strong>：cfDNA 可重复且患者友好——补充组织诊断。",
+      c_ttl: "临床意义",
+      c1: "<b>血液高准确度卵巢癌检测</b>：cfDNA CDO1/HOXA9 甲基化（AUC 0.936、Se 89.7%、Sp 97.5%）优于 CA125/HE4/ROMA。",
+      c2: "<b>早期价值</b>：FIGO I–II 期阳性率最佳（12/14）——支持早期诊断与分层管理。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

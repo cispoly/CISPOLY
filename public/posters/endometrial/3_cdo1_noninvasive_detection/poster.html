@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CDO1/CELF4 Methylation for EC in PMB — Northwest China — Cai et al. 2024</title>
+<!--
+  设计说明（CISPOLY 品牌风格，独立排版 #35：西北 PMB 无创分诊）：
+  - 风格：品牌红、红色渐变标题带、编号小节、点式 bullet、大数字卡、条形对比
+  - 布局：标题带 → hero（138 例 / Se 87.5% / Sp 95.9% / CDO1m AUC 0.932）→ 两栏（左 560px：①背景与目的 ②研究设计【队列+分期】；右 1fr：③AUC 阶梯 ④ROC【原图+侧栏】 ⑤分型与分期）→ 全宽临床意义带
+  - 选图：ROC（673×528）
+  - 约束：所有文字/图片不超出背景框；背景仅两块；临床意义结尾
+-->
+<style>
+  :root {
+    --primary: #D74B4A; --secondary: #F07A76; --accent: #F7C9C7; --accent-deep: #B83A39;
+    --bg: #FFFFFF; --panel: rgba(233, 233, 233, 0.55); --panel-alt: rgba(240, 122, 118, 0.10);
+    --text: #3A3232; --muted: #5C5252; --line: rgba(215, 75, 74, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .poster { width: 2100px; height: 1080px; display: flex; flex-direction: column;
+    background: #FFFFFF; padding: 14px 26px; zoom: calc(min(100vw / 2100px, 100vh / 1080px)); flex: none; position: relative; }
+
+  .titleband { background: linear-gradient(135deg, rgba(215,75,74,0.94) 0%, rgba(215,75,74,0.86) 50%, rgba(240,122,118,0.9) 100%);
+    color: #fff; padding: 13px 32px 12px 32px; flex: 0 0 auto; border-radius: 10px 10px 0 0; position: relative; overflow: hidden; }
+  .langswitch { position: absolute; top: 12px; right: 18px; display: flex; gap: 4px; background: rgba(255,255,255,0.18); border-radius: 16px; padding: 3px; z-index: 3; }
+  .langswitch button { border: none; background: transparent; color: #fff; cursor: pointer; font: 600 11px/1 "Segoe UI",sans-serif; padding: 5px 12px; border-radius: 13px; letter-spacing: 0.5px; transition: background .15s; }
+  .langswitch button.on { background: #fff; color: var(--accent-deep); }
+  .kicker { font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 4px; padding-right: 150px; }
+  .titleband h1 { font-size: 25px; font-weight: 700; line-height: 1.16; letter-spacing: 0.2px; max-width: 1740px; }
+  .titleband .title_alt { font-size: 15.5px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.88); margin-top: 3px; max-width: 1740px; }
+  .titleband .subtitle { font-size: 14px; color: rgba(255,255,255,0.92); margin-top: 4px; font-weight: 400; max-width: 1790px; }
+  .titleband .meta { margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.32); padding-top: 5px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,0.88); }
+  .titleband .meta .authors { font-weight: 600; color: #FFF; }
+  .titleband .meta .source a { color: #FFF; text-decoration: underline; text-underline-offset: 2px; }
+
+  .hero { flex: 0 0 auto; height: 96px; background: #FFFFFF; border: 1px solid var(--line); border-bottom: none;
+    display: flex; align-items: stretch; gap: 10px; padding: 8px 6px; }
+  .hero .stat { flex: 1; background: var(--panel-alt); border: 1px solid rgba(215,75,74,0.28); border-radius: 8px; padding: 6px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .hero .stat .big { font-size: 22px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .hero .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .hero .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .hero .stat.hot .big { color: #fff; } .hero .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  .main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 14px; padding-top: 10px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; min-width: 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .panel.grow { flex: 1 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .duowrap { flex: 0 0 auto; }
+  .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
+  .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .panel ul { list-style: none; }
+  .panel ul li { padding-left: 14px; position: relative; margin-bottom: 6px; }
+  .panel ul li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
+  .panel ul li strong { color: var(--primary); }
+  .panel ul li:last-child { margin-bottom: 0; }
+
+  .statrow { display: flex; gap: 8px; margin: 0 0 5px; }
+  .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 12px 4px; text-align: center; }
+  .stat .big { font-size: 18px; font-weight: 800; color: var(--primary); line-height: 1.05; }
+  .stat .lab { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.2; }
+  .stat.hot { background: linear-gradient(135deg, rgba(215,75,74,0.95) 0%, rgba(240,122,118,0.92) 100%); border-color: var(--accent-deep); }
+  .stat.hot .big { color: #fff; } .stat.hot .lab { color: rgba(255,255,255,0.92); font-weight: 600; }
+  .stat.cool { background: #fff; border-color: rgba(140,158,143,0.6); }
+  .stat.cool .big { color: #5C7A63; }
+
+  .duowrap { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); grid-template-rows: 1fr; gap: 12px; align-items: stretch; margin: 2px 0 0; }
+  .duowrap .fig { display: flex; flex-direction: column; justify-content: center; }
+  .duowrap .fig img { align-self: center; max-height: 243px; }
+  .duowrap .side { display: flex; flex-direction: column; justify-content: center; gap: 5px; min-width: 0; }
+  .duowrap .side ul { margin-top: 2px; }
+  .fig { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px 5px; text-align: center; min-width: 0; }
+  .fig img { display: inline-block; height: auto; max-height: 250px; width: auto; max-width: 100%; border-radius: 3px; align-self: center; }
+  .fig .figcap { font-size: 10px; color: var(--muted); font-style: italic; line-height: 1.3; margin-top: 3px; text-align: left; }
+  .fig .figcap strong { color: var(--primary); font-style: normal; }
+
+  .spbars { margin: 2px 0 6px; }
+  .spb { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+  .spb .sbl { flex: 0 0 130px; font-size: 11.5px; font-weight: 700; color: var(--text); text-align: right; }
+  .spb .sbt { flex: 1 1 auto; height: 20px; background: #F1E7E7; border-radius: 5px; overflow: hidden; position: relative; }
+  .spb .sbf { height: 100%; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 12px; font-weight: 800; color: #fff; }
+  .spb.win .sbf { background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); }
+  .spb.lose .sbf { background: linear-gradient(90deg, #C9A9A7 0%, #D8B0AE 100%); color: #6B5755; }
+
+  .tnote { font-size: 10px; color: var(--muted); line-height: 1.36; margin-top: 3px; }
+  .tnote b { color: var(--accent-deep); }
+
+  .clinical { flex: 0 0 auto; background: linear-gradient(135deg, rgba(215,75,74,0.92) 0%, rgba(215,75,74,0.8) 60%, rgba(240,122,118,0.88) 100%);
+    border-radius: 0 0 10px 10px; color: #fff; padding: 10px 26px; display: flex; gap: 20px; align-items: center; }
+  .clinical .ttl { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.95); flex: 0 0 auto; border-right: 1.5px solid rgba(255,255,255,0.35); padding-right: 16px; }
+  .clinical ul { list-style: none; flex: 1 1 auto; min-width: 0; }
+  .clinical ul li { font-size: 13px; line-height: 1.48; color: rgba(255,255,255,0.96); padding-left: 15px; position: relative; margin-bottom: 3px; }
+  .clinical ul li:last-child { margin-bottom: 0; }
+  .clinical ul li::before { content: "▸"; position: absolute; left: 0; top: 0; color: #FFD9D6; }
+  .clinical ul li b { color: #FFE3E1; }
+  body.lang-zh .panel ul li { line-height: 1.5; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 标题带 -->
+  <header class="titleband">
+    <div class="langswitch"><button id="btn-en" class="on">EN</button><button id="btn-zh">中文</button></div>
+    <div class="kicker" data-i18n="kicker">Cytojournal · 2024;21:15 · Case-Control · Northwest China</div>
+    <h1 data-i18n="title">CDO1/CELF4 Methylation for EC in Postmenopausal Bleeding</h1>
+    <div class="title_alt" data-i18n="title_alt">The endometrial cancer detection using non-invasive hypermethylation of CDO1 and CELF4 genes in women with postmenopausal bleeding in Northwest China</div>
+    <div class="subtitle" data-i18n="subtitle">138 PMB women (40 EC) · Se 87.5% / Sp 95.9% · CDO1m AUC 0.932 · 100% of type II EC detected · Gansu Province</div>
+    <div class="meta">
+      <div class="authors" data-i18n="authors">Cai B, Du J, Wang Y, Liu Z, Wang Y, Li L, Liu P, Wang L, Liu Q, Meng Z</div>
+      <div class="source" data-i18n="source">Gansu Provincial Maternity &amp; Child-care Hospital · Cytojournal 2024;21:15 · doi:10.25259/Cytojournal_78_2023</div>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="stat"><div class="big">138</div><div class="lab" data-i18n="h1">PMB women (40 EC)</div></div>
+    <div class="stat hot"><div class="big">87.5%</div><div class="lab" data-i18n="h2">Sensitivity</div></div>
+    <div class="stat hot"><div class="big">95.9%</div><div class="lab" data-i18n="h3">Specificity</div></div>
+    <div class="stat"><div class="big">0.932</div><div class="lab" data-i18n="h4">CDO1m AUC</div></div>
+  </div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <!-- 左栏 -->
+    <section class="col">
+      <div class="panel">
+        <h3><span class="num">1</span><span data-i18n="s1t">Background &amp; Objective</span></h3>
+        <ul>
+          <li data-i18n="s1a"><strong>Problem</strong>: PMB affects ≤10% women; EC incidence rising in NW China (Gansu GDP rank 27/31) — needs low-cost triage.</li>
+          <li data-i18n="s1b"><strong>Objective</strong>: validate CDO1m/CELF4m in PMB women to triage before invasive hysteroscopy/D&amp;C.</li>
+        </ul>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">2</span><span data-i18n="s2t">Study Design &amp; Cohort</span></h3>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">40</div><div class="lab" data-i18n="s2s1">EC (29%)</div></div>
+          <div class="stat"><div class="big">98</div><div class="lab" data-i18n="s2s2">non-EC (71%)</div></div>
+          <div class="stat"><div class="big">58y</div><div class="lab" data-i18n="s2s3">median age</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2a"><strong>Setting</strong>: Gansu Provincial MCH Hospital; prospective case-control, 2022.</li>
+          <li data-i18n="s2b"><strong>Assays</strong>: cervical cells → qPCR CDO1m/CELF4m; TVUS ET; BMI; CA125.</li>
+          <li data-i18n="s2c"><strong>Reference</strong>: hysteroscopy biopsy / D&amp;C histopathology = gold standard.</li>
+          <li data-i18n="s2d"><strong>Age balance</strong>: EC vs non-EC P=0.492 (no confound).</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat"><div class="big">80%</div><div class="lab" data-i18n="s2s4">FIGO I</div></div>
+          <div class="stat"><div class="big">85%</div><div class="lab" data-i18n="s2s5">type I EC</div></div>
+          <div class="stat hot"><div class="big">15%</div><div class="lab" data-i18n="s2s6">type II (n=6)</div></div>
+        </div>
+        <div class="statrow">
+          <div class="stat"><div class="big">45%</div><div class="lab" data-i18n="s2s7">G1</div></div>
+          <div class="stat"><div class="big">30%</div><div class="lab" data-i18n="s2s8">G2</div></div>
+          <div class="stat"><div class="big">25%</div><div class="lab" data-i18n="s2s9">G3</div></div>
+        </div>
+        <ul>
+          <li data-i18n="s2i"><strong>PMB context</strong>: ~2/3 of postmenopausal gynecologic visits; EC must be ruled out.</li>
+          <li data-i18n="s2j"><strong>Assay logic</strong>: methylation(+) → invasive confirm; (−) → benign, monitor.</li>
+          <li data-i18n="s2e"><strong>Inclusion</strong>: postmenopausal PMB; BMI + TVUS + CA125 + methylation complete.</li>
+          <li data-i18n="s2f"><strong>Exclusion</strong>: prior treatment · other malignancy · invalid samples.</li>
+          <li data-i18n="s2g"><strong>Statistics</strong>: Se/Sp/accuracy · ROC/AUC · case-control comparison.</li>
+          <li data-i18n="s2h"><strong>Design note</strong>: biopsy/D&C under hysteroscopy as gold standard.</li>
+        </ul>
+        <div class="statrow">
+          <div class="stat hot"><div class="big">87.5%</div><div class="lab" data-i18n="s2s10">Se · dual</div></div>
+          <div class="stat hot"><div class="big">95.9%</div><div class="lab" data-i18n="s2s11">Sp · dual</div></div>
+          <div class="stat"><div class="big">0.932</div><div class="lab" data-i18n="s2s12">CDO1m AUC</div></div>
+        </div>
+        <div class="tnote" data-i18n="s2n">Type II = 2 clear cell · 2 serous · 2 mixed — all 6 detected by methylation; EC vs non-EC age ns (P=0.492).</div>
+      </div>
+    </section>
+
+    <!-- 右栏 -->
+    <section class="col">
+      <div class="panel" style="background: var(--panel-alt);">
+        <h3><span class="num">3</span><span data-i18n="s3t">AUC Ladder — Methylation vs Others</span></h3>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s3a1">CDO1m</div><div class="sbt"><div class="sbf" style="width:93.2%">0.932</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s3a2">CELF4m</div><div class="sbt"><div class="sbf" style="width:86.3%">0.863</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s3a3">CA125</div><div class="sbt"><div class="sbf" style="width:70.4%">0.704</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s3a4">ET (TVUS)</div><div class="sbt"><div class="sbf" style="width:67.2%">0.672</div></div></div>
+          <div class="spb lose"><div class="sbl" data-i18n="s3a5">BMI</div><div class="sbt"><div class="sbf" style="width:65.6%">0.656</div></div></div>
+        </div>
+        <ul>
+          <li data-i18n="s3a"><strong>Methylation on top</strong>: CDO1m AUC 0.932 ≫ CA125/ET/BMI.</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h3><span class="num">4</span><span data-i18n="s4t">ROC &amp; Dual-Gene Performance</span></h3>
+        <div class="duowrap">
+          <div class="fig">
+            <img src="images/fig_roc.jpg" alt="ROC curves CDO1m CELF4m CA125 ET BMI">
+            <div class="figcap"><strong>Fig.</strong> <span data-i18n="s4c1">ROC — CDO1m 0.932 &gt; CELF4m 0.863 &gt; CA125 0.704 &gt; ET 0.672 &gt; BMI 0.656.</span></div>
+          </div>
+          <div class="side">
+            <div class="statrow">
+              <div class="stat hot"><div class="big">87.5%</div><div class="lab" data-i18n="s4s1">Se · dual</div></div>
+              <div class="stat hot"><div class="big">95.9%</div><div class="lab" data-i18n="s4s2">Sp · dual</div></div>
+            </div>
+            <ul>
+              <li data-i18n="s4a"><strong>High specificity</strong>: 95.9% — few false positives for invasive work-up.</li>
+              <li data-i18n="s4b"><strong>Type II 100%</strong>: all 6 aggressive EC detected by methylation.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel grow">
+        <h3><span class="num">5</span><span data-i18n="s5t">Stage &amp; Type Coverage</span></h3>
+        <div class="spbars">
+          <div class="spb win"><div class="sbl" data-i18n="s5a1">FIGO I</div><div class="sbt"><div class="sbf" style="width:80%">80%</div></div></div>
+          <div class="spb win"><div class="sbl" data-i18n="s5a2">Type II EC</div><div class="sbt"><div class="sbf" style="width:100%">100% detected</div></div></div>
+        </div>
+        <ul>
+          <li data-i18n="s5a"><strong>Early-stage focus</strong>: 80% stage I — screening catches curable disease.</li>
+          <li data-i18n="s5b"><strong>Aggressive types</strong>: type II (serous/clear/mixed) all methylation(+).</li>
+          <li data-i18n="s5c"><strong>Cost fit</strong>: simple qPCR — feasible for resource-limited NW China.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- 临床意义带 -->
+  <div class="clinical">
+    <div class="ttl" data-i18n="c_ttl">Clinical Significance</div>
+    <ul>
+      <li data-i18n="c1"><b>High-specificity PMB triage</b>: CDO1/CELF4 methylation (Se 87.5%, Sp 95.9%) distinguishes benign vs malignant without invasive tests.</li>
+      <li data-i18n="c2"><b>Accessible &amp; cost-effective</b>: qPCR-based assay fits outpatient settings in Northwest China — guides who truly needs hysteroscopy.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var DICT = {
+    en: {
+      kicker: "Cytojournal · 2024;21:15 · Case-Control · Northwest China",
+      title: "CDO1/CELF4 Methylation for EC in Postmenopausal Bleeding",
+      title_alt: "The endometrial cancer detection using non-invasive hypermethylation of CDO1 and CELF4 genes in women with postmenopausal bleeding in Northwest China",
+      subtitle: "138 PMB women (40 EC) · Se 87.5% / Sp 95.9% · CDO1m AUC 0.932 · 100% of type II EC detected · Gansu Province",
+      authors: "Cai B, Du J, Wang Y, Liu Z, Wang Y, Li L, Liu P, Wang L, Liu Q, Meng Z",
+      source: "Gansu Provincial Maternity & Child-care Hospital · Cytojournal 2024;21:15 · doi:10.25259/Cytojournal_78_2023",
+      h1: "PMB women (40 EC)", h2: "Sensitivity", h3: "Specificity", h4: "CDO1m AUC",
+      s1t: "Background & Objective",
+      s1a: "<strong>Problem</strong>: PMB affects ≤10% women; EC incidence rising in NW China (Gansu GDP rank 27/31) — needs low-cost triage.",
+      s1b: "<strong>Objective</strong>: validate CDO1m/CELF4m in PMB women to triage before invasive hysteroscopy/D&C.",
+      s2t: "Study Design & Cohort",
+      s2s1: "EC (29%)", s2s2: "non-EC (71%)", s2s3: "median age",
+      s2a: "<strong>Setting</strong>: Gansu Provincial MCH Hospital; prospective case-control, 2022.",
+      s2b: "<strong>Assays</strong>: cervical cells → qPCR CDO1m/CELF4m; TVUS ET; BMI; CA125.",
+      s2c: "<strong>Reference</strong>: hysteroscopy biopsy / D&C histopathology = gold standard.",
+      s2d: "<strong>Age balance</strong>: EC vs non-EC P=0.492 (no confound).",
+      s2s7: "G1", s2s8: "G2", s2s9: "G3",
+      s2i: "<strong>PMB context</strong>: ~2/3 of postmenopausal gynecologic visits; EC must be ruled out.",
+      s2j: "<strong>Assay logic</strong>: methylation(+) → invasive confirm; (−) → benign, monitor.",
+      s2e: "<strong>Inclusion</strong>: postmenopausal PMB; BMI + TVUS + CA125 + methylation complete.",
+      s2f: "<strong>Exclusion</strong>: prior treatment · other malignancy · invalid samples.",
+      s2g: "<strong>Statistics</strong>: Se/Sp/accuracy · ROC/AUC · case-control comparison.",
+      s2h: "<strong>Design note</strong>: biopsy/D&C under hysteroscopy as gold standard.",
+      s2s10: "Se · dual", s2s11: "Sp · dual", s2s12: "CDO1m AUC",
+      s2s4: "FIGO I", s2s5: "type I EC", s2s6: "type II (n=6)",
+      s2n: "Type II = 2 clear cell · 2 serous · 2 mixed — all 6 detected by methylation.",
+      s3t: "AUC Ladder — Methylation vs Others",
+      s3a1: "CDO1m", s3a2: "CELF4m", s3a3: "CA125", s3a4: "ET (TVUS)", s3a5: "BMI",
+      s3a: "<strong>Methylation on top</strong>: CDO1m AUC 0.932 ≫ CA125/ET/BMI.",
+      s4t: "ROC & Dual-Gene Performance",
+      s4c1: "ROC — CDO1m 0.932 > CELF4m 0.863 > CA125 0.704 > ET 0.672 > BMI 0.656.",
+      s4s1: "Se · dual", s4s2: "Sp · dual",
+      s4a: "<strong>High specificity</strong>: 95.9% — few false positives for invasive work-up.",
+      s4b: "<strong>Type II 100%</strong>: all 6 aggressive EC detected by methylation.",
+      s5t: "Stage & Type Coverage",
+      s5a1: "FIGO I", s5a2: "Type II EC",
+      s5a: "<strong>Early-stage focus</strong>: 80% stage I — screening catches curable disease.",
+      s5b: "<strong>Aggressive types</strong>: type II (serous/clear/mixed) all methylation(+).",
+      s5c: "<strong>Cost fit</strong>: simple qPCR — feasible for resource-limited NW China.",
+      c_ttl: "Clinical Significance",
+      c1: "<b>High-specificity PMB triage</b>: CDO1/CELF4 methylation (Se 87.5%, Sp 95.9%) distinguishes benign vs malignant without invasive tests.",
+      c2: "<b>Accessible & cost-effective</b>: qPCR-based assay fits outpatient settings in Northwest China — guides who truly needs hysteroscopy."
+    },
+    zh: {
+      kicker: "Cytojournal · 2024;21:15 · 病例对照 · 中国西北",
+      title: "CDO1/CELF4 甲基化用于绝经后出血女性子宫内膜癌检测",
+      title_alt: "The endometrial cancer detection using non-invasive hypermethylation of CDO1 and CELF4 genes in women with postmenopausal bleeding in Northwest China",
+      subtitle: "138 例 PMB（40 例 EC）· Se 87.5% / Sp 95.9% · CDO1m AUC 0.932 · II 型 EC 100% 检出 · 甘肃省",
+      authors: "蔡冰心、杜军、王依珊、刘志杰、王艳、李柳玉、刘培、王林海、刘青、孟照琰",
+      source: "甘肃省妇幼保健院 · Cytojournal 2024;21:15 · doi:10.25259/Cytojournal_78_2023",
+      h1: "PMB 女性（40 例 EC）", h2: "灵敏度", h3: "特异度", h4: "CDO1m AUC",
+      s1t: "背景与目的",
+      s1a: "<strong>问题</strong>：PMB 影响 ≤10% 女性；西北 EC 发病率上升（甘肃 GDP 第 27/31 位）——需低成本分诊。",
+      s1b: "<strong>目的</strong>：在 PMB 女性验证 CDO1m/CELF4m，用于有创宫腔镜/诊刮前分诊。",
+      s2t: "研究设计与队列",
+      s2s1: "EC（29%）", s2s2: "非 EC（71%）", s2s3: "中位年龄",
+      s2a: "<strong>地点</strong>：甘肃省妇幼保健院；前瞻性病例对照，2022。",
+      s2b: "<strong>检测</strong>：宫颈细胞 → qPCR CDO1m/CELF4m；TVUS 内膜厚度；BMI；CA125。",
+      s2c: "<strong>金标准</strong>：宫腔镜活检 / 诊刮病理。",
+      s2d: "<strong>年龄均衡</strong>：EC vs 非 EC P=0.492（无混杂）。",
+      s2s7: "G1", s2s8: "G2", s2s9: "G3",
+      s2i: "<strong>PMB 背景</strong>：约占绝经后妇科就诊 2/3；须排除 EC。",
+      s2j: "<strong>检测逻辑</strong>：甲基化(+) → 有创确诊；(−) → 良性随访。",
+      s2e: "<strong>纳入</strong>：绝经后 PMB；BMI + TVUS + CA125 + 甲基化资料完整。",
+      s2f: "<strong>排除</strong>：既往治疗 · 其他恶性肿瘤 · 标本无效。",
+      s2g: "<strong>统计</strong>：Se/Sp/准确度 · ROC/AUC · 病例对照比较。",
+      s2h: "<strong>设计要点</strong>：宫腔镜下活检/诊刮病理为金标准。",
+      s2s10: "Se · 双基因", s2s11: "Sp · 双基因", s2s12: "CDO1m AUC",
+      s2s4: "FIGO I 期", s2s5: "I 型 EC", s2s6: "II 型（n=6）",
+      s2n: "II 型 = 2 例透明细胞 · 2 例浆液性 · 2 例混合——6 例全部被甲基化检出。",
+      s3t: "AUC 阶梯——甲基化 vs 其他",
+      s3a1: "CDO1m", s3a2: "CELF4m", s3a3: "CA125", s3a4: "ET（TVUS）", s3a5: "BMI",
+      s3a: "<strong>甲基化居首</strong>：CDO1m AUC 0.932 ≫ CA125/ET/BMI。",
+      s4t: "ROC 与双基因效能",
+      s4c1: "ROC——CDO1m 0.932 &gt; CELF4m 0.863 &gt; CA125 0.704 &gt; ET 0.672 &gt; BMI 0.656。",
+      s4s1: "Se · 双基因", s4s2: "Sp · 双基因",
+      s4a: "<strong>高特异度</strong>：95.9%——有创检查误转诊极少。",
+      s4b: "<strong>II 型 100%</strong>：6 例侵袭性 EC 全部被甲基化检出。",
+      s5t: "分期与分型覆盖",
+      s5a1: "FIGO I 期", s5a2: "II 型 EC",
+      s5a: "<strong>早期为主</strong>：80% 为 I 期——筛查捕获可治愈疾病。",
+      s5b: "<strong>侵袭性类型</strong>：II 型（浆液/透明/混合）全部甲基化(+)。",
+      s5c: "<strong>成本契合</strong>：简单 qPCR——适合资源有限的西北地区。",
+      c_ttl: "临床意义",
+      c1: "<b>高特异度 PMB 分诊</b>：CDO1/CELF4 甲基化（Se 87.5%、Sp 95.9%）无需有创检查即可区分良恶性。",
+      c2: "<b>可及且经济</b>：qPCR 检测适合西北门诊——指导谁真正需要宫腔镜。"
+    }
+  };
+  function apply(lang) {
+    var strings = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (strings[k] != null) el.innerHTML = strings[k];
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = (lang === 'en') ? 'on' : '';
+    document.getElementById('btn-zh').className = (lang === 'zh') ? 'on' : '';
+    try { localStorage.setItem('poster_lang', lang); } catch (e) {}
+  }
+  function initialLang() {
+    try {
+      var p = new URLSearchParams(location.search).get('lang');
+      if (p === 'en' || p === 'zh') return p;
+      var s = localStorage.getItem('poster_lang');
+      if (s === 'en' || s === 'zh') return s;
+    } catch (e) {}
+    return 'en';
+  }
+  document.getElementById('btn-en').onclick = function () { apply('en'); };
+  document.getElementById('btn-zh').onclick = function () { apply('zh'); };
+  apply(initialLang());
+})();
+</script>
+</body>
+</html>

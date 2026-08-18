@@ -1,4 +1,4 @@
-import type { LoaderFunctionArgs, MetaFunction } from 'react-router'
+import type { LoaderFunctionArgs, MetaFunction, ShouldRevalidateFunctionArgs } from 'react-router'
 import { useLoaderData } from '@/lib/router'
 import PosterDetail from '@/components/PosterDetail'
 import { getPaper, getPaperAbstract, getPaperAuthors, getPaperCitation, getPaperJournal, papers } from '@/lib/data/papers'
@@ -26,6 +26,12 @@ export function loader({ params, request }: LoaderFunctionArgs) {
     next: index < siblings.length - 1 ? siblings[index + 1] : null,
     lang: new URL(request.url).pathname.startsWith('/en/') ? 'en' as const : 'zh' as const,
   }
+}
+
+// The optional `en?` route segment is not a route param, so keep language-
+// dependent loader metadata in sync when switching URL variants.
+export function shouldRevalidate({ currentUrl, nextUrl }: ShouldRevalidateFunctionArgs) {
+  return currentUrl.pathname !== nextUrl.pathname
 }
 
 export const meta: MetaFunction<typeof loader> = ({ loaderData, location }) => {

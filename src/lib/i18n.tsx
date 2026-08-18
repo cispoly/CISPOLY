@@ -49,7 +49,7 @@ const zh: Dict = {
   'common.backToGuidelines': '返回指南',
   'common.menu': '菜单',
   'common.loading': '加载中…',
-  'common.copyOf': '京ICP备 0000000 号',
+  'common.copyOf': '京ICP备2023007648号-1',
 
   // ---- 癌种 ----
   'cancer.cervical': '宫颈癌',

@@ -1,9 +1,9 @@
-import type { LoaderFunctionArgs, MetaFunction } from 'react-router'
+import type { LoaderFunctionArgs, MetaFunction, ShouldRevalidateFunctionArgs } from 'react-router'
 import { Link, useLoaderData } from '@/lib/router'
 import { ArrowLeft, ArrowLeft as ArrowIcon } from 'lucide-react'
 import Markdown from '@/lib/markdown'
 import { getBlog, blogs } from '@/lib/data/blogs'
-import { getBlogBody } from '@/lib/content.server'
+import { getBlogBody } from '@/lib/data/blogBodies'
 import { useI18n } from '@/lib/i18n'
 import { pageMeta } from '@/lib/seo'
 
@@ -21,6 +21,12 @@ export function loader({ params, request }: LoaderFunctionArgs) {
     next: index < blogs.length - 1 ? blogs[index + 1] : null,
     lang,
   }
+}
+
+// The optional `en?` route segment is not a route param, so explicitly reload
+// loader data when switching between the Chinese and English URL variants.
+export function shouldRevalidate({ currentUrl, nextUrl }: ShouldRevalidateFunctionArgs) {
+  return currentUrl.pathname !== nextUrl.pathname
 }
 
 export const meta: MetaFunction<typeof loader> = ({ loaderData, location }) => {
@@ -49,7 +55,10 @@ export const meta: MetaFunction<typeof loader> = ({ loaderData, location }) => {
 
 export default function BlogPost() {
   const { t, lang } = useI18n()
-  const { post, body, prev, next } = useLoaderData<typeof loader>()
+  const { post, prev, next } = useLoaderData<typeof loader>()
+  // Keep the rendered article body in sync with the language context even
+  // before a client-side loader revalidation completes.
+  const body = getBlogBody(post.slug, lang)
 
   return (
     <article className="pt-20 md:pt-24">

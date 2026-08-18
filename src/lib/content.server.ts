@@ -1,6 +1,4 @@
 import paperFields from '@/data/paper-fields-v2.json'
-import blogBodiesZh from '@/data/blogs.body.json'
-import blogBodiesEn from '@/data/blogs.body.en.json'
 
 export interface PdfParsedFields {
   doi?: string
@@ -37,10 +35,4 @@ export function getPdfFields(id: string): PdfParsedFields | undefined {
     figures: fields.figures,
     sections: fields.sections,
   }
-}
-
-export function getBlogBody(slug: string, lang: 'zh' | 'en') {
-  const zh = blogBodiesZh as Record<string, string>
-  const en = blogBodiesEn as Record<string, string>
-  return (lang === 'en' ? en[slug] : undefined) || zh[slug] || ''
 }

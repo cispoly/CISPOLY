@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from '@/lib/router'
 import { ArrowUpRight } from 'lucide-react'
 import type { Product } from '@/types'
 import { useI18n, pick } from '@/lib/i18n'

@@ -1,11 +1,20 @@
-import { Link } from 'react-router-dom'
+import { Link } from '@/lib/router'
 import { Award, Lightbulb, ArrowRight, Calendar, Microscope, Building2 } from 'lucide-react'
 import SectionTitle from '@/components/SectionTitle'
 import Reveal from '@/components/Reveal'
 import PageHero from '@/components/PageHero'
-import { company } from '@/lib/data'
+import { company } from '@/lib/data/company'
 import { PAGE_HERO_IMAGES } from '@/lib/images'
 import { useI18n, pick } from '@/lib/i18n'
+import type { MetaFunction } from 'react-router'
+import { pageMeta } from '@/lib/seo'
+
+export const meta: MetaFunction = ({ location }) => pageMeta(location.pathname, {
+  titleZh: '关于聚禾生物 | CISPOLY',
+  titleEn: 'About CISPOLY',
+  descriptionZh: '了解聚禾生物的使命、发展历程、研发实力与妇科肿瘤早筛早诊产品布局。',
+  descriptionEn: 'Learn about CISPOLY’s mission, milestones, R&D capabilities, and gynecologic cancer detection portfolio.',
+})
 
 export default function About() {
   const { t, lang } = useI18n()

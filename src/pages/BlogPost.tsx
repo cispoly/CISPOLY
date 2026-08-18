@@ -1,33 +1,55 @@
-import { useEffect, useState } from 'react'
-import { useParams, Link, Navigate } from 'react-router-dom'
+import type { LoaderFunctionArgs, MetaFunction } from 'react-router'
+import { Link, useLoaderData } from '@/lib/router'
 import { ArrowLeft, ArrowLeft as ArrowIcon } from 'lucide-react'
 import Markdown from '@/lib/markdown'
-import { getBlog, blogs, loadBlogBody } from '@/lib/data'
+import { getBlog, blogs } from '@/lib/data/blogs'
+import { getBlogBody } from '@/lib/content.server'
 import { useI18n } from '@/lib/i18n'
+import { pageMeta } from '@/lib/seo'
+
+export function loader({ params, request }: LoaderFunctionArgs) {
+  const slug = params.slug || ''
+  const post = getBlog(slug)
+  if (!post) throw new Response('Blog post not found', { status: 404 })
+
+  const lang = new URL(request.url).pathname.startsWith('/en/') ? 'en' : 'zh'
+  const index = blogs.findIndex((item) => item.slug === slug)
+  return {
+    post,
+    body: getBlogBody(slug, lang),
+    prev: index > 0 ? blogs[index - 1] : null,
+    next: index < blogs.length - 1 ? blogs[index + 1] : null,
+    lang,
+  }
+}
+
+export const meta: MetaFunction<typeof loader> = ({ loaderData, location }) => {
+  if (!loaderData) return [{ title: 'CISPOLY' }]
+  const { post, lang } = loaderData
+  const title = lang === 'en' && post.titleEn ? post.titleEn : post.title
+  const description = lang === 'en' && post.excerptEn ? post.excerptEn : post.excerpt
+  return pageMeta(location.pathname, {
+    titleZh: `${post.title} | CISPOLY`,
+    titleEn: `${post.titleEn || post.title} | CISPOLY`,
+    descriptionZh: post.excerpt,
+    descriptionEn: post.excerptEn || post.excerpt,
+    image: post.cover,
+    type: 'article',
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: title,
+      description,
+      datePublished: post.date,
+      dateModified: post.lastModified,
+      publisher: { '@type': 'Organization', name: 'CISPOLY' },
+    },
+  })
+}
 
 export default function BlogPost() {
   const { t, lang } = useI18n()
-  const { slug } = useParams()
-  const post = slug ? getBlog(slug) : undefined
-
-  const [body, setBody] = useState('')
-  useEffect(() => {
-    if (!slug) return
-    let alive = true
-    // 英文模式优先加载英文正文（bodyEn），否则回退中文正文
-    const loader = lang === 'en' ? import('@/data/blogs.body.en.json').then((m) => (m.default as Record<string, string>)[slug] || '').catch(() => loadBlogBody(slug)) : loadBlogBody(slug)
-    Promise.resolve(loader).then((b) => alive && setBody(b))
-    return () => {
-      alive = false
-    }
-  }, [slug, lang])
-
-  if (!post) return <Navigate to="/blog" replace />
-
-  // 上一篇 / 下一篇（列表按日期降序：上一条为更新的，下一条为更旧的）
-  const idx = blogs.findIndex((b) => b.slug === post.slug)
-  const prev = idx > 0 ? blogs[idx - 1] : null
-  const next = idx < blogs.length - 1 ? blogs[idx + 1] : null
+  const { post, body, prev, next } = useLoaderData<typeof loader>()
 
   return (
     <article className="pt-20 md:pt-24">
@@ -68,7 +90,7 @@ export default function BlogPost() {
           </h1>
 
           <div className="mt-10">
-            {body ? <Markdown>{body}</Markdown> : <div className="h-60 animate-pulse rounded-xl bg-line/40" />}
+            <Markdown>{body}</Markdown>
           </div>
         </div>
 

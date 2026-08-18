@@ -1,13 +1,21 @@
 import { useState } from 'react'
-import SectionTitle from '@/components/SectionTitle'
 import Reveal from '@/components/Reveal'
 import PaperCard from '@/components/PaperCard'
 import PageHero from '@/components/PageHero'
-import { papers } from '@/lib/data'
+import { papers } from '@/lib/data/papers'
 import { PAGE_HERO_IMAGES } from '@/lib/images'
 import { getCancerLabel } from '@/types'
 import type { CancerKey } from '@/types'
 import { useI18n } from '@/lib/i18n'
+import type { MetaFunction } from 'react-router'
+import { pageMeta } from '@/lib/seo'
+
+export const meta: MetaFunction = ({ location }) => pageMeta(location.pathname, {
+  titleZh: '学术论文 | CISPOLY 聚禾生物',
+  titleEn: 'Research Publications | CISPOLY',
+  descriptionZh: '浏览聚禾生物在宫颈癌、子宫内膜癌和卵巢癌 DNA 甲基化检测领域的临床研究与学术论文。',
+  descriptionEn: 'Explore CISPOLY clinical research and publications on DNA methylation testing for gynecologic cancers.',
+})
 
 export default function Papers() {
   const { t, lang } = useI18n()

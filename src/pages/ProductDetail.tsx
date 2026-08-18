@@ -1,4 +1,4 @@
-import { useParams, Link, Navigate } from 'react-router-dom'
+import { useParams, Link, Navigate } from '@/lib/router'
 import {
   ArrowLeft,
   CheckCircle2,
@@ -19,8 +19,23 @@ import CardMarquee from '@/components/CardMarquee'
 import { CISCER_HOSPITALS } from '@/data/china-hospitals'
 import { CISENDO_HOSPITALS } from '@/data/cisendo-hospitals'
 import { CISOVA_HOSPITALS } from '@/data/cisova-hospitals'
-import { getProduct, getPapersByCancer, getGuidelinesByCancer } from '@/lib/data'
+import { getProduct } from '@/lib/data/products'
+import { getPapersByCancer } from '@/lib/data/papers'
+import { getGuidelinesByCancer } from '@/lib/data/guidelines'
 import { useI18n, pick } from '@/lib/i18n'
+import type { MetaFunction } from 'react-router'
+import { pageMeta } from '@/lib/seo'
+
+export const meta: MetaFunction = ({ params, location }) => {
+  const product = params.slug ? getProduct(params.slug) : undefined
+  if (!product) return [{ title: 'Products | CISPOLY' }]
+  return pageMeta(location.pathname, {
+    titleZh: `${product.fullName}｜${product.cancer}甲基化检测 | CISPOLY`,
+    titleEn: `${product.fullNameEn || product.englishName} | CISPOLY`,
+    descriptionZh: product.summary,
+    descriptionEn: product.summaryEn || product.summary,
+  })
+}
 
 export default function ProductDetail() {
   const { t, lang } = useI18n()

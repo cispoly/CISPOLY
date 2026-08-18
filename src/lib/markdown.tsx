@@ -23,7 +23,7 @@ function isAboutTitle(text: string): boolean {
 
 const components: Components = {
   // 图片：懒加载 + 错误兜底
-  img: ({ src, alt, ...props }) => (
+  img: ({ src, alt, node: _node, ...props }) => (
     <img
       src={src as string}
       alt={alt || ''}
@@ -35,12 +35,12 @@ const components: Components = {
       {...props}
     />
   ),
-  a: ({ children, href, ...props }) => (
+  a: ({ children, href, node: _node, ...props }) => (
     <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
       {children}
     </a>
   ),
-  p: ({ children, ...props }) => {
+  p: ({ children, node: _node, ...props }) => {
     const text = extractText(children).trim()
     // 「关于聚禾生物 / About CISPOLY」→ 品牌横幅
     if (isAboutTitle(text)) {

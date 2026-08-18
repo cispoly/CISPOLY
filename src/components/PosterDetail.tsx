@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from '@/lib/router'
 import { motion } from 'framer-motion'
 import {
   ArrowLeft, ArrowRight, BookMarked, Building2, Check, Copy,
   ExternalLink, FileText, FlaskConical, BarChart3, Quote, Languages,
 } from 'lucide-react'
-import { useI18n, detectLang } from '@/lib/i18n'
+import { useI18n } from '@/lib/i18n'
 
 /**
  * PosterDetail v3 —— 文献/指南详情页（7 段结构）
@@ -182,9 +182,8 @@ function AbstractBlocks({ abstract, abstractEn }: { abstract?: string; abstractE
 /* ---------- Poster iframe ---------- */
 
 function PosterEmbed({ posterUrl, posterTitle }: { posterUrl: string; posterTitle?: string }) {
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
   const [loaded, setLoaded] = useState(false)
-  const lang = detectLang()
   const src = posterUrl + (posterUrl.includes('?') ? '&' : '?') + 'lang=' + lang
 
   return (
@@ -288,6 +287,10 @@ export default function PosterDetail({
             <h1 className="mt-4 text-2xl font-bold leading-snug tracking-tight text-ink md:text-[2.2rem] md:leading-[1.25]">
               {title}
             </h1>
+
+            {authors && (
+              <p className="mt-3 text-sm leading-relaxed text-inkSoft">{authors}</p>
+            )}
 
           </motion.div>
         </div>

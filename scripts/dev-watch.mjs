@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 /**
- * CISPOLY 开发服务器：监听 contents/ 数据文件变化 → 自动重建数据 → Vite HMR 刷新页面
+ * CISPOLY 开发服务器：监听 contents/ 数据文件变化 → 自动重建数据 → React Router HMR 刷新页面
  *
  * 用法：npm run dev（替代原来的 "tsx scripts/build-data.ts && vite"）
  * - 启动时先构建一次数据，再启动 Vite
  * - 监听 contents/blogs、contents/academic_published_papers、contents/clinical_guidelines 下
  *   所有文件（md / 图片等）变化，防抖 600ms 后自动重跑 build-data.ts
- * - Vite 检测到 src/data/*.json 变化后自动热更新/刷新页面
+ * - React Router/Vite 检测到 src/data/*.json 变化后自动热更新/刷新页面
  */
 import { spawn } from 'node:child_process'
 import { watch } from 'node:fs'
@@ -68,8 +68,8 @@ function scheduleBuild(reason) {
   }, 600)
 }
 
-// 启动 Vite（端口 5173，与 vite.config.ts 一致）
-const vite = spawn('npx vite', {
+// 启动 React Router Framework Mode 开发服务器
+const vite = spawn('npx react-router dev', {
   cwd: ROOT,
   stdio: 'inherit',
   shell: true,

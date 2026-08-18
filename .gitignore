@@ -1,6 +1,9 @@
 # ===== 依赖与构建产物（可再生） =====
 node_modules/
+.npm-cache/
+.react-router/
 dist/
+build/
 tsconfig.tsbuildinfo
 .preview/
 

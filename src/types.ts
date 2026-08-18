@@ -24,6 +24,7 @@ export interface Paper {
   summary: string
   summaryEn?: string
   featured: boolean
+  citation?: string
 }
 
 export interface Guideline {
@@ -43,6 +44,7 @@ export interface Guideline {
   abstractEn?: string
   excerptEn?: string
   cancers?: CancerKey[]
+  citation?: string
 }
 
 export interface BlogPost {
@@ -54,6 +56,7 @@ export interface BlogPost {
   lastModified: string // YYYY-MM-DD，默认同 date
   lastModifiedLabel: string
   cover: string | undefined
+  coverEn?: string
   excerpt: string
   excerptEn?: string
   tags: string[]

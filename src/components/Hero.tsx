@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from '@/lib/router'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   ArrowRight,
@@ -12,8 +12,7 @@ import {
   Newspaper,
 } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
-import { company } from '@/lib/data'
-import { pick } from '@/lib/i18n'
+import { company } from '@/lib/data/company'
 
 interface Slide {
   image: string
@@ -25,6 +24,13 @@ interface Slide {
 }
 
 const SLIDE_INTERVAL = 3000
+const SLIDE_IMAGES = [
+  '/hero/anita-austvika-XQbCwyHjp6s.jpg',
+  '/hero/becca-tapert-u5e1kqW6E3M.jpg',
+  '/hero/daiga-ellaby-sl8LHdVH06U.jpg',
+  '/hero/fausto-garcia-menendez-zXNywOKuCoI.jpg',
+  '/hero/simon-maage-tXiMrX3Gc-g.jpg',
+]
 
 export default function Hero() {
   const { t, lang } = useI18n()
@@ -42,17 +48,15 @@ export default function Hero() {
 
   // 预加载所有轮播图，避免切换时白屏
   useEffect(() => {
-    slides.forEach((s) => {
+    SLIDE_IMAGES.forEach((src) => {
       const img = new Image()
-      img.src = s.image
+      img.src = src
     })
-    // slides 在组件内静态定义，只需执行一次
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const slides: Slide[] = [
     {
-      image: '/hero/anita-austvika-XQbCwyHjp6s.jpg',
+      image: SLIDE_IMAGES[0],
       icon: <Sparkles size={13} />,
       eyebrow: t('hero.slide1.eyebrow'),
       title: (
@@ -69,7 +73,7 @@ export default function Hero() {
       cta: { label: t('hero.slide1.cta'), to: '/about' },
     },
     {
-      image: '/hero/becca-tapert-u5e1kqW6E3M.jpg',
+      image: SLIDE_IMAGES[1],
       icon: <FlaskRound size={13} />,
       eyebrow: t('hero.slide2.eyebrow'),
       title: (
@@ -89,7 +93,7 @@ export default function Hero() {
       cta: { label: t('hero.slide2.cta'), to: '/products/ciscer' },
     },
     {
-      image: '/hero/daiga-ellaby-sl8LHdVH06U.jpg',
+      image: SLIDE_IMAGES[2],
       icon: <FileText size={13} />,
       eyebrow: t('hero.slide3.eyebrow'),
       title: (
@@ -104,7 +108,7 @@ export default function Hero() {
       cta: { label: t('hero.slide3.cta'), to: '/papers' },
     },
     {
-      image: '/hero/fausto-garcia-menendez-zXNywOKuCoI.jpg',
+      image: SLIDE_IMAGES[3],
       icon: <BookOpenCheck size={13} />,
       eyebrow: t('hero.slide4.eyebrow'),
       title: (
@@ -119,7 +123,7 @@ export default function Hero() {
       cta: { label: t('hero.slide4.cta'), to: '/guidelines' },
     },
     {
-      image: '/hero/simon-maage-tXiMrX3Gc-g.jpg',
+      image: SLIDE_IMAGES[4],
       icon: <Newspaper size={13} />,
       eyebrow: t('hero.slide5.eyebrow'),
       title: (

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from '@/lib/router'
 import { ArrowRight, FlaskConical, BookOpenCheck, Newspaper } from 'lucide-react'
 import Hero from '@/components/Hero'
 import SectionTitle from '@/components/SectionTitle'
@@ -6,8 +6,30 @@ import Reveal from '@/components/Reveal'
 import ProductCard from '@/components/ProductCard'
 import GuidelineCard from '@/components/GuidelineCard'
 import JournalCoverMarquee from '@/components/JournalCoverMarquee'
-import { products, company, papers, guidelines, latestBlogs } from '@/lib/data'
+import { products } from '@/lib/data/products'
+import { company } from '@/lib/data/company'
+import { papers } from '@/lib/data/papers'
+import { guidelines } from '@/lib/data/guidelines'
+import { latestBlogs } from '@/lib/data/blogs'
 import { useI18n, pick } from '@/lib/i18n'
+import type { MetaFunction } from 'react-router'
+import { pageMeta } from '@/lib/seo'
+
+export const meta: MetaFunction = ({ location }) => pageMeta(location.pathname, {
+  titleZh: 'CISPOLY 聚禾生物 | 妇科肿瘤甲基化早筛早诊开拓者',
+  titleEn: 'CISPOLY | Methylation-Based Early Detection for Gynecologic Cancers',
+  descriptionZh: '聚禾生物专注宫颈癌、子宫内膜癌和卵巢癌的 DNA 甲基化无创早筛早诊产品与临床研究。',
+  descriptionEn: 'CISPOLY develops non-invasive DNA methylation tests and clinical evidence for cervical, endometrial, and ovarian cancer detection.',
+  image: '/hero/becca-tapert-u5e1kqW6E3M-unsplash.jpg',
+  structuredData: {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'CISPOLY',
+    alternateName: '聚禾生物',
+    url: 'https://www.cispoly.com',
+    logo: 'https://www.cispoly.com/logo.png',
+  },
+})
 
 export default function Home() {
   const { t, lang } = useI18n()

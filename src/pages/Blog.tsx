@@ -1,12 +1,20 @@
-import { useState, useMemo } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useMemo, useCallback } from 'react'
+import { Link } from '@/lib/router'
 import { Calendar } from 'lucide-react'
-import SectionTitle from '@/components/SectionTitle'
 import Reveal from '@/components/Reveal'
 import PageHero from '@/components/PageHero'
-import { blogs, allTags } from '@/lib/data'
+import { blogs, allTags } from '@/lib/data/blogs'
 import { PAGE_HERO_IMAGES } from '@/lib/images'
 import { useI18n } from '@/lib/i18n'
+import type { MetaFunction } from 'react-router'
+import { pageMeta } from '@/lib/seo'
+
+export const meta: MetaFunction = ({ location }) => pageMeta(location.pathname, {
+  titleZh: '企业动态与健康科普 | CISPOLY 聚禾生物',
+  titleEn: 'News and Health Insights | CISPOLY',
+  descriptionZh: '了解聚禾生物最新动态、学术进展、会议资讯与女性健康科普。',
+  descriptionEn: 'Read CISPOLY news, academic updates, conference insights, and women’s health education.',
+})
 
 export default function Blog() {
   const { t, lang } = useI18n()
@@ -15,9 +23,9 @@ export default function Blog() {
 
   // 根据语言选择标签集和标题字段
   const isEn = lang === 'en'
-  const blogTags = (b: typeof blogs[0]) => (isEn && b.tagsEn ? b.tagsEn : b.tags)
-  const blogTitle = (b: typeof blogs[0]) => (isEn && b.titleEn ? b.titleEn : b.title)
-  const blogCover = (b: typeof blogs[0]) => (isEn && b.coverEn ? b.coverEn : b.cover)
+  const blogTags = useCallback((b: typeof blogs[0]) => (isEn && b.tagsEn ? b.tagsEn : b.tags), [isEn])
+  const blogTitle = useCallback((b: typeof blogs[0]) => (isEn && b.titleEn ? b.titleEn : b.title), [isEn])
+  const blogCover = useCallback((b: typeof blogs[0]) => (isEn && b.coverEn ? b.coverEn : b.cover), [isEn])
   const activeTags = isEn
     ? [...new Set(blogs.flatMap((b) => b.tagsEn || b.tags))].sort()
     : allTags
@@ -30,7 +38,7 @@ export default function Blog() {
       const matchQuery = !query || title.toLowerCase().includes(query.toLowerCase())
       return matchTag && matchQuery
     })
-  }, [tag, query, lang])
+  }, [tag, query, blogTags, blogTitle])
 
   return (
     <div>

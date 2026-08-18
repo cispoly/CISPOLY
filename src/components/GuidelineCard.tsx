@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from '@/lib/router'
 import { BookOpen, Calendar, Building2, ExternalLink, Quote } from 'lucide-react'
 import type { Guideline } from '@/types'
 import { useI18n } from '@/lib/i18n'

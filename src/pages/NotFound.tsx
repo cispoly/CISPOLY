@@ -1,6 +1,12 @@
-import { Link } from 'react-router-dom'
+import { Link } from '@/lib/router'
 import { Home } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
+import type { MetaFunction } from 'react-router'
+
+export const meta: MetaFunction = () => [
+  { title: '404 | CISPOLY' },
+  { name: 'robots', content: 'noindex, nofollow' },
+]
 
 export default function NotFound() {
   const { t } = useI18n()

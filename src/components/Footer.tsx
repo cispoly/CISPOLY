@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom'
+import { Link } from '@/lib/router'
 import { Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react'
-import { company, products } from '@/lib/data'
+import { company } from '@/lib/data/company'
+import { products } from '@/lib/data/products'
 import { useI18n, pick } from '@/lib/i18n'
 import type { Product } from '@/types'
 

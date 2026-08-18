@@ -3,6 +3,7 @@ import { ExternalLink, Quote, Building2, BookOpen, Calendar } from 'lucide-react
 import type { Paper } from '@/types'
 import { useI18n } from '@/lib/i18n'
 import { getCancerLabel } from '@/types'
+import { getPaperJournal } from '@/lib/data/papers'
 
 /**
  * 文献卡 v5 —— 统一尺寸卡片，展示 CSV 来源的元数据 + 中文摘要总结。
@@ -19,7 +20,8 @@ import { getCancerLabel } from '@/types'
  */
 export default function PaperCard({ paper }: { paper: Paper }) {
   const { lang } = useI18n()
-  const journal = paper.journal ? paper.journal.split('.').slice(0, 2).join('.').replace(/\(20\d{2}\)/, '') : ''
+  const journalValue = getPaperJournal(paper, lang)
+  const journal = journalValue ? journalValue.split('.').slice(0, 2).join('.').replace(/\(20\d{2}\)/, '') : ''
   const cancerLabel = getCancerLabel(paper.cancer, lang)
   const summary = lang === 'en' && paper.summaryEn ? paper.summaryEn : paper.summary
   const title = lang === 'en' && paper.titleEn ? paper.titleEn : paper.title

@@ -38,8 +38,19 @@ source/
 # ===== 编辑器与系统 =====
 .DS_Store
 *.local
+.context/
 .vscode/
 .obsidian/
+
+# ===== 环境变量与本地密钥 =====
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# ===== Cloudflare 本地开发文件 =====
+.wrangler/
+.dev.vars*
 
 # AI 工具本地配置
 .claudian/

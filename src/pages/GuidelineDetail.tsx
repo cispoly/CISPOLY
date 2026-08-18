@@ -53,11 +53,16 @@ export default function GuidelineDetail() {
   const { t, lang } = useI18n()
   const { guideline, parsed, prev, next } = useLoaderData<typeof loader>()
 
-  const title = parsed?.title || (lang === 'en' && guideline.titleEn ? guideline.titleEn : guideline.title)
+  const title = lang === 'en' && guideline.titleEn ? guideline.titleEn : (parsed?.title || guideline.title)
   const doi = parsed?.doi || guideline.doi
   const affiliation = lang === 'en' && guideline.publisherEn ? guideline.publisherEn : (parsed?.affiliation || guideline.publisher)
-  const abstract = parsed?.abstract || (lang === 'en' ? (guideline.abstractEn || guideline.excerptEn || guideline.abstract) : guideline.abstract)
-  const citation = guideline.citation || ''
+  const abstract = lang === 'en'
+    ? (guideline.abstractEn || guideline.excerptEn || '')
+    : (parsed?.abstract || guideline.abstract)
+  const citation = lang === 'en' && /[\u3400-\u9fff]/.test(guideline.citation || '')
+    ? ''
+    : (guideline.citation || '')
+  const journal = lang === 'en' ? (guideline.publisherEn || guideline.publisher) : guideline.publisher
 
   const posterUrl = `/posters/${guideline.cancer}/${encodeURIComponent(guideline.id)}/poster.html`
   const cancerLabelTranslated = getCancerLabel(guideline.cancer, lang)
@@ -69,13 +74,13 @@ export default function GuidelineDetail() {
       cancerLabel={cancerLabelTranslated}
       title={title}
       affiliation={affiliation || undefined}
-      journal={guideline.publisher || undefined}
+      journal={journal || undefined}
       year={guideline.year}
       doi={doi}
       citation={citation || undefined}
       abstract={abstract || undefined}
       posterUrl={posterUrl}
-      posterTitle={guideline.title}
+      posterTitle={title}
       prev={
         prev
           ? { to: `/guidelines/${prev.cancer}/${prev.id}`, title: lang === 'en' && prev.titleEn ? prev.titleEn : prev.title }

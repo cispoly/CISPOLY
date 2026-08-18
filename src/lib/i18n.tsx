@@ -314,6 +314,12 @@ const en: Dict = {
   // ---- Navigation ----
   'nav.home': 'Home',
   'nav.products': 'Product',
+  'nav.products.ciscer.name': 'CISCER®',
+  'nav.products.ciscer.desc': 'Dual-gene methylation testing for cervical cancer prevention',
+  'nav.products.cisendo.name': 'CISENDO®',
+  'nav.products.cisendo.desc': 'The world’s first approved non-invasive endometrial cancer methylation test',
+  'nav.products.cisova.name': 'CISOVA®',
+  'nav.products.cisova.desc': 'The world’s first approved peripheral-blood test for early ovarian cancer detection',
   'nav.research': 'Research',
   'nav.guideline': 'Guideline',
   'nav.blog': 'Blog',

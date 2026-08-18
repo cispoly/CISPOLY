@@ -27,7 +27,7 @@ export const links = () => [
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const { pathname } = useLocation()
-  const lang = pathname === '/en' || pathname.startsWith('/en/') ? 'en' : 'zh'
+  const lang = pathname === '/en' || pathname.startsWith('/en/') ? 'en' : 'zh-CN'
 
   return (
     <html lang={lang}>
@@ -75,9 +75,9 @@ export function ErrorBoundary() {
       <main className="grid min-h-screen place-items-center bg-canvas px-6 text-center">
         <div>
           <p className="text-sm font-semibold text-brand-600">{status}</p>
-          <h1 className="mt-3 text-3xl font-bold text-ink">页面暂时无法显示</h1>
+          <h1 className="mt-3 text-3xl font-bold text-ink">Page temporarily unavailable</h1>
           <p className="mt-3 max-w-xl text-sm text-inkSoft">{message}</p>
-          <a className="btn-primary mt-8" href="/">返回首页</a>
+          <a className="btn-primary mt-8" href="/">Back to Home</a>
         </div>
       </main>
     </I18nProvider>

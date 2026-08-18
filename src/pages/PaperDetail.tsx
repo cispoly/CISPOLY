@@ -1,7 +1,7 @@
 import type { LoaderFunctionArgs, MetaFunction } from 'react-router'
 import { useLoaderData } from '@/lib/router'
 import PosterDetail from '@/components/PosterDetail'
-import { getPaper, papers } from '@/lib/data/papers'
+import { getPaper, getPaperAbstract, getPaperAuthors, getPaperCitation, getPaperJournal, papers } from '@/lib/data/papers'
 import { getPdfFields } from '@/lib/content.server'
 import { useI18n } from '@/lib/i18n'
 import { getCancerLabel } from '@/types'
@@ -32,20 +32,23 @@ export const meta: MetaFunction<typeof loader> = ({ loaderData, location }) => {
   if (!loaderData) return [{ title: 'Research | CISPOLY' }]
   const { paper, lang } = loaderData
   const title = lang === 'en' && paper.titleEn ? paper.titleEn : paper.title
+  const englishDescription = paper.abstractEn && !/[\u3400-\u9fff]/.test(paper.abstractEn)
+    ? paper.abstractEn
+    : paper.summaryEn || paper.excerpt
   return pageMeta(location.pathname, {
     titleZh: `${paper.title} | CISPOLY Research`,
     titleEn: `${paper.titleEn || paper.title} | CISPOLY Research`,
     descriptionZh: paper.excerpt,
-    descriptionEn: paper.abstractEn || paper.excerpt,
+    descriptionEn: englishDescription,
     image: paper.cover,
     type: 'article',
     structuredData: {
       '@context': 'https://schema.org',
       '@type': 'ScholarlyArticle',
       headline: title,
-      author: paper.authors,
+      author: lang === 'en' ? getPaperAuthors(paper, 'en') : paper.authors,
       datePublished: paper.year ? String(paper.year) : undefined,
-      isPartOf: paper.journal,
+      isPartOf: lang === 'en' ? getPaperJournal(paper, 'en') : paper.journal,
     },
   })
 }
@@ -54,13 +57,13 @@ export default function PaperDetail() {
   const { t, lang } = useI18n()
   const { paper, parsed, prev, next } = useLoaderData<typeof loader>()
 
-  const title = parsed?.title || (lang === 'en' && paper.titleEn ? paper.titleEn : paper.title)
+  const title = lang === 'en' && paper.titleEn ? paper.titleEn : (parsed?.title || paper.title)
   const doi = parsed?.doi || paper.doi
   const affiliation = lang === 'en' && paper.affiliationEn ? paper.affiliationEn : (parsed?.affiliation || paper.affiliation)
   // 摘要按页面语言选择：英文页有 abstractEn 则用英文，否则回退主摘要；中文页用主摘要（中英双摘要文献主摘要即中文）
-  const abstract = lang === 'en' && paper.abstractEn ? paper.abstractEn : (paper.abstract || parsed?.abstract)
+  const abstract = lang === 'en' ? getPaperAbstract(paper, lang) : (paper.abstract || parsed?.abstract)
   const summary = (lang === 'en' && paper.summaryEn ? paper.summaryEn : paper.summary) || ''
-  const citation = paper.citation || ''
+  const citation = getPaperCitation(paper, lang)
 
   const posterUrl = `/posters/${paper.cancer}/${encodeURIComponent(paper.id)}/poster.html`
   const cancerLabelTranslated = getCancerLabel(paper.cancer, lang)
@@ -71,16 +74,16 @@ export default function PaperDetail() {
       backLabel={t('common.backToPapers')}
       cancerLabel={cancerLabelTranslated}
       title={title}
-      authors={paper.authors || undefined}
+      authors={getPaperAuthors(paper, lang) || undefined}
       affiliation={affiliation || undefined}
-      journal={paper.journal || undefined}
+      journal={getPaperJournal(paper, lang) || undefined}
       year={paper.year}
       doi={doi}
       citation={citation || undefined}
       abstract={abstract || undefined}
       summary={summary || undefined}
       posterUrl={posterUrl}
-      posterTitle={paper.title}
+      posterTitle={title}
       prev={
         prev
           ? { to: `/papers/${prev.cancer}/${prev.id}`, title: lang === 'en' && prev.titleEn ? prev.titleEn : prev.title }

@@ -11,6 +11,11 @@ function bilingual(path: string) {
   return [path, path === '/' ? '/en' : `/en${path}`]
 }
 
+function sitemapPath(path: string) {
+  if (path === '/' || path === '/en') return path
+  return `${path.replace(/\/+$/, '')}/`
+}
+
 function prerenderPaths() {
   const papers = readGenerated('papers')
   const guidelines = readGenerated('guidelines')
@@ -38,8 +43,7 @@ export default {
   buildEnd() {
     const origin = 'https://www.cispoly.com'
     const urls = prerenderPaths()
-      .filter((path) => path !== '/products' && path !== '/en/products')
-      .map((path) => `  <url><loc>${new URL(path, origin).href}</loc></url>`)
+      .map((path) => `  <url><loc>${new URL(sitemapPath(path), origin).href}</loc></url>`)
       .join('\n')
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
     writeFileSync(new URL('./build/client/sitemap.xml', import.meta.url), sitemap)

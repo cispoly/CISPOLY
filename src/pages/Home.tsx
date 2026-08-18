@@ -20,7 +20,7 @@ export const meta: MetaFunction = ({ location }) => pageMeta(location.pathname, 
   titleEn: 'CISPOLY | Methylation-Based Early Detection for Gynecologic Cancers',
   descriptionZh: '聚禾生物专注宫颈癌、子宫内膜癌和卵巢癌的 DNA 甲基化无创早筛早诊产品与临床研究。',
   descriptionEn: 'CISPOLY develops non-invasive DNA methylation tests and clinical evidence for cervical, endometrial, and ovarian cancer detection.',
-  image: '/hero/becca-tapert-u5e1kqW6E3M-unsplash.jpg',
+  image: '/hero/becca-tapert-u5e1kqW6E3M.jpg',
   structuredData: {
     '@context': 'https://schema.org',
     '@type': 'Organization',

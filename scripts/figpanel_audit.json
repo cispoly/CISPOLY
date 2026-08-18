@@ -1,0 +1,2044 @@
+[
+  {
+    "id": "10_hsil_diagnosis_performance",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 199,
+        "h3H": 27,
+        "figwrapH": 113,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 141,
+            "dispH": 93,
+            "natW": 625,
+            "natH": 412,
+            "ratio": 1.516990291262136,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 199,
+        "h3H": 27,
+        "figwrapH": 89,
+        "figcapH": 15,
+        "ulH": 48,
+        "imgs": [
+          {
+            "dispW": 118,
+            "dispH": 69,
+            "natW": 1074,
+            "natH": 624,
+            "ratio": 1.7211538461538463,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "11_triage_role_non1618",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 213,
+        "h3H": 27,
+        "figwrapH": 103,
+        "figcapH": 15,
+        "ulH": 48,
+        "imgs": [
+          {
+            "dispW": 141,
+            "dispH": 83,
+            "natW": 1007,
+            "natH": 590,
+            "ratio": 1.7067796610169492,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 213,
+        "h3H": 27,
+        "figwrapH": 103,
+        "figcapH": 15,
+        "ulH": 48,
+        "imgs": [
+          {
+            "dispW": 108,
+            "dispH": 83,
+            "natW": 653,
+            "natH": 501,
+            "ratio": 1.3033932135728543,
+            "wide": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "12_cervical_screening_guide2",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 273,
+        "h3H": 27,
+        "figwrapH": 134,
+        "figcapH": 15,
+        "ulH": 81,
+        "imgs": [
+          {
+            "dispW": 175,
+            "dispH": 114,
+            "natW": 640,
+            "natH": 415,
+            "ratio": 1.5421686746987953,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 273,
+        "h3H": 27,
+        "figwrapH": 158,
+        "figcapH": 15,
+        "ulH": 57,
+        "imgs": [
+          {
+            "dispW": 257,
+            "dispH": 138,
+            "natW": 642,
+            "natH": 343,
+            "ratio": 1.8717201166180757,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 2,
+        "panelH": 273,
+        "h3H": 27,
+        "figwrapH": 158,
+        "figcapH": 15,
+        "ulH": 57,
+        "imgs": [
+          {
+            "dispW": 191,
+            "dispH": 138,
+            "natW": 706,
+            "natH": 509,
+            "ratio": 1.387033398821218,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "12_minimally_abnormal_management",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 214,
+        "h3H": 27,
+        "figwrapH": 128,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 200,
+            "dispH": 108,
+            "natW": 1367,
+            "natH": 731,
+            "ratio": 1.8700410396716827,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 214,
+        "h3H": 27,
+        "figwrapH": 128,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 131,
+            "dispH": 108,
+            "natW": 665,
+            "natH": 548,
+            "ratio": 1.2135036496350364,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "13_fus_rct_protocol",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 162,
+        "h3H": 27,
+        "figwrapH": 76,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 97,
+            "dispH": 56,
+            "natW": 1120,
+            "natH": 643,
+            "ratio": 1.7418351477449456,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "13_molecular_testing_consensus",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 164,
+        "h3H": 27,
+        "figwrapH": 45,
+        "figcapH": 15,
+        "ulH": 57,
+        "imgs": [
+          {
+            "dispW": 56,
+            "dispH": 25,
+            "natW": 829,
+            "natH": 351,
+            "ratio": 2.3618233618233617,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "14_esgo_position_screening",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": []
+  },
+  {
+    "id": "14_upgrading_prediction",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 214,
+        "h3H": 27,
+        "figwrapH": 104,
+        "figcapH": 15,
+        "ulH": 48,
+        "imgs": [
+          {
+            "dispW": 94,
+            "dispH": 84,
+            "natW": 548,
+            "natH": 487,
+            "ratio": 1.1252566735112937,
+            "wide": false
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 214,
+        "h3H": 27,
+        "figwrapH": 104,
+        "figcapH": 15,
+        "ulH": 48,
+        "imgs": [
+          {
+            "dispW": 129,
+            "dispH": 84,
+            "natW": 873,
+            "natH": 564,
+            "ratio": 1.547872340425532,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "15_methylation_tech_spec",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": []
+  },
+  {
+    "id": "15_postmenopausal_accuracy",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 198,
+        "h3H": 27,
+        "figwrapH": 87,
+        "figcapH": 15,
+        "ulH": 48,
+        "imgs": [
+          {
+            "dispW": 103,
+            "dispH": 68,
+            "natW": 1387,
+            "natH": 898,
+            "ratio": 1.544543429844098,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 198,
+        "h3H": 27,
+        "figwrapH": 87,
+        "figcapH": 15,
+        "ulH": 48,
+        "imgs": [
+          {
+            "dispW": 88,
+            "dispH": 68,
+            "natW": 587,
+            "natH": 445,
+            "ratio": 1.3191011235955057,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "16_vaginal_dysbiosis_biomarker",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 195,
+        "h3H": 27,
+        "figwrapH": 137,
+        "figcapH": 30,
+        "ulH": 0,
+        "imgs": [
+          {
+            "dispW": 197,
+            "dispH": 102,
+            "natW": 1331,
+            "natH": 684,
+            "ratio": 1.945906432748538,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 195,
+        "h3H": 27,
+        "figwrapH": 137,
+        "figcapH": 32,
+        "ulH": 0,
+        "imgs": [
+          {
+            "dispW": 103,
+            "dispH": 100,
+            "natW": 1001,
+            "natH": 975,
+            "ratio": 1.0266666666666666,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "17_reply_comments",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": []
+  },
+  {
+    "id": "18_early_diagnosis_effectiveness",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 185,
+        "h3H": 27,
+        "figwrapH": 75,
+        "figcapH": 15,
+        "ulH": 48,
+        "imgs": [
+          {
+            "dispW": 86,
+            "dispH": 55,
+            "natW": 1159,
+            "natH": 734,
+            "ratio": 1.5790190735694822,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 185,
+        "h3H": 27,
+        "figwrapH": 99,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 86,
+            "dispH": 79,
+            "natW": 490,
+            "natH": 451,
+            "ratio": 1.0864745011086474,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "19_hrhpv_diagnostic_value",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 147,
+        "h3H": 27,
+        "figwrapH": 61,
+        "figcapH": 19,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 57,
+            "dispH": 37,
+            "natW": 606,
+            "natH": 382,
+            "ratio": 1.5863874345549738,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "1_pax1jam3_hpv_viral_load",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 202,
+        "h3H": 27,
+        "figwrapH": 92,
+        "figcapH": 15,
+        "ulH": 48,
+        "imgs": [
+          {
+            "dispW": 283,
+            "dispH": 72,
+            "natW": 767,
+            "natH": 196,
+            "ratio": 3.913265306122449,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 202,
+        "h3H": 27,
+        "figwrapH": 116,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 193,
+            "dispH": 96,
+            "natW": 781,
+            "natH": 387,
+            "ratio": 2.0180878552971575,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "20_screening_treatment_review",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": []
+  },
+  {
+    "id": "21_meta_analysis",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 188,
+        "h3H": 27,
+        "figwrapH": 102,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 95,
+            "dispH": 82,
+            "natW": 629,
+            "natH": 542,
+            "ratio": 1.1605166051660516,
+            "wide": false
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 188,
+        "h3H": 27,
+        "figwrapH": 102,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 104,
+            "dispH": 82,
+            "natW": 626,
+            "natH": 493,
+            "ratio": 1.2697768762677484,
+            "wide": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "22_adenocarcinoma_biomarker",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 196,
+        "h3H": 27,
+        "figwrapH": 110,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 124,
+            "dispH": 90,
+            "natW": 1187,
+            "natH": 857,
+            "ratio": 1.3850641773628938,
+            "wide": false
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 196,
+        "h3H": 27,
+        "figwrapH": 110,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 159,
+            "dispH": 90,
+            "natW": 1201,
+            "natH": 673,
+            "ratio": 1.7845468053491829,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "23_triage_utility",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 196,
+        "h3H": 27,
+        "figwrapH": 110,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 223,
+            "dispH": 90,
+            "natW": 870,
+            "natH": 345,
+            "ratio": 2.5217391304347827,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 196,
+        "h3H": 27,
+        "figwrapH": 110,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 158,
+            "dispH": 90,
+            "natW": 654,
+            "natH": 368,
+            "ratio": 1.7771739130434783,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "24_vaginal_microbiome",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": []
+  },
+  {
+    "id": "25_transformation_zone_utility",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 195,
+        "h3H": 27,
+        "figwrapH": 85,
+        "figcapH": 15,
+        "ulH": 48,
+        "imgs": [
+          {
+            "dispW": 141,
+            "dispH": 65,
+            "natW": 1034,
+            "natH": 476,
+            "ratio": 2.172268907563025,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 195,
+        "h3H": 27,
+        "figwrapH": 109,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 289,
+            "dispH": 89,
+            "natW": 1212,
+            "natH": 373,
+            "ratio": 3.2493297587131367,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "26_diagnostic_accuracy_meta",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 178,
+        "h3H": 27,
+        "figwrapH": 92,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 72,
+            "dispH": 72,
+            "natW": 567,
+            "natH": 567,
+            "ratio": 1,
+            "wide": false
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 178,
+        "h3H": 27,
+        "figwrapH": 92,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 71,
+            "dispH": 72,
+            "natW": 570,
+            "natH": 582,
+            "ratio": 0.979381443298969,
+            "wide": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "27_joint_methylation_progress",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": []
+  },
+  {
+    "id": "28_postop_recurrence_prediction",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": []
+  },
+  {
+    "id": "29_pax1jam3_hrhpv_tct",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": []
+  },
+  {
+    "id": "2_dna_methylation_consensus2024",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 130,
+        "h3H": 27,
+        "figwrapH": 20,
+        "figcapH": 15,
+        "ulH": 48,
+        "imgs": [
+          {
+            "dispW": 13,
+            "dispH": 8,
+            "natW": 665,
+            "natH": 376,
+            "ratio": 1.7686170212765957,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2_self_sampling_feasibility",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 289,
+        "h3H": 27,
+        "figwrapH": 172,
+        "figcapH": 19,
+        "ulH": 55,
+        "imgs": [
+          {
+            "dispW": 210,
+            "dispH": 148,
+            "natW": 565,
+            "natH": 396,
+            "ratio": 1.4267676767676767,
+            "wide": false
+          },
+          {
+            "dispW": 211,
+            "dispH": 148,
+            "natW": 562,
+            "natH": 393,
+            "ratio": 1.4300254452926209,
+            "wide": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "30_cin3_like_scc",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 274,
+        "h3H": 27,
+        "figwrapH": 163,
+        "figcapH": 15,
+        "ulH": 50,
+        "imgs": [
+          {
+            "dispW": 283,
+            "dispH": 140,
+            "natW": 1191,
+            "natH": 584,
+            "ratio": 2.039383561643836,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 274,
+        "h3H": 27,
+        "figwrapH": 163,
+        "figcapH": 15,
+        "ulH": 50,
+        "imgs": [
+          {
+            "dispW": 322,
+            "dispH": 140,
+            "natW": 1482,
+            "natH": 639,
+            "ratio": 2.31924882629108,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 2,
+        "panelH": 274,
+        "h3H": 27,
+        "figwrapH": 142,
+        "figcapH": 15,
+        "ulH": 71,
+        "imgs": [
+          {
+            "dispW": 209,
+            "dispH": 122,
+            "natW": 1296,
+            "natH": 750,
+            "ratio": 1.728,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "31_jam3_recurrence_prediction",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": []
+  },
+  {
+    "id": "32_pilot_prediction",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": []
+  },
+  {
+    "id": "33_e6e7_mrna_triage",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 199,
+        "h3H": 27,
+        "figwrapH": 113,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 109,
+            "dispH": 93,
+            "natW": 1668,
+            "natH": 1430,
+            "ratio": 1.1664335664335663,
+            "wide": false
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 199,
+        "h3H": 27,
+        "figwrapH": 89,
+        "figcapH": 15,
+        "ulH": 48,
+        "imgs": [
+          {
+            "dispW": 149,
+            "dispH": 69,
+            "natW": 1703,
+            "natH": 780,
+            "ratio": 2.183333333333333,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "3_cervical_screening_guide1",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": []
+  },
+  {
+    "id": "3_multicenter_screening",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 126,
+        "h3H": 27,
+        "figwrapH": 40,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 21,
+            "dispH": 20,
+            "natW": 412,
+            "natH": 376,
+            "ratio": 1.0957446808510638,
+            "wide": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "4_non1618_triage_multicenter",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 202,
+        "h3H": 27,
+        "figwrapH": 92,
+        "figcapH": 15,
+        "ulH": 48,
+        "imgs": [
+          {
+            "dispW": 137,
+            "dispH": 72,
+            "natW": 1309,
+            "natH": 679,
+            "ratio": 1.9278350515463918,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 202,
+        "h3H": 27,
+        "figwrapH": 116,
+        "figcapH": 19,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 110,
+            "dispH": 92,
+            "natW": 651,
+            "natH": 543,
+            "ratio": 1.1988950276243093,
+            "wide": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "5_jam3_pax1_hsil_diagnosis",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 143,
+        "h3H": 27,
+        "figwrapH": 57,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 61,
+            "dispH": 37,
+            "natW": 1306,
+            "natH": 784,
+            "ratio": 1.6658163265306123,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "6_ascus_triage_efficacy",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 135,
+        "h3H": 27,
+        "figwrapH": 49,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 28,
+            "dispH": 29,
+            "natW": 648,
+            "natH": 656,
+            "ratio": 0.9878048780487805,
+            "wide": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "7_triage_efficacy_hpv",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 203,
+        "h3H": 27,
+        "figwrapH": 93,
+        "figcapH": 15,
+        "ulH": 48,
+        "imgs": [
+          {
+            "dispW": 122,
+            "dispH": 73,
+            "natW": 1535,
+            "natH": 912,
+            "ratio": 1.6831140350877194,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 203,
+        "h3H": 27,
+        "figwrapH": 117,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 188,
+            "dispH": 97,
+            "natW": 1476,
+            "natH": 755,
+            "ratio": 1.9549668874172186,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "8_triage_performance_hrhpv",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 200,
+        "h3H": 27,
+        "figwrapH": 87,
+        "figcapH": 15,
+        "ulH": 51,
+        "imgs": [
+          {
+            "dispW": 117,
+            "dispH": 67,
+            "natW": 637,
+            "natH": 362,
+            "ratio": 1.7596685082872927,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 200,
+        "h3H": 27,
+        "figwrapH": 111,
+        "figcapH": 15,
+        "ulH": 27,
+        "imgs": [
+          {
+            "dispW": 231,
+            "dispH": 91,
+            "natW": 1392,
+            "natH": 543,
+            "ratio": 2.56353591160221,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "9_pax1jam3_consensus",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 272,
+        "h3H": 27,
+        "figwrapH": 214,
+        "figcapH": 34,
+        "ulH": 0,
+        "imgs": [
+          {
+            "dispW": 283,
+            "dispH": 150,
+            "natW": 854,
+            "natH": 449,
+            "ratio": 1.9020044543429844,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 272,
+        "h3H": 27,
+        "figwrapH": 214,
+        "figcapH": 30,
+        "ulH": 0,
+        "imgs": [
+          {
+            "dispW": 336,
+            "dispH": 150,
+            "natW": 1301,
+            "natH": 576,
+            "ratio": 2.2586805555555554,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 2,
+        "panelH": 272,
+        "h3H": 27,
+        "figwrapH": 214,
+        "figcapH": 30,
+        "ulH": 0,
+        "imgs": [
+          {
+            "dispW": 223,
+            "dispH": 150,
+            "natW": 856,
+            "natH": 573,
+            "ratio": 1.493891797556719,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "9_triage_hpv1618",
+    "cancer": "cervical",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 80,
+        "h3H": 27,
+        "figwrapH": 22,
+        "figcapH": 15,
+        "ulH": 0,
+        "imgs": [
+          {
+            "dispW": 15,
+            "dispH": 9,
+            "natW": 1007,
+            "natH": 535,
+            "ratio": 1.8822429906542055,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 230,
+        "h3H": 27,
+        "figwrapH": 172,
+        "figcapH": 19,
+        "ulH": 0,
+        "imgs": [
+          {
+            "dispW": 150,
+            "dispH": 148,
+            "natW": 639,
+            "natH": 629,
+            "ratio": 1.0158982511923689,
+            "wide": false
+          },
+          {
+            "dispW": 150,
+            "dispH": 148,
+            "natW": 632,
+            "natH": 623,
+            "ratio": 1.014446227929374,
+            "wide": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "10_paired_sample_validation",
+    "cancer": "endometrial",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 193,
+        "h3H": 27,
+        "figwrapH": 107,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 201,
+            "dispH": 87,
+            "natW": 995,
+            "natH": 425,
+            "ratio": 2.3411764705882354,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 193,
+        "h3H": 27,
+        "figwrapH": 80,
+        "figcapH": 15,
+        "ulH": 51,
+        "imgs": [
+          {
+            "dispW": 71,
+            "dispH": 60,
+            "natW": 623,
+            "natH": 520,
+            "ratio": 1.198076923076923,
+            "wide": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "11_endomethy1_trial",
+    "cancer": "endometrial",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 191,
+        "h3H": 27,
+        "figwrapH": 105,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 178,
+            "dispH": 85,
+            "natW": 1195,
+            "natH": 562,
+            "ratio": 2.126334519572954,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 191,
+        "h3H": 27,
+        "figwrapH": 72,
+        "figcapH": 15,
+        "ulH": 57,
+        "imgs": [
+          {
+            "dispW": 54,
+            "dispH": 52,
+            "natW": 1301,
+            "natH": 1242,
+            "ratio": 1.0475040257648953,
+            "wide": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "12_self_collected_concordance",
+    "cancer": "endometrial",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 193,
+        "h3H": 27,
+        "figwrapH": 107,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 89,
+            "dispH": 87,
+            "natW": 1390,
+            "natH": 1360,
+            "ratio": 1.0220588235294117,
+            "wide": false
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 193,
+        "h3H": 27,
+        "figwrapH": 74,
+        "figcapH": 15,
+        "ulH": 57,
+        "imgs": [
+          {
+            "dispW": 56,
+            "dispH": 54,
+            "natW": 646,
+            "natH": 618,
+            "ratio": 1.0453074433656957,
+            "wide": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "1_dna_methylation_consensus2024",
+    "cancer": "endometrial",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 161,
+        "h3H": 27,
+        "figwrapH": 51,
+        "figcapH": 15,
+        "ulH": 48,
+        "imgs": [
+          {
+            "dispW": 53,
+            "dispH": 31,
+            "natW": 665,
+            "natH": 376,
+            "ratio": 1.7686170212765957,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "1_postmenopausal_screening",
+    "cancer": "endometrial",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 126,
+        "h3H": 27,
+        "figwrapH": 4,
+        "figcapH": 19,
+        "ulH": 60,
+        "imgs": [
+          {
+            "dispW": 2,
+            "dispH": 2,
+            "natW": 553,
+            "natH": 543,
+            "ratio": 1.01841620626151,
+            "wide": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2_aub_diagnosis",
+    "cancer": "endometrial",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 119,
+        "h3H": 27,
+        "figwrapH": 30,
+        "figcapH": 19,
+        "ulH": 27,
+        "imgs": [
+          {
+            "dispW": 13,
+            "dispH": 12,
+            "natW": 587,
+            "natH": 512,
+            "ratio": 1.146484375,
+            "wide": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2_ec_methylation_consensus2026",
+    "cancer": "endometrial",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 207,
+        "h3H": 27,
+        "figwrapH": 97,
+        "figcapH": 15,
+        "ulH": 48,
+        "imgs": [
+          {
+            "dispW": 172,
+            "dispH": 77,
+            "natW": 873,
+            "natH": 384,
+            "ratio": 2.2734375,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 207,
+        "h3H": 27,
+        "figwrapH": 121,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 167,
+            "dispH": 101,
+            "natW": 868,
+            "natH": 521,
+            "ratio": 1.6660268714011517,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "3_cdo1_noninvasive_detection",
+    "cancer": "endometrial",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 192,
+        "h3H": 27,
+        "figwrapH": 106,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 112,
+            "dispH": 86,
+            "natW": 1009,
+            "natH": 771,
+            "ratio": 1.3086900129701686,
+            "wide": false
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 192,
+        "h3H": 27,
+        "figwrapH": 106,
+        "figcapH": 19,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 104,
+            "dispH": 82,
+            "natW": 673,
+            "natH": 529,
+            "ratio": 1.272211720226843,
+            "wide": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "3_ec_prevention_consensus2025",
+    "cancer": "endometrial",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 273,
+        "h3H": 27,
+        "figwrapH": 187,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 470,
+            "dispH": 167,
+            "natW": 609,
+            "natH": 215,
+            "ratio": 2.832558139534884,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 273,
+        "h3H": 27,
+        "figwrapH": 163,
+        "figcapH": 15,
+        "ulH": 48,
+        "imgs": [
+          {
+            "dispW": 259,
+            "dispH": 143,
+            "natW": 1224,
+            "natH": 673,
+            "ratio": 1.8187221396731055,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 2,
+        "panelH": 273,
+        "h3H": 27,
+        "figwrapH": 187,
+        "figcapH": 15,
+        "ulH": 24,
+        "imgs": [
+          {
+            "dispW": 317,
+            "dispH": 150,
+            "natW": 1215,
+            "natH": 570,
+            "ratio": 2.1315789473684212,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "4_premenopausal_biomarker",
+    "cancer": "endometrial",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 115,
+        "h3H": 27,
+        "figwrapH": 5,
+        "figcapH": 15,
+        "ulH": 48,
+        "imgs": [
+          {
+            "dispW": 2,
+            "dispH": 2,
+            "natW": 462,
+            "natH": 387,
+            "ratio": 1.193798449612403,
+            "wide": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "5_triage_strategy_biomarkers",
+    "cancer": "endometrial",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 113,
+        "h3H": 27,
+        "figwrapH": 28,
+        "figcapH": 15,
+        "ulH": 23,
+        "imgs": [
+          {
+            "dispW": 17,
+            "dispH": 11,
+            "natW": 965,
+            "natH": 598,
+            "ratio": 1.6137123745819397,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "6_hekouan_screening_value",
+    "cancer": "endometrial",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 198,
+        "h3H": 27,
+        "figwrapH": 140,
+        "figcapH": 15,
+        "ulH": 0,
+        "imgs": [
+          {
+            "dispW": 105,
+            "dispH": 100,
+            "natW": 479,
+            "natH": 454,
+            "ratio": 1.0550660792951543,
+            "wide": true
+          },
+          {
+            "dispW": 105,
+            "dispH": 100,
+            "natW": 479,
+            "natH": 454,
+            "ratio": 1.0550660792951543,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 198,
+        "h3H": 27,
+        "figwrapH": 113,
+        "figcapH": 30,
+        "ulH": 23,
+        "imgs": [
+          {
+            "dispW": 328,
+            "dispH": 100,
+            "natW": 598,
+            "natH": 559,
+            "ratio": 1.069767441860465,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "7_epihera_prospective",
+    "cancer": "endometrial",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 213,
+        "h3H": 27,
+        "figwrapH": 155,
+        "figcapH": 15,
+        "ulH": 0,
+        "imgs": [
+          {
+            "dispW": 141,
+            "dispH": 135,
+            "natW": 1087,
+            "natH": 1040,
+            "ratio": 1.0451923076923078,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 213,
+        "h3H": 27,
+        "figwrapH": 155,
+        "figcapH": 19,
+        "ulH": 0,
+        "imgs": [
+          {
+            "dispW": 224,
+            "dispH": 131,
+            "natW": 965,
+            "natH": 562,
+            "ratio": 1.717081850533808,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "8_clinical_validation",
+    "cancer": "endometrial",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 131,
+        "h3H": 27,
+        "figwrapH": 73,
+        "figcapH": 15,
+        "ulH": 0,
+        "imgs": [
+          {
+            "dispW": 139,
+            "dispH": 53,
+            "natW": 1214,
+            "natH": 457,
+            "ratio": 2.6564551422319473,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "9_dominant_predictor_cohort",
+    "cancer": "endometrial",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": [
+      {
+        "idx": 0,
+        "panelH": 183,
+        "h3H": 27,
+        "figwrapH": 125,
+        "figcapH": 15,
+        "ulH": 0,
+        "imgs": [
+          {
+            "dispW": 199,
+            "dispH": 106,
+            "natW": 956,
+            "natH": 501,
+            "ratio": 1.908183632734531,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "panelH": 183,
+        "h3H": 27,
+        "figwrapH": 76,
+        "figcapH": 15,
+        "ulH": 45,
+        "imgs": [
+          {
+            "dispW": 72,
+            "dispH": 57,
+            "natW": 565,
+            "natH": 437,
+            "ratio": 1.2929061784897025,
+            "wide": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "1_cdo1_hoxa9_diagnosis",
+    "cancer": "ovarian",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": []
+  },
+  {
+    "id": "1_methylation_tech_spec",
+    "cancer": "ovarian",
+    "colW": [
+      645,
+      722,
+      645
+    ],
+    "figpanels": []
+  }
+]

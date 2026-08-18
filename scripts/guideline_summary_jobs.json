@@ -1,0 +1,112 @@
+[
+  {
+    "id": "14_esgo_position_screening",
+    "cancer": "cervical",
+    "title": "European Society of Gynaecological Oncology/European Network of Gynaecological Advocacy Groups Position on risk-based cervical cancer screening",
+    "publisher": "Intl Journal of Gynecological Cancer",
+    "year": 2026,
+    "abstract": "The project's key findings support replacing cytology with human papillomavirus (HPV) deoxyribonucleic acid testing as the primary screening modality, as it provides greater protection against invasive cervical cancer. Gender-neutral HPV vaccination is endorsed as a strategy to accelerate herd immunity, particularly where vaccination coverage falls short of the World Health Organization targets. HPV genotyping, alongside age and screening history, emerges as a critical tool for individualizing risk assessment, while methylation tests might be useful tools to significantly reduce unnecessary colposcopy referrals within a fully molecular approach to cervical cancer screening.",
+    "excerpt": "The Risk-Based Screening for Cervical Cancer project was a 4-year Horizon 2020 European research consortium that developed and validated a risk stratified approach to cervical cancer screening, moving away from the current one-size-fits-all model. The European Society of Gynecological Oncolog and it",
+    "source": "source/clinical_guidelines/cervical_cancer_methylation/14_esgo_position_screening.md"
+  },
+  {
+    "id": "2_ec_methylation_consensus2026",
+    "cancer": "endometrial",
+    "title": "子宫内膜癌基因甲基化筛查技术临床应用专家共识（2026版）",
+    "publisher": "中华医学杂志",
+    "year": 2026,
+    "abstract": "为进一步规范基因甲基化检测技术在我国子宫内膜癌筛查中的临床应用，提高子宫内膜癌早期发现、早期诊断和早期治疗水平，推动我国子宫内膜癌的精准防控与规范化管理，并为临床医师及相关专业技术人员提供循证与共识建议，在中华医学会妇科肿瘤学分会、中国研究型医院学会妇产科学专业委员会，中国医疗保健国际交流促进会妇产健康医学分会的牵头组织下，联合妇科肿瘤科妇产科病理科肿瘤流行病学等多学科专家经多轮共识会议制订了本专家共识，随着我国子宫内膜癌发病率持续上升并呈现年轻化趋势，防控形势日益严峻。子宫内膜癌发病具有明确的高危因素，针对高危人群的精准识别以及新型筛查技术的合理应用尤为关键。目前，基因甲基化检测技术已获国家药品监督管理局批准用于子宫内膜癌的筛查，但在实际临床应用中仍缺乏统一的规范与指导。本共识围绕基因甲基化检测技术，针对有症状人群、风险增加人群及高风险人群，系统阐述了其在子宫内膜癌筛查中的应用流程、风险评估及管理策略，并分别对上述三类人群给出了筛查处理的推荐意见。本共识旨在规范基因甲基化检测技术在子宫内膜癌筛查中的临床应用，为临床医师在子宫内膜癌筛查管理决策中提供参考与循证支持。",
+    "excerpt": "为进一步规范基因甲基化检测技术在我国子宫内膜癌筛查中的临床应用，提高子宫内膜癌早期发现、早期诊断和早期治疗水平，推动我国子宫内膜癌的精准防控与规范化管理，并为临床医师及相关专业技术人员提供循证与共识建议，在中华医学会妇科肿瘤学分会、中国研究型医院学会妇产科学专业委员会，中国医疗保健国际交流促进会妇产健康医学分会的牵头组织下，联合妇科肿瘤科妇产科病理科肿瘤流行病学等多学科专家经多轮共识会议制订了本专家共识，随着我国子宫内膜癌发病率持续上升并呈现年轻化趋势，防控形势日益严峻。子宫内膜癌发病具有明确的高危因素，针对高危人群的精准识别以及新型筛查技术的合理应用尤为关键。目前，基因甲基化检测技术已获国家",
+    "source": "source/clinical_guidelines/endometrial_cancer_methylation/2_ec_methylation_consensus2026.md"
+  },
+  {
+    "id": "1_methylation_tech_spec",
+    "cancer": "ovarian",
+    "title": "肿瘤DNA甲基化标志物检测技术规范",
+    "publisher": "团体标准（中国检验检测学会）",
+    "year": 2026,
+    "abstract": "本文件规定了肿瘤 DNA 甲基化标志物检测的检测要求及质量控制。 本文件适用于医疗机构、检测机构等开展肿瘤 DNA 甲基化标志物检测。",
+    "excerpt": "本文件规定了肿瘤 DNA 甲基化标志物检测的检测要求及质量控制。 本文件适用于医疗机构、检测机构等开展肿瘤 DNA 甲基化标志物检测。",
+    "source": "source/clinical_guidelines/ovarian_cancer_methylation/1_methylation_tech_spec.md"
+  },
+  {
+    "id": "12_cervical_screening_guide2",
+    "cancer": "cervical",
+    "title": "中国子宫颈癌筛查指南（二）",
+    "publisher": "中国妇产科临床杂志",
+    "year": 2025,
+    "abstract": "结合我国子宫颈癌前病变和子宫颈癌发病情况以及全球子宫颈癌筛查策略，为实现消除子宫颈癌的目标，我国七个学（协）会专家共同制定了子宫颈癌筛查指南（二）。本指南重点在于规范子宫颈癌筛查结果异常的分流方法，其目的是通过精细化管理，避免过度诊断与漏诊。高危型人乳头瘤病毒（high-risk humanpapillomavirus, HR-HPV）检测初筛阳性人群以子宫颈细胞学检查为主要分流方法；子宫颈细胞学初筛阳性人群以其结果的不同风险进行管理。此外，p16/Ki-67 双重染色用于HR-HPV 初筛不分型检测阳性或非HPV 16/18的其他 12种HR-HPV 检测（简称 12 HR-HPV）阳性的分流，也可用于联合筛查中 HR-HPV 不分型检测阳性或12 HR-HPV 阳性，同时细胞学检查为未见上皮内病变或恶性细胞（negative for intraepithelial lesion or malignancy,NILM）；未明确诊断意义的不典型鳞状细胞（atypical squamous cells of undetermined significance, ASC-US）和低级别鳞状上皮内病变（low-grade squamous intraepithelial lesion, LSIL）的分流；甲基化检测可用于 12 HR-HPV 阳性人群的分流。根据目前我国研究结果，HPV基因整合检测也可用于 HR-HPV 初筛阳性的分流。以上新的检测方法均需选择经国内外权威机构认可、临床试验验证有相关适应证的试剂。HPV拓展分型或HPV载量等其他方法还需积累更多的临床证据。",
+    "excerpt": "结合我国子宫颈癌前病变和子宫颈癌发病情况以及全球子宫颈癌筛查策略，为实现消除子宫颈癌的目标，我国七个学（协）会专家共同制定了子宫颈癌筛查指南（二）。本指南重点在于规范子宫颈癌筛查结果异常的分流方法，其目的是通过精细化管理，避免过度诊断与漏诊。高危型人乳头瘤病毒（high-risk humanpapillomavirus, HR-HPV）检测初筛阳性人群以子宫颈细胞学检查为主要分流方法；子宫颈细胞学初筛阳性人群以其结果的不同风险进行管理。此外，p16/Ki-67 双重染色用于HR-HPV 初筛不分型检测阳性或非HPV 16/18的其他 12种HR-HPV 检测（简称 12 HR-HPV）阳性的分",
+    "source": "source/clinical_guidelines/cervical_cancer_methylation/12_cervical_screening_guide2.md"
+  },
+  {
+    "id": "13_molecular_testing_consensus",
+    "cancer": "cervical",
+    "title": "分子检测技术用于宫颈癌筛查和早期诊断中国专家共识(2025年版)",
+    "publisher": "中华保健医学杂志",
+    "year": 2025,
+    "abstract": "宫颈癌是严重威胁女性健康最主要的生殖系统恶性肿瘤。 随着分子生物学技术的不断发展,分子检测技术如人乳头瘤病毒 检测 脱氧核糖核酸 甲基化检测等在宫颈癌的筛查 早期诊断等方面发挥着越来越重要的作用 本共识根据宫颈癌筛查现状 结合分子检测技术进展 对宫颈癌筛查和诊断相关分子检测技术进行总结 规范相关分子检测技术在宫颈癌筛查中的应用 为宫颈癌的筛查 早期诊断提供有力的支持",
+    "excerpt": "宫颈癌是严重威胁女性健康最主要的生殖系统恶性肿瘤。 随着分子生物学技术的不断发展,分子检测技术如人乳头瘤病毒 检测 脱氧核糖核酸 甲基化检测等在宫颈癌的筛查 早期诊断等方面发挥着越来越重要的作用 本共识根据宫颈癌筛查现状 结合分子检测技术进展 对宫颈癌筛查和诊断相关分子检测技术进行总结 规范相关分子检测技术在宫颈癌筛查中的应用 为宫颈癌的筛查 早期诊断提供有力的支持",
+    "source": "source/clinical_guidelines/cervical_cancer_methylation/13_molecular_testing_consensus.md"
+  },
+  {
+    "id": "9_pax1jam3_consensus",
+    "cancer": "cervical",
+    "title": "子宫颈癌PAX1联合JAM3双基因甲基化检测流程、报告及临床应用专家共识",
+    "publisher": "中华检验医学杂志",
+    "year": 2025,
+    "abstract": "基于子宫颈癌筛查现状以及筛查方法、策略的发展，中国中西医结合学会检验医学专业委员会联合 个学（协）会，组织检验、病理、妇产多学科专家共同制定了甲基化检测与临床应用的共识。共识全面梳理了 联合 双基因甲基化（ m m）检测的实验室操作流程及质控标准、样本采集与处理，提出了PAX1m/JAM3m检测意义及功能、实验室检测流程、质量控制、检测报告及临床应用建议。共识旨在推动子宫颈癌甲基化在实验室检测与临床的规范化应用，为检测结果的准确性和可靠性，并为明确临床应用场景，提供具备实践性与前瞻性的指导。",
+    "excerpt": "基于子宫颈癌筛查现状以及筛查方法、策略的发展，中国中西医结合学会检验医学专业委员会联合 个学（协）会，组织检验、病理、妇产多学科专家共同制定了甲基化检测与临床应用的共识。共识全面梳理了 联合 双基因甲基化（ m m）检测的实验室操作流程及质控标准、样本采集与处理，提出了PAX1m/JAM3m检测意义及功能、实验室检测流程、质量控制、检测报告及临床应用建议。共识旨在推动子宫颈癌甲基化在实验室检测与临床的规范化应用，为检测结果的准确性和可靠性，并为明确临床应用场景，提供具备实践性与前瞻性的指导。",
+    "source": "source/clinical_guidelines/cervical_cancer_methylation/9_pax1jam3_consensus.md"
+  },
+  {
+    "id": "3_ec_prevention_consensus2025",
+    "cancer": "endometrial",
+    "title": "子宫内膜癌三级预防策略中国专家共识（2025年版）",
+    "publisher": "中国实用妇科与产科杂志",
+    "year": 2025,
+    "abstract": "子宫内膜癌（endometrial cancer，EC）是全球范围内最常见的妇科恶性肿瘤之一。由于人口老龄化、代谢性疾病患病率上升以及生育模式的改变等因素，其发病率呈不断上升的趋势。在发达国家和我国部分城市，如北京、上海、广州等地，子宫内膜癌发病率已跃居女性生殖道恶性肿瘤之首。对子宫内膜癌进行有效的预防和管理需要多学科协作，涵盖一级预防、二级预防和三级预防策略。",
+    "excerpt": "子宫内膜癌（endometrial cancer，EC）是全球范围内最常见的妇科恶性肿瘤之一。由于人口老龄化、代谢性疾病患病率上升以及生育模式的改变等因素，其发病率呈不断上升的趋势。在发达国家和我国部分城市，如北京、上海、广州等地，子宫内膜癌发病率已跃居女性生殖道恶性肿瘤之首。对子宫内膜癌进行有效的预防和管理需要多学科协作，涵盖一级预防、二级预防和三级预防策略。",
+    "source": "source/clinical_guidelines/endometrial_cancer_methylation/3_ec_prevention_consensus2025.md"
+  },
+  {
+    "id": "2_dna_methylation_consensus2024",
+    "cancer": "cervical",
+    "title": "肿瘤DNA甲基化标志物检测及临床应用专家共识（2024版）",
+    "publisher": "中国癌症防治杂志",
+    "year": 2024,
+    "abstract": "随着生物医学的发展， 甲基化（ ）标志物在癌症诊断、治疗选择及预后评估中的重要性日益凸显。本专家共识旨在全面梳理DNA甲基化标志物的检测技术、临床应用及其在肿瘤管理中的潜力。此外，本共识将围绕甲基化标志物的定义、临床意义、检测规范、数据处理及其在肿瘤的筛查、辅助诊断、伴随诊断及复发监测中的应用，结合最新研究进展和实际临床经验，提出一系列关于 甲基化标志物检测及应用的共识推荐，旨在提升临床医技人员对这一新兴标志物的认识，规范检测流程，促进其在肿瘤诊疗全程中的应用，从而为患者提供更加精准有效的治疗方案。",
+    "excerpt": "随着生物医学的发展， 甲基化（ ）标志物在癌症诊断、治疗选择及预后评估中的重要性日益凸显。本专家共识旨在全面梳理DNA甲基化标志物的检测技术、临床应用及其在肿瘤管理中的潜力。此外，本共识将围绕甲基化标志物的定义、临床意义、检测规范、数据处理及其在肿瘤的筛查、辅助诊断、伴随诊断及复发监测中的应用，结合最新研究进展和实际临床经验，提出一系列关于 甲基化标志物检测及应用的共识推荐，旨在提升临床医技人员对这一新兴标志物的认识，规范检测流程，促进其在肿瘤诊疗全程中的应用，从而为患者提供更加精准有效的治疗方案。",
+    "source": "source/clinical_guidelines/cervical_cancer_methylation/2_dna_methylation_consensus2024.md"
+  },
+  {
+    "id": "1_dna_methylation_consensus2024",
+    "cancer": "endometrial",
+    "title": "肿瘤DNA甲基化标志物检测及临床应用专家共识（2024版）",
+    "publisher": "中国癌症防治杂志",
+    "year": 2024,
+    "abstract": "随着生物医学的发展， 甲基化（ ）标志物在癌症诊断、治疗选择及预后评估中的重要性日益凸显。本专家共识旨在全面梳理DNA甲基化标志物的检测技术、临床应用及其在肿瘤管理中的潜力。此外，本共识将围绕甲基化标志物的定义、临床意义、检测规范、数据处理及其在肿瘤的筛查、辅助诊断、伴随诊断及复发监测中的应用，结合最新研究进展和实际临床经验，提出一系列关于 甲基化标志物检测及应用的共识推荐，旨在提升临床医技人员对这一新兴标志物的认识，规范检测流程，促进其在肿瘤诊疗全程中的应用，从而为患者提供更加精准有效的治疗方案。",
+    "excerpt": "随着生物医学的发展， 甲基化（ ）标志物在癌症诊断、治疗选择及预后评估中的重要性日益凸显。本专家共识旨在全面梳理DNA甲基化标志物的检测技术、临床应用及其在肿瘤管理中的潜力。此外，本共识将围绕甲基化标志物的定义、临床意义、检测规范、数据处理及其在肿瘤的筛查、辅助诊断、伴随诊断及复发监测中的应用，结合最新研究进展和实际临床经验，提出一系列关于 甲基化标志物检测及应用的共识推荐，旨在提升临床医技人员对这一新兴标志物的认识，规范检测流程，促进其在肿瘤诊疗全程中的应用，从而为患者提供更加精准有效的治疗方案。",
+    "source": "source/clinical_guidelines/endometrial_cancer_methylation/1_dna_methylation_consensus2024.md"
+  },
+  {
+    "id": "3_cervical_screening_guide1",
+    "cancer": "cervical",
+    "title": "中国子宫颈癌筛查指南（一）",
+    "publisher": "中国妇产科临床杂志",
+    "year": 2023,
+    "abstract": "结合我国子宫颈上皮内病变和子宫颈癌发病情况，以及全球筛查策略，为实现消除子宫颈癌的目标，我国七个学（协）会专家共同制定了子宫颈癌筛查指南。本指南推荐高危型 HPV核酸检测作为子宫颈癌的初筛方法，并采用经国内外权威机构认可、经临床验证可用于初筛的 HPV核酸检测方法和试剂。子宫颈细胞学筛查用于不具备HPV核酸检测条件的地区，当条件成熟后，采用基于HPV核酸检测的筛查方法。联合筛查用于医疗卫生资源充足地区、机会性筛查人群以及部分特殊人群女性的子宫颈癌筛查。25岁女性为筛查起始年龄，25~64岁女性，采用每5年一次的HPV核酸单独检测/联合筛查；或每3年一次细胞学检查。65岁以上女性，如既往有充分的阴性筛查记录，可终止筛查。对不同特殊人群提出相应的筛查方案。",
+    "excerpt": "结合我国子宫颈上皮内病变和子宫颈癌发病情况，以及全球筛查策略，为实现消除子宫颈癌的目标，我国七个学（协）会专家共同制定了子宫颈癌筛查指南。本指南推荐高危型 HPV核酸检测作为子宫颈癌的初筛方法，并采用经国内外权威机构认可、经临床验证可用于初筛的 HPV核酸检测方法和试剂。子宫颈细胞学筛查用于不具备HPV核酸检测条件的地区，当条件成熟后，采用基于HPV核酸检测的筛查方法。联合筛查用于医疗卫生资源充足地区、机会性筛查人群以及部分特殊人群女性的子宫颈癌筛查。25岁女性为筛查起始年龄，25~64岁女性，采用每5年一次的HPV核酸单独检测/联合筛查；或每3年一次细胞学检查。65岁以上女性，如既往有充分的",
+    "source": "source/clinical_guidelines/cervical_cancer_methylation/3_cervical_screening_guide1.md"
+  },
+  {
+    "id": "15_methylation_tech_spec",
+    "cancer": "cervical",
+    "title": "肿瘤 DNA 甲基化标志物检测技术规范",
+    "publisher": "学会、协会",
+    "year": 2020,
+    "abstract": "本文件规定了肿瘤 DNA 甲基化标志物检测的检测要求及质量控制。 本文件适用于医疗机构、检测机构等开展肿瘤 DNA 甲基化标志物检测。",
+    "excerpt": "本文件规定了肿瘤 DNA 甲基化标志物检测的检测要求及质量控制。 本文件适用于医疗机构、检测机构等开展肿瘤 DNA 甲基化标志物检测。",
+    "source": "source/clinical_guidelines/cervical_cancer_methylation/15_methylation_tech_spec.md"
+  }
+]

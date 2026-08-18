@@ -1,0 +1,181 @@
+[
+  {
+    "id": "23_Utility_of_PAX1JAM3_methylation_analysis_for_triage_of_high-risk_HPV-positive_individuals_",
+    "cancer": "cervical",
+    "kicker": "Cervical Cancer · Lab Med 2026;57:lmaf096 · Retrospective",
+    "kicker_zh": "宫颈癌 · Lab Med 2026;57:lmaf096 · 回顾性",
+    "title": "Utility of PAX1/JAM3 Methylation for Triage of hrHPV-Positive Individuals",
+    "title_zh": "PAX1/JAM3 甲基化分流 hrHPV 阳性人群的价值",
+    "subtitle": "312 hrHPV+ individuals — CIN2+ sensitivity 91.8% / specificity 90.7% (AUC 0.912), 1.22 referrals per CIN2+",
+    "subtitle_zh": "312 例 hrHPV+ 人群——CIN2+ 灵敏度 91.8% / 特异度 90.7%（AUC 0.912），每例 CIN2+ 仅 1.22 次转诊",
+    "authors": "Guo Q, Wang H, Diao X, Liu Y, et al.",
+    "authors_zh": "郭琴, 王华国, 刁雪, 刘英红 等",
+    "source": "Lab Med 2026;57:lmaf096 · DOI <a href=\"https://doi.org/10.1093/labmed/lmaf096\" target=\"_blank\" rel=\"noopener\">10.1093/labmed/lmaf096</a>",
+    "source_zh": "Lab Med 2026;57:lmaf096 · DOI <a href=\"https://doi.org/10.1093/labmed/lmaf096\" target=\"_blank\" rel=\"noopener\">10.1093/labmed/lmaf096</a>",
+    "panels": [
+      {
+        "title": "Why this study",
+        "title_zh": "研究缘起",
+        "bullets": [
+          "<strong>Gap</strong>: hrHPV positivity triggers management decisions — but cytology triage is subjective and HPV16/18 typing alone under-performs.",
+          "<strong>Question</strong>: what is the real-world utility of PAX1<sup>m</sup>/JAM3<sup>m</sup> for triaging hrHPV+ individuals?",
+          "<strong>Why it matters</strong>: quantifying referral efficiency helps screening programs plan capacity."
+        ],
+        "bullets_zh": [
+          "<strong>空白</strong>：hrHPV 阳性触发管理决策——但细胞学分流主观，单独 HPV16/18 分型表现不足。",
+          "<strong>问题</strong>：PAX1<sup>m</sup>/JAM3<sup>m</sup> 分流 hrHPV+ 人群的真实世界价值如何？",
+          "<strong>意义</strong>：量化转诊效率有助于筛查项目规划容量。"
+        ]
+      },
+      {
+        "title": "Cohort &amp; methods",
+        "title_zh": "队列与方法",
+        "stats": [
+          {"big": "312", "lab_en": "hrHPV+ individuals", "lab_zh": "hrHPV+ 人群"},
+          {"big": "98", "lab_en": "CIN2+ cases", "lab_zh": "CIN2+ 病例"},
+          {"big": "0.912", "lab_en": "AUC", "lab_zh": "AUC"}
+        ],
+        "bullets": [
+          "<strong>Design</strong>: retrospective cross-sectional (Jan 2024–Jun 2025); Ziyang Central Hospital.",
+          "<strong>Population</strong>: 312 hrHPV+ (mean 49 y): 194 cervicitis / 20 CIN1 / 20 CIN2 / 31 CIN3 / 37 SCC / 10 adenocarcinoma.",
+          "<strong>Methylation</strong>: PAX1<sup>m</sup>/JAM3<sup>m</sup> (ΔCt<sub>PAX1</sub> ≤ 6.6 / ΔCt<sub>JAM3</sub> ≤ 10.0); HPV genotyping (Shanghai ZJ); LBC.",
+          "<strong>Outcome</strong>: CIN2+ detection + referral efficiency."
+        ],
+        "bullets_zh": [
+          "<strong>设计</strong>：回顾性横断面（2024.1–2025.6）；资阳市中心医院。",
+          "<strong>人群</strong>：hrHPV+ 312 例（平均 49 岁）：宫颈炎 194 / CIN1 20 / CIN2 20 / CIN3 31 / 鳞癌 37 / 腺癌 10。",
+          "<strong>甲基化</strong>：PAX1<sup>m</sup>/JAM3<sup>m</sup>（ΔCt<sub>PAX1</sub> ≤ 6.6 / ΔCt<sub>JAM3</sub> ≤ 10.0）；HPV 分型（上海之江）；LBC。",
+          "<strong>结局</strong>：CIN2+ 检出 + 转诊效率。"
+        ]
+      },
+      {
+        "title": "Headline results",
+        "title_zh": "核心结果",
+        "bullets": [
+          "<strong>CIN2+</strong>: sensitivity 91.8% · specificity 90.7% · PPV 81.8% · NPV 96.0% · AUC 0.912 — above cytology (AUC 0.638) and HPV16/18 (0.642).",
+          "<strong>Cancer detection</strong>: 100% of SCC and adenocarcinoma methylation-positive.",
+          "<strong>Referral efficiency</strong>: 1.22 referrals per CIN2+ detected; referral rate down 19.2% vs LBC, CIN2+ yield up 39.4%.",
+          "<strong>Gradient</strong>: methylation positivity rose with lesion grade (trend P&lt;0.001)."
+        ],
+        "bullets_zh": [
+          "<strong>CIN2+</strong>：灵敏度 91.8% · 特异度 90.7% · PPV 81.8% · NPV 96.0% · AUC 0.912——高于细胞学（AUC 0.638）与 HPV16/18（0.642）。",
+          "<strong>癌症检出</strong>：鳞癌与腺癌甲基化阳性率均为 100%。",
+          "<strong>转诊效率</strong>：每检出 1 例 CIN2+ 仅 1.22 次转诊；转诊率较 LBC 降低 19.2%，CIN2+ 检出率提高 39.4%。",
+          "<strong>梯度</strong>：甲基化阳性率随病变分级升高（趋势 P&lt;0.001）。"
+        ]
+      },
+      {
+        "title": "Clinical value",
+        "title_zh": "临床价值",
+        "bullets": [
+          "<strong>Efficiency</strong>: ~1 referral per CIN2+ — nearly every colposcopy finds disease, minimizing wasted procedures.",
+          "<strong>Non-16/18 subgroup</strong>: −34.3% referrals and +44.4% CIN2+ yield vs LBC — best where triage is weakest.",
+          "<strong>Actionable</strong>: supports methylation as the primary triage for hrHPV+ individuals in real-world practice."
+        ],
+        "bullets_zh": [
+          "<strong>效率</strong>：每例 CIN2+ 约 1 次转诊——几乎每次阴道镜都能发现病变，浪费极少。",
+          "<strong>非16/18亚组</strong>：较 LBC 转诊 −34.3%、CIN2+ 检出 +44.4%——恰在分流最弱处最优。",
+          "<strong>可操作</strong>：支持甲基化作为 hrHPV+ 人群真实世界实践中的首选分流。"
+        ]
+      }
+    ],
+    "takeaway": {
+      "title": "Take-away",
+      "title_zh": "核心结论",
+      "bullets": [
+        "<strong>High accuracy + high efficiency</strong>: AUC 0.912 with 1.22 referrals per CIN2+ and 100% cancer detection.",
+        "<strong>Real-world fit</strong>: methylation triage improves yield and cuts referrals simultaneously in routine hrHPV+ care."
+      ],
+      "bullets_zh": [
+        "<strong>高准确性 + 高效率</strong>：AUC 0.912，每例 CIN2+ 仅 1.22 次转诊，癌症检出 100%。",
+        "<strong>真实世界适配</strong>：甲基化分流在日常 hrHPV+ 诊疗中同时提高检出、减少转诊。"
+      ]
+    }
+  },
+  {
+    "id": "22_PAX1_JAM3_methylation-a_novel_biomarker_for_early_detection_and_accurate_management_of_cervical_adenocarcinoma",
+    "cancer": "cervical",
+    "kicker": "Cervical Cancer · Am J Cancer Res 2026;16(4):1495–1508 · Review",
+    "kicker_zh": "宫颈癌 · Am J Cancer Res 2026;16(4):1495–1508 · 综述",
+    "title": "PAX1/JAM3 Methylation — A Novel Biomarker for Cervical Adenocarcinoma",
+    "title_zh": "PAX1/JAM3 甲基化——宫颈腺癌早检与精准管理的新型标志物",
+    "subtitle": "A narrative review — methylation fills the screening gap for adenocarcinomas, ~15% of which are HPV-negative",
+    "subtitle_zh": "叙述性综述——甲基化填补腺癌筛查缺口，约 15% 腺癌 HPV 阴性",
+    "authors": "Feng S, Wang D, He Q, An Y, Li S, Liu L",
+    "authors_zh": "冯淑娴, 王丹, 何倩楠, 安雨声, 李赛男, 刘玲",
+    "source": "Am J Cancer Res 2026;16(4):1495–1508 · DOI <a href=\"https://doi.org/10.62347/SATU5579\" target=\"_blank\" rel=\"noopener\">10.62347/SATU5579</a>",
+    "source_zh": "Am J Cancer Res 2026;16(4):1495–1508 · DOI <a href=\"https://doi.org/10.62347/SATU5579\" target=\"_blank\" rel=\"noopener\">10.62347/SATU5579</a>",
+    "panels": [
+      {
+        "title": "Why this review",
+        "title_zh": "综述缘起",
+        "bullets": [
+          "<strong>Problem</strong>: cervical adenocarcinoma (10–25% of cervical cancers, ~15% HPV-negative) is often missed by HPV/cytology screening and has worse outcomes.",
+          "<strong>Mechanism</strong>: PAX1 (Wnt/TCF7L2, tumor suppressor) and JAM3 (Hippo, HIF-1α/VEGFA) methylation silence key pathways in adenocarcinomas.",
+          "<strong>Scope</strong>: review methylation's role from early detection to risk stratification, therapy response and prognosis."
+        ],
+        "bullets_zh": [
+          "<strong>问题</strong>：宫颈腺癌（占宫颈癌 10–25%，约 15% HPV 阴性）常被 HPV/细胞学筛查漏诊，预后更差。",
+          "<strong>机制</strong>：PAX1（Wnt/TCF7L2，抑癌）与 JAM3（Hippo、HIF-1α/VEGFA）甲基化沉默腺癌关键通路。",
+          "<strong>范围</strong>：综述甲基化从早检到风险分层、疗效与预后的全程作用。"
+        ]
+      },
+      {
+        "title": "Screening evidence",
+        "title_zh": "筛查证据",
+        "bullets": [
+          "<strong>PAX1 accuracy</strong>: CIN2+/CIN3+ detection AUC up to 0.88; 100% sensitivity for CIN2+/CIN3+ in HPV16/18-negative women.",
+          "<strong>HPV16/18+ cohort</strong>: CIN2+ 89.0% sens / 95.3% spec with ~50–60% fewer referrals.",
+          "<strong>Postmenopausal</strong>: CIN2+ 93.2% / CIN3+ 97.2% — strong in atrophic cytology.",
+          "<strong>ASC-US/LSIL</strong>: dual-gene 83.8% / 95.8% — objective triage for low-grade results."
+        ],
+        "bullets_zh": [
+          "<strong>PAX1 准确性</strong>：CIN2+/CIN3+ 检出 AUC 最高 0.88；HPV16/18 阴性女性中 CIN2+/CIN3+ 灵敏度 100%。",
+          "<strong>HPV16/18+ 队列</strong>：CIN2+ 89.0% 灵敏度 / 95.3% 特异度，转诊减少约 50–60%。",
+          "<strong>绝经后</strong>：CIN2+ 93.2% / CIN3+ 97.2%——萎缩细胞学下表现强劲。",
+          "<strong>ASC-US/LSIL</strong>：双基因 83.8% / 95.8%——低级别结果的客观分流。"
+        ]
+      },
+      {
+        "title": "Management &amp; prognosis",
+        "title_zh": "管理与预后",
+        "bullets": [
+          "<strong>Recurrence prediction</strong>: JAM3 methylation predicted CIN2/3 post-op recurrence with 94.8% sens / 93.7% spec.",
+          "<strong>HSIL+</strong>: PAX1 methylation detected HSIL+ with AUC 0.919.",
+          "<strong>Full pathway</strong>: methylation supports screening → triage → treatment monitoring → recurrence surveillance across the care continuum."
+        ],
+        "bullets_zh": [
+          "<strong>复发预测</strong>：JAM3 甲基化预测 CIN2/3 术后复发，灵敏度 94.8% / 特异度 93.7%。",
+          "<strong>HSIL+</strong>：PAX1 甲基化检测 HSIL+ AUC 0.919。",
+          "<strong>全程管理</strong>：甲基化支持筛查 → 分流 → 治疗监测 → 复发随访的完整照护路径。"
+        ]
+      },
+      {
+        "title": "Adenocarcinoma gap",
+        "title_zh": "腺癌缺口",
+        "bullets": [
+          "<strong>Why methylation fits</strong>: adenocarcinomas arise in the endocervix — cytology samples them poorly; HPV tests miss HPV-negative tumors.",
+          "<strong>Methylation advantage</strong>: host-gene methylation is present regardless of HPV status — covering the HPV-negative adenocarcinoma niche.",
+          "<strong>Future</strong>: multi-center studies to standardize cut-offs and integrate methylation into screening guidelines."
+        ],
+        "bullets_zh": [
+          "<strong>为何甲基化契合</strong>：腺癌源于宫颈管——细胞学取样差；HPV 检测漏诊 HPV 阴性肿瘤。",
+          "<strong>甲基化优势</strong>：宿主基因甲基化与 HPV 状态无关——覆盖 HPV 阴性腺癌空缺。",
+          "<strong>未来</strong>：多中心研究标准化界值并将甲基化纳入筛查指南。"
+        ]
+      }
+    ],
+    "takeaway": {
+      "title": "Take-away",
+      "title_zh": "核心结论",
+      "bullets": [
+        "<strong>Fills the adenocarcinoma gap</strong>: host methylation detects HPV-negative and endocervical tumors that HPV/cytology miss.",
+        "<strong>One biomarker, full pathway</strong>: from early detection (AUC 0.88+) to recurrence prediction (94.8%/93.7%) — complete management support."
+      ],
+      "bullets_zh": [
+        "<strong>填补腺癌缺口</strong>：宿主甲基化可检出 HPV/细胞学漏诊的 HPV 阴性及宫颈管肿瘤。",
+        "<strong>单一标志物，全程路径</strong>：从早检（AUC 0.88+）到复发预测（94.8%/93.7%）——完整管理支持。"
+      ]
+    }
+  }
+]

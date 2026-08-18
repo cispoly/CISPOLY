@@ -1,0 +1,72 @@
+[
+  {
+    "id": "侯倩男_et_al_2024_血清中CDO1_与HOXA9_启动子甲基化高表达在卵巢癌诊断的意义",
+    "cancer": "ovarian",
+    "kicker": "Ovarian Cancer · 中华检验医学杂志 2024;47(4):401–406 · 病例对照",
+    "kicker_zh": "卵巢癌 · 中华检验医学杂志 2024;47(4):401–406 · 病例对照",
+    "title": "血清中 CDO1 与 HOXA9 基因启动子甲基化高表达在卵巢癌诊断中的意义",
+    "title_zh": "血清中 CDO1 与 HOXA9 基因启动子甲基化高表达在卵巢癌诊断中的意义",
+    "subtitle": "病例对照研究——外周血游离 DNA 中 CDO1/HOXA9 甲基化对卵巢癌的诊断价值",
+    "subtitle_zh": "病例对照研究——外周血游离 DNA 中 CDO1/HOXA9 甲基化对卵巢癌的诊断价值",
+    "authors": "侯倩男, 袁宇, 李燕, 龚照林, 张强, 冯丹, 宫远福, 王林海, 刘沛, 谢小兵, 何丽",
+    "authors_zh": "侯倩男, 袁宇, 李燕, 龚照林, 张强, 冯丹, 宫远福, 王林海, 刘沛, 谢小兵, 何丽",
+    "source": "中华检验医学杂志 2024;47(4):401–406 · DOI <a href=\"https://doi.org/10.3760/cma.j.cn114452-20231115-00287\" target=\"_blank\" rel=\"noopener\">10.3760/cma.j.cn114452-20231115-00287</a>",
+    "source_zh": "中华检验医学杂志 2024;47(4):401–406 · DOI <a href=\"https://doi.org/10.3760/cma.j.cn114452-20231115-00287\" target=\"_blank\" rel=\"noopener\">10.3760/cma.j.cn114452-20231115-00287</a>",
+    "panels": [
+      {
+        "title": "研究背景",
+        "title_zh": "研究背景",
+        "bullets": [
+          "<strong>背景</strong>：卵巢癌早期诊断困难，CA125、HE4 等血清标志物灵敏度有限；外周血游离 DNA（cfDNA）甲基化是潜在无创标志物。",
+          "<strong>目的</strong>：探讨血清中 CDO1 与 HOXA9 基因启动子甲基化高表达在卵巢癌诊断中的意义。"
+        ],
+        "bullets_zh": [
+          "<strong>背景</strong>：卵巢癌早期诊断困难，CA125、HE4 等血清标志物灵敏度有限；外周血游离 DNA（cfDNA）甲基化是潜在无创标志物。",
+          "<strong>目的</strong>：探讨血清中 CDO1 与 HOXA9 基因启动子甲基化高表达在卵巢癌诊断中的意义。"
+        ]
+      },
+      {
+        "title": "方法",
+        "title_zh": "方法",
+        "bullets": [
+          "<strong>设计</strong>：病例对照研究（2022.1–2023.10）；成都市妇女儿童中心医院。",
+          "<strong>人群</strong>：有卵巢肿块手术指征的患者，术前采血检测。",
+          "<strong>检测</strong>：血清 cfDNA 中 CDO1、HOXA9 基因启动子甲基化；同时测 CA125、HE4、ROMA 指数。",
+          "<strong>金标准</strong>：术后病理。"
+        ],
+        "bullets_zh": [
+          "<strong>设计</strong>：病例对照研究（2022.1–2023.10）；成都市妇女儿童中心医院。",
+          "<strong>人群</strong>：有卵巢肿块手术指征的患者，术前采血检测。",
+          "<strong>检测</strong>：血清 cfDNA 中 CDO1、HOXA9 基因启动子甲基化；同时测 CA125、HE4、ROMA 指数。",
+          "<strong>金标准</strong>：术后病理。"
+        ]
+      },
+      {
+        "title": "研究意义",
+        "title_zh": "研究意义",
+        "bullets": [
+          "<strong>无创诊断</strong>：外周血 cfDNA 甲基化为卵巢癌提供无创分子诊断途径。",
+          "<strong>分层管理</strong>：评估甲基化检测在卵巢癌临床分层管理中的价值。",
+          "<strong>联合潜力</strong>：与 CA125/HE4/ROMA 联合可能提升诊断效能。"
+        ],
+        "bullets_zh": [
+          "<strong>无创诊断</strong>：外周血 cfDNA 甲基化为卵巢癌提供无创分子诊断途径。",
+          "<strong>分层管理</strong>：评估甲基化检测在卵巢癌临床分层管理中的价值。",
+          "<strong>联合潜力</strong>：与 CA125/HE4/ROMA 联合可能提升诊断效能。"
+        ]
+      }
+    ],
+    "takeaway": {
+      "title": "核心结论",
+      "title_zh": "核心结论",
+      "bullets": [
+        "<strong>cfDNA 甲基化诊断卵巢癌</strong>：CDO1/HOXA9 启动子甲基化是卵巢癌诊断与分层管理的有前景标志物。",
+        "<strong>无创可及</strong>：血清检测无创、简便——适合卵巢癌高危人群筛查。"
+      ],
+      "bullets_zh": [
+        "<strong>cfDNA 甲基化诊断卵巢癌</strong>：CDO1/HOXA9 启动子甲基化是卵巢癌诊断与分层管理的有前景标志物。",
+        "<strong>无创可及</strong>：血清检测无创、简便——适合卵巢癌高危人群筛查。"
+      ]
+    }
+  }
+]

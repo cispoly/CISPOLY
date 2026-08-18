@@ -1,0 +1,188 @@
+[
+  {
+    "id": "11_Su_等_-_2025_-_The_triage_role_of_cytological_DNA_methylation_in_women_with_non-1618,_specifically_genotyping_high",
+    "cancer": "cervical",
+    "kicker": "Cervical Cancer · Br J Cancer 2025;132:1064–1071 · Multicenter Prospective",
+    "kicker_zh": "宫颈癌 · Br J Cancer 2025;132:1064–1071 · 多中心前瞻",
+    "title": "Cytological DNA Methylation Triage in Non-16/18 hrHPV+ Women with Genotyping",
+    "title_zh": "非16/18高危HPV阳性女性中细胞学DNA甲基化分流与分型",
+    "subtitle": "1,307 non-16/18 hrHPV+ women — CISCER(+) CIN3+ risk 39.1% vs 0.9% when negative; OR 68.07",
+    "subtitle_zh": "1,307 例非16/18 hrHPV+ 女性——CISCER(+) 即时 CIN3+ 风险 39.1% vs 阴性 0.9%；OR 68.07",
+    "authors": "Su H, Jin X, Kong L, You Y, et al.",
+    "authors_zh": "苏海琦, 金西桐, 孔令华, 尤燕 等",
+    "source": "Br J Cancer 2025;132(11):1064–1071 · DOI <a href=\"https://doi.org/10.1038/s41416-025-03005-5\" target=\"_blank\" rel=\"noopener\">10.1038/s41416-025-03005-5</a>",
+    "source_zh": "Br J Cancer 2025;132(11):1064–1071 · DOI <a href=\"https://doi.org/10.1038/s41416-025-03005-5\" target=\"_blank\" rel=\"noopener\">10.1038/s41416-025-03005-5</a>",
+    "panels": [
+      {
+        "title": "Why this study",
+        "title_zh": "研究缘起",
+        "bullets": [
+          "<strong>Gap</strong>: non-16/18 hrHPV+ women lack a reliable triage — cytology is subjective and genotype-based referral (e.g. HPV33/35) misses many CIN3+.",
+          "<strong>Question</strong>: does cytological PAX1/JAM3 methylation triage non-16/18 hrHPV+ women better than LBC or HPV33/35 genotyping?",
+          "<strong>Why it matters</strong>: an objective triage for the largest hrHPV group could standardize management and cut referrals."
+        ],
+        "bullets_zh": [
+          "<strong>空白</strong>：非16/18 hrHPV+ 女性缺乏可靠分流——细胞学主观、基于型别的转诊（如 HPV33/35）漏诊许多 CIN3+。",
+          "<strong>问题</strong>：细胞学 PAX1/JAM3 甲基化分流非16/18 hrHPV+ 女性是否优于 LBC 或 HPV33/35 分型？",
+          "<strong>意义</strong>：为最大 hrHPV 人群提供客观分流，可标准化管理并减少转诊。"
+        ]
+      },
+      {
+        "title": "Cohort &amp; methods",
+        "title_zh": "队列与方法",
+        "stats": [
+          {"big": "1,307", "lab_en": "non-16/18 hrHPV+", "lab_zh": "非16/18 hrHPV+"},
+          {"big": "643", "lab_en": "with histology", "lab_zh": "有组织学"},
+          {"big": "0.892", "lab_en": "CIN3+ AUC", "lab_zh": "CIN3+ AUC"}
+        ],
+        "bullets": [
+          "<strong>Design</strong>: multicenter prospective cohorts (METHY3/METHY4, 2020–2022); histology reference.",
+          "<strong>Population</strong>: 1,307 non-16/18 hrHPV+; 643 with pathology (406 normal / 124 CIN1 / 64 CIN2 / 40 CIN3 / 9 cancer).",
+          "<strong>Methylation</strong>: CISCER® (ΔCt<sub>PAX1</sub> ≤ 6.6 or ΔCt<sub>JAM3</sub> ≤ 10.0); HybriBio 21-type genotyping; LBC.",
+          "<strong>Comparison</strong>: CISCER vs LBC ≥ASCUS vs HPV33/35+ for CIN3+."
+        ],
+        "bullets_zh": [
+          "<strong>设计</strong>：多中心前瞻队列（METHY3/METHY4，2020–2022）；组织学金标准。",
+          "<strong>人群</strong>：非16/18 hrHPV+ 1,307 例；643 例有病理（正常 406 / CIN1 124 / CIN2 64 / CIN3 40 / 癌 9）。",
+          "<strong>甲基化</strong>：CISCER®（ΔCt<sub>PAX1</sub> ≤ 6.6 或 ΔCt<sub>JAM3</sub> ≤ 10.0）；HybriBio 21型分型；LBC。",
+          "<strong>比较</strong>：CISCER vs LBC ≥ASCUS vs HPV33/35+ 检测 CIN3+。"
+        ]
+      },
+      {
+        "title": "Headline results",
+        "title_zh": "核心结果",
+        "bullets": [
+          "<strong>Risk stratification</strong>: CISCER(+) immediate CIN3+ risk 39.1% vs 0.9% (−); LBC ≥ASCUS only 9.8%, HPV33/35+ 19.3%.",
+          "<strong>CIN2+</strong>: sensitivity 76.1% · specificity 95.1% · AUC 0.856; CIN3+ AUC 0.892 — both above LBC and HPV33/35.",
+          "<strong>Unique predictor</strong>: CISCER(+) was the only independent CIN3+ risk factor (OR 68.07).",
+          "<strong>Referral</strong>: CISCER+ 17.4% vs LBC 61.9% vs HPV33/35+ 8.9% — 2.5 referrals per CIN3+ detected."
+        ],
+        "bullets_zh": [
+          "<strong>风险分层</strong>：CISCER(+) 即时 CIN3+ 风险 39.1% vs 阴性 0.9%；LBC ≥ASCUS 仅 9.8%，HPV33/35+ 19.3%。",
+          "<strong>CIN2+</strong>：灵敏度 76.1% · 特异度 95.1% · AUC 0.856；CIN3+ AUC 0.892——均高于 LBC 与 HPV33/35。",
+          "<strong>唯一独立预测因子</strong>：CISCER(+) 是 CIN3+ 的唯一独立危险因素（OR 68.07）。",
+          "<strong>转诊</strong>：CISCER+ 17.4% vs LBC 61.9% vs HPV33/35+ 8.9%——每检出 1 例 CIN3+ 仅 2.5 次转诊。"
+        ]
+      },
+      {
+        "title": "Combination insight",
+        "title_zh": "联合洞察",
+        "bullets": [
+          "<strong>CISCER + HPV33/35</strong>: dual-positive women had the highest CIN3+ risk (50.0%) — genotyping adds orthogonal risk.",
+          "<strong>Risk gradient</strong>: CISCER(+) &amp; HPV33/35(−) still 32.3% — methylation dominates the risk signal.",
+          "<strong>Policy</strong>: methylation triage plus selective genotyping could replace cytology in non-16/18 hrHPV+ management."
+        ],
+        "bullets_zh": [
+          "<strong>CISCER + HPV33/35</strong>：双阳性女性 CIN3+ 风险最高（50.0%）——分型提供正交风险。",
+          "<strong>风险梯度</strong>：CISCER(+) 且 HPV33/35(−) 仍达 32.3%——甲基化主导风险信号。",
+          "<strong>政策</strong>：甲基化分流 + 选择性分型可取代非16/18 hrHPV+ 管理中的细胞学。"
+        ]
+      }
+    ],
+    "takeaway": {
+      "title": "Take-away",
+      "title_zh": "核心结论",
+      "bullets": [
+        "<strong>Methylation dominates non-16/18 triage</strong>: OR 68.07, CIN3+ AUC 0.892, risk 39.1% vs 0.9%.",
+        "<strong>Far fewer referrals</strong>: 17.4% vs 61.9% (LBC) — objective, genotype-aware triage for the largest hrHPV group."
+      ],
+      "bullets_zh": [
+        "<strong>甲基化主导非16/18分流</strong>：OR 68.07，CIN3+ AUC 0.892，风险 39.1% vs 0.9%。",
+        "<strong>转诊大幅减少</strong>：17.4% vs 61.9%（LBC）——最大 hrHPV 人群的客观、型别感知分流。"
+      ]
+    }
+  },
+  {
+    "id": "8_Kong_等_-_2024_-_Triage_performance_of_DNA_methylation_for_women_with_high-risk_human_papillomavirus_infection",
+    "cancer": "cervical",
+    "kicker": "Cervical Cancer · The Oncologist 2025;30:oyae324 · Prospective Cohort",
+    "kicker_zh": "宫颈癌 · The Oncologist 2025;30:oyae324 · 前瞻队列",
+    "title": "DNA Methylation Triage for hrHPV-Positive Women",
+    "title_zh": "hrHPV阳性女性的 DNA 甲基化分流",
+    "subtitle": "4,394 hrHPV+ women from the METHY3 cohort — CISCER specificity 89.6% vs 23.9% (LBC); 61% fewer referrals",
+    "subtitle_zh": "METHY3 队列 4,394 例 hrHPV+ 女性——CISCER 特异度 89.6% vs 23.9%（LBC）；转诊减少 61%",
+    "authors": "Kong L, Xiao X, Wu H, You Y, et al.",
+    "authors_zh": "孔令华, 肖晓萍, 吴焕文, 尤燕 等",
+    "source": "The Oncologist 2025;30(3):oyae324 · DOI <a href=\"https://doi.org/10.1093/oncolo/oyae324\" target=\"_blank\" rel=\"noopener\">10.1093/oncolo/oyae324</a>",
+    "source_zh": "The Oncologist 2025;30(3):oyae324 · DOI <a href=\"https://doi.org/10.1093/oncolo/oyae324\" target=\"_blank\" rel=\"noopener\">10.1093/oncolo/oyae324</a>",
+    "panels": [
+      {
+        "title": "Why this study",
+        "title_zh": "研究缘起",
+        "bullets": [
+          "<strong>Gap</strong>: hrHPV positivity is common but most infections clear — triage is needed to avoid overwhelming colposcopy services.",
+          "<strong>Question</strong>: how does PAX1<sup>m</sup>/JAM3<sup>m</sup> compare with HPV16/18 typing and LBC for triaging hrHPV+ women?",
+          "<strong>Why it matters</strong>: the right triage balances CIN3+ detection against referral burden at population scale."
+        ],
+        "bullets_zh": [
+          "<strong>空白</strong>：hrHPV 阳性常见但多数感染会清除——需要分流以避免阴道镜服务不堪重负。",
+          "<strong>问题</strong>：PAX1<sup>m</sup>/JAM3<sup>m</sup> 与 HPV16/18 分型、LBC 相比，分流 hrHPV+ 女性表现如何？",
+          "<strong>意义</strong>：正确的分流在人群尺度上平衡 CIN3+ 检出与转诊负担。"
+        ]
+      },
+      {
+        "title": "Cohort &amp; methods",
+        "title_zh": "队列与方法",
+        "stats": [
+          {"big": "4,394", "lab_en": "hrHPV+ women", "lab_zh": "hrHPV+ 女性"},
+          {"big": "1,105", "lab_en": "with histology", "lab_zh": "有组织学"},
+          {"big": "89.6%", "lab_en": "CISCER spec", "lab_zh": "CISCER 特异度"}
+        ],
+        "bullets": [
+          "<strong>Design</strong>: prospective METHY3 cohort (20,456 women, Nov 2020–Dec 2021); Peking Union Medical College Hospital; single-center analysis.",
+          "<strong>Population</strong>: 4,394 hrHPV+; 1,105 with pathology (615 normal / 255 CIN1 / 112 CIN2 / 95 CIN3 / 28 cancer).",
+          "<strong>Methylation</strong>: CISCER® (ΔCt<sub>PAX1</sub> ≤ 6.6 or ΔCt<sub>JAM3</sub> ≤ 10.0); Cobas 4800; LBC.",
+          "<strong>Outcome</strong>: CIN3+ triage vs HPV16/18+ and LBC ≥ASCUS."
+        ],
+        "bullets_zh": [
+          "<strong>设计</strong>：前瞻 METHY3 队列（20,456 例，2020.11–2021.12）；北京协和医院；单中心分析。",
+          "<strong>人群</strong>：hrHPV+ 4,394 例；1,105 例有病理（正常 615 / CIN1 255 / CIN2 112 / CIN3 95 / 癌 28）。",
+          "<strong>甲基化</strong>：CISCER®（ΔCt<sub>PAX1</sub> ≤ 6.6 或 ΔCt<sub>JAM3</sub> ≤ 10.0）；Cobas 4800；LBC。",
+          "<strong>结局</strong>：CIN3+ 分流 vs HPV16/18+ 与 LBC ≥ASCUS。"
+        ]
+      },
+      {
+        "title": "Headline results",
+        "title_zh": "核心结果",
+        "bullets": [
+          "<strong>PAX1<sup>m</sup>/JAM3<sup>m</sup></strong>: CIN3+ sensitivity 68.3% · specificity 89.6% · AUC 0.790 · OR 18.5 (12.1–28.7).",
+          "<strong>Comparators</strong>: HPV16/18+ 68.3%/66.4% (OR 4.24); LBC ≥ASCUS 93.5%/23.9% (OR 4.44).",
+          "<strong>All 28 cancers detected</strong> by methylation.",
+          "<strong>Referrals</strong>: 16.83% (methylation) vs 37.47% (HPV16/18) vs 78.01% (LBC) — 20.6 and 61.2 percentage points fewer."
+        ],
+        "bullets_zh": [
+          "<strong>PAX1<sup>m</sup>/JAM3<sup>m</sup></strong>：CIN3+ 灵敏度 68.3% · 特异度 89.6% · AUC 0.790 · OR 18.5（12.1–28.7）。",
+          "<strong>对照</strong>：HPV16/18+ 68.3%/66.4%（OR 4.24）；LBC ≥ASCUS 93.5%/23.9%（OR 4.44）。",
+          "<strong>28 例宫颈癌全部检出</strong>（甲基化）。",
+          "<strong>转诊</strong>：16.83%（甲基化）vs 37.47%（HPV16/18）vs 78.01%（LBC）——分别少 20.6 与 61.2 个百分点。"
+        ]
+      },
+      {
+        "title": "Age-stratified",
+        "title_zh": "年龄分层",
+        "bullets": [
+          "<strong>AUC by age</strong>: &lt;30 y 0.669 · 30–49 y 0.777 · ≥50 y 0.829 — accuracy improves with age.",
+          "<strong>Elderly benefit</strong>: highest AUC in ≥50 y — exactly where cytology is least reliable.",
+          "<strong>Young women</strong>: lower AUC reflects lower CIN3+ prevalence — but specificity still protects against over-referral."
+        ],
+        "bullets_zh": [
+          "<strong>年龄分层 AUC</strong>：&lt;30 岁 0.669 · 30–49 岁 0.777 · ≥50 岁 0.829——准确性随年龄提高。",
+          "<strong>老年获益</strong>：≥50 岁 AUC 最高——恰在细胞学最不可靠处。",
+          "<strong>年轻女性</strong>：AUC 较低反映 CIN3+ 患病率低——但特异度仍防止过度转诊。"
+        ]
+      }
+    ],
+    "takeaway": {
+      "title": "Take-away",
+      "title_zh": "核心结论",
+      "bullets": [
+        "<strong>Best specificity triage</strong>: 89.6% vs 23.9% (LBC) and 66.4% (HPV16/18) — with OR 18.5 for CIN3+.",
+        "<strong>61% fewer referrals</strong> than LBC at population scale — methylation triage protects screening programs from colposcopy overload."
+      ],
+      "bullets_zh": [
+        "<strong>特异度最佳的分流</strong>：89.6% vs 23.9%（LBC）与 66.4%（HPV16/18）——CIN3+ OR 18.5。",
+        "<strong>比 LBC 少 61% 转诊</strong>——人群尺度上保护筛查项目免于阴道镜超载。"
+      ]
+    }
+  }
+]

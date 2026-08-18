@@ -1,0 +1,188 @@
+[
+  {
+    "id": "7_Prospective_Evaluation_of_Cervical_Scrapings_CDO1_and_CELF4_Methylation_epiHERA_Assay_in_Detection_of_Endometrial_Cancer",
+    "cancer": "endometrial",
+    "kicker": "Endometrial Cancer · Cancers 2025;17(18):3010 · Prospective",
+    "kicker_zh": "子宫内膜癌 · Cancers 2025;17(18):3010 · 前瞻",
+    "title": "Prospective Evaluation of Cervical Scrapings CDO1/CELF4 Methylation (epiHERA®) in EC Detection",
+    "title_zh": "宫颈刮片 CDO1/CELF4 甲基化（epiHERA®）检测子宫内膜癌的前瞻性评估",
+    "subtitle": "675 Hong Kong women — accuracy 97.3%, sensitivity 84.1%, specificity 98.8% (AUC 0.92); 96% fewer invasive checks",
+    "subtitle_zh": "675 例香港女性——准确度 97.3%，灵敏度 84.1%，特异度 98.8%（AUC 0.92）；侵入性检查减少 96%",
+    "authors": "Lee HSJ, Wu S, Yeung SY, Cheung CW, Fung WYL, Kwok PKS, Yung KK, Wong TKS, Kanneganti A, Lau TS",
+    "authors_zh": "李浩诗, 吴诗烨, 杨雪盈, 张俊伟, 冯颖琳, 郭珮琪, 容嘉琪, 黄子祺, Kanneganti A, 刘达山",
+    "source": "Cancers 2025;17(18):3010 · DOI <a href=\"https://doi.org/10.3390/cancers17183010\" target=\"_blank\" rel=\"noopener\">10.3390/cancers17183010</a>",
+    "source_zh": "Cancers 2025;17(18):3010 · DOI <a href=\"https://doi.org/10.3390/cancers17183010\" target=\"_blank\" rel=\"noopener\">10.3390/cancers17183010</a>",
+    "panels": [
+      {
+        "title": "Why this study",
+        "title_zh": "研究缘起",
+        "bullets": [
+          "<strong>Gap</strong>: EC workup needs invasive endometrial sampling — a non-invasive cervical test could triage who needs it.",
+          "<strong>Question</strong>: how accurate is the epiHERA® CDO1/CELF4 assay on cervical scrapings in a prospective cohort?",
+          "<strong>Why it matters</strong>: a 96% reduction in invasive checks would transform EC diagnosis economics."
+        ],
+        "bullets_zh": [
+          "<strong>空白</strong>：EC 检查需要侵入性内膜取样——无创宫颈检测可分流谁需要。",
+          "<strong>问题</strong>：epiHERA® CDO1/CELF4 试剂盒在前瞻队列中对宫颈刮片的准确性如何？",
+          "<strong>意义</strong>：侵入性检查减少 96% 将变革 EC 诊断经济学。"
+        ]
+      },
+      {
+        "title": "Cohort &amp; methods",
+        "title_zh": "队列与方法",
+        "stats": [
+          {"big": "675", "lab_en": "prospective women", "lab_zh": "前瞻女性"},
+          {"big": "69", "lab_en": "EC cases (10.2%)", "lab_zh": "EC 69 例 (10.2%)"},
+          {"big": "0.92", "lab_en": "AUC", "lab_zh": "AUC"}
+        ],
+        "bullets": [
+          "<strong>Design</strong>: prospective cross-sectional (Jan 2023–Nov 2024); Prince of Wales Hospital, Hong Kong.",
+          "<strong>Population</strong>: 675 with AUB/suspected pathology (mean 58.7 y, 79.7% postmenopausal; 629 outpatient + 46 hysterectomy).",
+          "<strong>Methylation</strong>: epiHERA® qMS-PCR on ThinPrep cervical scrapings; ΔCt<sub>CDO1</sub> ≤ 8.4 or ΔCt<sub>CELF4</sub> ≤ 8.8.",
+          "<strong>Reference</strong>: same-day endometrial histology."
+        ],
+        "bullets_zh": [
+          "<strong>设计</strong>：前瞻性横断面（2023.1–2024.11）；香港威尔士亲王医院。",
+          "<strong>人群</strong>：675 例 AUB/可疑病变（平均 58.7 岁，79.7% 绝经后；门诊 629 + 子宫切除 46）。",
+          "<strong>甲基化</strong>：epiHERA® qMS-PCR 检测 ThinPrep 宫颈刮片；ΔCt<sub>CDO1</sub> ≤ 8.4 或 ΔCt<sub>CELF4</sub> ≤ 8.8。",
+          "<strong>金标准</strong>：同日子宫内膜组织学。"
+        ]
+      },
+      {
+        "title": "Headline results",
+        "title_zh": "核心结果",
+        "bullets": [
+          "<strong>Combined assay</strong>: accuracy 97.3% · sensitivity 84.1% · specificity 98.8% · PPV 89.2% · NPV 98.2% · Kappa 0.85.",
+          "<strong>Outpatient subgroup</strong>: accuracy 98.1%, NPV 99.17%, false-negative rate 0.8%.",
+          "<strong>96% fewer invasive checks</strong>: only 25/629 methylation-positive needed invasive sampling.",
+          "<strong>Early signal</strong>: 4 of 7 false-positives diagnosed cancer within 1–4 months — methylation may precede histology."
+        ],
+        "bullets_zh": [
+          "<strong>联合检测</strong>：准确度 97.3% · 灵敏度 84.1% · 特异度 98.8% · PPV 89.2% · NPV 98.2% · Kappa 0.85。",
+          "<strong>门诊亚组</strong>：准确度 98.1%，NPV 99.17%，假阴性率 0.8%。",
+          "<strong>侵入性检查减少 96%</strong>：629 例中仅 25 例甲基化阳性需侵入性取样。",
+          "<strong>早期信号</strong>：7 例假阳性中 4 例 1–4 个月后确诊癌——甲基化或早于组织学。"
+        ]
+      },
+      {
+        "title": "Clinical value",
+        "title_zh": "临床价值",
+        "bullets": [
+          "<strong>Triage gate</strong>: negative methylation safely defers invasive evaluation (NPV 98.2%).",
+          "<strong>ET ≤ 4 mm</strong>: accuracy 99.6%, sensitivity 100% — strongest in low-ET women.",
+          "<strong>Cost</strong>: fewer procedures, lower cost — a high-value addition to EC pathways."
+        ],
+        "bullets_zh": [
+          "<strong>分流闸门</strong>：甲基化阴性可安全推迟侵入性评估（NPV 98.2%）。",
+          "<strong>ET ≤ 4 mm</strong>：准确度 99.6%，灵敏度 100%——低 ET 女性中最强。",
+          "<strong>成本</strong>：更少操作、更低成本——EC 路径的高价值补充。"
+        ]
+      }
+    ],
+    "takeaway": {
+      "title": "Take-away",
+      "title_zh": "核心结论",
+      "bullets": [
+        "<strong>96% fewer invasive procedures</strong> at 97.3% accuracy — the epiHERA® triage works in real-world Hong Kong practice.",
+        "<strong>May outpace histology</strong>: methylation turned positive before tissue diagnosis in 4 cases."
+      ],
+      "bullets_zh": [
+        "<strong>侵入性操作减少 96%</strong>且准确度 97.3%——epiHERA® 分流在香港真实世界实践有效。",
+        "<strong>或领先组织学</strong>：4 例甲基化在组织学确诊前即转阳。"
+      ]
+    }
+  },
+  {
+    "id": "10_Validation_of_a_cervical_CDO1CELF4_methylation_test_for_endometrial_cancer_a_prospective_paired-sample_comparison_with_intrauterine_specimen",
+    "cancer": "endometrial",
+    "kicker": "Endometrial Cancer · Front Med 2026;13:1690020 · Paired-Sample Validation",
+    "kicker_zh": "子宫内膜癌 · Front Med 2026;13:1690020 · 配对样本验证",
+    "title": "Validation of a Cervical CDO1/CELF4 Methylation Test vs Intrauterine Specimen",
+    "title_zh": "宫颈 CDO1/CELF4 甲基化检测与宫内标本的配对验证",
+    "subtitle": "226 paired CBC vs D&C samples — cervical AUC 0.916 vs intrauterine 0.929 (no difference); R=0.86",
+    "subtitle_zh": "226 例配对宫颈刷 vs 诊刮样本——宫颈 AUC 0.916 vs 宫内 0.929（无差异）；R=0.86",
+    "authors": "Cai B, Wang Y, Ma W, Wu Z, Yao T, Liu P, Wang L, Zhou P, Li Y",
+    "authors_zh": "蔡炳鑫, 王依杉, 马文, 吴珍珍, 姚婷婷, 刘沛, 王林海, 周萍萍, 李怡林",
+    "source": "Front Med 2026;13:1690020 · DOI <a href=\"https://doi.org/10.3389/fmed.2026.1690020\" target=\"_blank\" rel=\"noopener\">10.3389/fmed.2026.1690020</a>",
+    "source_zh": "Front Med 2026;13:1690020 · DOI <a href=\"https://doi.org/10.3389/fmed.2026.1690020\" target=\"_blank\" rel=\"noopener\">10.3389/fmed.2026.1690020</a>",
+    "panels": [
+      {
+        "title": "Why this study",
+        "title_zh": "研究缘起",
+        "bullets": [
+          "<strong>Gap</strong>: the non-invasive cervical brush (CBC) test needed direct head-to-head proof against intrauterine D&amp;C specimens.",
+          "<strong>Question</strong>: does cervical CDO1/CELF4 methylation match invasive intrauterine sampling for EIN/EC?",
+          "<strong>Why it matters</strong>: equivalence would justify replacing invasive sampling with cervical brushing."
+        ],
+        "bullets_zh": [
+          "<strong>空白</strong>：无创宫颈刷（CBC）检测需要与宫内诊刮（D&amp;C）标本的直接头对头证据。",
+          "<strong>问题</strong>：宫颈 CDO1/CELF4 甲基化是否与侵入性宫内采样检测 EIN/EC 相当？",
+          "<strong>意义</strong>：等效性将支持用宫颈刷取代侵入性采样。"
+        ]
+      },
+      {
+        "title": "Cohort &amp; methods",
+        "title_zh": "队列与方法",
+        "stats": [
+          {"big": "226", "lab_en": "paired samples", "lab_zh": "配对样本"},
+          {"big": "31", "lab_en": "≥EIN cases", "lab_zh": "≥EIN 31 例"},
+          {"big": "0.916", "lab_en": "CBC AUC", "lab_zh": "CBC AUC"}
+        ],
+        "bullets": [
+          "<strong>Design</strong>: prospective paired-sample study (Jul 2023–Jun 2024); Gansu Provincial Maternity &amp; Child Care Hospital.",
+          "<strong>Population</strong>: 226 hysteroscopy-indicated women (9 EIN + 22 EC; 195 benign).",
+          "<strong>Sampling</strong>: Cervex-Brush (CBC) vs D&amp;C — both tested blinded with CISENDO®.",
+          "<strong>Analysis</strong>: log ΔCt correlation, Bland-Altman, ROC/DeLong."
+        ],
+        "bullets_zh": [
+          "<strong>设计</strong>：前瞻性配对样本研究（2023.7–2024.6）；甘肃省妇幼保健院。",
+          "<strong>人群</strong>：226 例宫腔镜指征女性（EIN 9 + EC 22；良性 195）。",
+          "<strong>采样</strong>：Cervex 刷（CBC）vs 诊刮（D&amp;C）——均盲法 CISENDO® 检测。",
+          "<strong>分析</strong>：log ΔCt 相关、Bland-Altman、ROC/DeLong。"
+        ]
+      },
+      {
+        "title": "Headline results",
+        "title_zh": "核心结果",
+        "bullets": [
+          "<strong>High concordance</strong>: CDO1 R=0.86, CELF4 R=0.78; Bland-Altman no systematic bias.",
+          "<strong>Performance parity</strong>: CBC AUC 0.916 (sens 90.3% / spec 92.8%) vs D&amp;C 0.929 (93.5%/92.3%) — no significant difference (P=0.244).",
+          "<strong>vs clinical</strong>: ET AUC 0.499, CA125 0.593 — traditional markers cannot distinguish EIN/EC.",
+          "<strong>Type-II EC</strong>: 100% detected on D&amp;C; 2/3 on CBC."
+        ],
+        "bullets_zh": [
+          "<strong>高度一致</strong>：CDO1 R=0.86、CELF4 R=0.78；Bland-Altman 无系统偏倚。",
+          "<strong>性能相当</strong>：CBC AUC 0.916（灵敏度 90.3% / 特异度 92.8%）vs 诊刮 0.929（93.5%/92.3%）——无显著差异（P=0.244）。",
+          "<strong>vs 临床指标</strong>：ET AUC 0.499、CA125 0.593——传统标志物无法区分 EIN/EC。",
+          "<strong>II 型 EC</strong>：诊刮 100% 检出；CBC 2/3。"
+        ]
+      },
+      {
+        "title": "Clinical value",
+        "title_zh": "临床价值",
+        "bullets": [
+          "<strong>Equivalence proven</strong>: non-invasive cervical brushing matches invasive sampling — the case for replacing D&amp;C as first line.",
+          "<strong>Menopausal</strong>: premenopausal CBC AUC 0.943 / postmenopausal 0.856.",
+          "<strong>Path forward</strong>: external validation before routine clinical adoption."
+        ],
+        "bullets_zh": [
+          "<strong>等效性证实</strong>：无创宫颈刷与侵入性采样相当——支持以宫颈刷取代诊刮作为一线。",
+          "<strong>绝经分层</strong>：绝经前 CBC AUC 0.943 / 绝经后 0.856。",
+          "<strong>前进路径</strong>：常规临床采用前需外部验证。"
+        ]
+      }
+    ],
+    "takeaway": {
+      "title": "Take-away",
+      "title_zh": "核心结论",
+      "bullets": [
+        "<strong>Non-invasive = invasive</strong>: CBC matches D&amp;C (AUC 0.916 vs 0.929) — a paradigm shift for EC sampling.",
+        "<strong>Reliable triage</strong>: cervical brushing could replace intrauterine sampling in symptomatic women."
+      ],
+      "bullets_zh": [
+        "<strong>无创 = 有创</strong>：宫颈刷与诊刮相当（AUC 0.916 vs 0.929）——EC 采样的范式转变。",
+        "<strong>可靠分流</strong>：宫颈刷可在有症状女性中取代宫内采样。"
+      ]
+    }
+  }
+]

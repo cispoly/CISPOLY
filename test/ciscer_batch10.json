@@ -1,0 +1,177 @@
+[
+  {
+    "id": "3_商晓_et_al_2024_子宫颈细胞学PAX1JAM3双基因甲基化检测用于子宫颈癌筛查的多中心研究",
+    "cancer": "cervical",
+    "kicker": "宫颈癌 · 中华医学杂志 2024;104(20):1852–1859 · 多中心前瞻",
+    "kicker_zh": "宫颈癌 · 中华医学杂志 2024;104(20):1852–1859 · 多中心前瞻",
+    "title": "子宫颈细胞学 PAX1/JAM3 双基因甲基化检测用于子宫颈癌筛查的多中心研究",
+    "title_zh": "子宫颈细胞学 PAX1/JAM3 双基因甲基化检测用于子宫颈癌筛查的多中心研究",
+    "subtitle": "1,184 例有病理结果女性——CIN3+ 灵敏度 87.6%、特异度 86.8%、AUC 0.872，宫颈癌检出率 100%",
+    "subtitle_zh": "1,184 例有病理结果女性——CIN3+ 灵敏度 87.6%、特异度 86.8%、AUC 0.872，宫颈癌检出率 100%",
+    "authors": "商晓, 孔令华, 肖晓萍, 万茹, 王婧, 吴焕文, 陈小燕, 寿华锋, 费菁, 周建维, 郎景和, 李雷",
+    "authors_zh": "商晓, 孔令华, 肖晓萍, 万茹, 王婧, 吴焕文, 陈小燕, 寿华锋, 费菁, 周建维, 郎景和, 李雷",
+    "source": "中华医学杂志 2024;104(20):1852–1859 · DOI <a href=\"https://doi.org/10.3760/cma.j.cn12137-20231004-00630\" target=\"_blank\" rel=\"noopener\">10.3760/cma.j.cn12137-20231004-00630</a>",
+    "source_zh": "中华医学杂志 2024;104(20):1852–1859 · DOI <a href=\"https://doi.org/10.3760/cma.j.cn12137-20231004-00630\" target=\"_blank\" rel=\"noopener\">10.3760/cma.j.cn12137-20231004-00630</a>",
+    "panels": [
+      {
+        "title": "研究缘起",
+        "title_zh": "研究缘起",
+        "bullets": [
+          "<strong>背景</strong>：宫颈癌筛查需更客观的分子标志物；PAX1/JAM3 双基因甲基化检测（CISCER）在多中心大样本中的筛查价值需验证。",
+          "<strong>目的</strong>：评估子宫颈细胞学 PAX1/JAM3 双基因甲基化检测在宫颈癌筛查中的诊断效能（NCT05290428）。"
+        ],
+        "bullets_zh": [
+          "<strong>背景</strong>：宫颈癌筛查需更客观的分子标志物；PAX1/JAM3 双基因甲基化检测（CISCER）在多中心大样本中的筛查价值需验证。",
+          "<strong>目的</strong>：评估子宫颈细胞学 PAX1/JAM3 双基因甲基化检测在宫颈癌筛查中的诊断效能（NCT05290428）。"
+        ]
+      },
+      {
+        "title": "方法",
+        "title_zh": "方法",
+        "stats": [
+          {"big": "6,262", "lab_en": "screened", "lab_zh": "筛查 6,262 例"},
+          {"big": "1,184", "lab_en": "with pathology", "lab_zh": "有病理 1,184 例"},
+          {"big": "3 centers", "lab_en": "PUMCH + ZJU2 + ZPPH", "lab_zh": "3 中心"}
+        ],
+        "bullets": [
+          "<strong>设计</strong>：多中心前瞻性研究（2022.5–2022.10）；北京协和医院、浙大二院、浙江省人民医院。",
+          "<strong>人群</strong>：1,184 例有病理结果（正常 541 / CIN1 273 / CIN2 168 / CIN3 140 / 癌 62）。",
+          "<strong>检测</strong>：PAX1<sup>m</sup>/JAM3<sup>m</sup>（ΔCt<sub>PAX1</sub> ≤ 6.6 或 ΔCt<sub>JAM3</sub> ≤ 10.0，起源聚禾）；Cobas 4800；TCT。",
+          "<strong>结局</strong>：CIN2+/CIN3+/宫颈癌检测效能。"
+        ],
+        "bullets_zh": [
+          "<strong>设计</strong>：多中心前瞻性研究（2022.5–2022.10）；北京协和医院、浙大二院、浙江省人民医院。",
+          "<strong>人群</strong>：1,184 例有病理结果（正常 541 / CIN1 273 / CIN2 168 / CIN3 140 / 癌 62）。",
+          "<strong>检测</strong>：PAX1<sup>m</sup>/JAM3<sup>m</sup>（ΔCt<sub>PAX1</sub> ≤ 6.6 或 ΔCt<sub>JAM3</sub> ≤ 10.0，起源聚禾）；Cobas 4800；TCT。",
+          "<strong>结局</strong>：CIN2+/CIN3+/宫颈癌检测效能。"
+        ]
+      },
+      {
+        "title": "核心结果",
+        "title_zh": "核心结果",
+        "bullets": [
+          "<strong>CIN2+</strong>：灵敏度 74.1% · 特异度 95.9%；<strong>CIN3+</strong>：灵敏度 87.6% · 特异度 86.8%。",
+          "<strong>AUC</strong>：CIN3+ 0.872（0.847–0.897），显著优于 TCT（0.580）与 hrHPV（0.503）。",
+          "<strong>宫颈癌检出</strong>：鳞癌+腺癌检出率 100%。",
+          "<strong>高特异度</strong>：甲基化阳性不直接作为转诊指征，仍保持高特异度。"
+        ],
+        "bullets_zh": [
+          "<strong>CIN2+</strong>：灵敏度 74.1% · 特异度 95.9%；<strong>CIN3+</strong>：灵敏度 87.6% · 特异度 86.8%。",
+          "<strong>AUC</strong>：CIN3+ 0.872（0.847–0.897），显著优于 TCT（0.580）与 hrHPV（0.503）。",
+          "<strong>宫颈癌检出</strong>：鳞癌+腺癌检出率 100%。",
+          "<strong>高特异度</strong>：甲基化阳性不直接作为转诊指征，仍保持高特异度。"
+        ]
+      },
+      {
+        "title": "结论",
+        "title_zh": "结论",
+        "bullets": [
+          "<strong>筛查价值</strong>：子宫颈脱落细胞 PAX1<sup>m</sup>/JAM3<sup>m</sup> 检测诊断 CIN2+/CIN3+ 准确性优异。",
+          "<strong>优于传统方案</strong>：在宫颈癌筛查中优于传统 TCT 与 HPV 分型方案。"
+        ],
+        "bullets_zh": [
+          "<strong>筛查价值</strong>：子宫颈脱落细胞 PAX1<sup>m</sup>/JAM3<sup>m</sup> 检测诊断 CIN2+/CIN3+ 准确性优异。",
+          "<strong>优于传统方案</strong>：在宫颈癌筛查中优于传统 TCT 与 HPV 分型方案。"
+        ]
+      }
+    ],
+    "takeaway": {
+      "title": "核心结论",
+      "title_zh": "核心结论",
+      "bullets": [
+        "<strong>多中心验证</strong>：CIN3+ AUC 0.872、宫颈癌检出 100%——双基因甲基化筛查效能的国内多中心证据。",
+        "<strong>特异度 95.9%（CIN2+）</strong>——大幅优于 TCT/HPV，支持进入筛查路径。"
+      ],
+      "bullets_zh": [
+        "<strong>多中心验证</strong>：CIN3+ AUC 0.872、宫颈癌检出 100%——双基因甲基化筛查效能的国内多中心证据。",
+        "<strong>特异度 95.9%（CIN2+）</strong>——大幅优于 TCT/HPV，支持进入筛查路径。"
+      ]
+    }
+  },
+  {
+    "id": "27_何倩楠_2026_PAX1JAM3双基因联合甲基化检测在宫颈病变管理中的研究进展",
+    "cancer": "cervical",
+    "kicker": "宫颈癌 · 国际妇产科学杂志 2026;53(3):278–284 · 综述",
+    "kicker_zh": "宫颈癌 · 国际妇产科学杂志 2026;53(3):278–284 · 综述",
+    "title": "PAX1/JAM3 双基因联合甲基化检测在宫颈病变管理中的研究进展",
+    "title_zh": "PAX1/JAM3 双基因联合甲基化检测在宫颈病变管理中的研究进展",
+    "subtitle": "综述——从精准筛查、HPV初筛分流到锥切后升级与术后复发预测的全程管理价值",
+    "subtitle_zh": "综述——从精准筛查、HPV初筛分流到锥切后升级与术后复发预测的全程管理价值",
+    "authors": "何倩楠, 黄子杰, 王一帆, 安雨声, 冯淑娴",
+    "authors_zh": "何倩楠, 黄子杰, 王一帆, 安雨声, 冯淑娴",
+    "source": "国际妇产科学杂志 2026;53(3):278–284 · DOI <a href=\"https://doi.org/10.12280/gjfckx.20251474\" target=\"_blank\" rel=\"noopener\">10.12280/gjfckx.20251474</a>",
+    "source_zh": "国际妇产科学杂志 2026;53(3):278–284 · DOI <a href=\"https://doi.org/10.12280/gjfckx.20251474\" target=\"_blank\" rel=\"noopener\">10.12280/gjfckx.20251474</a>",
+    "panels": [
+      {
+        "title": "综述背景",
+        "title_zh": "综述背景",
+        "bullets": [
+          "<strong>机制</strong>：PAX1 通过抑制 Wnt/β-联蛋白等多条致癌通路发挥抑癌作用；JAM3 与上皮屏障及肿瘤侵袭转移相关。",
+          "<strong>联合优势</strong>：双基因联合检测具有较高的敏感度和特异度，显著优于传统细胞学方法。",
+          "<strong>范围</strong>：综述 PAX1/JAM3 联合甲基化在宫颈病变全程管理中的进展。"
+        ],
+        "bullets_zh": [
+          "<strong>机制</strong>：PAX1 通过抑制 Wnt/β-联蛋白等多条致癌通路发挥抑癌作用；JAM3 与上皮屏障及肿瘤侵袭转移相关。",
+          "<strong>联合优势</strong>：双基因联合检测具有较高的敏感度和特异度，显著优于传统细胞学方法。",
+          "<strong>范围</strong>：综述 PAX1/JAM3 联合甲基化在宫颈病变全程管理中的进展。"
+        ]
+      },
+      {
+        "title": "关键证据",
+        "title_zh": "关键证据",
+        "bullets": [
+          "<strong>多中心筛查</strong>：商晓研究 CIN2+ 74.1%/95.9%、CIN3+ 87.6%/86.8%、AUC 0.872 vs TCT 0.580。",
+          "<strong>HPV16/18 分流</strong>：Fei 研究 CIN2+ 89.0%/95.3%，转诊率降近 70%，1.12 次转诊/例。",
+          "<strong>ASC-US</strong>：322 例 83.8%/95.8%，转诊降 79.5%；轻微异常 74.9%/89.1%，阳性 CIN3+ 风险 40.5% vs 阴性 2.7%。",
+          "<strong>联合模型</strong>：Sun 研究 △CtP+HPV+TCT AUC 0.932。"
+        ],
+        "bullets_zh": [
+          "<strong>多中心筛查</strong>：商晓研究 CIN2+ 74.1%/95.9%、CIN3+ 87.6%/86.8%、AUC 0.872 vs TCT 0.580。",
+          "<strong>HPV16/18 分流</strong>：Fei 研究 CIN2+ 89.0%/95.3%，转诊率降近 70%，1.12 次转诊/例。",
+          "<strong>ASC-US</strong>：322 例 83.8%/95.8%，转诊降 79.5%；轻微异常 74.9%/89.1%，阳性 CIN3+ 风险 40.5% vs 阴性 2.7%。",
+          "<strong>联合模型</strong>：Sun 研究 △CtP+HPV+TCT AUC 0.932。"
+        ]
+      },
+      {
+        "title": "手术与随访",
+        "title_zh": "手术与随访",
+        "bullets": [
+          "<strong>锥切升级预测</strong>：ΔCt<sub>PAX1</sub> &lt; 4.34 提示锥切病理升级风险。",
+          "<strong>术后复发</strong>：术后 6 个月甲基化阳性者 12 个月内 CIN2/3 复发风险 30.8% vs 阴性 &lt;4%。",
+          "<strong>长期风险</strong>：De Strooper 研究——甲基化阴性 14 年累积宫颈癌风险 1.7% vs 细胞学阴性 2.4%。"
+        ],
+        "bullets_zh": [
+          "<strong>锥切升级预测</strong>：ΔCt<sub>PAX1</sub> &lt; 4.34 提示锥切病理升级风险。",
+          "<strong>术后复发</strong>：术后 6 个月甲基化阳性者 12 个月内 CIN2/3 复发风险 30.8% vs 阴性 &lt;4%。",
+          "<strong>长期风险</strong>：De Strooper 研究——甲基化阴性 14 年累积宫颈癌风险 1.7% vs 细胞学阴性 2.4%。"
+        ]
+      },
+      {
+        "title": "前景展望",
+        "title_zh": "前景展望",
+        "bullets": [
+          "<strong>全程管理</strong>：精准筛查、HR-HPV/ASC-US 分流、锥切后升级与术后复发预测。",
+          "<strong>标准化</strong>：需多中心、大样本研究确立标准化 cut-off 值。",
+          "<strong>指南整合</strong>：有望作为核心技术整合入宫颈癌筛查指南，推动「群体普查」向「个体化精准防控」转变。"
+        ],
+        "bullets_zh": [
+          "<strong>全程管理</strong>：精准筛查、HR-HPV/ASC-US 分流、锥切后升级与术后复发预测。",
+          "<strong>标准化</strong>：需多中心、大样本研究确立标准化 cut-off 值。",
+          "<strong>指南整合</strong>：有望作为核心技术整合入宫颈癌筛查指南，推动「群体普查」向「个体化精准防控」转变。"
+        ]
+      }
+    ],
+    "takeaway": {
+      "title": "核心结论",
+      "title_zh": "核心结论",
+      "bullets": [
+        "<strong>全程管理价值</strong>：PAX1/JAM3 联合甲基化覆盖筛查、分流、手术决策与复发预测。",
+        "<strong>未来方向</strong>：标准化界值 + 指南整合，推动个体化精准防控。"
+      ],
+      "bullets_zh": [
+        "<strong>全程管理价值</strong>：PAX1/JAM3 联合甲基化覆盖筛查、分流、手术决策与复发预测。",
+        "<strong>未来方向</strong>：标准化界值 + 指南整合，推动个体化精准防控。"
+      ]
+    }
+  }
+]

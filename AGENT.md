@@ -4,14 +4,14 @@
 
 ## 项目概览
 
-这是聚禾生物 CISPOLY 官网项目，技术栈为 Vite + React 18 + TypeScript + Tailwind CSS。站点展示三类妇科肿瘤早筛产品、学术论文、临床指南、企业动态和关于页。
+这是聚禾生物 CISPOLY 官网项目，技术栈为 React Router 8 Framework Mode + React 19 + Vite 8 + TypeScript + Tailwind CSS 3。站点以纯静态预渲染方式输出，展示三类妇科肿瘤早筛产品、学术论文、临床指南、企业动态和关于页。
 
 核心形态不是纯手写页面，而是：
 
 1. `contents/` 中维护 Markdown、图片等内容源（唯一事实源）。
 2. `scripts/build-data.ts` 扫描并解析内容源。
 3. 生成 `src/data/*.json` 和 `src/data/*.body.json`。
-4. `src/lib/data.ts` 作为前端统一数据入口。
+4. `src/lib/data/` 按产品、论文、指南、博客和公司信息拆分数据入口。
 5. `src/pages/` 与 `src/components/` 渲染页面。
 
 ## 常用命令
@@ -19,23 +19,29 @@
 ```bash
 npm run prebuild-data
 npm run dev
+npm run check
 npm run build
 npm run preview
 ```
 
-- `npm run prebuild-data`: 只运行 `tsx scripts/build-data.ts`，用于内容改动后刷新 `src/data/`。
-- `npm run dev`: 先构建数据，再启动 Vite dev server，默认 `0.0.0.0:5173`。
-- `npm run build`: 先构建数据，再运行 `tsc -b` 与 `vite build`。
-- `npm run preview`: 预览 `dist/` 构建产物。
+- `npm run prebuild-data`: 使用 Node 直接运行 `scripts/build-data.ts`，用于内容改动后刷新 `src/data/`。
+- `npm run dev`: 先构建数据，再启动 React Router Framework Mode 开发服务器，默认 `0.0.0.0:5173`。
+- `npm run check`: 依次运行 ESLint、类型检查和内容完整性检查。
+- `npm run build`: 生成内容、类型检查、预渲染全部双语路由，并校验最终构建产物。
+- `npm run preview`: 预览 `build/client/` 静态构建产物。
 
 ## 目录地图
 
-- `src/App.tsx`: 路由入口。首页、产品、论文、指南、博客、关于页都在这里注册。
-- `src/main.tsx`: React 入口。
+- `src/root.tsx`: Framework Mode 文档与全局布局入口，挂载 Header、Footer、i18n 和错误边界。
+- `src/routes.ts`: 类型安全路由表，中英文路由通过可选 `en` 前缀共用路由模块。
+- `react-router.config.ts`: 纯静态预渲染路径、并发、sitemap、robots 和 404 fallback 配置。
 - `src/pages/`: 页面级组件。
 - `src/components/`: 可复用展示组件，如 `Hero`、`Header`、`PaperCard`、`PosterDetail`。
-- `src/lib/data.ts`: 前端数据访问层，导入 `src/data/*.json` 并提供查询函数和正文按需加载函数。
-- `src/lib/i18n.tsx`: 中英双语字典与语言切换逻辑。
+- `src/lib/data/`: 按内容域拆分的浏览器数据访问层，避免无关页面下载全站索引。
+- `src/lib/content.server.ts`: 仅在构建期 loader 中使用的正文与 PDF 字段入口，不进入浏览器 bundle。
+- `src/lib/i18n.tsx`: URL 驱动的中英双语字典与语言切换逻辑；中文保留原路径，英文使用 `/en`。
+- `src/lib/router.tsx`: 自动保持当前语言前缀的 Link、NavLink 与 Navigate 包装。
+- `src/lib/seo.ts`: canonical、hreflang、Open Graph 和结构化数据生成工具。
 - `src/lib/markdown.tsx`: Markdown 渲染相关逻辑。
 - `src/styles/index.css`: Tailwind base/components，全局 `.shell`、`.card`、`.prose-cispoly` 等样式。
 - `scripts/build-data.ts`: 数据构建主脚本，解析论文、指南、博客、产品和公司信息。
@@ -79,11 +85,12 @@ npm run preview
 
 如果要调整引用、摘要、单位、DOI 或手工覆盖字段，优先改修正层 JSON 和 `contents/**/*.md`，改完运行 `npm run prebuild-data` 刷新生成文件。
 
-数据拆分策略：
+数据拆分与预渲染策略：
 
-- 列表页使用 `papers.json`、`guidelines.json`、`blogs.json`。
-- 正文被拆到 `papers.body.json`、`guidelines.body.json`、`blogs.body.json`。
-- 详情页通过 `loadPaperBody`、`loadGuidelineBody`、`loadBlogBody` 动态加载正文，避免首屏 bundle 过大。
+- 列表页分别通过 `src/lib/data/papers.ts`、`guidelines.ts`、`blogs.ts` 使用各自索引。
+- 博客正文保存在生成 JSON 中，但只能由 `content.server.ts` 的构建期 loader 读取。
+- 每个详情路由生成独立 HTML 和 `.data` 文件；浏览器不会下载全量正文 JSON。
+- `react-router.config.ts` 枚举全部中文路径和 `/en` 英文路径，构建产物位于 `build/client/`。
 
 ## 前端开发约定
 
@@ -93,8 +100,8 @@ npm run preview
 - 页面容器优先使用 `.shell`。
 - Markdown 正文优先使用 `.prose-cispoly`。
 - 图标优先使用 `lucide-react`。
-- 路由级页面已经使用 `React.lazy` 按需加载；新增重页面时保持这一模式。
-- 中英双语文案优先放入 `src/lib/i18n.tsx`，组件内通过 `useI18n()` 获取 `t`、`lang`。
+- 路由模块由 React Router Framework Mode 自动拆包；新增页面应在 `src/routes.ts` 注册并导出 route module API。
+- 中英双语文案优先放入 `src/lib/i18n.tsx`，组件内通过 `useI18n()` 获取 `t`、`lang`；内部链接使用 `src/lib/router.tsx` 的组件以保持语言前缀。
 - 数据项如产品、公司信息已有可选英文字段，展示时按当前语言选择对应字段。
 
 ## 医学与内容准确性
@@ -112,6 +119,7 @@ npm run preview
 
 ```bash
 npm run prebuild-data
+npm run check
 npm run build
 ```
 

@@ -2,9 +2,18 @@ import { useState } from 'react'
 import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Clock } from 'lucide-react'
 import PageHero from '@/components/PageHero'
 import Reveal from '@/components/Reveal'
-import { company } from '@/lib/data'
+import { company } from '@/lib/data/company'
 import { PAGE_HERO_IMAGES } from '@/lib/images'
 import { useI18n, pick } from '@/lib/i18n'
+import type { MetaFunction } from 'react-router'
+import { pageMeta } from '@/lib/seo'
+
+export const meta: MetaFunction = ({ location }) => pageMeta(location.pathname, {
+  titleZh: '联系我们 | CISPOLY 聚禾生物',
+  titleEn: 'Contact CISPOLY',
+  descriptionZh: '联系聚禾生物，咨询医疗机构合作、产品信息、科研合作与商务机会。',
+  descriptionEn: 'Contact CISPOLY for clinical partnerships, product information, research collaboration, and business inquiries.',
+})
 
 type SubmitState = 'idle' | 'sending' | 'success' | 'error'
 

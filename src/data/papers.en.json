@@ -57,12 +57,14 @@
   "27_joint_methylation_progress": {
     "titleEn": "Research progress on PAX1/JAM3 dual-gene combined methylation testing in cervical lesion management",
     "summaryEn": "Aberrant methylation of PAX1 and JAM3 genes is a key epigenetic event in cervical cancer malignant transformation. Dual-gene combined methylation testing offers high sensitivity and specificity, superior to traditional cytology, enabling precise early diagnosis of cervical cancer, triage of HPV-positive populations, and prediction of post-conization lesion progression risk. The test supports self-sampling, improving screening accessibility in primary care, and is expected to become a core technology in cervical cancer screening guidelines, driving the shift from population-based screening toward individualized precision prevention.",
-    "affiliationEn": "School of Medicine, Northwest Minzu University"
+    "affiliationEn": "School of Medicine, Northwest Minzu University",
+    "authorsEn": "Qian-Nan He, Zijie Huang, Yifan Wang, Yusheng An, Shuxian Feng"
   },
   "28_postop_recurrence_prediction": {
     "titleEn": "Predictive significance of cervical exfoliated cell gene methylation testing for residual and recurrent risk after surgery for high-grade cervical lesions",
     "summaryEn": "PAX1 and JAM3 gene methylation in cervical exfoliated cells is closely related to residual disease and recurrence after surgery for high-grade cervical lesions. Testing of 120 patients revealed a dual-gene methylation positive rate of 54.17%, with 18.33% experiencing adverse outcomes postoperatively. The combined dual-gene test achieved 91.30% sensitivity and 94.29% negative predictive value, effectively predicting residual and recurrent risk and providing important reference for clinical follow-up.",
-    "affiliationEn": "Guilin Maternal and Child Health Hospital"
+    "affiliationEn": "Guilin Maternal and Child Health Hospital",
+    "authorsEn": "Guilin Maternal and Child Health Hospital, Guilin, Guangxi 541000"
   },
   "29_pax1jam3_hrhpv_tct": {
     "titleEn": "Association of PAX1/JAM3 gene methylation, HR-HPV, and TCT with high-grade cervical lesions in a high-risk cohort: a multinomial logistic regression analysis",
@@ -132,7 +134,8 @@
   "19_hrhpv_diagnostic_value": {
     "titleEn": "Diagnostic value of PAX1/JAM3 gene methylation for cervical cancer in HR-HPV-infected women",
     "summaryEn": "This study of 808 high-risk HPV-infected women evaluated the diagnostic value of PAX1/JAM3 gene methylation for cervical cancer. The test achieved 86.3% sensitivity and 91.0% specificity for cervical cancer, with diagnostic performance (AUC 0.873) superior to HPV16/18 and TCT testing. It also reduced the colposcopy referral rate from 80.70% to 43.94%, decreasing unnecessary biopsies. The method offers superior clinical application value in cervical cancer screening for high-risk HPV-infected women.",
-    "affiliationEn": "Beijing Obstetrics and Gynecology Hospital, Capital Medical University (Beijing Maternal and Child Health Care Hospital)"
+    "affiliationEn": "Beijing Obstetrics and Gynecology Hospital, Capital Medical University (Beijing Maternal and Child Health Care Hospital)",
+    "authorsEn": "Weiming Feng, Yanhong Zhai, Lingxin Meng, Xia Lu, Zheng Cao"
   },
   "20_screening_treatment_review": {
     "titleEn": "Application of PAX1/JAM3 dual-gene methylation in cervical cancer screening and treatment",
@@ -142,12 +145,14 @@
   "21_meta_analysis": {
     "titleEn": "Meta-analysis of PAX1 and JAM3 methylation for diagnosis of high-grade cervical intraepithelial neoplasia",
     "summaryEn": "Combined testing of PAX1 and JAM3 methylation markers has good diagnostic value for high-grade cervical intraepithelial neoplasia. Meta-analysis results showed the combined test achieved 78% sensitivity and 95% specificity for CIN2+, and 84% sensitivity and 87% specificity for CIN3+, with high overall diagnostic performance, serving as an effective diagnostic tool for cervical precancerous lesions.",
-    "affiliationEn": "Yan'an Hospital Affiliated to Kunming Medical University"
+    "affiliationEn": "Yan'an Hospital Affiliated to Kunming Medical University",
+    "authorsEn": "Jinfeng Xiao, Xumei Zhang, Yi Liu, Shangwei Ding, Qian Zeng, Qin Li"
   },
   "32_pilot_prediction": {
     "titleEn": "Preliminary study on the predictive value of PAX1 and JAM3 gene methylation in cervical exfoliated cells for cervical intraepithelial neoplasia",
     "summaryEn": "This study evaluated the predictive value of PAX1 and JAM3 gene methylation as combined biomarkers for high-grade cervical lesions. Among 144 patients, the positivity rate of dual-gene methylation was significantly higher in CIN2+ patients than in the low-grade lesion group. When HPV16/18 positive with either gene methylation positive, the positive predictive value for CIN2+ reached 96.9%, superior to HPV testing alone. Combined dual-gene methylation and HPV testing significantly improves early identification of cervical lesions, suitable for triage management of cases with indeterminate cytology.",
-    "affiliationEn": "Changsha Maternal and Child Health Hospital"
+    "affiliationEn": "Changsha Maternal and Child Health Hospital",
+    "authorsEn": "Min Zhou, Juan Zuo, Dai Zhou, Dan Chen, Da Hou"
   },
   "8_triage_performance_hrhpv": {
     "titleEn": "Triage performance of DNA methylation for women with high-risk human papillomavirus infection",
@@ -212,7 +217,8 @@
   "5_jam3_pax1_hsil_diagnosis": {
     "titleEn": "High-grade cervical lesions diagnosed by JAM3/PAX1 methylation in high-risk human papillomavirus-infected patients",
     "summaryEn": "This study explored the clinical value of JAM3 and PAX1 gene methylation testing for diagnosing high-grade cervical lesions in high-risk HPV-infected patients. Retrospective analysis of 136 patients found PAX1 and JAM3 methylation levels were negatively correlated with cervical pathological changes. A decision tree model showed that combined JAM3/PAX1 methylation testing with liquid-based cytology effectively differentiates high-grade from non-high-grade cervical lesions, providing new biomarkers for precise cervical cancer screening.",
-    "affiliationEn": "The Third Xiangya Hospital of Central South University"
+    "affiliationEn": "The Third Xiangya Hospital of Central South University",
+    "authorsEn": "Xiang Li, Sili He, Xingping Zhao, Dan Sun, Si Wu, Dabao Xu, Yingjia Li"
   },
   "1_postmenopausal_screening": {
     "titleEn": "Application value of DNA methylation testing in endometrial cancer screening for postmenopausal women",

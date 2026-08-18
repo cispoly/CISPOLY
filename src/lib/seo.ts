@@ -1,0 +1,57 @@
+import type { MetaDescriptor } from 'react-router'
+
+const SITE_ORIGIN = 'https://www.cispoly.com'
+
+interface PageMetaOptions {
+  titleZh: string
+  titleEn: string
+  descriptionZh: string
+  descriptionEn: string
+  image?: string
+  type?: 'website' | 'article'
+  structuredData?: Record<string, unknown>
+}
+
+export function isEnglishPath(pathname: string) {
+  return pathname === '/en' || pathname.startsWith('/en/')
+}
+
+function canonicalPath(pathname: string) {
+  if (pathname === '/' || pathname === '/en') return pathname
+  return `${pathname.replace(/\/+$/, '')}/`
+}
+
+export function pageMeta(pathname: string, options: PageMetaOptions): MetaDescriptor[] {
+  const english = isEnglishPath(pathname)
+  const title = english ? options.titleEn : options.titleZh
+  const description = english ? options.descriptionEn : options.descriptionZh
+  const barePath = pathname.replace(/^\/en(?=\/|$)/, '') || '/'
+  const zhUrl = new URL(canonicalPath(barePath), SITE_ORIGIN).href
+  const enUrl = new URL(canonicalPath(barePath === '/' ? '/en' : `/en${barePath}`), SITE_ORIGIN).href
+  const canonical = english ? enUrl : zhUrl
+
+  return [
+    { title },
+    { name: 'description', content: description },
+    { name: 'robots', content: 'index,follow,max-image-preview:large' },
+    { property: 'og:title', content: title },
+    { property: 'og:description', content: description },
+    { property: 'og:type', content: options.type || 'website' },
+    { property: 'og:url', content: canonical },
+    { property: 'og:site_name', content: english ? 'CISPOLY' : 'CISPOLY 聚禾生物' },
+    { property: 'og:locale', content: english ? 'en_US' : 'zh_CN' },
+    { property: 'og:locale:alternate', content: english ? 'zh_CN' : 'en_US' },
+    ...(options.image ? [{ property: 'og:image', content: new URL(options.image, SITE_ORIGIN).href }] : []),
+    { name: 'twitter:title', content: title },
+    { name: 'twitter:description', content: description },
+    ...(options.image
+      ? [{ name: 'twitter:image', content: new URL(options.image, SITE_ORIGIN).href }]
+      : []),
+    { name: 'twitter:card', content: options.image ? 'summary_large_image' : 'summary' },
+    { tagName: 'link', rel: 'canonical', href: canonical },
+    { tagName: 'link', rel: 'alternate', hrefLang: 'zh-CN', href: zhUrl },
+    { tagName: 'link', rel: 'alternate', hrefLang: 'en', href: enUrl },
+    { tagName: 'link', rel: 'alternate', hrefLang: 'x-default', href: zhUrl },
+    ...(options.structuredData ? [{ 'script:ld+json': options.structuredData }] : []),
+  ]
+}

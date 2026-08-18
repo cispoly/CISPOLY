@@ -10,6 +10,7 @@ export interface Paper {
   titleEn?: string
   authors: string
   journal: string
+  journalEn?: string
   year: number | null
   abstract: string
   abstractEn?: string
@@ -19,11 +20,14 @@ export interface Paper {
   doi: string | undefined
   affiliation: string
   affiliationEn?: string
+  authorsEn?: string
   conclusion: string
   keyData: string
   summary: string
   summaryEn?: string
   featured: boolean
+  citation?: string
+  citationEn?: string
 }
 
 export interface Guideline {
@@ -43,6 +47,7 @@ export interface Guideline {
   abstractEn?: string
   excerptEn?: string
   cancers?: CancerKey[]
+  citation?: string
 }
 
 export interface BlogPost {
@@ -54,6 +59,7 @@ export interface BlogPost {
   lastModified: string // YYYY-MM-DD，默认同 date
   lastModifiedLabel: string
   cover: string | undefined
+  coverEn?: string
   excerpt: string
   excerptEn?: string
   tags: string[]

@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation } from '@/lib/router'
 
 /**
  * 路由切换时回到顶部（除非是带 hash 的锚点）。

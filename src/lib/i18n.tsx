@@ -5,37 +5,12 @@
  * 语言检测结果缓存到 localStorage，避免每次加载都重新检测。
  */
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
+import { createContext, useContext, useEffect, type ReactNode } from 'react'
+import { useLocation, useNavigate } from 'react-router'
 
 export type Lang = 'zh' | 'en'
 
 const STORAGE_KEY = 'cispoly-lang'
-
-/* ---------- 语言检测 ---------- */
-
-export function detectLang(): Lang {
-  // 1. 已缓存
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY)
-    if (saved === 'zh' || saved === 'en') return saved
-  } catch {
-    /* SSR / 隐私模式忽略 */
-  }
-
-  // 2. 检测系统语言
-  const browserLang =
-    navigator.language || (navigator.languages && navigator.languages[0]) || 'en'
-
-  const lang: Lang = browserLang.toLowerCase().startsWith('zh') ? 'zh' : 'en'
-
-  try {
-    localStorage.setItem(STORAGE_KEY, lang)
-  } catch {
-    /* ignore */
-  }
-
-  return lang
-}
 
 /* ---------- 翻译字典 ---------- */
 
@@ -74,7 +49,7 @@ const zh: Dict = {
   'common.backToGuidelines': '返回指南',
   'common.menu': '菜单',
   'common.loading': '加载中…',
-  'common.copyOf': '京ICP备 0000000 号',
+  'common.copyOf': '京ICP备2023007648号-1',
 
   // ---- 癌种 ----
   'cancer.cervical': '宫颈癌',
@@ -339,6 +314,12 @@ const en: Dict = {
   // ---- Navigation ----
   'nav.home': 'Home',
   'nav.products': 'Product',
+  'nav.products.ciscer.name': 'CISCER®',
+  'nav.products.ciscer.desc': 'Dual-gene methylation testing for cervical cancer prevention',
+  'nav.products.cisendo.name': 'CISENDO®',
+  'nav.products.cisendo.desc': 'The world’s first approved non-invasive endometrial cancer methylation test',
+  'nav.products.cisova.name': 'CISOVA®',
+  'nav.products.cisova.desc': 'The world’s first approved peripheral-blood test for early ovarian cancer detection',
   'nav.research': 'Research',
   'nav.guideline': 'Guideline',
   'nav.blog': 'Blog',
@@ -646,23 +627,24 @@ const I18nContext = createContext<I18nContextValue>({
 })
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>(() => detectLang())
+  const { pathname, search, hash } = useLocation()
+  const navigate = useNavigate()
+  const lang: Lang = pathname === '/en' || pathname.startsWith('/en/') ? 'en' : 'zh'
 
   useEffect(() => {
     document.documentElement.lang = lang
-    document.title =
-      lang === 'zh'
-        ? 'CISPOLY 聚禾生物 | 妇科肿瘤甲基化早筛早诊开拓者'
-        : 'CISPOLY | Pioneer in Methylation-Based Early Screening of Gynecologic Cancers'
+    try {
+      localStorage.setItem(STORAGE_KEY, lang)
+    } catch {
+      /* 隐私模式下忽略 */
+    }
   }, [lang])
 
   const setLang = (newLang: Lang) => {
-    setLangState(newLang)
-    try {
-      localStorage.setItem(STORAGE_KEY, newLang)
-    } catch {
-      /* ignore */
-    }
+    if (newLang === lang) return
+    const barePath = pathname === '/en' ? '/' : pathname.replace(/^\/en(?=\/)/, '')
+    const nextPath = newLang === 'en' ? (barePath === '/' ? '/en' : `/en${barePath}`) : barePath
+    navigate(`${nextPath}${search}${hash}`)
   }
 
   const toggleLang = () => setLang(lang === 'zh' ? 'en' : 'zh')

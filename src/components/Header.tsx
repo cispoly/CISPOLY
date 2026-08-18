@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, NavLink, useLocation } from '@/lib/router'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
-import { products } from '@/lib/data'
+import { products } from '@/lib/data/products'
 
 export default function Header() {
   const { t, lang, setLang } = useI18n()
@@ -21,6 +21,8 @@ export default function Header() {
 
   // 路由变化时关闭菜单
   useEffect(() => {
+    // 菜单状态必须与外部路由状态同步。
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setOpen(false)
     setProductOpen(false)
   }, [pathname])

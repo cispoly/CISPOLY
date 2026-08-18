@@ -1,13 +1,21 @@
 import { useState } from 'react'
-import SectionTitle from '@/components/SectionTitle'
 import Reveal from '@/components/Reveal'
 import GuidelineCard from '@/components/GuidelineCard'
 import PageHero from '@/components/PageHero'
-import { guidelines } from '@/lib/data'
+import { guidelines } from '@/lib/data/guidelines'
 import { PAGE_HERO_IMAGES } from '@/lib/images'
 import { getCancerLabel } from '@/types'
 import type { CancerKey, Guideline } from '@/types'
 import { useI18n } from '@/lib/i18n'
+import type { MetaFunction } from 'react-router'
+import { pageMeta } from '@/lib/seo'
+
+export const meta: MetaFunction = ({ location }) => pageMeta(location.pathname, {
+  titleZh: '临床指南与专家共识 | CISPOLY 聚禾生物',
+  titleEn: 'Clinical Guidelines and Consensus | CISPOLY',
+  descriptionZh: '汇集妇科肿瘤 DNA 甲基化筛查、分流与临床应用相关指南和专家共识。',
+  descriptionEn: 'Clinical guidelines and expert consensus on DNA methylation screening, triage, and gynecologic cancer care.',
+})
 
 /** A guideline belongs to a cancer tab if its single cancer or its cancers array includes the key */
 function matchCancer(g: Guideline, key: CancerKey): boolean {

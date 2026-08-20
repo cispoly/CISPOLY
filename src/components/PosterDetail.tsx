@@ -185,6 +185,7 @@ function PosterEmbed({ posterUrl, posterTitle }: { posterUrl: string; posterTitl
   const { t, lang } = useI18n()
   const [loaded, setLoaded] = useState(false)
   const src = posterUrl + (posterUrl.includes('?') ? '&' : '?') + 'lang=' + lang
+  const mobilePosterSrc = posterUrl.replace(/\/poster\.html$/, `/poster_${lang}.png`)
 
   return (
     <motion.section
@@ -206,19 +207,30 @@ function PosterEmbed({ posterUrl, posterTitle }: { posterUrl: string; posterTitl
           <ExternalLink size={13} /> {t('poster.openInNewTab')}
         </a>
       </div>
-      <div className="relative bg-stone-50" style={{ height: '90vh', minHeight: '600px' }}>
-        {!loaded && (
-          <div className="absolute inset-0 flex items-center justify-center text-xs text-inkSoft">
-            {t('poster.loading')}
-          </div>
-        )}
-        <iframe
-          src={src}
-          title={posterTitle || t('poster.posterLabel')}
-          className="h-full w-full border-0"
-          loading="lazy"
-          onLoad={() => setLoaded(true)}
-        />
+      <div className="relative bg-stone-50 md:h-[90vh] md:min-h-[600px]">
+        {/* 海报 HTML 使用 2100px 固定画布，移动端直接展示对应语言的成品图，避免 iframe 内部缩放后文字和栅格互相挤压。 */}
+        <div className="md:hidden">
+          <img
+            src={mobilePosterSrc}
+            alt={posterTitle || t('poster.posterLabel')}
+            className="block h-auto w-full"
+            loading="lazy"
+          />
+        </div>
+        <div className="relative hidden h-full md:block">
+          {!loaded && (
+            <div className="absolute inset-0 flex items-center justify-center text-xs text-inkSoft">
+              {t('poster.loading')}
+            </div>
+          )}
+          <iframe
+            src={src}
+            title={posterTitle || t('poster.posterLabel')}
+            className="h-full w-full border-0"
+            loading="lazy"
+            onLoad={() => setLoaded(true)}
+          />
+        </div>
       </div>
       <p className="border-t border-line px-6 py-3 text-[11px] leading-relaxed text-inkSoft">
         {t('poster.posterNote')}

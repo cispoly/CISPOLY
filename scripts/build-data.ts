@@ -430,8 +430,8 @@ function buildPapers() {
     console.log(`  paper overrides: ${ovCount} 篇`)
   }
 
-  // 精选置顶
-  papers.sort((a, b) => Number(b.featured) - Number(a.featured) || (b.year || 0) - (a.year || 0))
+  // 文献列表按发表年份倒序排列，精选标记只用于内容标注，不改变时间顺序。
+  papers.sort((a, b) => (b.year || 0) - (a.year || 0))
   // 拆分：列表索引（不含正文）+ 正文映射（按需加载）
   const index = papers.map(({ body, ...rest }) => rest)
   const bodies: Record<string, string> = {}

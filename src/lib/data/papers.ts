@@ -4,10 +4,13 @@ import type { CancerKey, Paper } from '@/types'
 
 const translations = papersEnData as Record<string, Record<string, unknown>>
 
-export const papers = papersData.map((paper) => ({
-  ...paper,
-  ...translations[paper.id],
-})) as Paper[]
+export const papers = papersData
+  .map((paper) => ({
+    ...paper,
+    ...translations[paper.id],
+  }))
+  // Keep the UI order deterministic even when the generated index is stale.
+  .sort((a, b) => (b.year || 0) - (a.year || 0)) as Paper[]
 
 export const getPaper = (cancer: CancerKey, id: string) =>
   papers.find((paper) => paper.cancer === cancer && paper.id === id)

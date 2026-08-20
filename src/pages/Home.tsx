@@ -38,6 +38,7 @@ export default function Home() {
   const homeGuidelines = ['9_pax1jam3_consensus', '2_ec_methylation_consensus2026', '14_esgo_position_screening']
     .map((id) => guidelines.find((g) => g.id === id))
     .filter((g): g is NonNullable<typeof g> => Boolean(g))
+    .sort((a, b) => (b.year || 0) - (a.year || 0))
   const recentBlogs = latestBlogs(4)
   const stats = pick(company.stats, company.statsEn || company.stats, lang)
 
@@ -46,7 +47,7 @@ export default function Home() {
       <Hero />
 
       {/* ===== 使命陈述 ===== */}
-      <section className="py-24 md:py-32">
+      <section className="py-14 md:py-32">
         <div className="shell">
           <Reveal>
             <div className="mx-auto max-w-3xl text-center">

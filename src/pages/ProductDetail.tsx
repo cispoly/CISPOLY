@@ -71,7 +71,7 @@ export default function ProductDetail() {
   })()
 
   return (
-    <div className="pt-20 md:pt-24">
+    <>
       {/* ===== Hero（与首页同风格，无需轮动） ===== */}
       <section className="relative overflow-hidden">
         {/* 背景图 */}
@@ -300,6 +300,6 @@ export default function ProductDetail() {
           </div>
         </section>
       )}
-    </div>
+    </>
   )
 }

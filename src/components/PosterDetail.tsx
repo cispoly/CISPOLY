@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from '@/lib/router'
 import { motion } from 'framer-motion'
 import {
@@ -184,8 +184,17 @@ function AbstractBlocks({ abstract, abstractEn }: { abstract?: string; abstractE
 function PosterEmbed({ posterUrl, posterTitle }: { posterUrl: string; posterTitle?: string }) {
   const { t, lang } = useI18n()
   const [loaded, setLoaded] = useState(false)
+  const [isCompactViewport, setIsCompactViewport] = useState(false)
   const src = posterUrl + (posterUrl.includes('?') ? '&' : '?') + 'lang=' + lang
   const mobilePosterSrc = posterUrl.replace(/\/poster\.html$/, `/poster_${lang}.png`)
+
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 1023px)')
+    const update = () => setIsCompactViewport(media.matches)
+    update()
+    media.addEventListener?.('change', update)
+    return () => media.removeEventListener?.('change', update)
+  }, [])
 
   return (
     <motion.section
@@ -199,7 +208,7 @@ function PosterEmbed({ posterUrl, posterTitle }: { posterUrl: string; posterTitl
           <BarChart3 size={14} /> {t('poster.posterLabel')}
         </h2>
         <a
-          href={src}
+          href={isCompactViewport ? mobilePosterSrc : src}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 rounded-full border border-line bg-canvas px-4 py-1.5 text-xs font-medium text-brand-600 transition hover:border-brand-200"
@@ -207,9 +216,9 @@ function PosterEmbed({ posterUrl, posterTitle }: { posterUrl: string; posterTitl
           <ExternalLink size={13} /> {t('poster.openInNewTab')}
         </a>
       </div>
-      <div className="relative bg-stone-50 md:h-[90vh] md:min-h-[600px]">
+      <div className="relative bg-stone-50 lg:h-[90vh] lg:min-h-[600px]">
         {/* 海报 HTML 使用 2100px 固定画布，移动端直接展示对应语言的成品图，避免 iframe 内部缩放后文字和栅格互相挤压。 */}
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <img
             src={mobilePosterSrc}
             alt={posterTitle || t('poster.posterLabel')}
@@ -217,7 +226,7 @@ function PosterEmbed({ posterUrl, posterTitle }: { posterUrl: string; posterTitl
             loading="lazy"
           />
         </div>
-        <div className="relative hidden h-full md:block">
+        <div className="relative hidden h-full lg:block">
           {!loaded && (
             <div className="absolute inset-0 flex items-center justify-center text-xs text-inkSoft">
               {t('poster.loading')}

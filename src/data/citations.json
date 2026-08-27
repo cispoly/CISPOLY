@@ -132,11 +132,12 @@
       "conclusion": "本研究评估 PAX1/JAM3 甲基化对 ≥50 岁绝经后转诊女性的诊断价值：CIN2+ 检测灵敏度 93.2%、特异度 93.6%，优于液基细胞学及指南联合方案，并识别出 2 例双阴性腺癌及 7 例 LBC 漏诊的非 16/18 感染。甲基化检测可作为补充方法，提高绝经后女性宫颈癌诊断准确性。"
     },
     "16_vaginal_dysbiosis_biomarker": {
-      "journal": "Diagnostics",
+      "journal": "BMC Women's Health",
       "year": 2026,
-      "volume": "16",
-      "pages": "174",
-      "title": "Clinical Validation of DNA Methylation Detection in Cervical Exfoliated Cells for Endometrial Cancer in Women with Suspected Lesions",
+      "volume": "26",
+      "pages": "108",
+      "doi": "10.1186/s12905-026-04285-6",
+      "title": "PAX1/JAM3 methylation in cervical exfoliated cells: a robust diagnostic biomarker for cervical high-grade lesions associated with vaginal dysbiosis",
       "affiliation": "Beijing Anzhen Hospital",
       "conclusion": "本研究评估 PAX1/JAM3 甲基化（CISCER）与阴道微生态的关联：CIN2+、CIN3+ 检测 AUC 分别为 0.826、0.852，特异度 89.1%，显著优于 hrHPV 检测（7.3%）；甲基化升高与乳杆菌减少、加德纳菌富集等菌群失调相关。CISCER 可作为 hrHPV 阳性女性风险分层的分子分诊工具。"
     },
@@ -209,11 +210,12 @@
       "conclusion": "研究纳入 312 例 HR-HPV 阳性患者，PAX1m/JAM3m 甲基化检测诊断 CIN2+ 的敏感度 91.8%、特异度 90.7%、AUC 0.912，优于细胞学与 HPV16/18 分型；以甲基化阳性作为阴道镜转诊标准，每 1.22 次转诊检出 1 例 CIN2+，转诊率降低约 19.2%。甲基化检测是 HR-HPV 阳性人群有前景的分流策略。"
     },
     "26_diagnostic_accuracy_meta": {
-      "journal": "Int J Cancer",
-      "year": 2025,
-      "volume": "158",
-      "pages": "1116–1125",
-      "title": "Enhanced diagnostic accuracy of high-grade cervical intraepithelial neoplasia in postmenopausal women through PAX1/JAM3 methylation analysis",
+      "journal": "European Journal of Cancer",
+      "year": 2026,
+      "volume": "243",
+      "pages": "116823",
+      "doi": "10.1016/j.ejca.2026.116823",
+      "title": "Diagnostic testing accuracy of DNA methylation tests for detection of high-grade cervical intraepithelial neoplasia and cervical cancer: A systematic review and meta-analysis",
       "affiliation": "Imperial College London",
       "conclusion": "该meta分析纳入51项研究、近3万名HPV阳性女性，评估DNA甲基化标志物诊断效能。JAM3、C13ORF18、PAX1等标志物诊断优势比最高，在保持高特异度的同时有良好CIN3+检出敏感性，有望减少阴道镜转诊，也可用于不适合细胞学的自采样标本分流。"
     },
@@ -290,11 +292,12 @@
       "conclusion": "EndoMethy-I试验经探索队列（40对样本）筛选高甲基化基因，在训练集347例与验证集149例中评估宫颈细胞学甲基化标志物检测子宫内膜癌的价值。CDO1、NEFM、CELF4单独AUC分别为0.93、0.91、0.89，三者联合灵敏度94.6%、特异度92.8%，优于其他无创评估方法，为内膜癌检测提供可靠安全的新策略。"
     },
     "12_self_collected_concordance": {
-      "journal": "Int J Cancer",
-      "year": 2025,
-      "volume": "158",
-      "pages": "1116–1125",
-      "title": "Enhanced diagnostic accuracy of high-grade cervical intraepithelial neoplasia in postmenopausal women through PAX1/JAM3 methylation analysis",
+      "journal": "JCO Precision Oncology",
+      "year": 2026,
+      "volume": "10",
+      "pages": "e2501081",
+      "doi": "10.1200/PO-25-01081",
+      "title": "Diagnostic Accuracy and Concordance of Self-Collected Cervical CDO1 and CELF4 Methylation Testing Compared With Physician Sampling for Endometrial Cancer Detection",
       "affiliation": "The Second Xiangya Hospital of Central South University",
       "conclusion": "横断面研究纳入142例：自采与医采样本CDO1/CELF4甲基化显著相关（R=0.79/0.76），检测内膜癌AUC 0.930 vs 0.896，绝经前后稳定；自采样无创可靠，可提高内膜癌早期筛查可及性。"
     },

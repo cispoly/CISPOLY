@@ -43,12 +43,12 @@
     "summary": "宫颈腺癌因位置隐蔽、传统检测敏感性低而难以早期诊断。研究发现PAX1和JAM3基因在宫颈腺癌中高度甲基化，其双基因甲基化检测具有优异的诊断敏感性和特异性，可作为新型分子标志物用于宫颈腺癌的筛查、诊断和精准管理，为临床防治提供新思路。"
   },
   "17_reply_comments": {
-    "journal": "International Journal of Cancer",
-    "year": 2025,
-    "doi": "10.1002/ijc.70245",
-    "affiliation": "The First Hospital of Hunan University of Chinese Medicine",
-    "title": "Enhanced diagnostic accuracy of high-grade cervical intraepithelial neoplasia in postmenopausal women through PAX1/JAM3 methylation analysis",
-    "abstract": "This study aimed to assess the diagnostic-support and triage value of PAX1/JAM3 methylation testing for identifying high-grade cervical lesions among postmenopausal women referred for colposcopy. A total of 216 women aged ��50?years who underwent colposcopy due to positive high-risk human papillomavirus (hrHPV)/cytology detection and/or abnormal clinical symptoms were included, and 212 women aged <50?years matched 1:1 by hrHPV and cytology results as the control group. The effectiveness of PAX1/JAM3 methylation in detecting high-grade cervical intraepithelial neoplasia (CIN) was compared to traditional screening methods. PAX1/JAM3 methylation showed a sensitivity of 93.2%[85.7%-100%] for detecting CIN2+ lesions (97.2%[91.9%-100%] for CIN3+), with a specificity of 93.6%[89.9%-97.3%] for CIN1-lesions, outperforming liquid-based cytology (LBC) (CIN2+/CIN3+ sensitivity: 75%[60.9%-89.1%]; specificity: 52.3%[44.9%-59.8%]) and the combination of LBC and hrHPV tests according to current guidelines (CIN2+/CIN3+ sensitivity: 81.8%[70.4%-93.2%]/83.3%[71.2%-95.5%]; specificity: 45.3%[37.9%-52.8%]). Methylation detection successfully identified two adenocarcinoma cases with negative hrHPV and LBC, as well as 7 patients with non-16/18 hrHPV infection that were missed by LBC. The methylation levels of PAX1 and JAM3 were elevated in elderly women with CIN2+ compared to younger women, and showed no association with HPV types. In conclusion, PAX1/JAM3 methylation testing showed promising diagnostic-support performance among postmenopausal women referred for colposcopy, suggesting potential utility as a supplementary detection method to improve diagnostic accuracy in older women.",
+    "journal": "Int J Cancer",
+    "year": 2026,
+    "doi": "10.1002/ijc.70484",
+    "affiliation": "Changsha Blood Center",
+    "title": "Reply to: Comments on \"Enhanced Diagnostic Accuracy of High-Grade Cervical Intraepithelial Neoplasia in Postmenopausal Women Through PAX1/JAM3 Methylation Analysis\"",
+    "abstract": "This letter responds to comments on the authors' study of PAX1/JAM3 methylation in postmenopausal women. It clarifies that the study used a colposcopy-referred cohort, acknowledges the resulting risk of spectrum and referral bias, and limits interpretation to diagnostic-support and triage performance rather than future-risk prediction. The letter reports high specificity and sensitivity for CIN2+ in women aged 50 years or older, notes that methylation levels tracked lesion severity without significant differences by HPV16/18 status, and emphasizes the need for prospective population-based, multicenter, and longitudinal validation. It also highlights potential use of the assay for triaging borderline cases such as hrHPV-positive/cytology-negative women and those with inaccessible transformation zones.",
     "summary": "PAX1/JAM3甲基化检测在绝经后女性宫颈病变诊断中表现优异。研究对216名≥50岁和212名<50岁女性进行对比分析，发现该检测对高级别宫颈上皮内瘤变的敏感性达93.2%-97.2%，特异性93.6%，均优于传统液基细胞学和HPV联合检测。该方法还能识别HPV阴性腺癌和非16/18型HPV感染病例，为绝经后女性宫颈癌筛查提供有效补充手段。"
   },
   "18_early_diagnosis_effectiveness": {

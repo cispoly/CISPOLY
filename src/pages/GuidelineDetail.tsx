@@ -38,11 +38,14 @@ export const meta: MetaFunction<typeof loader> = ({ loaderData, location }) => {
   if (!loaderData) return [{ title: 'Guidelines | CISPOLY' }]
   const { guideline, lang } = loaderData
   const title = lang === 'en' && guideline.titleEn ? guideline.titleEn : guideline.title
+  const hasMetadataExcerpt = /^\s*title\s*:\s*.*\bsource\s*:/is.test(guideline.excerpt || '')
+  const descriptionZh = hasMetadataExcerpt ? guideline.abstract : guideline.excerpt
+  const descriptionEn = guideline.excerptEn || (hasMetadataExcerpt ? guideline.abstractEn || guideline.abstract : guideline.excerpt)
   return pageMeta(location.pathname, {
     titleZh: `${guideline.title} | CISPOLY Guidelines`,
     titleEn: `${guideline.titleEn || guideline.title} | CISPOLY Guidelines`,
-    descriptionZh: guideline.excerpt,
-    descriptionEn: guideline.excerptEn || guideline.excerpt,
+    descriptionZh,
+    descriptionEn,
     image: guideline.cover,
     type: 'article',
     structuredData: {

@@ -245,6 +245,7 @@ const zh: Dict = {
 
   // ---- PosterDetail / 文献详情 ----
   'poster.abstractLabel': '摘要 · Abstract',
+  'poster.abstractUnavailable': '该文献原文仅提供中文摘要，当前英文页展示上方英文 TL;DR。',
   'poster.posterLabel': '文献海报 · Poster',
   'poster.tldr': 'TL;DR 摘要总结',
   'poster.openInNewTab': '在新窗口查看',
@@ -545,6 +546,7 @@ const en: Dict = {
 
   // ---- PosterDetail ----
   'poster.abstractLabel': 'Abstract',
+  'poster.abstractUnavailable': 'The source publication provides only a Chinese abstract; the English TL;DR above is shown instead.',
   'poster.posterLabel': 'Poster',
   'poster.tldr': 'TL;DR Summary',
   'poster.openInNewTab': 'Open in new tab',

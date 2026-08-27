@@ -30,7 +30,7 @@
     "affiliationEn": "Beijing Anzhen Hospital"
   },
   "18_early_diagnosis_effectiveness": {
-    "titleEn": "Effectiveness analysis and clinical application potential exploration of combined detection of PAX1/JAM3 gene methylation in early diagnosis of cervical cancer",
+    "titleEn": "Effectiveness analysis and clinical application potential exploration of combined detection of PAX1/JAM3 gene methylation in early diagnosis of cervical precancerous lesions",
     "summaryEn": "Combined PAX1/JAM3 gene methylation testing has important value in early diagnosis of cervical precancerous lesions. Methylation testing of 431 cervical exfoliated cell samples showed an area under the curve of 0.89 for diagnosing CIN2+, with 83.1% sensitivity and 88.8% specificity, superior to traditional cytology, demonstrating clinical application potential in HPV triage management.",
     "affiliationEn": "Tumor Hospital Affiliated to Xinjiang Medical University"
   },
@@ -127,9 +127,9 @@
     "affiliationEn": "The First Hospital of Hunan University of Chinese Medicine"
   },
   "17_reply_comments": {
-    "titleEn": "Enhanced diagnostic accuracy of high-grade cervical intraepithelial neoplasia in postmenopausal women through PAX1/JAM3 methylation analysis",
-    "summaryEn": "PAX1/JAM3 methylation testing performs excellently in diagnosing cervical lesions in postmenopausal women. Comparative analysis of 216 women aged ≥50 and 212 women aged <50 found the test achieved 93.2%-97.2% sensitivity and 93.6% specificity for high-grade cervical intraepithelial neoplasia, superior to traditional liquid-based cytology and combined HPV testing. The method also identifies HPV-negative adenocarcinoma and non-16/18 HPV infection cases, providing an effective supplementary tool for cervical cancer screening in postmenopausal women.",
-    "affiliationEn": "The First Hospital of Hunan University of Chinese Medicine"
+    "titleEn": "Reply to: Comments on \"Enhanced Diagnostic Accuracy of High-Grade Cervical Intraepithelial Neoplasia in Postmenopausal Women Through PAX1/JAM3 Methylation Analysis\"",
+    "summaryEn": "This letter responds to comments on the authors' study of PAX1/JAM3 methylation in postmenopausal women. It clarifies the referral-based study design and its limitations, reports diagnostic-support performance in women aged 50 years or older, and emphasizes the need for prospective population-based validation. The authors highlight potential use of the assay for triaging borderline cases such as hrHPV-positive/cytology-negative women and those with inaccessible transformation zones.",
+    "affiliationEn": "Changsha Blood Center"
   },
   "19_hrhpv_diagnostic_value": {
     "titleEn": "Diagnostic value of PAX1/JAM3 gene methylation for cervical cancer in HR-HPV-infected women",

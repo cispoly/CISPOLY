@@ -328,7 +328,7 @@ function replaceFrontmatterTags(raw, tags) {
   const lines = fm[1].split('\n')
   // 找到 tags: 行，删除其后紧跟的 - item 行，再插入新列表
   const idx = lines.findIndex((l) => l.startsWith('tags:'))
-  let out = []
+  let out
   if (idx >= 0) {
     out = lines.slice(0, idx)
     let i = idx + 1

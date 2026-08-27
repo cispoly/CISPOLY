@@ -218,12 +218,14 @@
       <div class="panel">
         <h3><span class="num">5</span><span data-i18n="s5t">Diagnostic Performance — CIN2+</span></h3>
         <table class="minitable">
-          <tr><th data-i18n="t_h1">Method</th><th data-i18n="t_h2">Se %</th><th data-i18n="t_h3">Sp %</th><th data-i18n="t_h4">AUC</th></tr>
-          <tr><td class="highlight" data-i18n="t_r1a">PAX1m/JAM3m</td><td class="highlight">91.8</td><td class="highlight">90.7</td><td class="highlight">0.912</td></tr>
-          <tr><td data-i18n="t_r2a">Cytology ≥ASC-US</td><td>—</td><td>—</td><td>lower</td></tr>
-          <tr><td data-i18n="t_r3a">HPV16/18(+)</td><td>—</td><td>—</td><td>lower</td></tr>
+          <tr><th data-i18n="t_h1">Method</th><th data-i18n="t_h2">Se %</th><th data-i18n="t_h3">Sp %</th><th data-i18n="t_h4">PPV %</th><th data-i18n="t_h5">NPV %</th><th data-i18n="t_h6">AUC</th></tr>
+          <tr><td class="highlight" data-i18n="t_r1a">PAX1m/JAM3m positive</td><td class="highlight">91.8</td><td class="highlight">90.7</td><td class="highlight">81.8</td><td class="highlight">96.0</td><td class="highlight">0.912</td></tr>
+          <tr><td data-i18n="t_r2a">PAX1m positive</td><td>88.8</td><td>93.0</td><td>85.3</td><td>94.8</td><td>0.909</td></tr>
+          <tr><td data-i18n="t_r3a">JAM3m positive</td><td>85.7</td><td>93.5</td><td>85.7</td><td>93.5</td><td>0.896</td></tr>
+          <tr><td data-i18n="t_r4a">Liquid-based cytology ≥ASC-US</td><td>73.5</td><td>54.2</td><td>42.4</td><td>81.7</td><td>0.638</td></tr>
+          <tr><td data-i18n="t_r5a">HPV-16/18 positive</td><td>55.1</td><td>73.4</td><td>48.6</td><td>78.1</td><td>0.642</td></tr>
         </table>
-        <div class="tnote" data-i18n="s5note">Methylation outperforms cytology, HPV16/18 genotyping &amp; their combinations.</div>
+        <div class="tnote" data-i18n="s5note">Core single-test metrics from the original Table 2; combined strategies are reported in the source article.</div>
       </div>
 
       <div class="panel grow">
@@ -285,9 +287,9 @@
       pg0: "Dual-gene positivity by grade", pg1: "Normal/CIN1", pg2: "CIN2", pg3: "CIN3", pg4: "Cancer", pg5: "derived from Fig. 1A (representative) · PAX1 normal 0% → cancer 94.4%",
       s4a: "<strong>Trend</strong>: dual-gene positivity rises from normal/CIN1 to CIN3 & cancer.",
       s5t: "Diagnostic Performance — CIN2+",
-      t_h1: "Method", t_h2: "Se %", t_h3: "Sp %", t_h4: "AUC",
-      t_r1a: "PAX1m/JAM3m", t_r2a: "Cytology ≥ASC-US", t_r3a: "HPV16/18(+)",
-      s5note: "Methylation outperforms cytology, HPV16/18 genotyping & their combinations.",
+      t_h1: "Method", t_h2: "Se %", t_h3: "Sp %", t_h4: "PPV %", t_h5: "NPV %", t_h6: "AUC",
+      t_r1a: "PAX1m/JAM3m positive", t_r2a: "PAX1m positive", t_r3a: "JAM3m positive", t_r4a: "Liquid-based cytology ≥ASC-US", t_r5a: "HPV-16/18 positive",
+      s5note: "Core single-test metrics from the original Table 2; combined strategies are reported in the source article.",
       s6t: "Referral Efficiency",
       rb1: "Cytology ≥ASC-US", rb2: "PAX1m/JAM3m",
       s6a: "<strong>1.22 referrals / CIN2+</strong> — efficient colposcopy triage.",
@@ -327,9 +329,9 @@
       pg0: "双基因阳性率按级别", pg1: "正常/CIN1", pg2: "CIN2", pg3: "CIN3", pg4: "癌", pg5: "据图 1A 绘制（代表性）· PAX1 正常 0% → 癌 94.4%",
       s4a: "<strong>趋势</strong>：双基因阳性率自正常/CIN1 升至 CIN3 与癌。",
       s5t: "诊断性能 —— CIN2+",
-      t_h1: "方法", t_h2: "灵敏度%", t_h3: "特异度%", t_h4: "AUC",
-      t_r1a: "PAX1m/JAM3m", t_r2a: "细胞学 ≥ASC-US", t_r3a: "HPV16/18(+)",
-      s5note: "甲基化优于细胞学、HPV16/18 分型及其联合。",
+      t_h1: "方法", t_h2: "灵敏度%", t_h3: "特异度%", t_h4: "PPV%", t_h5: "NPV%", t_h6: "AUC",
+      t_r1a: "PAX1m/JAM3m 阳性", t_r2a: "PAX1m 阳性", t_r3a: "JAM3m 阳性", t_r4a: "液基细胞学 ≥ASC-US", t_r5a: "HPV-16/18 阳性",
+      s5note: "核心单项检测数据来自原文 Table 2；联合策略数据请参见原文。",
       s6t: "转诊效率",
       rb1: "细胞学 ≥ASC-US", rb2: "PAX1m/JAM3m",
       s6a: "<strong>1.22 次转诊 / CIN2+</strong>——高效的阴道镜分诊。",

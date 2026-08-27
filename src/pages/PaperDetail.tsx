@@ -1,7 +1,7 @@
 import type { LoaderFunctionArgs, MetaFunction, ShouldRevalidateFunctionArgs } from 'react-router'
 import { useLoaderData } from '@/lib/router'
 import PosterDetail from '@/components/PosterDetail'
-import { getPaper, getPaperAbstract, getPaperAuthors, getPaperCitation, getPaperJournal, papers } from '@/lib/data/papers'
+import { getPaper, getPaperAbstract, getPaperAuthors, getPaperCitation, getPaperJournal, hasFullEnglishAbstract, papers } from '@/lib/data/papers'
 import { getPdfFields } from '@/lib/content.server'
 import { useI18n } from '@/lib/i18n'
 import { getCancerLabel } from '@/types'
@@ -38,9 +38,7 @@ export const meta: MetaFunction<typeof loader> = ({ loaderData, location }) => {
   if (!loaderData) return [{ title: 'Research | CISPOLY' }]
   const { paper, lang } = loaderData
   const title = lang === 'en' && paper.titleEn ? paper.titleEn : paper.title
-  const englishDescription = paper.abstractEn && !/[\u3400-\u9fff]/.test(paper.abstractEn)
-    ? paper.abstractEn
-    : paper.summaryEn || paper.excerpt
+  const englishDescription = getPaperAbstract(paper, 'en') || paper.excerpt
   return pageMeta(location.pathname, {
     titleZh: `${paper.title} | CISPOLY Research`,
     titleEn: `${paper.titleEn || paper.title} | CISPOLY Research`,
@@ -69,6 +67,7 @@ export default function PaperDetail() {
   // 摘要按页面语言选择：英文页有 abstractEn 则用英文，否则回退主摘要；中文页用主摘要（中英双摘要文献主摘要即中文）
   const abstract = lang === 'en' ? getPaperAbstract(paper, lang) : (paper.abstract || parsed?.abstract)
   const summary = (lang === 'en' && paper.summaryEn ? paper.summaryEn : paper.summary) || ''
+  const abstractNote = lang === 'en' && !hasFullEnglishAbstract(paper) ? t('poster.abstractUnavailable') : undefined
   const citation = getPaperCitation(paper, lang)
 
   const posterUrl = `/posters/${paper.cancer}/${encodeURIComponent(paper.id)}/poster.html`
@@ -87,6 +86,7 @@ export default function PaperDetail() {
       doi={doi}
       citation={citation || undefined}
       abstract={abstract || undefined}
+      abstractNote={abstractNote}
       summary={summary || undefined}
       posterUrl={posterUrl}
       posterTitle={title}

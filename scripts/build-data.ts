@@ -65,6 +65,36 @@ function cleanHtml(s: string): string {
     .trim()
 }
 
+/** 修复旧数据导入时由字符集转换产生的数学符号/标点乱码。 */
+function repairTextArtifacts(s: string): string {
+  return s
+    .replace(/\uFFFD\uFFFDmarkers\uFFFD\uFFFD/g, '“markers”')
+    .replace(/\uFFFD\uFFFDCtPAX1\?\uFFFD\?6\.6/g, 'ΔCt PAX1 ≤ 6.6')
+    .replace(/\uFFFD\uFFFD?Ct/g, 'ΔCt')
+    .replace(/\uFFFDR\?CIN2/g, '≥ CIN2')
+    .replace(/\uFFFD\uFFFD\?CIN1/g, '≤ CIN1')
+    .replace(/(ΔCt\s*(?:PAX1|JAM3))\?\uFFFD\uFFFD\?/g, '$1 ≤ ')
+    .replace(/of\s+\uFFFD\uFFFDASCUS/g, 'of ≤ ASCUS')
+    .replace(/LBC\?\uFFFD\uFFFD\?ASCUS/g, 'LBC ≥ ASCUS')
+    .replace(/\uFFFD\uFFFDatypical/g, '≥ atypical')
+    .replace(/\baged\s+\uFFFD\uFFFD50\?years/g, 'aged ≥ 50 years')
+    .replace(/\baged\?\uFFFD\uFFFD\?30/g, 'aged ≥ 30')
+    .replace(/\baged\uFFFD\uFFFD50/g, 'aged ≥ 50')
+    .replace(/BMI\)\s+\uFFFD\uFFFD25\?kg\/m2/g, 'BMI) ≥ 25 kg/m2')
+    .replace(/endometrial thickness\s+\uFFFD\uFFFD11\?mm/g, 'endometrial thickness ≥ 11 mm')
+    .replace(/(CDO1m|CELF4m)\uFFFD?ΔCt\uFFFD\uFFFD/g, '$1ΔCt≤')
+    .replace(/(\d)\s+\uFFFD\uFFFD\s+(\d)/g, '$1 ± $2')
+    .replace(/(\d)\uFFFDC(?=\d|[A-Z])/g, '$1–')
+    .replace(/\?\+\?/g, '+')
+    .replace(/\?=\?/g, '=')
+    .replace(/\?<\?/g, '<')
+    .replace(/\?>\?/g, '>')
+    .replace(/\?Ct/g, 'ΔCt')
+    .replace(/\?A/g, ' A')
+    .replace(/\?\uFFFD\?/g, ' ≥ ')
+    .replace(/\uFFFD\uFFFD(?=characterized|and\s+are)/g, '—')
+}
+
 /** 从 markdown 提取完整摘要：多级标签回退（Abstract → 中文摘要 → Simple Summary → 结构化标签 → Keywords 前段） */
 function extractAbstract(raw: string): string {
   // 终止符：下一标题 / 关键词 / 引用 / 版权 / DOI 链接 / 期刊元数据 / 中文章节 / 表格 / 图片 / 网页残留
@@ -113,7 +143,7 @@ function extractAbstractZh(raw: string): string {
 
 /** 摘要清洗：HTML 标签 + markdown 强调符号（*PAX* 1 → PAX 1 → PAX1；*PAX* 1/ *JAM* 3 → PAX1/JAM3） */
 function cleanAbstract(s: string): string {
-  return cleanHtml(s)
+  return repairTextArtifacts(cleanHtml(s))
     .replace(/[*_`#>|]/g, '')
     .replace(/\b(PAX|JAM)\s+(\d+)/g, '$1$2')
     .replace(/([A-Za-z0-9])\s*\/\s*(?=[A-Za-z0-9])/g, '$1/')
@@ -337,7 +367,7 @@ function buildPapers() {
         if (typeof cite.doi === 'string') p.doi = cite.doi || undefined
         // 单位/摘要/引用串：手工修正覆盖（citations.json 为权威修正层）
         if (cite.affiliation) p.affiliation = cite.affiliation
-        if (cite.abstract) p.abstract = cleanHtml(cite.abstract).slice(0, 6000)
+        if (cite.abstract) p.abstract = repairTextArtifacts(cleanHtml(cite.abstract)).slice(0, 6000)
         if (cite.conclusion) p.conclusion = cleanHtml(cite.conclusion)
         if (cite.citation) p.citation = cite.citation
       }
@@ -422,7 +452,7 @@ function buildPapers() {
       if (ov.journal) p.journal = ov.journal as string
       if (ov.year) p.year = ov.year as number
       if (ov.doi) p.doi = ov.doi as string
-      if (ov.abstract) p.abstract = ov.abstract as string
+      if (ov.abstract) p.abstract = repairTextArtifacts(ov.abstract as string)
       if (ov.affiliation) p.affiliation = ov.affiliation as string
       if (ov.summary) p.summary = ov.summary as string
       ovCount++
@@ -474,13 +504,14 @@ const GUIDELINE_EXTRA_CANCERS: Record<string, GuidelineCancer[]> = {
 
 function parseGuideline(filePath: string, dirKey: string): Guideline {
   const raw = readMd(filePath)
+  const { body: bodyAfterFm } = parseFrontmatter(raw)
   const name = basename(filePath)
   const id = name.replace(/\.md$/, '')
   const meta = GUIDELINE_DIR_MAP[dirKey as keyof typeof GUIDELINE_DIR_MAP]
 
   // 去除文件名前缀编号 "12_xxx_" 或 "9_单行本_"
   let title = ''
-  const h1 = raw.match(/^#\s+(.+)$/m)
+  const h1 = bodyAfterFm.match(/^#\s+(.+)$/m)
   if (h1) title = cleanHtml(h1[1])
   if (!title) {
     // 从文件名提取
@@ -493,29 +524,29 @@ function parseGuideline(filePath: string, dirKey: string): Guideline {
 
   // 发布机构：标题后或 DOI 行附近
   let publisher = ''
-  const pubMatch = raw.match(/(?:学会|协会|分会|委员会|医学分会|专家组|共识专家组|编委会|中华医学会[^\n]{0,20})/g)
+  const pubMatch = bodyAfterFm.match(/(?:学会|协会|分会|委员会|医学分会|专家组|共识专家组|编委会|中华医学会[^\n]{0,20})/g)
   if (pubMatch) publisher = [...new Set(pubMatch)].slice(0, 2).join('、')
 
   let year: number | null = null
-  const yMatch = raw.match(/20(?:2[0-5]|[0-9])\b/)
+  const yMatch = bodyAfterFm.match(/20(?:2[0-5]|[0-9])\b/)
   if (yMatch) year = parseInt(yMatch[0], 10)
 
   // DOI：从标题附近（head 区）提取，避免抓到参考文献区的 DOI
-  const titleLineIdx = raw.split('\n').findIndex((l) => /^#\s+/.test(l))
-  const headLines = raw.split('\n').slice(Math.max(titleLineIdx, 0), titleLineIdx >= 0 ? titleLineIdx + 60 : 60)
+  const titleLineIdx = bodyAfterFm.split('\n').findIndex((l) => /^#\s+/.test(l))
+  const headLines = bodyAfterFm.split('\n').slice(Math.max(titleLineIdx, 0), titleLineIdx >= 0 ? titleLineIdx + 60 : 60)
   const doiMatch = headLines.join('\n').match(/DOI[:：]?\s*(10\.\d{4,}\/[^\s)"']+)/i)
   const doi = doiMatch ? cleanDoi(doiMatch[1]) : undefined
 
   // 摘要：优先【摘要】/ [摘要] 标记行；无标记时跳过元数据/机构/关键词行取首个实质段
   let abstract = ''
-  const absMatch = raw.match(/(?:【\s*摘\s*要\s*】|\[摘要\]|摘要[:：])\s*([^\n]+)/)
+  const absMatch = bodyAfterFm.match(/(?:【\s*摘\s*要\s*】|\[摘要\]|摘要[:：])\s*([^\n]+)/)
   if (absMatch) {
-    abstract = cleanHtml(absMatch[1]).slice(0, 2000)
+    abstract = repairTextArtifacts(cleanHtml(absMatch[1])).slice(0, 2000)
   } else {
     const SKIP =
       /^(T\/|2\d{3}|前言|目录|摘要|关键词|Key\s*words|作者[:：]|网络首发|DOI|专家共识DOI|中图分类号|文献标志码|Fund|通信作者|引用格式|题目[:：]|实践指南注册|本文件(按照|由|请注意)|Received|Available online|附录|参考文献|^[A-Z][a-zA-Z’'\-]+(?: [A-Z][a-zA-Z’'\-]+){0,2}<sup>|\.{4,})/
     const ORG = /(分会|委员会|学会|协会|专家组|编委会|起草|提出|发布|实施|归口|基金会|协作组)/
-    const lines2 = raw.split('\n')
+    const lines2 = bodyAfterFm.split('\n')
     let picked = ''
     let pickedIdx = -1
     for (let i = 0; i < lines2.length; i++) {
@@ -527,7 +558,7 @@ function parseGuideline(filePath: string, dirKey: string): Guideline {
       break
     }
     if (picked) {
-      abstract = cleanHtml(stripMd(picked)).slice(0, 2000)
+      abstract = repairTextArtifacts(cleanHtml(stripMd(picked))).slice(0, 2000)
       // 拼接紧随的内容概述句（最多 2 句；空行/标题跳过）
       const more: string[] = []
       for (const l of lines2.slice(pickedIdx + 1)) {
@@ -537,7 +568,7 @@ function parseGuideline(filePath: string, dirKey: string): Guideline {
         more.push(t)
         if (more.length >= 2) break
       }
-      if (more.length) abstract = abstract + ' ' + cleanHtml(stripMd(more.join(' '))).slice(0, 2000)
+      if (more.length) abstract = abstract + ' ' + repairTextArtifacts(cleanHtml(stripMd(more.join(' ')))).slice(0, 2000)
     }
   }
 
@@ -615,6 +646,9 @@ function buildGuidelines() {
       }
     }
   }
+
+  // 摘要可能由 citations.json 在上面补正；excerpt 必须始终从最终摘要生成，避免残留 frontmatter/脏文本。
+  for (const g of items) g.excerpt = g.abstract.slice(0, 300) || g.title
 
   // 引用格式：从引用列表 md 匹配写入 citation 字段（写盘前）
   const citHit = attachCitations(items) + patchCitations(items)
@@ -1173,6 +1207,11 @@ function attachCitations(items: { title: string; citation?: string }[]) {
 
 // 标题与引用列表不一致时的显式兜底（id 片段 → 引用串）
 const CITATION_PATCHES: Record<string, string> = {
+  '25_transformation_zone_utility': 'Zhong, X. et al. Clinical utility of cytological methylation assay in cervical cancer screening across various cervical transformation zones. Int J Cancer (2026).',
+  '30_cin3_like_scc': 'Li, M. et al. Preliminary study on PAX1/JAM3 methylation and HPV viral load in CIN3-like squamous cell carcinoma: Are there differences from CIN3 and early invasive carcinoma? Clin Epigenet (2026). doi:10.1186/s13148-026-02201-1.',
+  '24_vaginal_microbiome': 'Wu, S. et al. Correlation study on the impact of vaginal microbiome on cervical cell DNA methylation levels and cervical lesions. Chinese Journal of Laboratory Medicine (2026).',
+  '3_multicenter_screening': 'Shang, X. et al. A multicenter study on the accuracy of PAX1/JAM3 dual-gene methylation testing for screening cervical cancer. Zhonghua Yi Xue Za Zhi 104, 1852–1859 (2024).',
+  '5_jam3_pax1_hsil_diagnosis': 'Li, X. et al. High-grade cervical lesions diagnosed by JAM3/PAX1 methylation in high-risk human papillomavirus-infected patients. Zhong Nan Da Xue Xue Bao Yi Xue Ban 48, 1820–1829 (2023).',
   '18_Effectiveness': 'Fan, G. et al. Effectiveness analysis and clinical application potential exploration of combined detection of PAX1/JAM3 gene methylation in early diagnosis of cervical precancerous lesions. Clin Epigenetics 17, 30 (2025).',
   '25_Intl_Journal_of_Cancer_-_2026_-_Zhong': 'Zhong, X. et al. Clinical utility of cytological methylation assay in cervical cancer screening across various cervical transformation zones. Int J Cancer (2026).',
   '24_阴道微生态': '吴思, 吕卫刚, 赵行平, 马洁稚, 徐大宝, 章迪. 阴道微生态影响宫颈细胞DNA甲基化水平与宫颈病变的相关性研究. 中华检验医学杂志 49, 172–180 (2026).',

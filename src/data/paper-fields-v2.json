@@ -181,7 +181,7 @@
       "background": "Cervical cancer, classified as a gynecological tumor, poses a statistics, it has become the fourth most common cancer, with an estimated 661,000 new cases and 348,000 deaths globally by 2022<sup>1</sup>. Notably, China ranks first in the world for new cervical cancer cases, with 150,700 reported, and second for deaths, totaling 55,700<sup>1,2</sup>. Therefore, early detection and treatment of cervical cancer are crucial for women's health. The progression of cervical cancer typically begins with an infection by the human papillomavirus (HPV). If this infection persists, it may lead to the deve",
       "results": "Table 1 presents the general characteristics of the study subjects. A total of 431 female patients were included in this study, comprising 81 in the normal group, 161 in the CIN1 group, 77 in the CIN2 group, 96 in the CIN3 group, and 16 in the CC group. According to the age screening criteria established by the World Health Organization, there were 175 participants under 45 years of age and 256 participants aged 45 and above. The age distribution for each group was as follows: normal group 47.00 years (IQR: 35.50-53.50); CIN1 group 49.00 years (IQR: 38.00-56.00); CIN2 group 51.00 years (IQR: 4"
     },
-    "title": "Efectiveness analysis and clinical application potential exploration of combined detection of PAX1/JAM3 gene methylation in early diagnosis of cervical precancerous lesions"
+    "title": "Effectiveness analysis and clinical application potential exploration of combined detection of PAX1/JAM3 gene methylation in early diagnosis of cervical precancerous lesions"
   },
   "19_hrhpv_diagnostic_value": {
     "keyData": "PAX1 $^{m}$ /JAM3 $^{m}$ 检测诊断宫颈癌的灵敏度、特异性、阳性预测值(PPV)、阴性预测值(NPV)分别为 86.3%、91",
@@ -452,7 +452,7 @@
       "methods": "This cross-sectional study enrolled women who underwent both HPV and cytology testing during outpatient opportunistic screenings at Zhejiang Provincial People’s Hospital, from March 2022 to January 2024. It is approved by the Ethics Committee of Zhejiang Provincial People’s Hospital (No.2021SJ020), and which strictly follows the ethical norms of institutions and the National Research Council regarding human subject research. All participants have approved the written informed consent for this study. Only those with cytological ASC-US were included for the study (Fig. 1). The inclusion criteria",
       "results": "A total of 322 women with cytological ASC-US who were referred for colposcopy participated in this study. Their baseline clinical and molecular characteristics are summarized in Table 1. The cohort has a median age of 40 years, ranging from 20 to 75 years old. Of these cases, 80 tested positive for HPV 16 /18, 206 for non-16/18 hrHPV, and 36 were found to be negative for hrHPV. The histological analysis identified a total of 203 cases, including 136 cases with no evidence of CIN, 30 cases classified as CIN1, 20 cases categorized as CIN2, 16 cases designated as CIN3, and one case diagnosed as a"
     },
-    "title": "Cervical cancer screening: eficacy of PAX1 and JAM3 methylation assay in the triage of atypical squamous cell of undetermined significance (ASC-US)"
+    "title": "Cervical cancer screening: efficacy of PAX1 and JAM3 methylation assay in the triage of atypical squamous cell of undetermined significance (ASC-US)"
   },
   "7_triage_efficacy_hpv": {
     "doi": "10.3389/fonc,2024.1481626",

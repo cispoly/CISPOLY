@@ -33,6 +33,12 @@ const EN_JOURNAL_LABELS: Record<string, string> = {
 }
 
 const containsHan = (value?: string) => Boolean(value && /[\u3400-\u9fff]/.test(value))
+const containsReplacementChar = (value?: string) => Boolean(value && value.includes('\uFFFD'))
+
+const getFullEnglishAbstract = (paper: Paper) =>
+  [paper.abstractEn, paper.abstract].find(
+    (value) => value && !containsHan(value) && !containsReplacementChar(value),
+  )
 
 export function getPaperJournal(paper: Paper, lang: 'zh' | 'en') {
   if (lang === 'zh') return paper.journal
@@ -46,9 +52,11 @@ export function getPaperAuthors(paper: Paper, lang: 'zh' | 'en') {
 
 export function getPaperAbstract(paper: Paper, lang: 'zh' | 'en') {
   if (lang === 'zh') return paper.abstract
-  return paper.abstractEn && !containsHan(paper.abstractEn)
-    ? paper.abstractEn
-    : paper.summaryEn || (containsHan(paper.abstract) ? '' : paper.abstract)
+  return getFullEnglishAbstract(paper) || ''
+}
+
+export function hasFullEnglishAbstract(paper: Paper) {
+  return Boolean(getFullEnglishAbstract(paper))
 }
 
 export function getPaperCitation(paper: Paper, lang: 'zh' | 'en') {

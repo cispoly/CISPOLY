@@ -40,6 +40,7 @@ assert(index.counts.products === products.length, '产品数量与 index.json �
 
 for (const paper of papers) {
   assert(paperTranslations[paper.id], `论文缺少英文映射：${paper.id}`)
+  assert(!String(paper.abstract || '').includes('\uFFFD'), `论文摘要存在字符集乱码：${paper.id}`)
   assert(
     existsSync(join(ROOT, 'public', 'posters', paper.cancer, paper.id, 'poster.html')),
     `论文缺少海报：${paper.cancer}/${paper.id}`,
@@ -48,6 +49,7 @@ for (const paper of papers) {
 
 for (const guideline of guidelines) {
   assert(guidelineTranslations[guideline.id], `指南缺少英文映射：${guideline.id}`)
+  assert(!/^\s*title\s*:\s*.*\bsource\s*:/is.test(guideline.excerpt || ''), `指南 excerpt 误用了元数据：${guideline.id}`)
   assert(
     existsSync(join(ROOT, 'public', 'posters', guideline.cancer, guideline.id, 'poster.html')),
     `指南缺少海报：${guideline.cancer}/${guideline.id}`,

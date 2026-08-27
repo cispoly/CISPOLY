@@ -24,6 +24,7 @@ interface PosterDetailProps {
   citation?: string
   abstract?: string
   abstractEn?: string
+  abstractNote?: string
   summary?: string
   posterUrl?: string
   posterTitle?: string
@@ -132,9 +133,9 @@ function CopyButton({ text, label, copiedLabel }: { text: string; label: string;
 
 /* ---------- 摘要分段卡片 ---------- */
 
-function AbstractBlocks({ abstract, abstractEn }: { abstract?: string; abstractEn?: string }) {
+function AbstractBlocks({ abstract, abstractEn, abstractNote }: { abstract?: string; abstractEn?: string; abstractNote?: string }) {
   const { t } = useI18n()
-  if (!abstract && !abstractEn) return null
+  if (!abstract && !abstractEn && !abstractNote) return null
   const blocks = abstract ? parseAbstract(abstract, t) : []
 
   // 英文摘要独立区块（中文主摘要下方）
@@ -161,6 +162,8 @@ function AbstractBlocks({ abstract, abstractEn }: { abstract?: string; abstractE
       </h2>
       {blocks.length === 0 && abstract ? (
         <p className="mt-4 text-[14px] leading-[1.9] text-ink/85">{abstract}</p>
+      ) : abstractNote ? (
+        <p className="mt-4 text-[14px] leading-[1.9] text-ink/70">{abstractNote}</p>
       ) : (
         <div className="mt-4 space-y-4">
           {blocks.map((b, i) => (
@@ -263,6 +266,7 @@ export default function PosterDetail({
   citation,
   abstract,
   abstractEn,
+  abstractNote,
   summary,
   posterUrl,
   posterTitle,
@@ -336,7 +340,7 @@ export default function PosterDetail({
           )}
 
           {/* ② 摘要分段卡片 */}
-          <AbstractBlocks abstract={abstract} abstractEn={abstractEn} />
+          <AbstractBlocks abstract={abstract} abstractEn={abstractEn} abstractNote={abstractNote} />
 
           {/* ③ 发表单位 + ④ DOI + ⑤ 引用格式 */}
           {(affiliation || doi || citationText) && (

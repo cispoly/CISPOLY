@@ -2,7 +2,6 @@ import type { LoaderFunctionArgs, MetaFunction, ShouldRevalidateFunctionArgs } f
 import { useLoaderData } from '@/lib/router'
 import PosterDetail from '@/components/PosterDetail'
 import { getGuideline, guidelines } from '@/lib/data/guidelines'
-import { getPdfFields } from '@/lib/content.server'
 import { useI18n } from '@/lib/i18n'
 import { getCancerLabel } from '@/types'
 import { pageMeta } from '@/lib/seo'
@@ -13,15 +12,8 @@ export function loader({ params, request }: LoaderFunctionArgs) {
 
   const siblings = guidelines.filter((item) => item.cancer === guideline.cancer)
   const index = siblings.findIndex((item) => item.id === guideline.id)
-  const fields = getPdfFields(guideline.id)
   return {
     guideline,
-    parsed: fields ? {
-      title: fields.title,
-      doi: fields.doi,
-      affiliation: fields.affiliation,
-      abstract: fields.abstract,
-    } : undefined,
     prev: index > 0 ? siblings[index - 1] : null,
     next: index < siblings.length - 1 ? siblings[index + 1] : null,
     lang: new URL(request.url).pathname.startsWith('/en/') ? 'en' as const : 'zh' as const,
@@ -60,14 +52,16 @@ export const meta: MetaFunction<typeof loader> = ({ loaderData, location }) => {
 
 export default function GuidelineDetail() {
   const { t, lang } = useI18n()
-  const { guideline, parsed, prev, next } = useLoaderData<typeof loader>()
+  const { guideline, prev, next } = useLoaderData<typeof loader>()
 
-  const title = lang === 'en' && guideline.titleEn ? guideline.titleEn : (parsed?.title || guideline.title)
-  const doi = parsed?.doi || guideline.doi
-  const affiliation = lang === 'en' && guideline.publisherEn ? guideline.publisherEn : (parsed?.affiliation || guideline.publisher)
+  // PDF extraction may contain OCR/MathML artifacts and can also be in the
+  // wrong language. The generated bilingual index is the curated display source.
+  const title = lang === 'en' && guideline.titleEn ? guideline.titleEn : guideline.title
+  const doi = guideline.doi
+  const affiliation = lang === 'en' && guideline.publisherEn ? guideline.publisherEn : guideline.publisher
   const abstract = lang === 'en'
     ? (guideline.abstractEn || guideline.excerptEn || '')
-    : (parsed?.abstract || guideline.abstract)
+    : (guideline.abstract || '')
   const citation = lang === 'en' && /[\u3400-\u9fff]/.test(guideline.citation || '')
     ? ''
     : (guideline.citation || '')

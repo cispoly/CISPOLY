@@ -48,8 +48,19 @@ for (const paper of papers) {
 }
 
 for (const guideline of guidelines) {
-  assert(guidelineTranslations[guideline.id], `指南缺少英文映射：${guideline.id}`)
+  const translation = guidelineTranslations[guideline.id]
+  assert(translation, `指南缺少英文映射：${guideline.id}`)
+  assert(/[㐀-鿿]/.test(guideline.title), `指南中文标题缺少中文文本：${guideline.id}`)
+  assert(String(guideline.abstract || '').trim().length >= 40, `指南摘要不完整：${guideline.id}`)
+  assert(
+    [translation.titleEn, translation.publisherEn, translation.abstractEn, translation.excerptEn].every(Boolean),
+    `指南英文映射不完整：${guideline.id}`,
+  )
   assert(!/^\s*title\s*:\s*.*\bsource\s*:/is.test(guideline.excerpt || ''), `指南 excerpt 误用了元数据：${guideline.id}`)
+  assert(
+    !/(?:<\/?sub>|\(\s*\)|（\s*）|联合\s+个学|\b m\s+m\b)/i.test(`${guideline.title} ${guideline.abstract}`),
+    `指南摘要存在解析残留：${guideline.id}`,
+  )
   assert(
     existsSync(join(ROOT, 'public', 'posters', guideline.cancer, guideline.id, 'poster.html')),
     `指南缺少海报：${guideline.cancer}/${guideline.id}`,

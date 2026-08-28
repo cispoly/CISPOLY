@@ -412,11 +412,11 @@
   },
   "guidelines": {
     "14_esgo_position_screening": {
-      "journal": "Intl Journal of Gynecological Cancer",
+      "journal": "国际妇科肿瘤学杂志",
       "year": 2026,
       "volume": "36",
       "pages": "104794",
-      "title": "European Society of Gynaecological Oncology/European Network of Gynaecological Advocacy Groups Position on risk-based cervical cancer screening",
+      "title": "欧洲妇科肿瘤学会/欧洲妇科倡导团体网络关于基于风险的宫颈癌筛查立场声明",
       "cancer": "cervical",
       "doi": "10.1016/j.ijgc.2026.104794",
       "firstPage": "SOCIETY STATEMENT European Society of Gynaecological Oncology/European Network of Gynaecological Advocacy Groups Position on risk-based cervical cancer screening Elmar Joura a , Kimon Chatzistamatiou b , * , Murat Gultekin c , Jalid Sehouli d , Ico Toth e , Richard Toth f , on behalf of the European Society of Gynaecological Oncology (ESGO) Received 26 May 2026 , Accepted 26 May 2026 ; Available online 1 June 2026 Keywords : Risk-Based Cervical Cancer Screening; Primary HPV Testing; Self-Sampling; Gender-Neutral HPV Vaccination; HPV Genotyping BACKGROUND According to the International Agency f",
@@ -484,7 +484,7 @@
       "cancer": "cervical",
       "doi": "10.3760/cma.j.cn114452-20240303-00105",
       "firstPage": "",
-      "abstract": "本共识（2025年）由中国中西医结合学会检验医学专业委员会联合多学（协）会组织检验、病理、妇产多学科专家制定，全面梳理子宫颈癌PAX1联合JAM3双基因甲基化检测的实验室操作流程、质控标准与样本采集处理，并提出检测报告及临床应用建议，旨在推动宫颈癌甲基化检测在实验室与临床的规范化应用、保障检测结果准确可靠。"
+      "abstract": "本共识（2025年）由中国中西医结合学会检验医学专业委员会联合多学（协）会，组织检验、病理、妇产多学科专家共同制定，全面梳理PAX1m/JAM3m双基因甲基化检测的实验室操作流程、质控标准及样本采集与处理要求，并提出检测意义与功能、实验室检测流程、质量控制、检测报告及临床应用建议，旨在推动子宫颈癌甲基化检测在实验室和临床的规范化应用，保障检测结果的准确性和可靠性。"
     },
     "1_dna_methylation_consensus2024": {
       "journal": "中国癌症防治杂志",

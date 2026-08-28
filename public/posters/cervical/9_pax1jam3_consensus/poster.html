@@ -52,7 +52,7 @@
   .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 9px 15px 7px 15px; flex: 0 0 auto;
     display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
   .panel.grow { flex: 1 0 auto; }
-  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .spbars, .panel .conslist, .panel .scenrow { flex: 0 0 auto; }
+  .panel h3, .panel ul, .panel .statrow, .panel .tnote, .panel .conslist, .panel .scenrow { flex: 0 0 auto; }
   .panel h3 { font-size: 14px; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--accent-deep); padding-bottom: 3px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
   .panel h3 .num { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; background: rgba(215,75,74,0.85); color: #fff; border-radius: 5px; font-size: 11px; flex: 0 0 auto; }
   .panel p, .panel li { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
@@ -175,11 +175,6 @@
           <li data-i18n="s2h"><strong>QC targets</strong>: set target values &amp; control limits with current standard procedure.</li>
           <li data-i18n="s2i"><strong>Controls</strong>: kit/third-party/self-made validated controls each run.</li>
         </ul>
-        <div class="spbars">
-          <div class="spb win"><div class="sbl" data-i18n="s2j1">Strong recommendations</div><div class="sbt"><div class="sbf" style="width:75%">6 of 8</div></div></div>
-          <div class="spb lose"><div class="sbl" data-i18n="s2j2">Recommendations</div><div class="sbt"><div class="sbf" style="width:25%">2 of 8</div></div></div>
-        </div>
-        <div class="tnote" data-i18n="s2n">Consensus 2–5: establish procedures, performance verification, sampling rules, QC system (all strong); Oxford CEBM evidence grading.</div>
       </div>
     </section>
 
@@ -266,8 +261,6 @@
       s2g: "<strong>Re-test</strong>: establish repeat-testing procedure & data analysis flow.",
       s2h: "<strong>QC targets</strong>: set target values & control limits with current standard procedure.",
       s2i: "<strong>Controls</strong>: kit/third-party/self-made validated controls each run.",
-      s2j1: "Strong recommendations", s2j2: "Recommendations",
-      s2n: "Consensus 2–5: establish procedures, performance verification, sampling rules, QC system (all strong).",
       s3t: "Consensus Statements",
       s3c1: "<b>Novel non-invasive test</b>: methylation is feasible for cervical cancer detection.", s3b1: "L2 · Strong",
       s3c2: "<b>Lab standards</b>: licensed lab, procedures & performance verification.", s3b2: "L1 · Strong",
@@ -319,8 +312,6 @@
       s2g: "<strong>复检</strong>：建立复检程序与数据分析流程。",
       s2h: "<strong>质控靶值</strong>：用现行标准程序确定靶值与控制限。",
       s2i: "<strong>质控品</strong>：每批次使用试剂盒/第三方/自制的验证质控品。",
-      s2j1: "强推荐", s2j2: "推荐",
-      s2n: "共识 2–5：建立程序、性能验证、采样规范、质控体系（均强推荐）。",
       s3t: "共识推荐清单",
       s3c1: "<b>新型无创检测方案</b>：甲基化用于宫颈癌检测具有临床可行性。", s3b1: "2级 · 强推荐",
       s3c2: "<b>实验室规范</b>：持证实验室、建立程序并验证性能。", s3b2: "1级 · 强推荐",

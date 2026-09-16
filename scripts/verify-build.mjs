@@ -11,16 +11,12 @@ const assert = (condition, message) => {
 }
 const bilingual = (path) => [path, path === '/' ? '/en' : `/en${path}`]
 
-const papers = readJson('papers.json')
-const guidelines = readJson('guidelines.json')
 const blogs = readJson('blogs.json')
 const products = readJson('products.json')
 
 const staticPaths = ['/', '/about', '/contact', '/papers', '/guidelines', '/blog', '/products']
 const detailPaths = [
   ...products.map((item) => `/products/${item.slug}`),
-  ...papers.map((item) => `/papers/${item.cancer}/${item.id}`),
-  ...guidelines.map((item) => `/guidelines/${item.cancer}/${item.id}`),
   ...blogs.map((item) => `/blog/${item.slug}`),
 ]
 const paths = [...staticPaths, ...detailPaths].flatMap(bilingual)
@@ -41,11 +37,7 @@ for (const path of paths) {
   assert(html.includes('hrefLang="zh-CN"') && html.includes('hrefLang="en"'), `缺少 hreflang：${path}`)
 }
 
-const loaderPaths = [
-  ...papers.map((item) => `/papers/${item.cancer}/${item.id}`),
-  ...guidelines.map((item) => `/guidelines/${item.cancer}/${item.id}`),
-  ...blogs.map((item) => `/blog/${item.slug}`),
-].flatMap(bilingual)
+const loaderPaths = blogs.map((item) => `/blog/${item.slug}`).flatMap(bilingual)
 
 for (const path of loaderPaths) {
   const dataFile = join(CLIENT, `${path.slice(1)}.data`)
@@ -60,8 +52,8 @@ assert(existsSync(join(CLIENT, '404.html')), '缺少静态托管 404 fallback')
 
 const sitemap = readFileSync(join(CLIENT, 'sitemap.xml'), 'utf8')
 assert(sitemap.includes('https://www.cispoly.com/products/</loc>'), 'sitemap 缺少产品总览页')
-assert(sitemap.includes('https://www.cispoly.com/papers/'), 'sitemap 缺少论文详情页')
-assert(sitemap.includes('https://www.cispoly.com/guidelines/'), 'sitemap 缺少指南详情页')
+assert(sitemap.includes('https://www.cispoly.com/papers/'), 'sitemap 缺少论文列表页')
+assert(sitemap.includes('https://www.cispoly.com/guidelines/'), 'sitemap 缺少指南列表页')
 assert(sitemap.includes('https://www.cispoly.com/blog/'), 'sitemap 缺少博客详情页')
 
 const robots = readFileSync(join(CLIENT, 'robots.txt'), 'utf8')

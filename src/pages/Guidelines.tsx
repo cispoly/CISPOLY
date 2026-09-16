@@ -63,7 +63,7 @@ export default function Guidelines() {
             ))}
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto flex max-w-[62.4rem] flex-col gap-4">
             {filtered.map((g, i) => (
               <Reveal key={g.id} delay={(i % 3) * 0.08}>
                 <GuidelineCard guideline={g} />

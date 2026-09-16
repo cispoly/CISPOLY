@@ -57,7 +57,7 @@ export default function Papers() {
             ))}
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto flex max-w-[62.4rem] flex-col gap-4">
             {filtered.map((p, i) => (
               <Reveal key={p.id} delay={(i % 3) * 0.06} className="h-full">
                 <PaperCard paper={p} />

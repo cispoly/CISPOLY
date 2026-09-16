@@ -1,6 +1,7 @@
 ---
 title: "宫颈脱落细胞PAX1、JAM3基因甲基化对宫颈上皮内瘤变预测作用的初步研究"
 published: "湖南师范大学学报(医学版)"
+source: "https://yxb.hunnu.edu.cn/CN/Y2025/V22/I6/123"
 ---
 
 # 宫颈脱落细胞PAX1、JAM3基因甲基化对宫颈上皮内瘤变预测作用的初步研究

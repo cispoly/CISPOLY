@@ -1,6 +1,6 @@
 ---
 title: "禾蔻安双基因甲基化检测在子宫内膜癌筛查中的应用价值"
-source: "https://kns-cnki-net-s-2209.erlist.cn/reader/xml?invoice=awI3vzob5ygxA3pPJb3wg6Re8GvSO1ecZVgk4lXCDo5qSG8qi38oGMXe1FtXdcdl6Qppz6j9X30pYhEvzxMg4GQvbGiB5w0wmxDIymaTO6QyzBKUZzTtq5kxBDfziUO7RHnzKrGUt9u5eLe%2FbrIBHr9oIMkUcq5H7rMr0%2F8%2FysQ%3D&platform=NZKPT&sourcetype=nxgp&product=CJFQ&filename=LZYX202407004&tablename=cjfdlast2024&type=JOURNAL&scope=readonline&cflag=html&dflag=xml&pages=&language=CHS&trial=&nonce=5F740B4590864DFEB6B3213D97A701DB&loginType=trialRead"
+source: "https://cjournal.hep.com.cn/1000-2812/CN/10.13885/j.issn.1000-2812.2024.07.004"
 author:
 published:
 created: 2026-08-05
@@ -198,4 +198,3 @@ Liew等 <sup><a type="reference">[38]</a></sup> 从宫颈脱落细胞中比较�
 - [\[44\]子宫内膜癌筛查专家委员会.子宫内膜癌筛查和早期诊断专家共识(草案)\[J\].中国实用妇科与产科杂志,2017, 33(10):1050-1052.](https://kns-cnki-net-s-2209.erlist.cn/kcms2/article/abstract?v=KXYaOrH3lTnK95z23X3hzX6PqTNE4f2VyhemG1MWw9aHro47XgDrZEbu-H_RBPoz1kNkesHYAigy4cwpxH67VVWncnjHidXnyHfBrcRlo_1U8m-3pUETm0ulqcbN58Jc8IYjhXeCE9IVF2EnJirKpn2mqviGXwiaFPbusL6H7gDxKeBb9vmQqEe74BivrpmB&uniplatform=NZKPT&language=CHS)
 - \[45\] Shen Yufei, Yang Wenqing, Liu Jiachen, et al. Minimally invasive approaches for the early detection of endometrial cancer\[J\]. Molecular Cancer, 2023, 22(1):53.
 - \[46\]张彤,周蓉,刘晨,等.子宫内膜采集器获取标本的满意度及相关因素对病理诊断符合率的影响\[J\].中华妇产科杂志, 2014, 1(9):655-658.
-

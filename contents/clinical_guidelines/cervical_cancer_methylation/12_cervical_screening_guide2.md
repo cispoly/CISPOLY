@@ -1,3 +1,8 @@
+---
+title: 中国子宫颈癌筛查指南（二）
+source: https://www.obgyncn.com/CN/Y2025/V26/I1/88
+---
+
 ·临床指南·
 
 # 中国子宫颈癌筛查指南（二）

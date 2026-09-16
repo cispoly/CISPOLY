@@ -1,6 +1,6 @@
 ---
 title: 分子检测技术用于宫颈癌筛查和早期诊断中国专家共识(2025年版)
-source: https://qikan.chaoxing.com/detail_38502727e7500f265664ec2ed7e10f564c22dd2b50b63fbf1921b0a3ea255101fc1cf1fbb4666ae615a2312327c43238ad51a4a928d64a13831ff1c16176828e0f51f555d57306b6369f1b5c8900ee28
+source: https://www.cqvip.com/doc/journal/7202555248?sign=81664f7626f57f435513d8cc5dda9fae3cd84cb4a1ac176b2c5e592f98924b70&expireTime=1805077120918&resourceId=7202555248&type=1
 author:
 published:
 created: 2026-08-05

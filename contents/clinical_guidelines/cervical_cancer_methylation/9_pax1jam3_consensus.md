@@ -1,6 +1,6 @@
 ---
 title: 子宫颈癌PAX1联合JAM3双基因甲基化检测流程、报告及临床应用专家共识
-source: https://mp.weixin.qq.com/s/MnQlXI6lmAmTO3HHmIG5Nw
+source: https://rs.yiigle.com/cmaid/1530233
 author:
   - 中国中西医结合学会检验医学专业委员会
   - 中华医学会检验医学分会

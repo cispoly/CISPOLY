@@ -1,6 +1,6 @@
 ---
 title: "阴道微生态影响宫颈细胞DNA甲基化水平与宫颈病变的相关性研究"
-source: "https://mp.weixin.qq.com/s/45F7b2kiMQgXp6GQNWwz0w"
+source: "https://rs.yiigle.com/cmaid/1664714"
 author:
   - "[[吴思 等]]"
 published:

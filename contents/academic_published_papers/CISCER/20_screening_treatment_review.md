@@ -1,6 +1,6 @@
 ---
 title: PAX1/JAM3双基因甲基化在宫颈癌筛查及治疗中的应用
-source: https://kns-cnki-net-s-2209.erlist.cn/reader/xml?invoice=FF%2Bw3aZ%2Bi5gn1u0Qf9bHai4lKd3dL%2F6VseYLUBt7hMmBiIiNcGE3ySDSrejhHnzebTlwu9BHaEro9uyXUEhL3kFLLfhvqffhIkcNOFntXzuJ3NWswgL%2FLzY8tvHgpzi8tZYh4rlryUAjufXgG057GlDv6twpD%2F7zNDKa4e3XncE%3D&platform=NZKPT&sourcetype=nxgp&product=CJFQ&filename=GWVC202506021&tablename=cjfdlast2026&type=JOURNAL&scope=readonline&cflag=html&dflag=xml&pages=&language=CHS&trial=&nonce=010F4275AEBC45CDA744729991213E71&loginType=trialRead
+source: https://www.gjfckx.ac.cn/article/2025/1674-1870/1674-1870-52-6-702.shtml
 author:
 published:
 created: 2026-08-05

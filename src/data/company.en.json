@@ -7,16 +7,15 @@
   "milestonesEn": [
     { "year": "2020", "text": "CISPOLY founded, headquartered in the Beijing Daxing Biomedical Industry Base" },
     { "year": "2023", "text": "CISCER® received NMPA registration (No. 20233400253)" },
-    { "year": "2024", "text": "CISENDO® received NMPA registration — the world's first non-invasive endometrial cancer screening launched" },
-    { "year": "2025", "text": "CISOVA® received NMPA registration — China's first ovarian cancer methylation test launched; recognized as a Beijing SRDI (Specialized, Refined, Differential, Innovative) Enterprise" }
+    { "year": "2024", "text": "CISENDO® received NMPA registration (No. 20243402610) — the world's first non-invasive endometrial cancer screening launched" },
+    { "year": "2025", "text": "CISOVA® received NMPA registration (No. 20253402443) — China's first ovarian cancer methylation test launched; recognized as a Beijing SRDI (Specialized, Refined, Differential, Innovative) Enterprise" }
   ],
   "statsEn": [
     { "value": "900", "unit": "m²", "label": "GMP Production Facility" },
     { "value": "1000", "unit": "m²", "label": "R&D Laboratory" },
     { "value": "10M+", "unit": "/yr", "label": "Annual Testing Capacity" },
     { "value": "8", "unit": "patents", "label": "Domestic & International Patents" },
-    { "value": "3", "unit": "products", "label": "NMPA-Registered Products" },
-    { "value": "46", "unit": "+", "label": "Published Academic Papers" }
+    { "value": "3", "unit": "products", "label": "NMPA-Registered Products" }
   ],
   "qualificationsEn": [
     "National High-Tech Enterprise",

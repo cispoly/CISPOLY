@@ -1,6 +1,6 @@
 ---
 title: 高危型人乳头瘤病毒感染患者宫颈脱落细胞JAM3/PAX1高甲基化诊断宫颈高级别病变
-source: https://qikan.chaoxing.com/detail_38502727e7500f26deb9fdbcdd609c3bc940e9b8e8f2af081921b0a3ea255101fc1cf1fbb4666ae6b1f055f0e8af42a49a71a89720eb64acbbacbc48739aa9c50257972aea0c2c4256eac9c9cf25f5ae
+source: https://pubmed.ncbi.nlm.nih.gov/38448375/
 author:
 published:
 created: 2026-08-04

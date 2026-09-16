@@ -28,6 +28,7 @@ export interface Paper {
   featured: boolean
   citation?: string
   citationEn?: string
+  externalUrl?: string
 }
 
 export interface Guideline {
@@ -48,6 +49,7 @@ export interface Guideline {
   excerptEn?: string
   cancers?: CancerKey[]
   citation?: string
+  externalUrl?: string
 }
 
 export interface BlogPost {

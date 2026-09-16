@@ -13,7 +13,7 @@ export default function Footer() {
   const companyLoc = pick(company.location, company.locationEn || company.location, lang)
 
   return (
-    <footer className="relative overflow-hidden bg-ink text-white">
+    <footer className="relative overflow-hidden bg-[#7f4a4a] text-white">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-400/60 to-transparent" />
 
       <div className="shell py-16 md:py-20">
@@ -21,7 +21,7 @@ export default function Footer() {
           {/* 品牌 + 产品入口（占左两列，纵向填满） */}
           <div className="flex flex-col lg:col-span-2">
             <img src="/logo.png" alt="CISPOLY" className="h-9 w-auto shrink-0 self-start brightness-0 invert" />
-            <p className="mt-5 max-w-md text-sm leading-relaxed text-white/55">{companyVision}</p>
+            <p className="mt-5 max-w-md text-sm leading-relaxed text-white/85">{companyVision}</p>
 
             {/* 三个产品入口：flex-1 拉伸填满愿景到分割线之间的区域 */}
             <div className="mt-8 grid flex-1 grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-3">
@@ -32,7 +32,7 @@ export default function Footer() {
           </div>
 
           {/* 联系信息 */}
-          <div>
+          <div className="lg:translate-x-20">
             <h3 className="text-sm font-semibold text-white/85">{t('footer.contactInfo')}</h3>
             <div className="mt-5 space-y-4">
               <ContactRow icon={<MapPin size={16} />} label={t('footer.addressLabel')} value={companyLoc} />
@@ -45,32 +45,32 @@ export default function Footer() {
               <ContactRow
                 icon={<Mail size={16} />}
                 label={t('footer.emailLabel')}
-                value={company.emails.join('  ·  ')}
+                value={company.emails[0]}
                 href={`mailto:${company.emails[0]}`}
               />
             </div>
           </div>
 
           {/* 快捷链接 */}
-          <div>
+          <div className="lg:translate-x-20">
             <h3 className="text-sm font-semibold text-white/85">{t('footer.quickLinks')}</h3>
             <nav className="mt-5 flex flex-col gap-3">
-              <Link to="/" className="text-sm text-white/55 transition hover:text-white/85">
+              <Link to="/" className="text-sm text-white/85 transition hover:text-white">
                 {t('nav.home')}
               </Link>
-              <Link to="/products/ciscer" className="text-sm text-white/55 transition hover:text-white/85">
+              <Link to="/products/ciscer" className="text-sm text-white/85 transition hover:text-white">
                 {t('footer.linkProducts')}
               </Link>
-              <Link to="/papers" className="text-sm text-white/55 transition hover:text-white/85">
+              <Link to="/papers" className="text-sm text-white/85 transition hover:text-white">
                 {t('footer.linkPapers')}
               </Link>
-              <Link to="/guidelines" className="text-sm text-white/55 transition hover:text-white/85">
+              <Link to="/guidelines" className="text-sm text-white/85 transition hover:text-white">
                 {t('footer.linkGuidelines')}
               </Link>
-              <Link to="/blog" className="text-sm text-white/55 transition hover:text-white/85">
+              <Link to="/blog" className="text-sm text-white/85 transition hover:text-white">
                 {t('footer.linkBlog')}
               </Link>
-              <Link to="/contact" className="text-sm text-white/55 transition hover:text-white/85">
+              <Link to="/contact" className="text-sm text-white/85 transition hover:text-white">
                 {t('footer.linkContact')}
               </Link>
             </nav>
@@ -78,7 +78,7 @@ export default function Footer() {
         </div>
 
         {/* 底栏 */}
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-white/40 md:flex-row">
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/25 pt-8 text-sm text-white/75 md:flex-row">
           <p>
             © {new Date().getFullYear()} {companyName}
             {lang === 'zh' ? '（CISPOLY）' : ' (CISPOLY)'}
@@ -98,7 +98,7 @@ function FooterProduct({ product, lang }: { product: Product; lang: 'zh' | 'en' 
   return (
     <Link
       to={`/products/${product.slug}`}
-      className="group flex h-full flex-col justify-between rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300/40 hover:bg-white/[0.06] md:p-5"
+      className="group flex h-full flex-col justify-between rounded-xl border border-white/35 bg-white/[0.08] p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/70 hover:bg-white/[0.14] md:p-5"
     >
       <div>
         <div className="flex items-center justify-between gap-2">
@@ -107,14 +107,14 @@ function FooterProduct({ product, lang }: { product: Product; lang: 'zh' | 'en' 
           </span>
           <ArrowUpRight
             size={15}
-            className="shrink-0 text-white/30 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand-300"
+            className="shrink-0 text-white/70 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white"
           />
         </div>
-        <div className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-300/80">
+        <div className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/80">
           {cancer}
         </div>
       </div>
-      <p className="mt-3 text-xs leading-relaxed text-white/50 transition group-hover:text-white/65">
+      <p className="mt-3 text-xs leading-relaxed text-white/85 transition group-hover:text-white">
         {tagline}
       </p>
     </Link>
@@ -138,7 +138,7 @@ function ContactRow({
         {icon}
       </span>
       <div>
-        <div className="text-xs font-medium uppercase tracking-wider text-white/40">{label}</div>
+        <div className="text-xs font-medium uppercase tracking-wider text-white/75">{label}</div>
         <div className="mt-0.5 break-all text-sm text-white/85">{value}</div>
       </div>
     </>

@@ -1,6 +1,6 @@
 ---
 title: 子宫内膜癌三级预防策略中国专家共识（2025年版）
-source: https://kns-cnki-net-s-2209.erlist.cn/reader/xml?invoice=Y6wdFPNc3opYYFB5VPYiWnA2SqxlgW9lQVuixRbrCxWz5sllIVPjyySWXnzdQL74PDwDTQrEX4k5uO1HGLopVN6HFbsPwLIQ40H4XyCIpJ8vUdw1X4sMD3bzgeJpzKK0D%2BHlPYqleON5agTRBlbkyUXcVm8PEhNx%2FwKkY4AaS08%3D&platform=NZKPT&sourcetype=nxgp&product=CJFQ&filename=ZGSF202510010&tablename=cjfdlast2025&type=JOURNAL&scope=readonline&cflag=html&dflag=xml&pages=&language=CHS&trial=&nonce=0C9518705665491A9BC687B3814044D4&loginType=trialRead
+source: https://www.zgsyz.com/zgsyfck/CN/10.19538/j.fk2025100110
 author:
 published:
 created: 2026-08-05

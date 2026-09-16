@@ -1,5 +1,6 @@
 ---
 title: "Clinical Utility of Cytological Methylation Assay in Cervical Cancer Screening Across Various Cervical Transformation Zones"
+source: "https://pubmed.ncbi.nlm.nih.gov/42277588/"
 ---
 
 

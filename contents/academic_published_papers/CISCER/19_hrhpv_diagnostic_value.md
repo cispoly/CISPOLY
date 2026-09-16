@@ -1,6 +1,6 @@
 ---
 title: PAX1/JAM3基因甲基化在HR-HPV感染女性中宫颈癌的诊断价值
-source: https://kns-cnki-net-s-2209.erlist.cn/reader/xml?invoice=C6by%2B1Vyb937kHIpth7lHxNojU%2BR4Ble7pndYaAYP6E3h%2FyApPQb8bg79WlcNrAzGPWQGE9vbAnWBs6aGJkF5E8%2BorFs%2FTJOXLZg%2FI4zF3OAItcARpXuh2bj7U5o1LGZBPCcI1Jk23kYK4V7hisZlfADvIVksDhlHeE%2F2mhO9mQ%3D&platform=NZKPT&sourcetype=nxgp&product=CJFQ&filename=BJMY202510007&tablename=cjfdlast2026&type=JOURNAL&scope=readonline&cflag=html&dflag=xml&pages=&language=CHS&trial=&nonce=A99D0AFBF11242B88933F936EF3834AE&loginType=trialRead
+source: https://www.cqvip.com/doc/journal/7202430250?sign=9acf123fc5e8afdf1da4cff78c6008af6d55cb9c9b92818472394ebef895d5da&expireTime=1805075223306&resourceId=7202430250&type=1
 author:
 published:
 created: 2026-08-05

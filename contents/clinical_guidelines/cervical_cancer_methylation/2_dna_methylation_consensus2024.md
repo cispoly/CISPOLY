@@ -1,6 +1,6 @@
 ---
 title: 肿瘤DNA甲基化标志物检测及临床应用专家共识（2024版）
-source: https://qikan.chaoxing.com/detail_38502727e7500f267a469ffec8cb2d15b92ddbd0cbd240291921b0a3ea255101fc1cf1fbb4666ae653fa80586e0ae5065b6b980a3a9e00fa15ed97f326fd57d30ec1cacac10a1585642ecad467023f0b
+source: https://www.zgazfz.com/thesisDetails#10.3969/j.issn.1674-5671.2024.02.01&lang=zh
 author:
 published:
 created: 2026-08-05

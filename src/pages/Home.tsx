@@ -6,6 +6,7 @@ import Reveal from '@/components/Reveal'
 import ProductCard from '@/components/ProductCard'
 import GuidelineCard from '@/components/GuidelineCard'
 import JournalCoverMarquee from '@/components/JournalCoverMarquee'
+import CardMarquee from '@/components/CardMarquee'
 import { products } from '@/lib/data/products'
 import { company } from '@/lib/data/company'
 import { papers } from '@/lib/data/papers'
@@ -39,7 +40,7 @@ export default function Home() {
     .map((id) => guidelines.find((g) => g.id === id))
     .filter((g): g is NonNullable<typeof g> => Boolean(g))
     .sort((a, b) => (b.year || 0) - (a.year || 0))
-  const recentBlogs = latestBlogs(4)
+  const recentBlogs = latestBlogs(3)
   const stats = pick(company.stats, company.statsEn || company.stats, lang)
 
   return (
@@ -82,7 +83,7 @@ export default function Home() {
             <SectionTitle
               eyebrow={t('home.products.eyebrow')}
               title={
-                <span className="whitespace-nowrap text-[clamp(1.3rem,4.9vw,2.5rem)]">
+                <span className="block max-w-full break-words">
                   {t('home.products.title1')}
                   {lang === 'zh' ? '' : ' '}
                   {t('home.products.title2')}
@@ -177,13 +178,13 @@ export default function Home() {
             </Reveal>
           </div>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {homeGuidelines.map((g, i) => (
-              <Reveal key={g.id} delay={i * 0.08}>
+          <CardMarquee auto duration={52}>
+            {homeGuidelines.map((g) => (
+              <div key={g.id} className="w-[360px] sm:w-[500px] lg:w-[560px]">
                 <GuidelineCard guideline={g} />
-              </Reveal>
+              </div>
             ))}
-          </div>
+          </CardMarquee>
         </div>
       </section>
 
@@ -208,7 +209,7 @@ export default function Home() {
             </Reveal>
           </div>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {recentBlogs.map((b, i) => (
               <Reveal key={b.slug} delay={i * 0.07}>
                 <Link
@@ -237,7 +238,7 @@ export default function Home() {
                         </span>
                       ))}
                     </div>
-                    <h3 className="mt-2.5 line-clamp-3 flex-1 text-[14px] font-semibold leading-snug text-ink transition-colors group-hover:text-brand-600">
+                    <h3 className="mt-2.5 flex-1 break-words text-[14px] font-semibold leading-snug text-ink transition-colors group-hover:text-brand-600">
                       {lang === 'en' && b.titleEn ? b.titleEn : b.title}
                     </h3>
                     <div className="mt-3 text-[11px] text-inkSoft">{b.dateLabel}</div>

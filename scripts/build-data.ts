@@ -169,6 +169,7 @@ interface Paper {
   keyData: string
   summary: string
   featured: boolean
+  externalUrl?: string
 }
 
 const CANCER_MAP = {
@@ -203,6 +204,7 @@ function parsePaper(filePath: string, cancerDir: string): Paper {
   // frontmatter 优先：剥离 YAML 头，避免分隔符 `---` 被当作正文
   const { fm, body: bodyAfterFm } = parseFrontmatter(raw)
   const fmTitle = typeof fm.title === 'string' ? fm.title.trim() : ''
+  const externalUrl = typeof fm.source === 'string' && /^https?:\/\//.test(fm.source) ? fm.source : undefined
 
   // 标题：frontmatter title → 首个 # 行；否则取首行非空文本
   let title = fmTitle
@@ -318,6 +320,7 @@ function parsePaper(filePath: string, cancerDir: string): Paper {
     conclusion,
     keyData,
     featured,
+    externalUrl,
   }
 }
 
@@ -488,6 +491,7 @@ interface Guideline {
   doi: string | undefined
   /** 一份指南同时归属多个癌种（主癌种仍由目录决定，extra 在此登记） */
   cancers?: GuidelineCancer[]
+  externalUrl?: string
 }
 
 const GUIDELINE_DIR_MAP = {
@@ -504,7 +508,7 @@ const GUIDELINE_EXTRA_CANCERS: Record<string, GuidelineCancer[]> = {
 
 function parseGuideline(filePath: string, dirKey: string): Guideline {
   const raw = readMd(filePath)
-  const { body: bodyAfterFm } = parseFrontmatter(raw)
+  const { fm, body: bodyAfterFm } = parseFrontmatter(raw)
   const name = basename(filePath)
   const id = name.replace(/\.md$/, '')
   const meta = GUIDELINE_DIR_MAP[dirKey as keyof typeof GUIDELINE_DIR_MAP]
@@ -573,6 +577,7 @@ function parseGuideline(filePath: string, dirKey: string): Guideline {
   }
 
   const extraCancers = GUIDELINE_EXTRA_CANCERS[id]
+  const externalUrl = typeof fm.source === 'string' && /^https?:\/\//.test(fm.source) ? fm.source : undefined
   return {
     id,
     cancer: meta.key,
@@ -586,6 +591,7 @@ function parseGuideline(filePath: string, dirKey: string): Guideline {
     body: raw,
     doi,
     ...(extraCancers ? { cancers: [meta.key, ...extraCancers] } : {}),
+    externalUrl,
   }
 }
 
@@ -1062,7 +1068,7 @@ const PRODUCTS: Product[] = [
     cancer: '卵巢癌',
     cancerKey: 'ovarian',
     genes: ['CDO1', 'HOXA9'],
-    tagline: '一管外周血，发现早期卵巢癌',
+    tagline: '全球首个获批，一管外周血，发现早期卵巢癌',
     summary: 'CDO1/HOXA9 双基因甲基化，仅需一管外周血 ctDNA，无创辅助诊断，破解"沉默杀手"早发现难题。',
     targetPopulation: [
       '卵巢囊肿/盆腔肿物女性的良恶性鉴别',
@@ -1117,8 +1123,8 @@ const COMPANY = {
   milestones: [
     { year: '2020', text: '聚禾生物成立，落户北京大兴生物医药产业基地' },
     { year: '2023', text: '禾宫康 CISCER® 获 NMPA 注册证（国械注准20233400253）' },
-    { year: '2024', text: '禾蔻安 CISENDO® 获 NMPA 注册证，全球首个无创内膜癌筛查上市' },
-    { year: '2025', text: '禾薇益 CISOVA® 获 NMPA 注册证，国内首个卵巢癌甲基化检测产品上市；获评北京市专精特新中小企业' },
+    { year: '2024', text: '禾蔻安 CISENDO® 获 NMPA 注册证（国械注准20243402610），全球首个无创内膜癌筛查上市' },
+    { year: '2025', text: '禾薇益 CISOVA® 获 NMPA 注册证（国械注准20253402443），国内首个卵巢癌甲基化检测产品上市；获评北京市专精特新中小企业' },
   ],
   stats: [
     { value: '900', unit: '㎡', label: 'GMP 生产车间' },

@@ -1,6 +1,6 @@
 ---
 title: 血液游离DNA甲基化肿瘤标志物实验室检测与临床应用专家共识（2025版）
-source: https://mp.weixin.qq.com/s/CBIcPahvRPku3K6knB9wrw
+source: https://rs.yiigle.com/cmaid/1664713
 author:
   - "[[中华检验医学杂志]]"
 published:

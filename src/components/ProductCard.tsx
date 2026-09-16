@@ -6,7 +6,7 @@ import { useI18n, pick } from '@/lib/i18n'
 /**
  * 产品卡 v3 —— 纯排版 · 无图形。
  *
- * 顶部：品牌红渐变 + 基因名超大文字水印（纯 CSS 文字）制造品牌层次；
+ * 顶部：品牌红渐变 + 产品信息；
  * 内容：癌种标签 / 卖点 / 简介 / 关键数据。
  * 配色：品牌赤红渐变 + 暖白 + 深炭文字，克制的红点缀。
  */
@@ -27,7 +27,7 @@ export default function ProductCard({ product }: { product: Product }) {
     >
       {/* 顶部品牌色块（纯排版 · 无图形） */}
       <div
-        className="relative overflow-hidden px-6 pb-7 pt-8"
+        className="relative overflow-hidden px-6 pb-5 pt-6"
         style={{
           background:
             'linear-gradient(155deg, #E05C59 0%, #D74B4A 38%, #B33B3A 72%, #A03534 100%)',
@@ -36,11 +36,6 @@ export default function ProductCard({ product }: { product: Product }) {
         {/* 左上提亮光晕 / 右下压暗，增强渐变层次 */}
         <div className="pointer-events-none absolute -left-10 -top-12 h-36 w-36 rounded-full bg-white/15 blur-2xl" />
         <div className="pointer-events-none absolute -bottom-14 -right-10 h-36 w-36 rounded-full bg-black/20 blur-2xl" />
-
-        {/* 基因名超大文字水印（替代图形，制造层次） */}
-        <div className="pointer-events-none absolute -bottom-3 right-2 select-none text-[52px] font-black uppercase leading-none tracking-tight text-white/[0.07] transition-opacity duration-500 group-hover:text-white/[0.12]">
-          {product.englishName}
-        </div>
 
         {/* 上排：癌种标签 + 箭头 */}
         <div className="relative z-[1] flex items-center justify-between gap-3">
@@ -53,14 +48,11 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
 
         {/* 下排：产品名 + 基因 */}
-        <div className="relative z-[1] mt-7">
+        <div className="relative z-[1] mt-5">
           <div className="text-[22px] font-bold leading-tight tracking-tight text-white md:text-2xl">
             {fullName}
           </div>
-          <div className="mt-1 text-[10px] font-medium uppercase tracking-[0.25em] text-white/65">
-            {product.englishName}
-          </div>
-          <div className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[11px] font-medium text-white/90 backdrop-blur-sm">
+          <div className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[11px] font-medium text-white/90 backdrop-blur-sm">
             {product.genes.join(' / ')}
             <span className="text-white/60">·</span>
             {geneLabel}

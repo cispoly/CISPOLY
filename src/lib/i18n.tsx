@@ -122,7 +122,7 @@ const zh: Dict = {
   'home.papers.title': '循证为基，持续创新',
   'home.papers.subtitle':
     '开展多项前瞻性多中心临床试验，发表多篇学术文献，以循证依据推动甲基化应用。',
-  'marquee.ariaLabel': '发表的学术文献封面',
+  'marquee.ariaLabel': '发表的学术文献卡片',
   'marquee.coverAlt': '论文封面',
 
   // ---- 首页：临床指南 ----
@@ -418,7 +418,7 @@ const en: Dict = {
   'home.papers.title': 'Evidence-based, continuously innovating',
   'home.papers.subtitle':
     'Conducting multiple prospective multi-center clinical trials with numerous publications, advancing methylation applications through evidence.',
-  'marquee.ariaLabel': 'Published academic journal covers',
+  'marquee.ariaLabel': 'Published academic paper cards',
   'marquee.coverAlt': 'Journal cover',
 
   // ---- Home: Guidelines ----

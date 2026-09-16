@@ -1,3 +1,8 @@
+---
+title: PAX1、JAM3甲基化对子宫颈高级别上皮内瘤变诊断的meta分析
+source: https://www.cqvip.com/doc/journal/7201812136?sign=5a76a42f682f5901ca683a3b5c27296dbb8c40425a096c4417d78de166cba43d&expireTime=1805075566684&resourceId=7201812136&type=1
+---
+
 ·论著·
 
 # PAX1、JAM3 甲基化对子宫颈高级别上皮内瘤变诊断的 meta 分析

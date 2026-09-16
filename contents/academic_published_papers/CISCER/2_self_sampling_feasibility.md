@@ -1,6 +1,6 @@
 ---
 title: 【论著】女性阴道自采样本检测PAX1/JAM3双基因甲基化标志物作为子宫颈癌筛查的可行性评估
-source: https://mp.weixin.qq.com/s/4fPG2HZfeRlqtClIFtQWZA
+source: https://rs.yiigle.com/cmaid/1499262
 author:
   - "[[余芙蓉]]"
   - 马洁稚 周希 李根林 彭嘉琪 李萍 曾飞
@@ -309,7 +309,6 @@ Gynecol Cancer, 2023, 33: A98. DOI: 10.1136/ ijgc‑2023‑ESGO.196.
 
 
   
-
 
 
 

@@ -17,16 +17,12 @@ function sitemapPath(path: string) {
 }
 
 function prerenderPaths() {
-  const papers = readGenerated('papers')
-  const guidelines = readGenerated('guidelines')
   const blogs = readGenerated('blogs')
   const products = readGenerated('products')
 
   const staticPaths = ['/', '/about', '/contact', '/papers', '/guidelines', '/blog', '/products']
   const dynamicPaths = [
     ...products.map((item) => `/products/${item.slug}`),
-    ...papers.map((item) => `/papers/${item.cancer}/${item.id}`),
-    ...guidelines.map((item) => `/guidelines/${item.cancer}/${item.id}`),
     ...blogs.map((item) => `/blog/${item.slug}`),
   ]
 

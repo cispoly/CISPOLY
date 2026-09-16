@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" role="img" aria-labelledby="title desc">
+  <title id="title">Journal cover placeholder</title>
+  <desc id="desc">Placeholder artwork for a journal cover that has not been mapped yet.</desc>
+  <rect width="600" height="800" rx="28" fill="#fdf2f2"/>
+  <rect x="36" y="36" width="528" height="728" rx="20" fill="none" stroke="#e88b8a" stroke-width="4"/>
+  <path d="M214 310h172v18H214zm0 48h172v18H214zm0 48h120v18H214z" fill="#c24140"/>
+  <path d="M180 510c0-54 42-98 94-98s94 44 94 98c0 44-26 82-63 94v54h-62v-54c-37-12-63-50-63-94zm94-62c-34 0-62 29-62 65 0 31 21 58 51 64l11 2v45h30v-45l11-2c30-6 51-33 51-64 0-36-28-65-62-65z" fill="#d74b4a" opacity=".8"/>
+  <text x="300" y="700" text-anchor="middle" fill="#9f3534" font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="4">JOURNAL</text>
+</svg>

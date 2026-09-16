@@ -44,7 +44,7 @@ export default function CardMarquee({ children, gap = 24, duration = 60, auto }:
       ) : (
         <div className="flex flex-wrap justify-start gap-6">
           {children.map((child, i) => (
-            <div key={i} className="h-full w-[300px] md:w-[340px]">
+            <div key={i} className="h-full w-[360px] sm:w-[500px] lg:w-[560px]">
               {child}
             </div>
           ))}

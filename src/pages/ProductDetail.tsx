@@ -6,7 +6,6 @@ import {
   Stethoscope,
   Beaker,
   ShieldCheck,
-  Building2,
   Dna,
 } from 'lucide-react'
 import SectionTitle from '@/components/SectionTitle'
@@ -14,11 +13,7 @@ import Reveal from '@/components/Reveal'
 import MetricBar from '@/components/MetricBar'
 import PaperCard from '@/components/PaperCard'
 import GuidelineCard from '@/components/GuidelineCard'
-import ChinaHospitalMap from '@/components/ChinaHospitalMap'
 import CardMarquee from '@/components/CardMarquee'
-import { CISCER_HOSPITALS } from '@/data/china-hospitals'
-import { CISENDO_HOSPITALS } from '@/data/cisendo-hospitals'
-import { CISOVA_HOSPITALS } from '@/data/cisova-hospitals'
 import { getProduct } from '@/lib/data/products'
 import { getPapersByCancer } from '@/lib/data/papers'
 import { getGuidelinesByCancer } from '@/lib/data/guidelines'
@@ -57,7 +52,6 @@ export default function ProductDetail() {
   const metrics = pick(product.metrics, product.metricsEn || product.metrics, lang)
   const sampleType = pick(product.sampleType, product.sampleTypeEn || product.sampleType, lang)
   const highlights = pick(product.highlights, product.highlightsEn || product.highlights, lang)
-  const hospitals = pick(product.hospitals, product.hospitalsEn || product.hospitals, lang)
   const geneSuffix = lang === 'zh' ? '双基因甲基化' : t('product.dualGene')
 
   // 产品 hero 背景图（与首页同风格）
@@ -230,43 +224,6 @@ export default function ProductDetail() {
         </div>
       </section>
 
-      {/* ===== 合作医院 ===== */}
-      <section className="bg-white py-20 md:py-28">
-        <div className="shell">
-          <SectionTitle
-            eyebrow={t('product.network.eyebrow')}
-            title={t('product.network.title')}
-            subtitle={t('product.network.subtitle')}
-          />
-          <Reveal delay={0.1}>
-            {product.slug === 'ciscer' ? (
-              <div className="mt-10">
-                <ChinaHospitalMap hospitals={CISCER_HOSPITALS} />
-              </div>
-            ) : product.slug === 'cisendo' ? (
-              <div className="mt-10">
-                <ChinaHospitalMap hospitals={CISENDO_HOSPITALS} />
-              </div>
-            ) : product.slug === 'cisova' ? (
-              <div className="mt-10">
-                <ChinaHospitalMap hospitals={CISOVA_HOSPITALS} />
-              </div>
-            ) : (
-              <div className="mt-12 flex flex-wrap justify-center gap-4">
-                {hospitals.map((h, i) => (
-                  <div
-                    key={i}
-                    className="inline-flex items-center gap-2.5 rounded-full border border-line bg-canvas px-6 py-3 text-sm font-medium text-ink"
-                  >
-                    <Building2 size={16} className="text-brand-400" /> {h}
-                  </div>
-                ))}
-              </div>
-            )}
-          </Reveal>
-        </div>
-      </section>
-
       {/* ===== 相关论文 & 指南 ===== */}
       {(papers.length > 0 || guidelines.length > 0) && (
         <section className="py-20 md:py-28">
@@ -276,7 +233,7 @@ export default function ProductDetail() {
                 <SectionTitle eyebrow={t('product.papers.eyebrow')} title={`${cancer} ${t('product.papers.titleSuffix')}`} />
                 <CardMarquee duration={papers.length > 6 ? 80 : 50}>
                   {papers.map((p) => (
-                    <div key={p.id} className="w-[300px] md:w-[340px]">
+                      <div key={p.id} className="w-[360px] sm:w-[500px] lg:w-[560px]">
                       <PaperCard paper={p} />
                     </div>
                   ))}
@@ -289,7 +246,7 @@ export default function ProductDetail() {
                   <SectionTitle eyebrow={t('product.guidelines.eyebrow')} title={t('product.guidelines.title')} />
                   <CardMarquee duration={40}>
                     {guidelines.map((g) => (
-                      <div key={g.id} className="w-[300px] md:w-[340px]">
+                      <div key={g.id} className="w-[360px] sm:w-[500px] lg:w-[560px]">
                         <GuidelineCard guideline={g} />
                       </div>
                     ))}

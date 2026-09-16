@@ -153,7 +153,7 @@ export default function About() {
       <section className="py-20 md:py-28">
         <div className="shell">
           <Reveal>
-            <div className="relative overflow-hidden rounded-3xl bg-ink px-8 py-16 text-center text-white md:px-16">
+            <div className="relative overflow-hidden rounded-3xl bg-[#7f4a4a] px-8 py-16 text-center text-white md:px-16">
               <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 30% 20%, white 1px, transparent 1px)', backgroundSize: '36px 36px' }} />
               <div className="relative">
                 <Lightbulb className="mx-auto mb-5 text-brand-300" size={36} strokeWidth={1.5} />
@@ -169,10 +169,10 @@ export default function About() {
                   )}
                 </h2>
                 <div className="mt-9 flex flex-wrap justify-center gap-3">
-                  <Link to="/products/ciscer" className="btn-primary">
+                  <Link to="/products/ciscer" className="btn-primary bg-white text-brand-700 hover:bg-brand-50">
                     {t('about.cta.products')} <ArrowRight size={16} />
                   </Link>
-                  <Link to="/contact" className="btn-ghost border-white/20 text-white hover:text-white">
+                  <Link to="/contact" className="btn-ghost border-white/70 bg-white/90 text-brand-700 hover:bg-white hover:text-brand-700">
                     {t('common.contactConsult')}
                   </Link>
                 </div>

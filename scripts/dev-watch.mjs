@@ -123,7 +123,12 @@ function scheduleBuild(reason) {
 process.once('SIGINT', () => shutdown(0))
 process.once('SIGTERM', () => shutdown(0))
 
-// 启动 React Router Framework Mode 开发服务器
+// 先构建一次数据，再启动 React Router Framework Mode 开发服务器。
+// React Router 会在启动时读取 react-router.config.ts 的 prerender 路径；
+// 必须先生成最新的 src/data，否则新博客路由会被开发服务器误判为 404。
+await runBuild('启动')
+if (shuttingDown) process.exit(0)
+
 vite = spawn('npx react-router dev', {
   cwd: ROOT,
   stdio: 'inherit',
@@ -135,10 +140,6 @@ vite.on('exit', (code) => {
   console.log(`[dev] Vite 已退出（${code}）`)
   shutdown(code ?? 0)
 })
-
-// 先构建一次数据，再让用户看到最新内容
-await runBuild('启动')
-if (shuttingDown) process.exit(0)
 
 // 监听数据源目录
 for (const dir of WATCH_DIRS) {

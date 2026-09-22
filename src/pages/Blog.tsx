@@ -3,9 +3,10 @@ import { Link } from '@/lib/router'
 import { Calendar } from 'lucide-react'
 import Reveal from '@/components/Reveal'
 import PageHero from '@/components/PageHero'
-import { blogs, allTags } from '@/lib/data/blogs'
+import { blogs } from '@/lib/data/blogs'
 import { PAGE_HERO_IMAGES } from '@/lib/images'
 import { useI18n } from '@/lib/i18n'
+import { BLOG_CATEGORY_ORDER, blogCategories, blogCategoryLabel, type BlogCategory } from '@/lib/blogTaxonomy'
 import type { MetaFunction } from 'react-router'
 import { pageMeta } from '@/lib/seo'
 
@@ -18,27 +19,21 @@ export const meta: MetaFunction = ({ location }) => pageMeta(location.pathname, 
 
 export default function Blog() {
   const { t, lang } = useI18n()
-  const [tag, setTag] = useState<string | null>(null)
+  const [category, setCategory] = useState<BlogCategory | null>(null)
   const [query, setQuery] = useState('')
 
-  // 根据语言选择标签集和标题字段
   const isEn = lang === 'en'
-  const blogTags = useCallback((b: typeof blogs[0]) => (isEn && b.tagsEn ? b.tagsEn : b.tags), [isEn])
   const blogTitle = useCallback((b: typeof blogs[0]) => (isEn && b.titleEn ? b.titleEn : b.title), [isEn])
   const blogCover = useCallback((b: typeof blogs[0]) => (isEn && b.coverEn ? b.coverEn : b.cover), [isEn])
-  const activeTags = isEn
-    ? [...new Set(blogs.flatMap((b) => b.tagsEn || b.tags))].sort()
-    : allTags
 
   const filtered = useMemo(() => {
     return blogs.filter((b) => {
-      const tags = blogTags(b)
-      const matchTag = !tag || tags.includes(tag)
+      const matchCategory = !category || blogCategories(b).includes(category)
       const title = blogTitle(b)
       const matchQuery = !query || title.toLowerCase().includes(query.toLowerCase())
-      return matchTag && matchQuery
+      return matchCategory && matchQuery
     })
-  }, [tag, query, blogTags, blogTitle])
+  }, [category, query, blogTitle])
 
   return (
     <div>
@@ -63,24 +58,24 @@ export default function Blog() {
 
           <div className="flex flex-wrap justify-center gap-2">
             <button
-              onClick={() => setTag(null)}
+              onClick={() => setCategory(null)}
               className={`rounded-full px-4 py-1.5 text-xs font-medium transition ${
-                !tag ? 'bg-brand-500 text-white' : 'border border-line bg-white text-ink/70 hover:text-brand-600'
+                !category ? 'bg-brand-500 text-white' : 'border border-line bg-white text-ink/70 hover:text-brand-600'
               }`}
             >
               {t('common.all')} {blogs.length}
             </button>
-            {activeTags.map((tagItem) => {
-              const count = blogs.filter((b) => blogTags(b).includes(tagItem)).length
+            {BLOG_CATEGORY_ORDER.map((categoryItem) => {
+              const count = blogs.filter((b) => blogCategories(b).includes(categoryItem)).length
               return (
                 <button
-                  key={tagItem}
-                  onClick={() => setTag(tagItem)}
+                  key={categoryItem}
+                  onClick={() => setCategory(categoryItem)}
                   className={`rounded-full px-4 py-1.5 text-xs font-medium transition ${
-                    tag === tagItem ? 'bg-brand-500 text-white' : 'border border-line bg-white text-ink/70 hover:text-brand-600'
+                    category === categoryItem ? 'bg-brand-500 text-white' : 'border border-line bg-white text-ink/70 hover:text-brand-600'
                   }`}
                 >
-                  {tagItem} {count}
+                  {blogCategoryLabel(categoryItem, lang)} {count}
                 </button>
               )
             })}
@@ -119,13 +114,13 @@ export default function Blog() {
                     </div>
                     {/* 右侧信息 */}
                     <div className="flex min-w-0 flex-1 flex-col justify-center gap-2 p-4 sm:p-5">
-                      <h3 className="line-clamp-2 text-[14px] font-semibold leading-snug text-ink transition group-hover:text-brand-600 sm:text-[15px]">
+                      <h3 className="whitespace-normal break-words text-[14px] font-semibold leading-snug text-ink transition group-hover:text-brand-600 sm:text-[15px]">
                         {lang === 'en' && b.titleEn ? b.titleEn : b.title}
                       </h3>
                       <div className="flex flex-wrap gap-1.5">
-                        {(lang === 'en' && b.tagsEn ? b.tagsEn : b.tags).slice(0, 3).map((tagItem, ti) => (
-                          <span key={ti} className="rounded bg-brand-50 px-2 py-0.5 text-[10px] font-semibold text-brand-600">
-                            {tagItem}
+                        {blogCategories(b).map((categoryItem) => (
+                          <span key={categoryItem} className="rounded bg-brand-50 px-2 py-0.5 text-[10px] font-semibold text-brand-600">
+                            {blogCategoryLabel(categoryItem, lang)}
                           </span>
                         ))}
                       </div>

@@ -8,6 +8,7 @@ const normalize = (value: string) => value.toLowerCase().replace(/[^\p{L}\p{N}]+
 // article even when the article title is written from a reader-facing angle.
 const relatedBlogOverrides: Record<string, string> = {
   '27_joint_methylation_progress': 'pax1-jam3-precision-cervical-screening-pathway',
+  '14_esgo_position_screening': 'esgo-releases-new-position-on-cervical',
 }
 
 function findRelated(title: string) {

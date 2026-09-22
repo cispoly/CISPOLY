@@ -5,13 +5,29 @@
  *
  * 运行：tsx scripts/build-data.ts
  */
-import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync } from 'node:fs'
+import {
+  copyFileSync,
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs'
 import { join, basename, extname } from 'node:path'
+import sharp from 'sharp'
 
 const ROOT = process.cwd()
 const SRC = join(ROOT, 'contents')
 const OUT = join(ROOT, 'src', 'data')
+const BLOG_PUBLIC_ROOT = join(ROOT, 'public', 'blogs')
+const BLOG_PUBLIC_COVERS = join(BLOG_PUBLIC_ROOT, 'images', 'covers')
+const BLOG_PUBLIC_CONTENTS = join(BLOG_PUBLIC_ROOT, 'images', 'contents')
+const BLOG_BODY_ROOT = join(OUT, 'blog-bodies')
 mkdirSync(OUT, { recursive: true })
+
+// 同一张图片会被中文和英文博客共同引用，避免重复转换。
+const blogAssetCache = new Map<string, Promise<string | undefined>>()
 
 // ---------- 工具 ----------
 function readMd(p: string): string {
@@ -28,7 +44,7 @@ function listMd(dir: string): string[] {
 
 /** 提取 markdown 中第一张图片 URL（用于封面/配图） */
 function firstImage(md: string): string | undefined {
-  const m = md.match(/!\[[^\]]*\]\((https?:\/\/[^)\s]+)/)
+  const m = md.match(/!\[[^\]]*\]\(([^)\s]+)\)/)
   return m ? m[1] : undefined
 }
 
@@ -737,26 +753,66 @@ function stripBlogHeader(md: string): string {
   return s.replace(/\n{3,}/g, '\n\n').trim()
 }
 
-/** 将正文中相对图片引用复制到 public/blogs/<slug>/，并替换为 /blogs/<slug>/xxx
- * 新引用格式：
- *   ./images/contents/<slug>-img-NN.<ext> → /blogs/<slug>/img-NN.<ext>
- *   ./<slug>/img-NN.<ext（旧结构兼容）→ /blogs/<slug>/img-NN.<ext
- */
-function localizeBlogImages(body: string, blogDir: string, slug: string): string {
-  const re = /!\[([^\]]*)\]\(\.\/([^)]+)\)/g
-  const pubDir = join(ROOT, 'public', 'blogs', slug)
-  mkdirSync(pubDir, { recursive: true })
-  return body.replace(re, (match, alt, rel) => {
-    const src = join(blogDir, rel)
-    // 新结构 images/contents/<slug>-img-NN.ext → img-NN.ext；旧结构 <slug>/img-NN.ext → img-NN.ext
-    let outName = basename(rel)
-    const newImg = rel.match(/images\/contents\/[^/]+-((?:img-)?\d+)\.([\w]+)$/)
-    if (newImg) outName = `img-${newImg[1]}.${newImg[2]}`
-    if (existsSync(src)) {
-      try { copyFileSync(src, join(pubDir, outName)) } catch { /* 忽略复制失败 */ }
+/** 发布博客图片到统一目录，并将大图转换为更适合网页的 WebP。 */
+async function publishBlogImage(blogDir: string, relativePath: string, articleKey: string) {
+  const normalized = relativePath.replace(/^\.\\?\//, '').replace(/\\/g, '/')
+  const src = join(blogDir, normalized)
+  if (!existsSync(src)) return undefined
+
+  const isCover = normalized.startsWith('images/covers/')
+  const outputDir = isCover ? BLOG_PUBLIC_COVERS : BLOG_PUBLIC_CONTENTS
+  const sourceName = basename(normalized)
+  const nameForRule = isCover || normalized.startsWith('images/contents/')
+    ? sourceName
+    : `${articleKey}-${sourceName}`
+  const sourceExt = extname(nameForRule).toLowerCase()
+  const outputName = ['.jpg', '.jpeg', '.png'].includes(sourceExt)
+    ? `${nameForRule.slice(0, -sourceExt.length)}.webp`
+    : nameForRule
+  const outputPath = join(outputDir, outputName)
+  const publicPath = `/blogs/images/${isCover ? 'covers' : 'contents'}/${outputName}`
+
+  const cached = blogAssetCache.get(src)
+  if (cached) return cached
+
+  const task = (async () => {
+    mkdirSync(outputDir, { recursive: true })
+    if (['.jpg', '.jpeg', '.png'].includes(sourceExt)) {
+      await sharp(src).rotate().webp({ quality: 84, effort: 4 }).toFile(outputPath)
+    } else {
+      copyFileSync(src, outputPath)
     }
-    return `![${alt}](/blogs/${slug}/${outName})`
-  })
+    return publicPath
+  })().catch(() => undefined)
+
+  blogAssetCache.set(src, task)
+  return task
+}
+
+/** 将正文中的相对图片引用改写为统一的发布 URL。兼容历史旧目录写法。 */
+async function localizeBlogImages(body: string, blogDir: string, articleKey: string): Promise<string> {
+  const re = /!\[([^\]]*)\]\(\.\/([^)]+)\)/g
+  let output = ''
+  let cursor = 0
+
+  for (const match of body.matchAll(re)) {
+    const full = match[0]
+    const alt = match[1]
+    const relativePath = match[2]
+    const imageUrl = await publishBlogImage(blogDir, relativePath, articleKey)
+    const index = match.index ?? cursor
+    output += body.slice(cursor, index)
+    output += imageUrl ? `![${alt}](${imageUrl})` : full
+    cursor = index + full.length
+  }
+
+  return output + body.slice(cursor)
+}
+
+function writeBlogBody(lang: 'zh' | 'en', slug: string, body: string) {
+  const dir = join(BLOG_BODY_ROOT, lang)
+  mkdirSync(dir, { recursive: true })
+  writeFileSync(join(dir, `${slug}.json`), JSON.stringify(body), 'utf-8')
 }
 
 // 微信公众号 UI 残留清洗规则
@@ -824,7 +880,7 @@ function cleanBlogBody(raw: string): string {
   return out
 }
 
-function buildBlogs() {
+async function buildBlogs() {
   const blogDir = join(SRC, 'blogs')
   const files = listMd(blogDir).filter((f) => !basename(f).endsWith('.en.md'))
   const posts: BlogPost[] = []
@@ -832,6 +888,7 @@ function buildBlogs() {
   for (const f of files) {
     const raw = readMd(f)
     const name = basename(f)
+    const articleKey = name.replace(/^\[[^\]]*\]/, '').replace(/\.md$/, '')
 
     // frontmatter 优先，回退旧逻辑
     const { fm, body: bodyAfterFm } = parseFrontmatter(raw)
@@ -859,8 +916,8 @@ function buildBlogs() {
     if (!title) title = name.replace(/^\[[^\]]*\]/, '').replace(/\.md$/, '').replace(/_/g, ' ')
 
     const body = cleanBlogBody(bodyAfterFm)
-    // 本地化正文图片（./slug/xxx → /blogs/slug/xxx）
-    const localized = localizeBlogImages(body, blogDir, slug)
+    // 本地化正文图片到统一目录，并生成网页优化格式。
+    const localized = await localizeBlogImages(body, blogDir, articleKey)
     // 剥离与页头重复的封面图 / # 标题 / 斜体日期行
     const bodyClean = stripBlogHeader(localized)
 
@@ -868,15 +925,7 @@ function buildBlogs() {
     let cover: string | undefined
     if (fmCover) {
       if (fmCover.startsWith('./') || fmCover.startsWith('.\\')) {
-        const src = join(blogDir, fmCover.replace(/^\.\\?\//, ''))
-        const pubDir = join(ROOT, 'public', 'blogs', slug)
-        mkdirSync(pubDir, { recursive: true })
-        // 输出统一命名为 cover.<ext>，保持前端 URL 稳定
-        const nm = /^cover\./i.test(basename(fmCover)) ? basename(fmCover) : `cover${extname(fmCover)}`
-        if (existsSync(src)) {
-          try { copyFileSync(src, join(pubDir, nm)) } catch { /* 忽略 */ }
-        }
-        cover = `/blogs/${slug}/${nm}`
+        cover = await publishBlogImage(blogDir, fmCover, articleKey)
       } else if (/^https?:\/\//.test(fmCover)) {
         cover = fmCover
       } else {
@@ -889,6 +938,7 @@ function buildBlogs() {
     const excerpt = stripMd(bodyClean).slice(0, 140).replace(/\n/g, ' ')
     const tags = fmTags.length ? fmTags : inferTags(title, bodyClean)
 
+    writeBlogBody('zh', slug, bodyClean)
     posts.push({ slug, title, date, dateLabel, lastModified, lastModifiedLabel, cover, excerpt, tags, body: bodyClean, raw })
   }
 
@@ -896,30 +946,27 @@ function buildBlogs() {
   posts.sort((a, b) => (a.date < b.date ? 1 : -1))
   // 拆分：列表索引（不含正文/raw）+ 正文映射（按需加载）
   const index = posts.map(({ body, raw, ...rest }) => rest)
-  const bodies: Record<string, string> = {}
-  for (const b of posts) bodies[b.slug] = b.body
   writeJson('blogs.json', index)
-  writeJson('blogs.body.json', bodies)
   console.log(`  blogs: ${posts.length} 篇`)
   return posts
 }
 
 // ---------- 英文博客（同目录 *.en.md，frontmatter: title/tags/excerpt） ----------
-function buildBlogsEn(blogDir: string) {
+async function buildBlogsEn(blogDir: string) {
   const enFiles = readdirSync(blogDir)
     .filter((f) => f.endsWith('.en.md'))
     .map((f) => join(blogDir, f))
     .sort()
   const enIndex: Record<string, Partial<{ titleEn: string; tagsEn: string[]; excerptEn: string }>> = {}
-  const enBodies: Record<string, string> = {}
   for (const f of enFiles) {
     const name = basename(f)
     const raw = readMd(f)
+    const articleKey = name.replace(/^\[[^\]]*\]/, '').replace(/\.en\.md$/, '')
     const { fm, body } = parseFrontmatter(raw)
     const fmSlug = typeof fm.slug === 'string' ? fm.slug.trim() : ''
     const slug = fmSlug || name.replace(/^\[[^\]]*\]/, '').replace(/\.en\.md$/, '').replace(/[^\w\u4e00-\u9fa5-]/g, '-')
-    // 与中文同构：相对图片引用（./images/...）复制到 public 并改写为 /blogs/<slug>/ 绝对路径
-    const localized = localizeBlogImages(body, blogDir, slug)
+    // 与中文同构：相对图片引用统一改写为 /blogs/images/... 绝对路径。
+    const localized = await localizeBlogImages(body, blogDir, articleKey)
     // 字段缺失时不覆盖（前端回退中文）
     const fields: Partial<{ titleEn: string; tagsEn: string[]; excerptEn: string; coverEn: string }> = {}
     const titleEn = typeof fm.title === 'string' ? fm.title.trim() : ''
@@ -931,24 +978,16 @@ function buildBlogsEn(blogDir: string) {
     if (excerptEn) fields.excerptEn = excerptEn
     if (fmCoverEn) {
       if (fmCoverEn.startsWith('./') || fmCoverEn.startsWith('.\\')) {
-        // 与中文 cover 同构：源图复制到 public/blogs/<slug>/cover.<ext>，输出稳定 URL
-        const src = join(blogDir, fmCoverEn.replace(/^\.\\?\//, ''))
-        const pubDir = join(ROOT, 'public', 'blogs', slug)
-        mkdirSync(pubDir, { recursive: true })
-        const nm = /^cover\./i.test(basename(fmCoverEn)) ? basename(fmCoverEn) : `cover${extname(fmCoverEn)}`
-        if (existsSync(src)) {
-          try { copyFileSync(src, join(pubDir, nm)) } catch { /* 忽略 */ }
-        }
-        fields.coverEn = `/blogs/${slug}/${nm}`
+        fields.coverEn = await publishBlogImage(blogDir, fmCoverEn, articleKey)
       } else {
         fields.coverEn = fmCoverEn
       }
     }
     if (Object.keys(fields).length) enIndex[slug] = fields
-    enBodies[slug] = stripBlogHeader(localized)
+    const bodyClean = stripBlogHeader(localized)
+    writeBlogBody('en', slug, bodyClean)
   }
   writeJson('blogs.en.json', enIndex)
-  writeJson('blogs.body.en.json', enBodies)
   console.log(`  blogs en: ${enFiles.length} 篇`)
 }
 
@@ -1248,17 +1287,32 @@ function writeJson(name: string, data: unknown) {
 }
 
 // ---------- 主流程 ----------
-console.log('CISPOLY 数据构建中…')
-const papers = buildPapers()
-const guidelines = buildGuidelines()
-const blogs = buildBlogs()
-buildBlogsEn(join(SRC, 'blogs'))
-const products = buildProducts()
-const company = buildCompany()
+async function main() {
+  console.log('CISPOLY 数据构建中…')
 
-writeJson('index.json', {
-  generatedAt: new Date().toISOString(),
-  counts: { papers: papers.length, guidelines: guidelines.length, blogs: blogs.length, products: products.length },
+  // 这些目录全部是构建产物，每次构建前清理可避免旧文章图片残留。
+  rmSync(BLOG_PUBLIC_ROOT, { recursive: true, force: true })
+  rmSync(BLOG_BODY_ROOT, { recursive: true, force: true })
+  rmSync(join(OUT, 'blogs.body.json'), { force: true })
+  rmSync(join(OUT, 'blogs.body.en.json'), { force: true })
+  blogAssetCache.clear()
+
+  const papers = buildPapers()
+  const guidelines = buildGuidelines()
+  const blogs = await buildBlogs()
+  await buildBlogsEn(join(SRC, 'blogs'))
+  const products = buildProducts()
+  const company = buildCompany()
+
+  writeJson('index.json', {
+    generatedAt: new Date().toISOString(),
+    counts: { papers: papers.length, guidelines: guidelines.length, blogs: blogs.length, products: products.length },
+  })
+
+  console.log(`\n✓ 数据已生成到 src/data/`)
+}
+
+main().catch((error) => {
+  console.error(error)
+  process.exitCode = 1
 })
-
-console.log(`\n✓ 数据已生成到 src/data/`)

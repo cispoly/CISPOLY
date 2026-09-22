@@ -66,7 +66,7 @@ export interface BlogPost {
   excerptEn?: string
   tags: string[]
   tagsEn?: string[]
-  body?: string // 正文已剥离到 blogs.body.json，按需加载
+  body?: string // 正文已拆分为单篇文件，按需加载
   bodyEn?: string // 英文正文（按需加载）
   raw?: string
 }

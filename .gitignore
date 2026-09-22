@@ -14,7 +14,7 @@ __pycache__/
 # ===== src/data 生成文件（npm run build 时由 build-data.ts 重新生成，勿手工编辑） =====
 # 注意：src/data 下其余文件（修正层 JSON、papers/guidelines/products/company 的 4 个 *.en.json、
 # china-map.json、医院数据 ts）都是手工维护的输入，必须提交入库，不要加入忽略列表！
-# 博客英文版已迁移到 contents/blogs/*.en.md，以下两个 en 文件由构建生成。
+# 博客英文版已迁移到 contents/blogs/*.en.md，正文按文章拆分后由构建生成。
 src/data/papers.json
 src/data/guidelines.json
 src/data/blogs.json
@@ -23,9 +23,8 @@ src/data/company.json
 src/data/index.json
 src/data/papers.body.json
 src/data/guidelines.body.json
-src/data/blogs.body.json
 src/data/blogs.en.json
-src/data/blogs.body.en.json
+src/data/blog-bodies/
 
 # ===== 可再生的静态资源（build-data.ts 从 source/blogs 自动复制） =====
 public/blogs/

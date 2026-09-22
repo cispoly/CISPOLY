@@ -7,7 +7,7 @@ import { getBlogBody } from '@/lib/data/blogBodies'
 import { useI18n } from '@/lib/i18n'
 import { pageMeta } from '@/lib/seo'
 
-export function loader({ params, request }: LoaderFunctionArgs) {
+export async function loader({ params, request }: LoaderFunctionArgs) {
   const slug = params.slug || ''
   const post = getBlog(slug)
   if (!post) throw new Response('Blog post not found', { status: 404 })
@@ -16,7 +16,7 @@ export function loader({ params, request }: LoaderFunctionArgs) {
   const index = blogs.findIndex((item) => item.slug === slug)
   return {
     post,
-    body: getBlogBody(slug, lang),
+    body: await getBlogBody(slug, lang),
     prev: index > 0 ? blogs[index - 1] : null,
     next: index < blogs.length - 1 ? blogs[index + 1] : null,
     lang,
@@ -55,10 +55,7 @@ export const meta: MetaFunction<typeof loader> = ({ loaderData, location }) => {
 
 export default function BlogPost() {
   const { t, lang } = useI18n()
-  const { post, prev, next } = useLoaderData<typeof loader>()
-  // Keep the rendered article body in sync with the language context even
-  // before a client-side loader revalidation completes.
-  const body = getBlogBody(post.slug, lang)
+  const { post, body, prev, next } = useLoaderData<typeof loader>()
 
   return (
     <article className="pt-20 md:pt-24">

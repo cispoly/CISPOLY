@@ -18,7 +18,7 @@ const paperCovers: Record<string, string> = {
 
 const guidelineCovers: Record<string, string> = {
   '2_ec_methylation_consensus2026': `${COVER_ROOT}zhonghua-yi-xue-za-zhi-2024.png`,
-  '1_methylation_tech_spec': '/blogs/cispolys-methylation-tests-for-three/img-01.png',
+  '1_methylation_tech_spec': '/blogs/images/contents/聚禾生物妇科三癌甲基化检测全线进入肿瘤DNA甲基化标志物检测技术规范团体标准-img-01.webp',
 }
 
 const covers: Array<[string[], string]> = [

@@ -499,7 +499,7 @@ const en: Dict = {
   'product.guidelines.eyebrow': 'Standardized Application',
   'product.guidelines.title': 'Related Guidelines & Consensus',
   'product.sampleType': 'Sample Type',
-  'product.nmpaLabel': 'NMPA Registration',
+  'product.nmpaLabel': 'NMPA Registration No.',
   'product.regDateLabel': 'Date Approved',
   'product.dualGene': 'dual-gene methylation',
 

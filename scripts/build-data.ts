@@ -1154,7 +1154,7 @@ const COMPANY = {
   english: 'CISPOLY',
   founded: 2020,
   location: '北京市大兴区华佗路50号院5号楼4层',
-  phone: '+86 010-52208820',
+  phone: '010-51071017',
   emails: ['OPBT@cispoly.com', 'wangyishan@cispoly.com'],
   mission: '以创新表观遗传技术，守护女性健康',
   description:

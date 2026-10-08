@@ -53,6 +53,8 @@ export default function ProductDetail() {
   const sampleType = pick(product.sampleType, product.sampleTypeEn || product.sampleType, lang)
   const highlights = pick(product.highlights, product.highlightsEn || product.highlights, lang)
   const geneSuffix = lang === 'zh' ? '双基因甲基化' : t('product.dualGene')
+  const registration = lang === 'en' ? product.registration.replace(/^国械注准\s*/, '') : product.registration
+  const dnaIsolationFiling = product.slug === 'cisova' ? '20240021' : '20210020'
 
   // 产品 hero 背景图（与首页同风格）
   const heroImage = (() => {
@@ -105,13 +107,22 @@ export default function ProductDetail() {
               <ShieldCheck size={20} className="text-brand-500" />
               <div>
                 <div className="text-[11px] uppercase tracking-wider text-ink/50">{t('product.nmpaLabel')}</div>
-                <div className="font-mono text-sm font-semibold text-ink">{product.registration}</div>
+                <div className="font-mono text-sm font-semibold text-ink">{registration}</div>
               </div>
               <div className="ml-4 border-l border-line/70 pl-4">
                 <div className="text-[11px] uppercase tracking-wider text-ink/50">{t('product.regDateLabel')}</div>
                 <div className="text-sm font-semibold text-ink">{product.regDate}</div>
               </div>
             </div>
+            {lang === 'en' && (
+              <div className="mt-4 max-w-2xl rounded-xl border border-line/60 bg-white/70 px-5 py-4 text-sm leading-relaxed text-ink/80 backdrop-blur">
+                <p className="font-semibold text-ink">Recommended companion kits</p>
+                <p className="mt-1.5">
+                  Use the <strong className="font-bold text-ink">DNA Isolation and Purifying Kit (Beijing Medical Device No. {dnaIsolationFiling})</strong> for DNA extraction and purification,
+                  followed by <strong className="font-bold text-ink">DNA Methylation-Lightning MagPrep (Beijing Medical Device No. 20200110)</strong> for bisulfite conversion.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </section>

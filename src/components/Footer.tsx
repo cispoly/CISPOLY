@@ -81,7 +81,7 @@ export default function Footer() {
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/25 pt-8 text-sm text-white/75 md:flex-row">
           <p>
             © {new Date().getFullYear()} {companyName}
-            {lang === 'zh' ? '（CISPOLY）' : ' (CISPOLY)'}
+            {lang === 'zh' && '（CISPOLY）'}
             {t('common.copyOf') ? '· ' + t('common.copyOf') : ''}
           </p>
         </div>

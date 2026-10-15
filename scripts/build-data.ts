@@ -12,6 +12,7 @@ import {
   readFileSync,
   readdirSync,
   rmSync,
+  statSync,
   writeFileSync,
 } from 'node:fs'
 import { join, basename, extname } from 'node:path'
@@ -23,6 +24,8 @@ const OUT = join(ROOT, 'src', 'data')
 const BLOG_PUBLIC_ROOT = join(ROOT, 'public', 'blogs')
 const BLOG_PUBLIC_COVERS = join(BLOG_PUBLIC_ROOT, 'images', 'covers')
 const BLOG_PUBLIC_CONTENTS = join(BLOG_PUBLIC_ROOT, 'images', 'contents')
+// 本次构建实际写入或复用的图片产物，构建结束后据此清理已删除文章的孤儿图片
+const blogOutputFiles = new Set<string>()
 const BLOG_BODY_ROOT = join(OUT, 'blog-bodies')
 mkdirSync(OUT, { recursive: true })
 
@@ -753,6 +756,17 @@ function stripBlogHeader(md: string): string {
   return s.replace(/\n{3,}/g, '\n\n').trim()
 }
 
+/** 产物是否可用：存在、非空且不比源文件旧（源图更新后才重新转码）。 */
+function isFreshOutput(outputPath: string, srcPath: string): boolean {
+  try {
+    return existsSync(outputPath)
+      && statSync(outputPath).size > 0
+      && statSync(outputPath).mtimeMs >= statSync(srcPath).mtimeMs
+  } catch {
+    return false
+  }
+}
+
 /** 发布博客图片到统一目录，并将大图转换为更适合网页的 WebP。 */
 async function publishBlogImage(blogDir: string, relativePath: string, articleKey: string) {
   const normalized = relativePath.replace(/^\.\\?\//, '').replace(/\\/g, '/')
@@ -777,11 +791,17 @@ async function publishBlogImage(blogDir: string, relativePath: string, articleKe
 
   const task = (async () => {
     mkdirSync(outputDir, { recursive: true })
+    // 增量构建：产物不比源图旧时直接复用，避免每次启动都重新转码全部图片
+    if (isFreshOutput(outputPath, src)) {
+      blogOutputFiles.add(outputPath)
+      return publicPath
+    }
     if (['.jpg', '.jpeg', '.png'].includes(sourceExt)) {
       await sharp(src).rotate().webp({ quality: 84, effort: 4 }).toFile(outputPath)
     } else {
       copyFileSync(src, outputPath)
     }
+    blogOutputFiles.add(outputPath)
     return publicPath
   })().catch(() => undefined)
 
@@ -809,10 +829,23 @@ async function localizeBlogImages(body: string, blogDir: string, articleKey: str
   return output + body.slice(cursor)
 }
 
+// 本次构建实际写入（或确认未变化）的正文文件，构建结束后据此清理已删除文章的孤儿文件
+const blogBodyFiles = new Set<string>()
+
 function writeBlogBody(lang: 'zh' | 'en', slug: string, body: string) {
   const dir = join(BLOG_BODY_ROOT, lang)
+  const file = join(dir, `${slug}.json`)
   mkdirSync(dir, { recursive: true })
-  writeFileSync(join(dir, `${slug}.json`), JSON.stringify(body), 'utf-8')
+  blogBodyFiles.add(file)
+  // 内容未变化时不写文件，避免触发 Vite 对全部博客路由的 HMR 刷新
+  if (existsSync(file)) {
+    try {
+      if (readFileSync(file, 'utf-8') === JSON.stringify(body)) return
+    } catch {
+      // 读取失败则照常重写
+    }
+  }
+  writeFileSync(file, JSON.stringify(body), 'utf-8')
 }
 
 // 微信公众号 UI 残留清洗规则
@@ -1287,15 +1320,39 @@ function writeJson(name: string, data: unknown) {
 }
 
 // ---------- 主流程 ----------
+/** 清理已删除文章留下的孤儿图片（只删本次构建未引用的文件）。 */
+function pruneOrphanBlogImages() {
+  for (const dir of [BLOG_PUBLIC_COVERS, BLOG_PUBLIC_CONTENTS]) {
+    if (!existsSync(dir)) continue
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      if (!entry.isFile()) continue
+      const full = join(dir, entry.name)
+      if (!blogOutputFiles.has(full)) rmSync(full, { force: true })
+    }
+  }
+}
+
+/** 清理已删除文章留下的孤儿正文 JSON（只删本次构建未引用的文件）。 */
+function pruneOrphanBlogBodies() {
+  for (const lang of ['zh', 'en'] as const) {
+    const dir = join(BLOG_BODY_ROOT, lang)
+    if (!existsSync(dir)) continue
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      if (!entry.isFile() || !entry.name.endsWith('.json')) continue
+      const full = join(dir, entry.name)
+      if (!blogBodyFiles.has(full)) rmSync(full, { force: true })
+    }
+  }
+}
+
 async function main() {
   console.log('CISPOLY 数据构建中…')
 
-  // 这些目录全部是构建产物，每次构建前清理可避免旧文章图片残留。
-  rmSync(BLOG_PUBLIC_ROOT, { recursive: true, force: true })
-  rmSync(BLOG_BODY_ROOT, { recursive: true, force: true })
-  rmSync(join(OUT, 'blogs.body.json'), { force: true })
-  rmSync(join(OUT, 'blogs.body.en.json'), { force: true })
+  // 全部产物改为增量生成：正文 JSON 内容未变不重写、图片不重新转码，
+  // 构建结束后分别清理孤儿文件（已删除文章的正文/图片）。
   blogAssetCache.clear()
+  blogOutputFiles.clear()
+  blogBodyFiles.clear()
 
   const papers = buildPapers()
   const guidelines = buildGuidelines()
@@ -1303,6 +1360,8 @@ async function main() {
   await buildBlogsEn(join(SRC, 'blogs'))
   const products = buildProducts()
   const company = buildCompany()
+  pruneOrphanBlogBodies()
+  pruneOrphanBlogImages()
 
   writeJson('index.json', {
     generatedAt: new Date().toISOString(),

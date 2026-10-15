@@ -13,6 +13,14 @@ import { watch } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+// dev 模式必须用 development 版 React 运行时。
+// 若外部环境残留 NODE_ENV=production，Vite 依赖预打包会把 react/jsx-dev-runtime
+// 替换成 production 版（不导出 jsxDEV），SSR 渲染时报
+// "TypeError: jsxDEV is not a function"。这里统一强制为 development。
+if (process.env.NODE_ENV !== 'development') {
+  process.env.NODE_ENV = 'development'
+}
+
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const SRC = join(ROOT, 'contents')
@@ -129,11 +137,18 @@ process.once('SIGTERM', () => shutdown(0))
 await runBuild('启动')
 if (shuttingDown) process.exit(0)
 
+// react-router CLI 首次启动会检测不到 development 条件，自重启一次（[restart] ...）。
+// 这里直接带上 NODE_OPTIONS，省掉一次完整重启和随之而来的重新优化依赖。
+const reactRouterNodeOptions = [process.env.NODE_OPTIONS, '--conditions=development']
+  .filter(Boolean)
+  .join(' ')
+
 vite = spawn('npx react-router dev', {
   cwd: ROOT,
   stdio: 'inherit',
   shell: true,
   detached: process.platform !== 'win32',
+  env: { ...process.env, NODE_OPTIONS: reactRouterNodeOptions },
 })
 vite.on('exit', (code) => {
   if (shuttingDown) return

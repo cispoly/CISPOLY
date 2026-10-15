@@ -1,17 +1,23 @@
 #!/usr/bin/env node
 /**
- * CISPOLY 开发服务器：监听 contents/ 数据文件变化 → 自动重建数据 → React Router HMR 刷新页面
+ * CISPOLY 开发服务器（单进程）：监听 contents/ 数据文件变化 → 自动重建数据 → Vite HMR 刷新页面
  *
- * 用法：npm run dev（替代原来的 "node scripts/build-data.ts && vite"）
- * - 启动时先构建一次数据，再启动 Vite
+ * 用法：npm run dev
+ * - 启动时先构建一次数据，再在同进程内启动 Vite（React Router framework mode）
  * - 监听 contents/blogs、contents/academic_published_papers、contents/clinical_guidelines 下
  *   所有文件（md / 图片等）变化，防抖 600ms 后自动重跑 build-data.ts
- * - React Router/Vite 检测到 src/data/*.json 变化后自动热更新/刷新页面
+ * - Vite 检测到 src/data/*.json 变化后自动热更新/刷新页面
+ *
+ * 为什么在同进程跑 Vite 而不是 spawn 子进程：
+ * Windows 终端下 npm → node → cmd(npx) → CLI 的多级子进程链不转发 Ctrl+C，
+ * 会导致 npm run dev 无法用 Ctrl+C 停止（服务器变成孤儿进程继续占用端口）。
+ * 单进程模式下 Ctrl+C 直接到达 Vite 进程本身，退出可靠且能正常释放端口。
  */
-import { execFileSync, spawn } from 'node:child_process'
+import { spawn } from 'node:child_process'
 import { watch } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { createServer } from 'vite'
 
 // dev 模式必须用 development 版 React 运行时。
 // 若外部环境残留 NODE_ENV=production，Vite 依赖预打包会把 react/jsx-dev-runtime
@@ -34,31 +40,20 @@ let building = false
 let pending = false
 let timer = null
 let buildChild = null
-let vite = null
+let server = null
 let shuttingDown = false
 const watchers = []
 
-function terminateProcessTree(child) {
+function killChild(child) {
   if (!child?.pid) return
-
   try {
-    if (process.platform === 'win32') {
-      // `shell: true` starts cmd.exe, so killing only the direct child can
-      // leave react-router/Vite running. Kill the complete process tree.
-      execFileSync('taskkill', ['/PID', String(child.pid), '/T', '/F'], {
-        stdio: 'ignore',
-      })
-    } else {
-      // The non-Windows child is detached below, so its negative PID targets
-      // the complete process group rather than only the shell.
-      process.kill(-child.pid, 'SIGTERM')
-    }
+    child.kill('SIGTERM')
   } catch {
-    // The child may have exited between the check and the cleanup call.
+    // 进程可能已经退出
   }
 }
 
-function shutdown(code = 0) {
+async function shutdown(code = 0) {
   if (shuttingDown) return
   shuttingDown = true
 
@@ -67,9 +62,21 @@ function shutdown(code = 0) {
     timer = null
   }
 
-  for (const watcher of watchers) watcher.close()
-  terminateProcessTree(buildChild)
-  terminateProcessTree(vite)
+  for (const watcher of watchers) {
+    try {
+      watcher.close()
+    } catch {
+      // 忽略重复关闭
+    }
+  }
+  killChild(buildChild)
+  if (server) {
+    try {
+      await server.close()
+    } catch {
+      // 关闭失败也继续退出
+    }
+  }
   process.exit(code)
 }
 
@@ -81,11 +88,10 @@ function runBuild(reason) {
     }
 
     console.log(`\n[watch] 检测到变更（${reason}），重新构建数据…`)
-    const child = spawn('node scripts/build-data.ts', {
+    // 直接 spawn node（不经过 shell/cmd），保证进程树只有一层，Ctrl+C 可靠传递
+    const child = spawn(process.execPath, [join(ROOT, 'scripts', 'build-data.ts')], {
       cwd: ROOT,
       stdio: 'inherit',
-      shell: true,
-      detached: process.platform !== 'win32',
     })
     buildChild = child
     child.on('error', (err) => {
@@ -128,33 +134,31 @@ function scheduleBuild(reason) {
   }, 600)
 }
 
-process.once('SIGINT', () => shutdown(0))
-process.once('SIGTERM', () => shutdown(0))
+// 退出信号：SIGINT（Ctrl+C）/ SIGTERM（kill）/ SIGHUP（终端关闭，Windows 控制台关闭时映射为此信号）/
+// SIGBREAK（Windows Ctrl+Break）。任一信号到达都先优雅关闭 Vite 再退出，确保端口释放、无孤儿进程。
+for (const sig of ['SIGINT', 'SIGTERM', 'SIGHUP', 'SIGBREAK']) {
+  process.once(sig, () => {
+    void shutdown(0)
+  })
+}
 
-// 先构建一次数据，再启动 React Router Framework Mode 开发服务器。
-// React Router 会在启动时读取 react-router.config.ts 的 prerender 路径；
-// 必须先生成最新的 src/data，否则新博客路由会被开发服务器误判为 404。
+// 先构建一次数据，再启动 Vite。
+// react-router.config.ts 的 prerender 路径在启动时读取 src/data，
+// 必须先生成最新的数据，否则新博客路由会被误判为 404。
 await runBuild('启动')
 if (shuttingDown) process.exit(0)
 
-// react-router CLI 首次启动会检测不到 development 条件，自重启一次（[restart] ...）。
-// 这里直接带上 NODE_OPTIONS，省掉一次完整重启和随之而来的重新优化依赖。
-const reactRouterNodeOptions = [process.env.NODE_OPTIONS, '--conditions=development']
-  .filter(Boolean)
-  .join(' ')
-
-vite = spawn('npx react-router dev', {
-  cwd: ROOT,
-  stdio: 'inherit',
-  shell: true,
-  detached: process.platform !== 'win32',
-  env: { ...process.env, NODE_OPTIONS: reactRouterNodeOptions },
-})
-vite.on('exit', (code) => {
-  if (shuttingDown) return
-  console.log(`[dev] Vite 已退出（${code}）`)
-  shutdown(code ?? 0)
-})
+try {
+  server = await createServer({
+    root: ROOT,
+    configFile: join(ROOT, 'vite.config.ts'),
+  })
+  await server.listen()
+} catch (err) {
+  console.error(`[dev] Vite 启动失败：${err instanceof Error ? err.message : err}`)
+  console.error('[dev] 若提示端口被占用，请先结束占用 5173 端口的进程再重试')
+  process.exit(1)
+}
 
 // 监听数据源目录
 for (const dir of WATCH_DIRS) {
@@ -169,3 +173,6 @@ for (const dir of WATCH_DIRS) {
   }
 }
 console.log('[watch] 修改 contents/ 下的 markdown 或图片后，页面将自动更新（Ctrl+C 退出）\n')
+
+// Vite HTTP 服务与目录监听会保持事件循环存活，无需额外挂起。
+// 退出路径只有一条：SIGINT/SIGTERM（Ctrl+C）→ shutdown() → server.close() 释放端口。

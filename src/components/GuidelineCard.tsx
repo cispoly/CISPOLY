@@ -27,7 +27,7 @@ export default function GuidelineCard({ guideline }: { guideline: Guideline }) {
   const sourceUrl = guideline.externalUrl && (!guideline.externalUrl.includes('mp.weixin.qq.com') || !guideline.doi) ? guideline.externalUrl : undefined
   const href = sourceUrl || (guideline.doi ? `https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(`${guideline.doi}[doi]`)}` : undefined)
   const relatedBlog = relatedBlogFor(guideline)
-  return <div className="card card-hover group relative flex h-[300px] items-stretch overflow-hidden">
+  return <div className="card card-hover group relative flex h-[240px] items-stretch overflow-hidden">
     <a href={href} target={href ? '_blank' : undefined} rel={href ? 'noopener noreferrer' : undefined} className="flex min-w-0 flex-1 items-stretch">
     <div className="m-3 grid aspect-[3/4] w-24 shrink-0 place-items-center self-center overflow-hidden rounded-lg bg-brand-50 sm:m-4 sm:w-32 md:w-36"><img src={cover || '/images/journal-covers/_journals/journal-placeholder.svg'} alt={`${publisher || 'Guideline'} cover`} className="h-full w-full object-contain p-1 transition duration-300 group-hover:scale-105" loading="lazy" /></div>
     <div className="flex min-w-0 flex-1 flex-col justify-center gap-2 p-4 pb-12 sm:p-5 sm:pb-12">

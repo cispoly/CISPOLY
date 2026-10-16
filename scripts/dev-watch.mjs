@@ -149,11 +149,15 @@ await runBuild('启动')
 if (shuttingDown) process.exit(0)
 
 try {
+  const startedAt = Date.now()
   server = await createServer({
     root: ROOT,
     configFile: join(ROOT, 'vite.config.ts'),
   })
   await server.listen()
+  const addr = server.resolvedUrls?.local?.[0] ?? server.resolvedUrls?.network?.[0]
+  const seconds = ((Date.now() - startedAt) / 1000).toFixed(1)
+  console.log(`\n[dev] Vite 已就绪 (${seconds}s) → ${addr ?? 'http://localhost:5173/'}`)
 } catch (err) {
   console.error(`[dev] Vite 启动失败：${err instanceof Error ? err.message : err}`)
   console.error('[dev] 若提示端口被占用，请先结束占用 5173 端口的进程再重试')

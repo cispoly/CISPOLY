@@ -15,7 +15,7 @@
  */
 import { spawn } from 'node:child_process'
 import { watch } from 'node:fs'
-import { join, dirname } from 'node:path'
+import { join, dirname, extname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createServer } from 'vite'
 
@@ -42,7 +42,22 @@ let timer = null
 let buildChild = null
 let server = null
 let shuttingDown = false
+let lastBuildAt = 0
 const watchers = []
+
+// 只有内容文件的变化才值得重建数据。.obsidian/.vscode 等编辑器配置目录、
+// 临时文件和非内容扩展名一律忽略——否则 Obsidian 会持续写入 workspace.json，
+// 触发 watch → 重建 → 再触发的无限循环。
+const CONTENT_EXT = new Set(['.md', '.jpg', '.jpeg', '.png', '.webp', '.gif', '.svg', '.avif'])
+const IGNORED_DIRS = new Set(['.obsidian', '.vscode', '.git', 'node_modules', '.trash'])
+
+function isContentChange(filename) {
+  if (!filename) return false
+  const parts = filename.split(/[\\/]/)
+  if (parts.some((part) => IGNORED_DIRS.has(part))) return false
+  const ext = extname(parts[parts.length - 1]).toLowerCase()
+  return CONTENT_EXT.has(ext)
+}
 
 function killChild(child) {
   if (!child?.pid) return
@@ -117,6 +132,11 @@ function scheduleBuild(reason) {
     pending = true
     return
   }
+  // 防自激振荡：构建刚结束又立刻被触发时，丢弃这次“构建期间的新变更”。
+  // 正常编辑内容后重新触发 watch 的间隔远大于此冷却时间，不会漏掉真实修改。
+  if (Date.now() - lastBuildAt < 1000) {
+    return
+  }
   timer = setTimeout(async () => {
     timer = null
     if (building) {
@@ -124,9 +144,10 @@ function scheduleBuild(reason) {
       return
     }
     building = true
+    lastBuildAt = Date.now()
     await runBuild(reason)
     building = false
-    // 构建期间又有变更 → 再跑一次
+    // 构建期间又有变更 → 再跑一次（仅当确有内容文件变化，见 isContentChange 过滤）
     if (pending) {
       pending = false
       scheduleBuild('构建期间的新变更')
@@ -168,7 +189,8 @@ try {
 for (const dir of WATCH_DIRS) {
   try {
     const watcher = watch(dir, { recursive: true }, (_event, filename) => {
-      if (filename) scheduleBuild(filename.split(/[\\/]/).pop() || filename)
+      if (!isContentChange(filename)) return
+      scheduleBuild(filename.split(/[\\/]/).pop() || filename)
     })
     watchers.push(watcher)
     console.log(`[watch] 监听 ${dir}`)

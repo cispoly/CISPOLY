@@ -6,9 +6,14 @@ const normalize = (value: string) => value.toLowerCase().replace(/[^\p{L}\p{N}]+
 // Some publication-to-blog relationships are editorial rather than lexical.
 // Keep these explicit so the paper card remains linked to the intended news
 // article even when the article title is written from a reader-facing angle.
-const relatedBlogOverrides: Record<string, string> = {
+const relatedBlogOverrides: Record<string, string | null> = {
   '27_joint_methylation_progress': 'pax1-jam3-precision-cervical-screening-pathway',
   '14_esgo_position_screening': 'esgo-releases-new-position-on-cervical',
+  // 以下论文暂无对应博客文章：显式置空，避免关键词自动匹配到不相关博客
+  '35_methylation_markers_meta_analysis': null,
+  '36_ala_pdt_methylation': null,
+  '37_two_methylation_assays_hrhpv_mrna': null,
+  '13_edendx_assay_validation': null,
 }
 
 function findRelated(title: string) {
@@ -28,6 +33,6 @@ function findRelated(title: string) {
 }
 
 export function relatedBlogFor(item: Paper | Guideline) {
-  if ('id' in item && relatedBlogOverrides[item.id]) return relatedBlogOverrides[item.id]
+  if ('id' in item && item.id in relatedBlogOverrides) return relatedBlogOverrides[item.id] ?? undefined
   return findRelated(item.title)
 }

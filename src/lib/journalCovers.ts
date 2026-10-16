@@ -13,7 +13,7 @@ const paperCovers: Record<string, string> = {
   '19_hrhpv_diagnostic_value': `${COVER_ROOT}90825x2025010f0001.jpg`,
   '31_jam3_recurrence_prediction': `${COVER_ROOT}72374x2024007f0001.jpg`,
   '1_postmenopausal_screening': `${COVER_ROOT}zhonghua-yi-xue-za-zhi-2024.png`,
-  '10_paired_sample_validation': `${COVER_ROOT}frontiers-in-medicine-article.jpg`,
+  '10_paired_sample_validation': `${COVER_ROOT}frontiers-in-medicine-cover.png`,
 }
 
 const guidelineCovers: Record<string, string> = {
@@ -25,11 +25,10 @@ const covers: Array<[string[], string]> = [
   [['bmc women', 'bmc womens'], `${COVER_ROOT}bmc-womens-health.jpg`],
   [['clinical epigenetics'], `${COVER_ROOT}clinical-epigenetics.jpg`],
   [['bmc cancer'], `${COVER_ROOT}bmc-cancer.jpg`],
-  [['frontiers in medicine'], `${COVER_ROOT}frontiers-in-medicine-cover.svg`],
-  [['frontiers in oncology'], `${COVER_ROOT}frontiers-oncology.png`],
+  [['frontiers in medicine', 'front med'], `${COVER_ROOT}frontiers-in-medicine-cover.png`],
+  [['frontiers in oncology', 'front oncol'], `${COVER_ROOT}frontiers-oncology.png`],
   [['int j cancer', 'international journal of cancer', 'international journal cancer'], `${COVER_ROOT}international-journal-cancer.jpg`],
   [['international journal of gynecological cancer', 'international journal gynecological cancer', '国际妇科肿瘤学杂志'], `${COVER_ROOT}international-journal-gyn-cancer.jpg`],
-  [['gynecologic oncology'], `${COVER_ROOT}gynecologic-oncology.jpg`],
   [['american journal of cancer research', 'american journal cancer research'], `${COVER_ROOT}american-journal-cancer-research.jpg`],
   [['british journal of cancer', 'british journal cancer'], `${COVER_ROOT}british-journal-cancer.jpg`],
   [['european journal of cancer'], `${COVER_ROOT}european-journal-cancer.jpg`],
@@ -56,6 +55,13 @@ const covers: Array<[string[], string]> = [
   [['团体标准', 'group standard'], `${COVER_ROOT}chinese-lab-medicine.jpg`],
   [['中华保健医学杂志', 'chinese journal of health care and medicine'], `${COVER_ROOT}zhonghua-healthcare.jpg`],
   [['cytojournal'], `${COVER_ROOT}cytojournal.jpg`],
+  [['archives of academic emergency medicine', 'archives academic emergency medicine', 'arch acad emerg med'], `${COVER_ROOT}archives-academic-emergency-medicine.jpg`],
+  [['frontiers in public health', 'front public health'], `${COVER_ROOT}frontiers-public-health.png`],
+  [['gynecologic oncology reports', 'gynecol oncol rep', 'gore'], `${COVER_ROOT}gynecologic-oncology-reports.jpg`],
+  [['gynecologic oncology'], `${COVER_ROOT}gynecologic-oncology.jpg`],
+  // 注意：以下含 "medicine" 的具体期刊名必须先于 "medicine" 匹配，
+  // 因此 Medicine 封面放在列表末尾（journalCoverFor 取第一个匹配项）。
+  [['medicine'], `${COVER_ROOT}medicine.jpg`],
 ]
 
 export function journalCoverFor(journal?: string) {

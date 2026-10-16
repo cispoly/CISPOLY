@@ -408,6 +408,49 @@
       "affiliation": "河北医科大学第一医院",
       "doi": "10.1186/s12905-026-04622-9",
       "conclusion": "本研究对409例阴道镜转诊高危队列行多分类Logistic回归分析，HR-HPV感染、TCT异常及PAX1/JAM3甲基化与宫颈病变等级独立相关，其中JAM3（OR=8.215）与PAX1甲基化（OR=4.145）是进展为HSIL的强独立危险因素，有助临床风险分层，尚需更大规模前瞻研究验证。"
+    },
+    "33_combined_pax1jam3_vl_model": {
+      "journal": "BMC Cancer",
+      "year": 2026,
+      "volume": "26",
+      "pages": "1029",
+      "doi": "10.1186/s12885-026-16788-4",
+      "title": "A combined PAX1/JAM3 methylation and HPV viral load model for exploratory risk stratification of ≥CIN2 among women with positive cervical screening results"
+    },
+    "34_pax1jam3_meta_analysis": {
+      "journal": "Medicine",
+      "year": 2026,
+      "doi": "10.1097/MD.0000000000050757",
+      "title": "Meta-analysis of PAX1/JAM3 methylation performance in high-risk HPV-positive women"
+    },
+    "35_methylation_markers_meta_analysis": {
+      "journal": "Arch Acad Emerg Med",
+      "year": 2026,
+      "volume": "14",
+      "pages": "e37",
+      "doi": "10.22037/aaem.v14i1.3062",
+      "title": "Diagnostic Accuracy of DNA Methylation Markers for Detecting Cervical Precancer and Cervical Cancer: A Systematic Review and Meta-analysis"
+    },
+    "36_ala_pdt_methylation": {
+      "journal": "Front Med",
+      "year": 2026,
+      "volume": "13",
+      "pages": "1828763",
+      "doi": "10.3389/fmed.2026.1828763",
+      "title": "Efficacy of 5-aminolevulinic acid photodynamic therapy for the treatment of female lower reproductive tract intraepithelial lesions and its predictive biomarker: DNA methylation"
+    },
+    "37_two_methylation_assays_hrhpv_mrna": {
+      "journal": "Front Public Health",
+      "year": 2025,
+      "volume": "13",
+      "doi": "10.3389/fpubh.2025.1723553",
+      "title": "Comparative evaluation of two DNA methylation assays for triage of hrHPV E6/E7 mRNA–positive women"
+    },
+    "13_edendx_assay_validation": {
+      "journal": "Gynecol Oncol Rep",
+      "year": 2026,
+      "doi": "10.1016/j.gore.2026.102221",
+      "title": "Analytical and clinical validation of the EdenDx methylation assay as a noninvasive supportive triage tool for early detection of endometrial cancer in cervical scraping specimens"
     }
   },
   "guidelines": {

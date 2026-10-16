@@ -229,5 +229,35 @@
     "titleEn": "Application value of DNA methylation testing in the diagnosis of endometrial cancer in reproductive-age women with abnormal uterine bleeding",
     "summaryEn": "This study evaluated the diagnostic value of CDO1 and CELF4 gene DNA methylation in cervical exfoliated cells for endometrial cancer in reproductive-age women. Dual-gene methylation testing achieved the highest diagnostic accuracy (AUC 0.90), with sensitivity and specificity superior to traditional clinical examination methods; combined with other test indicators it further improved diagnostic sensitivity, providing a more effective non-invasive diagnostic option for patients with abnormal uterine bleeding.",
     "affiliationEn": "The Third Xiangya Hospital of Central South University"
+  },
+  "33_combined_pax1jam3_vl_model": {
+    "titleEn": "A combined PAX1/JAM3 methylation and HPV viral load model for exploratory risk stratification of ≥CIN2 among women with positive cervical screening results",
+    "summaryEn": "This study developed a combined PAX1/JAM3 methylation and HPV viral load model for risk stratification of CIN2+ among women with positive cervical screening results. The combined model showed good discriminatory ability for identifying high-risk women, potentially reducing unnecessary colposcopy referrals.",
+    "affiliationEn": ""
+  },
+  "34_pax1jam3_meta_analysis": {
+    "titleEn": "Meta-analysis of PAX1/JAM3 methylation performance in high-risk HPV-positive women",
+    "summaryEn": "This meta-analysis evaluated the pooled diagnostic performance of PAX1/JAM3 methylation for detecting CIN2+ in high-risk HPV-positive women. The results support the use of PAX1/JAM3 methylation as an effective triage biomarker for hrHPV-positive women.",
+    "affiliationEn": ""
+  },
+  "35_methylation_markers_meta_analysis": {
+    "titleEn": "Diagnostic Accuracy of DNA Methylation Markers for Detecting Cervical Precancer and Cervical Cancer: A Systematic Review and Meta-analysis",
+    "summaryEn": "This systematic review and meta-analysis evaluated the diagnostic accuracy of DNA methylation markers for detecting cervical precancer (CIN2+) and cervical cancer. PAX1/JAM3 dual-gene methylation demonstrated particularly promising diagnostic performance as a triage tool.",
+    "affiliationEn": ""
+  },
+  "36_ala_pdt_methylation": {
+    "titleEn": "Efficacy of 5-aminolevulinic acid photodynamic therapy for the treatment of female lower reproductive tract intraepithelial lesions and its predictive biomarker: DNA methylation",
+    "summaryEn": "This study evaluated the efficacy of ALA-PDT for treating female lower reproductive tract intraepithelial lesions and explored DNA methylation as a predictive biomarker for treatment response. ALA-PDT demonstrated good efficacy and safety, with DNA methylation biomarkers showing potential for predicting treatment outcomes.",
+    "affiliationEn": ""
+  },
+  "37_two_methylation_assays_hrhpv_mrna": {
+    "titleEn": "Comparative evaluation of two DNA methylation assays for triage of hrHPV E6/E7 mRNA-positive women",
+    "summaryEn": "This study compared the performance of two DNA methylation assays for triaging hrHPV E6/E7 mRNA-positive women to identify those at high risk of CIN2+. Both assays showed good diagnostic performance, supporting their use as effective triage tools.",
+    "affiliationEn": ""
+  },
+  "13_edendx_assay_validation": {
+    "titleEn": "Analytical and clinical validation of the EdenDx methylation assay as a noninvasive supportive triage tool for early detection of endometrial cancer in cervical scraping specimens",
+    "summaryEn": "This study performed analytical and clinical validation of the EdenDx methylation assay for noninvasive detection of endometrial cancer using cervical scraping specimens. The assay demonstrated robust analytical performance and good clinical accuracy, potentially reducing the need for invasive endometrial sampling.",
+    "affiliationEn": ""
   }
 }

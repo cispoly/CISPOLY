@@ -70,6 +70,12 @@ for (const blog of blogs) {
 
 for (const product of products) {
   assert(productTranslations[product.slug], `产品缺少英文映射：${product.slug}`)
+  assert(Array.isArray(product.faq) && product.faq.length >= 3, `产品 FAQ 不足 3 条：${product.slug}`)
+  for (const item of product.faq) {
+    assert(item.q && item.a, `产品 FAQ 存在空问答：${product.slug}`)
+  }
+  const faqEn = productTranslations[product.slug].faqEn
+  assert(Array.isArray(faqEn) && faqEn.length === product.faq.length, `产品 FAQ 中英数量不一致：${product.slug}`)
 }
 
 console.log(`内容校验通过：${papers.length} 篇论文、${guidelines.length} 篇指南、${blogs.length} 篇博客、${products.length} 个产品`)

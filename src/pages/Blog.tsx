@@ -101,7 +101,7 @@ export default function Blog() {
                       {blogCover(b) ? (
                         <img
                           src={blogCover(b) as string}
-                          alt=""
+                          alt={(lang === 'en' && b.titleEn ? b.titleEn : b.title) || ''}
                           loading="lazy"
                           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                           onError={(e) => {

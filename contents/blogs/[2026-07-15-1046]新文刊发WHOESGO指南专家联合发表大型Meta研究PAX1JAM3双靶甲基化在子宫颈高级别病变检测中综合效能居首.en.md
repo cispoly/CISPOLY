@@ -1,6 +1,7 @@
 ---
 slug: new-publication-who-esgo-guideline-experts
 title: "New Publication | WHO/ESGO Guideline Experts Jointly Publish Large-Scale Meta-Analysis: PAX1/JAM3 Dual-Gene Methylation Ranks First in Overall Efficacy for Detecting High-Grade Cervical Lesions"
+seoTitle: "WHO/ESGO Meta-Analysis: PAX1/JAM3 Tops Detection"
 tags:
   - "New Publication"
   - "Guidelines"

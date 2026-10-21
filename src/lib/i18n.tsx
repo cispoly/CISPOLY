@@ -191,6 +191,8 @@ const zh: Dict = {
   'product.scenarios.title': '临床如何应用？',
   'product.highlights.eyebrow': '核心优势 · Highlights',
   'product.highlights.title': '为什么选择我们',
+  'product.faq.eyebrow': '常见问题 · FAQ',
+  'product.faq.title': '关于这项检测的常见疑问',
   'product.network.eyebrow': '多中心研究 · Clinical Network',
   'product.network.title': '权威医院多中心验证',
   'product.network.subtitle': '与全国顶级妇科肿瘤中心合作，开展多中心真实世界研究。',
@@ -490,6 +492,8 @@ const en: Dict = {
   'product.scenarios.title': 'How is it applied clinically?',
   'product.highlights.eyebrow': 'Highlights',
   'product.highlights.title': 'Why choose us',
+  'product.faq.eyebrow': 'FAQ',
+  'product.faq.title': 'Frequently asked questions about this test',
   'product.network.eyebrow': 'Clinical Network',
   'product.network.title': 'Validated by leading hospitals nationwide',
   'product.network.subtitle':

@@ -18,10 +18,26 @@
       "Women's health dual-screening programs at health checkup centers"
     ],
     "metricsEn": [
-      { "label": "Sensitivity (CIN2+)", "value": "89.60%", "sub": "Registered clinical trial" },
-      { "label": "Specificity", "value": "96.50%", "sub": "Registered clinical trial" },
-      { "label": "Sensitivity (CIN3+)", "value": "95.96%", "sub": "Registered clinical trial" },
-      { "label": "Registered clinical samples", "value": "1,968", "sub": "cases" }
+      {
+        "label": "Sensitivity (CIN2+)",
+        "value": "89.60%",
+        "sub": "Registered clinical trial"
+      },
+      {
+        "label": "Specificity",
+        "value": "96.50%",
+        "sub": "Registered clinical trial"
+      },
+      {
+        "label": "Sensitivity (CIN3+)",
+        "value": "95.96%",
+        "sub": "Registered clinical trial"
+      },
+      {
+        "label": "Registered clinical samples",
+        "value": "1,968",
+        "sub": "cases"
+      }
     ],
     "sampleTypeEn": "Cervical exfoliated cells (non-invasive sampling)",
     "highlightsEn": [
@@ -35,6 +51,28 @@
       "Obstetrics & Gynecology Hospital of Fudan University",
       "Third Xiangya Hospital",
       "Women's Hospital, Zhejiang University School of Medicine"
+    ],
+    "faqEn": [
+      {
+        "q": "What is the CISCER test?",
+        "a": "CISCER is a Class III in vitro diagnostic device (NMPA Reg. No. 20233400253) that detects PAX1/JAM3 dual-gene methylation in cervical exfoliated cells for early cervical cancer screening and triage of HPV-positive individuals."
+      },
+      {
+        "q": "How accurate is the CISCER test?",
+        "a": "Registration clinical trial data (1,968 samples) show 89.60% sensitivity for CIN2+, 96.50% specificity, and 95.96% sensitivity for CIN3+, supported by a 10,000-sample multi-center real-world study."
+      },
+      {
+        "q": "Is the CISCER sampling procedure painful?",
+        "a": "No. The test requires only cervical exfoliated cells collected non-invasively during a routine gynecological exam — no biopsy needed."
+      },
+      {
+        "q": "I tested HPV-positive. Should I also get the CISCER test?",
+        "a": "Recommended. Most HPV infections are transient. CISCER methylation testing assesses cancer risk at the lesion level, helping identify who genuinely needs colposcopy referral and avoiding over-diagnosis and over-treatment."
+      },
+      {
+        "q": "Who is suitable for the CISCER test?",
+        "a": "HPV-positive individuals, women with mild cytological abnormalities (ASC-US), postmenopausal women, and patients monitoring efficacy or recurrence before and after treatment for cervical lesions."
+      }
     ]
   },
   "cisendo": {
@@ -56,10 +94,26 @@
       "Women's health screening programs at health checkup centers"
     ],
     "metricsEn": [
-      { "label": "Sensitivity (Endometrial Cancer)", "value": "94.51%", "sub": "Registered clinical trial" },
-      { "label": "Specificity", "value": "94.16%", "sub": "Registered clinical trial" },
-      { "label": "Registered clinical samples", "value": "4,818", "sub": "cases" },
-      { "label": "Multi-center study", "value": "12,000", "sub": "real-world cases" }
+      {
+        "label": "Sensitivity (Endometrial Cancer)",
+        "value": "94.51%",
+        "sub": "Registered clinical trial"
+      },
+      {
+        "label": "Specificity",
+        "value": "94.16%",
+        "sub": "Registered clinical trial"
+      },
+      {
+        "label": "Registered clinical samples",
+        "value": "4,818",
+        "sub": "cases"
+      },
+      {
+        "label": "Multi-center study",
+        "value": "12,000",
+        "sub": "real-world cases"
+      }
     ],
     "sampleTypeEn": "Cervical exfoliated cells (non-invasive sampling)",
     "highlightsEn": [
@@ -73,6 +127,28 @@
       "Obstetrics & Gynecology Hospital of Fudan University",
       "Third Xiangya Hospital",
       "Women's Hospital, Zhejiang University School of Medicine"
+    ],
+    "faqEn": [
+      {
+        "q": "What is the CISENDO test?",
+        "a": "CISENDO is a Class III in vitro diagnostic device (NMPA Reg. No. 20243402610) that detects CDO1/CELF4 dual-gene methylation in cervical exfoliated cells — the world's first non-invasive endometrial cancer screening test."
+      },
+      {
+        "q": "How accurate is the CISENDO test?",
+        "a": "Registration clinical trial data (4,818 samples) show 94.51% sensitivity for endometrial cancer and 94.16% specificity, supported by a 12,000-sample real-world multi-center study."
+      },
+      {
+        "q": "Can CISENDO replace hysteroscopy or endometrial biopsy?",
+        "a": "CISENDO is a non-invasive screening tool using cervical exfoliated cells to assess endometrial cancer risk and reduce unnecessary invasive procedures. Definitive diagnosis still requires hysteroscopy/biopsy pathology, but CISENDO serves as an efficient first-line risk stratifier."
+      },
+      {
+        "q": "Why test methylation for abnormal uterine bleeding?",
+        "a": "Abnormal uterine bleeding is the most common presenting symptom of endometrial cancer. Methylation testing non-invasively assesses malignancy risk, helping clinicians decide whether further invasive examination is needed — avoiding both delay and over-investigation."
+      },
+      {
+        "q": "Who is suitable for the CISENDO test?",
+        "a": "Women with abnormal uterine bleeding, postmenopausal women, perimenopausal women at risk of endometrial lesions, and high-risk women scheduled for hysteroscopy."
+      }
     ]
   },
   "cisova": {
@@ -94,10 +170,26 @@
       "Women's cancer screening programs at health checkup centers"
     ],
     "metricsEn": [
-      { "label": "Sensitivity (Ovarian Cancer)", "value": "93.19%", "sub": "Registered clinical trial" },
-      { "label": "Specificity", "value": "92.78%", "sub": "Registered clinical trial" },
-      { "label": "Registered clinical samples", "value": "1,421", "sub": "cases" },
-      { "label": "Multi-center study", "value": "≈10K", "sub": "real-world cases" }
+      {
+        "label": "Sensitivity (Ovarian Cancer)",
+        "value": "93.19%",
+        "sub": "Registered clinical trial"
+      },
+      {
+        "label": "Specificity",
+        "value": "92.78%",
+        "sub": "Registered clinical trial"
+      },
+      {
+        "label": "Registered clinical samples",
+        "value": "1,421",
+        "sub": "cases"
+      },
+      {
+        "label": "Multi-center study",
+        "value": "≈10K",
+        "sub": "real-world cases"
+      }
     ],
     "sampleTypeEn": "Peripheral blood cell-free DNA (non-invasive sampling)",
     "highlightsEn": [
@@ -111,6 +203,28 @@
       "Fudan University Shanghai Cancer Center",
       "Obstetrics & Gynecology Hospital of Fudan University",
       "Third Xiangya Hospital"
+    ],
+    "faqEn": [
+      {
+        "q": "What is the CISOVA test?",
+        "a": "CISOVA is a Class III in vitro diagnostic device (NMPA Reg. No. 20253402443) that detects CDO1/HOXA9 dual-gene methylation in plasma cell-free DNA — the first approved ovarian cancer methylation test in China."
+      },
+      {
+        "q": "How accurate is the CISOVA test?",
+        "a": "Registration clinical trial data (1,421 samples) show 93.19% sensitivity for ovarian cancer and 92.78% specificity, supported by a real-world multi-center study of nearly 10,000 samples."
+      },
+      {
+        "q": "Can one tube of blood really detect ovarian cancer?",
+        "a": "Yes. CISOVA captures methylation signals from circulating tumor DNA (ctDNA) in plasma, detecting ovarian cancer at the epigenetic level with >92% sensitivity and specificity in registration clinical trials. It is used for benign-vs-malignant differentiation of ovarian cysts and pelvic masses."
+      },
+      {
+        "q": "I found an ovarian cyst or pelvic mass on imaging. Should I get CISOVA?",
+        "a": "Recommended. Imaging alone often cannot accurately distinguish benign from malignant masses. CISOVA detects tumor methylation signals from a blood sample, providing adjunctive stratification for surgical decision-making."
+      },
+      {
+        "q": "Who is suitable for the CISOVA test?",
+        "a": "Women with ovarian cysts or pelvic masses needing benign-vs-malignant differentiation, individuals at high risk of ovarian cancer, perimenopausal and postmenopausal women for screening, and suspected ovarian cancer patients needing adjunctive diagnosis."
+      }
     ]
   }
 }

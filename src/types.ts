@@ -55,7 +55,9 @@ export interface Guideline {
 export interface BlogPost {
   slug: string
   title: string
+  seoTitle?: string // 搜索结果页用的精简标题（H1 仍用完整 title）
   titleEn?: string
+  seoTitleEn?: string
   date: string // YYYY-MM-DD
   dateLabel: string
   lastModified: string // YYYY-MM-DD，默认同 date
@@ -77,6 +79,11 @@ export interface ProductMetric {
   sub?: string
 }
 
+export interface ProductFaqItem {
+  q: string
+  a: string
+}
+
 export interface Product {
   slug: 'ciscer' | 'cisendo' | 'cisova'
   name: string
@@ -96,6 +103,7 @@ export interface Product {
   highlights: string[]
   hospitals: string[]
   color: string
+  faq: ProductFaqItem[]
   // English fields
   nameEn?: string
   fullNameEn?: string
@@ -108,6 +116,7 @@ export interface Product {
   sampleTypeEn?: string
   highlightsEn?: string[]
   hospitalsEn?: string[]
+  faqEn?: ProductFaqItem[]
 }
 
 export interface CompanyStat {

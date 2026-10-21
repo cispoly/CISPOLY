@@ -5,7 +5,7 @@ import Markdown from '@/lib/markdown'
 import { getBlog, blogs } from '@/lib/data/blogs'
 import { getBlogBody } from '@/lib/data/blogBodies'
 import { useI18n } from '@/lib/i18n'
-import { pageMeta } from '@/lib/seo'
+import { pageMeta, breadcrumbSchema } from '@/lib/seo'
 
 export async function loader({ params, request }: LoaderFunctionArgs) {
   const slug = params.slug || ''
@@ -34,22 +34,43 @@ export const meta: MetaFunction<typeof loader> = ({ loaderData, location }) => {
   const { post, lang } = loaderData
   const title = lang === 'en' && post.titleEn ? post.titleEn : post.title
   const description = lang === 'en' && post.excerptEn ? post.excerptEn : post.excerpt
+  const pageUrl = `https://www.cispoly.com${location.pathname.replace(/\/+$/, '')}/`
+  // <title> 优先用精简的 seoTitle（搜索结果页展示），H1 与 Article headline 仍用完整标题
+  const metaTitleZh = post.seoTitle || post.title
+  const metaTitleEn = post.seoTitleEn || post.titleEn || post.title
   return pageMeta(location.pathname, {
-    titleZh: `${post.title} | CISPOLY`,
-    titleEn: `${post.titleEn || post.title} | CISPOLY`,
+    titleZh: `${metaTitleZh} | CISPOLY`,
+    titleEn: `${metaTitleEn} | CISPOLY`,
     descriptionZh: post.excerpt,
     descriptionEn: post.excerptEn || post.excerpt,
     image: post.cover,
     type: 'article',
-    structuredData: {
-      '@context': 'https://schema.org',
-      '@type': 'Article',
-      headline: title,
-      description,
-      datePublished: post.date,
-      dateModified: post.lastModified,
-      publisher: { '@type': 'Organization', name: 'CISPOLY' },
-    },
+    structuredData: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: title,
+        description,
+        image: post.cover ? [`https://www.cispoly.com${post.cover}`] : undefined,
+        datePublished: post.date,
+        dateModified: post.lastModified || post.date,
+        mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
+        author: {
+          '@type': 'Organization',
+          name: 'CISPOLY 聚禾生物',
+          url: 'https://www.cispoly.com',
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'CISPOLY',
+          logo: { '@type': 'ImageObject', url: 'https://www.cispoly.com/logo.png' },
+        },
+      },
+      breadcrumbSchema(
+        [{ name: '聚禾动态', path: '/blog' }],
+        location.pathname,
+      ),
+    ],
   })
 }
 

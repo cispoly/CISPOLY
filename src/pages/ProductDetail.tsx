@@ -7,6 +7,7 @@ import {
   Beaker,
   ShieldCheck,
   Dna,
+  CircleHelp,
 } from 'lucide-react'
 import SectionTitle from '@/components/SectionTitle'
 import Reveal from '@/components/Reveal'
@@ -19,16 +20,49 @@ import { getPapersByCancer } from '@/lib/data/papers'
 import { getGuidelinesByCancer } from '@/lib/data/guidelines'
 import { useI18n, pick } from '@/lib/i18n'
 import type { MetaFunction } from 'react-router'
-import { pageMeta } from '@/lib/seo'
+import { pageMeta, breadcrumbSchema } from '@/lib/seo'
 
 export const meta: MetaFunction = ({ params, location }) => {
   const product = params.slug ? getProduct(params.slug) : undefined
   if (!product) return [{ title: 'Products | CISPOLY' }]
+  const faq = product.faq || []
   return pageMeta(location.pathname, {
     titleZh: `${product.fullName}｜${product.cancer}甲基化检测 | CISPOLY`,
     titleEn: `${product.fullNameEn || product.englishName} | CISPOLY`,
     descriptionZh: product.summary,
     descriptionEn: product.summaryEn || product.summary,
+    structuredData: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'MedicalDevice',
+        name: product.fullName,
+        alternateName: product.englishName,
+        description: product.summary,
+        url: `https://www.cispoly.com/products/${product.slug}/`,
+        manufacturer: {
+          '@type': 'Organization',
+          name: 'CISPOLY',
+          alternateName: '北京起源聚禾生物科技有限公司',
+          url: 'https://www.cispoly.com',
+        },
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faq.map((item) => ({
+          '@type': 'Question',
+          name: item.q,
+          acceptedAnswer: { '@type': 'Answer', text: item.a },
+        })),
+      },
+      breadcrumbSchema(
+        [
+          { name: '产品中心', path: '/products' },
+          { name: product.fullName, path: `/products/${product.slug}` },
+        ],
+        location.pathname,
+      ),
+    ],
   })
 }
 
@@ -52,6 +86,7 @@ export default function ProductDetail() {
   const metrics = pick(product.metrics, product.metricsEn || product.metrics, lang)
   const sampleType = pick(product.sampleType, product.sampleTypeEn || product.sampleType, lang)
   const highlights = pick(product.highlights, product.highlightsEn || product.highlights, lang)
+  const faq = pick(product.faq, product.faqEn || product.faq, lang)
   const geneSuffix = lang === 'zh' ? '双基因甲基化' : t('product.dualGene')
   const registration = lang === 'en' ? product.registration.replace(/^国械注准\s*/, '') : product.registration
   const dnaIsolationFiling = product.slug === 'cisova' ? '20240021' : '20210020'
@@ -229,6 +264,36 @@ export default function ProductDetail() {
                   <div className="font-mono text-3xl font-bold text-brand-200">0{i + 1}</div>
                   <p className="mt-3 text-[14px] font-medium leading-relaxed text-ink/85">{h}</p>
                 </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== 常见问题 FAQ（自包含答案，供搜索引擎与 AI 提取） ===== */}
+      <section className="bg-white py-20 md:py-28">
+        <div className="shell">
+          <SectionTitle eyebrow={t('product.faq.eyebrow')} title={t('product.faq.title')} />
+          <div className="mx-auto mt-12 max-w-3xl space-y-4">
+            {faq.map((item, i) => (
+              <Reveal key={i} delay={i * 0.05}>
+                <details className="card group overflow-hidden p-0" open={i === 0}>
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 md:p-6">
+                    <span className="flex items-start gap-3 text-[15px] font-semibold text-ink md:text-base">
+                      <CircleHelp size={19} className="mt-0.5 shrink-0 text-brand-400" />
+                      {item.q}
+                    </span>
+                    <span
+                      aria-hidden
+                      className="shrink-0 text-inkSoft/50 transition-transform duration-300 group-open:rotate-45"
+                    >
+                      ＋
+                    </span>
+                  </summary>
+                  <p className="px-5 pb-5 text-[14px] leading-relaxed text-ink/80 md:px-6 md:pb-6 md:pl-[3.25rem]">
+                    {item.a}
+                  </p>
+                </details>
               </Reveal>
             ))}
           </div>

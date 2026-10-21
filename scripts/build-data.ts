@@ -694,6 +694,7 @@ function buildGuidelines() {
 interface BlogPost {
   slug: string
   title: string
+  seoTitle?: string // 搜索结果页用的精简标题（<title> 用，H1 仍用完整 title）
   date: string // YYYY-MM-DD
   dateLabel: string
   lastModified: string // YYYY-MM-DD
@@ -928,6 +929,7 @@ async function buildBlogs() {
     const fmSlug = typeof fm.slug === 'string' ? fm.slug.trim() : ''
     const slug = fmSlug || name.replace(/^\[[^\]]*\]/, '').replace(/\.md$/, '').replace(/[^\w\u4e00-\u9fa5-]/g, '-')
     const fmTitle = typeof fm.title === 'string' ? fm.title.trim() : ''
+    const fmSeoTitle = typeof fm.seoTitle === 'string' ? fm.seoTitle.trim() : ''
     const fmDate = typeof fm.date === 'string' ? fm.date.trim() : ''
     const fmLastModified = typeof fm.lastModified === 'string' ? fm.lastModified.trim() : ''
     const fmTags = Array.isArray(fm.tags) ? (fm.tags as string[]).filter(Boolean) : []
@@ -972,7 +974,7 @@ async function buildBlogs() {
     const tags = fmTags.length ? fmTags : inferTags(title, bodyClean)
 
     writeBlogBody('zh', slug, bodyClean)
-    posts.push({ slug, title, date, dateLabel, lastModified, lastModifiedLabel, cover, excerpt, tags, body: bodyClean, raw })
+    posts.push({ slug, title, seoTitle: fmSeoTitle || undefined, date, dateLabel, lastModified, lastModifiedLabel, cover, excerpt, tags, body: bodyClean, raw })
   }
 
   // 按日期降序
@@ -990,7 +992,7 @@ async function buildBlogsEn(blogDir: string) {
     .filter((f) => f.endsWith('.en.md'))
     .map((f) => join(blogDir, f))
     .sort()
-  const enIndex: Record<string, Partial<{ titleEn: string; tagsEn: string[]; excerptEn: string }>> = {}
+  const enIndex: Record<string, Partial<{ titleEn: string; seoTitleEn: string; tagsEn: string[]; excerptEn: string }>> = {}
   for (const f of enFiles) {
     const name = basename(f)
     const raw = readMd(f)
@@ -1001,12 +1003,14 @@ async function buildBlogsEn(blogDir: string) {
     // 与中文同构：相对图片引用统一改写为 /blogs/images/... 绝对路径。
     const localized = await localizeBlogImages(body, blogDir, articleKey)
     // 字段缺失时不覆盖（前端回退中文）
-    const fields: Partial<{ titleEn: string; tagsEn: string[]; excerptEn: string; coverEn: string }> = {}
+    const fields: Partial<{ titleEn: string; seoTitleEn: string; tagsEn: string[]; excerptEn: string; coverEn: string }> = {}
     const titleEn = typeof fm.title === 'string' ? fm.title.trim() : ''
+    const seoTitleEn = typeof fm.seoTitle === 'string' ? fm.seoTitle.trim() : ''
     const tagsEn = Array.isArray(fm.tags) ? (fm.tags as string[]).filter(Boolean) : []
     const excerptEn = typeof fm.excerpt === 'string' ? fm.excerpt.trim() : ''
     const fmCoverEn = typeof fm.cover === 'string' ? fm.cover.trim() : ''
     if (titleEn) fields.titleEn = titleEn
+    if (seoTitleEn) fields.seoTitleEn = seoTitleEn
     if (tagsEn.length) fields.tagsEn = tagsEn
     if (excerptEn) fields.excerptEn = excerptEn
     if (fmCoverEn) {
@@ -1049,6 +1053,7 @@ interface Product {
   highlights: string[]
   hospitals: string[]
   color: string
+  faq: { q: string; a: string }[]
 }
 
 const PRODUCTS: Product[] = [
@@ -1091,6 +1096,28 @@ const PRODUCTS: Product[] = [
     ],
     hospitals: ['北京协和医院', '复旦大学附属妇产科医院', '湘雅三医院', '浙江大学医学院附属妇产科医院'],
     color: '#D74B4A',
+    faq: [
+      {
+        q: '禾宫康 CISCER® 是什么检测？',
+        a: '禾宫康 CISCER® 检测宫颈脱落细胞 PAX1/JAM3 双基因甲基化的 III 类体外诊断产品（国械注准 20233400253），用于宫颈癌的早期筛查与 HPV 阳性人群分流。',
+      },
+      {
+        q: 'CISCER 检测准不准？',
+        a: '注册临床试验数据显示：CIN2+ 灵敏度 89.60%、特异性 96.50%、CIN3+ 灵敏度 95.96%（共 1,968 例样本），并有万例多中心真实世界研究支持。',
+      },
+      {
+        q: '做 CISCER 检测需要采样什么样本？痛苦吗？',
+        a: '只需宫颈脱落细胞，无创采样，与常规妇科检查同期完成，无需活检。',
+      },
+      {
+        q: 'HPV 阳性还需要做 CISCER 吗？',
+        a: '推荐。HPV 阳性人群中大多为一过性感染，CISCER 甲基化检测可从病变源头判断是否存在癌变风险，帮助识别真正需要阴道镜转诊的高风险人群，避免过度诊疗。',
+      },
+      {
+        q: '哪些人适合做 CISCER 检测？',
+        a: 'HPV 阳性人群、宫颈细胞学轻度异常（ASC-US）人群、绝经后女性，以及宫颈病变治疗前后需要疗效与复发监测的人群。',
+      },
+    ],
   },
   {
     slug: 'cisendo',
@@ -1131,6 +1158,28 @@ const PRODUCTS: Product[] = [
     ],
     hospitals: ['北京协和医院', '复旦大学附属妇产科医院', '湘雅三医院', '浙江大学医学院附属妇产科医院'],
     color: '#D74B4A',
+    faq: [
+      {
+        q: '禾蔻安 CISENDO® 是什么检测？',
+        a: '禾蔻安 CISENDO® 检测宫颈脱落细胞 CDO1/CELF4 双基因甲基化的 III 类体外诊断产品（国械注准 20243402610），是全球首个无创子宫内膜癌筛查产品。',
+      },
+      {
+        q: 'CISENDO 检测准确率如何？',
+        a: '注册临床试验（4,818 例样本）显示：内膜癌灵敏度 94.51%、特异性 94.16%；另有 12,000 例真实世界多中心研究支持。',
+      },
+      {
+        q: 'CISENDO 能替代宫腔镜和内膜活检吗？',
+        a: 'CISENDO 为无创筛查手段，采宫颈脱落细胞即可完成，可帮助评估内膜癌风险、减少不必要的有创检查；确诊仍需宫腔镜/活检病理，但可作为高效的分流的初步分层。',
+      },
+      {
+        q: '异常子宫出血为什么要查甲基化？',
+        a: '异常子宫出血是内膜癌最常见的就诊症状，甲基化检测可无创评估恶变风险，帮助医生决定是否需要进一步有创检查，避免延误或过度检查。',
+      },
+      {
+        q: '哪些人适合做 CISENDO 检测？',
+        a: '异常子宫出血女性、绝经后女性、围绝经期内膜病变风险人群，以及拟行宫腔镜检查的高风险女性。',
+      },
+    ],
   },
   {
     slug: 'cisova',
@@ -1171,6 +1220,28 @@ const PRODUCTS: Product[] = [
     ],
     hospitals: ['北京协和医院', '复旦大学附属肿瘤医院', '复旦大学附属妇产科医院', '湘雅三医院'],
     color: '#C24140',
+    faq: [
+      {
+        q: '禾薇益 CISOVA® 是什么检测？',
+        a: '禾薇益 CISOVA® 检测外周血游离 DNA 中 CDO1/HOXA9 双基因甲基化的 III 类体外诊断产品（国械注准 20253402443），是国内首个获批的卵巢癌甲基化检测产品。',
+      },
+      {
+        q: 'CISOVA 检测准确率如何？',
+        a: '注册临床试验（1,421 例样本）显示：卵巢癌灵敏度 93.19%、特异性 92.78%；另有近万例真实世界多中心研究支持。',
+      },
+      {
+        q: '一管血能查出卵巢癌吗？',
+        a: 'CISOVA 通过检测血浆中循环肿瘤 DNA（ctDNA）的甲基化信号，从表观遗传层面捕捉卵巢癌踪迹，注册临床灵敏度和特异性均超过 92%，适用于卵巢囊肿/盆腔肿物良恶性鉴别等场景。',
+      },
+      {
+        q: '体检发现卵巢囊肿/盆腔肿物需要做 CISOVA 吗？',
+        a: '推荐。影像学难以准确判断囊肿良恶性，CISOVA 可从血液中捕捉肿瘤甲基化信号，为手术决策提供辅助分层依据。',
+      },
+      {
+        q: '哪些人适合做 CISOVA 检测？',
+        a: '卵巢囊肿/盆腔肿物女性的良恶性鉴别、卵巢癌高危人群的早期风险评估、绝经前后女性筛查，以及疑似卵巢癌患者的辅助诊断。',
+      },
+    ],
   },
 ]
 

@@ -1,6 +1,7 @@
 ---
 slug: new-publication-who-esgo-guideline-experts
 title: "新文刊发｜WHO/ESGO 指南专家联合发表大型 Meta研究：PAX1/JAM3 双靶甲基化在子宫颈高级别病变检测中综合效能居首"
+seoTitle: "WHO/ESGO专家Meta研究：PAX1/JAM3综合效能居首"
 date: 2026-07-15
 lastModified: 2026-07-15
 tags:

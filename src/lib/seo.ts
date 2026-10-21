@@ -9,7 +9,7 @@ interface PageMetaOptions {
   descriptionEn: string
   image?: string
   type?: 'website' | 'article'
-  structuredData?: Record<string, unknown>
+  structuredData?: Record<string, unknown> | Record<string, unknown>[]
 }
 
 export function isEnglishPath(pathname: string) {
@@ -29,6 +29,12 @@ export function pageMeta(pathname: string, options: PageMetaOptions): MetaDescri
   const zhUrl = new URL(canonicalPath(barePath), SITE_ORIGIN).href
   const enUrl = new URL(canonicalPath(barePath === '/' ? '/en' : `/en${barePath}`), SITE_ORIGIN).href
   const canonical = english ? enUrl : zhUrl
+
+  const structuredData = options.structuredData
+    ? Array.isArray(options.structuredData)
+      ? options.structuredData
+      : [options.structuredData]
+    : []
 
   return [
     { title },
@@ -52,6 +58,24 @@ export function pageMeta(pathname: string, options: PageMetaOptions): MetaDescri
     { tagName: 'link', rel: 'alternate', hrefLang: 'zh-CN', href: zhUrl },
     { tagName: 'link', rel: 'alternate', hrefLang: 'en', href: enUrl },
     { tagName: 'link', rel: 'alternate', hrefLang: 'x-default', href: zhUrl },
-    ...(options.structuredData ? [{ 'script:ld+json': options.structuredData }] : []),
+    ...structuredData.map((data) => ({ 'script:ld+json': data })),
   ]
+}
+
+// ---------- 结构化数据工厂（Schema.org JSON-LD） ----------
+
+/** 面包屑：从首页到当前页的层级路径 */
+export function breadcrumbSchema(items: { name: string; path: string }[], pathname: string) {
+  const english = isEnglishPath(pathname)
+  const trail = [{ name: english ? 'Home' : '首页', path: english ? '/en' : '/' }, ...items]
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: trail.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      item: new URL(canonicalPath(item.path), SITE_ORIGIN).href,
+    })),
+  }
 }

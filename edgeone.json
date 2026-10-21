@@ -7,18 +7,6 @@
     {
       "source": "/__md-home-test",
       "destination": "/__md-home"
-    },
-    {
-      "source": "/__home-probe",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/__home-fn-probe",
-      "destination": "/__md-home"
-    },
-    {
-      "source": "/",
-      "destination": "/__md-home"
     }
   ]
 }

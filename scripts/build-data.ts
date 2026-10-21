@@ -702,8 +702,37 @@ interface BlogPost {
   cover: string | undefined
   excerpt: string
   tags: string[]
+  faq?: { q: string; a: string }[] // 正文「常见问题」段落提取，用于 FAQPage schema
   body: string // 已清洗
   raw: string
+}
+
+/** 从博客正文提取「常见问题」段落的问答对（供 FAQPage schema） */
+function extractBlogFaq(body: string, lang: 'zh' | 'en'): { q: string; a: string }[] | undefined {
+  const marker = lang === 'zh' ? /^## 常见问题\s*$/m : /^## Frequently Asked Questions\s*$/m
+  const m = body.match(marker)
+  if (!m) return undefined
+  let section = body.slice((m.index ?? 0) + m[0].length)
+  // 截断到下一顶级段落（公司介绍等）
+  const stopMarkers = lang === 'zh'
+    ? [/^\*\*关于聚禾生物\*\*/m, /^## (?!常见问题)/m]
+    : [/^\*\*About CISPOLY\*\*/m, /^## (?!Frequently)/m]
+  let stop = section.length
+  for (const re of stopMarkers) {
+    const sm = section.match(re)
+    if (sm && sm.index !== undefined && sm.index < stop) stop = sm.index
+  }
+  section = section.slice(0, stop)
+
+  const pairs: { q: string; a: string }[] = []
+  const parts = section.split(/^### /m).slice(1)
+  for (const part of parts) {
+    const lines = part.split('\n')
+    const q = stripMd(lines[0]).trim()
+    const a = stripMd(lines.slice(1).join('\n')).replace(/\s+/g, ' ').trim()
+    if (q && a) pairs.push({ q, a })
+  }
+  return pairs.length ? pairs : undefined
 }
 
 /** 轻量 YAML frontmatter 解析：title / date / lastModified / tags / cover */
@@ -974,7 +1003,7 @@ async function buildBlogs() {
     const tags = fmTags.length ? fmTags : inferTags(title, bodyClean)
 
     writeBlogBody('zh', slug, bodyClean)
-    posts.push({ slug, title, seoTitle: fmSeoTitle || undefined, date, dateLabel, lastModified, lastModifiedLabel, cover, excerpt, tags, body: bodyClean, raw })
+    posts.push({ slug, title, seoTitle: fmSeoTitle || undefined, date, dateLabel, lastModified, lastModifiedLabel, cover, excerpt, tags, faq: extractBlogFaq(bodyClean, 'zh'), body: bodyClean, raw })
   }
 
   // 按日期降序
@@ -987,12 +1016,12 @@ async function buildBlogs() {
 }
 
 // ---------- 英文博客（同目录 *.en.md，frontmatter: title/tags/excerpt） ----------
-async function buildBlogsEn(blogDir: string) {
+async function buildBlogsEn(blogDir: string, enIndexBySlug: Map<string, BlogPost>) {
   const enFiles = readdirSync(blogDir)
     .filter((f) => f.endsWith('.en.md'))
     .map((f) => join(blogDir, f))
     .sort()
-  const enIndex: Record<string, Partial<{ titleEn: string; seoTitleEn: string; tagsEn: string[]; excerptEn: string }>> = {}
+  const enIndex: Record<string, Partial<{ titleEn: string; seoTitleEn: string; tagsEn: string[]; excerptEn: string; faqEn: { q: string; a: string }[] }>> = {}
   for (const f of enFiles) {
     const name = basename(f)
     const raw = readMd(f)
@@ -1022,6 +1051,11 @@ async function buildBlogsEn(blogDir: string) {
     }
     if (Object.keys(fields).length) enIndex[slug] = fields
     const bodyClean = stripBlogHeader(localized)
+    const faqEn = extractBlogFaq(bodyClean, 'en')
+    if (faqEn) {
+      enIndex[slug] = enIndex[slug] || {}
+      enIndex[slug].faqEn = faqEn
+    }
     writeBlogBody('en', slug, bodyClean)
   }
   writeJson('blogs.en.json', enIndex)
@@ -1428,7 +1462,7 @@ async function main() {
   const papers = buildPapers()
   const guidelines = buildGuidelines()
   const blogs = await buildBlogs()
-  await buildBlogsEn(join(SRC, 'blogs'))
+  await buildBlogsEn(join(SRC, 'blogs'), new Map(blogs.map((b) => [b.slug, b])))
   const products = buildProducts()
   const company = buildCompany()
   pruneOrphanBlogBodies()

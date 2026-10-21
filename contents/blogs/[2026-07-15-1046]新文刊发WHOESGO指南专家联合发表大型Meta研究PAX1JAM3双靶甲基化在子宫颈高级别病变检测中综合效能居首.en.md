@@ -12,6 +12,19 @@ cover: ./images/covers/新文刊发WHOESGO指南专家联合发表大型Meta研�
 ---
 ![cover_image](./images/covers/新文刊发WHOESGO指南专家联合发表大型Meta研究PAX1JAM3双靶甲基化在子宫颈高级别病变检测中综合效能居首.jpg)
 
+> **Key points**: A systematic review and meta-analysis of 125 studies and 49,242 women (European Journal of Cancer, 2026) compared 32 cervical methylation markers: for CIN3+ detection in HPV-positive populations, JAM3, C13ORF18, and PAX1 ranked top three in overall diagnostic performance; for CIN2+ detection in all-comer populations, the PAX1/JAM3 dual-gene combination achieved the highest diagnostic odds ratio (DOR = 76.00) among all markers. The author team includes Marc Arbyn, lead author of WHO cervical screening guidelines — this meta-analysis will feed into the next WHO/ESGO guideline update.
+
+## What is the PAX1/JAM3 dual-gene methylation test?
+
+The PAX1/JAM3 dual-gene methylation test is an in vitro assay that measures methylation levels in the promoter regions of the PAX1 and JAM3 genes in cervical exfoliated cells, identifying the risk of high-grade cervical lesions (CIN2+/CIN3+) at the epigenetic level. Unlike HPV testing, which looks for the virus, methylation testing directly reflects whether host cells have undergone molecular changes associated with cancer progression. Registration clinical trial data show 89.60% sensitivity and 96.50% specificity for CIN2+ (CISCER, NMPA Reg. No. 20233400253).
+
+## Core findings of this meta-analysis
+
+- **Scale**: 125 studies, 49,242 women, 32 human and HPV-associated methylation markers — among the broadest cervical methylation meta-analyses to date.
+- **HPV-positive triage (CIN3+ endpoint)**: Across 51 studies and 28,977 hrHPV-positive women, JAM3, C13ORF18, and PAX1 ranked top three in overall diagnostic performance.
+- **All-comer detection (CIN2+ endpoint)**: The PAX1/JAM3 combination, pooling 5 studies and 3,929 participants, achieved a diagnostic odds ratio (DOR) of 76.00 — the highest of all markers compared.
+- **Evidence level**: Authors come from Imperial College London, Yale School of Medicine, and the Belgian Cancer Centre, including core WHO/ESGO guideline authors; the conclusions will inform the next international guideline update.
+
 Recently, a systematic review and meta-analysis jointly completed by teams from **Imperial College London (UK), Yale University School of Medicine Department of Obstetrics and Gynecology (USA), Belgian Cancer Centre, Brown University (USA), and Helsinki University Hospital (Finland)**, was published in the *European Journal of Cancer*.
 
 ![](./images/contents/新文刊发WHOESGO指南专家联合发表大型Meta研究PAX1JAM3双靶甲基化在子宫颈高级别病变检测中综合效能居首-img-01.png)
@@ -45,6 +58,24 @@ This systematic review directly positions PAX1 and JAM3 as the globally stronges
 The dual-target strategy can, to a certain extent, **reduce variability caused by single-gene methylation heterogeneity**, providing more robust molecular information for cervical lesion risk assessment. It also aligns with the recent WHO/ESGO guideline direction of "precision triage, reducing excessive colposcopy." These conclusions provide guideline-level evidence for the clinical adoption of PAX1/JAM3 dual-target methylation assays and echo the ESGO 2025 CIN2 active surveillance consensus.
 
 **Diagnostic testing accuracy of DNA methylation tests for detection of high-grade cervical intraepithelial neoplasia and cervical cancer: A systematic review and meta-analysis.** European Journal of Cancer, 2026; 243
+
+## Frequently Asked Questions
+
+### What sample does the PAX1/JAM3 methylation test require?
+
+Only cervical exfoliated cells, collected non-invasively during a routine gynecological exam — no biopsy needed. The assay is also compatible with vaginal self-sampling.
+
+### Do I still need methylation testing after HPV vaccination?
+
+Yes. Vaccines prevent infection with specific HPV types but do not affect existing infections or lesions, and they do not cover all high-risk types. Methylation testing assesses the lesion state of the cells themselves, independent of vaccination history.
+
+### What does a positive methylation result mean?
+
+A positive result indicates that cervical cells have undergone molecular changes closely associated with high-grade lesion (CIN2+/CIN3+) progression. It typically prompts colposcopic evaluation. Final clinical decisions should follow medical advice.
+
+### What does a DOR of 76.00 mean?
+
+The diagnostic odds ratio measures how well a test distinguishes lesions from non-lesions — the higher, the better. In this meta-analysis, the PAX1/JAM3 DOR of 76.00 ranked first among all 32 markers compared.
 
 **About CISPOLY**
 

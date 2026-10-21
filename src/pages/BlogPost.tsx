@@ -38,6 +38,7 @@ export const meta: MetaFunction<typeof loader> = ({ loaderData, location }) => {
   // <title> 优先用精简的 seoTitle（搜索结果页展示），H1 与 Article headline 仍用完整标题
   const metaTitleZh = post.seoTitle || post.title
   const metaTitleEn = post.seoTitleEn || post.titleEn || post.title
+  const faq = lang === 'en' ? post.faqEn || post.faq : post.faq
   return pageMeta(location.pathname, {
     titleZh: `${metaTitleZh} | CISPOLY`,
     titleEn: `${metaTitleEn} | CISPOLY`,
@@ -66,6 +67,19 @@ export const meta: MetaFunction<typeof loader> = ({ loaderData, location }) => {
           logo: { '@type': 'ImageObject', url: 'https://www.cispoly.com/logo.png' },
         },
       },
+      ...(faq && faq.length
+        ? [
+            {
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: faq.map((item) => ({
+                '@type': 'Question',
+                name: item.q,
+                acceptedAnswer: { '@type': 'Answer', text: item.a },
+              })),
+            },
+          ]
+        : []),
       breadcrumbSchema(
         [{ name: '聚禾动态', path: '/blog' }],
         location.pathname,

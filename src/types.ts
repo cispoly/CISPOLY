@@ -68,6 +68,8 @@ export interface BlogPost {
   excerptEn?: string
   tags: string[]
   tagsEn?: string[]
+  faq?: { q: string; a: string }[] // 正文「常见问题」段落提取（中文），用于 FAQPage schema
+  faqEn?: { q: string; a: string }[]
   body?: string // 正文已拆分为单篇文件，按需加载
   bodyEn?: string // 英文正文（按需加载）
   raw?: string

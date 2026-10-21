@@ -22,14 +22,44 @@ export const meta: MetaFunction = ({ location }) => pageMeta(location.pathname, 
   descriptionZh: '聚禾生物专注宫颈癌、子宫内膜癌和卵巢癌的 DNA 甲基化无创早筛早诊产品与临床研究。',
   descriptionEn: 'CISPOLY develops non-invasive DNA methylation tests and clinical evidence for cervical, endometrial, and ovarian cancer detection.',
   image: '/hero/becca-tapert-u5e1kqW6E3M.jpg',
-  structuredData: {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'CISPOLY',
-    alternateName: '聚禾生物',
-    url: 'https://www.cispoly.com',
-    logo: 'https://www.cispoly.com/logo.png',
-  },
+  structuredData: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'CISPOLY',
+      alternateName: '聚禾生物',
+      description:
+        '北京起源聚禾生物科技有限公司（CISPOLY）是妇科肿瘤 DNA 甲基化早筛早诊产品开拓者，专注宫颈癌、子宫内膜癌、卵巢癌的无创甲基化检测，三款产品均获 NMPA III 类医疗器械注册证。',
+      url: 'https://www.cispoly.com',
+      logo: 'https://www.cispoly.com/logo.png',
+      email: 'OPBT@cispoly.com',
+      telephone: '+86-10-51071017',
+      contactPoint: [
+        {
+          '@type': 'ContactPoint',
+          telephone: '+86-10-51071017',
+          email: 'OPBT@cispoly.com',
+          contactType: 'sales',
+          availableLanguage: ['zh-CN', 'en'],
+        },
+      ],
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '华佗路50号院5号楼4层',
+        addressLocality: '北京市大兴区',
+        addressRegion: '北京',
+        addressCountry: 'CN',
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'CISPOLY 聚禾生物',
+      alternateName: 'CISPOLY',
+      url: 'https://www.cispoly.com',
+      inLanguage: ['zh-CN', 'en'],
+    },
+  ],
 })
 
 export default function Home() {

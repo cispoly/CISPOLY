@@ -84,6 +84,9 @@ export default function Footer() {
             {lang === 'zh' && '（CISPOLY）'}
             {t('common.copyOf') ? '· ' + t('common.copyOf') : ''}
           </p>
+          <Link to="/privacy" className="text-xs text-white/60 transition hover:text-white">
+            {lang === 'en' ? 'Privacy Policy' : '隐私政策'}
+          </Link>
         </div>
       </div>
     </footer>

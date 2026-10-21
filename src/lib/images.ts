@@ -8,4 +8,5 @@ export const PAGE_HERO_IMAGES = {
   guidelines: '/hero/fausto-garcia-menendez-zXNywOKuCoI.jpg',
   blog: '/hero/freestocks-urfVdTSFKfo.jpg',
   about: '/hero/anita-austvika-XQbCwyHjp6s.jpg',
+  contact: '/hero/anita-austvika-XQbCwyHjp6s.jpg',
 } as const

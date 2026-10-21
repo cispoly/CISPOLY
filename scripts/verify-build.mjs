@@ -15,7 +15,7 @@ const blogs = readJson('blogs.json')
 const blogTranslations = readJson('blogs.en.json')
 const products = readJson('products.json')
 
-const staticPaths = ['/', '/about', '/contact', '/papers', '/guidelines', '/blog', '/products']
+const staticPaths = ['/', '/about', '/contact', '/privacy', '/papers', '/guidelines', '/blog', '/products']
 const detailPaths = [
   ...products.map((item) => `/products/${item.slug}`),
   ...blogs.map((item) => `/blog/${item.slug}`),

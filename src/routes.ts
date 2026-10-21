@@ -9,6 +9,7 @@ export default [
   route('en?/blog', 'pages/Blog.tsx'),
   route('en?/blog/:slug', 'pages/BlogPost.tsx'),
   route('en?/about', 'pages/About.tsx'),
+  route('en?/privacy', 'pages/Privacy.tsx'),
   route('en?/contact', 'pages/Contact.tsx'),
   route('*', 'pages/NotFound.tsx'),
 ]

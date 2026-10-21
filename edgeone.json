@@ -11,6 +11,10 @@
     {
       "source": "/__home-probe",
       "destination": "/index.html"
+    },
+    {
+      "source": "/__home-fn-probe",
+      "destination": "/__md-home"
     }
   ]
 }

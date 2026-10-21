@@ -2,5 +2,11 @@
   "buildCommand": "npm run build",
   "installCommand": "npm ci",
   "outputDirectory": "./build/client",
-  "nodeVersion": "24.11.0"
+  "nodeVersion": "24.11.0",
+  "rewrites": [
+    {
+      "source": "/__md-home-test",
+      "destination": "/__md-home"
+    }
+  ]
 }

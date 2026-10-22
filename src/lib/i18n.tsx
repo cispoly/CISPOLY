@@ -160,6 +160,7 @@ const zh: Dict = {
   'blogPost.back': '返回博客',
   'blogPost.prev': '上一篇',
   'blogPost.next': '下一篇',
+  'blogPost.related': '相关阅读',
 
   // ---- 关于页 ----
   'about.hero.eyebrow': '关于我们 · About',
@@ -460,6 +461,7 @@ const en: Dict = {
   'blogPost.back': 'Back to Blog',
   'blogPost.prev': 'Previous',
   'blogPost.next': 'Next',
+  'blogPost.related': 'Related articles',
 
   // ---- About page ----
   'about.hero.eyebrow': 'About',

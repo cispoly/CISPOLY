@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowLeft as ArrowIcon } from 'lucide-react'
 import Markdown from '@/lib/markdown'
 import { getBlog, blogs } from '@/lib/data/blogs'
 import { getBlogBody } from '@/lib/data/blogBodies'
+import { relatedPosts } from '@/lib/relatedContent'
 import { useI18n } from '@/lib/i18n'
 import { pageMeta, breadcrumbSchema } from '@/lib/seo'
 
@@ -19,6 +20,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
     body: await getBlogBody(slug, lang),
     prev: index > 0 ? blogs[index - 1] : null,
     next: index < blogs.length - 1 ? blogs[index + 1] : null,
+    related: relatedPosts(slug, 3),
     lang,
   }
 }
@@ -90,7 +92,7 @@ export const meta: MetaFunction<typeof loader> = ({ loaderData, location }) => {
 
 export default function BlogPost() {
   const { t, lang } = useI18n()
-  const { post, body, prev, next } = useLoaderData<typeof loader>()
+  const { post, body, prev, next, related } = useLoaderData<typeof loader>()
 
   return (
     <article className="pt-20 md:pt-24">
@@ -134,6 +136,27 @@ export default function BlogPost() {
             <Markdown>{body}</Markdown>
           </div>
         </div>
+
+        {/* 相关文章（同主题互链） */}
+        {related.length > 0 && (
+          <div className="mx-auto mt-12 max-w-3xl">
+            <h2 className="text-base font-bold text-ink">{t('blogPost.related')}</h2>
+            <div className="mt-4 grid gap-3 sm:grid-cols-3">
+              {related.map((r) => (
+                <Link
+                  key={r.slug}
+                  to={`/blog/${r.slug}`}
+                  className="card card-hover group flex flex-col p-4"
+                >
+                  <div className="line-clamp-3 text-[13px] font-medium leading-snug text-ink transition group-hover:text-brand-600">
+                    {lang === 'en' && r.titleEn ? r.titleEn : r.title}
+                  </div>
+                  <div className="mt-auto pt-3 text-[11px] text-inkSoft">{r.date?.replace(/-/g, '.')}</div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* 上一篇 / 下一篇 */}
         <div className="mx-auto mt-16 grid max-w-3xl gap-4 border-t border-line pt-10 sm:grid-cols-2">

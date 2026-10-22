@@ -58,6 +58,11 @@ export default function About() {
                 <p className="text-base leading-loose text-ink/80 md:text-lg">
                   {companyDesc}
                 </p>
+                <p className="mt-4 text-sm leading-relaxed text-inkSoft">
+                  {lang === 'en'
+                    ? 'English registered name: Beijing OriginPoly Bio-Tec Co., Ltd. (also written as "Beijing Origin-Poly Bio-Tec Co., Ltd." in academic affiliations). Brand: CISPOLY / 聚禾生物.'
+                    : '英文注册名：Beijing OriginPoly Bio-Tec Co., Ltd.（学术论文署名中亦写作 “Beijing Origin-Poly Bio-Tec Co., Ltd.”）。品牌名：CISPOLY / 聚禾生物。'}
+                </p>
                 {/* 元信息条 */}
                 <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-line pt-6">
                   <span className="inline-flex items-center gap-2 text-sm">

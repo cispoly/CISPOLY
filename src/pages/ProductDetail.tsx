@@ -26,11 +26,22 @@ export const meta: MetaFunction = ({ params, location }) => {
   const product = params.slug ? getProduct(params.slug) : undefined
   if (!product) return [{ title: 'Products | CISPOLY' }]
   const faq = product.faq || []
+  // 场景词按产品定制：覆盖"HPV阳性分流""异常子宫出血筛查""盆腔肿物鉴别"等搜索意图入口
+  const sceneZh: Record<string, string> = {
+    cervical: '禾宫康 CISCER® 检测宫颈脱落细胞 PAX1/JAM3 甲基化，适用于 HPV 阳性分流、TCT 轻度异常（ASC-US）分流与宫颈癌筛查，CIN2+ 灵敏度 89.6%、特异性 96.5%（国械注准 20233400253）。',
+    endometrial: '禾蔻安 CISENDO® 检测 CDO1/CELF4 甲基化，适用于异常子宫出血、绝经后子宫内膜癌筛查与宫腔镜术前风险分层，灵敏度 94.5%（国械注准 20243402610），全球首个无创子宫内膜癌甲基化检测。',
+    ovarian: '禾薇益 CISOVA® 一管外周血检测 CDO1/HOXA9 甲基化，适用于卵巢囊肿/盆腔肿物良恶性鉴别与卵巢癌早期筛查，灵敏度 93.2%（国械注准 20253402443），国内首个获批的卵巢癌甲基化检测。',
+  }
+  const sceneEn: Record<string, string> = {
+    cervical: 'CISCER detects PAX1/JAM3 methylation in cervical exfoliated cells for HPV-positive triage, ASC-US management, and cervical cancer screening (89.6% sensitivity for CIN2+).',
+    endometrial: 'CISENDO detects CDO1/CELF4 methylation for abnormal uterine bleeding workup, postmenopausal endometrial cancer screening, and pre-hysteroscopy risk stratification (94.5% sensitivity) — the world’s first non-invasive endometrial cancer methylation test.',
+    ovarian: 'CISOVA detects CDO1/HOXA9 methylation from one tube of blood for benign-vs-malignant differentiation of ovarian cysts and pelvic masses, and early ovarian cancer screening (93.2% sensitivity) — the first approved ovarian cancer methylation test in China.',
+  }
   return pageMeta(location.pathname, {
     titleZh: `${product.fullName}｜${product.cancer}甲基化检测 | CISPOLY 聚禾生物`,
     titleEn: `${product.fullNameEn || product.englishName} | CISPOLY`,
-    descriptionZh: product.summary,
-    descriptionEn: product.summaryEn || product.summary,
+    descriptionZh: sceneZh[product.cancerKey] || product.summary,
+    descriptionEn: sceneEn[product.cancerKey] || product.summaryEn || product.summary,
     structuredData: [
       {
         '@context': 'https://schema.org',

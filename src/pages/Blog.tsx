@@ -11,10 +11,12 @@ import type { MetaFunction } from 'react-router'
 import { pageMeta } from '@/lib/seo'
 
 export const meta: MetaFunction = ({ location }) => pageMeta(location.pathname, {
-  titleZh: '企业动态与健康科普 | CISPOLY 聚禾生物',
-  titleEn: 'News and Health Insights | CISPOLY',
-  descriptionZh: '了解聚禾生物最新动态、学术进展、会议资讯与女性健康科普。',
-  descriptionEn: 'Read CISPOLY news, academic updates, conference insights, and women’s health education.',
+  titleZh: '企业动态与健康科普 | 妇科肿瘤甲基化早筛 - CISPOLY 聚禾生物',
+  titleEn: 'Gynecologic Cancer Methylation Screening Insights | CISPOLY',
+  descriptionZh:
+    '聚禾生物博客：宫颈癌（子宫颈癌）甲基化检测、子宫内膜癌甲基化、卵巢癌甲基化研究解读，HPV 阳性分流、异常子宫出血筛查等妇科肿瘤早筛早诊临床资讯与健康科普。',
+  descriptionEn:
+    'CISPOLY blog: research and clinical insights on cervical, endometrial, and ovarian cancer methylation screening, HPV-positive triage, and gynecologic cancer early detection.',
 })
 
 export default function Blog() {

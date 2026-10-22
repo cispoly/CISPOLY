@@ -11,10 +11,12 @@ import type { MetaFunction } from 'react-router'
 import { pageMeta } from '@/lib/seo'
 
 export const meta: MetaFunction = ({ location }) => pageMeta(location.pathname, {
-  titleZh: '临床指南与专家共识 | CISPOLY 聚禾生物',
-  titleEn: 'Clinical Guidelines and Consensus | CISPOLY',
-  descriptionZh: '汇集妇科肿瘤 DNA 甲基化筛查、分流与临床应用相关指南和专家共识。',
-  descriptionEn: 'Clinical guidelines and expert consensus on DNA methylation screening, triage, and gynecologic cancer care.',
+  titleZh: '宫颈癌、子宫内膜癌、卵巢癌甲基化临床指南与专家共识 | CISPOLY 聚禾生物',
+  titleEn: 'Clinical Guidelines on Gynecologic Cancer Methylation Testing | CISPOLY',
+  descriptionZh:
+    '汇集妇科肿瘤——宫颈癌（子宫颈癌）、子宫内膜癌、卵巢癌 DNA 甲基化检测相关的国内外临床指南与专家共识，涵盖 HPV 阳性分流、早筛早诊与临床应用规范。',
+  descriptionEn:
+    'Domestic and international clinical guidelines and expert consensus on DNA methylation testing for cervical, endometrial, and ovarian cancer — screening, HPV-positive triage, and clinical application.',
 })
 
 /** A guideline belongs to a cancer tab if its single cancer or its cancers array includes the key */

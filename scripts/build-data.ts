@@ -938,9 +938,37 @@ function inferTags(title: string, body: string): string[] {
   return tags.length ? tags : ['动态']
 }
 
+/** 微信噪音清除后，将正文中的粗体独立分节行升级为 H2（限无 H2 结构的旧文章） */
+const SECTION_HEADING_WORDS =
+  /(小结|结语|结论|总结|背景|目的|方法|结果|讨论|意义|价值|推荐意见|流程|参考文献|文献来源|文献出处|参考来源|参考资料|出处|核心观点|核心发现|核心建议|临床价值|临床意义|临床数据|病例分享|案例|要点|展望|引言|前言|路径|方案|挑战|策略|摘要|数据|链接|信息)/
+const PROMOTE_EXCLUDE = /关于聚禾生物|About CISPOLY|聚禾生物cispoly/
+
+function isSectionHeading(text: string): boolean {
+  if (text.length <= 16) return true
+  if (/^(?:[一二三四五六七八九十]+|\d+|[0-9]{2})\s*[、.．]?\s*/.test(text)) return true
+  if (SECTION_HEADING_WORDS.test(text) && !text.endsWith('！')) return true
+  if (text.endsWith('？') && text.length <= 22) return true
+  const head = text.split(/[：:]/)[0]
+  if ((text.includes('：') || text.includes(':')) && text.length <= 24 && head.length <= 12) return true
+  return false
+}
+
+function promoteSectionHeadings(body: string): string {
+  // 既有 H2 内嵌粗体标记统一清理：## **xxx** → ## xxx
+  body = body.replace(/^(##+) \*\*([^\n]+?)\*\*\s*$/gm, '$1 $2')
+  // 已有 H2 结构的文章不动（避免双重分节体系）
+  if (/^## /m.test(body)) return body
+  return body.replace(/^\*\*([^*\n]{2,50})\*\*\s*$/gm, (line, inner: string) => {
+    const h = inner.trim()
+    if (!h || PROMOTE_EXCLUDE.test(h)) return line
+    return isSectionHeading(h) ? `## ${h.replace(/\*\*/g, '').replace(/[：:]\s*$/, '').trim()}` : line
+  })
+}
+
 function cleanBlogBody(raw: string): string {
   let out = raw
   for (const re of WECHAT_NOISE_PATTERNS) out = out.replace(re, '')
+  out = promoteSectionHeadings(out)
   // 连续空行压缩
   out = out.replace(/\n{3,}/g, '\n\n')
   // 行首行尾多余空白
@@ -1059,7 +1087,7 @@ async function buildBlogsEn(blogDir: string, enIndexBySlug: Map<string, BlogPost
       }
     }
     if (Object.keys(fields).length) enIndex[slug] = fields
-    const bodyClean = stripBlogHeader(localized)
+    const bodyClean = cleanBlogBody(stripBlogHeader(localized))
     const faqEn = extractBlogFaq(bodyClean, 'en')
     if (faqEn) {
       enIndex[slug] = enIndex[slug] || {}

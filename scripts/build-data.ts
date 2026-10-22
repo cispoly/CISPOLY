@@ -839,20 +839,29 @@ async function publishBlogImage(blogDir: string, relativePath: string, articleKe
   return task
 }
 
-/** 将正文中的相对图片引用改写为统一的发布 URL。兼容历史旧目录写法。 */
-async function localizeBlogImages(body: string, blogDir: string, articleKey: string): Promise<string> {
+/** 将正文中的相对图片引用改写为统一的发布 URL。兼容历史旧目录写法。空 alt 自动补「文章标题·图N」 */
+async function localizeBlogImages(
+  body: string,
+  blogDir: string,
+  articleKey: string,
+  fallbackAlt?: string,
+): Promise<string> {
   const re = /!\[([^\]]*)\]\(\.\/([^)]+)\)/g
   let output = ''
   let cursor = 0
+  let imageIndex = 0
 
   for (const match of body.matchAll(re)) {
     const full = match[0]
-    const alt = match[1]
+    const alt = match[1].trim()
     const relativePath = match[2]
     const imageUrl = await publishBlogImage(blogDir, relativePath, articleKey)
     const index = match.index ?? cursor
     output += body.slice(cursor, index)
-    output += imageUrl ? `![${alt}](${imageUrl})` : full
+    // 无障碍与图片搜索：空 alt 用「标题·图N」兜底（跳过封面图，由调用方传标题）
+    imageIndex += 1
+    const finalAlt = alt || (fallbackAlt ? `${fallbackAlt}·图${imageIndex}` : '')
+    output += imageUrl ? `![${finalAlt}](${imageUrl})` : full
     cursor = index + full.length
   }
 
@@ -981,7 +990,7 @@ async function buildBlogs() {
 
     const body = cleanBlogBody(bodyAfterFm)
     // 本地化正文图片到统一目录，并生成网页优化格式。
-    const localized = await localizeBlogImages(body, blogDir, articleKey)
+    const localized = await localizeBlogImages(body, blogDir, articleKey, title || articleKey)
     // 剥离与页头重复的封面图 / # 标题 / 斜体日期行
     const bodyClean = stripBlogHeader(localized)
 
@@ -1029,12 +1038,12 @@ async function buildBlogsEn(blogDir: string, enIndexBySlug: Map<string, BlogPost
     const { fm, body } = parseFrontmatter(raw)
     const fmSlug = typeof fm.slug === 'string' ? fm.slug.trim() : ''
     const slug = fmSlug || name.replace(/^\[[^\]]*\]/, '').replace(/\.en\.md$/, '').replace(/[^\w\u4e00-\u9fa5-]/g, '-')
-    // 与中文同构：相对图片引用统一改写为 /blogs/images/... 绝对路径。
-    const localized = await localizeBlogImages(body, blogDir, articleKey)
-    // 字段缺失时不覆盖（前端回退中文）
-    const fields: Partial<{ titleEn: string; seoTitleEn: string; tagsEn: string[]; excerptEn: string; coverEn: string }> = {}
     const titleEn = typeof fm.title === 'string' ? fm.title.trim() : ''
     const seoTitleEn = typeof fm.seoTitle === 'string' ? fm.seoTitle.trim() : ''
+    // 与中文同构：相对图片引用统一改写为 /blogs/images/... 绝对路径。
+    const localized = await localizeBlogImages(body, blogDir, articleKey, titleEn || articleKey)
+    // 字段缺失时不覆盖（前端回退中文）
+    const fields: Partial<{ titleEn: string; seoTitleEn: string; tagsEn: string[]; excerptEn: string; coverEn: string }> = {}
     const tagsEn = Array.isArray(fm.tags) ? (fm.tags as string[]).filter(Boolean) : []
     const excerptEn = typeof fm.excerpt === 'string' ? fm.excerpt.trim() : ''
     const fmCoverEn = typeof fm.cover === 'string' ? fm.cover.trim() : ''

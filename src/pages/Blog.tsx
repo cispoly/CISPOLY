@@ -11,7 +11,7 @@ import type { MetaFunction } from 'react-router'
 import { pageMeta } from '@/lib/seo'
 
 export const meta: MetaFunction = ({ location }) => pageMeta(location.pathname, {
-  titleZh: '企业动态与健康科普 | 妇科肿瘤甲基化早筛 - CISPOLY 聚禾生物',
+  titleZh: '妇科肿瘤甲基化早筛早诊博客 - 宫颈癌·子宫内膜癌·卵巢癌 | CISPOLY 聚禾生物',
   titleEn: 'Gynecologic Cancer Methylation Screening Insights | CISPOLY',
   descriptionZh:
     '聚禾生物博客：宫颈癌（子宫颈癌）甲基化检测、子宫内膜癌甲基化、卵巢癌甲基化研究解读，HPV 阳性分流、异常子宫出血筛查等妇科肿瘤早筛早诊临床资讯与健康科普。',

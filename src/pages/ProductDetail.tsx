@@ -27,7 +27,7 @@ export const meta: MetaFunction = ({ params, location }) => {
   if (!product) return [{ title: 'Products | CISPOLY' }]
   const faq = product.faq || []
   return pageMeta(location.pathname, {
-    titleZh: `${product.fullName}｜${product.cancer}甲基化检测 | CISPOLY`,
+    titleZh: `${product.fullName}｜${product.cancer}甲基化检测 | CISPOLY 聚禾生物`,
     titleEn: `${product.fullNameEn || product.englishName} | CISPOLY`,
     descriptionZh: product.summary,
     descriptionEn: product.summaryEn || product.summary,

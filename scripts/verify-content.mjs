@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from 'node:fs'
+import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 const ROOT = process.cwd()
@@ -56,10 +56,6 @@ for (const guideline of guidelines) {
   assert(
     !/(?:<\/?sub>|\(\s*\)|（\s*）|联合\s+个学|\b m\s+m\b)/i.test(`${guideline.title} ${guideline.abstract}`),
     `指南摘要存在解析残留：${guideline.id}`,
-  )
-  assert(
-    existsSync(join(ROOT, 'public', 'posters', guideline.cancer, guideline.id, 'poster.html')),
-    `指南缺少海报：${guideline.cancer}/${guideline.id}`,
   )
 }
 

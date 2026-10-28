@@ -246,23 +246,6 @@ const zh: Dict = {
   'contact.sendError': '提交失败，请稍后重试，或通过邮箱直接联系我们。',
   'contact.unconfigured': '联系表单正在配置中，请通过下方邮箱或电话直接与我们联系。',
 
-  // ---- PosterDetail / 文献详情 ----
-  'poster.abstractLabel': '摘要 · Abstract',
-  'poster.abstractUnavailable': '该文献原文仅提供中文摘要，当前英文页展示上方英文 TL;DR。',
-  'poster.posterLabel': '文献海报 · Poster',
-  'poster.tldr': 'TL;DR 摘要总结',
-  'poster.openInNewTab': '在新窗口查看',
-  'poster.loading': '海报加载中…',
-  'poster.copy': '复制',
-  'poster.copied': '已复制',
-  'poster.affiliationLabel': '发表单位',
-  'poster.citationLabel': '引用格式',
-  'poster.clinicalPathway': '临床路径示意 · Clinical Pathway',
-  'poster.prevArticle': '上一篇',
-  'poster.nextArticle': '下一篇',
-  'poster.posterNote':
-    '* 海报为中英双语，标题双语对照显示；可在海报右上角切换 EN / 中文，语言自动适配当前页面。',
-
   // ---- 摘要分段标签 ----
   'abs.background': '背景',
   'abs.objective': '目的',
@@ -549,23 +532,6 @@ const en: Dict = {
   'contact.sentSuccess': 'Submitted successfully. We will get back to you within 1-2 business days.',
   'contact.sendError': 'Submission failed. Please try again later or email us directly.',
   'contact.unconfigured': 'The contact form is being configured. Please reach us directly via email or phone below.',
-
-  // ---- PosterDetail ----
-  'poster.abstractLabel': 'Abstract',
-  'poster.abstractUnavailable': 'The source publication provides only a Chinese abstract; the English TL;DR above is shown instead.',
-  'poster.posterLabel': 'Poster',
-  'poster.tldr': 'TL;DR Summary',
-  'poster.openInNewTab': 'Open in new tab',
-  'poster.loading': 'Loading poster…',
-  'poster.copy': 'Copy',
-  'poster.copied': 'Copied',
-  'poster.affiliationLabel': 'Affiliation',
-  'poster.citationLabel': 'Citation',
-  'poster.clinicalPathway': 'Clinical Pathway',
-  'poster.prevArticle': 'Previous',
-  'poster.nextArticle': 'Next',
-  'poster.posterNote':
-    '* The poster is bilingual. Switch between EN / 中文 in the top-right corner of the poster; language auto-adapts to the current page.',
 
   // ---- Abstract section labels ----
   'abs.background': 'Background',

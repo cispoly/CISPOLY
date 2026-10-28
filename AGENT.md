@@ -36,7 +36,7 @@ npm run preview
 - `src/routes.ts`: 类型安全路由表，中英文路由通过可选 `en` 前缀共用路由模块。
 - `react-router.config.ts`: 纯静态预渲染路径、并发、sitemap、robots 和 404 fallback 配置。
 - `src/pages/`: 页面级组件。
-- `src/components/`: 可复用展示组件，如 `Hero`、`Header`、`PaperCard`、`PosterDetail`。
+- `src/components/`: 可复用展示组件，如 `Hero`、`Header`、`PaperCard`、`GuidelineCard`。
 - `src/lib/data/`: 按内容域拆分的浏览器数据访问层，避免无关页面下载全站索引。
 - `src/lib/content.server.ts`: 仅在构建期 loader 中使用的正文与 PDF 字段入口，不进入浏览器 bundle。
 - `src/lib/i18n.tsx`: URL 驱动的中英双语字典与语言切换逻辑；中文保留原路径，英文使用 `/en`。
@@ -48,7 +48,7 @@ npm run preview
 - `scripts/` 其余三个：`dev-watch.mjs`（dev 监听重建）、`fix-citations.ts`（引用修正，读 `contents/` 的引用列表）、`extract-fields-v2.ts`（PDF 字段抽取，读本地 `source/pdf/`）。历史一次性工具已移至 `source/tools/`（本地归档）。
 - `contents/`: 站点内容源目录，唯一事实源，优先编辑这里（详见下文“内容源约定”）。
 - `source/`: 本地原始素材归档，整体已 gitignore，不推 GitHub。内含论文/指南原始 PDF（`pdf/`）、历史剪藏工作区（`blogs/cispoly-news-update/`，其内容已于 2026-08-17 合并入 `contents/`）、海报草稿（`blogs/posters/`）、产品资料 PDF（`product_infomation/`）、历史脚本（`tools/`）。
-- `public/`: 公开静态资源，包含 `logo.png`、favicon、海报（`posters/`）、期刊封面压缩版（`images/journal-covers/`）、hero 图压缩版（`hero/`）。注意 `public/blogs/` 是构建时从 `contents/blogs` 自动复制的可再生目录，已 gitignore。
+- `public/`: 公开静态资源，包含 `logo.png`、favicon、期刊封面压缩版（`images/journal-covers/`）、hero 图压缩版（`hero/`）。注意 `public/blogs/` 是构建时从 `contents/blogs` 自动复制的可再生目录，已 gitignore。
 - `design/`、`test/`、`建站思路.md`、`implementation_plan.md`: 本地建站过程资料与校验脚本，已 gitignore，不入库。
 
 ## 内容源约定
@@ -127,14 +127,12 @@ npm run build
 
 - 首页 `/`
 - 论文列表 `/papers`
-- 论文详情 `/papers/:cancer/:id`
 - 指南列表 `/guidelines`
-- 指南详情 `/guidelines/:cancer/:id`
 - 博客列表 `/blog`
 - 博客详情 `/blog/:slug`
 - 产品详情 `/products/ciscer`、`/products/cisendo`、`/products/cisova`
 
-海报、Markdown 渲染或 PDF 抽取相关改动，可查看 `test/` 下的 `_check_*`、`render_*`、`gen_poster.py` 等脚本，按任务选择性运行。
+Markdown 渲染或 PDF 抽取相关改动，可查看 `test/` 下的 `_check_*`、`render_*` 等脚本，按任务选择性运行。
 
 ## Git 与工作区注意事项
 

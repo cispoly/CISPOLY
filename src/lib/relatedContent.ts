@@ -9,10 +9,10 @@ const normalize = (value: string) => value.toLowerCase().replace(/[^\p{L}\p{N}]+
 const relatedBlogOverrides: Record<string, string | null> = {
   '27_joint_methylation_progress': 'pax1-jam3-precision-cervical-screening-pathway',
   '14_esgo_position_screening': 'esgo-releases-new-position-on-cervical',
+  '36_ala_pdt_methylation': 'pax1-jam3-methylation-predicts-ala-pdt-efficacy',
   // 以下论文暂无对应博客文章：显式置空，避免关键词自动匹配到不相关博客
   '34_pax1jam3_meta_analysis': null,
   '35_methylation_markers_meta_analysis': null,
-  '36_ala_pdt_methylation': null,
   '37_two_methylation_assays_hrhpv_mrna': null,
   '13_edendx_assay_validation': null,
 }

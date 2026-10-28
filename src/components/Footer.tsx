@@ -78,15 +78,12 @@ export default function Footer() {
         </div>
 
         {/* 底栏 */}
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/25 pt-8 text-sm text-white/75 md:flex-row">
+        <div className="mt-14 flex flex-col items-center justify-center gap-4 border-t border-white/25 pt-8 text-sm text-white/75 md:flex-row">
           <p>
             © {new Date().getFullYear()} {companyName}
             {lang === 'zh' && '（CISPOLY）'}
             {t('common.copyOf') ? '· ' + t('common.copyOf') : ''}
           </p>
-          <Link to="/privacy" className="text-xs text-white/60 transition hover:text-white">
-            {lang === 'en' ? 'Privacy Policy' : '隐私政策'}
-          </Link>
         </div>
       </div>
     </footer>

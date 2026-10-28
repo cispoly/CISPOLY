@@ -695,13 +695,14 @@ interface BlogPost {
   slug: string
   title: string
   seoTitle?: string // 搜索结果页用的精简标题（<title> 用，H1 仍用完整 title）
+  category: string // 唯一主分类，见 BLOG_CATEGORIES
   date: string // YYYY-MM-DD
   dateLabel: string
   lastModified: string // YYYY-MM-DD
   lastModifiedLabel: string
   cover: string | undefined
   excerpt: string
-  tags: string[]
+  tags: string[] // 主题关键词，不参与分类
   faq?: { q: string; a: string }[] // 正文「常见问题」段落提取，用于 FAQPage schema
   body: string // 已清洗
   raw: string
@@ -918,25 +919,8 @@ const WECHAT_NOISE_PATTERNS: RegExp[] = [
   /继续访问[^\n]*外链[^\n]*/g,
 ]
 
-// tag 推断规则
-const TAG_RULES: { tag: string; match: RegExp }[] = [
-  { tag: '新文刊发', match: /新文刊发|新文发表|学术论文|登.*期刊|发表于/ },
-  { tag: '专家共识', match: /专家共识|共识发布|共识解读/ },
-  { tag: '指南', match: /指南|临床路径|临床应用/ },
-  { tag: '会议', match: /大会|论坛|学术会议|研讨会|年会|读片会|交流会|参会|参展/ },
-  { tag: '病例', match: /病例|案例分享|临床应用一例/ },
-  { tag: '科普', match: /科普|解读系列|你需要检测吗|看懂|别忽视|别让/ },
-  { tag: '喜讯', match: /喜讯|重磅|获评|获批|获证|获奖|认证|专精特新|注册证/ },
-  { tag: '节日', match: /大吉|快乐|致敬|元宵|开工|劳动节|妇女节|母亲节|护士节|春节|马年|蛇年|新年/ },
-  { tag: '多中心研究', match: /多中心|真实世界|招募|启动.*研究/ },
-  { tag: '国际', match: /国际|EUROGIN|IPVS|IPVC|全球|国际舞台|马来西亚|瑞典/ },
-]
-
-function inferTags(title: string, body: string): string[] {
-  const text = title + ' ' + body.slice(0, 2000)
-  const tags = TAG_RULES.filter((r) => r.match.test(text)).map((r) => r.tag)
-  return tags.length ? tags : ['动态']
-}
+/** 博客唯一主分类：与 src/types.ts 的 BlogCategory 保持一致（源：frontmatter category） */
+const BLOG_CATEGORIES = ['research', 'guidelines', 'conferences', 'clinical', 'education', 'company'] as const
 
 /** 微信噪音清除后，将正文中的粗体独立分节行升级为 H2（限无 H2 结构的旧文章） */
 const SECTION_HEADING_WORDS =
@@ -999,6 +983,7 @@ async function buildBlogs() {
     const fmDate = typeof fm.date === 'string' ? fm.date.trim() : ''
     const fmLastModified = typeof fm.lastModified === 'string' ? fm.lastModified.trim() : ''
     const fmTags = Array.isArray(fm.tags) ? (fm.tags as string[]).filter(Boolean) : []
+    const fmCategory = typeof fm.category === 'string' ? fm.category.trim() : ''
     const fmCover = typeof fm.cover === 'string' ? fm.cover.trim() : ''
 
     // 日期：frontmatter date → 文件名 [YYYY-MM-DD-HHMM]
@@ -1037,10 +1022,16 @@ async function buildBlogs() {
     }
 
     const excerpt = stripMd(bodyClean).slice(0, 140).replace(/\n/g, ' ')
-    const tags = fmTags.length ? fmTags : inferTags(title, bodyClean)
+
+    // 分类：frontmatter 显式声明（唯一主分类），缺省/非法时告警并回退 company
+    let category = fmCategory
+    if (!BLOG_CATEGORIES.includes(category as (typeof BLOG_CATEGORIES)[number])) {
+      console.warn(`  ! 博客分类缺失或非法（${name}）：${category || '(空)'} → 回退 company`)
+      category = 'company'
+    }
 
     writeBlogBody('zh', slug, bodyClean)
-    posts.push({ slug, title, seoTitle: fmSeoTitle || undefined, date, dateLabel, lastModified, lastModifiedLabel, cover, excerpt, tags, faq: extractBlogFaq(bodyClean, 'zh'), body: bodyClean, raw })
+    posts.push({ slug, title, seoTitle: fmSeoTitle || undefined, category, date, dateLabel, lastModified, lastModifiedLabel, cover, excerpt, tags: fmTags, faq: extractBlogFaq(bodyClean, 'zh'), body: bodyClean, raw })
   }
 
   // 按日期降序

@@ -13,6 +13,7 @@ import { papers } from '@/lib/data/papers'
 import { guidelines } from '@/lib/data/guidelines'
 import { latestBlogs } from '@/lib/data/blogs'
 import { useI18n, pick } from '@/lib/i18n'
+import { blogCategory, blogCategoryLabel } from '@/lib/blogTaxonomy'
 import type { MetaFunction } from 'react-router'
 import { pageMeta } from '@/lib/seo'
 
@@ -283,11 +284,9 @@ export default function Home() {
                   </div>
                   <div className="flex flex-1 flex-col p-5">
                     <div className="flex flex-wrap gap-1.5">
-                      {(lang === 'en' && b.tagsEn ? b.tagsEn : b.tags).slice(0, 2).map((tag, ti) => (
-                        <span key={ti} className="rounded bg-brand-50 px-2 py-0.5 text-[10px] font-semibold text-brand-600">
-                          {tag}
-                        </span>
-                      ))}
+                      <span className="rounded bg-brand-50 px-2 py-0.5 text-[10px] font-semibold text-brand-600">
+                        {blogCategoryLabel(blogCategory(b), lang)}
+                      </span>
                     </div>
                     <h3 className="mt-2.5 flex-1 break-words text-[14px] font-semibold leading-snug text-ink transition-colors group-hover:text-brand-600">
                       {lang === 'en' && b.titleEn ? b.titleEn : b.title}

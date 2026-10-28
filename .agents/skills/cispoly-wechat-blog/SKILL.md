@@ -90,9 +90,9 @@ slug: <英文-kebab-case-slug>
 title: "<中文标题>"
 date: YYYY-MM-DD
 lastModified: YYYY-MM-DD
+category: <research|guidelines|conferences|clinical|education|company>
 tags:
-  - <中文标签>
-  - <中文标签>
+  - <主题词：宫颈癌 / 子宫内膜癌 / 卵巢癌 / HPV筛查 / 甲基化检测>
 cover: ./images/covers/<文章标识>.<ext>
 ---
 ```
@@ -111,7 +111,7 @@ cover: ./images/covers/<文章标识>.<ext>
 - 英文文件与中文文件同一时间前缀、同一中文文章标识、同一 slug 和同一图片路径。
 - 翻译标题、tags、excerpt、正文、表格、图片 alt 和来源说明；保留品牌名、基因名、产品名、注册证号、统计数字、单位和文献事实。
 - 英文可以自然重组句子，但不能添加中文原文没有的证据或医疗建议。中文没有可靠对应词时保留官方英文名或在首次出现时解释。
-- 英文 frontmatter 可沿用当前项目格式：必须包含相同的 `slug` 和 `cover`，并补充英文 `title`、`tags`、`excerpt`。
+- 英文 frontmatter 可沿用当前项目格式：必须包含相同的 `slug` 和 `cover`，并补充英文 `title`、`tags`、`excerpt`。`category` 只写在中文文件里，英文文件不重复；`tags` 是主题词（Cervical Cancer / Endometrial Cancer / Ovarian Cancer / HPV Screening / Methylation Testing），与中文 `tags` 逐一对应，不写分类词。
 - 中英文的标题层级、图片位置和主要事实保持对应，便于网站语言切换和审校。
 
 ### 7. 写入前后的引用检查

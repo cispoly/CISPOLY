@@ -5,6 +5,7 @@ import Markdown from '@/lib/markdown'
 import { getBlog, blogs } from '@/lib/data/blogs'
 import { getBlogBody } from '@/lib/data/blogBodies'
 import { relatedPosts } from '@/lib/relatedContent'
+import { blogCategory, blogCategoryLabel } from '@/lib/blogTaxonomy'
 import { useI18n } from '@/lib/i18n'
 import { pageMeta, breadcrumbSchema } from '@/lib/seo'
 
@@ -116,14 +117,19 @@ export default function BlogPost() {
               </span>
             )}
             <div className="flex flex-wrap gap-1.5">
+              <Link
+                to={`/blog?category=${blogCategory(post)}`}
+                className="rounded bg-brand-50 px-2 py-0.5 text-[10px] font-semibold text-brand-600 transition hover:bg-brand-100"
+              >
+                {blogCategoryLabel(blogCategory(post), lang)}
+              </Link>
               {(lang === 'en' && post.tagsEn ? post.tagsEn : post.tags).map((tagItem) => (
-                <Link
+                <span
                   key={tagItem}
-                  to="/blog"
-                  className="rounded bg-brand-50 px-2 py-0.5 text-[10px] font-semibold text-brand-600"
+                  className="rounded-full border border-line px-2 py-0.5 text-[10px] font-medium text-inkSoft"
                 >
                   {tagItem}
-                </Link>
+                </span>
               ))}
             </div>
           </div>

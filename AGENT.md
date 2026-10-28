@@ -152,7 +152,7 @@ Markdown 渲染或 PDF 抽取相关改动，可查看 `test/` 下的 `_check_*`�
 
 新增或修改博客：
 
-1. 中文：新建 `contents/blogs/[YYYY-MM-DD-HHMM]标题.md`，frontmatter 至少写 `slug`（简短唯一英文），可选 `title`/`tags`/`cover`（`./images/covers/标题.jpg`）；正文图片放 `images/contents/标题-img-NN.ext` 并用相对引用。
+1. 中文：新建 `contents/blogs/[YYYY-MM-DD-HHMM]标题.md`，frontmatter 至少写 `slug`（简短唯一英文）和 `category`（唯一主分类，取值 `research|guidelines|conferences|clinical|education|company`，驱动 `/blog` 筛选），可选 `title`/`tags`/`cover`（`./images/covers/标题.jpg`）；`tags` 只放主题词（宫颈癌 / 子宫内膜癌 / 卵巢癌 / HPV筛查 / 甲基化检测），不得写分类词；正文图片放 `images/contents/标题-img-NN.ext` 并用相对引用。
 2. 英文：同目录同文件名 `.en.md`，frontmatter 写相同的 `slug` + `title`/`tags`/`excerpt`/`cover`（`./images/covers/<中文标题>.jpg`）；正文与中文同构：开头写 `![cover_image](./images/covers/<中文标题>.jpg)`，正文图片用同一套 `./images/contents/...` 相对引用。
 3. 微信来源：封面取文章 og:image 元数据（不要用正文首图/装饰占位图）；装饰 gif 一律不保留。
 4. 运行 `npm run prebuild-data`（dev 运行中则自动），检查 `/blog` 列表与详情页。

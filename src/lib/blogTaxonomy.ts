@@ -1,13 +1,8 @@
-import type { BlogPost } from '@/types'
+import type { BlogCategory, BlogPost } from '@/types'
 
-export type BlogCategory =
-  | 'research'
-  | 'guidelines'
-  | 'conferences'
-  | 'clinical'
-  | 'education'
-  | 'company'
+export type { BlogCategory }
 
+/** 分类展示顺序（与 frontmatter category 取值一一对应） */
 export const BLOG_CATEGORY_ORDER: BlogCategory[] = [
   'research',
   'guidelines',
@@ -16,15 +11,6 @@ export const BLOG_CATEGORY_ORDER: BlogCategory[] = [
   'education',
   'company',
 ]
-
-const categoryTags: Record<BlogCategory, string[]> = {
-  research: ['新文刊发', '多中心研究', '科技成果', '原始创新', 'New Publication', 'Multi-center Study', 'Technology Achievement', 'Original Innovation', 'Clinical Research'],
-  guidelines: ['指南', '专家共识', 'Guidelines', 'Expert Consensus', 'Consensus'],
-  conferences: ['会议', 'Conference'],
-  clinical: ['病例', '分流', '精准筛查', '无创检测', '自采样', 'Case Study', 'Triage', 'Precision Screening', 'Non-invasive Testing', 'Noninvasive Testing', 'Self-Sampling'],
-  education: ['科普', 'Education', 'Health Education'],
-  company: ['喜讯', '节日', '动态', 'Milestone', 'Holiday', 'Updates'],
-}
 
 const categoryLabels: Record<BlogCategory, { zh: string; en: string }> = {
   research: { zh: '研究与论文', en: 'Research & Publications' },
@@ -35,13 +21,16 @@ const categoryLabels: Record<BlogCategory, { zh: string; en: string }> = {
   company: { zh: '企业动态', en: 'Company News' },
 }
 
-export function blogCategories(blog: Pick<BlogPost, 'tags' | 'tagsEn'>): BlogCategory[] {
-  const tags = new Set([...(blog.tags ?? []), ...(blog.tagsEn ?? [])])
-  const categories = BLOG_CATEGORY_ORDER.filter((category) =>
-    categoryTags[category].some((tag) => tags.has(tag)),
-  )
+export function isBlogCategory(value: unknown): value is BlogCategory {
+  return typeof value === 'string' && value in categoryLabels
+}
 
-  return categories.length ? categories : ['company']
+/**
+ * 文章的唯一主分类。分类在 frontmatter 中显式声明，
+ * 不参与分类的 `tags` 只作主题关键词使用；非法值回退 company。
+ */
+export function blogCategory(blog: Pick<BlogPost, 'category'>): BlogCategory {
+  return isBlogCategory(blog.category) ? blog.category : 'company'
 }
 
 export function blogCategoryLabel(category: BlogCategory, lang: 'zh' | 'en') {

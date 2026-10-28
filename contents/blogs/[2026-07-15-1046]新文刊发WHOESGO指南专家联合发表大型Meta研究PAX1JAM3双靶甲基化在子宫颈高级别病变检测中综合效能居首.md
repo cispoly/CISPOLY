@@ -4,11 +4,10 @@ title: "新文刊发｜WHO/ESGO 指南专家联合发表大型 Meta研究：PAX1
 seoTitle: "WHO/ESGO专家Meta研究：PAX1/JAM3综合效能居首"
 date: 2026-07-15
 lastModified: 2026-07-15
+category: research
 tags:
-  - 新文刊发
-  - 指南
-  - 喜讯
-  - 国际
+  - 宫颈癌
+  - 甲基化检测
 cover: ./images/covers/新文刊发WHOESGO指南专家联合发表大型Meta研究PAX1JAM3双靶甲基化在子宫颈高级别病变检测中综合效能居首.jpg
 ---
 ![cover_image](./images/covers/新文刊发WHOESGO指南专家联合发表大型Meta研究PAX1JAM3双靶甲基化在子宫颈高级别病变检测中综合效能居首.jpg)

@@ -58,6 +58,7 @@ export interface BlogPost {
   seoTitle?: string // 搜索结果页用的精简标题（H1 仍用完整 title）
   titleEn?: string
   seoTitleEn?: string
+  category: BlogCategory // 唯一主分类（frontmatter category）
   date: string // YYYY-MM-DD
   dateLabel: string
   lastModified: string // YYYY-MM-DD，默认同 date
@@ -66,7 +67,7 @@ export interface BlogPost {
   coverEn?: string
   excerpt: string
   excerptEn?: string
-  tags: string[]
+  tags: string[] // 主题关键词（不参与分类）
   tagsEn?: string[]
   faq?: { q: string; a: string }[] // 正文「常见问题」段落提取（中文），用于 FAQPage schema
   faqEn?: { q: string; a: string }[]
@@ -152,6 +153,15 @@ export interface Company {
 }
 
 export type CancerKey = 'cervical' | 'endometrial' | 'ovarian'
+
+/** 博客唯一主分类（与 scripts/build-data.ts 的 BLOG_CATEGORIES 保持一致） */
+export type BlogCategory =
+  | 'research'
+  | 'guidelines'
+  | 'conferences'
+  | 'clinical'
+  | 'education'
+  | 'company'
 
 /** Bilingual cancer label lookup */
 export const CANCER_LABEL: Record<CancerKey, string> = {

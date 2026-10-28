@@ -4,6 +4,9 @@ import { join } from 'node:path'
 const ROOT = process.cwd()
 const DATA = join(ROOT, 'src', 'data')
 
+// 与 scripts/build-data.ts、src/types.ts 保持一致
+const BLOG_CATEGORIES = ['research', 'guidelines', 'conferences', 'clinical', 'education', 'company']
+
 function readJson(name) {
   return JSON.parse(readFileSync(join(DATA, name), 'utf8'))
 }
@@ -62,7 +65,16 @@ for (const guideline of guidelines) {
 for (const blog of blogs) {
   assert(blogTranslations[blog.slug], `博客缺少英文映射：${blog.slug}`)
   assert(/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(blog.slug), `博客 slug 不符合 URL 约定：${blog.slug}`)
+  assert(BLOG_CATEGORIES.includes(blog.category), `博客分类缺失或非法：${blog.slug} -> ${blog.category}`)
+  assert(Array.isArray(blog.tags), `博客 tags 不是数组：${blog.slug}`)
 }
+
+// 分类为唯一主分类，计数合计必须等于文章总数
+const categoryTotal = BLOG_CATEGORIES.reduce(
+  (sum, category) => sum + blogs.filter((blog) => blog.category === category).length,
+  0,
+)
+assert(categoryTotal === blogs.length, `博客分类计数 ${categoryTotal} 与文章数 ${blogs.length} 不一致`)
 
 for (const product of products) {
   assert(productTranslations[product.slug], `产品缺少英文映射：${product.slug}`)

@@ -3,10 +3,8 @@ slug: new-publication-who-esgo-guideline-experts
 title: "New Publication | WHO/ESGO Guideline Experts Jointly Publish Large-Scale Meta-Analysis: PAX1/JAM3 Dual-Gene Methylation Ranks First in Overall Efficacy for Detecting High-Grade Cervical Lesions"
 seoTitle: "WHO/ESGO Meta-Analysis: PAX1/JAM3 Tops Detection"
 tags:
-  - "New Publication"
-  - "Guidelines"
-  - "Milestone"
-  - "Global"
+  - Cervical Cancer
+  - Methylation Testing
 excerpt: "A systematic review and meta-analysis jointly conducted by Imperial College London, Yale University School of Medicine, the Belgian Cancer Centre, Brown University, and Helsinki University Hospital was recently published in the European Journal of Cancer. What makes this paper special: the author group includes Marc Arbyn and other WHO cervical cancer screening experts."
 cover: ./images/covers/新文刊发WHOESGO指南专家联合发表大型Meta研究PAX1JAM3双靶甲基化在子宫颈高级别病变检测中综合效能居首.jpg
 ---

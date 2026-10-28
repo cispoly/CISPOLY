@@ -1,4 +1,5 @@
 import { useState, useMemo, useCallback } from 'react'
+import { useSearchParams } from 'react-router'
 import { Link } from '@/lib/router'
 import { Calendar } from 'lucide-react'
 import Reveal from '@/components/Reveal'
@@ -6,7 +7,7 @@ import PageHero from '@/components/PageHero'
 import { blogs } from '@/lib/data/blogs'
 import { PAGE_HERO_IMAGES } from '@/lib/images'
 import { useI18n } from '@/lib/i18n'
-import { BLOG_CATEGORY_ORDER, blogCategories, blogCategoryLabel, type BlogCategory } from '@/lib/blogTaxonomy'
+import { BLOG_CATEGORY_ORDER, blogCategory, blogCategoryLabel, isBlogCategory, type BlogCategory } from '@/lib/blogTaxonomy'
 import type { MetaFunction } from 'react-router'
 import { pageMeta } from '@/lib/seo'
 
@@ -21,16 +22,33 @@ export const meta: MetaFunction = ({ location }) => pageMeta(location.pathname, 
 
 export default function Blog() {
   const { t, lang } = useI18n()
-  const [category, setCategory] = useState<BlogCategory | null>(null)
+  const [searchParams, setSearchParams] = useSearchParams()
   const [query, setQuery] = useState('')
+
+  // 分类通过 URL 同步，便于文章页分类标签直接深链到筛选结果
+  const categoryParam = searchParams.get('category')
+  const category: BlogCategory | null = isBlogCategory(categoryParam) ? categoryParam : null
+  const setCategory = useCallback(
+    (next: BlogCategory | null) => {
+      setSearchParams(next ? { category: next } : {}, { replace: true, preventScrollReset: true })
+    },
+    [setSearchParams],
+  )
 
   const isEn = lang === 'en'
   const blogTitle = useCallback((b: typeof blogs[0]) => (isEn && b.titleEn ? b.titleEn : b.title), [isEn])
   const blogCover = useCallback((b: typeof blogs[0]) => (isEn && b.coverEn ? b.coverEn : b.cover), [isEn])
 
+  // 每篇只有一个主分类，计数互不重叠、合计等于文章总数
+  const categoryCounts = useMemo(() => {
+    const counts = Object.fromEntries(BLOG_CATEGORY_ORDER.map((item) => [item, 0])) as Record<BlogCategory, number>
+    for (const b of blogs) counts[blogCategory(b)] += 1
+    return counts
+  }, [])
+
   const filtered = useMemo(() => {
     return blogs.filter((b) => {
-      const matchCategory = !category || blogCategories(b).includes(category)
+      const matchCategory = !category || blogCategory(b) === category
       const title = blogTitle(b)
       const matchQuery = !query || title.toLowerCase().includes(query.toLowerCase())
       return matchCategory && matchQuery
@@ -68,7 +86,7 @@ export default function Blog() {
               {t('common.all')} {blogs.length}
             </button>
             {BLOG_CATEGORY_ORDER.map((categoryItem) => {
-              const count = blogs.filter((b) => blogCategories(b).includes(categoryItem)).length
+              const count = categoryCounts[categoryItem]
               return (
                 <button
                   key={categoryItem}
@@ -120,11 +138,9 @@ export default function Blog() {
                         {lang === 'en' && b.titleEn ? b.titleEn : b.title}
                       </h3>
                       <div className="flex flex-wrap gap-1.5">
-                        {blogCategories(b).map((categoryItem) => (
-                          <span key={categoryItem} className="rounded bg-brand-50 px-2 py-0.5 text-[10px] font-semibold text-brand-600">
-                            {blogCategoryLabel(categoryItem, lang)}
-                          </span>
-                        ))}
+                        <span className="rounded bg-brand-50 px-2 py-0.5 text-[10px] font-semibold text-brand-600">
+                          {blogCategoryLabel(blogCategory(b), lang)}
+                        </span>
                       </div>
                       <div className="mt-1 flex items-center gap-1.5 text-[11px] text-inkSoft">
                         <Calendar size={11} /> {t('blog.updatedAt')} {b.lastModifiedLabel}

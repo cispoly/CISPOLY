@@ -27,13 +27,13 @@ export default function GuidelineCard({ guideline }: { guideline: Guideline }) {
   const sourceUrl = guideline.externalUrl && (!guideline.externalUrl.includes('mp.weixin.qq.com') || !guideline.doi) ? guideline.externalUrl : undefined
   const href = sourceUrl || (guideline.doi ? `https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(`${guideline.doi}[doi]`)}` : undefined)
   const relatedBlog = relatedBlogFor(guideline)
-  return <div className="card card-hover group relative flex h-[240px] items-stretch overflow-hidden">
+  return <div className="card card-hover group relative flex h-full min-h-[240px] items-stretch overflow-hidden sm:h-[240px]">
     <a href={href} target={href ? '_blank' : undefined} rel={href ? 'noopener noreferrer' : undefined} className="flex min-w-0 flex-1 items-stretch">
     <div className="m-3 grid aspect-[3/4] w-24 shrink-0 place-items-center self-center overflow-hidden rounded-lg bg-brand-50 sm:m-4 sm:w-32 md:w-36"><img src={cover || '/images/journal-covers/_journals/journal-placeholder.svg'} alt={`${publisher || 'Guideline'} cover`} className="h-full w-full object-contain p-1 transition duration-300 group-hover:scale-105" loading="lazy" /></div>
     <div className="flex min-w-0 flex-1 flex-col justify-center gap-2 p-4 pb-12 sm:p-5 sm:pb-12">
-      <div className="flex items-start justify-between gap-3"><h3 className="break-words text-[14px] font-semibold leading-snug text-ink transition group-hover:text-brand-600 sm:text-[15px]">{title}</h3>{href && <ExternalLink size={15} className="mt-0.5 shrink-0 text-inkSoft/60 group-hover:text-brand-500" />}</div>
-      {publisher && <p className="inline-flex items-center gap-1.5 text-xs text-inkSoft"><Building2 size={12} className="text-brand-400" />{lang === 'en' ? 'Affiliation: ' : '发表单位：'}{publisher}</p>}
-      {guideline.doi && <p className="font-mono text-[11px] text-brand-600">DOI: {guideline.doi}</p>}
+      <div className="flex items-start justify-between gap-3"><h3 className="line-clamp-4 break-words text-[14px] font-semibold leading-snug text-ink transition group-hover:text-brand-600 sm:line-clamp-none sm:text-[15px]">{title}</h3>{href && <ExternalLink size={15} className="mt-0.5 shrink-0 text-inkSoft/60 group-hover:text-brand-500" />}</div>
+      {publisher && <p className="inline-flex items-center gap-1.5 text-xs text-inkSoft"><Building2 size={12} className="shrink-0 text-brand-400" /><span className="line-clamp-2 sm:line-clamp-none">{lang === 'en' ? 'Affiliation: ' : '发表单位：'}{publisher}</span></p>}
+      {guideline.doi && <p className="line-clamp-2 font-mono text-[11px] text-brand-600 sm:line-clamp-none">DOI: {guideline.doi}</p>}
       <div className="flex flex-wrap gap-1.5">{tagsFor(guideline, lang).map((tag) => <span key={tag} className="rounded bg-brand-50 px-2 py-0.5 text-[10px] font-semibold text-brand-600">{tag}</span>)}</div>
     </div>
     </a>

@@ -15,6 +15,7 @@ const relatedBlogOverrides: Record<string, string | null> = {
   '35_methylation_markers_meta_analysis': null,
   '37_two_methylation_assays_hrhpv_mrna': null,
   '13_edendx_assay_validation': null,
+  '14_self_sampling_gansu': null,
 }
 
 function findRelated(title: string) {

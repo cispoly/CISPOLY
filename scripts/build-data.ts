@@ -236,8 +236,8 @@ function parsePaper(filePath: string, cancerDir: string): Paper {
     title = line ? cleanHtml(stripMd(line)).slice(0, 200) : name
   }
 
-  // 作者：标题后第一个含中文姓名或 et al / 大量逗号的行
-  let authors = ''
+  // 作者：优先使用 frontmatter 显式作者，回退到正文姓名行。
+  let authors = typeof fm.authors === 'string' ? fm.authors.trim() : ''
   const lines = bodyAfterFm.split('\n')
   const titleIdx = lines.findIndex((l) => /^#\s+/.test(l))
   for (let i = titleIdx + 1; i < Math.min(titleIdx + 8, lines.length) && !authors; i++) {

@@ -1,4 +1,10 @@
 {
+  "14_self_sampling_gansu": {
+    "titleEn": "Self-Sampling for CDO1/CELF4 Methylation Accurately Identifies Endometrial Cancer in a Resource-Limited Region: A Prospective Study From Gansu",
+    "summaryEn": "This prospective study in Gansu evaluated self-collected CDO1/CELF4 methylation testing (CISENDO) in 154 symptomatic women, including 35 with endometrial cancer and 119 with non-EC diagnoses. The assay achieved an AUC of 0.834. In an exploratory subset of 35 paired samples, self- and physician-collected classifications agreed in 88.6% of cases (κ=0.76). CISENDO positivity remained strongly associated with endometrial cancer after adjustment (OR 85.08, 95% CI 12.21–592.71), supporting its potential for molecular triage and risk stratification of symptomatic women in resource-limited settings.",
+    "affiliationEn": "The First Hospital of Lanzhou University",
+    "authorsEn": "Feixue Xu, Suyue Yin, Min Wei, Jia Wu, Panpan Yang, Jiao Yang, Yuqi Xin, Pei Liu, Yishan Wang, Xingyu Liu, Kaiya Zhao, Aihong Yang, Yu-Ligh Liou"
+  },
   "7_epihera_prospective": {
     "titleEn": "Prospective Evaluation of Cervical Scrapings CDO1 and CELF4 Methylation (epiHERA?) Assay in Detection of Endometrial Cancer",
     "summaryEn": "This study evaluated the use of CDO1 and CELF4 methylation testing in cervical scrapings for diagnosing endometrial cancer. Among 675 patients tested, the assay achieved 97.3% accuracy, 84.1% sensitivity, 98.8% specificity, and a false-negative rate of only 0.8%. The method can serve as a screening tool to reduce invasive procedures, and all false-positive cases were associated with reproductive tract tumors, suggesting potential for early cancer detection before histological changes.",

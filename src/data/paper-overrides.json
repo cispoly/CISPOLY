@@ -1,4 +1,11 @@
 {
+  "14_self_sampling_gansu": {
+    "journal": "International Journal of Cancer",
+    "year": 2026,
+    "doi": "10.1002/ijc.70776",
+    "affiliation": "兰州大学第一医院",
+    "summary": "甘肃前瞻性研究在154名有症状女性（35例子宫内膜癌、119例非子宫内膜癌）中评估自采样CDO1/CELF4甲基化检测（CISENDO），诊断AUC为0.834。35例探索性配对样本中，自采样与医生采样的分类一致率为88.6%（κ=0.76）。调整后CISENDO阳性与子宫内膜癌显著相关（OR=85.08，95% CI 12.21–592.71），提示其在医疗资源有限地区用于有症状女性分子分流和风险分层的潜力。"
+  },
   "30_cin3_like_scc": {
     "title": "Preliminary study on PAX1/JAM3 methylation and HPV viral load in CIN3-like squamous cell carcinoma: Are there differences from CIN3 and early invasive carcinoma?",
     "journal": "Clinical Epigenetics",

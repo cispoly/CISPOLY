@@ -14,9 +14,9 @@ export const meta: MetaFunction = ({ location }) => pageMeta(location.pathname, 
   titleZh: '妇科肿瘤甲基化临床研究论文 | 子宫颈癌·子宫内膜癌·卵巢癌 - CISPOLY 聚禾生物',
   titleEn: 'Research Publications: Gynecologic Cancer Methylation | CISPOLY',
   descriptionZh:
-    '51 篇同行评审论文：PAX1/JAM3 宫颈癌（子宫颈癌）甲基化、CDO1/CELF4 子宫内膜癌甲基化、CDO1/HOXA9 卵巢癌甲基化检测的临床研究与 HPV 分流、妇科肿瘤早筛早诊循证依据。',
+    `${papers.length} 篇同行评审论文：PAX1/JAM3 宫颈癌（子宫颈癌）甲基化、CDO1/CELF4 子宫内膜癌甲基化、CDO1/HOXA9 卵巢癌甲基化检测的临床研究与 HPV 分流、妇科肿瘤早筛早诊循证依据。`,
   descriptionEn:
-    '51 peer-reviewed publications on PAX1/JAM3 cervical, CDO1/CELF4 endometrial, and CDO1/HOXA9 ovarian cancer methylation testing — clinical evidence for gynecologic cancer early detection.',
+    `${papers.length} peer-reviewed publications on PAX1/JAM3 cervical, CDO1/CELF4 endometrial, and CDO1/HOXA9 ovarian cancer methylation testing — clinical evidence for gynecologic cancer early detection.`,
 })
 
 export default function Papers() {

@@ -12,3 +12,4 @@
 11. Yu, Y. et al. Clinical Validation of DNA Methylation Detection in Cervical Exfoliated Cells for Endometrial Cancer in Women with Suspected Lesions. Diagnostics (Basel) 16, 174 (2026).
 12. Zhao, X., Yang, Y., Fu, Y., Lv, W. & Xu, D. DNA methylation detection is a significant biomarker for screening endometrial cancer in premenopausal women with abnormal uterine bleeding. Int J Gynecol Cancer 34, 1165–1171 (2024).
 13. Shrestha, R., Bang, B.-R. & Beqaj, S. Analytical and clinical validation of the EdenDx methylation assay as a noninvasive supportive triage tool for early detection of endometrial cancer in cervical scraping specimens. Gynecol Oncol Rep (2026) doi:10.1016/j.gore.2026.102221.
+14. Xu, F. et al. Self-Sampling for CDO1/CELF4 Methylation Accurately Identifies Endometrial Cancer in a Resource-Limited Region: A Prospective Study From Gansu. Int J Cancer (2026). Published online 30 October 2026. doi:10.1002/ijc.70776.

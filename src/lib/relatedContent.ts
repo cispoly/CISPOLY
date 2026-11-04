@@ -14,7 +14,7 @@ const relatedBlogOverrides: Record<string, string | null> = {
   '34_pax1jam3_meta_analysis': null,
   '35_methylation_markers_meta_analysis': null,
   '37_two_methylation_assays_hrhpv_mrna': null,
-  '13_edendx_assay_validation': null,
+  '13_edendx_assay_validation': 'cdo1-celf4-methylation-us-lab-validation',
   '14_self_sampling_gansu': null,
 }
 

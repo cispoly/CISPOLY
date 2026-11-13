@@ -74,6 +74,19 @@ assert(sitemap.includes('xmlns:xhtml='), 'sitemap 缺少 xhtml 命名空间（hr
 assert(sitemap.includes('hreflang="zh-CN"') && sitemap.includes('hreflang="en"'), 'sitemap 缺少 hreflang alternates')
 assert(sitemap.includes('hreflang="x-default"'), 'sitemap 缺少 x-default')
 
+// sitemap 必须收录全部英文 URL，且不得重复（曾因双语路径直接 map 而漏掉全部 /en）
+const sitemapLocs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1])
+assert(new Set(sitemapLocs).size === sitemapLocs.length, `sitemap 存在重复 <loc>：${sitemapLocs.length} 条 / ${new Set(sitemapLocs).size} 个唯一值`)
+const enLocs = sitemapLocs.filter(
+  (loc) => loc === 'https://www.cispoly.com/en' || loc.startsWith('https://www.cispoly.com/en/'),
+)
+assert(
+  enLocs.length === sitemapLocs.length / 2,
+  `sitemap 英文 URL 数量不正确：${enLocs.length} / ${sitemapLocs.length}`,
+)
+assert(enLocs.includes('https://www.cispoly.com/en/products/ciscer/'), 'sitemap 缺少英文产品页')
+assert(enLocs.includes('https://www.cispoly.com/en/about/'), 'sitemap 缺少英文 About 页')
+
 const robots = readFileSync(join(CLIENT, 'robots.txt'), 'utf8')
 assert(robots.includes('User-agent: *\nAllow: /'), 'robots.txt 未开放公开页面抓取')
 assert(robots.includes('Sitemap: https://www.cispoly.com/sitemap.xml'), 'robots.txt 缺少 sitemap 地址')

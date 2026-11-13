@@ -8,6 +8,7 @@ type ContentRoute = {
   title?: string
   titleEn?: string
   date?: string
+  lastModified?: string
   excerpt?: string
   excerptEn?: string
 }
@@ -125,17 +126,39 @@ export default {
     buildLlmsFiles()
 
     // sitemap.xml：带 hreflang alternates 的双语 sitemap
-    const urlset = prerenderPaths().map((path) => {
-      const bare = path === '/en' ? '/' : path.replace(/^\/en(?=\/|$)/, '') || '/'
+    // 注意：prerenderPaths() 返回的是「中英双语」路径列表，直接 map 会导致
+    //  ① 每个 <loc> 全是中文 URL（英文页漏收录）  ② 同一 URL 重复出现两次。
+    // 所以先按「去掉 /en 前缀」的内容路径去重，再为中英文各输出一条 <loc>。
+    const lastmodByBarePath = new Map<string, string>()
+    for (const blog of readGenerated<ContentRoute>('blogs')) {
+      if (!blog.slug) continue
+      const lastmod = (blog.lastModified || blog.date || '').slice(0, 10)
+      if (lastmod) lastmodByBarePath.set(`/blog/${blog.slug}`, lastmod)
+    }
+
+    const barePaths = [
+      ...new Set(
+        prerenderPaths().map((path) =>
+          path === '/en' ? '/' : path.replace(/^\/en(?=\/|$)/, '') || '/',
+        ),
+      ),
+    ].sort((a, b) => (a === '/' ? -1 : b === '/' ? 1 : a.localeCompare(b)))
+
+    const urlset: string[] = []
+    for (const bare of barePaths) {
       const zhUrl = new URL(sitemapPath(bare), origin).href
       const enUrl = new URL(sitemapPath(bare === '/' ? '/en' : `/en${bare}`), origin).href
-      return `  <url>
-    <loc>${zhUrl}</loc>
+      const lastmod = lastmodByBarePath.get(bare)
+      for (const loc of [zhUrl, enUrl]) {
+        urlset.push(`  <url>
+    <loc>${loc}</loc>${lastmod ? `
+    <lastmod>${lastmod}</lastmod>` : ''}
     <xhtml:link rel="alternate" hreflang="zh-CN" href="${zhUrl}"/>
     <xhtml:link rel="alternate" hreflang="en" href="${enUrl}"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="${zhUrl}"/>
-  </url>`
-    })
+  </url>`)
+      }
+    }
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urlset.join('\n')}\n</urlset>\n`
     writeFileSync(new URL('./build/client/sitemap.xml', import.meta.url), sitemap)
 

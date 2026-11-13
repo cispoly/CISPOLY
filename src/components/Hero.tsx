@@ -13,6 +13,7 @@ import {
 } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
 import { company } from '@/lib/data/company'
+import { heroImage } from '@/lib/images'
 
 interface Slide {
   image: string
@@ -23,7 +24,7 @@ interface Slide {
   cta: { label: string; to: string }
 }
 
-const SLIDE_INTERVAL = 3000
+const SLIDE_INTERVAL = 6500
 const SLIDE_IMAGES = [
   '/hero/anita-austvika-XQbCwyHjp6s.jpg',
   '/hero/becca-tapert-u5e1kqW6E3M.jpg',
@@ -46,13 +47,15 @@ export default function Hero() {
     return () => clearInterval(timer)
   }, [paused, next])
 
-  // 预加载所有轮播图，避免切换时白屏
+  // 只预加载下一张，避免首屏一次性拉 5 张大图
   useEffect(() => {
-    SLIDE_IMAGES.forEach((src) => {
+    const next = SLIDE_IMAGES[(index + 1) % SLIDE_IMAGES.length]
+    const timer = setTimeout(() => {
       const img = new Image()
-      img.src = src
-    })
-  }, [])
+      img.src = heroImage(next).src
+    }, 1500)
+    return () => clearTimeout(timer)
+  }, [index])
 
   const slides: Slide[] = [
     {
@@ -61,7 +64,7 @@ export default function Hero() {
       eyebrow: t('hero.slide1.eyebrow'),
       title: (
         <>
-          {t('hero.slide1.titlePrefix')}
+          {t('hero.slide1.titlePrefix')}{' '}
           <br />
           <span className="text-brand-500">{t('hero.slide1.titleHighlight')}</span>
         </>
@@ -69,8 +72,8 @@ export default function Hero() {
       subtitle:
         lang === 'zh'
           ? `${company.shortName}专注宫颈癌、子宫内膜癌、卵巢癌的 DNA 甲基化早筛早诊，以无创技术填补临床空白，造福中国乃至全球的女性。`
-          : 'CISPOLY focuses on DNA methylation-based early screening and diagnosis of cervical, endometrial, and ovarian cancers, filling clinical gaps with non-invasive technology to benefit women in China and worldwide.',
-      cta: { label: t('hero.slide1.cta'), to: '/about' },
+          : 'Three non-invasive, NMPA-registered tests — CISCER® for cervical cancer and HPV-positive triage, CISENDO® for endometrial cancer, CISOVA® for ovarian cancer.',
+      cta: { label: t('hero.slide1.cta'), to: t('hero.slide1.ctaTo') },
     },
     {
       image: SLIDE_IMAGES[1],
@@ -140,6 +143,7 @@ export default function Hero() {
   ]
 
   const slide = slides[index]
+  const slideImage = heroImage(slide.image)
 
   return (
     <section
@@ -159,7 +163,9 @@ export default function Hero() {
             transition={{ opacity: { duration: 1.4, ease: 'easeInOut' }, scale: { duration: 7, ease: 'easeOut' } }}
           >
             <img
-              src={slide.image}
+              src={slideImage.src}
+              srcSet={slideImage.srcSet}
+              sizes={slideImage.sizes}
               alt=""
               className="h-full w-full object-cover"
               loading={index === 0 ? 'eager' : 'lazy'}

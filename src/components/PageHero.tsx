@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { heroImage } from '@/lib/images'
 
 interface PageHeroProps {
   image: string
@@ -13,11 +14,19 @@ interface PageHeroProps {
  * 明色系遮罩（暖白半透 + backdrop-blur），保证文字可读。
  */
 export default function PageHero({ image, eyebrow, title, subtitle, children }: PageHeroProps) {
+  const img = heroImage(image)
   return (
     <section className="relative overflow-hidden">
       {/* 图片背景 */}
       <div className="absolute inset-0">
-        <img src={image} alt="" className="h-full w-full object-cover" loading="eager" />
+        <img
+          src={img.src}
+          srcSet={img.srcSet}
+          sizes={img.sizes}
+          alt=""
+          className="h-full w-full object-cover"
+          loading="eager"
+        />
       </div>
       {/* 毛玻璃遮罩（明色系，提高透明度让图片更透出） */}
       <div className="absolute inset-0 bg-canvas/35 backdrop-blur-md" />

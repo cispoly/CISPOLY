@@ -62,7 +62,8 @@ const zh: Dict = {
   'hero.slide1.titleHighlight': '守护女性健康',
   'hero.slide1.subtitle':
     '聚禾生物专注宫颈癌、子宫内膜癌、卵巢癌的 DNA 甲基化早筛早诊，以无创技术填补临床空白，造福中国乃至全球的女性。',
-  'hero.slide1.cta': '了解我们',
+  'hero.slide1.cta': '查看产品',
+  'hero.slide1.ctaTo': '/products',
 
   'hero.slide2.eyebrow': '产品矩阵',
   'hero.slide2.titlePrefix': '三大无创检测，',
@@ -338,12 +339,13 @@ const en: Dict = {
   'cancer.ovarian': 'Ovarian Cancer',
 
   // ---- Hero carousel ----
-  'hero.slide1.eyebrow': 'Our Mission',
-  'hero.slide1.titlePrefix': 'Guarding women\u2019s health with',
-  'hero.slide1.titleHighlight': 'innovative epigenetic technology',
+  'hero.slide1.eyebrow': 'Gynecologic Cancer Early Detection',
+  'hero.slide1.titlePrefix': 'Cervical, endometrial & ovarian',
+  'hero.slide1.titleHighlight': 'cancer methylation testing',
   'hero.slide1.subtitle':
-    'CISPOLY focuses on DNA methylation-based early screening and diagnosis of cervical, endometrial, and ovarian cancers, filling clinical gaps with non-invasive technology to benefit women in China and worldwide.',
-  'hero.slide1.cta': 'Learn More',
+    'Three non-invasive, NMPA-registered tests for cervical, endometrial and ovarian cancer. CISCER® for cervical cancer and HPV-positive triage, CISENDO® for endometrial cancer, CISOVA® for ovarian cancer.',
+  'hero.slide1.cta': 'View Products',
+  'hero.slide1.ctaTo': '/products',
 
   'hero.slide2.eyebrow': 'Product Portfolio',
   'hero.slide2.titlePrefix': 'Three non-invasive tests covering',

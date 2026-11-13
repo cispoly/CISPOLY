@@ -7,13 +7,24 @@ import { company } from '@/lib/data/company'
 import { PAGE_HERO_IMAGES } from '@/lib/images'
 import { useI18n, pick } from '@/lib/i18n'
 import type { MetaFunction } from 'react-router'
-import { pageMeta } from '@/lib/seo'
+import { pageMeta, breadcrumbSchema } from '@/lib/seo'
 
 export const meta: MetaFunction = ({ location }) => pageMeta(location.pathname, {
-  titleZh: '关于聚禾生物 | CISPOLY',
-  titleEn: 'About CISPOLY',
+  titleZh: '关于聚禾生物 | 宫颈癌、子宫内膜癌、卵巢癌甲基化检测 | CISPOLY',
+  titleEn: 'About CISPOLY | Gynecologic Cancer Methylation Testing Company',
   descriptionZh: '了解聚禾生物的使命、发展历程、研发实力与妇科肿瘤早筛早诊产品布局。',
-  descriptionEn: 'Learn about CISPOLY’s mission, milestones, R&D capabilities, and gynecologic cancer detection portfolio.',
+  descriptionEn:
+    'CISPOLY develops and manufactures non-invasive DNA methylation tests for cervical, endometrial and ovarian cancer. Founded in 2020, NMPA Class III registered, published in peer-reviewed journals.',
+  structuredData: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'AboutPage',
+      name: 'About CISPOLY',
+      url: 'https://www.cispoly.com/about/',
+      mainEntity: { '@id': 'https://www.cispoly.com/#organization' },
+    },
+    breadcrumbSchema([{ name: '关于我们', path: '/about' }], location.pathname),
+  ],
 })
 
 export default function About() {
@@ -31,7 +42,11 @@ export default function About() {
       <PageHero
         image={PAGE_HERO_IMAGES.about}
         eyebrow={t('about.hero.eyebrow')}
-        title={companyName}
+        title={
+          lang === 'en'
+            ? 'CISPOLY: DNA methylation tests for gynecologic cancers'
+            : companyName
+        }
         subtitle={companyMission}
       />
 

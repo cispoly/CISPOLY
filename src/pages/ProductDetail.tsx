@@ -1,6 +1,7 @@
 import { useParams, Link, Navigate } from '@/lib/router'
 import {
   ArrowLeft,
+  ArrowRight,
   CheckCircle2,
   Users,
   Stethoscope,
@@ -8,6 +9,7 @@ import {
   ShieldCheck,
   Dna,
   CircleHelp,
+  Mail,
 } from 'lucide-react'
 import SectionTitle from '@/components/SectionTitle'
 import Reveal from '@/components/Reveal'
@@ -15,7 +17,9 @@ import MetricBar from '@/components/MetricBar'
 import PaperCard from '@/components/PaperCard'
 import GuidelineCard from '@/components/GuidelineCard'
 import CardMarquee from '@/components/CardMarquee'
-import { getProduct } from '@/lib/data/products'
+import ProductCard from '@/components/ProductCard'
+import { getProduct, products } from '@/lib/data/products'
+import { heroImage } from '@/lib/images'
 import { getPapersByCancer } from '@/lib/data/papers'
 import { getGuidelinesByCancer } from '@/lib/data/guidelines'
 import { useI18n, pick } from '@/lib/i18n'
@@ -39,7 +43,7 @@ export const meta: MetaFunction = ({ params, location }) => {
   }
   return pageMeta(location.pathname, {
     titleZh: `${product.fullName}｜${product.cancer}甲基化检测 | CISPOLY 聚禾生物`,
-    titleEn: `${product.fullNameEn || product.englishName} | CISPOLY`,
+    titleEn: `${product.fullNameEn || product.englishName} — ${product.cancerEn} Methylation Test (${product.genes.join('/')}) | CISPOLY`,
     descriptionZh: sceneZh[product.cancerKey] || product.summary,
     descriptionEn: sceneEn[product.cancerKey] || product.summaryEn || product.summary,
     structuredData: [
@@ -49,6 +53,8 @@ export const meta: MetaFunction = ({ params, location }) => {
         name: product.fullName,
         alternateName: product.englishName,
         description: product.summary,
+        category: 'In vitro diagnostic medical device (IVD)',
+        medicalSpecialty: 'Gynecologic',
         url: `https://www.cispoly.com/products/${product.slug}/`,
         manufacturer: {
           '@type': 'Organization',
@@ -102,8 +108,56 @@ export default function ProductDetail() {
   const registration = lang === 'en' ? product.registration.replace(/^国械注准\s*/, '') : product.registration
   const dnaIsolationFiling = product.slug === 'cisova' ? '20240021' : '20210020'
 
+  // 询盘链路文案：产品页 → 资料/报价/合作（海外采购与临床合作方的下一步）
+  const copy =
+    lang === 'en'
+      ? {
+          h1Suffix: `${cancer} Methylation Test (${product.genes.join('/')})`,
+          heroCta: 'Request IFU & pricing',
+          heroCta2: 'See clinical evidence',
+          back: 'Back to products',
+          ctaEyebrow: 'Next step',
+          ctaTitle: 'Request the IFU, clinical summary and pricing',
+          ctaDesc:
+            'Tell us your institution type and intended use. We reply within 1–2 business days with the documents below, and can arrange a technical call with our clinical team.',
+          ctaBullets: [
+            'IFU, registration certificate and sample requirements',
+            'Clinical performance summary and published papers',
+            'Distributor terms, kit configuration and logistics',
+          ],
+          ctaPrimary: 'Request product information',
+          ctaSecondary: 'Compare all three tests',
+          otherTitle: 'The same methylation platform, two more cancers',
+          otherDesc: 'CISPOLY covers cervical, endometrial and ovarian cancer with one non-invasive workflow.',
+          otherAll: 'All products',
+          mailNote: 'Prefer email?',
+        }
+      : {
+          h1Suffix: `${cancer}甲基化检测（${product.genes.join('/')}）`,
+          heroCta: '获取产品资料与报价',
+          heroCta2: '查看临床证据',
+          back: '返回产品中心',
+          ctaEyebrow: '合作入口',
+          ctaTitle: '获取说明书、临床数据摘要与报价',
+          ctaDesc:
+            '告知您的机构类型与使用场景，我们将在 1–2 个工作日内提供下列资料，并可安排临床团队技术沟通。',
+          ctaBullets: [
+            '说明书、注册证与样本要求',
+            '临床效能摘要与已发表文献',
+            '代理政策、试剂配置与物流方案',
+          ],
+          ctaPrimary: '获取产品资料',
+          ctaSecondary: '对比三大产品',
+          otherTitle: '同一甲基化平台，覆盖另两大类妇科肿瘤',
+          otherDesc: '一套无创采样流程，覆盖宫颈癌、子宫内膜癌与卵巢癌。',
+          otherAll: '全部产品',
+          mailNote: '也可直接邮件联系：',
+        }
+
+  const otherProducts = products.filter((p) => p.slug !== product.slug)
+
   // 产品 hero 背景图（与首页同风格）
-  const heroImage = (() => {
+  const heroImagePath = (() => {
     switch (product.slug) {
       case 'ciscer': return '/hero/becca-tapert-u5e1kqW6E3M.jpg'
       case 'cisendo': return '/hero/becca-tapert-eAfrl7A6gBs.jpg'
@@ -112,13 +166,22 @@ export default function ProductDetail() {
     }
   })()
 
+  const hero = heroImage(heroImagePath)
+
   return (
     <div>
       {/* ===== Hero（与首页同风格，无需轮动） ===== */}
       <section className="relative overflow-hidden">
         {/* 背景图 */}
         <div className="absolute inset-0">
-          <img src={heroImage} alt="" className="h-full w-full object-cover" loading="eager" />
+          <img
+            src={hero.src}
+            srcSet={hero.srcSet}
+            sizes={hero.sizes}
+            alt=""
+            className="h-full w-full object-cover"
+            loading="eager"
+          />
         </div>
         {/* 毛玻璃遮罩层（与首页同款，更透明让底图透出） */}
         <div className="absolute inset-0 bg-canvas/15 backdrop-blur-sm" />
@@ -128,10 +191,10 @@ export default function ProductDetail() {
 
         <div className="shell relative py-16 md:py-24">
           <Link
-            to="/"
+            to="/products"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-ink/60 transition hover:text-brand-600"
           >
-            <ArrowLeft size={15} /> {t('product.backToProducts')}
+            <ArrowLeft size={15} /> {copy.back}
           </Link>
 
           <div className="mt-8 max-w-3xl">
@@ -144,7 +207,12 @@ export default function ProductDetail() {
               </span>
             </div>
 
-            <h1 className="mt-5 text-4xl font-bold tracking-tight text-ink md:text-6xl">{fullName}</h1>
+            <h1 className="mt-5 text-4xl font-bold tracking-tight text-ink md:text-6xl">
+              {fullName}
+              <span className="mt-3 block text-lg font-semibold leading-snug text-ink/70 md:text-2xl">
+                {copy.h1Suffix}
+              </span>
+            </h1>
             <p className="mt-3 text-lg font-medium text-ink/80 md:text-xl">{tagline}</p>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-ink/70">{summary}</p>
 
@@ -160,8 +228,18 @@ export default function ProductDetail() {
                 <div className="text-sm font-semibold text-ink">{product.regDate}</div>
               </div>
             </div>
+            {/* 首屏询盘入口：采购/合作方不用滑到底就能行动 */}
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Link to="/contact" className="btn-primary">
+                <Mail size={16} /> {copy.heroCta}
+              </Link>
+              <Link to="/papers" className="btn-ghost">
+                {copy.heroCta2} <ArrowRight size={16} />
+              </Link>
+            </div>
+
             {lang === 'en' && (
-              <div className="mt-4 max-w-2xl rounded-xl border border-line/60 bg-white/70 px-5 py-4 text-sm leading-relaxed text-ink/80 backdrop-blur">
+              <div className="mt-8 max-w-2xl rounded-xl border border-line/60 bg-white/70 px-5 py-4 text-sm leading-relaxed text-ink/80 backdrop-blur">
                 <p className="font-semibold text-ink">Recommended companion kits</p>
                 <p className="mt-1.5">
                   Use the <strong className="font-bold text-ink">DNA Isolation and Purifying Kit (Beijing Medical Device No. {dnaIsolationFiling})</strong> for DNA extraction and purification,
@@ -305,6 +383,83 @@ export default function ProductDetail() {
                     {item.a}
                   </p>
                 </details>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== 询盘入口（采购/合作方的下一步） ===== */}
+      <section className="pb-4 pt-4">
+        <div className="shell">
+          <Reveal>
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-500 via-brand-600 to-brand-700 px-6 py-10 md:px-12 md:py-14">
+              <div className="pointer-events-none absolute -right-16 -top-20 h-56 w-56 rounded-full bg-white/10 blur-2xl" />
+              <div className="relative grid gap-10 md:grid-cols-[1.5fr_1fr] md:items-center">
+                <div className="text-white">
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
+                    {copy.ctaEyebrow}
+                  </span>
+                  <h2 className="mt-3 text-2xl font-bold leading-snug tracking-tight md:text-3xl">
+                    {copy.ctaTitle}
+                  </h2>
+                  <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/85 md:text-base">
+                    {copy.ctaDesc}
+                  </p>
+                  <ul className="mt-6 space-y-2.5">
+                    {copy.ctaBullets.map((item) => (
+                      <li key={item} className="flex items-start gap-2.5 text-sm text-white/90">
+                        <CheckCircle2 size={17} className="mt-0.5 shrink-0 text-white/70" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="flex flex-col gap-3">
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-brand-700 transition hover:bg-brand-50"
+                  >
+                    <Mail size={16} /> {copy.ctaPrimary}
+                  </Link>
+                  <Link
+                    to="/products"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-white/10"
+                  >
+                    {copy.ctaSecondary} <ArrowRight size={16} />
+                  </Link>
+                  <p className="mt-1 text-center text-xs text-white/70">
+                    {copy.mailNote}{' '}
+                    <a href="mailto:OPBT@cispoly.com" className="underline underline-offset-2 hover:text-white">
+                      OPBT@cispoly.com
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ===== 产品互链 ===== */}
+      <section className="py-16 md:py-24">
+        <div className="shell">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <SectionTitle
+                eyebrow={lang === 'en' ? 'Product Portfolio' : '产品矩阵'}
+                title={copy.otherTitle}
+                subtitle={copy.otherDesc}
+              />
+            </div>
+            <Link to="/products" className="btn-ghost shrink-0">
+              {copy.otherAll} <ArrowRight size={16} />
+            </Link>
+          </div>
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {otherProducts.map((p, i) => (
+              <Reveal key={p.slug} delay={i * 0.08}>
+                <ProductCard product={p} />
               </Reveal>
             ))}
           </div>

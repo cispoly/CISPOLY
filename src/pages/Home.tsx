@@ -19,11 +19,11 @@ import { pageMeta } from '@/lib/seo'
 
 export const meta: MetaFunction = ({ location }) => pageMeta(location.pathname, {
   titleZh: 'CISPOLY 聚禾生物 | 妇科肿瘤甲基化早筛早诊开拓者',
-  titleEn: 'CISPOLY | Methylation-Based Early Detection for Gynecologic Cancers',
+  titleEn: 'Cervical Cancer Methylation Testing & HPV Triage | CISPOLY',
   descriptionZh:
     '聚禾生物（CISPOLY）专注子宫颈癌、子宫内膜癌、卵巢癌的 DNA 甲基化无创早筛早诊：宫颈癌甲基化检测（禾宫康）、HPV 阳性分流、内膜癌与卵巢癌早期筛查产品与临床研究。',
   descriptionEn:
-    'CISPOLY develops non-invasive DNA methylation tests for cervical, endometrial, and ovarian cancer early detection — HPV-positive triage and clinical evidence for gynecologic cancer screening.',
+    'CISPOLY develops non-invasive DNA methylation tests for cervical, endometrial and ovarian cancer — CISCER® for HPV-positive triage, CISENDO® and CISOVA®. All NMPA Class III registered, with published clinical data.',
   image: '/hero/becca-tapert-u5e1kqW6E3M.jpg',
   structuredData: [
     {

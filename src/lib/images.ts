@@ -10,3 +10,16 @@ export const PAGE_HERO_IMAGES = {
   about: '/hero/anita-austvika-XQbCwyHjp6s.jpg',
   contact: '/hero/anita-austvika-XQbCwyHjp6s.jpg',
 } as const
+
+/**
+ * hero 背景图统一走 WebP 双档（960 / 1920），比原 JPEG 小 3-5 倍。
+ * 源文件仍保留 .jpg 作为兜底，文件名约定：<name>-1920.webp / <name>-960.webp。
+ */
+export function heroImage(src: string) {
+  const stem = src.replace(/\.(jpe?g|png)$/i, '')
+  return {
+    src: `${stem}-1920.webp`,
+    srcSet: `${stem}-960.webp 960w, ${stem}-1920.webp 1920w`,
+    sizes: '100vw',
+  }
+}
